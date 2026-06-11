@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+.text-glow {
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #c6c6ce 15%, #c6c6ce 85%, transparent);
+}

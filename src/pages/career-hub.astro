@@ -1,0 +1,315 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Career Hub | Sky States</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .upward-gradient {
+            background: linear-gradient(to top, #ffffff, #cde5ff);
+        }
+        .text-gradient {
+            background: linear-gradient(180deg, #001d32 0%, #005d90 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 shadow-[0_30px_30px_rgba(15,29,37,0.04)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Sky States</h1>
+</div>
+<Header />
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md active:scale-95 duration-150 transition-transform">
+        Book Consultation
+    </button>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 py-8 text-outline font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="text-secondary">Career Hub</span>
+</nav>
+<!-- Hero Section -->
+<section class="upward-gradient rounded-3xl p-margin-mobile md:p-16 mb-section-gap overflow-hidden relative min-h-[500px] flex flex-col justify-center">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-fixed to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-2xl">
+<span class="inline-block px-4 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-label-sm font-label-sm mb-6 uppercase tracking-wider">Advisory Intelligence</span>
+<h2 class="font-headline-xl text-headline-xl md:text-[56px] leading-tight mb-6 text-gradient">Career Transition Intelligence</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">
+                A proprietary ecosystem designed for senior professionals navigating the complexities of modern industry shifts. We blend data-driven ROI modeling with engineering-grade profile optimization.
+            </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary h-[52px] px-8 rounded-xl font-label-md text-label-md shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+                    Explore Methodology
+                </button>
+<button class="bg-secondary-container text-on-secondary-container h-[52px] px-8 rounded-xl font-label-md text-label-md hover:bg-outline-variant transition-colors">
+                    View Partner Network
+                </button>
+</div>
+</div>
+</section>
+<!-- Hiring Partner Network Marquee -->
+<section class="mb-section-gap overflow-hidden py-12 border-y border-outline-variant/30">
+<h3 class="text-center font-label-md text-label-md text-outline uppercase tracking-widest mb-12">Authorized Hiring Partner Network</h3>
+<div class="relative flex overflow-x-hidden">
+<div class="animate-marquee flex whitespace-nowrap gap-16 items-center">
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="rocket_launch">rocket_launch</span>
+<span class="font-headline-md font-extrabold tracking-tighter">TechCorp</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="public">public</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Globo</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="all_inclusive">all_inclusive</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Nexus</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="token">token</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Prism</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="hub">hub</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Stellar</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="diamond">diamond</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Peak Systems</span>
+</div>
+<!-- Duplicate for seamless loop -->
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="rocket_launch">rocket_launch</span>
+<span class="font-headline-md font-extrabold tracking-tighter">TechCorp</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="public">public</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Globo</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="all_inclusive">all_inclusive</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Nexus</span>
+</div>
+<div class="flex items-center gap-3 grayscale opacity-60">
+<span class="material-symbols-outlined text-3xl" data-icon="token">token</span>
+<span class="font-headline-md font-extrabold tracking-tighter">Prism</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Career Transition Roadmap -->
+<section class="mb-section-gap py-16">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-gradient">Career Transition Roadmap</h2>
+<p class="text-on-surface-variant font-body-lg max-w-2xl mx-auto">Our streamlined engineering-grade process to pivot your career with precision.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
+<!-- Connecting line (desktop) -->
+<div class="hidden md:block absolute top-12 left-0 w-full h-[2px] bg-surface-variant z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xl mb-6 shadow-lg shadow-primary/20">1</div>
+<h4 class="font-label-md mb-2">Advisory Consultation</h4>
+<p class="text-label-sm text-on-surface-variant">Strategic alignment and trajectory planning.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-xl mb-6 border-2 border-primary/20">2</div>
+<h4 class="font-label-md mb-2">Profile Optimization</h4>
+<p class="text-label-sm text-on-surface-variant">Engineering your narrative for executive impact.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-xl mb-6 border-2 border-primary/20">3</div>
+<h4 class="font-label-md mb-2">Target Mapping</h4>
+<p class="text-label-sm text-on-surface-variant">Market ROI analysis and role identification.</p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center font-bold text-xl mb-6 border-2 border-primary/20">4</div>
+<h4 class="font-label-md mb-2">Interview Advisory</h4>
+<p class="text-label-sm text-on-surface-variant">High-stakes communication and value framing.</p>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xl mb-6 shadow-lg shadow-primary-container/20">5</div>
+<h4 class="font-label-md mb-2">Partner Placement</h4>
+<p class="text-label-sm text-on-surface-variant">Direct access to the decision maker network.</p>
+</div>
+</div>
+</section>
+<!-- By the Numbers Section -->
+<section class="mb-section-gap bg-inverse-surface text-inverse-on-surface rounded-3xl p-12 md:p-16">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div>
+<p class="font-headline-xl text-[64px] text-primary-fixed mb-2">94%</p>
+<p class="font-label-md uppercase tracking-widest text-surface-variant">Successful Placement</p>
+<p class="mt-4 text-surface-variant/70 text-label-sm">Within 6 months of program completion across our elite partner network.</p>
+</div>
+<div class="border-y md:border-y-0 md:border-x border-surface-variant/20 py-12 md:py-0">
+<p class="font-headline-xl text-[64px] text-primary-fixed mb-2">140%</p>
+<p class="font-label-md uppercase tracking-widest text-surface-variant">Avg Salary Hike</p>
+<p class="mt-4 text-surface-variant/70 text-label-sm">Significant compensation growth through strategic market repositioning.</p>
+</div>
+<div>
+<p class="font-headline-xl text-[64px] text-primary-fixed mb-2">15k+</p>
+<p class="font-label-md uppercase tracking-widest text-surface-variant">Executives Placed</p>
+<p class="mt-4 text-surface-variant/70 text-label-sm">A global community of leaders driving change in Fortune 500 tech firms.</p>
+</div>
+</div>
+</section>
+<!-- Bento Tools Grid -->
+<section class="mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Salary Guide & ROI -->
+<div class="md:col-span-7 bg-white rounded-2xl p-10 shadow-[0_30px_30px_rgba(15,29,37,0.04)] hover:translate-y-[-4px] transition-transform group">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-primary text-4xl p-4 bg-primary-fixed rounded-2xl" data-icon="payments">payments</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Salary Guide &amp; ROI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Calculate your market value based on cross-industry demand and project your 5-year earnings trajectory after placement.</p>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 transition-all duration-1000"></div>
+</div>
+<div class="mt-4 flex justify-between text-label-sm font-label-sm text-outline">
+<span>Current Benchmark</span>
+<span>Potential Upside +42%</span>
+</div>
+</div>
+<!-- Resume Engineering Hub -->
+<div class="md:col-span-5 bg-white rounded-2xl p-10 shadow-[0_30px_30px_rgba(15,29,37,0.04)] hover:translate-y-[-4px] transition-transform group">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-primary text-4xl p-4 bg-secondary-container rounded-2xl" data-icon="architecture">architecture</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Resume Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">ATS-optimized, narrative-driven documentation that highlights executive impact over tasks.</p>
+</div>
+</div>
+</section>
+<!-- Trending Career Guides Grid (Expanded) -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Trending Career Guides</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Expert-authored blueprints for high-growth technical roles.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 text-primary font-label-md group">
+                View All Guides 
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Article 1 -->
+<article class="bg-white rounded-2xl overflow-hidden shadow-[0_30px_30px_rgba(15,29,37,0.04)] group cursor-pointer flex flex-col">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Data Science Professional Guide" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIbcUTXhb_vFXbDmSgk3HaknYUqXc8K1wBM25A-AWCQDv-6pqjCE5KBkbS5f72foe1Vh2qPrdNhKAE0z0B4k10rks8TtbtPps_CVpdE-B7XElVAPv-oq713fMAjb5OTQTQ2w4XWcaPSnohqMdpLUadxHwZM6kGXgXrCvsP6d_2FFnQCGBvOCLQ-mWST_u_GyUWOK9YuCxJLWPRiOMsBA9K38PWIqh6hxPX0wo15yAzOIyAR_IG_8ouWrcvJrnjW3Jg4Nr_9vvpJs4"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="px-2 py-0.5 w-fit bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold tracking-tighter uppercase mb-4">Market Trends</span>
+<h4 class="font-headline-md text-headline-md mb-4 group-hover:text-primary transition-colors leading-tight text-xl">Data Scientist 2026</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2 text-sm">Mastering the hybrid role of AI architect and business analyst.</p>
+<div class="mt-auto flex items-center gap-3 text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span>12 min</span>
+</div>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="bg-white rounded-2xl overflow-hidden shadow-[0_30px_30px_rgba(15,29,37,0.04)] group cursor-pointer flex flex-col">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="SOC Analyst Career Path" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3eEQK4GDpJO3UzjC1aWAxT7qqt6c_RoQKHHH_zrPvjEKd4ELOFdFCOE9WPDow-VXZu4pXOrkKW0nsFp0VgiAKyhg71Q72u1bjuM6oAe_SNGzm1p3UFge9K2TA5pd-v0ztkCF4V-jYD51A3JtaKscxkgGTjBPwK3cDJEtnFcecS-0QvcCnO7ia10v0wOOr5PHszamBjLmjtoHfAzKQTVPrQVsZWd41m38oD3y7Ak5EScdG1fp7kaF3tahAcG0Ul9B9PleWZ0zfdoc"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="px-2 py-0.5 w-fit bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold tracking-tighter uppercase mb-4">Security</span>
+<h4 class="font-headline-md text-headline-md mb-4 group-hover:text-primary transition-colors leading-tight text-xl">SOC Analyst Guide</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2 text-sm">Managing enterprise-grade incident response teams effectively.</p>
+<div class="mt-auto flex items-center gap-3 text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span>15 min</span>
+</div>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="bg-white rounded-2xl overflow-hidden shadow-[0_30px_30px_rgba(15,29,37,0.04)] group cursor-pointer flex flex-col">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="Cloud Architect Strategy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMweYiKLy9a5CYN7Rw3vzhM2ThggWVxb7jjeYSe7OPE7dxP_EEgV-x29pWU2DYvDgMTv0yfCMLlNiTYb1Q2N-kb5BuN1QAnyeEcIxMC_DUfMNKGuBZwFglDo0ujPHZ5l7-PGfcLJSU2bBQUHbLr4SJktF8D9q0gFhgDv_pEohFEvRFDAt-0K6XsZWp60wrdQlqCMgwFDN0E8X4HwkvEaXtjv7FK9du8sB-DI7vL2RoHwvHAwS1_jl8O_Zk5XrfC1eqHAvlGkzAsq4"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="px-2 py-0.5 w-fit bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold tracking-tighter uppercase mb-4">Infrastructure</span>
+<h4 class="font-headline-md text-headline-md mb-4 group-hover:text-primary transition-colors leading-tight text-xl">Cloud Architect 2025</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2 text-sm">Scaling multi-cloud ecosystems for resilience and performance.</p>
+<div class="mt-auto flex items-center gap-3 text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span>18 min</span>
+</div>
+</div>
+</article>
+<!-- Article 4 -->
+<article class="bg-white rounded-2xl overflow-hidden shadow-[0_30px_30px_rgba(15,29,37,0.04)] group cursor-pointer flex flex-col">
+<div class="aspect-[4/3] overflow-hidden">
+<img alt="DevOps Engineering Insights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATTMfvMllbMNFMRy6h6Km3PPl9pwc94X1swhqFt4SubOigqi-Jjy1IYQ4M6LjyHi-nhl7wjOWj6iHvE5xDJqkZbFS0QOZO-YnnGf1cFDQmNi3ljtZ59kihQSTXm9vubFuDF9dOhoBoA5_I1VLpsSchiT3end3S6yjvPiY38D9KAHBybZiVFv9iFdXKhzPLfBLuQUvFMJnBxDmpH_TmpWm0aEoShL97Hptofb1xnGpilMHYKWlwDB0-2uUlF2M2XcIjMv3MWHim1AM"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<span class="px-2 py-0.5 w-fit bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold tracking-tighter uppercase mb-4">Engineering</span>
+<h4 class="font-headline-md text-headline-md mb-4 group-hover:text-primary transition-colors leading-tight text-xl">The DevOps Roadmap</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2 text-sm">Bridging the gap between development cycles and operations.</p>
+<div class="mt-auto flex items-center gap-3 text-outline font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span>10 min</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="mb-section-gap text-center bg-white rounded-3xl p-16 shadow-[0_40px_60px_-15px_rgba(0,93,144,0.1)] border border-primary-fixed">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-6">Ready for your transition?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+            Our advisors are ready to audit your current career path and provide a tailored ROI analysis for your next major move.
+        </p>
+<div class="flex flex-col md:flex-row justify-center gap-4">
+<button class="bg-primary text-on-primary px-12 py-4 rounded-xl font-headline-md text-headline-md active:scale-95 duration-150 transition-all shadow-lg shadow-primary/25">
+                Book a Career Strategy Session
+            </button>
+</div>
+<p class="mt-6 text-outline font-label-sm text-label-sm">Limited sessions available for Q4 2024</p>
+</section>
+</main>
+<Footer />
+<script>
+    // Micro-interactions for cards
+    document.querySelectorAll('article, .grid > div').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Logic for hover state enhancements if needed
+        });
+    });
+</script>
+</body></html>

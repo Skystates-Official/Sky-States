@@ -1,0 +1,197 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Checkout | Sky Editorial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .upward-gradient {
+            background: linear-gradient(to top, #ffffff, #d3e2ed);
+        }
+        .ambient-shadow {
+            box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
+        }
+        .form-glow:focus-within {
+            box-shadow: 0 0 0 4px rgba(0, 93, 144, 0.1);
+        }
+    </style>
+
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-lowest dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">lock</span>
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Sky Editorial</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<span class="font-label-md text-label-md text-primary font-bold">Secure Checkout</span>
+<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
+<!-- Editorial Header Section -->
+<div class="mb-section-gap rounded-xl p-12 upward-gradient flex flex-col gap-2">
+<h1 class="font-headline-xl text-headline-xl text-primary">Finalize Your Access</h1>
+<p class="text-on-surface-variant max-w-2xl font-body-lg text-body-lg">Begin your journey with Sky Editorial. Secure your introductory session and join a global network of elite scholars and executives.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Order Summary & Info -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<!-- Order Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 ambient-shadow">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Order Summary</h2>
+<div class="flex justify-between items-center pb-4 border-b border-secondary-container">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Intro Session</p>
+<p class="text-sm text-on-surface-variant">Expert consultation &amp; strategy</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary">$99</p>
+</div>
+<div class="mt-4 flex justify-between items-center font-bold text-on-surface">
+<p>Total Investment</p>
+<p>$99.00</p>
+</div>
+</section>
+<!-- Privacy Commitment -->
+<section class="bg-secondary-container rounded-xl p-6 flex gap-4 items-start">
+<div class="bg-surface-container-lowest p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-secondary-container">No-SSN Privacy Commitment</h3>
+<p class="text-sm text-on-surface-variant mt-1">We prioritize your anonymity. No Social Security Number or sensitive identification is required for institutional registry.</p>
+</div>
+</section>
+<!-- What Happens Next -->
+<section class="flex flex-col gap-6 p-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">What Happens Next</h2>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">1</span>
+<div>
+<p class="font-label-md text-label-md">Instant Portal Access</p>
+<p class="text-sm text-on-surface-variant">Your login credentials will be delivered to your inbox immediately after payment.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">2</span>
+<div>
+<p class="font-label-md text-label-md">Advisor Assignment</p>
+<p class="text-sm text-on-surface-variant">A dedicated academic advisor will be assigned to your profile within 4 business hours.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold">3</span>
+<div>
+<p class="font-label-md text-label-md">Scheduling Link</p>
+<p class="text-sm text-on-surface-variant">Receive a priority calendar link to book your session at your earliest convenience.</p>
+</div>
+</li>
+</ul>
+</section>
+</div>
+<!-- Right Column: Payment Form -->
+<div class="lg:col-span-7 sticky top-24">
+<div class="bg-surface-container-lowest rounded-xl p-8 md:p-12 ambient-shadow">
+<!-- Tabs -->
+<div class="flex gap-4 mb-10 border-b border-surface-container-high">
+<button class="pb-4 px-2 border-b-2 border-primary text-primary font-label-md text-label-md active:scale-95 transition-transform" onclick="switchTab('cc')">Credit Card</button>
+<button class="pb-4 px-2 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md active:scale-95 transition-transform" onclick="switchTab('emi')">EMI Options</button>
+</div>
+<!-- Payment Form Content -->
+<form class="flex flex-col gap-6" id="payment-form" onsubmit="event.preventDefault()">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-secondary-fixed-variant" for="card_number">Card Number</label>
+<div class="relative group">
+<input class="w-full h-12 px-4 rounded-lg border-2 border-secondary-fixed-dim focus:border-primary outline-none transition-all duration-200 form-glow" id="card_number" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant opacity-40">credit_card</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-secondary-fixed-variant" for="expiry">Expiry Date</label>
+<input class="w-full h-12 px-4 rounded-lg border-2 border-secondary-fixed-dim focus:border-primary outline-none transition-all duration-200 form-glow" id="expiry" placeholder="MM / YY" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-secondary-fixed-variant" for="cvv">CVV</label>
+<input class="w-full h-12 px-4 rounded-lg border-2 border-secondary-fixed-dim focus:border-primary outline-none transition-all duration-200 form-glow" id="cvv" placeholder="•••" type="password"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-secondary-fixed-variant" for="name">Cardholder Name</label>
+<input class="w-full h-12 px-4 rounded-lg border-2 border-secondary-fixed-dim focus:border-primary outline-none transition-all duration-200 form-glow" id="name" placeholder="Johnathan Doe" type="text"/>
+</div>
+<button class="w-full h-14 mt-4 bg-primary text-white rounded-full font-label-md text-label-md upward-gradient text-white border-none shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 group" type="submit">
+<span>Complete Investment</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Trust Badges -->
+<div class="mt-8 flex flex-wrap items-center justify-center gap-6 opacity-60">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span class="text-xs uppercase tracking-widest font-bold">SSL SECURE</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-xs uppercase tracking-widest font-bold">PCI COMPLIANT</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">security</span>
+<span class="text-xs uppercase tracking-widest font-bold">256-BIT ENCRYPTION</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<Footer />
+<script>
+        function switchTab(tab) {
+            const buttons = document.querySelectorAll('button[onclick^="switchTab"]');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(tab)) {
+                    btn.classList.add('border-primary', 'text-primary');
+                    btn.classList.remove('border-transparent', 'text-on-surface-variant');
+                } else {
+                    btn.classList.remove('border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-on-surface-variant');
+                }
+            });
+            // Tab switching logic can be expanded here
+        }
+
+        // Lightweight atmospheric effect: Move a soft glow based on mouse
+        const main = document.querySelector('main');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            // Subtle shift in gradient for depth
+            const gradient = document.querySelector('.upward-gradient');
+            if (gradient) {
+                gradient.style.background = `linear-gradient(${180 + (x * 10)}deg, #ffffff 0%, #d3e2ed 100%)`;
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,237 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sky Editorial | Select Your Track</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ambient-card {
+            box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .ambient-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(15, 29, 37, 0.08);
+        }
+        .upward-gradient {
+            background: linear-gradient(to top, #ffffff, #d3e2ed33);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, #d3e2ed 0%, #f9f9f9 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm h-16">
+<div class="max-w-[1280px] mx-auto px-margin-desktop flex justify-between items-center h-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Sky Editorial</span>
+</div>
+<div class="flex items-center gap-6">
+<Header />
+<div class="h-10 w-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged academic advisor with a friendly smile, wearing a sharp charcoal suit and glasses. The background is a blurred high-end institutional office with warm wood tones and soft natural lighting. The image conveys trust, authority, and approachability in a modern educational context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArT3-CndMLyR0pcNOuRYeWl3-7R-gGJ6vyd2BeHW937aQnLIevwW54uyixqJUjAIildC0quaH-f-zeEjbuF77UQ9Ou2CHAAVHODsnw0od5x3O9SnXfAOeDRrFBfWf1mXc9A14xWKFxsE5ufVn0mekT3NgI8-lrySj6zID6fBQ3jYsscH0id7nQhtuVjHlDg-yFbbha7M0PBQKFQdMrRrtJIKXHl51-umcPD0NxUcyn_1LmWQeALNpQOnX7ZEMsZysSyWgLBKfVTG4"/>
+</div>
+</div>
+</div>
+</header>
+<main class="min-h-screen">
+<!-- Hero & Progress Section -->
+<section class="hero-gradient pt-16 pb-20">
+<div class="max-w-[1280px] mx-auto px-margin-desktop text-center">
+<!-- Stepper -->
+<div class="mb-12 inline-flex flex-col items-center">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-12 h-2 rounded-full bg-primary"></div>
+<div class="w-12 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Step 1 of 2: Program Track</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Start Your Transition for $99</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+                    Secure your advisor-led institutional audit. We map your existing credentials to high-growth technical roles in under 48 hours.
+                </p>
+</div>
+</section>
+<!-- Track Selection Grid -->
+<section class="relative -mt-16 pb-section-gap">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Data Science & AI Card -->
+<div class="ambient-card bg-surface-container-lowest rounded-xl p-8 flex flex-col h-full">
+<div class="w-14 h-14 rounded-lg bg-primary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Data Science &amp; AI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                            Transform raw datasets into strategic institutional assets using neural networks and predictive modeling.
+                        </p>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">1-on-1 advisor mapping</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Curriculum preview</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Eligibility audit</span>
+</li>
+</ul>
+<button class="mt-10 w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg active:scale-95 transition-all shadow-md hover:bg-primary-container">
+                            Select Track
+                        </button>
+</div>
+<!-- Cyber Security Card -->
+<div class="ambient-card bg-surface-container-lowest rounded-xl p-8 flex flex-col h-full border-2 border-primary ring-4 ring-primary/5">
+<div class="flex justify-between items-start mb-6">
+<div class="w-14 h-14 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">biotech</span>
+</div>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-label-sm font-label-sm">Most Popular</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Cyber Security</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                            Defend critical infrastructure and master the art of offensive and defensive institutional security operations.
+                        </p>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">1-on-1 advisor mapping</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Curriculum preview</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Eligibility audit</span>
+</li>
+</ul>
+<button class="mt-10 w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg active:scale-95 transition-all shadow-md hover:bg-primary-container">
+                            Select Track
+                        </button>
+</div>
+<!-- DevOps & Cloud Card -->
+<div class="ambient-card bg-surface-container-lowest rounded-xl p-8 flex flex-col h-full">
+<div class="w-14 h-14 rounded-lg bg-primary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">work</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">DevOps &amp; Cloud</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                            Architect scalable cloud environments and bridge the gap between development and institutional deployments.
+                        </p>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">1-on-1 advisor mapping</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Curriculum preview</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md">Eligibility audit</span>
+</li>
+</ul>
+<button class="mt-10 w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-lg active:scale-95 transition-all shadow-md hover:bg-primary-container">
+                            Select Track
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Badges Section -->
+<section class="py-20 bg-surface-container-low">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+<div class="flex flex-wrap justify-center gap-12 md:gap-24">
+<div class="flex flex-col items-center text-center max-w-[200px]">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">id_card</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">No SSN Required</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Universal Access</p>
+</div>
+<div class="flex flex-col items-center text-center max-w-[200px]">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">currency_exchange</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">100% Refundable</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Guaranteed Satisfaction</p>
+</div>
+<div class="flex flex-col items-center text-center max-w-[200px]">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Institutional Security</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Bank-Grade Privacy</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<Footer />
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple scroll observer for card animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ambient-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)";
+            observer.observe(card);
+        });
+    </script>
+</body></html>

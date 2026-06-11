@@ -1,0 +1,268 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume Engineering Hub | Sky Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .premium-shadow { box-shadow: 0 10px 30px -10px rgba(0, 93, 144, 0.08); }
+        .upward-gradient { background: linear-gradient(180deg, #d3e2ed 0%, #f9f9f9 100%); }
+        .button-gradient { background: linear-gradient(180deg, #0077b6 0%, #005d90 100%); }
+        .hero-height { min-height: calc(100vh - 80px); }
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="bg-gradient-to-b from-secondary-container to-surface dark:from-on-tertiary-fixed-variant dark:to-surface-dim">
+<Header />
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="upward-gradient hero-height flex flex-col justify-center px-margin-desktop relative overflow-hidden">
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center z-10">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-md px-4 py-2 rounded-full border border-primary/10">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest">Executive Level Optimization</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary leading-tight max-w-xl">
+                        Resume Engineering Hub
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        From Task-Based to Impact-Driven: Engineering Your Executive Narrative. We don't just write resumes; we architect career leverage.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="button-gradient text-white px-8 py-4 rounded-xl font-label-md text-label-md shadow-lg flex items-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">upload_file</span>
+                            Upload Current Resume
+                        </button>
+<button class="bg-white border-2 border-primary/20 text-primary px-8 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-colors active:scale-95 transition-transform">
+                            View Success Stories
+                        </button>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="relative rounded-2xl overflow-hidden premium-shadow">
+<img alt="" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLuK6-zrIMXETL5Paq23jB6Aq2KbQQ8qGaWFlRCkWWjg9dAd5RaUtaqLjPOcVtOgbO8MGTfdjrP3CHVW3eqYXdi1VGgRZ0tKc-5HV0AWXOWer8CEfiYRLtcuZvSRelqkJwhutwRE9dfOYUcOfaCOkscfZAnb8NP_0KYxAj3fTeG35rLQPkCZWd82-25DdeDFeX8MyvwJyQ_8ePa1hA7Wbx2DCUluPLSxSqHUXrPDSETYisk8qp0cyOhV3bg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Authority Marquee -->
+<section class="bg-primary-container py-6">
+<div class="marquee-container">
+<div class="marquee-content">
+<span class="text-on-primary-container font-headline-md text-headline-md mx-12">94% of our optimized resumes pass initial technical screening within 14 days • Institutional Excellence • Precision Narrative Engineering • Senior Tech Leadership Specialist • 94% of our optimized resumes pass initial technical screening within 14 days • Institutional Excellence</span>
+</div>
+</div>
+</section>
+<!-- The Science of Selection -->
+<section class="section-gap px-margin-desktop max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">The Science of Selection</h2>
+<div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white p-10 rounded-2xl premium-shadow border border-sky-blue space-y-6">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">memory</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">ATS Algorithm Neuralization</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        We optimize keyword density and semantic relevance to ensure your profile ranks in the top 1% of automated Applicant Tracking Systems.
+                    </p>
+</div>
+<div class="bg-white p-10 rounded-2xl premium-shadow border border-sky-blue space-y-6">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">visibility</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Recruiter Eye-Tracking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Visual architecture designed for F-pattern scanning, ensuring high-value impact metrics are seen within the first 3 seconds of review.
+                    </p>
+</div>
+<div class="bg-white p-10 rounded-2xl premium-shadow border border-sky-blue space-y-6">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">timer</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">7-Second Authority Rule</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Immediate credibility established through executive summaries that focus on strategic business outcomes rather than just technical tasks.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Before & After Transformation -->
+<section class="section-gap bg-surface-container-low px-margin-desktop py-20">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Before &amp; After Transformation</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                            Generic technical resumes detail what you did. Sky States engineered profiles communicate the value you created. Witness the evolution from individual contributor to executive presence.
+                        </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-1">close</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Generic list of technologies and platforms used.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Strategic business impact and ROI-focused narratives.</span>
+</li>
+</ul>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-xl border-2 border-error/20 opacity-60">
+<div class="h-4 w-1/2 bg-surface-container-highest mb-4 rounded"></div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-surface-container mb-1 rounded"></div>
+<div class="h-2 w-full bg-surface-container mb-1 rounded"></div>
+<div class="h-2 w-3/4 bg-surface-container mb-4 rounded"></div>
+</div>
+<p class="text-xs text-error font-bold uppercase tracking-tighter">Legacy Technical List</p>
+</div>
+<div class="bg-white p-6 rounded-xl border-2 border-primary shadow-2xl scale-105">
+<div class="h-4 w-3/4 bg-primary/20 mb-4 rounded"></div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-primary/10 mb-1 rounded"></div>
+<div class="h-2 w-full bg-primary/10 mb-1 rounded"></div>
+<div class="h-2 w-full bg-primary/10 mb-4 rounded"></div>
+</div>
+<p class="text-xs text-primary font-bold uppercase tracking-tighter">Sky States Optimized</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our 3-Layer Process -->
+<section class="section-gap px-margin-desktop max-w-7xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center mb-16">Our 3-Layer Process</h2>
+<div class="relative">
+<div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 -translate-x-1/2"></div>
+<div class="space-y-12">
+<div class="flex flex-col md:flex-row items-center gap-8 md:gap-24">
+<div class="flex-1 md:text-right">
+<h3 class="font-headline-md text-headline-md text-primary">1. The Technical Audit</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Deep dive into your architectural history to extract the high-value technical achievements hidden beneath standard descriptions.</p>
+</div>
+<div class="w-12 h-12 bg-primary rounded-full border-4 border-white flex items-center justify-center text-white font-bold z-10">1</div>
+<div class="flex-1 hidden md:block"></div>
+</div>
+<div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-24">
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-primary">2. The Impact Layering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantifying results. We translate "maintained systems" into "achieved 99.99% uptime for 50M+ user platform," focusing on the bottom line.</p>
+</div>
+<div class="w-12 h-12 bg-primary rounded-full border-4 border-white flex items-center justify-center text-white font-bold z-10">2</div>
+<div class="flex-1 hidden md:block"></div>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-8 md:gap-24">
+<div class="flex-1 md:text-right">
+<h3 class="font-headline-md text-headline-md text-primary">3. The Narrative Polish</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Refining the voice. Ensuring every sentence carries executive weight, institutional authority, and clear leadership vision.</p>
+</div>
+<div class="w-12 h-12 bg-primary rounded-full border-4 border-white flex items-center justify-center text-white font-bold z-10">3</div>
+<div class="flex-1 hidden md:block"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Specialized for Senior Tech -->
+<section class="section-gap px-margin-desktop bg-primary text-white py-24">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-6">Specialized for Senior Tech</h2>
+<p class="font-body-lg text-body-lg opacity-80 mb-10">We understand the nuance of high-stakes engineering leadership. Our approach varies based on your specific career trajectory.</p>
+<div class="space-y-4">
+<div class="group bg-white/10 p-6 rounded-xl hover:bg-white/20 transition-all cursor-default border border-white/10">
+<h4 class="font-label-md text-label-md mb-1">Directors &amp; VPs</h4>
+<p class="font-body-md text-body-md opacity-70">Focus on organizational growth, budget management, and multi-team synchronization.</p>
+</div>
+<div class="group bg-white/10 p-6 rounded-xl hover:bg-white/20 transition-all cursor-default border border-white/10">
+<h4 class="font-label-md text-label-md mb-1">Software Architects</h4>
+<p class="font-body-md text-body-md opacity-70">Emphasis on scalability, system resilience, and future-proofing institutional tech stacks.</p>
+</div>
+<div class="group bg-white/10 p-6 rounded-xl hover:bg-white/20 transition-all cursor-default border border-white/10">
+<h4 class="font-label-md text-label-md mb-1">Lead Engineers</h4>
+<p class="font-body-md text-body-md opacity-70">Balancing high-level individual contribution with mentorship and code quality oversight.</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<div class="w-full aspect-square max-w-md rounded-full border border-white/20 flex items-center justify-center animate-pulse">
+<div class="w-3/4 aspect-square rounded-full border border-white/40 flex items-center justify-center">
+<div class="w-1/2 aspect-square rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl">engineering</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="section-gap px-margin-desktop max-w-4xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-primary text-center mb-12">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<details class="group bg-white rounded-xl border border-sky-blue overflow-hidden" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none font-label-md text-label-md text-primary">
+                        How do you handle privacy and sensitive information?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-on-surface-variant border-t border-sky-blue/50">
+                        Institutional security is our priority. We explicitly do not collect SSNs, dates of birth, or home addresses. All resume data is handled within an encrypted pipeline and used solely for engineering your narrative.
+                    </div>
+</details>
+<details class="group bg-white rounded-xl border border-sky-blue overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none font-label-md text-label-md text-primary">
+                        Does this include LinkedIn profile optimization?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-on-surface-variant border-t border-sky-blue/50">
+                        Yes. Our Premium Engineering package includes a complete overhaul of your LinkedIn headline, 'About' section, and experience descriptions to ensure cross-platform brand consistency.
+                    </div>
+</details>
+<details class="group bg-white rounded-xl border border-sky-blue overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none font-label-md text-label-md text-primary">
+                        What is the typical turnaround time?
+                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-on-surface-variant border-t border-sky-blue/50">
+                        The full 3-layer engineering process typically takes 5-7 business days from the initial Technical Audit phase to the final Narrative Polish delivery.
+                    </div>
+</details>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<Footer />
+<script>
+        // Micro-interactions for smooth scroll and hover states
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

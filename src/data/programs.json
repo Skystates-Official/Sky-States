@@ -1,0 +1,182 @@
+{
+  "data-science-ai": {
+    "slug": "data-science-ai",
+    "metaTitle": "SKY STATES | Data Science & AI Architect Program",
+    "hero": {
+      "headline": "Data Science &amp; AI <br/> <span class=\"text-primary-fixed-dim\">Architect.</span>",
+      "description": "An intensive, technical mastery program designed for professionals seeking to lead the next generation of intelligent systems. From foundational neural networks to large-scale LLM orchestration."
+    },
+    "stats": [
+      { "value": "120+", "label": "Global Partners" },
+      { "value": "$185k", "label": "Avg. Grad Salary" },
+      { "value": "Top 1%", "label": "Curriculum Rigor" },
+      { "value": "Prestige", "label": "Institutional Merit" }
+    ],
+    "curriculum": {
+      "title": "Architectural Curriculum",
+      "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+      "modules": [
+        {
+          "id": "01",
+          "title": "Neural Networks & Deep Learning",
+          "description": "Master the mathematical foundations of perceptrons, backpropagation, and transformer architectures. Move beyond theory into high-performance implementation.",
+          "tags": ["PyTorch", "CUDA", "JAX"]
+        },
+        {
+          "id": "02",
+          "title": "Generative AI & LLM Orchestration",
+          "description": "The new frontier of orchestration. Building agentic workflows and fine-tuning enterprise-grade models.",
+          "tags": ["LangChain", "LlamaIndex"]
+        },
+        {
+          "id": "03",
+          "title": "Big Data Ops",
+          "description": "Scaling intelligence requires robust pipelines. Distributed computing and petabyte-scale data strategy.",
+          "tags": ["Spark", "Kafka"]
+        }
+      ],
+      "final_module": {
+        "title": "Full-Stack AI Deployment",
+        "description": "From notebook to production-grade API with Kubernetes and CI/CD for ML (MLOps)."
+      }
+    },
+    "career": [
+      {
+        "stage": "Entry Point",
+        "role": "Senior Data Engineer",
+        "description": "Starting path for career pivoters with strong engineering backgrounds.",
+        "salary": "$165k+"
+      },
+      {
+        "stage": "Intermediate",
+        "role": "AI Solutions Architect",
+        "description": "Translating business complexity into scalable neural architectures.",
+        "salary": "$210k+"
+      },
+      {
+        "stage": "Terminal Role",
+        "role": "Director of AI Systems",
+        "description": "Leading global research and development of proprietary LLMs.",
+        "salary": "$320k+"
+      }
+    ]
+  },
+  "cyber-security": {
+    "slug": "cyber-security",
+    "metaTitle": "SKY STATES | Cyber Security Strategist",
+    "hero": {
+      "headline": "Cyber Security <br/><span class=\"text-primary-fixed-dim\">Strategist</span>",
+      "description": "Move beyond defensive engineering into the realm of institutional risk architecture. A rigorous program designed for leaders who secure the backbone of modern enterprise."
+    },
+    "stats": [
+      { "value": "120+", "label": "Global Partners" },
+      { "value": "$185k", "label": "Avg. Grad Salary" },
+      { "value": "Top 1%", "label": "Curriculum Rigor" },
+      { "value": "Prestige", "label": "Institutional Merit" }
+    ],
+    "curriculum": {
+      "title": "A Three-Pillar Framework for Executive Excellence.",
+      "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+      "modules": [
+        {
+          "id": "01",
+          "title": "Advanced Penetration Testing",
+          "description": "Systematic identification and exploitation of vulnerabilities within enterprise infrastructures using elite red-team protocols.",
+          "tags": ["RED TEAM ORCHESTRATION", "CLOUD ATTACK VECTORS", "ADAPTIVE THREAT MODELING"]
+        },
+        {
+          "id": "02",
+          "title": "Zero-Trust Architecture",
+          "description": "Implementing 'never trust, always verify' paradigms across distributed network ecosystems and identity management.",
+          "tags": ["MICRO-SEGMENTATION", "IAM PROTOCOL DESIGN", "ENDPOINT DISCOVERY"]
+        },
+        {
+          "id": "03",
+          "title": "Institutional Risk Management",
+          "description": "Aligning security technicalities with board-level business objectives and regulatory compliance landscapes.",
+          "tags": ["GRC FRAMEWORKS", "QUANTITATIVE RISK ANALYSIS", "INCIDENT RESPONSE"]
+        }
+      ],
+      "final_module": {
+        "title": "Sky States Security Architect Designation",
+        "description": "Graduates earn the industry-recognized SSAD credential, certifying their ability to lead complex cybersecurity transformations at the highest levels of enterprise and government."
+      }
+    },
+    "career": [
+      {
+        "stage": "Entry Point",
+        "role": "Head of Security",
+        "description": "Managing elite red and blue teams to proactively identify threats and respond to critical incidents.",
+        "salary": "$160k+"
+      },
+      {
+        "stage": "Intermediate",
+        "role": "Systems Architect",
+        "description": "Designing high-resilience network fabrics and cloud-native security postures for hyper-scale environments.",
+        "salary": "$190k+"
+      },
+      {
+        "stage": "Terminal Role",
+        "role": "CISO",
+        "description": "Governing global risk portfolios and leading cross-functional defense strategies for large-cap enterprises.",
+        "salary": "$240k+"
+      }
+    ]
+  },
+  "devops": {
+    "slug": "devops",
+    "metaTitle": "DevOps & Cloud Program | SKY STATES",
+    "hero": {
+      "headline": "Cloud Infrastructure <br/><span class=\"text-primary-fixed-dim\">Master</span>",
+      "description": "Architecting the future of institutional scale. Master the complex layers of modern orchestration, distributed systems, and global cloud governance through a rigorous clinical curriculum."
+    },
+    "stats": [
+      { "value": "120+", "label": "Global Partners" },
+      { "value": "$185k", "label": "Avg. Grad Salary" },
+      { "value": "Top 1%", "label": "Curriculum Rigor" },
+      { "value": "Prestige", "label": "Institutional Merit" }
+    ],
+    "curriculum": {
+      "title": "Architectural Pillars",
+      "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+      "modules": [
+        {
+          "id": "01",
+          "title": "Kubernetes Mastery",
+          "description": "Dive deep into container orchestration at scale. Master control planes, custom resource definitions, and service mesh architectures for multi-cloud deployments.",
+          "tags": ["MULTI-CLUSTER GOVERNANCE", "ISTIO SERVICE MESH", "EKS/GKE OPTIMIZATION"]
+        },
+        {
+          "id": "02",
+          "title": "Infrastructure as Code",
+          "description": "Develop immutable infrastructure using Terraform and Ansible. Learn to treat your entire global topology as a versioned, testable software product.",
+          "tags": ["TERRAFORM MODULE DESIGN", "GITOPS WORKFLOWS", "COMPLIANCE-AS-CODE"]
+        },
+        {
+          "id": "03",
+          "title": "High-Availability",
+          "description": "Engineer systems with five-nines reliability. Study disaster recovery patterns, regional failovers, and low-latency edge distribution networks.",
+          "tags": ["GLOBAL TRAFFIC STEERING", "ZERO-DOWNTIME MIGRATION", "CHAOS ENGINEERING"]
+        }
+      ],
+      "final_module": {
+        "title": "Sky States Cloud Architect Credential",
+        "description": "This is more than a certificate. It is a verified testament to your mastery of enterprise-scale engineering. Recognized by leading technology firms as the benchmark for high-authority infrastructure roles."
+      }
+    },
+    "career": [
+      {
+        "stage": "Entry Point",
+        "role": "Principal DevOps Architect",
+        "description": "Global Systems Strategy & Performance management in modern cloud enterprises.",
+        "salary": "$210k+"
+      },
+      {
+        "stage": "Terminal Role",
+        "role": "VP of Infrastructure",
+        "description": "Executive Technical Leadership driving regional and global infrastructure architecture.",
+        "salary": "$350k+"
+      }
+    ]
+  }
+}

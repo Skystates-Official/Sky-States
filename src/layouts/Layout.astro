@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Sky States | Accelerate Your Legacy in Technology", 
+  description = "Institutional excellence in technology. Book a free career consultation and explore our elite tracks in AI, DevOps, and Cyber Security." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <!-- SEO and OpenGraph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <!-- Top Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant">
+    <div class="max-w-container-max mx-auto px-margin-mobile flex justify-between items-center h-20">
+      <a href="/" class="font-display-xl text-headline-md tracking-tighter font-bold text-primary">SKY STATES</a>
+      <button class="p-2 text-primary" id="menu-btn" aria-label="Open menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="fixed inset-0 z-[60] bg-black/40 hidden" id="nav-drawer">
+    <aside class="fixed inset-y-0 left-0 w-80 bg-surface flex flex-col p-8 transition-transform -translate-x-full" id="drawer-content">
+      <div class="flex justify-between items-center mb-12">
+        <span class="font-headline-md text-headline-md font-bold text-primary">ACCELERATION</span>
+        <button id="close-btn" aria-label="Close menu">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="space-y-6">
+        <a class="flex items-center gap-4 py-3 px-4 bg-primary-container text-on-primary-container font-bold rounded-lg translate-x-1" href="#curriculum">
+          <span class="material-symbols-outlined">school</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest">Explore Programs</span>
+        </a>
+        <a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#mentors">
+          <span class="material-symbols-outlined">groups</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest">Mentorship</span>
+        </a>
+        <a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#evidence">
+          <span class="material-symbols-outlined">auto_stories</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest">Case Studies</span>
+        </a>
+        <a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#consultation">
+          <span class="material-symbols-outlined">trending_up</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest">Career Support</span>
+        </a>
+        <a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="/admin">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest">CMS Admin</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <main class="pt-20">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-lowest border-t border-outline-variant py-20 px-margin-mobile">
+    <div class="space-y-12">
+      <span class="font-headline-md text-headline-md font-bold text-primary">SKY STATES</span>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Programs</p>
+          <ul class="space-y-3 text-secondary text-label-sm uppercase">
+            <li><a class="hover:text-primary transition-colors" href="#curriculum">Curriculum</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#consultation">Admissions</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Legal</p>
+          <ul class="space-y-3 text-secondary text-label-sm uppercase">
+            <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Institutional Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="font-label-sm text-[10px] text-secondary-fixed-dim leading-relaxed">
+        &copy; 2026 Sky States. Institutional Excellence in Technology.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const drawer = document.getElementById('nav-drawer');
+    const content = document.getElementById('drawer-content');
+
+    function toggleDrawer() {
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        setTimeout(() => {
+          content.classList.remove('-translate-x-full');
+        }, 10);
+      } else {
+        content.classList.add('-translate-x-full');
+        setTimeout(() => {
+          drawer.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    menuBtn?.addEventListener('click', toggleDrawer);
+    closeBtn?.addEventListener('click', toggleDrawer);
+    drawer?.addEventListener('click', (e) => {
+      if (e.target === drawer) toggleDrawer();
+    });
+  </script>
+</body>
+</html>

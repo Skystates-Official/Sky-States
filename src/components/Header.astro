@@ -1,0 +1,156 @@
+---
+// src/components/Header.astro
+---
+<nav class="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Brand / Logo -->
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform duration-300">cloud</span>
+      <span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Sky States</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <!-- Programs Dropdown -->
+      <div class="relative group/drop">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+          Programs
+          <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
+          <a href="/programs/data-science-ai" class="block px-5 py-3.5 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+            <span class="block font-semibold">Data Science & AI</span>
+            <span class="text-xs text-secondary">Machine learning, NLP & GenAI</span>
+          </a>
+          <a href="/programs/cyber-security" class="block px-5 py-3.5 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">
+            <span class="block font-semibold">Cyber Security</span>
+            <span class="text-xs text-secondary">Threat hunting & network defense</span>
+          </a>
+          <a href="/programs/devops" class="block px-5 py-3.5 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">
+            <span class="block font-semibold">DevOps & Cloud</span>
+            <span class="text-xs text-secondary">Infrastructure engineering & CI/CD</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Career Dropdown -->
+      <div class="relative group/drop">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+          Career
+          <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full left-0 mt-1 w-56 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
+          <a href="/career-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface">Career Hub Central</a>
+          <a href="/career-roi" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Salary Guide & ROI</a>
+          <a href="/resume-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Resume Hub</a>
+          <a href="/placements" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Placement Process</a>
+        </div>
+      </div>
+
+      <!-- Resources Dropdown -->
+      <div class="relative group/drop">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+          Resources
+          <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full left-0 mt-1 w-56 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
+          <a href="/faq" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface">FAQ & Transparency</a>
+          <a href="/refund-policy" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Refund & Pricing</a>
+          <a href="/news" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">News & Insights</a>
+        </div>
+      </div>
+
+      <a href="/about" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">About</a>
+    </div>
+
+    <!-- CTA & Mobile Trigger -->
+    <div class="flex items-center gap-4">
+      <a href="/intro-session" class="hidden sm:inline-flex items-center gap-1 bg-primary text-white px-5 py-2.5 rounded-full font-label-sm text-label-sm hover:bg-opacity-95 transition-colors border border-outline-variant/20">
+        <span class="material-symbols-outlined text-base">calendar_today</span>
+        Intro Session
+      </a>
+      <button class="lg:hidden flex items-center justify-center p-2 text-primary hover:bg-surface-container-low rounded-lg transition-colors" id="mobile-menu-open-btn" aria-label="Open navigation menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer Overlay -->
+  <div class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm hidden" id="mobile-menu-drawer">
+    <div class="absolute inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300" id="mobile-menu-content">
+      <div>
+        <div class="flex justify-between items-center mb-8 border-b border-outline-variant/20 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-2xl">cloud</span>
+            <span class="font-headline-md text-headline-md font-bold text-primary">Menu</span>
+          </div>
+          <button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors" id="mobile-menu-close-btn" aria-label="Close navigation menu">
+            <span class="material-symbols-outlined text-2xl">close</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-1 overflow-y-auto max-h-[70vh]">
+          <!-- Programs -->
+          <div class="py-2 border-b border-outline-variant/10">
+            <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Programs</span>
+            <a href="/programs/data-science-ai" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Data Science & AI</a>
+            <a href="/programs/cyber-security" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Cyber Security</a>
+            <a href="/programs/devops" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">DevOps & Cloud</a>
+          </div>
+
+          <!-- Career -->
+          <div class="py-2 border-b border-outline-variant/10">
+            <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Career</span>
+            <a href="/career-hub" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Career Hub Central</a>
+            <a href="/career-roi" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Salary Guide & ROI</a>
+            <a href="/resume-hub" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Resume Hub</a>
+            <a href="/placements" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Placement Process</a>
+          </div>
+
+          <!-- Resources & About -->
+          <div class="py-2">
+            <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Resources</span>
+            <a href="/faq" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">FAQ & Transparency</a>
+            <a href="/refund-policy" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Refund & Pricing</a>
+            <a href="/news" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">News & Insights</a>
+            <a href="/about" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">About Us</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-outline-variant/20 pt-4 mt-4">
+        <a href="/intro-session" class="flex justify-center items-center gap-2 w-full bg-primary text-white py-3.5 rounded-full font-label-md text-label-md shadow-lg shadow-primary/10">
+          <span class="material-symbols-outlined text-lg">calendar_today</span>
+          Book Intro Session
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const openBtn = document.getElementById('mobile-menu-open-btn');
+  const closeBtn = document.getElementById('mobile-menu-close-btn');
+  const drawer = document.getElementById('mobile-menu-drawer');
+  const content = document.getElementById('mobile-menu-content');
+
+  function openDrawer() {
+    drawer.classList.remove('hidden');
+    setTimeout(() => {
+      content.classList.remove('translate-x-full');
+    }, 10);
+  }
+
+  function closeDrawer() {
+    content.classList.add('translate-x-full');
+    setTimeout(() => {
+      drawer.classList.add('hidden');
+    }, 300);
+  }
+
+  openBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  drawer?.addEventListener('click', (e) => {
+    if (e.target === drawer) closeDrawer();
+  });
+</script>

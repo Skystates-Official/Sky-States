@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sky States | Accelerate Your Legacy in Technology</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #c6c6ce 15%, #c6c6ce 85%, transparent);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#bfc5e4",
+                        "primary-fixed-dim": "#bfc5e4",
+                        "surface-container-highest": "#e5e2e4",
+                        "surface-variant": "#e5e2e4",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#dce1ff",
+                        "on-background": "#1b1b1d",
+                        "inverse-surface": "#303032",
+                        "tertiary": "#000000",
+                        "on-surface": "#1b1b1d",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e2e3e1",
+                        "secondary": "#5d5f5d",
+                        "on-tertiary-fixed-variant": "#5e4029",
+                        "surface": "#fcf8fb",
+                        "on-tertiary-fixed": "#2c1603",
+                        "surface-container-low": "#f6f3f5",
+                        "tertiary-container": "#2c1603",
+                        "on-surface-variant": "#46464d",
+                        "secondary-fixed-dim": "#c6c7c5",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7c839f",
+                        "surface-container": "#f0edef",
+                        "surface-container-high": "#eae7ea",
+                        "on-primary-fixed-variant": "#3f465f",
+                        "outline-variant": "#c6c6ce",
+                        "surface-bright": "#fcf8fb",
+                        "background": "#fcf8fb",
+                        "tertiary-fixed-dim": "#e8be9f",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#141a32",
+                        "on-secondary-fixed-variant": "#454746",
+                        "on-secondary-container": "#636563",
+                        "secondary-container": "#e2e3e1",
+                        "on-secondary-fixed": "#1a1c1b",
+                        "on-tertiary-container": "#a17d61",
+                        "surface-tint": "#575d78",
+                        "outline": "#76767e",
+                        "tertiary-fixed": "#ffdcc3",
+                        "primary-container": "#141a32",
+                        "surface-dim": "#dcd9db",
+                        "inverse-on-surface": "#f3f0f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "unit": "4px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile flex justify-between items-center h-20">
+<span class="font-display-xl text-headline-md tracking-tighter font-bold text-primary">SKY STATES</span>
+<button class="p-2 text-primary" onclick="toggleDrawer()">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Mobile Navigation Drawer -->
+<div class="fixed inset-0 z-[60] bg-black/40 hidden" id="nav-drawer" onclick="toggleDrawer()">
+<aside class="fixed inset-y-0 left-0 w-80 bg-surface flex flex-col p-8 transition-transform -translate-x-full" id="drawer-content" onclick="event.stopPropagation()">
+<div class="flex justify-between items-center mb-12">
+<span class="font-headline-md text-headline-md font-bold text-primary">ACCELERATION</span>
+<button onclick="toggleDrawer()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="space-y-6">
+<a class="flex items-center gap-4 py-3 px-4 bg-primary-container text-on-primary-container font-bold rounded-lg translate-x-1" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Explore Programs</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Mentorship</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Case Studies</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-4 text-secondary hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Career Support</span>
+</a>
+</div>
+</aside>
+</div>
+<!-- Main Content -->
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col justify-end px-margin-mobile pb-20">
+<div class="absolute inset-0 z-0">
+<img alt="Technological acceleration visualization" class="w-full h-full object-cover brightness-[0.3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEHAmLGmejsYAJmPjlY8Opm3zVPusez6LL0xdxcNuq7frjd5XnQDiMfV-iHRH45XhGl_gluqoP65ianRqs54QT_Kgb-vu5mQBQb9ozHrNZKWQHjxQAeimKfcUbdv8sDVKpUMGV-4gxotmmY0h5zL38u4Z3-MXUCY1e6H73mQ_8HoTcw2oIpjEFSWihmVn_wAlEfc6bW8w93CsQGXCLTyBB5m8-9io_ZnEtITp21EtVq-5fBiiwamNd1fUKaC-Nio5H0zUX3v76Aqk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 space-y-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-white max-w-sm leading-tight">
+                    Accelerate Your <br/>Legacy in <span class="italic text-primary-fixed-dim">Technology</span>.
+                </h1>
+<div class="space-y-4">
+<button class="w-full py-5 bg-primary text-white font-label-sm text-label-sm uppercase tracking-widest rounded-lg font-bold">
+                        Book Free Career Consultation
+                    </button>
+<button class="w-full py-5 border border-white/30 text-white font-label-sm text-label-sm uppercase tracking-widest rounded-lg">
+                        Explore Programs
+                    </button>
+</div>
+</div>
+</section>
+<!-- Trust Layer -->
+<section class="py-20 px-margin-mobile border-b border-outline-variant">
+<div class="grid grid-cols-2 gap-y-12 gap-x-8">
+<div class="space-y-2">
+<p class="font-display-xl text-[40px] text-primary">10k+</p>
+<p class="font-label-sm text-label-sm text-secondary uppercase leading-tight">Careers Transformed</p>
+</div>
+<div class="space-y-2">
+<p class="font-display-xl text-[40px] text-primary">3</p>
+<p class="font-label-sm text-label-sm text-secondary uppercase leading-tight">Specialized Tracks</p>
+</div>
+<div class="space-y-2">
+<p class="font-display-xl text-[40px] text-primary">1-on-1</p>
+<p class="font-label-sm text-label-sm text-secondary uppercase leading-tight">Mentorship Model</p>
+</div>
+<div class="space-y-2">
+<p class="font-display-xl text-[40px] text-primary">95%</p>
+<p class="font-label-sm text-label-sm text-secondary uppercase leading-tight">Placement Rate</p>
+</div>
+</div>
+</section>
+<!-- Programs Editorial -->
+<section class="py-32 space-y-32">
+<div class="px-margin-mobile">
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-[0.2em] mb-4">Elite Tracks</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-12">The ArchitectΓÇÖs Curriculum</h2>
+<!-- Track 01 -->
+<div class="pt-12 border-t border-primary/10">
+<div class="flex justify-between items-start mb-6">
+<span class="font-display-xl text-[32px] text-outline-variant">01</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Data Science &amp; AI</h3>
+<p class="font-body-md text-body-md text-secondary mb-8 leading-relaxed">Master the math and engineering behind the generative revolution. Move beyond APIs into true predictive architecture.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">Neural Networks</span>
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">Big Data Ops</span>
+</div>
+</div>
+<!-- Track 02 -->
+<div class="pt-12 mt-12 border-t border-primary/10">
+<div class="flex justify-between items-start mb-6">
+<span class="font-display-xl text-[32px] text-outline-variant">02</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Cyber Security</h3>
+<p class="font-body-md text-body-md text-secondary mb-8 leading-relaxed">Defensive and offensive security strategies for modern infrastructure. Learn to architect zero-trust environments.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">Penetration Testing</span>
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">Risk Mgmt</span>
+</div>
+</div>
+<!-- Track 03 -->
+<div class="pt-12 mt-12 border-t border-primary/10">
+<div class="flex justify-between items-start mb-6">
+<span class="font-display-xl text-[32px] text-outline-variant">03</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">DevOps</h3>
+<p class="font-body-md text-body-md text-secondary mb-8 leading-relaxed">Scale production with precision. Master CI/CD pipelines, Kubernetes, and cloud-native orchestration at the highest level.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">K8S Mastery</span>
+<span class="px-3 py-1 border border-outline-variant text-[10px] uppercase font-bold tracking-widest">Terraform</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison -->
+<section class="py-32 bg-primary text-white px-margin-mobile">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-16 leading-tight">The Sky States <br/><span class="text-primary-fixed-dim italic">Advantage</span></h2>
+<div class="space-y-16">
+<div class="grid grid-cols-1 gap-4">
+<p class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">Elite Path</p>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-fixed-dim mt-1">check_circle</span>
+<p class="font-body-md">Personalized roadmap based on current legacy assets.</p>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-fixed-dim mt-1">check_circle</span>
+<p class="font-body-md">1-on-1 mentorship with active FAANG architects.</p>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-fixed-dim mt-1">check_circle</span>
+<p class="font-body-md">Project-based learning on enterprise-grade codebases.</p>
+</li>
+</ul>
+</div>
+<div class="h-px w-full bg-white/10"></div>
+<div class="grid grid-cols-1 gap-4 opacity-50">
+<p class="font-label-sm text-label-sm uppercase tracking-widest">Traditional Education</p>
+<ul class="space-y-6">
+<li class="flex items-start gap-4 line-through">
+<span class="material-symbols-outlined mt-1">cancel</span>
+<p class="font-body-md">Generic curriculum built for the masses.</p>
+</li>
+<li class="flex items-start gap-4 line-through">
+<span class="material-symbols-outlined mt-1">cancel</span>
+<p class="font-body-md">Passive video lectures with no feedback.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Success Stories (Transformation Files) -->
+<section class="py-32 px-margin-mobile bg-surface-container-low">
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-[0.2em] mb-4">Evidence</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-16">The Transformation Files</h2>
+<div class="space-y-20">
+<article class="space-y-6 relative">
+<div class="aspect-[4/5] w-full bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a technology executive in a dark navy suit against a clean, minimal gray background. The lighting is sharp and cinematic, highlighting intelligence and confidence. The overall aesthetic is editorial and high-end corporate, matching the brand's sophisticated atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuKJRzU-1t0Z0eBMY25tpHeZG0FUlYmW3FZiQDphz3ZOiAEhPXbAx05JKIdoS75-NepsG0CXmrsjEAoqrjFhGvFtB3xnYs8LnAzNnX5KxjiHq4BbZ5-UnK5K_JXrNb77-7Bwhd7CUgJN18ZY4hDf_mLmxgHG-hf_HeXmYfqXiFgwrUIzbelaPeAX3OrLszht3CM24sPM2uAM_yQG0lq4cBVepTttfNT00raw-o1mzXIwRK_ZH0k6KUusAZmojbB0PW0MdA5Bm9b5g"/>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-md text-headline-md">Julian Vance</h4>
+<p class="font-label-sm text-label-sm uppercase text-secondary">Zero ΓåÆ Lead Cloud Engineer at Stripe</p>
+</div>
+<p class="font-body-md text-body-md text-secondary italic">"The structure at Sky States didn't just teach me tools; it taught me the architecture of thinking. I skipped four rungs on the career ladder in 8 months."</p>
+</article>
+<article class="space-y-6 relative">
+<div class="aspect-[4/5] w-full bg-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated professional portrait of a woman in modern business attire, looking directly into the camera with a focused and determined expression. The background is a blurred, high-end office environment with cool blue and white tones. The lighting is soft yet professional, emphasizing expertise and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWUAYqTapHc9dZWg-H2439rl7DjLFmPfjNZKO6oblJ2Kml-6wZYb7F7aLbhME4HcoVF80XW0tNKI8NJuxpqN8L8oTeo1pGlFl113I5pig2ddZsYQIZtsf9iB9EAeeLurvjWUZFVDO3BZEe4xU-HtKvq22q3DaP84YVu-95sMUmL-C7EpWEmE9oBJUMbkqbZ6aclMZurmq3_nctMg20zT90Vmc0G-66w25uk_12MwArXEzgdto62IQgsZ1G_rISso19IAhVV7vjYW8"/>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline-md text-headline-md">Dr. Elena Thorne</h4>
+<p class="font-label-sm text-label-sm uppercase text-secondary">Academia ΓåÆ Principal AI Architect</p>
+</div>
+<p class="font-body-md text-body-md text-secondary italic">"Precision. That's the word. The mentorship refined my theoretical knowledge into high-precision industrial application."</p>
+</article>
+</div>
+</section>
+<!-- Mentors (Magazine Style) -->
+<section class="py-32 px-margin-mobile">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-16">Institutional <br/>Architects</h2>
+<div class="grid grid-cols-1 gap-12">
+<div class="group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A portrait of an experienced technology mentor with a thoughtful expression. He is wearing a dark charcoal turtleneck, and the background is a minimalist, modern studio setting with sharp architectural lines. The image uses high-contrast lighting to create a sense of intellectual rigor and prestige." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyQxlrSbYtrSwApsFa8UuKZb45cjMQNF95G_cH-rdurzPHdImT6vlDBNgxXQjMW8zaOKWfWU33BCom4H4taWYYobYgg3LCfc6gXaeW6W_H6NKXlQe2Ck2ZHbD3qMAPIUe7bmH7qQITdropoa3Nc7qhFgqJXshkpipbJxHzLRSCw55ju_HwG0RXEvrl-xJOUEoQ3nJeNY2BNc09YCN2z8HB8bOxpC72bsSVgKWfF8l3o2A3zIHbg_MSlsDvXQrzY-l7bcNoCoFwm6Q"/>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase tracking-tighter">Marcus Chen</h4>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mt-1">Lead Architect, ex-Netflix</p>
+</div>
+<div class="group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A close-up portrait of a female software architect with a sharp, professional appearance. She is set against a dark, monochromatic background that accentuates the cool, sophisticated color palette. The lighting is directional and dramatic, creating an atmosphere of expertise and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP4GVatJPyaRPlupspLqlVEP2bR262rDYGF6I7haAXEnFPiLnunBvJzNXFgHE57yKU6GZG7WKObtYbeniJALxiXOeTGzRwbBXQOW49Q55-w6yY318cIUNIYg6uCvyLSx0qgg4wrgK7ueuH_-MIK8XDmKov_xca5qY1npiPuHF3XwfMfiwZh-4GzK5huiF7cMHwn5bLIbQctaT3NMkuihvIO9Z7hMd7MPFFaxQ68vYy4ytfBXvocsguV3US0bJxzZ9UZ0QjY0rwR4o"/>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase tracking-tighter">Sarah Lin</h4>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mt-1">VP Security, Stealth Unicorn</p>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-margin-mobile bg-primary text-white">
+<div class="text-center space-y-12">
+<p class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-[0.3em]">Exclusive Access</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile leading-tight">Claim Your Professional <br/>Dominance.</h2>
+<p class="font-body-md text-body-md text-white/70 max-w-xs mx-auto">Limited to 15 consultations per month to ensure architectural integrity.</p>
+<form class="space-y-10 mt-12 text-left max-w-sm mx-auto">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-primary-fixed-dim transition-colors placeholder:text-white/30 text-body-lg font-body-lg" placeholder="Full Name" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-white/20 px-0 py-4 focus:ring-0 focus:border-primary-fixed-dim transition-colors placeholder:text-white/30 text-body-lg font-body-lg" placeholder="Professional Email" type="email"/>
+</div>
+<button class="w-full py-6 bg-white text-primary font-bold font-label-sm text-label-sm uppercase tracking-widest rounded-lg mt-8" type="submit">
+                        Request Consultation
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant py-20 px-margin-mobile">
+<div class="space-y-12">
+<span class="font-headline-md text-headline-md font-bold text-primary">SKY STATES</span>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Programs</p>
+<ul class="space-y-3 text-secondary text-label-sm uppercase">
+<li><a class="hover:text-primary transition-colors" href="#">Curriculum</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Admissions</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Legal</p>
+<ul class="space-y-3 text-secondary text-label-sm uppercase">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Institutional Terms</a></li>
+</ul>
+</div>
+</div>
+<p class="font-label-sm text-[10px] text-secondary-fixed-dim leading-relaxed">
+                ┬⌐ 2024 Sky States. Institutional Excellence in Technology.
+            </p>
+</div>
+</footer>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('nav-drawer');
+            const content = document.getElementById('drawer-content');
+            
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                content.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+</body></html>

@@ -1,0 +1,135 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    delete: false
+    files:
+      - name: "homepage"
+        label: "Home Page"
+        file: "src/data/homepage.json"
+        format: "json"
+        fields:
+          - { label: "Hero Section", name: "hero", widget: "object", fields: [
+              { label: "Headline", name: "headline", widget: "string" },
+              { label: "Button 1 Text", name: "button1_text", widget: "string" },
+              { label: "Button 2 Text", name: "button2_text", widget: "string" },
+              { label: "Background Image URL", name: "background_image", widget: "string" }
+            ]}
+          - { label: "Stats (Trust Layer)", name: "stats", widget: "list", fields: [
+              { label: "Stat Value", name: "value", widget: "string" },
+              { label: "Stat Label", name: "label", widget: "string" }
+            ]}
+          - { label: "Curriculum Section", name: "tracks_section", widget: "object", fields: [
+              { label: "Subtitle", name: "subtitle", widget: "string" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Tracks", name: "tracks", widget: "list", fields: [
+                  { label: "ID", name: "id", widget: "string" },
+                  { label: "Icon name (Material Symbols)", name: "icon", widget: "string" },
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Description", name: "description", widget: "text" },
+                  { label: "Tags", name: "tags", widget: "list", field: { label: "Tag", name: "tag", widget: "string" } }
+                ]}
+            ]}
+          - { label: "Advantage Section", name: "advantage_section", widget: "object", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Elite Path Title", name: "elite_title", widget: "string" },
+              { label: "Elite Path Items", name: "elite_items", widget: "list", field: { label: "Item", name: "item", widget: "string" } },
+              { label: "Traditional Title", name: "traditional_title", widget: "string" },
+              { label: "Traditional Items", name: "traditional_items", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
+            ]}
+          - { label: "Evidence Section", name: "evidence_section", widget: "object", fields: [
+              { label: "Subtitle", name: "subtitle", widget: "string" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Success Stories", name: "stories", widget: "list", fields: [
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Role", name: "role", widget: "string" },
+                  { label: "Quote", name: "quote", widget: "text" },
+                  { label: "Image URL", name: "image", widget: "string" }
+                ]}
+            ]}
+          - { label: "Mentors Section", name: "mentors_section", widget: "object", fields: [
+              { label: "Section Title", name: "title", widget: "string" },
+              { label: "Mentors", name: "mentors", widget: "list", fields: [
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Role", name: "role", widget: "string" },
+                  { label: "Image URL", name: "image", widget: "string" }
+                ]}
+            ]}
+          - { label: "CTA Section", name: "cta_section", widget: "object", fields: [
+              { label: "Subtitle", name: "subtitle", widget: "string" },
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Description", name: "description", widget: "text" },
+              { label: "Button Text", name: "button_text", widget: "string" }
+            ]}
+      - name: "programs"
+        label: "Program Pages"
+        file: "src/data/programs.json"
+        format: "json"
+        fields:
+          - label: "Data Science & AI"
+            name: "data-science-ai"
+            widget: "object"
+            fields: &program_fields
+              - { label: "Meta Title", name: "metaTitle", widget: "string" }
+              - { label: "Hero Section", name: "hero", widget: "object", fields: [
+                  { label: "Headline", name: "headline", widget: "string" },
+                  { label: "Description", name: "description", widget: "text" }
+                ]}
+              - { label: "Stats Section", name: "stats", widget: "list", fields: [
+                  { label: "Value", name: "value", widget: "string" },
+                  { label: "Label", name: "label", widget: "string" }
+                ]}
+              - { label: "Curriculum", name: "curriculum", widget: "object", fields: [
+                  { label: "Curriculum Title", name: "title", widget: "string" },
+                  { label: "Curriculum Description", name: "description", widget: "text" },
+                  { label: "Modules", name: "modules", widget: "list", fields: [
+                      { label: "ID", name: "id", widget: "string" },
+                      { label: "Title", name: "title", widget: "string" },
+                      { label: "Description", name: "description", widget: "text" },
+                      { label: "Tags", name: "tags", widget: "list", field: { label: "Tag", name: "tag", widget: "string" } }
+                    ]},
+                  { label: "Final Module (Optional)", name: "final_module", widget: "object", required: false, fields: [
+                      { label: "Title", name: "title", widget: "string" },
+                      { label: "Description", name: "description", widget: "text" }
+                    ]}
+                ]}
+              - { label: "Career Trajectory", name: "career", widget: "list", fields: [
+                  { label: "Stage (e.g. Entry Point)", name: "stage", widget: "string" },
+                  { label: "Role Title", name: "role", widget: "string" },
+                  { label: "Description", name: "description", widget: "text" },
+                  { label: "Est. Salary/TC", name: "salary", widget: "string" }
+                ]}
+          - label: "Cyber Security"
+            name: "cyber-security"
+            widget: "object"
+            fields: *program_fields
+          - label: "DevOps & Cloud"
+            name: "devops"
+            widget: "object"
+            fields: *program_fields
+
+  - name: "jobs"
+    label: "Live Jobs"
+    folder: "src/content/jobs"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Job Slug", name: "slug", widget: "string" }
+      - { label: "Company Name", name: "company", widget: "string" }
+      - { label: "Job Title", name: "title", widget: "string" }
+      - { label: "Salary Range", name: "salary", widget: "string" }
+      - { label: "Job Type (Remote/Hybrid/Onsite)", name: "type", widget: "select", options: ["Remote", "Hybrid", "Onsite"] }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Date Posted", name: "postedDate", widget: "string", default: "Posted today" }
+      - { label: "Job Description", name: "description", widget: "text" }
+

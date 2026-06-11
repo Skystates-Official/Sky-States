@@ -1,0 +1,271 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pricing &amp; Refund Policy | Sky States</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sky-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 30px 60px -12px rgba(0, 93, 144, 0.04), 0 18px 36px -18px rgba(0, 0, 0, 0.05);
+        }
+        .upward-gradient {
+            background: linear-gradient(to top, #ffffff 0%, #d3e2ed 100%);
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            scroll-behavior: smooth;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md shadow-[0_30px_30px_rgba(0,0,0,0.04)]">
+<div class="max-w-[1280px] mx-auto px-margin-desktop py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="account_balance">account_balance</span>
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight">Sky States</h1>
+</div>
+<Header />
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md active:scale-95 transition-transform shadow-lg shadow-primary/20">
+                Book Consultation
+            </button>
+</div>
+</header>
+<main>
+<!-- Editorial Hero Section -->
+<section class="relative pt-24 pb-32 overflow-hidden upward-gradient">
+<div class="max-w-[1280px] mx-auto px-margin-desktop relative z-10 text-center">
+<span class="inline-block px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm mb-6 uppercase tracking-widest">Pricing Transparency</span>
+<h2 class="font-headline-xl text-headline-xl mb-6 text-on-surface">Transparent Investment.<br/><span class="text-primary-container">No Hidden Costs.</span></h2>
+<p class="max-w-2xl mx-auto text-body-lg text-on-surface-variant font-body-lg">
+                    We believe in radical clarity. Your career acceleration is an investment in your future self, and we ensure every cent is accounted for with high-trust institutional standards.
+                </p>
+</div>
+<!-- Decorative element -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-64 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+</section>
+<!-- The Value Equation -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-8">The Value Equation</h3>
+<div class="space-y-6">
+<div class="p-6 rounded-xl bg-surface-container-lowest ambient-shadow border border-outline-variant/30">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="trending_up">trending_up</span>
+<p class="font-label-md text-primary">Avg. Salary Increase</p>
+</div>
+<p class="text-headline-md font-headline-md">$42,500+</p>
+<p class="text-on-surface-variant text-body-md mt-2">Based on our 2023 cohort data across Finance and Tech sectors.</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest ambient-shadow border border-outline-variant/30">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="timer">timer</span>
+<p class="font-label-md text-primary">Placement Velocity</p>
+</div>
+<p class="text-headline-md font-headline-md">84 Days</p>
+<p class="text-on-surface-variant text-body-md mt-2">The average time from enrollment to a signed contract offer.</p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-md hover:underline group" href="#">
+                            Explore full 2024 Salary Guide 
+                            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="relative h-[500px] rounded-2xl overflow-hidden ambient-shadow">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A clean, minimalist data visualization dashboard displayed on a high-end monitor in a bright, modern corporate office. Soft morning light streams through large windows, creating a high-trust professional atmosphere. The screen shows upward trending financial charts in blues and whites, symbolizing growth and ROI. The aesthetic is airy, sophisticated, and focused on institutional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1vTNZdaQkJqJw-mnxaguXwLFPDK3hwthe2lXOgCACLFCdlLBifZ83zzQ50U0cdbREFOM44dM7njcFwfUtWi5ngC1PtDXr7HsfGvCtepPO1bS6EgSErmkCayZjPsr-W2B64vWML3KMzPZGCypS8C1k39EmeHp5zCaDzEca05pQ_9VjIwxyBXuoWIx26p2kzmXM7snhd-WJg_pM2-jJmFlHYGlPnrQTgHrW2jLP5R1G9hXiE8QZNq5R1wEQtIodI5Wycz0cFIXPclQ"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+</div>
+</section>
+<!-- Enrollment Tiers -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
+<div class="text-center mb-16">
+<h3 class="font-headline-lg text-headline-lg mb-4">Investment Tiers</h3>
+<p class="text-on-surface-variant">Select the path that aligns with your professional velocity.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Scholar Track -->
+<div class="bg-surface-container-lowest p-10 rounded-2xl ambient-shadow flex flex-col border border-outline-variant/20 hover:border-primary-container/40 transition-colors">
+<h4 class="font-headline-md text-headline-md mb-2">Scholar Track</h4>
+<p class="text-on-surface-variant mb-8">Group-led acceleration with peer networking.</p>
+<div class="mb-8">
+<span class="text-headline-xl font-headline-xl">$2,999</span>
+<span class="text-on-surface-variant">/total</span>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
+<span>Full access to the Career Hub ecosystem</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
+<span>Bi-weekly group strategy workshops</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
+<span>Standard 14-day refund protection</span>
+</li>
+</ul>
+<button class="w-full py-4 border-2 border-primary text-primary font-label-md rounded-xl hover:bg-primary/5 transition-colors">Choose Scholar Track</button>
+</div>
+<!-- Elite 1-on-1 -->
+<div class="bg-primary text-on-primary p-10 rounded-2xl ambient-shadow flex flex-col relative overflow-hidden group">
+<!-- Subtle background texture logic -->
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="star">star</span>
+</div>
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 bg-white/20 rounded-full text-label-sm mb-4">Recommended</span>
+<h4 class="font-headline-md text-headline-md mb-2">Elite 1-on-1</h4>
+<p class="text-on-primary/80 mb-8">Direct mentorship with former MDs and Directors.</p>
+<div class="mb-8">
+<span class="text-headline-xl font-headline-xl">$6,500</span>
+<span class="text-on-primary/80">/total</span>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Dedicated Senior Executive Mentor</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Priority interview placement service</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Lifetime alumni network access</span>
+</li>
+</ul>
+<button class="w-full py-4 bg-white text-primary font-label-md rounded-xl shadow-lg shadow-black/20 hover:bg-surface-container-low transition-colors">Choose Elite Tier</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Refund Policy Section -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
+<div class="bg-surface-container-low p-12 rounded-2xl border border-outline-variant/30">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/3">
+<h3 class="font-headline-lg text-headline-lg mb-6">Refund Policy</h3>
+<p class="text-on-surface-variant mb-6">We stand by our quality. If you aren't satisfied, our process is clear, fast, and institutional-grade.</p>
+<div class="flex items-center gap-3 p-4 bg-white rounded-xl ambient-shadow">
+<span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
+<div>
+<p class="text-label-sm font-label-md">Need Help?</p>
+<p class="text-body-md text-primary font-semibold">refunds@skystates.com</p>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-white">1</div>
+<h5 class="font-headline-md text-label-md">3-Day Window</h5>
+<p class="text-body-md text-on-surface-variant">Full 100% refund for any reason within 72 hours of enrollment. No questions asked.</p>
+</div>
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-white">2</div>
+<h5 class="font-headline-md text-label-md">14-Day Window</h5>
+<p class="text-body-md text-on-surface-variant">Pro-rated refund available if you decide the program isn't the right fit within 2 weeks.</p>
+</div>
+<div class="sm:col-span-2 pt-6 border-t border-outline-variant">
+<h5 class="font-label-md mb-2 uppercase tracking-wide text-primary">How to Initiate</h5>
+<p class="text-body-md text-on-surface-variant">Login to your dashboard, navigate to <strong>Billing &gt; Requests</strong> and select "Initiate Return". Our compliance team will process your request within 24 business hours.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- No-SSN Policy (Trust) -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
+<div class="bg-primary-container text-on-primary-container p-12 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-[32px]" data-icon="security">security</span>
+<h3 class="font-headline-lg text-headline-lg">Zero Identification Risk</h3>
+</div>
+<p class="text-body-lg mb-4">Sky States operates on a "Privacy First" architecture. We strictly <strong>NEVER</strong> collect, store, or request Social Security Numbers (SSNs) or personal identity documents.</p>
+<p class="text-label-md opacity-80 italic">Trust is our currency; your privacy is our vault.</p>
+</div>
+<div class="w-32 h-32 flex items-center justify-center bg-white/10 rounded-full backdrop-blur-sm border border-white/20">
+<span class="material-symbols-outlined text-[64px]" data-icon="no_accounts" style="font-variation-settings: 'FILL' 1;">no_accounts</span>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-[800px] mx-auto px-margin-mobile md:px-0 mt-section-gap pb-section-gap">
+<h3 class="font-headline-lg text-headline-lg text-center mb-12">Pricing &amp; Refund FAQ</h3>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<details class="group bg-surface-container-lowest rounded-xl border border-outline-variant/30 ambient-shadow overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-label-md text-on-surface">Are there any hidden service fees?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface-variant">
+                        No. The price you see is the total amount. This includes all course materials, portal access, and software licenses required for the program duration.
+                    </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group bg-surface-container-lowest rounded-xl border border-outline-variant/30 ambient-shadow overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-label-md text-on-surface">Can I switch tracks after enrolling?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface-variant">
+                        Yes. You can upgrade from Scholar to Elite at any time by paying the difference. Downgrades are subject to our 14-day policy window.
+                    </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group bg-surface-container-lowest rounded-xl border border-outline-variant/30 ambient-shadow overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-label-md text-on-surface">How long does a refund take to process?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-6 pt-0 text-on-surface-variant">
+                        Once approved by our compliance team, funds are typically returned to your original payment method within 5-10 business days, depending on your financial institution.
+                    </div>
+</details>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<Footer />
+<script>
+        // Micro-interaction for hover effects
+        document.querySelectorAll('.ambient-shadow').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>
