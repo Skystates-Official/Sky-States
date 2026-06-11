@@ -1,0 +1,186 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import jobsData from '../data/jobs.json';
+---
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Active Placements & Live Jobs | Sky States</title>
+    <meta content="Explore active high-paying job opportunities available for graduates of Sky States career acceleration programs." name="description"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .upward-gradient {
+            background: linear-gradient(to top, #ffffff, #d3e2ed);
+        }
+        .ambient-shadow {
+            box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+    <!-- Top Nav -->
+    <Header />
+
+    <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
+        <!-- Hero Header Section -->
+        <div class="mb-12 rounded-xl p-12 upward-gradient flex flex-col gap-2 relative overflow-hidden shadow-sm">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary text-white rounded-full w-fit text-xs font-bold uppercase tracking-wider mb-2">
+                <span class="material-symbols-outlined text-[14px]">work</span>
+                <span>Active Placements</span>
+            </div>
+            <h1 class="font-headline-xl text-headline-xl text-primary leading-tight">Live Career Openings</h1>
+            <p class="text-on-surface-variant max-w-2xl font-body-lg text-body-lg">
+                Verified high-prestige roles from our institutional partner networks. Available for immediate application.
+            </p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 ambient-shadow">
+            <div class="relative w-full md:max-w-md">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Search by role, company, or skill..." 
+                    class="w-full h-12 pl-12 pr-4 bg-white border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all form-glow"
+                />
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary">search</span>
+            </div>
+            <div class="flex gap-2 flex-wrap" id="tags-filter-container">
+                <button class="px-4 py-2 text-xs font-bold uppercase bg-primary text-white rounded-full transition-all filter-tag-btn" onclick="filterByTag('all')">All Roles</button>
+                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Python')">Python</button>
+                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Kubernetes')">Kubernetes</button>
+                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Zero-Trust')">Zero-Trust</button>
+            </div>
+        </div>
+
+        <!-- Jobs Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jobs-container">
+            {jobsData.map(job => (
+                <div class="job-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-primary/20 transition-all flex flex-col justify-between h-full group" data-tags={JSON.stringify(job.tags)} data-search-text={`${job.title} ${job.company} ${job.description} ${job.location}`}>
+                    <div>
+                        <!-- Header info -->
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-secondary font-semibold">{job.company}</span>
+                                <h3 class="font-headline-md text-lg font-bold text-on-surface mt-1 group-hover:text-primary transition-colors">{job.title}</h3>
+                            </div>
+                            <div class="bg-primary/5 p-2 rounded-lg text-primary">
+                                <span class="material-symbols-outlined">work</span>
+                            </div>
+                        </div>
+
+                        <!-- Info tags -->
+                        <div class="flex flex-col gap-1.5 text-xs text-on-surface-variant mb-4 font-medium">
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                                <span>{job.location}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-sm">payments</span>
+                                <span>{job.salary}</span>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-secondary leading-relaxed mb-6 font-normal line-clamp-3">
+                            {job.description}
+                        </p>
+                    </div>
+
+                    <div>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            {job.tags.map(tag => (
+                                <span class="px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider bg-surface-container text-secondary rounded-md">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+
+                        <!-- Apply Button -->
+                        <a href={`/checkout?course=${encodeURIComponent(job.title + " Prep Course")}&type=normal`} class="flex items-center justify-center gap-1 w-full bg-primary text-white py-3 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-opacity-90 transition-all font-bold">
+                            <span>Apply via Portal</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <div id="no-jobs-found" class="hidden text-center py-20 bg-surface-container-lowest rounded-xl border border-outline-variant/10 ambient-shadow">
+            <span class="material-symbols-outlined text-secondary text-5xl mb-4">search_off</span>
+            <h3 class="text-xl font-bold text-on-surface">No jobs found</h3>
+            <p class="text-secondary mt-1">Try refining your search terms or tags.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <script is:inline>
+        const searchInput = document.getElementById('search-input');
+        const jobCards = document.querySelectorAll('.job-card');
+        const noJobs = document.getElementById('no-jobs-found');
+        let selectedTag = 'all';
+
+        function filterJobs() {
+            const query = searchInput.value.toLowerCase();
+            let visibleCount = 0;
+
+            jobCards.forEach(card => {
+                const searchText = card.getAttribute('data-search-text').toLowerCase();
+                const tags = JSON.parse(card.getAttribute('data-tags'));
+                
+                const matchesQuery = searchText.includes(query);
+                const matchesTag = selectedTag === 'all' || tags.includes(selectedTag);
+
+                if (matchesQuery && matchesTag) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noJobs.classList.remove('hidden');
+            } else {
+                noJobs.classList.add('hidden');
+            }
+        }
+
+        window.filterByTag = function(tag) {
+            selectedTag = tag;
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.filter-tag-btn');
+            buttons.forEach(btn => {
+                const btnText = btn.textContent.trim();
+                const isActive = (tag === 'all' && btnText === 'ALL ROLES') || btnText === tag;
+                if (isActive) {
+                    btn.classList.add('bg-primary', 'text-white');
+                    btn.classList.remove('bg-surface-container', 'text-secondary');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white');
+                    btn.classList.add('bg-surface-container', 'text-secondary');
+                }
+            });
+
+            filterJobs();
+        }
+
+        searchInput?.addEventListener('input', filterJobs);
+    </script>
+</body>
+</html>

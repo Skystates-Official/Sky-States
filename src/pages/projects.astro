@@ -1,0 +1,322 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sky States | Student Projects Showcase</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .progress-glow { box-shadow: 0 0 12px var(--tw-primary); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile h-16 md:px-margin-desktop md:h-20 max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<span class="font-headline-md text-headline-lg-mobile font-extrabold tracking-tighter text-primary">Sky States</span>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-lg shadow-sm hover:opacity-90 transition-opacity uppercase tracking-widest">
+                Recruiter Portal
+            </button>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative overflow-hidden min-h-[85vh] flex flex-col justify-center px-margin-mobile">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl1pAvyiK50inGTbQYoijGHJgz830rs-Ngtrzy4b1be9Yfx94T44fg-sUy-0il_mUyFNjEwSvsUDpj0-dtinHMQsAHTHe705tDrRYBzXYURPPsgxdlei2_MScoCRbKlzze6x2_1KDS9gG61ElKFhT8Hi_h2PRqdRwpaYJtNYNdB3ygPEB_-oRZWbgWHeDBNjr_1bOB93V6-2nBCANFeWYWPlqh9ucjadhTufC3eZdnJGmmDYWIEgh0NlTOD8PJTQkaeA9hbvczhgA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+</div>
+<div class="relative z-10 space-y-6 max-w-lg">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-caps text-[10px] text-primary uppercase tracking-widest">Engineering Excellence</span>
+</div>
+<h1 class="font-headline-lg-mobile text-display-xl leading-none tracking-tighter text-on-surface">
+                    Student Projects That Solve <span class="text-primary italic">Real-World</span> Problems.
+                </h1>
+<p class="font-body-lg text-on-surface-variant max-w-sm">
+                    Explore a curated repository of high-performance engineering, from foundational concepts to production-grade deployment.
+                </p>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 group transition-all active:scale-[0.98]">
+                        Explore Projects
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+</button>
+<button class="w-full glass-card text-on-surface font-label-caps text-label-caps py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white/90 transition-colors">
+                        Build Your Portfolio
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats Marquee -->
+<section class="py-stack-md bg-surface-container-low overflow-hidden">
+<div class="flex gap-12 px-margin-mobile whitespace-nowrap animate-marquee">
+<div class="flex flex-col">
+<span class="font-label-mono text-display-xl text-primary font-black tracking-tighter">1,200+</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Projects Built</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-mono text-display-xl text-primary font-black tracking-tighter">450</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">OSS Contribs</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-mono text-display-xl text-primary font-black tracking-tighter">98%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Completion</span>
+</div>
+</div>
+</section>
+<!-- Global Search & Filter -->
+<div class="sticky top-16 z-40 bg-surface/80 backdrop-blur-lg border-b border-outline-variant/30 py-4">
+<div class="px-margin-mobile flex flex-col gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-high border-none rounded-xl font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all" placeholder="Search technologies or industries..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="shrink-0 px-4 py-2 bg-primary text-on-primary rounded-lg font-label-caps text-label-caps-mobile whitespace-nowrap">ALL PROGRAMS</button>
+<button class="shrink-0 px-4 py-2 bg-surface-container text-on-surface-variant rounded-lg font-label-caps text-label-caps-mobile whitespace-nowrap hover:bg-surface-variant">DATA SCIENCE</button>
+<button class="shrink-0 px-4 py-2 bg-surface-container text-on-surface-variant rounded-lg font-label-caps text-label-caps-mobile whitespace-nowrap hover:bg-surface-variant">DEVOPS</button>
+<button class="shrink-0 px-4 py-2 bg-surface-container text-on-surface-variant rounded-lg font-label-caps text-label-caps-mobile whitespace-nowrap hover:bg-surface-variant">CYBERSECURITY</button>
+</div>
+</div>
+</div>
+<!-- Project Gallery -->
+<section class="px-margin-mobile py-stack-md space-y-6">
+<h2 class="font-headline-md text-headline-lg-mobile text-on-surface">Featured Showcases</h2>
+<!-- Featured Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-[10px] text-tertiary px-2 py-1 bg-tertiary-container/10 border border-tertiary-container/30 rounded uppercase">Data Science</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-error" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-mono text-label-mono">4.9</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Healthcare AI: Patient Risk Stratification</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-2 mt-2">Predictive modeling for early cardiovascular risk detection using synthetic clinical datasets and TensorFlow.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">Python</span>
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">Scikit-Learn</span>
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">PyTorch</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-bold text-xs text-on-secondary-container">AL</div>
+<span class="font-label-caps text-label-caps">Adrian Lane</span>
+</div>
+<span class="font-label-caps text-[10px] bg-error-container text-on-error-container px-2 py-1 rounded">ADVANCED</span>
+</div>
+<a class="mt-2 font-label-caps text-primary flex items-center gap-2 hover:gap-3 transition-all" href="#">
+                    READ CASE STUDY <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Featured Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-xl transition-all duration-500 border-l-4 border-l-primary">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-[10px] text-secondary px-2 py-1 bg-secondary-container/10 border border-secondary-container/30 rounded uppercase">DevOps</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
+<span class="font-label-caps text-[10px] text-tertiary uppercase">Production Ready</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Cloud Infrastructure Auto-Scaler</h3>
+<p class="font-body-md text-on-surface-variant line-clamp-2 mt-2">Elastic Kubernetes infrastructure with Terraform and Prometheus for real-time workload balancing.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 bg-surface-container-low p-4 rounded-xl">
+<div class="flex flex-col">
+<span class="font-label-mono text-headline-md text-primary font-bold">128</span>
+<span class="font-label-caps text-[10px] text-outline uppercase">GitHub Stars</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-mono text-headline-md text-secondary font-bold">99.9%</span>
+<span class="font-label-caps text-[10px] text-outline uppercase">Uptime Score</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">AWS</span>
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">Terraform</span>
+<span class="font-label-mono text-[11px] text-on-surface-variant bg-surface-container px-2 py-1 rounded">Docker</span>
+</div>
+<button class="w-full mt-2 py-3 bg-on-background text-white rounded-xl font-label-caps flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span> VIEW REPOSITORY
+                </button>
+</div>
+</section>
+<!-- Recruiter Eval Section -->
+<section class="py-stack-xl bg-on-background text-white px-margin-mobile rounded-t-[40px] mt-stack-xl">
+<div class="space-y-4 text-center">
+<span class="font-label-caps text-secondary-fixed tracking-[0.2em] uppercase">Trust Framework</span>
+<h2 class="font-headline-lg-mobile text-headline-lg leading-tight">What Recruiters Can Evaluate</h2>
+<p class="font-body-md text-outline-variant">Built to industrial standards, every project undergoes a rigorous engineering audit.</p>
+</div>
+<div class="mt-stack-lg grid grid-cols-1 gap-gutter">
+<div class="p-6 bg-white/5 rounded-2xl border border-white/10 flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim">verified</span>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Code Quality</h4>
+<p class="font-body-md text-surface-variant text-sm">Full test coverage, clean code principles, and efficient algorithms.</p>
+</div>
+</div>
+<div class="p-6 bg-white/5 rounded-2xl border border-white/10 flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-tertiary-container/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-fixed-dim">architecture</span>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Architecture</h4>
+<p class="font-body-md text-surface-variant text-sm">System design diagrams, microservices, and scalability documentation.</p>
+</div>
+</div>
+<div class="p-6 bg-white/5 rounded-2xl border border-white/10 flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-secondary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed-dim">security</span>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Security</h4>
+<p class="font-body-md text-surface-variant text-sm">Vulnerability scans, encryption at rest, and IAM policy definitions.</p>
+</div>
+</div>
+<div class="p-6 bg-white/5 rounded-2xl border border-white/10 flex gap-4">
+<div class="w-12 h-12 shrink-0 bg-primary-container/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed">description</span>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg mb-1">Documentation</h4>
+<p class="font-body-md text-surface-variant text-sm">Comprehensive READMEs, API docs, and deployment walkthroughs.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- GitHub Showcase -->
+<section class="px-margin-mobile py-stack-xl space-y-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-on-background rounded-full">
+<img alt="GitHub" class="w-8 h-8 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAwSmP83cDINtqfISslEe4qk6jDdWXNwrqPBDjv56UPjb5mDVVhXOTX447z-Sj5VS1bHy5bixeJkUxM7TvSTq4BiDnwJqoiIIdVST6cnMuWF7uPgpMUrBk-0mqCGffYXEss2GLONGBpqeFlNlKVSkivXteud7-AMPyOzv8AKWX9c9DEBOw8VABGdO5i12N5tmqMHhVfsv04hobvjuodJOVE1xGEZUDW4-KJf9y_sIhRJfYhKq1-l-dBA6qV_0dRJ_rJ0ra6Q8KFZo"/>
+</div>
+<h2 class="font-headline-md text-headline-lg-mobile">Commit Momentum</h2>
+</div>
+<!-- GitHub Contribution Map Placeholder -->
+<div class="glass-card rounded-2xl p-4 overflow-x-auto hide-scrollbar">
+<div class="flex gap-1">
+<!-- Iterative generation for a "contribution graph" look -->
+<div class="flex flex-col gap-1">
+<div class="w-3 h-3 bg-surface-container rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/20 rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/40 rounded-sm"></div>
+<div class="w-3 h-3 bg-surface-container rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/80 rounded-sm"></div>
+<div class="w-3 h-3 bg-surface-container rounded-sm"></div>
+<div class="w-3 h-3 bg-primary/10 rounded-sm"></div>
+</div>
+<!-- Repeating columns manually for visualization -->
+<div class="flex flex-col gap-1"><div class="w-3 h-3 bg-primary rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/40 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/60 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div></div>
+<div class="flex flex-col gap-1"><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/10 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/30 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/50 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div></div>
+<div class="flex flex-col gap-1"><div class="w-3 h-3 bg-primary/80 rounded-sm"></div><div class="w-3 h-3 bg-primary/20 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/40 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/10 rounded-sm"></div><div class="w-3 h-3 bg-primary/60 rounded-sm"></div></div>
+<div class="flex flex-col gap-1"><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/10 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/30 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/50 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div></div>
+<div class="flex flex-col gap-1"><div class="w-3 h-3 bg-primary/80 rounded-sm"></div><div class="w-3 h-3 bg-primary/20 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/40 rounded-sm"></div><div class="w-3 h-3 bg-surface-container rounded-sm"></div><div class="w-3 h-3 bg-primary/10 rounded-sm"></div><div class="w-3 h-3 bg-primary/60 rounded-sm"></div></div>
+</div>
+<div class="mt-4 flex justify-between items-center px-1">
+<span class="font-label-caps text-[10px] text-outline">Less</span>
+<div class="flex gap-1">
+<div class="w-2 h-2 bg-surface-container rounded-sm"></div>
+<div class="w-2 h-2 bg-primary/30 rounded-sm"></div>
+<div class="w-2 h-2 bg-primary/60 rounded-sm"></div>
+<div class="w-2 h-2 bg-primary rounded-sm"></div>
+</div>
+<span class="font-label-caps text-[10px] text-outline">More</span>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-gutter">
+<div class="p-6 bg-surface-container-low rounded-2xl border border-outline-variant/30 flex justify-between items-center">
+<div>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Total Commits</span>
+<p class="font-label-mono text-headline-md font-bold">14,289</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">commit</span>
+</div>
+<div class="p-6 bg-surface-container-low rounded-2xl border border-outline-variant/30 flex justify-between items-center">
+<div>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Merged PRs</span>
+<p class="font-label-mono text-headline-md font-bold">842</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-3xl">merge_type</span>
+</div>
+</div>
+</section>
+<!-- Learning Journey Timeline -->
+<section class="px-margin-mobile py-stack-xl relative overflow-hidden">
+<h2 class="font-headline-md text-headline-lg-mobile mb-stack-lg">The Path to Mastery</h2>
+<div class="relative pl-12 space-y-12 before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-primary before:to-transparent">
+<!-- Timeline Item 1 -->
+<div class="relative group">
+<div class="absolute -left-[30px] w-4 h-4 bg-primary rounded-full ring-8 ring-primary/10"></div>
+<div>
+<span class="font-label-caps text-[10px] text-primary uppercase">Month 1-2</span>
+<h4 class="font-headline-md text-body-lg mt-1 group-hover:text-primary transition-colors">Mini Projects</h4>
+<p class="font-body-md text-on-surface-variant text-sm mt-1">Focus on algorithmic efficiency and fundamental syntax through small-scale automation tools.</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative group">
+<div class="absolute -left-[30px] w-4 h-4 bg-secondary rounded-full ring-8 ring-secondary/10"></div>
+<div>
+<span class="font-label-caps text-[10px] text-secondary uppercase">Month 3-5</span>
+<h4 class="font-headline-md text-body-lg mt-1">Industrial Modules</h4>
+<p class="font-body-md text-on-surface-variant text-sm mt-1">Building full-stack CRUD applications with modern frameworks and local deployment.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative group">
+<div class="absolute -left-[30px] w-4 h-4 bg-on-background rounded-full ring-8 ring-on-background/10"></div>
+<div>
+<span class="font-label-caps text-[10px] text-on-background uppercase">Month 6+</span>
+<h4 class="font-headline-md text-body-lg mt-1">Capstone Deployment</h4>
+<p class="font-body-md text-on-surface-variant text-sm mt-1">Production-ready engineering: CI/CD pipelines, cloud scalability, and stakeholder testing.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<Footer />
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<Header />
+<script>
+        // Smooth scroll implementation or search filtering could go here
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('click', (e) => {
+                const target = e.currentTarget;
+                target.classList.add('scale-95');
+                setTimeout(() => target.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

@@ -36,7 +36,7 @@ import Footer from '../../components/Footer.astro';
 <!-- TopAppBar -->
 <Header />
 <!-- Hero Section -->
-<header class="relative overflow-hidden upward-gradient pt-24 pb-section-gap">
+<section class="relative overflow-hidden upward-gradient pt-24 pb-section-gap">
 <div class="max-w-[1280px] mx-auto px-margin-desktop flex flex-col md:flex-row items-center gap-16 relative z-10">
 <div class="flex-1 space-y-8">
 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">
@@ -60,14 +60,17 @@ import Footer from '../../components/Footer.astro';
 </div>
 <div class="flex-1 w-full max-w-2xl">
 <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-<img alt="Cloud Infrastructure Architecture" class="w-full aspect-video object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuB4Du_M1cHG_p3cj1oOyJFqEijXT7zu6r5kMr3RWls1YX1Vix8-Ntb5xEJQjQeuhuUz6OgwV8P3vAnIHFB_Db33VtA6EDIB0_isTZEd7M-Kw4DVs20WvLHoxNzJ02qjQGnPVVEvWxlBj8Dj05hLELaEv8-UXxAtSqlWchI8lqFF5aBQN89LEyGrHkvI-fgyrHf-AHj07WwpRLkcrjSxG2Am8WRJdZhJLKjXvn7-2PIemqvpccGZiA6Kw"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<video autoplay loop muted playsinline class="w-full aspect-video object-cover">
+<source src="/admin/devops%20hero%20section.mp4" type="video/mp4"/>
+Your browser does not support the video tag.
+</video>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
 </div>
 </div>
 </div>
 <!-- Abstract Background Detail -->
 <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-primary-fixed-dim/30 rounded-full blur-[100px] pointer-events-none"></div>
-</header>
+</section>
 <!-- Trusted By -->
 <section class="bg-white py-12 border-y border-outline-variant">
 <div class="max-w-[1280px] mx-auto px-margin-desktop">
@@ -105,10 +108,8 @@ import Footer from '../../components/Footer.astro';
                         </li>
 </ul>
 </div>
-<div class="w-full md:w-1/3 flex justify-center">
-<div class="p-8 bg-surface-container-high rounded-full w-64 h-64 flex items-center justify-center border-4 border-white shadow-inner">
-<span class="material-symbols-outlined text-primary text-8xl" data-icon="cloud_done">cloud_done</span>
-</div>
+<div class="bg-primary/5 rounded-3xl p-6 flex items-center justify-center border border-primary/10 w-full md:w-1/3">
+<img loading="lazy" decoding="async" width="640" height="453" alt="Microsoft DevOps Certification" class="w-full ambient-shadow rounded-2xl" src="https://skystates.us/wp-content/uploads/2025/12/devops.png" srcset="https://skystates.us/wp-content/uploads/2025/12/devops-1024x724.png 1024w, https://skystates.us/wp-content/uploads/2025/12/devops-300x212.png 300w, https://skystates.us/wp-content/uploads/2025/12/devops-768x543.png 768w, https://skystates.us/wp-content/uploads/2025/12/devops-1536x1086.png 1536w, https://skystates.us/wp-content/uploads/2025/12/devops-600x424.png 600w, https://skystates.us/wp-content/uploads/2025/12/devops.png 2000w" sizes="(max-width: 640px) 100vw, 640px" />
 </div>
 </div>
 </div>
@@ -143,44 +144,40 @@ import Footer from '../../components/Footer.astro';
 </div>
 </section>
 <!-- Is This Right For You? -->
-<section class="py-section-gap bg-on-primary-container text-white">
-<div class="max-w-[1280px] mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16">
-<div class="space-y-8">
-<h2 class="font-headline-lg text-headline-lg text-white">Who This Program Is For</h2>
-<div class="space-y-6">
-<div class="flex gap-4 p-6 bg-white/5 rounded-xl">
-<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="person_search">person_search</span>
-<div>
-<p class="font-label-md text-label-md">Aspiring Lead Architects</p>
-<p class="font-body-md text-body-md text-secondary-fixed">Professionals aiming for senior leadership roles in cloud infrastructure.</p>
+<section class="py-section-gap bg-surface-container-low">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16 text-on-surface">Is This Program Right For You?</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Who This Program Is For -->
+<div class="bg-white p-10 rounded-3xl border-t-8 border-primary shadow-sm flex flex-col gap-6">
+<h3 class="font-headline-md text-on-surface mb-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+Who This Program Is For
+</h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li class="flex items-start gap-2">
+• Professionals aiming for senior leadership roles in cloud infrastructure.
+</li>
+<li class="flex items-start gap-2">
+• Software Engineers looking to pivot from code to massive-scale cloud infrastructure.
+</li>
+</ul>
 </div>
-</div>
-<div class="flex gap-4 p-6 bg-white/5 rounded-xl">
-<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="cloud_sync">cloud_sync</span>
-<div>
-<p class="font-label-md text-label-md">Software Engineers</p>
-<p class="font-body-md text-body-md text-secondary-fixed">Engineers looking to pivot from code to massive-scale infrastructure.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="space-y-8">
-<h2 class="font-headline-lg text-headline-lg text-white">Who This Is NOT For</h2>
-<div class="space-y-6">
-<div class="flex gap-4 p-6 bg-white/5 rounded-xl opacity-60">
+
+<!-- Who This Is NOT For -->
+<div class="bg-white p-10 rounded-3xl border-t-8 border-outline shadow-sm flex flex-col gap-6">
+<h3 class="font-headline-md text-on-surface mb-2 flex items-center gap-3">
 <span class="material-symbols-outlined text-error" data-icon="cancel">cancel</span>
-<div>
-<p class="font-label-md text-label-md">Short-Cut Seekers</p>
-<p class="font-body-md text-body-md text-secondary-fixed">Those looking for 2-week quick fixes; this is a rigorous, senior-level program.</p>
-</div>
-</div>
-<div class="flex gap-4 p-6 bg-white/5 rounded-xl opacity-60">
-<span class="material-symbols-outlined text-error" data-icon="cancel">cancel</span>
-<div>
-<p class="font-label-md text-label-md">Theoretical Only Academics</p>
-<p class="font-body-md text-body-md text-secondary-fixed">We prioritize hands-on engineering over rote memorization of terms.</p>
-</div>
-</div>
+Who This Is NOT For
+</h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li class="flex items-start gap-2">
+• Those looking for 2-week quick fixes; this is a rigorous, senior-level program.
+</li>
+<li class="flex items-start gap-2">
+• Those looking for theoretical-only academies; we prioritize hands-on engineering.
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -201,6 +198,147 @@ import Footer from '../../components/Footer.astro';
 <p class="font-body-md text-body-md text-on-surface-variant">The average salary increase reported by alumni transitioning from Junior to Lead roles.</p>
 </div>
 </div>
+</div>
+</section>
+<!-- Program Curriculum -->
+<section class="py-section-gap max-w-4xl mx-auto px-margin-mobile md:px-gutter" id="curriculum">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Program Curriculum</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="space-y-4">
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all" open="">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">01</span> Module 1: Introduction to DevOps
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Understand the principles and benefits of DevOps, including collaboration between development and operations teams. Learn about the DevOps lifecycle and key tools to enhance software delivery.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">02</span> Module 2: Cloud Computing Fundamentals
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Explore the core concepts of cloud computing, such as virtualization, scalability, and elasticity. Learn about cloud service models (IaaS, PaaS, SaaS) and deployment models (public, private, hybrid).</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">03</span> Module 3: Version Control Systems
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Master Git and other version control systems to track changes in source code. Learn branching, merging, and collaboration techniques to streamline team workflows.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">04</span> Module 4: Continuous Integration and Delivery
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Dive into CI/CD pipelines to automate code integration, testing, and deployment. Learn tools like Jenkins, GitHub Actions, and Azure DevOps to build robust CI/CD workflows.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">05</span> Module 5: Containerization with Docker
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Learn to create, deploy, and manage containers using Docker. Understand containerization concepts, including images, containers, volumes, and networking.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">06</span> Module 6: Orchestration with Kubernetes
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Explore Kubernetes for automating deployment, scaling, and managing containerized applications. Learn about pods, services, deployments, and monitoring clusters.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">07</span> Module 7: Infrastructure as Code (IaC)
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Discover tools like Terraform and CloudFormation to define and provision infrastructure programmatically. Learn best practices for managing infrastructure in a cloud environment.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">08</span> Module 8: Cloud Platforms Overview
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Gain hands-on experience with leading cloud platforms like AWS, Azure, and Google Cloud. Learn core services such as compute, storage, and networking.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">09</span> Module 9: Monitoring and Logging
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Understand the importance of monitoring and logging in maintaining system health. Explore tools like Prometheus, Grafana, and ELK Stack to analyze system performance.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">10</span> Module 10: Security in DevOps
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Integrate security into the DevOps process with DevSecOps practices. Learn about securing CI/CD pipelines, monitoring vulnerabilities, and implementing access controls.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">11</span> Module 11: Hybrid and Multi-Cloud Environments
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Learn strategies for managing applications across hybrid and multi-cloud setups. Explore tools and frameworks for seamless integration between cloud providers.</p>
+</div>
+</details>
+<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
+<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">12</span> Module 12: Domain Wise Capstone Project
+</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
+<p>Apply the knowledge gained throughout the course to complete a real-world project. Design and implement a CI/CD pipeline, containerized application, and monitoring solution in a cloud environment.</p>
+</div>
+</details>
 </div>
 </section>
 <!-- Innovation Lab -->
@@ -237,7 +375,7 @@ import Footer from '../../components/Footer.astro';
 <section class="py-section-gap">
 <div class="max-w-[1280px] mx-auto px-margin-desktop flex flex-col md:flex-row items-center gap-16">
 <div class="flex-1 w-full flex justify-center">
-<img alt="Sky States Certification of Excellence" class="w-full max-w-xl shadow-2xl rounded-lg" src="https://lh3.googleusercontent.com/aida/AP1WRLsT1EtyTM-V9alwwYxhuKsdBx69V7Gg8NCzgO2oqaYkwAG15VmJYj9jT1UxTt0arWqQ_s2JIwSueWLZ-BFiaQxSMoAZdgllRUXIAA8qPBA-xMoKw6EwOpC4G3XBQr5e2dLGGQvrbd0oUTfTmTuGzp3yvKYqKr8BxQkRJoFbzpmSQnCsnVZ4TG3txJiY78SHTPLq563fLFAS4Z2wqLAKbJvJASWwekV94WOOrbue2s_at19jWXSIVdVVSA"/>
+<img alt="Sky States Certification of Excellence" class="w-full max-w-xl shadow-2xl rounded-lg" src="https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1024x724.jpg" srcset="https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1024x724.jpg 1024w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-300x212.jpg 300w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-768x543.jpg 768w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1536x1086.jpg 1536w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-600x424.jpg 600w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1.jpg 2000w" sizes="(max-width: 640px) 100vw, 640px"/>
 </div>
 <div class="flex-1 space-y-8">
 <h2 class="font-headline-lg text-headline-lg text-on-surface">Credentialed Excellence</h2>
@@ -310,7 +448,7 @@ import Footer from '../../components/Footer.astro';
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary" data-icon="check">check</span> MS Certification Vouchers</li>
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary" data-icon="check">check</span> Job Board Access</li>
 </ul>
-<button class="w-full py-4 bg-secondary-container text-primary rounded-xl font-label-md text-label-md hover:bg-secondary-fixed-dim transition-all">Select Scholar Path</button>
+<a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="w-full py-4 bg-secondary-container text-primary rounded-xl font-label-md text-label-md hover:bg-secondary-fixed-dim transition-all text-center block">Select Scholar Path</a>
 </div>
 <!-- Elite 1-on-1 -->
 <div class="bg-on-primary-container p-10 rounded-3xl space-y-8 relative overflow-hidden">
@@ -326,7 +464,7 @@ import Footer from '../../components/Footer.astro';
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim" data-icon="done_all">done_all</span> Custom Capstone Guidance</li>
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-fixed-dim" data-icon="done_all">done_all</span> Executive Resume Write-up</li>
 </ul>
-<button class="w-full py-4 bg-primary text-white rounded-xl font-label-md text-label-md shadow-lg shadow-black/20 hover:scale-[1.02] transition-all">Enroll as Elite</button>
+<a href="/checkout?course=DevOps+%26+Cloud+Computing&type=1on1&mode=full" class="w-full py-4 bg-primary text-white rounded-xl font-label-md text-label-md shadow-lg shadow-black/20 hover:scale-[1.02] transition-all text-center block">Enroll as Elite</a>
 </div>
 </div>
 </div>

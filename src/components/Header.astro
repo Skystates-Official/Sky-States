@@ -1,19 +1,22 @@
 ---
 // src/components/Header.astro
 ---
-<nav class="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<nav class="w-full top-0 sticky z-50 bg-surface-bright dark:bg-surface-dim shadow-sm bg-gradient-to-b from-secondary-fixed to-surface-bright transition-all duration-300">
+  <div class="flex justify-between items-center px-4 md:px-margin-desktop py-4 w-full max-w-7xl mx-auto">
     <!-- Brand / Logo -->
-    <a href="/" class="flex items-center gap-2 group">
+    <a href="/" class="flex items-center gap-2 cursor-pointer active:scale-95 transition-all group">
       <span class="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform duration-300">cloud</span>
       <span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">Sky States</span>
     </a>
 
     <!-- Desktop Navigation Links -->
-    <div class="hidden lg:flex items-center gap-8">
+    <div class="hidden md:flex items-center gap-4">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors duration-300 px-3 py-1.5 rounded-lg" href="/">Home</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors duration-300 px-3 py-1.5 rounded-lg" href="/live-jobs">Live Jobs</a>
+      
       <!-- Programs Dropdown -->
       <div class="relative group/drop">
-        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors duration-300 px-3 py-1.5 rounded-lg">
           Programs
           <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
         </button>
@@ -35,41 +38,106 @@
 
       <!-- Career Dropdown -->
       <div class="relative group/drop">
-        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors duration-300 px-3 py-1.5 rounded-lg">
           Career
           <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
         </button>
         <div class="absolute top-full left-0 mt-1 w-56 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
-          <a href="/career-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface">Career Hub Central</a>
-          <a href="/career-roi" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Salary Guide & ROI</a>
-          <a href="/resume-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Resume Hub</a>
-          <a href="/placements" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Placement Process</a>
+          <a href="/career-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">Career Hub Central</a>
+          <a href="/career-roi" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Salary Guide & ROI</a>
+          <a href="/resume-hub" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Resume Engineering</a>
+          <a href="/placements" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Placement Process</a>
         </div>
       </div>
 
       <!-- Resources Dropdown -->
       <div class="relative group/drop">
-        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">
+        <button class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors duration-300 px-3 py-1.5 rounded-lg">
           Resources
           <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
         </button>
         <div class="absolute top-full left-0 mt-1 w-56 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
-          <a href="/faq" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface">FAQ & Transparency</a>
-          <a href="/refund-policy" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">Refund & Pricing</a>
-          <a href="/news" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface">News & Insights</a>
+          <a href="/faq" class="block px-5 py-3 hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">FAQ & Transparency</a>
+          <a href="/refund-policy" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Refund & Pricing</a>
+          <a href="/news" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">News & Insights</a>
+          <a href="/certifications" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Alumni Certifications</a>
+          <a href="https://skyreviews.us" target="_blank" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">Reviews</a>
+          <a href="/about" class="block px-5 py-3 hover:bg-surface-container-low transition-colors border-t border-outline-variant/10 font-label-sm text-on-surface hover:text-primary">About Us</a>
         </div>
       </div>
 
-      <a href="/about" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2">About</a>
+      <!-- Register Now Dropdown -->
+      <div class="relative group/drop">
+        <button class="flex items-center gap-1 font-label-md text-label-md bg-primary text-white hover:bg-primary/90 transition-all duration-300 px-3.5 py-1.5 rounded-lg shadow-sm">
+          Register Now
+          <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full right-0 mt-1 w-96 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
+          <div class="p-4 bg-surface-container-low border-b border-outline-variant/10">
+            <span class="block font-bold text-xs uppercase text-primary tracking-widest">Select Program to Register</span>
+          </div>
+          
+          <div class="p-4 grid grid-cols-1 gap-4 max-h-[80vh] overflow-y-auto">
+            <!-- Scholar Section -->
+            <div>
+              <span class="block text-xs font-bold uppercase text-secondary tracking-wider mb-2">Program (Scholar Tier - $99)</span>
+              <div class="space-y-1.5">
+                <a href="/checkout?course=Data+Science+%26+AI&type=normal" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">Data Science & AI</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                </a>
+                <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">Cyber Security & Ethical Hacking</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                </a>
+                <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">DevOps & Cloud Computing</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enroll Now Dropdown -->
+      <div class="relative group/drop">
+        <button class="flex items-center gap-1 font-label-md text-label-md border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 px-3.5 py-1.5 rounded-lg shadow-sm">
+          Enroll Now
+          <span class="material-symbols-outlined text-sm transition-transform duration-300 group-hover/drop:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full right-0 mt-1 w-96 bg-white border border-outline-variant/30 rounded-xl shadow-xl opacity-0 invisible translate-y-2 group-hover/drop:opacity-100 group-hover/drop:visible group-hover/drop:translate-y-0 transition-all duration-300 overflow-hidden z-50">
+          <div class="p-4 bg-surface-container-low border-b border-outline-variant/10">
+            <span class="block font-bold text-xs uppercase text-primary tracking-widest">Select Program to Enroll (Full Payment)</span>
+          </div>
+          
+          <div class="p-4 grid grid-cols-1 gap-4 max-h-[80vh] overflow-y-auto">
+            <!-- Scholar Section -->
+            <div>
+              <span class="block text-xs font-bold uppercase text-secondary tracking-wider mb-2">Program (Scholar Full Tuition - $2999)</span>
+              <div class="space-y-1.5">
+                <a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">Data Science & AI</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar (Full Tuition) - $2999</span>
+                </a>
+                <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">Cyber Security & Ethical Hacking</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar (Full Tuition) - $2999</span>
+                </a>
+                <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="block p-2 rounded-lg hover:bg-surface-container-low transition-colors font-label-sm text-on-surface hover:text-primary">
+                  <span class="block font-semibold">DevOps & Cloud Computing</span>
+                  <span class="text-[11px] text-secondary">Enroll as Scholar (Full Tuition) - $2999</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- CTA & Mobile Trigger -->
     <div class="flex items-center gap-4">
-      <a href="/intro-session" class="hidden sm:inline-flex items-center gap-1 bg-primary text-white px-5 py-2.5 rounded-full font-label-sm text-label-sm hover:bg-opacity-95 transition-colors border border-outline-variant/20">
-        <span class="material-symbols-outlined text-base">calendar_today</span>
-        Intro Session
-      </a>
-      <button class="lg:hidden flex items-center justify-center p-2 text-primary hover:bg-surface-container-low rounded-lg transition-colors" id="mobile-menu-open-btn" aria-label="Open navigation menu">
+      <button class="md:hidden flex items-center justify-center p-2 text-primary hover:bg-surface-container-low rounded-lg transition-colors" id="mobile-menu-open-btn" aria-label="Open navigation menu">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
     </div>
@@ -90,7 +158,9 @@
         </div>
 
         <div class="flex flex-col gap-1 overflow-y-auto max-h-[70vh]">
-          <!-- Programs -->
+          <a href="/" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Home</a>
+          <a href="/live-jobs" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Live Jobs</a>
+          
           <div class="py-2 border-b border-outline-variant/10">
             <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Programs</span>
             <a href="/programs/data-science-ai" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Data Science & AI</a>
@@ -98,7 +168,6 @@
             <a href="/programs/devops" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">DevOps & Cloud</a>
           </div>
 
-          <!-- Career -->
           <div class="py-2 border-b border-outline-variant/10">
             <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Career</span>
             <a href="/career-hub" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Career Hub Central</a>
@@ -107,28 +176,70 @@
             <a href="/placements" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Placement Process</a>
           </div>
 
-          <!-- Resources & About -->
-          <div class="py-2">
+          <div class="py-2 border-b border-outline-variant/10">
             <span class="block px-4 py-2 font-bold text-xs uppercase text-secondary tracking-widest">Resources</span>
             <a href="/faq" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">FAQ & Transparency</a>
             <a href="/refund-policy" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Refund & Pricing</a>
             <a href="/news" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">News & Insights</a>
+            <a href="/certifications" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Alumni Certifications</a>
+            <a href="https://skyreviews.us" target="_blank" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">Reviews</a>
             <a href="/about" class="block px-4 py-2 font-medium hover:bg-surface-container-low rounded-lg text-on-surface">About Us</a>
+          </div>
+
+          <div class="py-2 border-b border-outline-variant/10">
+            <span class="block px-4 py-2 font-bold text-xs uppercase text-primary tracking-widest">Register Now</span>
+            <div class="px-4 py-2 flex flex-col gap-3">
+              <div>
+                <span class="block text-xs font-bold uppercase text-secondary tracking-wider mb-2">Program (Scholar - $99)</span>
+                <div class="flex flex-col gap-2 pl-2 border-l border-outline-variant/30">
+                  <a href="/checkout?course=Data+Science+%26+AI&type=normal" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">Data Science & AI</span>
+                    <span class="text-[10px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                  </a>
+                  <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">Cyber Security & Ethical Hacking</span>
+                    <span class="text-[10px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                  </a>
+                  <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">DevOps & Cloud Computing</span>
+                    <span class="text-[10px] text-secondary">Enroll as Scholar ($2999) - $99</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-2">
+            <span class="block px-4 py-2 font-bold text-xs uppercase text-primary tracking-widest">Enroll Now</span>
+            <div class="px-4 py-2 flex flex-col gap-3">
+              <div>
+                <span class="block text-xs font-bold uppercase text-secondary tracking-wider mb-2">Program (Scholar Full - $2999)</span>
+                <div class="flex flex-col gap-2 pl-2 border-l border-outline-variant/30">
+                  <a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">Data Science & AI</span>
+                    <span class="text-[10px] text-secondary">Scholar Full Tuition - $2999</span>
+                  </a>
+                  <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">Cyber Security & Ethical Hacking</span>
+                    <span class="text-[10px] text-secondary">Scholar Full Tuition - $2999</span>
+                  </a>
+                  <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="block py-1 hover:text-primary">
+                    <span class="block text-sm font-semibold text-on-surface">DevOps & Cloud Computing</span>
+                    <span class="text-[10px] text-secondary">Scholar Full Tuition - $2999</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="border-t border-outline-variant/20 pt-4 mt-4">
-        <a href="/intro-session" class="flex justify-center items-center gap-2 w-full bg-primary text-white py-3.5 rounded-full font-label-md text-label-md shadow-lg shadow-primary/10">
-          <span class="material-symbols-outlined text-lg">calendar_today</span>
-          Book Intro Session
-        </a>
-      </div>
+
     </div>
   </div>
 </nav>
 
-<script>
+<script is:inline>
   const openBtn = document.getElementById('mobile-menu-open-btn');
   const closeBtn = document.getElementById('mobile-menu-close-btn');
   const drawer = document.getElementById('mobile-menu-drawer');

@@ -1,0 +1,237 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Study: Autonomous Security Orchestrator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<style>
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background: rgba(249, 249, 249, 0.7);
+        }
+        .code-block {
+            background: #1a1c1c;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .case-study-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.04);
+        }
+        .technical-gradient {
+            background: linear-gradient(135deg, #005d90 0%, #00677d 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="fixed top-0 w-full z-50 glass-header border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-md">hub</span>
+<span class="font-headline-md text-headline-md font-extrabold tracking-tighter text-primary">Sky States</span>
+</div>
+<button class="bg-primary/5 hover:bg-primary/10 transition-colors rounded-full p-2">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile pt-10 pb-stack-lg">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed/30 text-on-primary-fixed mb-4">
+<span class="font-label-caps text-label-caps">Advanced Cybersecurity '24</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-2">Autonomous Security Orchestrator</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Case study by <span class="font-semibold text-primary">Alex Chen</span></p>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
+
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-white font-label-mono text-label-mono opacity-80 uppercase">Internal Beta v2.4.0</p>
+</div>
+</div>
+</section>
+<!-- Overview: Problem & Solution -->
+<section class="px-margin-mobile py-stack-lg bg-surface-container-low">
+<div class="space-y-stack-md">
+<div class="border-l-4 border-error pl-4">
+<h3 class="font-label-caps text-label-caps text-error mb-2">THE PROBLEM</h3>
+<p class="font-body-md text-on-surface">Healthcare providers face a 400% increase in ransomware. Traditional SecOps responses take minutes—attackers act in milliseconds. Data integrity in medical records was being compromised before detection.</p>
+</div>
+<div class="border-l-4 border-primary pl-4">
+<h3 class="font-label-caps text-label-caps text-primary mb-2">THE SOLUTION</h3>
+<p class="font-body-md text-on-surface">An autonomous SOAR (Security Orchestration, Automation, and Response) layer that intercepts suspicious ingress at the cluster edge, neutralizing threats in under 200ms using heuristic isolation.</p>
+</div>
+</div>
+</section>
+<!-- Tech Stack -->
+<section class="px-margin-mobile py-stack-lg">
+<h2 class="font-headline-md text-headline-md mb-6">Engineered Stack</h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20 flex gap-4 items-start">
+<div class="p-2 bg-surface-variant rounded-lg">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<h4 class="font-semibold text-on-surface">Python (FastAPI)</h4>
+<p class="text-on-surface-variant text-sm mt-1">Chosen for its asynchronous capabilities to handle high-concurrency event streams from monitoring logs.</p>
+</div>
+</div>
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20 flex gap-4 items-start">
+<div class="p-2 bg-surface-variant rounded-lg">
+<span class="material-symbols-outlined text-primary">cloud</span>
+</div>
+<div>
+<h4 class="font-semibold text-on-surface">Kubernetes</h4>
+<p class="text-on-surface-variant text-sm mt-1">Provides the orchestration layer for auto-scaling isolation pods when a breach signature is detected.</p>
+</div>
+</div>
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20 flex gap-4 items-start">
+<div class="p-2 bg-surface-variant rounded-lg">
+<span class="material-symbols-outlined text-primary">layers</span>
+</div>
+<div>
+<h4 class="font-semibold text-on-surface">Terraform</h4>
+<p class="text-on-surface-variant text-sm mt-1">Ensures the entire security infrastructure is immutable and reproducible across multi-cloud regions.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Architecture Diagram -->
+<section class="px-margin-mobile py-stack-lg bg-on-background text-white rounded-t-[40px]">
+<h2 class="font-headline-md text-headline-md mb-8">System Architecture</h2>
+<div class="relative p-6 border border-white/10 rounded-2xl bg-white/5">
+<img class="w-full h-auto rounded-lg mb-6 opacity-90" data-alt="A highly sophisticated technical architecture diagram for a cybersecurity system. The visual shows flowing data nodes connecting from a dark blue ingress point through a glowing white detection engine to multiple green security endpoints. The style is clean, modern, and high-contrast, designed for a technical case study in light mode with primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1ZOgxknVGFRLEJ3rDvAQ5Tv7jSNtFuxYyE9jnG4INfB7tq0pE4KO0GLB0dYKQidfmTrR7JkgYrlgQKyRmB43TWOE-Coky2nCf6DXvWY3AJwZ2m2AAO1xv-1SjnltpMzfbjpEgZAXB2uIjH81sXP4MPEywvCBjyHCb4NrXAWrrYVgCsyLyWwHNmAPgk0JLhuJopVv8sB1fh0lf-Mey9DKjzZx_VF5mbAnwUo4LTJIxGoVbl75zKBhi9a2UOTvfzTodngk71VldFyA"/>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<p class="font-label-mono text-xs text-white/70">INGESTION: Real-time telemetry from EKS logs</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<p class="font-label-mono text-xs text-white/70">DETECTION: Heuristic threat assessment engine</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<p class="font-label-mono text-xs text-white/70">RESPONSE: Automated pod isolation and API shutdown</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Code Snippet -->
+<section class="px-margin-mobile py-stack-lg bg-on-background -mt-4 pb-16">
+<div class="flex justify-between items-end mb-4">
+<h2 class="font-headline-md text-headline-md text-white">Logic Core</h2>
+<span class="font-label-mono text-[10px] text-white/40">response_trigger.py</span>
+</div>
+<div class="code-block rounded-xl p-4 overflow-x-auto">
+<pre class="font-label-mono text-sm leading-relaxed"><span class="text-secondary-fixed-dim">async def</span> <span class="text-primary-fixed">neutralize_threat</span>(event: SecurityEvent):
+    <span class="text-outline"># Evaluate risk score based on heuristic</span>
+    risk_score = <span class="text-secondary-fixed-dim">await</span> brain.evaluate(event)
+    
+    <span class="text-secondary-fixed-dim">if</span> risk_score &gt; <span class="text-tertiary-fixed-dim">0.85</span>:
+        <span class="text-outline"># Trigger immediate isolation</span>
+        <span class="text-secondary-fixed-dim">await</span> k8s.isolate_pod(event.pod_id)
+        <span class="text-secondary-fixed-dim">await</span> notify.alert_admin(event, level=<span class="text-error">"CRITICAL"</span>)
+        <span class="text-secondary-fixed-dim">return</span> <span class="text-primary-fixed">"NEUTRALIZED"</span>
+    
+    <span class="text-secondary-fixed-dim">return</span> <span class="text-primary-fixed">"MONITORING"</span></pre>
+</div>
+</section>
+<!-- Deployment & ROI -->
+<section class="px-margin-mobile py-stack-lg">
+<h2 class="font-headline-md text-headline-md mb-6">Performance &amp; Metrics</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20">
+<p class="text-primary font-display-xl text-[32px] font-bold">184ms</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant mt-2">AVG RESPONSE TIME</p>
+</div>
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20">
+<p class="text-primary font-display-xl text-[32px] font-bold">100%</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant mt-2">HIPAA AUDIT READY</p>
+</div>
+<div class="p-4 bg-white rounded-xl case-study-shadow border border-outline-variant/20 col-span-2">
+<p class="text-on-surface-variant font-label-mono text-xs italic mb-3">"The most robust automated security implementation I've seen from a graduate student. Production-grade thinking."</p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant"></div>
+<p class="font-label-caps text-[10px] font-bold">DR. ELENA VANCE, SR. MENTOR</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Student Reflection -->
+<section class="px-margin-mobile py-stack-lg">
+<div class="bg-primary/5 rounded-2xl p-6 border border-primary/10 italic">
+<span class="material-symbols-outlined text-primary opacity-30 text-[48px] absolute -mt-4">format_quote</span>
+<p class="font-body-lg text-on-surface-variant relative z-10 pl-6">
+                    "The hardest challenge wasn't the detection—it was preventing false positives in a high-traffic hospital environment. I had to implement a feedback loop that learned from manual overrides."
+                </p>
+</div>
+</section>
+<!-- Actions -->
+<section class="px-margin-mobile py-stack-lg space-y-4">
+<a class="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-xl font-semibold shadow-lg active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+                Launch Live Demo
+            </a>
+<a class="flex items-center justify-center gap-2 w-full border-2 border-primary text-primary py-4 rounded-xl font-semibold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">code</span>
+                View on GitHub
+            </a>
+</section>
+<!-- Related Projects -->
+<section class="py-stack-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant px-margin-mobile mb-4 uppercase tracking-widest">More from this cohort</h3>
+<div class="flex overflow-x-auto gap-4 px-margin-mobile pb-8 snap-x no-scrollbar">
+<div class="min-w-[280px] snap-center bg-white rounded-xl case-study-shadow border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-32 object-cover" data-alt="Modern cybersecurity hardware concept featuring glowing server lights in a dark data center, symbolizing high-performance digital security. The lighting is cool-toned with bright cyan accents, creating a futuristic and technical mood suitable for an engineering case study portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtGwaVmlBt-9CHiZRBOUbT-B28wyEIkAVQbTDAPnvHCqp0edGGDP5yya56IQ_xsVxucwNzruLmiY5nHZi3WCL50bitpBib9I0AbclsTydXA9FIYfwv8N3_OkgkzgvdCWlky2KfK6FkYTlOtGq7p2kQW7r1rUN8F59TYdh2AQr4J7aHd_UqvJxjlnlAjiWvI3hp_IG_k1szqHIEkmpbdVRgm5u7yjrEajnwRyrH_Fm-S6KKWIxkJHDj4W3Cd0iH9q_yOZq4nMJcHLc"/>
+<div class="p-4">
+<h4 class="font-semibold text-on-surface">Neural Traffic Analyzer</h4>
+<p class="text-xs text-on-surface-variant mt-1">Deep learning for anomalies.</p>
+</div>
+</div>
+<div class="min-w-[280px] snap-center bg-white rounded-xl case-study-shadow border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-32 object-cover" data-alt="Dynamic visualization of global data networks with glowing light paths connecting continents on a dark digital sphere. The visual represents high-speed data transfer and global connectivity with a palette of deep blues and vibrant electric whites in a minimalist editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c"/>
+<div class="p-4">
+<h4 class="font-semibold text-on-surface">Edge Firewall Gen 3</h4>
+<p class="text-xs text-on-surface-variant mt-1">Sub-millisecond packet filter.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shell Implementation) -->
+<Header />
+<!-- Footer (Shell Implementation) -->
+<Footer />
+<script>
+        // Micro-interaction for code block copy (visual only)
+        document.querySelector('.code-block').addEventListener('click', function() {
+            this.style.opacity = '0.7';
+            setTimeout(() => this.style.opacity = '1', 100);
+        });
+    </script>
+</body></html>

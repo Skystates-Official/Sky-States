@@ -1,0 +1,380 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Alumni data representing realistic career transitions and feedback
+const alumniCertifications = [
+  {
+    name: "Sarah Jenkins",
+    beforeTitle: "Financial Analyst",
+    afterTitle: "Data Architect",
+    company: "J.P. Morgan",
+    cohort: "Q3 2024",
+    program: "Data Science & AI",
+    feedback: "The live weekend workshops completely bridged the gap between basic analytics and production-grade architectures. The DP-900 preparation was spot on, and my portfolio projects were the highlight of my technical interviews.",
+    salaryIncrease: "+120%",
+    certType: "Microsoft Certified: Azure Data Fundamentals",
+    certCode: "DP-900",
+    certSerial: "SK-DS-2024-8849",
+    certDate: "October 14, 2024",
+    avatarColor: "bg-blue-100 text-blue-700"
+  },
+  {
+    name: "Marcus Vance",
+    beforeTitle: "IT Helpdesk Specialist",
+    afterTitle: "Cyber Defense Engineer",
+    company: "CrowdStrike",
+    cohort: "Q2 2024",
+    program: "Cyber Security",
+    feedback: "Going through the SC-900 certification preparation under senior professionals taught me defensive engineering at scale. The hands-on labs on network defense and penetration testing simulated real-world threat response.",
+    salaryIncrease: "+145%",
+    certType: "Microsoft Certified: Security Fundamentals",
+    certCode: "SC-900",
+    certSerial: "SK-SEC-2024-3112",
+    certDate: "August 2, 2024",
+    avatarColor: "bg-red-100 text-red-700"
+  },
+  {
+    name: "Aisha Rahman",
+    beforeTitle: "Junior Software Engineer",
+    afterTitle: "Lead DevOps Architect",
+    company: "Stripe",
+    cohort: "Q4 2024",
+    program: "DevOps & Cloud",
+    feedback: "Sky States' focus on cloud orchestration and CI/CD pipelines transformed my approach to scale. We learned Kubernetes and Terraform practically, and having my AZ-900 and DP-900 vouchers included made verification seamless.",
+    salaryIncrease: "+130%",
+    certType: "Microsoft Certified: Azure Fundamentals",
+    certCode: "AZ-900",
+    certSerial: "SK-DO-2024-9041",
+    certDate: "December 18, 2024",
+    avatarColor: "bg-green-100 text-green-700"
+  },
+  {
+    name: "David Kim",
+    beforeTitle: "Systems Administrator",
+    afterTitle: "Senior Cloud Engineer",
+    company: "Oracle",
+    cohort: "Q1 2024",
+    program: "DevOps & Cloud",
+    feedback: "The rigor of the DevOps curriculum stands unmatched. The focus on executive-ready capstone systems prepared me to lead migrations immediately after graduation. Worth every cent.",
+    salaryIncrease: "+95%",
+    certType: "Sky States Cloud Engineering Diploma",
+    certCode: "SS-DO-GRAD",
+    certSerial: "SK-GRAD-2024-0012",
+    certDate: "May 10, 2024",
+    avatarColor: "bg-purple-100 text-purple-700"
+  },
+  {
+    name: "Elena Rostova",
+    beforeTitle: "Business Intelligence Analyst",
+    afterTitle: "Senior Machine Learning Engineer",
+    company: "Netflix",
+    cohort: "Q3 2024",
+    program: "Data Science & AI",
+    feedback: "Sky States does not waste time with basic syntax. We dove straight into architectural patterns, neural network scaling, and real-time inference design. My J.P. Morgan and Netflix offers spoke for themselves.",
+    salaryIncrease: "+160%",
+    certType: "Microsoft Certified: Azure Data Fundamentals",
+    certCode: "DP-900",
+    certSerial: "SK-DS-2024-7721",
+    certDate: "November 5, 2024",
+    avatarColor: "bg-amber-100 text-amber-700"
+  },
+  {
+    name: "Tyler Sterling",
+    beforeTitle: "Information Security Officer",
+    afterTitle: "Principal Security Architect",
+    company: "Deloitte",
+    cohort: "Q2 2024",
+    program: "Cyber Security",
+    feedback: "The mentorship track was phenomenal. Reviewing enterprise architectures with former MDs gave me the executive confidence I needed. The SC-900 exam voucher was delivered instantly.",
+    salaryIncrease: "+110%",
+    certType: "Microsoft Certified: Security Fundamentals",
+    certCode: "SC-900",
+    certSerial: "SK-SEC-2024-5542",
+    certDate: "September 12, 2024",
+    avatarColor: "bg-teal-100 text-teal-700"
+  }
+];
+---
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Verified Alumni Certifications | Sky States</title>
+  <meta content="Explore the verified professional credentials, career transitions, and course feedback of Sky States alumni across Data Science, Cyber Security, and Cloud DevOps." name="description"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .upward-gradient {
+      background: linear-gradient(to top, #ffffff 0%, #d3e2ed 100%);
+    }
+    .ambient-shadow {
+      box-shadow: 0 15px 40px -10px rgba(15, 29, 37, 0.05);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    /* Certificate aesthetics */
+    .cert-frame {
+      border: 12px double #005d90;
+      background: radial-gradient(circle, #fcfdfe 0%, #f4f8fb 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+  <Header />
+
+  <main class="max-w-7xl mx-auto px-margin-desktop py-12">
+    <!-- Hero Section -->
+    <div class="mb-16 rounded-3xl p-12 md:p-16 upward-gradient flex flex-col items-center text-center relative overflow-hidden">
+      <nav class="flex justify-center items-center gap-2 mb-6 font-label-sm text-xs opacity-75">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-on-surface-variant font-bold">Alumni Certifications</span>
+      </nav>
+      
+      <span class="inline-block px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm mb-6 uppercase tracking-widest">Verified Achievements</span>
+      <h1 class="font-headline-xl text-4xl md:text-5xl text-primary font-extrabold max-w-3xl leading-tight mb-6">
+        Alumni Certifications &amp; Outcomes
+      </h1>
+      <p class="text-on-surface-variant max-w-2xl font-body-lg text-body-lg mb-10 leading-relaxed">
+        Real transformations, fully audited feedback, and certified credentials. Inspect the official certifications and outcomes of our global alumni network.
+      </p>
+
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl pt-8 border-t border-secondary-container">
+        <div>
+          <span class="block text-3xl font-extrabold text-primary">1,200+</span>
+          <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Certified Graduates</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-primary">94%</span>
+          <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Exam Pass Rate</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-primary">84 Days</span>
+          <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Avg. Placement Time</span>
+        </div>
+        <div>
+          <span class="block text-3xl font-extrabold text-primary">$42,500</span>
+          <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Avg. Salary Lift</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Toolbar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-10 pb-6 border-b border-outline-variant/20">
+      <div>
+        <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Graduates &amp; Certificates</h2>
+        <p class="text-secondary text-sm">Click "View Certificate" to verify credential serials and program details.</p>
+      </div>
+
+      <div class="flex gap-2" id="filter-buttons">
+        <button class="px-4 py-2 rounded-full font-label-sm text-xs bg-primary text-white transition-all font-semibold" onclick="filterProgram('all')">All</button>
+        <button class="px-4 py-2 rounded-full font-label-sm text-xs bg-surface-container-high hover:bg-surface-container-highest transition-all font-semibold" onclick="filterProgram('Data Science & AI')">Data Science &amp; AI</button>
+        <button class="px-4 py-2 rounded-full font-label-sm text-xs bg-surface-container-high hover:bg-surface-container-highest transition-all font-semibold" onclick="filterProgram('Cyber Security')">Cyber Security</button>
+        <button class="px-4 py-2 rounded-full font-label-sm text-xs bg-surface-container-high hover:bg-surface-container-highest transition-all font-semibold" onclick="filterProgram('DevOps & Cloud')">DevOps &amp; Cloud</button>
+      </div>
+    </div>
+
+    <!-- Alumni Showcase Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="alumni-grid">
+      {alumniCertifications.map((alum) => (
+        <div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 ambient-shadow flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-program={alum.program}>
+          <div>
+            <!-- Header details -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${alum.avatarColor}`}>
+                {alum.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div>
+                <h4 class="font-label-lg font-bold text-on-surface leading-tight">{alum.name}</h4>
+                <p class="text-xs text-on-surface-variant font-medium mt-0.5">{alum.cohort} Cohort</p>
+              </div>
+            </div>
+
+            <!-- Transition Box -->
+            <div class="bg-surface p-4 rounded-2xl border border-outline-variant/20 mb-6 space-y-1 relative">
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 bg-primary-container text-on-primary-container text-xs font-extrabold px-2.5 py-1 rounded-full">
+                {alum.salaryIncrease}
+              </div>
+              <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                <span>Before: <strong>{alum.beforeTitle}</strong></span>
+              </div>
+              <div class="flex items-center gap-1.5 text-sm text-primary font-semibold">
+                <span class="material-symbols-outlined text-[16px]">verified</span>
+                <span>After: <strong>{alum.afterTitle}</strong></span>
+              </div>
+              <div class="text-[11px] text-secondary">Hired at: <span class="font-bold">{alum.company}</span></div>
+            </div>
+
+            <!-- Blockquote Feedback -->
+            <blockquote class="text-secondary italic text-sm leading-relaxed mb-8 relative">
+              "{alum.feedback}"
+            </blockquote>
+          </div>
+
+          <!-- Certificate Action -->
+          <div class="pt-6 border-t border-outline-variant/20">
+            <button class="w-full py-3 bg-secondary-container text-primary font-label-md text-xs uppercase tracking-wider rounded-xl font-bold hover:bg-primary-fixed-dim transition-all flex items-center justify-center gap-2"
+                    onclick={`openCertModal('${alum.name}', '${alum.certType}', '${alum.certCode}', '${alum.certSerial}', '${alum.certDate}', '${alum.program}', '${alum.afterTitle}')`}>
+              <span class="material-symbols-outlined text-sm">workspace_premium</span>
+              View Certificate
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <!-- Certificate Verification Modal -->
+  <div class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-md hidden flex items-center justify-center p-4" id="cert-modal">
+    <div class="bg-white rounded-3xl w-full max-w-3xl overflow-hidden ambient-shadow flex flex-col">
+      <!-- Modal Header -->
+      <div class="bg-surface-container-low px-8 py-5 border-b border-outline-variant/20 flex justify-between items-center">
+        <div class="flex items-center gap-2 text-primary font-bold text-label-md">
+          <span class="material-symbols-outlined">verified_user</span>
+          <span>SKY STATES CREDENTIAL REGISTRY</span>
+        </div>
+        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors" onclick="closeCertModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-8 md:p-12 overflow-y-auto max-h-[80vh] space-y-8">
+        
+        <!-- Interactive Digital Certificate Mock -->
+        <div class="cert-frame p-8 md:p-10 rounded-2xl relative shadow-md overflow-hidden text-center flex flex-col justify-between min-h-[380px]">
+          <!-- Corner decorations -->
+          <div class="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-primary/20 pointer-events-none"></div>
+          <div class="absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-primary/20 pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-primary/20 pointer-events-none"></div>
+          <div class="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-primary/20 pointer-events-none"></div>
+          
+          <div class="space-y-4">
+            <span class="text-[10px] uppercase tracking-widest text-primary font-extrabold block">Official Program Completion &amp; Competency</span>
+            <h3 class="font-headline-lg text-primary tracking-tight font-extrabold" id="modal-cert-type">Certificate Name</h3>
+            <p class="text-xs text-on-surface-variant font-medium">This document certifies that</p>
+            <h4 class="font-headline-md text-3xl font-extrabold text-on-surface" id="modal-alum-name">Alumni Name</h4>
+            <p class="text-xs text-on-surface-variant max-w-md mx-auto leading-relaxed">
+              has successfully fulfilled all academic deliverables, exams, and verified project assessments for the <strong id="modal-program-name">Program</strong> cohort, specializing as a <strong id="modal-specialization">Title</strong>.
+            </p>
+          </div>
+
+          <div class="pt-8 grid grid-cols-3 items-end gap-4">
+            <div class="text-left">
+              <span class="block text-[10px] text-on-surface-variant uppercase font-bold">Serial Number</span>
+              <span class="text-xs font-mono font-bold text-primary" id="modal-cert-serial">Serial</span>
+            </div>
+            
+            <div class="flex flex-col items-center">
+              <span class="material-symbols-outlined text-[48px] text-primary">cloud_done</span>
+              <span class="text-[9px] uppercase font-bold text-on-surface-variant mt-1">VERIFIED SYSTEM</span>
+            </div>
+
+            <div class="text-right">
+              <span class="block text-[10px] text-on-surface-variant uppercase font-bold">Date Issued</span>
+              <span class="text-xs font-bold text-on-surface" id="modal-cert-date">Date</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Detail Registry Table -->
+        <div class="bg-surface-container-low rounded-2xl p-6 space-y-4">
+          <h5 class="font-label-md font-bold text-on-surface uppercase tracking-wider">Credential Metadata</h5>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="border-b border-outline-variant/10 pb-2">
+              <span class="text-xs text-secondary block">Issuer</span>
+              <span class="font-bold text-on-surface">Sky States Registry, Delaware USA</span>
+            </div>
+            <div class="border-b border-outline-variant/10 pb-2">
+              <span class="text-xs text-secondary block">Authority</span>
+              <span class="font-bold text-on-surface">Microsoft Certified Partner Ecosystem</span>
+            </div>
+            <div class="border-b border-outline-variant/10 pb-2">
+              <span class="text-xs text-secondary block">Exam Reference</span>
+              <span class="font-mono font-bold text-primary" id="modal-cert-code">Exam Code</span>
+            </div>
+            <div class="border-b border-outline-variant/10 pb-2">
+              <span class="text-xs text-secondary block">Credential Status</span>
+              <span class="inline-flex items-center gap-1 text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-700"></span> Active / Verified
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+  <script is:inline>
+    // Filter logic
+    window.filterProgram = function(program) {
+      // Toggle active states on buttons
+      const buttons = document.querySelectorAll('#filter-buttons button');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim().includes(program) || (program === 'all' && btn.textContent.trim() === 'All')) {
+          btn.classList.add('bg-primary', 'text-white');
+          btn.classList.remove('bg-surface-container-high', 'hover:bg-surface-container-highest');
+        } else {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('bg-surface-container-high', 'hover:bg-surface-container-highest');
+        }
+      });
+
+      // Show/hide cards
+      const cards = document.querySelectorAll('#alumni-grid > div');
+      cards.forEach(card => {
+        if (program === 'all' || card.getAttribute('data-program') === program) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    };
+
+    // Modal logic
+    window.openCertModal = function(name, certType, certCode, certSerial, certDate, program, specialization) {
+      document.getElementById('modal-alum-name').textContent = name;
+      document.getElementById('modal-cert-type').textContent = certType;
+      document.getElementById('modal-cert-code').textContent = certCode;
+      document.getElementById('modal-cert-serial').textContent = certSerial;
+      document.getElementById('modal-cert-date').textContent = certDate;
+      document.getElementById('modal-program-name').textContent = program;
+      document.getElementById('modal-specialization').textContent = specialization;
+      
+      const modal = document.getElementById('cert-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeCertModal = function() {
+      const modal = document.getElementById('cert-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    // Close modal on background click
+    document.getElementById('cert-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('cert-modal')) {
+        closeCertModal();
+      }
+    });
+  </script>
+</body>
+</html>

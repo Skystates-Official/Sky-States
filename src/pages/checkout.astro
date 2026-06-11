@@ -32,20 +32,7 @@ import Footer from '../components/Footer.astro';
 </head>
 <body class="bg-background text-on-background font-body-md min-h-screen">
 <!-- TopAppBar -->
-<header class="w-full sticky top-0 z-50 bg-surface-container-lowest dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
-<div class="flex justify-between items-center h-16 px-margin-desktop max-w-[1280px] mx-auto">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-2xl">lock</span>
-<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Sky Editorial</span>
-</div>
-<div class="hidden md:flex items-center gap-8">
-<span class="font-label-md text-label-md text-primary font-bold">Secure Checkout</span>
-<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center">
-<span class="material-symbols-outlined text-on-secondary-container text-sm">person</span>
-</div>
-</div>
-</div>
-</header>
+<Header />
 <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
 <!-- Editorial Header Section -->
 <div class="mb-section-gap rounded-xl p-12 upward-gradient flex flex-col gap-2">
@@ -56,19 +43,53 @@ import Footer from '../components/Footer.astro';
 <!-- Left Column: Order Summary & Info -->
 <div class="lg:col-span-5 flex flex-col gap-8">
 <!-- Order Summary Card -->
-<section class="bg-surface-container-lowest rounded-xl p-8 ambient-shadow">
-<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Order Summary</h2>
-<div class="flex justify-between items-center pb-4 border-b border-secondary-container">
-<div>
-<p class="font-label-md text-label-md text-on-surface">Intro Session</p>
-<p class="text-sm text-on-surface-variant">Expert consultation &amp; strategy</p>
-</div>
-<p class="font-headline-md text-headline-md text-primary">$99</p>
-</div>
-<div class="mt-4 flex justify-between items-center font-bold text-on-surface">
-<p>Total Investment</p>
-<p>$99.00</p>
-</div>
+<section class="bg-surface-container-lowest rounded-xl p-8 ambient-shadow flex flex-col gap-6">
+  <h2 class="font-headline-md text-headline-md text-on-surface">Order Summary</h2>
+  
+  <!-- Dynamic Course Title -->
+  <div class="pb-4 border-b border-secondary-container">
+    <span class="text-xs font-bold uppercase tracking-wider text-primary">Selected Program</span>
+    <h3 class="font-headline-md text-xl text-on-surface mt-1" id="display-course-name">Intro Session</h3>
+  </div>
+
+  <!-- Dynamic Tier Selector (Interactive Cards) -->
+  <div>
+    <span class="block text-xs font-bold uppercase tracking-wider text-secondary mb-3">Select Program Tier</span>
+    <div class="grid grid-cols-2 gap-3">
+      <!-- Scholar Tier Card -->
+      <button type="button" id="btn-tier-scholar" class="flex flex-col items-start p-4 rounded-xl border-2 transition-all duration-300 text-left w-full group relative overflow-hidden" onclick="selectTier('normal')">
+        <span class="text-xs font-bold uppercase tracking-wider text-primary">Scholar Tier</span>
+        <span class="font-headline-md text-xl font-bold mt-1 text-primary" id="btn-scholar-price">$99</span>
+        <span class="text-[10px] text-on-surface-variant mt-1">Live weekend instruction</span>
+        <div class="absolute top-1 right-1 opacity-0 group-[.active]:opacity-100 transition-opacity">
+          <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+        </div>
+      </button>
+
+      <!-- Elite Tier Card -->
+      <button type="button" id="btn-tier-elite" class="flex flex-col items-start p-4 rounded-xl border-2 transition-all duration-300 text-left w-full group relative overflow-hidden" onclick="selectTier('1on1')">
+        <span class="text-xs font-bold uppercase tracking-wider text-secondary">Elite Tier</span>
+        <span class="font-headline-md text-xl font-bold mt-1 text-secondary" id="btn-elite-price">$499</span>
+        <span class="text-[10px] text-on-surface-variant mt-1">1-on-1 FAANG Mentor</span>
+        <div class="absolute top-1 right-1 opacity-0 group-[.active]:opacity-100 transition-opacity">
+          <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-between items-center pt-4 border-t border-secondary-container">
+    <div>
+      <p class="font-label-md text-label-md text-on-surface" id="display-tier-label">Scholar Tier Program</p>
+      <p class="text-xs text-on-surface-variant" id="display-tier-description">Weekend live labs & placement prep</p>
+    </div>
+    <p class="font-headline-md text-headline-md text-primary" id="display-price-value">$99</p>
+  </div>
+
+  <div class="mt-2 flex justify-between items-center font-bold text-on-surface border-t border-outline-variant/20 pt-4">
+    <p>Total Investment</p>
+    <p id="display-total-value">$99.00</p>
+  </div>
 </section>
 <!-- Privacy Commitment -->
 <section class="bg-secondary-container rounded-xl p-6 flex gap-4 items-start">
@@ -167,8 +188,8 @@ import Footer from '../components/Footer.astro';
 </main>
 <!-- Footer -->
 <Footer />
-<script>
-        function switchTab(tab) {
+    <script is:inline>
+        window.switchTab = function(tab) {
             const buttons = document.querySelectorAll('button[onclick^="switchTab"]');
             buttons.forEach(btn => {
                 if (btn.getAttribute('onclick').includes(tab)) {
@@ -179,14 +200,105 @@ import Footer from '../components/Footer.astro';
                     btn.classList.add('border-transparent', 'text-on-surface-variant');
                 }
             });
-            // Tab switching logic can be expanded here
         }
 
+        window.checkoutMode = 'registration';
+
+        window.selectTier = function(tier) {
+            const btnScholar = document.getElementById('btn-tier-scholar');
+            const btnElite = document.getElementById('btn-tier-elite');
+            const label = document.getElementById('display-tier-label');
+            const desc = document.getElementById('display-tier-description');
+            const price = document.getElementById('display-price-value');
+            const total = document.getElementById('display-total-value');
+            const displayCourse = document.getElementById('display-course-name');
+
+            let courseText = displayCourse.textContent || "";
+            const isFullPayment = window.checkoutMode === 'full';
+
+            if (tier === 'normal') {
+                btnScholar.classList.add('border-primary', 'bg-primary/5', 'active');
+                btnScholar.classList.remove('border-outline-variant/30', 'opacity-70');
+                btnElite.classList.remove('border-primary', 'bg-primary/5', 'active');
+                btnElite.classList.add('border-outline-variant/30', 'opacity-70');
+
+                label.textContent = 'Scholar Tier Program';
+                desc.textContent = 'Weekend live labs & placement prep';
+                
+                if (isFullPayment) {
+                    price.textContent = '$2,999';
+                    total.textContent = '$2,999.00';
+                } else {
+                    price.textContent = '$99';
+                    total.textContent = '$99.00';
+                }
+
+                // Strip "Short Term Program" if present
+                if (courseText.endsWith(' Short Term Program')) {
+                    displayCourse.textContent = courseText.replace(' Short Term Program', '');
+                }
+            } else {
+                btnElite.classList.add('border-primary', 'bg-primary/5', 'active');
+                btnElite.classList.remove('border-outline-variant/30', 'opacity-70');
+                btnScholar.classList.remove('border-primary', 'bg-primary/5', 'active');
+                btnScholar.classList.add('border-outline-variant/30', 'opacity-70');
+
+                label.textContent = 'Elite Tier (1-on-1)';
+                desc.textContent = 'Personal FAANG mentor & 1-on-1 guidance';
+                
+                if (isFullPayment) {
+                    price.textContent = '$6,500';
+                    total.textContent = '$6,500.00';
+                } else {
+                    price.textContent = '$499';
+                    total.textContent = '$499.00';
+                }
+
+                // Append "Short Term Program" if not present and it's one of the main courses
+                if (courseText && !courseText.endsWith(' Short Term Program') && courseText !== 'Intro Session') {
+                    displayCourse.textContent = courseText + ' Short Term Program';
+                }
+            }
+        }
+
+        // Initialize from URL search parameters
+        function initializeCheckout() {
+            const params = new URLSearchParams(window.location.search);
+            const courseName = params.get('course');
+            const type = params.get('type');
+            const mode = params.get('mode');
+
+            if (mode === 'full') {
+                window.checkoutMode = 'full';
+                const sPrice = document.getElementById('btn-scholar-price');
+                const ePrice = document.getElementById('btn-elite-price');
+                if (sPrice) sPrice.textContent = '$2,999';
+                if (ePrice) ePrice.textContent = '$6,500';
+            } else {
+                window.checkoutMode = 'registration';
+                const sPrice = document.getElementById('btn-scholar-price');
+                const ePrice = document.getElementById('btn-elite-price');
+                if (sPrice) sPrice.textContent = '$99';
+                if (ePrice) ePrice.textContent = '$499';
+            }
+
+            if (courseName) {
+                document.getElementById('display-course-name').textContent = courseName;
+            }
+
+            if (type === '1on1' || (courseName && courseName.toLowerCase().includes('short term'))) {
+                window.selectTier('1on1');
+            } else {
+                window.selectTier('normal');
+            }
+        }
+
+        // Run on load
+        initializeCheckout();
+
         // Lightweight atmospheric effect: Move a soft glow based on mouse
-        const main = document.querySelector('main');
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
             // Subtle shift in gradient for depth
             const gradient = document.querySelector('.upward-gradient');
             if (gradient) {
