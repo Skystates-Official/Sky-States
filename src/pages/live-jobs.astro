@@ -109,10 +109,10 @@ import jobsData from '../data/jobs.json';
                         </div>
 
                         <!-- Apply Button -->
-                        <a href={`/checkout?course=${encodeURIComponent(job.title + " Prep Course")}&type=normal`} class="flex items-center justify-center gap-1 w-full bg-primary text-white py-3 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-opacity-90 transition-all font-bold">
+                        <button onclick={`openApplyModal(${JSON.stringify({title: job.title, company: job.company})})`} class="flex items-center justify-center gap-1 w-full bg-primary text-white py-3 rounded-lg font-label-md text-xs uppercase tracking-wider hover:bg-opacity-90 transition-all font-bold">
                             <span>Apply via Portal</span>
                             <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             ))}
@@ -124,6 +124,75 @@ import jobsData from '../data/jobs.json';
             <p class="text-secondary mt-1">Try refining your search terms or tags.</p>
         </div>
     </main>
+
+    <!-- Job Application Modal -->
+    <div id="apply-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div class="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeApplyModal()" class="absolute top-6 right-6 p-2 hover:bg-surface-container rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+
+            <!-- Modal Content: Form -->
+            <div id="apply-form-container">
+                <span class="text-xs uppercase tracking-widest text-primary font-bold">Application Portal</span>
+                <h2 id="apply-modal-title" class="font-headline-md text-2xl text-on-surface mt-1">Apply for Job</h2>
+                <p id="apply-modal-subtitle" class="text-on-surface-variant font-body-sm text-sm mt-1 mb-6">Submit your details to start the referral/application process.</p>
+                
+                <form id="apply-form" onsubmit="submitApplication(event)" class="space-y-4">
+                    <input type="hidden" id="apply-job-title" />
+                    <input type="hidden" id="apply-job-company" />
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="apply-name" class="text-xs font-bold uppercase text-secondary">Full Name</label>
+                        <input type="text" id="apply-name" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="John Doe" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="apply-email" class="text-xs font-bold uppercase text-secondary">Email Address</label>
+                        <input type="email" id="apply-email" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="john@example.com" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="apply-linkedin" class="text-xs font-bold uppercase text-secondary">LinkedIn Profile URL</label>
+                        <input type="url" id="apply-linkedin" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="https://linkedin.com/in/username" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="apply-resume" class="text-xs font-bold uppercase text-secondary">Resume/Portfolio Link</label>
+                        <input type="url" id="apply-resume" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="Link to Google Drive, Dropbox, or Personal Site" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="apply-message" class="text-xs font-bold uppercase text-secondary">Cover Letter / Notes (Optional)</label>
+                        <textarea id="apply-message" rows="3" class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm resize-none" placeholder="Let us know why you are a great fit..."></textarea>
+                    </div>
+
+                    <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
+                        <button type="button" onclick="closeApplyModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
+                        <button type="submit" class="px-6 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Content: Success -->
+            <div id="apply-success-container" class="hidden text-center py-6 space-y-4">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary">
+                    <span class="material-symbols-outlined text-[40px]">check_circle</span>
+                </div>
+                <h2 class="font-headline-md text-2xl text-on-surface">Application Submitted!</h2>
+                <p class="text-on-surface-variant text-sm max-w-sm mx-auto leading-relaxed">
+                    Your profile for <span id="success-job-title" class="font-bold text-on-surface"></span> at <span id="success-job-company" class="font-bold text-on-surface"></span> has been successfully received. 
+                </p>
+                <p class="text-secondary text-xs">
+                    Our placement team will review your application and coordinate the next steps with the hiring partner.
+                </p>
+                <div class="pt-6">
+                    <button onclick="closeApplyModal()" class="px-8 py-3 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <Footer />
@@ -181,6 +250,45 @@ import jobsData from '../data/jobs.json';
         }
 
         searchInput?.addEventListener('input', filterJobs);
+
+        // Modal Functionality
+        const applyModal = document.getElementById('apply-modal');
+        const applyFormContainer = document.getElementById('apply-form-container');
+        const applySuccessContainer = document.getElementById('apply-success-container');
+
+        window.openApplyModal = function(job) {
+            document.getElementById('apply-job-title').value = job.title;
+            document.getElementById('apply-job-company').value = job.company;
+            document.getElementById('apply-modal-title').textContent = `Apply for ${job.title}`;
+            document.getElementById('apply-modal-subtitle').textContent = `Submit your details for the opening at ${job.company}`;
+            
+            // Reset form and view states
+            document.getElementById('apply-form').reset();
+            applyFormContainer.classList.remove('hidden');
+            applySuccessContainer.classList.add('hidden');
+            applyModal.classList.remove('hidden');
+        }
+
+        window.closeApplyModal = function() {
+            applyModal.classList.add('hidden');
+        }
+
+        window.submitApplication = function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('apply-job-title').value;
+            const company = document.getElementById('apply-job-company').value;
+            
+            document.getElementById('success-job-title').textContent = title;
+            document.getElementById('success-job-company').textContent = company;
+            
+            applyFormContainer.classList.add('hidden');
+            applySuccessContainer.classList.remove('hidden');
+        }
+        
+        applyModal?.addEventListener('click', (e) => {
+            if (e.target === applyModal) closeApplyModal();
+        });
     </script>
 </body>
 </html>

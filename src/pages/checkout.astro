@@ -86,6 +86,16 @@ import Footer from '../components/Footer.astro';
     <p class="font-headline-md text-headline-md text-primary" id="display-price-value">$99</p>
   </div>
 
+  <!-- Promo Code Section -->
+  <div class="pt-4 border-t border-secondary-container flex flex-col gap-2">
+    <label class="text-[10px] font-bold uppercase tracking-wider text-secondary">Apply Promotion Code</label>
+    <div class="flex gap-2">
+      <input type="text" id="coupon-code-input" placeholder="e.g. SKY150" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm flex-grow" />
+      <button type="button" onclick="applyPromoCode()" class="px-4 bg-primary text-white rounded-lg text-xs uppercase font-bold tracking-wider hover:bg-opacity-90 transition-all cursor-pointer">Apply</button>
+    </div>
+    <div id="coupon-feedback" class="text-xs font-semibold hidden"></div>
+  </div>
+
   <div class="mt-2 flex justify-between items-center font-bold text-on-surface border-t border-outline-variant/20 pt-4">
     <p>Total Investment</p>
     <p id="display-total-value">$99.00</p>
@@ -138,7 +148,7 @@ import Footer from '../components/Footer.astro';
 <button class="pb-4 px-2 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md active:scale-95 transition-transform" onclick="switchTab('emi')">EMI Options</button>
 </div>
 <!-- Payment Form Content -->
-<form class="flex flex-col gap-6" id="payment-form" onsubmit="event.preventDefault()">
+<form class="flex flex-col gap-6" id="payment-form" onsubmit="processPayment(event)">
 <div class="flex flex-col gap-2">
 <label class="font-label-sm text-label-sm text-on-secondary-fixed-variant" for="card_number">Card Number</label>
 <div class="relative group">
@@ -203,35 +213,65 @@ import Footer from '../components/Footer.astro';
         }
 
         window.checkoutMode = 'registration';
+        window.activeCoupon = null;
+        window.selectedTier = 'normal';
 
-        window.selectTier = function(tier) {
-            const btnScholar = document.getElementById('btn-tier-scholar');
-            const btnElite = document.getElementById('btn-tier-elite');
+        window.updatePricingDisplay = function() {
             const label = document.getElementById('display-tier-label');
             const desc = document.getElementById('display-tier-description');
-            const price = document.getElementById('display-price-value');
-            const total = document.getElementById('display-total-value');
+            const priceEl = document.getElementById('display-price-value');
+            const totalEl = document.getElementById('display-total-value');
+            const feedbackEl = document.getElementById('coupon-feedback');
+            const isFullPayment = window.checkoutMode === 'full';
+
+            let basePrice = 99;
+            if (window.selectedTier === 'normal') {
+                basePrice = isFullPayment ? 2999 : 99;
+                label.textContent = 'Scholar Tier Program';
+                desc.textContent = 'Weekend live labs & placement prep';
+            } else {
+                basePrice = isFullPayment ? 6500 : 499;
+                label.textContent = 'Elite Tier (1-on-1)';
+                desc.textContent = 'Personal FAANG mentor & 1-on-1 guidance';
+            }
+
+            priceEl.textContent = '$' + basePrice.toLocaleString();
+
+            let discount = 0;
+            if (window.activeCoupon) {
+                const match = window.activeCoupon.code.match(/^SKY(\d+)$/i);
+                if (match) {
+                    const couponValue = parseInt(match[1], 10);
+                    discount = Math.min(couponValue, basePrice);
+                }
+            }
+
+            const finalTotal = Math.max(0, basePrice - discount);
+            totalEl.textContent = '$' + finalTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            if (feedbackEl) {
+                if (window.activeCoupon) {
+                    feedbackEl.textContent = `Coupon ${window.activeCoupon.code} applied: -$${discount.toLocaleString()}`;
+                    feedbackEl.className = "text-xs font-semibold text-green-600 block";
+                } else {
+                    feedbackEl.className = "text-xs font-semibold hidden";
+                }
+            }
+        }
+
+        window.selectTier = function(tier) {
+            window.selectedTier = tier;
+            const btnScholar = document.getElementById('btn-tier-scholar');
+            const btnElite = document.getElementById('btn-tier-elite');
             const displayCourse = document.getElementById('display-course-name');
 
             let courseText = displayCourse.textContent || "";
-            const isFullPayment = window.checkoutMode === 'full';
 
             if (tier === 'normal') {
                 btnScholar.classList.add('border-primary', 'bg-primary/5', 'active');
                 btnScholar.classList.remove('border-outline-variant/30', 'opacity-70');
                 btnElite.classList.remove('border-primary', 'bg-primary/5', 'active');
                 btnElite.classList.add('border-outline-variant/30', 'opacity-70');
-
-                label.textContent = 'Scholar Tier Program';
-                desc.textContent = 'Weekend live labs & placement prep';
-                
-                if (isFullPayment) {
-                    price.textContent = '$2,999';
-                    total.textContent = '$2,999.00';
-                } else {
-                    price.textContent = '$99';
-                    total.textContent = '$99.00';
-                }
 
                 // Strip "Short Term Program" if present
                 if (courseText.endsWith(' Short Term Program')) {
@@ -243,21 +283,58 @@ import Footer from '../components/Footer.astro';
                 btnScholar.classList.remove('border-primary', 'bg-primary/5', 'active');
                 btnScholar.classList.add('border-outline-variant/30', 'opacity-70');
 
-                label.textContent = 'Elite Tier (1-on-1)';
-                desc.textContent = 'Personal FAANG mentor & 1-on-1 guidance';
-                
-                if (isFullPayment) {
-                    price.textContent = '$6,500';
-                    total.textContent = '$6,500.00';
-                } else {
-                    price.textContent = '$499';
-                    total.textContent = '$499.00';
-                }
-
                 // Append "Short Term Program" if not present and it's one of the main courses
                 if (courseText && !courseText.endsWith(' Short Term Program') && courseText !== 'Intro Session') {
                     displayCourse.textContent = courseText + ' Short Term Program';
                 }
+            }
+
+            window.updatePricingDisplay();
+        }
+
+        window.applyPromoCode = async function() {
+            const input = document.getElementById('coupon-code-input');
+            const feedback = document.getElementById('coupon-feedback');
+            if (!input || !feedback) return;
+
+            const code = input.value.trim();
+            if (!code) {
+                feedback.textContent = 'Please enter a coupon code.';
+                feedback.className = 'text-xs font-semibold text-red-500 block';
+                return;
+            }
+
+            const isFullPayment = window.checkoutMode === 'full';
+            const basePrice = window.selectedTier === 'normal' 
+                ? (isFullPayment ? 2999 : 99) 
+                : (isFullPayment ? 6500 : 499);
+
+            try {
+                feedback.textContent = 'Validating coupon...';
+                feedback.className = 'text-xs font-semibold text-gray-500 block';
+
+                const response = await fetch('/api/validate-coupon', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code, basePrice })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.valid) {
+                    window.activeCoupon = { code: data.code };
+                    window.updatePricingDisplay();
+                } else {
+                    window.activeCoupon = null;
+                    window.updatePricingDisplay();
+                    feedback.textContent = data.error || 'Invalid coupon code.';
+                    feedback.className = 'text-xs font-semibold text-red-500 block';
+                }
+            } catch (err) {
+                window.activeCoupon = null;
+                window.updatePricingDisplay();
+                feedback.textContent = 'Connection error. Please try again.';
+                feedback.className = 'text-xs font-semibold text-red-500 block';
             }
         }
 
@@ -291,6 +368,34 @@ import Footer from '../components/Footer.astro';
             } else {
                 window.selectTier('normal');
             }
+        }
+
+        window.processPayment = function(e) {
+            e.preventDefault();
+            
+            const cardNumber = document.getElementById('card_number').value.trim();
+            const expiry = document.getElementById('expiry').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+            const name = document.getElementById('name').value.trim();
+
+            if (!cardNumber || !expiry || !cvv || !name) {
+                alert('Please fill out all card payment details.');
+                return;
+            }
+
+            const totalVal = document.getElementById('display-total-value').textContent;
+            const submitBtn = document.querySelector('#payment-form button[type="submit"]');
+            const originalBtnContent = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Processing Securely...</span>`;
+
+            setTimeout(() => {
+                alert(`Success! Payment of ${totalVal} has been processed.\nYour transaction ID is TXN-${Math.floor(100000 + Math.random() * 900000)}.`);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+                window.location.href = '/';
+            }, 1500);
         }
 
         // Run on load

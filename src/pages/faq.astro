@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import faqData from '../data/faq.json';
+
+const { hero, questions } = faqData;
 ---
 
 <!DOCTYPE html>
@@ -14,9 +17,6 @@ import Footer from '../components/Footer.astro';
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-
 
 <style>
         .material-symbols-outlined {
@@ -48,55 +48,40 @@ import Footer from '../components/Footer.astro';
 <body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopAppBar -->
 <Header />
-<!-- Editorial Hero Section -->
 <main class="pt-20">
 <section class="upward-gradient pt-24 pb-16 px-4 md:px-16">
 <div class="max-w-4xl mx-auto text-center">
-<span class="inline-block px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm mb-6 uppercase tracking-widest">Advisory Portal</span>
-<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Advisory Support &amp; Transparency</h1>
+<span class="inline-block px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm mb-6 uppercase tracking-widest">{hero.badge}</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">{hero.title}</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">
-                    Ensuring every candidate has the data they need for a confident transition into their global professional journey.
-                </p>
-<!-- Search Bar -->
-<div class="relative max-w-2xl mx-auto group">
-<div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-primary">search</span>
-</div>
-<input class="w-full h-16 pl-16 pr-6 rounded-full border-2 border-primary-fixed focus:border-primary focus:ring-0 ambient-shadow text-body-md font-body-md transition-all outline-none" placeholder="How can we assist your career transition?" type="text"/>
-<button class="absolute right-3 top-3 bottom-3 px-6 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity">
-                        Search
-                    </button>
-</div>
+    {hero.description}
+</p>
 </div>
 </section>
+
 <!-- Category Grid -->
 <section class="py-section-gap px-4 md:px-16 max-w-7xl mx-auto">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-<!-- Enrollment -->
 <div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:scale-[1.02] transition-transform cursor-pointer group">
 <span class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">how_to_reg</span>
 <h3 class="font-headline-md text-headline-md mb-2">Enrollment &amp; Sales</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant">Admission windows and verification.</p>
 </div>
-<!-- Pricing -->
 <div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:scale-[1.02] transition-transform cursor-pointer group">
 <span class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">payments</span>
 <h3 class="font-headline-md text-headline-md mb-2">Pricing &amp; Payments</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant">Investment structures and plans.</p>
 </div>
-<!-- Curriculum -->
 <div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:scale-[1.02] transition-transform cursor-pointer group border-b-4 border-primary">
 <span class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">school</span>
 <h3 class="font-headline-md text-headline-md mb-2">Curriculum &amp; Training</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant">Certification pathways and modules.</p>
 </div>
-<!-- Careers -->
 <div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:scale-[1.02] transition-transform cursor-pointer group">
 <span class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">work</span>
 <h3 class="font-headline-md text-headline-md mb-2">Placement &amp; Careers</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant">Job-ready metrics and coaching.</p>
 </div>
-<!-- Security -->
 <div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:scale-[1.02] transition-transform cursor-pointer group">
 <span class="material-symbols-outlined text-primary mb-4 text-4xl group-hover:scale-110 transition-transform">verified_user</span>
 <h3 class="font-headline-md text-headline-md mb-2">Privacy &amp; Security</h3>
@@ -104,147 +89,28 @@ import Footer from '../components/Footer.astro';
 </div>
 </div>
 </section>
+
 <!-- Top Queries (Accordions) -->
 <section class="bg-surface-container-low py-section-gap px-4 md:px-16">
 <div class="max-w-4xl mx-auto">
 <div class="flex items-center justify-between mb-12">
 <h2 class="font-headline-lg text-headline-lg text-on-surface">Top Queries &amp; Compliance</h2>
-<span class="text-primary font-label-md text-label-md flex items-center gap-2 cursor-pointer hover:underline">
-                        View All Documentation <span class="material-symbols-outlined">arrow_forward</span>
-</span>
 </div>
 <div class="space-y-4">
-<!-- Q1 -->
-<details class="group bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container transition-colors list-none">
-<span class="font-headline-md text-headline-md text-on-surface">Is Sky States a legitimate US-registered company?</span>
-<span class="material-symbols-outlined transition-transform duration-300 collapse-icon text-primary">expand_more</span>
-</summary>
-<div class="px-6 pb-6 pt-2">
-<div class="p-6 rounded-lg bg-surface-container-low border-l-4 border-primary">
-<p class="text-on-surface-variant mb-4">Yes. Sky States operates as a legally compliant entity within the United States. We maintain active registration in Delaware and Wyoming, adhering to all federal and state-level regulatory standards for educational consulting and professional placement services.</p>
-<div class="flex gap-4">
-<div class="flex items-center gap-2 text-primary font-label-sm">
-<span class="material-symbols-outlined text-sm">verified</span> Delaware Registry #8291-XX
-                                    </div>
-<div class="flex items-center gap-2 text-primary font-label-sm">
-<span class="material-symbols-outlined text-sm">verified</span> Wyoming Corporate ID #X229-L
-                                    </div>
-</div>
-</div>
-</div>
-</details>
-<!-- Q2 -->
-<details class="group bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container transition-colors list-none">
-<span class="font-headline-md text-headline-md text-on-surface">Does Sky States collect SSNs?</span>
-<span class="material-symbols-outlined transition-transform duration-300 collapse-icon text-primary">expand_more</span>
-</summary>
-<div class="px-6 pb-6 pt-2">
-<p class="text-on-surface-variant">We prioritize your identity protection. **Sky States does not collect Social Security Numbers (SSNs) at any stage of the initial application or onboarding process.** All financial transactions are handled through PCI-compliant, encrypted third-party gateways that secure your data without sharing sensitive identifiers with our internal staff.</p>
-</div>
-</details>
-<!-- Q3 -->
-<details class="group bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container transition-colors list-none">
-<span class="font-headline-md text-headline-md text-on-surface">How is the $2,999 investment justified?</span>
-<span class="material-symbols-outlined transition-transform duration-300 collapse-icon text-primary">expand_more</span>
-</summary>
-<div class="px-6 pb-6 pt-2">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="p-4 bg-surface-container-low rounded-lg">
-<h4 class="font-label-md text-label-md text-primary mb-2">Direct ROI</h4>
-<p class="text-label-sm text-on-surface-variant">Average salary increase for transitioned candidates is 42% within 6 months of placement.</p>
-</div>
-<div class="p-4 bg-surface-container-low rounded-lg">
-<h4 class="font-label-md text-label-md text-primary mb-2">Elite Certification</h4>
-<p class="text-label-sm text-on-surface-variant">Includes full access to Microsoft Professional Certification tracks valued at over $1,200.</p>
-</div>
-</div>
-</div>
-</details>
-<!-- Q4 -->
-<details class="group bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container transition-colors list-none">
-<span class="font-headline-md text-headline-md text-on-surface">What is the refund initiation process?</span>
-<span class="material-symbols-outlined transition-transform duration-300 collapse-icon text-primary">expand_more</span>
-</summary>
-<div class="px-6 pb-6 pt-2">
-<p class="text-on-surface-variant mb-4">We offer a transparent, tiered refund policy to ensure fairness:</p>
-<ul class="space-y-2 list-disc pl-5 text-on-surface-variant font-label-md">
-<li><strong>3-Day "No Questions" Window:</strong> Full refund within 72 hours of initial deposit.</li>
-<li><strong>14-Day Pro-Rated Window:</strong> Partial refund minus administrative and platform licensing fees.</li>
-<li><strong>Initiation:</strong> Simply contact your Senior Advisor or email support@skystates.com to begin the process.</li>
-</ul>
-</div>
-</details>
-</div>
-</div>
-</section>
-<!-- Transparency Block -->
-<section class="py-section-gap px-4 md:px-16 max-w-7xl mx-auto">
-<div class="bg-primary-container text-on-primary-container p-10 md:p-16 rounded-3xl overflow-hidden relative">
-<div class="relative z-10 max-w-2xl">
-<h2 class="font-headline-lg text-headline-lg mb-6">Our Commitment to Data Integrity</h2>
-<p class="font-body-md text-body-md mb-8 opacity-90">
-                        Every piece of information published on this portal undergoes a rigorous editorial review. We cite our registration data, policy updates, and certification values directly from original legal and institutional sources.
-                    </p>
-<div class="flex flex-wrap gap-6">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-primary-container">shield_lock</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Editorial Standards</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-primary-container">fact_check</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Fact-Checked Weekly</span>
-</div>
-</div>
-</div>
-<!-- Abstract visual element -->
-<div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none hidden lg:block"></div>
-<div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-primary-fixed-dim/20 blur-3xl"></div>
-</div>
-</section>
-<!-- CTA Section -->
-<section class="pb-24 px-4 md:px-16 text-center">
-<div class="max-w-xl mx-auto p-12 bg-white rounded-xl ambient-shadow">
-<h3 class="font-headline-md text-headline-md mb-4">Still have questions?</h3>
-<p class="text-on-surface-variant mb-8">Connect directly with our support team for personalized assistance with your career roadmap.</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="px-8 py-4 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">headset_mic</span>
-                        Speak with a Senior Advisor
-                    </button>
-<button class="px-8 py-4 rounded-full border-2 border-primary text-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-all">
-                        Schedule a Callback
-                    </button>
+    {questions.map((question) => (
+        <details class="group bg-surface-container-lowest rounded-xl overflow-hidden ambient-shadow">
+            <summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container transition-colors list-none">
+                <span class="font-headline-md text-headline-md text-on-surface">{question.q}</span>
+                <span class="material-symbols-outlined transition-transform duration-300 collapse-icon text-primary">expand_more</span>
+            </summary>
+            <div class="px-6 pb-6 pt-2 text-on-surface-variant" set:html={question.a}>
+            </div>
+        </details>
+    ))}
 </div>
 </div>
 </section>
 </main>
 <!-- Footer -->
 <Footer />
-<!-- Micro-interaction script -->
-<script>
-        document.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('ambient-shadow');
-                header.classList.remove('bg-transparent');
-                header.style.background = 'rgba(255, 255, 255, 0.9)';
-            } else {
-                header.classList.remove('ambient-shadow');
-                header.style.background = 'rgba(255, 255, 255, 0.7)';
-            }
-        });
-
-        // Search bar interaction
-        const searchInput = document.querySelector('input[type="text"]');
-        searchInput.addEventListener('focus', () => {
-            searchInput.parentElement.classList.add('scale-[1.02]');
-        });
-        searchInput.addEventListener('blur', () => {
-            searchInput.parentElement.classList.remove('scale-[1.02]');
-        });
-    </script>
 </body></html>

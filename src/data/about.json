@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "badge": "Sky States Editorial",
+    "title": "Institutional Excellence in Tech Careers",
+    "description": "We provide the architectural foundation for career transformation, merging elite academic standards with rapid industrial deployment."
+  },
+  "story": {
+    "title": "The Sky States Story",
+    "paragraph": "Founded at the intersection of professional development and industrial demand, Sky States was created to bridge a critical fracture: the widening gap between high-potential talent and the specific, high-velocity requirements of elite technology firms.",
+    "vision_title": "Our Vision",
+    "vision_desc": "To serve as the global standard for career acceleration, ensuring every professional has access to the structural guidance needed to reach their peak potential.",
+    "method_title": "Our Method",
+    "method_desc": "We utilize a \"High-Touch, High-Trust\" model, where institutional accountability meets personalized mentorship."
+  },
+  "registry": {
+    "legal_title": "Legal Entity Registry",
+    "legal_desc": "Sky States is a legally registered corporation in the United States, operating under strict compliance with state and federal regulations.",
+    "presence_title": "Physical Presence",
+    "delaware_address": "8 The Green, Dover, DE",
+    "wyoming_address": "30 N Gould St, Sheridan, WY",
+    "contact_title": "Institutional Contact",
+    "phone": "+1-888-810-2434",
+    "email": "info@skystates.us"
+  }
+}

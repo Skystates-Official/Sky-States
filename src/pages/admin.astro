@@ -3,8 +3,54 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import jobsData from '../data/jobs.json';
+import homepageData from '../data/homepage.json';
+import aboutData from '../data/about.json';
+import faqData from '../data/faq.json';
+import programsData from '../data/programs.json';
+import couponConfigData from '../data/coupon-config.json';
 
 export const prerender = false;
+
+// Authenticate session
+let authenticated = false;
+let loginError = '';
+
+if (Astro.cookies.has('admin_session')) {
+    const sessionCookie = Astro.cookies.get('admin_session');
+    if (sessionCookie && sessionCookie.value === 'authenticated') {
+        authenticated = true;
+    }
+}
+
+// Handle login post request
+if (Astro.request.method === 'POST') {
+    try {
+        const formData = await Astro.request.formData();
+        const action = formData.get('action');
+        
+        if (action === 'login') {
+            const username = formData.get('username');
+            const password = formData.get('password');
+            
+            if (username === 'admin' && password === 'Xziant@123') {
+                Astro.cookies.set('admin_session', 'authenticated', {
+                    path: '/',
+                    httpOnly: true,
+                    sameSite: 'strict',
+                    maxAge: 86400
+                });
+                return Astro.redirect('/admin');
+            } else {
+                loginError = 'Invalid credentials. Please try again.';
+            }
+        } else if (action === 'logout') {
+            Astro.cookies.delete('admin_session', { path: '/' });
+            return Astro.redirect('/admin');
+        }
+    } catch (e) {
+        loginError = 'An error occurred during authentication.';
+    }
+}
 ---
 
 <!DOCTYPE html>
@@ -33,227 +79,895 @@ export const prerender = false;
     <!-- Top Nav -->
     <Header />
 
-    <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
-        <!-- Hero Header -->
-        <div class="mb-12 flex justify-between items-center bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 ambient-shadow">
-            <div>
-                <span class="text-xs uppercase tracking-widest text-primary font-bold">Systems Console</span>
-                <h1 class="font-headline-xl text-4xl text-primary leading-tight mt-1">Placement Directory Admin</h1>
-                <p class="text-on-surface-variant font-body-sm text-sm mt-1">Manage institutional corporate partner openings on the live board.</p>
+    {authenticated ? (
+        <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
+            <!-- Hero Header -->
+            <div class="mb-8 flex justify-between items-center bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 ambient-shadow">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-primary font-bold">Systems Console</span>
+                    <h1 class="font-headline-xl text-4xl text-primary leading-tight mt-1">Sky States Content Hub</h1>
+                    <p class="text-on-surface-variant font-body-sm text-sm mt-1">Perform administrative modifications and manage placements.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <form method="POST" class="inline m-0">
+                        <input type="hidden" name="action" value="logout" />
+                        <button type="submit" class="border border-outline-variant hover:bg-surface-container text-on-surface transition-all px-5 py-3 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm bg-white">
+                            <span class="material-symbols-outlined text-[16px]">logout</span>
+                            <span>Log Out</span>
+                        </button>
+                    </form>
+                </div>
             </div>
-            <button 
-                onclick="openAddModal()" 
-                class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-3 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-md"
-            >
-                <span class="material-symbols-outlined text-[16px]">add</span>
-                <span>Post New Job</span>
-            </button>
-        </div>
 
-        <!-- Table of Jobs -->
-        <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden ambient-shadow">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
-                            <th class="px-6 py-4">Role / Title</th>
-                            <th class="px-6 py-4">Company</th>
-                            <th class="px-6 py-4">Location</th>
-                            <th class="px-6 py-4">Salary Range</th>
-                            <th class="px-6 py-4">Skills / Tags</th>
-                            <th class="px-6 py-4 text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-jobs-table-body" class="divide-y divide-outline-variant/10">
-                        {jobsData.map(job => (
-                            <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`row-${job.id}`}>
-                                <td class="px-6 py-5 font-semibold text-on-surface">{job.title}</td>
-                                <td class="px-6 py-5 text-secondary">{job.company}</td>
-                                <td class="px-6 py-5 text-secondary">{job.location}</td>
-                                <td class="px-6 py-5 text-secondary">{job.salary}</td>
-                                <td class="px-6 py-5">
-                                    <div class="flex flex-wrap gap-1">
-                                        {job.tags.map(tag => (
-                                            <span class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-wider bg-surface-container text-secondary rounded">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </td>
-                                <td class="px-6 py-5 text-right space-x-2">
-                                    <button 
-                                        onclick={`openEditModal(${JSON.stringify(job)})`} 
-                                        class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center"
-                                        title="Edit Job"
-                                    >
-                                        <span class="material-symbols-outlined text-[20px]">edit</span>
-                                    </button>
-                                    <button 
-                                        onclick={`deleteJob('${job.id}')`} 
-                                        class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center"
-                                        title="Delete Job"
-                                    >
-                                        <span class="material-symbols-outlined text-[20px]">delete</span>
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
-    <!-- Modal Form (Create / Edit) -->
-    <div id="job-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
-        <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10 animate-fade-in" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
-                <h2 id="modal-title" class="font-headline-md text-xl text-primary">Post New Job Listing</h2>
-                <button onclick="closeModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors">
-                    <span class="material-symbols-outlined text-[20px]">close</span>
+            <!-- Tab Navigation -->
+            <div class="mb-8 border-b border-outline-variant/20 flex gap-6">
+                <button 
+                    onclick="switchTab('jobs')" 
+                    id="tab-btn-jobs" 
+                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-primary text-primary transition-all cursor-pointer"
+                >
+                    Placement Directory
+                </button>
+                <button 
+                    onclick="switchTab('homepage')" 
+                    id="tab-btn-homepage" 
+                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
+                >
+                    Page Content CMS
                 </button>
             </div>
 
-            <form id="job-form" onsubmit="saveJob(event)" class="space-y-4">
-                <input type="hidden" id="form-job-id" />
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex flex-col gap-1.5">
-                        <label for="form-title" class="text-xs font-bold uppercase text-secondary">Job Title</label>
-                        <input type="text" id="form-title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Senior AI Architect" />
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label for="form-company" class="text-xs font-bold uppercase text-secondary">Company Name</label>
-                        <input type="text" id="form-company" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Stripe" />
-                    </div>
+            <!-- TAB 1: PLACEMENTS -->
+            <div id="panel-jobs" class="tab-panel">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-headline-md text-xl text-on-surface">Manage Active Placements</h2>
+                    <button 
+                        onclick="openAddModal()" 
+                        class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">add</span>
+                        <span>Post New Job</span>
+                    </button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex flex-col gap-1.5">
-                        <label for="form-location" class="text-xs font-bold uppercase text-secondary">Location</label>
-                        <input type="text" id="form-location" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Hybrid / Remote" />
+                <!-- Table of Jobs -->
+                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden ambient-shadow">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Role / Title</th>
+                                    <th class="px-6 py-4">Company</th>
+                                    <th class="px-6 py-4">Location</th>
+                                    <th class="px-6 py-4">Salary Range</th>
+                                    <th class="px-6 py-4">Skills / Tags</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-jobs-table-body" class="divide-y divide-outline-variant/10">
+                                {jobsData.map(job => (
+                                    <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`row-${job.id}`}>
+                                        <td class="px-6 py-5 font-semibold text-on-surface">{job.title}</td>
+                                        <td class="px-6 py-5 text-secondary">{job.company}</td>
+                                        <td class="px-6 py-5 text-secondary">{job.location}</td>
+                                        <td class="px-6 py-5 text-secondary">{job.salary}</td>
+                                        <td class="px-6 py-5">
+                                            <div class="flex flex-wrap gap-1">
+                                                {job.tags.map(tag => (
+                                                    <span class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-wider bg-surface-container text-secondary rounded">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-5 text-right space-x-2">
+                                            <button 
+                                                onclick={`openEditModal(${JSON.stringify(job)})`} 
+                                                class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center"
+                                                title="Edit Job"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button 
+                                                onclick={`deleteJob('${job.id}')`} 
+                                                class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center"
+                                                title="Delete Job"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label for="form-salary" class="text-xs font-bold uppercase text-secondary">Salary Range</label>
-                        <input type="text" id="form-salary" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. $180,000 - $220,000" />
+                </div>
+            </div>
+
+            <!-- TAB 2: PAGE CONTENT CMS -->
+            <div id="panel-homepage" class="tab-panel hidden space-y-6">
+                <!-- Dropdown selector for page-by-page editing -->
+                <div class="bg-white rounded-xl p-6 border border-outline-variant/20 ambient-shadow flex items-center justify-between">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs uppercase tracking-widest text-primary font-bold">Scope Selector</span>
+                        <h3 class="text-lg font-bold text-on-surface">Which page do you want to edit?</h3>
                     </div>
+                    <select id="cms-page-selector" onchange="switchCmsPage(this.value)" class="h-11 px-4 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm font-semibold bg-white cursor-pointer min-w-[200px]">
+                        <option value="homepage">Homepage</option>
+                        <option value="about">About Us Page</option>
+                        <option value="faq">FAQ Page</option>
+                        <option value="programs">Instructor Programs</option>
+                        <option value="coupon-config">Coupon Limits Config</option>
+                    </select>
                 </div>
 
-                <div class="flex flex-col gap-1.5">
-                    <label for="form-tags" class="text-xs font-bold uppercase text-secondary">Skills / Tags (comma-separated)</label>
-                    <input type="text" id="form-tags" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Python, PyTorch, LLMs" />
+                <!-- CMS Sub-Panel: Homepage -->
+                <div id="cms-sub-homepage" class="cms-sub-panel space-y-6">
+                    <form onsubmit="saveHomepage(event)" class="space-y-6 max-w-4xl">
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">deck</span>
+                                    <span>Hero Section Content</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Title / Headline (Supports HTML)</label>
+                                <textarea id="cms-hero-headline" rows="2" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description Paragraph</label>
+                                <textarea id="cms-hero-description" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Stories Link Label</label>
+                                    <input type="text" id="cms-hero-btn-text" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Stories Link URL</label>
+                                    <input type="text" id="cms-hero-btn-url" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">workspace_premium</span>
+                                    <span>Trust Indicators (Trust Bar)</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Trust Items (Comma-separated)</label>
+                                <input type="text" id="cms-trust-bar" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">info</span>
+                                    <span>About Us Summary</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Section Title</label>
+                                <input type="text" id="cms-about-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">About Section Description</label>
+                                <textarea id="cms-about-description" rows="4" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">payments</span>
+                                    <span>Pricing Console</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Pricing Card Header</label>
+                                    <input type="text" id="cms-pricing-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Program Price Amount</label>
+                                    <input type="text" id="cms-pricing-amount" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Price Subtitle</label>
+                                    <input type="text" id="cms-pricing-subtitle" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save Homepage Changes</button>
+                    </form>
                 </div>
 
-                <div class="flex flex-col gap-1.5">
-                    <label for="form-description" class="text-xs font-bold uppercase text-secondary">Role Description</label>
-                    <textarea id="form-description" rows="4" class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm resize-none" placeholder="Provide a summary of core requirements and expectations..."></textarea>
+                <!-- CMS Sub-Panel: About Us -->
+                <div id="cms-sub-about" class="cms-sub-panel space-y-6 hidden">
+                    <form onsubmit="saveAbout(event)" class="space-y-6 max-w-4xl">
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">school</span>
+                                    <span>About Us Hero</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Badge Text</label>
+                                    <input type="text" id="cms-about-hero-badge" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Hero Title</label>
+                                    <input type="text" id="cms-about-hero-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description</label>
+                                <textarea id="cms-about-hero-desc" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">menu_book</span>
+                                    <span>Our Story & vision</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Story Title</label>
+                                <input type="text" id="cms-about-story-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Story Paragraph</label>
+                                <textarea id="cms-about-story-para" rows="4" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-xs font-bold uppercase text-secondary">Vision Section Title</label>
+                                        <input type="text" id="cms-about-vision-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-xs font-bold uppercase text-secondary">Vision Description</label>
+                                        <textarea id="cms-about-vision-desc" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-xs font-bold uppercase text-secondary">Method Section Title</label>
+                                        <input type="text" id="cms-about-method-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                    </div>
+                                    <div class="flex flex-col gap-1.5">
+                                        <label class="text-xs font-bold uppercase text-secondary">Method Description</label>
+                                        <textarea id="cms-about-method-desc" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">domain</span>
+                                    <span>Corporate Registry & Support</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Delaware Headquarters Address</label>
+                                    <input type="text" id="cms-about-delaware" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Wyoming Operations Address</label>
+                                    <input type="text" id="cms-about-wyoming" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Support Phone Number</label>
+                                    <input type="text" id="cms-about-phone" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Official Email Address</label>
+                                    <input type="email" id="cms-about-email" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save About Us Changes</button>
+                    </form>
                 </div>
 
-                <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
-                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
-                    <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save Changes</button>
+                <!-- CMS Sub-Panel: FAQ -->
+                <div id="cms-sub-faq" class="cms-sub-panel space-y-6 hidden">
+                    <form onsubmit="saveFaq(event)" class="space-y-6 max-w-4xl">
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">help</span>
+                                    <span>FAQ Header Section</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Badge Text</label>
+                                    <input type="text" id="cms-faq-badge" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Hero Title</label>
+                                    <input type="text" id="cms-faq-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description</label>
+                                <textarea id="cms-faq-desc" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">question_answer</span>
+                                    <span>FAQ Questions (List)</span>
+                                </h3>
+                            </div>
+                            <div id="faq-list-container" class="space-y-4">
+                                <!-- FAQ items will be rendered dynamically here -->
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save FAQ Changes</button>
+                    </form>
                 </div>
-            </form>
+
+                <!-- CMS Sub-Panel: Programs -->
+                <div id="cms-sub-programs" class="cms-sub-panel space-y-6 hidden">
+                    <form onsubmit="savePrograms(event)" class="space-y-6 max-w-4xl">
+                        <!-- Data Science & AI Card -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">analytics</span>
+                                    <span>Data Science & AI Architect</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Metadata Title (SEO)</label>
+                                <input type="text" id="cms-ds-meta" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Headline (HTML)</label>
+                                <textarea id="cms-ds-headline" rows="2" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description</label>
+                                <textarea id="cms-ds-description" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Cyber Security Card -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">security</span>
+                                    <span>Cyber Security Strategist</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Metadata Title (SEO)</label>
+                                <input type="text" id="cms-cyber-meta" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Headline (HTML)</label>
+                                <textarea id="cms-cyber-headline" rows="2" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description</label>
+                                <textarea id="cms-cyber-description" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- DevOps & Cloud Card -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">terminal</span>
+                                    <span>DevOps & Cloud Master</span>
+                                </h3>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Metadata Title (SEO)</label>
+                                <input type="text" id="cms-devops-meta" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Headline (HTML)</label>
+                                <textarea id="cms-devops-headline" rows="2" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Hero Description</label>
+                                <textarea id="cms-devops-description" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save Programs Content</button>
+                    </form>
+                </div>
+
+                <!-- CMS Sub-Panel: Coupon Config -->
+                <div id="cms-sub-coupon-config" class="cms-sub-panel space-y-6 hidden">
+                    <form onsubmit="saveCouponConfig(event)" class="space-y-6 max-w-4xl">
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">settings_suggest</span>
+                                    <span>Coupon Code Validation Limits</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Minimum Coupon Value ($)</label>
+                                    <input type="number" id="cms-coupon-min" required min="1" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Maximum Coupon Value ($)</label>
+                                    <input type="number" id="cms-coupon-max" required min="1" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save Coupon Config</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    ) : (
+        <div class="min-h-[70vh] flex items-center justify-center px-4 py-12">
+            <div class="w-full max-w-md bg-white rounded-3xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="w-16 h-16 bg-primary-fixed text-primary rounded-full flex items-center justify-center mx-auto">
+                        <span class="material-symbols-outlined text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">lock</span>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-primary font-bold">Secure Gateway</span>
+                    <h2 class="font-headline-md text-2xl text-on-surface">Admin Authentication</h2>
+                    <p class="text-on-surface-variant font-body-sm text-sm">Please sign in to access the placement console.</p>
+                </div>
+
+                {loginError && (
+                    <div class="p-4 bg-error-container text-on-error-container rounded-xl text-sm font-semibold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">warning</span>
+                        <span class="text-red-700">{loginError}</span>
+                    </div>
+                )}
+
+                <form method="POST" class="space-y-4 m-0">
+                    <input type="hidden" name="action" value="login" />
+                    
+                    <div class="flex flex-col gap-1.5">
+                        <label for="username" class="text-xs font-bold uppercase text-secondary">Username</label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            id="username" 
+                            required 
+                            class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" 
+                            placeholder="admin" 
+                        />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="password" class="text-xs font-bold uppercase text-secondary">Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            required 
+                            class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" 
+                            placeholder="••••••••" 
+                        />
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full bg-primary text-white hover:bg-opacity-90 transition-all py-3 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold mt-4"
+                    >
+                        Sign In
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
+    )}
+
+    <!-- Modal Form (Create / Edit) -->
+    {authenticated && (
+        <div id="job-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
+                    <h2 id="modal-title" class="font-headline-md text-xl text-primary">Post New Job Listing</h2>
+                    <button onclick="closeModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+
+                <form id="job-form" onsubmit="saveJob(event)" class="space-y-4">
+                    <input type="hidden" id="form-job-id" />
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-title" class="text-xs font-bold uppercase text-secondary">Job Title</label>
+                            <input type="text" id="form-title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Senior AI Architect" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-company" class="text-xs font-bold uppercase text-secondary">Company Name</label>
+                            <input type="text" id="form-company" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Stripe" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-location" class="text-xs font-bold uppercase text-secondary">Location</label>
+                            <input type="text" id="form-location" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Hybrid / Remote" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-salary" class="text-xs font-bold uppercase text-secondary">Salary Range</label>
+                            <input type="text" id="form-salary" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. $180,000 - $220,000" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-tags" class="text-xs font-bold uppercase text-secondary">Skills / Tags (comma-separated)</label>
+                        <input type="text" id="form-tags" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Python, PyTorch, LLMs" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-description" class="text-xs font-bold uppercase text-secondary">Role Description</label>
+                        <textarea id="form-description" rows="4" class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm resize-none" placeholder="Provide a summary of core requirements and expectations..."></textarea>
+                    </div>
+
+                    <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
+                        <button type="button" onclick="closeModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )}
 
     <!-- Footer -->
     <Footer />
 
-    <script is:inline>
-        const modal = document.getElementById('job-modal');
-        const form = document.getElementById('job-form');
-        const modalTitle = document.getElementById('modal-title');
-        
-        window.openAddModal = function() {
-            form.reset();
-            document.getElementById('form-job-id').value = '';
-            modalTitle.textContent = 'Post New Job Listing';
-            modal.classList.remove('hidden');
-        }
+    {authenticated && (
+        <script is:inline define:vars={{ homepageData, aboutData, faqData, programsData, couponConfigData }}>
+            // Tab Switching Logic
+            window.switchTab = function(tabName) {
+                const panels = document.querySelectorAll('.tab-panel');
+                panels.forEach(p => p.classList.add('hidden'));
+                
+                const panel = document.getElementById(`panel-${tabName}`);
+                if (panel) panel.classList.remove('hidden');
 
-        window.openEditModal = function(job) {
-            modalTitle.textContent = 'Edit Job Listing';
-            document.getElementById('form-job-id').value = job.id;
-            document.getElementById('form-title').value = job.title;
-            document.getElementById('form-company').value = job.company;
-            document.getElementById('form-location').value = job.location;
-            document.getElementById('form-salary').value = job.salary;
-            document.getElementById('form-tags').value = job.tags.join(', ');
-            document.getElementById('form-description').value = job.description;
-            modal.classList.remove('hidden');
-        }
-
-        window.closeModal = function() {
-            modal.classList.add('hidden');
-        }
-
-        // Handle Escape click to close modal
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        window.saveJob = async function(e) {
-            e.preventDefault();
-            
-            const jobId = document.getElementById('form-job-id').value;
-            const title = document.getElementById('form-title').value;
-            const company = document.getElementById('form-company').value;
-            const location = document.getElementById('form-location').value;
-            const salary = document.getElementById('form-salary').value;
-            const tags = document.getElementById('form-tags').value.split(',').map(t => t.trim()).filter(Boolean);
-            const description = document.getElementById('form-description').value;
-
-            const payload = { title, company, location, salary, tags, description };
-            
-            let method = 'POST';
-            if (jobId) {
-                payload.id = jobId;
-                method = 'PUT';
-            }
-
-            try {
-                const response = await fetch('/api/jobs', {
-                    method: method,
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                const buttons = document.querySelectorAll('[id^="tab-btn-"]');
+                buttons.forEach(btn => {
+                    btn.classList.remove('border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-secondary');
                 });
 
-                if (response.ok) {
-                    closeModal();
-                    // Reload the page to reflect filesystem update in Astro
-                    window.location.reload();
-                } else {
-                    alert('Failed to save job listing. Please try again.');
+                const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+                if (activeBtn) {
+                    activeBtn.classList.remove('border-transparent', 'text-secondary');
+                    activeBtn.classList.add('border-primary', 'text-primary');
                 }
-            } catch (error) {
-                console.error('Save error:', error);
-                alert('Save request failed.');
             }
-        }
 
-        window.deleteJob = async function(id) {
-            if (!confirm('Are you absolutely sure you want to delete this placement listing?')) return;
+            // CMS Page-by-Page Selector Logic
+            window.switchCmsPage = function(pageId) {
+                const subPanels = document.querySelectorAll('.cms-sub-panel');
+                subPanels.forEach(p => p.classList.add('hidden'));
+                
+                const activePanel = document.getElementById(`cms-sub-${pageId}`);
+                if (activePanel) activePanel.classList.remove('hidden');
+            }
 
-            try {
-                const response = await fetch('/api/jobs', {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id })
+            // Populate CMS inputs on load
+            if (homepageData) {
+                document.getElementById('cms-hero-headline').value = homepageData.hero?.headline || '';
+                document.getElementById('cms-hero-description').value = homepageData.hero?.description || '';
+                document.getElementById('cms-hero-btn-text').value = homepageData.hero?.button_text || '';
+                document.getElementById('cms-hero-btn-url').value = homepageData.hero?.button_url || '';
+                document.getElementById('cms-trust-bar').value = (homepageData.trust_bar || []).join(', ');
+                document.getElementById('cms-about-title').value = homepageData.about?.title || '';
+                document.getElementById('cms-about-description').value = homepageData.about?.description || '';
+                document.getElementById('cms-pricing-title').value = homepageData.pricing?.title || '';
+                document.getElementById('cms-pricing-amount').value = homepageData.pricing?.amount || '';
+                document.getElementById('cms-pricing-subtitle').value = homepageData.pricing?.subtitle || '';
+            }
+
+            if (aboutData) {
+                document.getElementById('cms-about-hero-badge').value = aboutData.hero?.badge || '';
+                document.getElementById('cms-about-hero-title').value = aboutData.hero?.title || '';
+                document.getElementById('cms-about-hero-desc').value = aboutData.hero?.description || '';
+                
+                document.getElementById('cms-about-story-title').value = aboutData.story?.title || '';
+                document.getElementById('cms-about-story-para').value = aboutData.story?.paragraph || '';
+                document.getElementById('cms-about-vision-title').value = aboutData.story?.vision_title || '';
+                document.getElementById('cms-about-vision-desc').value = aboutData.story?.vision_desc || '';
+                document.getElementById('cms-about-method-title').value = aboutData.story?.method_title || '';
+                document.getElementById('cms-about-method-desc').value = aboutData.story?.method_desc || '';
+                
+                document.getElementById('cms-about-delaware').value = aboutData.registry?.delaware_address || '';
+                document.getElementById('cms-about-wyoming').value = aboutData.registry?.wyoming_address || '';
+                document.getElementById('cms-about-phone').value = aboutData.registry?.phone || '';
+                document.getElementById('cms-about-email').value = aboutData.registry?.email || '';
+            }
+
+            if (faqData) {
+                document.getElementById('cms-faq-badge').value = faqData.hero?.badge || '';
+                document.getElementById('cms-faq-title').value = faqData.hero?.title || '';
+                document.getElementById('cms-faq-desc').value = faqData.hero?.description || '';
+                
+                // Build dynamic FAQ input lines
+                const faqContainer = document.getElementById('faq-list-container');
+                faqContainer.innerHTML = '';
+                faqData.questions.forEach((qItem, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'p-4 border border-outline-variant/30 rounded-xl bg-surface-container-low space-y-3';
+                    row.innerHTML = `
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[10px] font-bold text-primary uppercase">Question ${idx + 1}</span>
+                            <input type="text" class="faq-input-q h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" value="${qItem.q}" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[10px] font-bold text-primary uppercase">Answer ${idx + 1}</span>
+                            <textarea class="faq-input-a p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none" rows="2">${qItem.a}</textarea>
+                        </div>
+                    `;
+                    faqContainer.appendChild(row);
+                });
+            }
+
+            if (programsData) {
+                document.getElementById('cms-ds-meta').value = programsData['data-science-ai']?.metaTitle || '';
+                document.getElementById('cms-ds-headline').value = programsData['data-science-ai']?.hero?.headline || '';
+                document.getElementById('cms-ds-description').value = programsData['data-science-ai']?.hero?.description || '';
+
+                document.getElementById('cms-cyber-meta').value = programsData['cyber-security']?.metaTitle || '';
+                document.getElementById('cms-cyber-headline').value = programsData['cyber-security']?.hero?.headline || '';
+                document.getElementById('cms-cyber-description').value = programsData['cyber-security']?.hero?.description || '';
+
+                document.getElementById('cms-devops-meta').value = programsData['devops']?.metaTitle || '';
+                document.getElementById('cms-devops-headline').value = programsData['devops']?.hero?.headline || '';
+                document.getElementById('cms-devops-description').value = programsData['devops']?.hero?.description || '';
+            }
+
+            if (couponConfigData) {
+                document.getElementById('cms-coupon-min').value = couponConfigData.minLimit !== undefined ? couponConfigData.minLimit : 10;
+                document.getElementById('cms-coupon-max').value = couponConfigData.maxLimit !== undefined ? couponConfigData.maxLimit : 6499;
+            }
+
+            // Save Trigger: Homepage
+            window.saveHomepage = async function(e) {
+                e.preventDefault();
+                const headline = document.getElementById('cms-hero-headline').value;
+                const description = document.getElementById('cms-hero-description').value;
+                const button_text = document.getElementById('cms-hero-btn-text').value;
+                const button_url = document.getElementById('cms-hero-btn-url').value;
+                const trust_bar = document.getElementById('cms-trust-bar').value.split(',').map(item => item.trim()).filter(Boolean);
+                const about_title = document.getElementById('cms-about-title').value;
+                const about_description = document.getElementById('cms-about-description').value;
+                const pricing_title = document.getElementById('cms-pricing-title').value;
+                const pricing_amount = document.getElementById('cms-pricing-amount').value;
+                const pricing_subtitle = document.getElementById('cms-pricing-subtitle').value;
+
+                const payload = {
+                    hero: { headline, description, button_text, button_url },
+                    trust_bar,
+                    about: { title: about_title, description: about_description },
+                    pricing: { title: pricing_title, amount: pricing_amount, subtitle: pricing_subtitle }
+                };
+
+                await sendCmsUpdate('homepage', payload);
+            }
+
+            // Save Trigger: About Us
+            window.saveAbout = async function(e) {
+                e.preventDefault();
+                const badge = document.getElementById('cms-about-hero-badge').value;
+                const title = document.getElementById('cms-about-hero-title').value;
+                const description = document.getElementById('cms-about-hero-desc').value;
+                
+                const story_title = document.getElementById('cms-about-story-title').value;
+                const story_para = document.getElementById('cms-about-story-para').value;
+                const vision_title = document.getElementById('cms-about-vision-title').value;
+                const vision_desc = document.getElementById('cms-about-vision-desc').value;
+                const method_title = document.getElementById('cms-about-method-title').value;
+                const method_desc = document.getElementById('cms-about-method-desc').value;
+                
+                const delaware_address = document.getElementById('cms-about-delaware').value;
+                const wyoming_address = document.getElementById('cms-about-wyoming').value;
+                const phone = document.getElementById('cms-about-phone').value;
+                const email = document.getElementById('cms-about-email').value;
+
+                const payload = {
+                    hero: { badge, title, description },
+                    story: { title: story_title, paragraph: story_para, vision_title, vision_desc, method_title, method_desc },
+                    registry: { legal_title: "Legal Entity Registry", legal_desc: "Sky States is a legally registered corporation in the United States, operating under strict compliance.", presence_title: "Physical Presence", delaware_address, wyoming_address, contact_title: "Institutional Contact", phone, email }
+                };
+
+                await sendCmsUpdate('about', payload);
+            }
+
+            // Save Trigger: FAQ
+            window.saveFaq = async function(e) {
+                e.preventDefault();
+                const badge = document.getElementById('cms-faq-badge').value;
+                const title = document.getElementById('cms-faq-title').value;
+                const description = document.getElementById('cms-faq-desc').value;
+
+                const qInputs = document.querySelectorAll('.faq-input-q');
+                const aInputs = document.querySelectorAll('.faq-input-a');
+                const questions = [];
+
+                qInputs.forEach((input, index) => {
+                    questions.push({
+                        q: input.value,
+                        a: aInputs[index].value
+                    });
                 });
 
-                if (response.ok) {
-                    // Instantly hide the row in client DOM
-                    const row = document.getElementById(`row-${id}`);
-                    if (row) row.remove();
-                } else {
-                    alert('Delete operation failed.');
-                }
-            } catch (error) {
-                console.error('Delete error:', error);
-                alert('Request failed.');
+                const payload = {
+                    hero: { badge, title, description },
+                    questions
+                };
+
+                await sendCmsUpdate('faq', payload);
             }
-        }
-    </script>
+
+            // Save Trigger: Programs
+            window.savePrograms = async function(e) {
+                e.preventDefault();
+                
+                // Keep the structural content of modules & stats while editing metadata & hero fields
+                const updatedPrograms = JSON.parse(JSON.stringify(programsData));
+
+                updatedPrograms['data-science-ai'].metaTitle = document.getElementById('cms-ds-meta').value;
+                updatedPrograms['data-science-ai'].hero.headline = document.getElementById('cms-ds-headline').value;
+                updatedPrograms['data-science-ai'].hero.description = document.getElementById('cms-ds-description').value;
+
+                updatedPrograms['cyber-security'].metaTitle = document.getElementById('cms-cyber-meta').value;
+                updatedPrograms['cyber-security'].hero.headline = document.getElementById('cms-cyber-headline').value;
+                updatedPrograms['cyber-security'].hero.description = document.getElementById('cms-cyber-description').value;
+
+                updatedPrograms['devops'].metaTitle = document.getElementById('cms-devops-meta').value;
+                updatedPrograms['devops'].hero.headline = document.getElementById('cms-devops-headline').value;
+                updatedPrograms['devops'].hero.description = document.getElementById('cms-devops-description').value;
+
+                await sendCmsUpdate('programs', updatedPrograms);
+            }
+
+            // Save Trigger: Coupon Limits Configuration
+            window.saveCouponConfig = async function(e) {
+                e.preventDefault();
+                const minLimit = parseInt(document.getElementById('cms-coupon-min').value, 10);
+                const maxLimit = parseInt(document.getElementById('cms-coupon-max').value, 10);
+
+                if (minLimit > maxLimit) {
+                    alert('Minimum coupon limit cannot exceed the maximum coupon limit.');
+                    return;
+                }
+
+                await sendCmsUpdate('coupon-config', { minLimit, maxLimit });
+            }
+
+            // Generic CMS Submission Helper
+            async function sendCmsUpdate(pageId, payload) {
+                try {
+                    const response = await fetch(`/api/cms?page=${pageId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alert(`${pageId.toUpperCase()} content changes saved successfully!`);
+                        window.location.reload();
+                    } else {
+                        alert('Failed to save changes. Please try again.');
+                    }
+                } catch (err) {
+                    console.error('CMS Save error:', err);
+                    alert('Request failed.');
+                }
+            }
+
+            // Placements Dialog
+            const modal = document.getElementById('job-modal');
+            const form = document.getElementById('job-form');
+            const modalTitle = document.getElementById('modal-title');
+            
+            window.openAddModal = function() {
+                form.reset();
+                document.getElementById('form-job-id').value = '';
+                modalTitle.textContent = 'Post New Job Listing';
+                modal.classList.remove('hidden');
+            }
+
+            window.openEditModal = function(job) {
+                modalTitle.textContent = 'Edit Job Listing';
+                document.getElementById('form-job-id').value = job.id;
+                document.getElementById('form-title').value = job.title;
+                document.getElementById('form-company').value = job.company;
+                document.getElementById('form-location').value = job.location;
+                document.getElementById('form-salary').value = job.salary;
+                document.getElementById('form-tags').value = job.tags.join(', ');
+                document.getElementById('form-description').value = job.description;
+                modal.classList.remove('hidden');
+            }
+
+            window.closeModal = function() {
+                modal.classList.add('hidden');
+            }
+
+            modal?.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            window.saveJob = async function(e) {
+                e.preventDefault();
+                
+                const jobId = document.getElementById('form-job-id').value;
+                const title = document.getElementById('form-title').value;
+                const company = document.getElementById('form-company').value;
+                const location = document.getElementById('form-location').value;
+                const salary = document.getElementById('form-salary').value;
+                const tags = document.getElementById('form-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+                const description = document.getElementById('form-description').value;
+
+                const payload = { title, company, location, salary, tags, description };
+                
+                let method = 'POST';
+                if (jobId) {
+                    payload.id = jobId;
+                    method = 'PUT';
+                }
+
+                try {
+                    const response = await fetch('/api/jobs', {
+                        method: method,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        closeModal();
+                        window.location.reload();
+                    } else {
+                        alert('Failed to save job listing. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Save error:', error);
+                    alert('Save request failed.');
+                }
+            }
+
+            window.deleteJob = async function(id) {
+                if (!confirm('Are you absolutely sure you want to delete this placement listing?')) return;
+
+                try {
+                    const response = await fetch('/api/jobs', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+
+                    if (response.ok) {
+                        const row = document.getElementById(`row-${id}`);
+                        if (row) row.remove();
+                    } else {
+                        alert('Delete operation failed.');
+                    }
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    alert('Request failed.');
+                }
+            }
+        </script>
+    )}
 </body>
 </html>

@@ -1,7 +1,10 @@
----
 import '../../styles/global.css';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import programsData from '../../data/programs.json';
+
+const program = programsData['data-science-ai'];
+const { metaTitle, hero } = program;
 ---
 
 <!DOCTYPE html>
@@ -9,7 +12,7 @@ import Footer from '../../components/Footer.astro';
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Data Science &amp; AI Architect | Sky States Career Acceleration</title>
+<title>{metaTitle}</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -93,8 +96,8 @@ import Footer from '../../components/Footer.astro';
 <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
 <div class="z-10">
 <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Career Acceleration Program</span>
-<h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight">Data Science &amp; AI Architect</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">Skyrocket your analytical career with our elite immersive program. Master the architecture of tomorrow's intelligence through <strong>live instructor-led weekend sessions</strong>.</p>
+<h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
 <div class="flex items-center gap-3 mb-10 text-primary font-bold">
 <span class="material-symbols-outlined">calendar_today</span>
 <span>Enrollment open for Q3 Weekend Cohort</span>

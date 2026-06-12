@@ -6,7 +6,12 @@
     "location": "San Francisco, CA (Hybrid)",
     "salary": "$180,000 - $220,000",
     "description": "Lead design and deployment of large language model architectures for fraud prevention and financial analysis pipelines.",
-    "tags": ["Python", "PyTorch", "LLMs", "MLOps"]
+    "tags": [
+      "Python",
+      "PyTorch",
+      "LLMs",
+      "MLOps"
+    ]
   },
   {
     "id": "job-2",
@@ -15,7 +20,12 @@
     "location": "Los Gatos, CA (Remote)",
     "salary": "$210,000 - $250,000",
     "description": "Architect multi-region Kubernetes clusters and design high-availability disaster recovery topologies on AWS.",
-    "tags": ["Kubernetes", "AWS", "Terraform", "Go"]
+    "tags": [
+      "Kubernetes",
+      "AWS",
+      "Terraform",
+      "Go"
+    ]
   },
   {
     "id": "job-3",
@@ -24,6 +34,11 @@
     "location": "Redmond, WA (On-site)",
     "salary": "$175,000 - $205,000",
     "description": "Proactively identify infrastructure security risks and implement zero-trust access management frameworks.",
-    "tags": ["Zero-Trust", "IAM", "Azure", "Threat Detection"]
+    "tags": [
+      "Zero-Trust",
+      "IAM",
+      "Azure",
+      "Threat Detection"
+    ]
   }
 ]

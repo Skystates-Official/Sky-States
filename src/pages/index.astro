@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import homepageData from '../data/homepage.json';
+
+const { hero, trust_bar, about, pricing } = homepageData;
 ---
 
 <!DOCTYPE html>
@@ -84,18 +87,14 @@ import Footer from '../components/Footer.astro';
 <span class="material-symbols-outlined text-sm">verified</span>
 <span class="text-label-sm font-label-sm uppercase tracking-wider">US Registered Company</span>
 </div>
-<h1 class="font-headline-xl text-3xl md:text-headline-xl text-on-surface leading-tight">
-                Sky States is a US-registered Career Acceleration Platform <br/><span class="text-primary italic">for senior professionals.</span>
+<h1 class="font-headline-xl text-3xl md:text-headline-xl text-on-surface leading-tight" set:html={hero.headline}>
 </h1>
 <p class="font-body-lg text-lg md:text-body-lg text-on-surface-variant max-w-lg">
-                We provide live, instructor-led training and active placement support for career transitions into Data Science, Cyber Security, and DevOps.
-            </p>
+    {hero.description}
+</p>
 <div class="flex flex-col sm:flex-row gap-4 mt-4">
-<button class="bg-primary px-8 py-4 rounded-xl text-on-primary font-label-md text-lg shadow-xl hover:translate-y-[-2px] transition-all">
-                    Book a Free Career Consultation
-                </button>
-<a class="flex items-center justify-center px-8 py-4 rounded-xl text-primary font-label-md text-lg border-2 border-primary-fixed hover:bg-primary-fixed/10 transition-all" href="https://skyreviews.us" target="_blank">
-                    Read Student Stories
+<a class="flex items-center justify-center px-8 py-4 rounded-xl text-primary font-label-md text-lg border-2 border-primary-fixed hover:bg-primary-fixed/10 transition-all" href={hero.button_url} target="_blank">
+    {hero.button_text}
 </a>
 </div>
 </div>
@@ -111,15 +110,12 @@ Your browser does not support the video tag.
 <div class="w-full bg-surface-container-low py-6 border-y border-outline-variant/20 mt-12">
 <div class="max-w-7xl mx-auto px-4 text-center">
 <p class="text-on-surface-variant font-label-sm tracking-wide flex flex-wrap justify-center items-center gap-4 md:gap-8 opacity-80">
-<span>US Registered Company</span>
-<span class="hidden md:inline opacity-30">|</span>
-<span>Microsoft DP-900 Preparation</span>
-<span class="hidden md:inline opacity-30">|</span>
-<span>Live Weekend Instruction</span>
-<span class="hidden md:inline opacity-30">|</span>
-<span>Active Placement Support</span>
-<span class="hidden md:inline opacity-30">|</span>
-<span>EMI Available</span>
+    {trust_bar.map((item, idx) => (
+        <>
+            <span>{item}</span>
+            {idx < trust_bar.length - 1 && <span class="hidden md:inline opacity-30">|</span>}
+        </>
+    ))}
 </p>
 </div>
 </div>
@@ -129,10 +125,10 @@ Your browser does not support the video tag.
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div class="flex flex-col gap-6">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface">Accelerate Your Transition with Expert Mentorship</h2>
+<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface">{about.title}</h2>
 <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                    At Sky States, we don't just teach courses; we build careers. Our platform is specifically designed for professionals looking to make a significant shift into high-demand tech roles through practical, project-based learning and direct access to industry experts.
-                </p>
+    {about.description}
+</p>
 <div class="grid grid-cols-2 gap-6 mt-4">
 <div class="flex flex-col gap-2">
 <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
@@ -183,7 +179,7 @@ Your browser does not support the video tag.
 <h3 class="font-headline-md text-xl mb-4">Data Scientist &amp; ML Engineer</h3>
 <p class="font-body-md text-on-surface-variant flex-grow mb-6">6-month program covering Python, ML, and GenAI. Microsoft DP-900 certification prep included.</p>
 <div class="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-<span class="font-headline-md text-primary">$2,999</span>
+<span class="font-headline-md text-primary">{pricing.amount}</span>
 <a href="/programs/data-science-ai" class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
@@ -195,7 +191,7 @@ Your browser does not support the video tag.
 <h3 class="font-headline-md text-xl mb-4">SOC Analyst &amp; Ethical Hacker</h3>
 <p class="font-body-md text-primary-fixed flex-grow mb-6">6-month intensive masterclass in network security and threat intel. DP-900 exam prep included.</p>
 <div class="flex justify-between items-center pt-6 border-t border-white/10">
-<span class="font-headline-md text-white">$2,999</span>
+<span class="font-headline-md text-white">{pricing.amount}</span>
 <a href="/programs/cyber-security" class="text-white font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
@@ -205,9 +201,9 @@ Your browser does not support the video tag.
 <span class="material-symbols-outlined text-primary text-3xl">cloud_queue</span>
 </div>
 <h3 class="font-headline-md text-xl mb-4">Cloud Architect &amp; DevOps Lead</h3>
-<p class="font-body-md text-on-surface-variant flex-grow mb-6">6-month deep dive into AWS/Azure and CI/CD automation. Includes DP-900 certification prep.</p>
+<p class="font-body-md text-on-surface-variant flex-grow mb-6">6-month deep dive into AWS/Azure and CLI/CD automation. Includes DP-900 certification prep.</p>
 <div class="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-<span class="font-headline-md text-primary">$2,999</span>
+<span class="font-headline-md text-primary">{pricing.amount}</span>
 <a href="/programs/devops" class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
@@ -326,10 +322,10 @@ Your browser does not support the video tag.
 <!-- TRANSPARENT PRICING -->
 <section class="py-section-gap bg-white">
 <div class="max-w-3xl mx-auto px-4 md:px-margin-desktop text-center">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-8">Transparent Pricing</h2>
+<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-8">{pricing.title}</h2>
 <div class="bg-surface-container-low rounded-[40px] p-8 md:p-12 ambient-shadow border border-primary/10">
-<div class="text-5xl font-headline-xl text-primary mb-4">$2,999</div>
-<p class="font-label-md text-on-surface-variant mb-8">All-inclusive program fee</p>
+<div class="text-5xl font-headline-xl text-primary mb-4">{pricing.amount}</div>
+<p class="font-label-md text-on-surface-variant mb-8">{pricing.subtitle}</p>
 <div class="space-y-4 text-left max-w-md mx-auto mb-10">
 <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">done</span> 6+ Months of Live Weekend Instruction</div>
 <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">done</span> Personal Career Advisor &amp; Mentorship</div>

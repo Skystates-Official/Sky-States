@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "badge": "Advisory Portal",
+    "title": "Advisory Support & Transparency",
+    "description": "Ensuring every candidate has the data they need for a confident transition into their global professional journey."
+  },
+  "questions": [
+    {
+      "q": "Is Sky States a legitimate US-registered company?",
+      "a": "Yes. Sky States operates as a legally compliant entity within the United States. We maintain active registration in Delaware and Wyoming, adhering to all federal and state-level regulatory standards for educational consulting and professional placement services."
+    },
+    {
+      "q": "Does Sky States collect SSNs?",
+      "a": "We prioritize your identity protection. Sky States does not collect Social Security Numbers (SSNs) at any stage of the initial application or onboarding process. All financial transactions are handled through PCI-compliant, encrypted third-party gateways."
+    },
+    {
+      "q": "How is the $2,999 investment justified?",
+      "a": "Average salary increase for transitioned candidates is 42% within 6 months of placement. Includes full access to Microsoft Professional Certification tracks valued at over $1,200."
+    },
+    {
+      "q": "What is the refund initiation process?",
+      "a": "We offer a transparent, tiered refund policy: 3-Day 'No Questions' Window for full refund, 14-Day pro-rated window. Email support@skystates.com to initiate."
+    }
+  ]
+}

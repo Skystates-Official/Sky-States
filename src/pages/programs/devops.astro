@@ -1,7 +1,10 @@
----
 import '../../styles/global.css';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import programsData from '../../data/programs.json';
+
+const program = programsData['devops'];
+const { metaTitle, hero } = program;
 ---
 
 <!DOCTYPE html>
@@ -9,7 +12,7 @@ import Footer from '../../components/Footer.astro';
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Cloud Architect &amp; DevOps Lead | Sky Editorial</title>
+<title>{metaTitle}</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -43,12 +46,8 @@ import Footer from '../../components/Footer.astro';
 <span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
                     ADVANCED CLOUD TRACK
                 </div>
-<h1 class="font-headline-xl text-headline-xl text-on-surface leading-tight">
-                    Cloud Infrastructure <span class="text-primary">Master</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                    Transcend traditional DevOps. Build resilient, hyper-scaled architectural legacies with the global standard in cloud orchestration and engineering excellence.
-                </p>
+<h1 class="font-headline-xl text-headline-xl text-on-surface leading-tight" set:html={hero.headline}></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">{hero.description}</p>
 <div class="flex flex-wrap gap-4 pt-4">
 <button class="px-10 py-4 bg-primary text-white rounded-xl font-label-md text-label-md shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all flex items-center gap-2">
                         Enroll Now <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>

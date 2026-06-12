@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import aboutData from '../data/about.json';
+
+const { hero, story, registry } = aboutData;
 ---
 
 <!DOCTYPE html>
@@ -43,13 +46,13 @@ import Footer from '../components/Footer.astro';
 <section class="relative w-full pt-20 pb-32 overflow-hidden upward-gradient">
 <div class="max-w-[1280px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-gutter relative z-10">
 <div class="space-y-6">
-<span class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm uppercase tracking-widest">Sky States Editorial</span>
-<h1 class="font-headline-xl text-headline-xl text-midnight leading-tight">Institutional Excellence in Tech Careers</h1>
-<p class="text-body-lg text-on-surface-variant max-w-xl">We provide the architectural foundation for career transformation, merging elite academic standards with rapid industrial deployment.</p>
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm uppercase tracking-widest">{hero.badge}</span>
+<h1 class="font-headline-xl text-headline-xl text-midnight leading-tight">{hero.title}</h1>
+<p class="text-body-lg text-on-surface-variant max-w-xl">{hero.description}</p>
 </div>
 <div class="hidden md:block relative h-[500px]">
 <div class="absolute inset-0 bg-white/20 rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,0,0,0.04)]">
-<img class="w-full h-full object-cover" data-alt="A serene, minimalist digital render of a wide-open sky during dawn, with soft gradients of blue and white. A single, thin architectural column rises towards the horizon, symbolizing growth and institutional stability. The lighting is diffused and high-key, creating an atmosphere of vast opportunity and professional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVXdCtcsLtrGBHQO8yoFH2I5xbRvNJxnjWo86QnFxf7dj5ZMz6CQB1EC5DjhpMk0zm95v3jo4nsgZuF4iH9bfL2DqHna1Xr7w8sqaBwiYQ44ZrLgmOT9Z6MrEw9yk0qG1L0UcHQzxMo76TCehTYyS3OXp0MMFhEdb54lBmgJNMMscRNWEVEBqEBtaHEh_8GCeNQXCAHE7idOhObUohs9zGpRy4p66-CD1gyqbXr4Ea6po7KEn0kW3j1FbZWl9IXvl378AB1Tl4Zvo"/>
+<img class="w-full h-full object-cover" data-alt="A serene, minimalist digital render of a wide-open sky during dawn." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVXdCtcsLtrGBHQO8yoFH2I5xbRvNJxnjWo86QnFxf7dj5ZMz6CQB1EC5DjhpMk0zm95v3jo4nsgZuF4iH9bfL2DqHna1Xr7w8sqaBwiYQ44ZrLgmOT9Z6MrEw9yk0qG1L0UcHQzxMo76TCehTYyS3OXp0MMFhEdb54lBmgJNMMscRNWEVEBqEBtaHEh_8GCeNQXCAHE7idOhObUohs9zGpRy4p66-CD1gyqbXr4Ea6po7KEn0kW3j1FbZWl9IXvl378AB1Tl4Zvo"/>
 </div>
 </div>
 </div>
@@ -58,18 +61,18 @@ import Footer from '../components/Footer.astro';
 <section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
 <div class="flex flex-col md:flex-row gap-gutter">
 <div class="md:w-1/3">
-<h2 class="font-headline-lg text-headline-lg text-primary">The Sky States<br/>Story</h2>
+<h2 class="font-headline-lg text-headline-lg text-primary">{story.title}</h2>
 </div>
 <div class="md:w-2/3 space-y-8">
-<p class="font-body-lg text-on-surface leading-relaxed">Founded at the intersection of professional development and industrial demand, Sky States was created to bridge a critical fracture: the widening gap between high-potential talent and the specific, high-velocity requirements of elite technology firms.</p>
+<p class="font-body-lg text-on-surface leading-relaxed">{story.paragraph}</p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 <div class="space-y-4">
-<h4 class="font-label-md text-primary">Our Vision</h4>
-<p class="text-body-md text-on-surface-variant">To serve as the global standard for career acceleration, ensuring every professional has access to the structural guidance needed to reach their peak potential.</p>
+<h4 class="font-label-md text-primary">{story.vision_title}</h4>
+<p class="text-body-md text-on-surface-variant">{story.vision_desc}</p>
 </div>
 <div class="space-y-4">
-<h4 class="font-label-md text-primary">Our Method</h4>
-<p class="text-body-md text-on-surface-variant">We utilize a "High-Touch, High-Trust" model, where institutional accountability meets personalized mentorship.</p>
+<h4 class="font-label-md text-primary">{story.method_title}</h4>
+<p class="text-body-md text-on-surface-variant">{story.method_desc}</p>
 </div>
 </div>
 </div>
@@ -81,8 +84,8 @@ import Footer from '../components/Footer.astro';
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
 <div class="space-y-4">
 <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Legal Entity Registry</h3>
-<p class="text-body-md text-on-surface-variant">Sky States is a legally registered corporation in the United States, operating under strict compliance with state and federal regulations.</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">{registry.legal_title}</h3>
+<p class="text-body-md text-on-surface-variant">{registry.legal_desc}</p>
 <div class="pt-4 border-t border-outline-variant">
 <p class="text-label-md text-on-surface">Delaware Division of Corporations</p>
 <p class="text-label-md text-on-surface">Wyoming Secretary of State</p>
@@ -90,30 +93,28 @@ import Footer from '../components/Footer.astro';
 </div>
 <div class="space-y-4">
 <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">location_on</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Physical Presence</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface">{registry.presence_title}</h3>
 <div class="space-y-6">
 <div>
 <p class="text-label-sm text-primary uppercase">Delaware HQ</p>
-<p class="text-body-md text-on-surface">8 The Green, Suite #14897</p>
-<p class="text-body-md text-on-surface">Dover, DE 19901</p>
+<p class="text-body-md text-on-surface">{registry.delaware_address}</p>
 </div>
 <div>
 <p class="text-label-sm text-primary uppercase">Wyoming Operations</p>
-<p class="text-body-md text-on-surface">30 N Gould St, Suite R</p>
-<p class="text-body-md text-on-surface">Sheridan, WY 82801</p>
+<p class="text-body-md text-on-surface">{registry.wyoming_address}</p>
 </div>
 </div>
 </div>
 <div class="space-y-4">
 <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">contact_support</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Institutional Contact</h3>
+<h3 class="font-headline-md text-headline-md text-on-surface">{registry.contact_title}</h3>
 <p class="text-body-md text-on-surface-variant">For official inquiries, compliance audits, or partnership proposals.</p>
 <div class="space-y-2 pt-4">
-<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href="tel:+18888102434">
-<span class="material-symbols-outlined text-sm">call</span> +1-888-810-2434
+<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href={`tel:${registry.phone.replace(/[^0-9+]/g, '')}`}>
+<span class="material-symbols-outlined text-sm">call</span> {registry.phone}
                             </a>
-<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href="mailto:info@skystates.us">
-<span class="material-symbols-outlined text-sm">mail</span> info@skystates.us
+<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href={`mailto:${registry.email}`}>
+<span class="material-symbols-outlined text-sm">mail</span> {registry.email}
                             </a>
 </div>
 </div>
@@ -190,10 +191,6 @@ import Footer from '../components/Footer.astro';
 <!-- Leadership & Authority (Editorial Standards) -->
 <section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
 <div class="flex flex-col md:flex-row items-center gap-gutter bg-primary-container p-16 rounded-xl text-on-primary-container overflow-hidden relative">
-<!-- Background Decorative Pattern -->
-<div class="absolute right-0 top-0 w-1/2 h-full opacity-10 pointer-events-none">
-<img class="w-full h-full object-cover" data-alt="A sophisticated abstract pattern of interconnected lines and dots, suggesting a global network or complex infrastructure. The style is clean and technical, using variations of primary blue on a darker background to evoke depth and institutional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXjtRA5MjEJYcImCm3AL2cT8v4ZiKM_ZHxWrAI_OkI9E3z-9xYA8KMNRBJPuKIEk9FQaUSFVfAw5LkvRuE-FGLWvGfP7bKFNiIJDqMVii25W796oiloidEJHwdJJuhD1X-QoCTQV6IdT-5hn29FzDBIybxx_qb_yMFlcHc3mxchL62F8GLetEuJ84Cx_vqQqTuWBlhVFWRNWrNP-ch0G9nd6sLhvMbmpE1_Le2HS-hzcXrzwltN0hUxB6KEX3ar8z2EkvEiOJ82Os"/>
-</div>
 <div class="relative z-10 md:w-1/2 space-y-6">
 <h2 class="font-headline-xl text-headline-xl text-white">Sky Editorial Standards</h2>
 <p class="text-body-lg text-blue-100 opacity-90">Every curriculum, mentor, and interaction is governed by the Sky Editorial Board. We ensure that our educational products meet the highest benchmarks of technical accuracy and professional relevance.</p>
@@ -205,75 +202,7 @@ import Footer from '../components/Footer.astro';
 </div>
 </div>
 </section>
-<!-- FAQ: Company Legitimacy -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap mb-section-gap">
-<div class="max-w-3xl mx-auto">
-<h2 class="font-headline-lg text-headline-lg text-on-surface text-center mb-12">Trust & Legitimacy FAQ</h2>
-<div class="space-y-6">
-<details class="group p-6 bg-surface-container rounded-xl border border-outline-variant transition-all hover:bg-surface-container-high">
-<summary class="flex justify-between items-center font-label-md text-on-surface cursor-pointer list-none">
-                            Is Sky States a registered US company?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-4 text-body-md text-on-surface-variant">
-                            Yes. Sky States Career Acceleration is a registered legal entity with filings in Delaware and Wyoming. We operate as a high-authority career consultancy and educational provider.
-                        </div>
-</details>
-<details class="group p-6 bg-surface-container rounded-xl border border-outline-variant transition-all hover:bg-surface-container-high">
-<summary class="flex justify-between items-center font-label-md text-on-surface cursor-pointer list-none">
-                            Where can I find your corporate headquarters?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-4 text-body-md text-on-surface-variant">
-                            Our primary administrative headquarters are located at 8 The Green, Dover, DE, and our operations center is situated at 30 N Gould St, Sheridan, WY.
-                        </div>
-</details>
-<details class="group p-6 bg-surface-container rounded-xl border border-outline-variant transition-all hover:bg-surface-container-high">
-<summary class="flex justify-between items-center font-label-md text-on-surface cursor-pointer list-none">
-                            How do I verify the credentials of Sky States mentors?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-4 text-body-md text-on-surface-variant">
-                            All Sky States mentors are vetted for a minimum of 7 years of industry experience. Detailed mentor profiles, including their LinkedIn credentials and career history, are available to enrolled candidates through the Institutional Portal.
-                        </div>
-</details>
-<details class="group p-6 bg-surface-container rounded-xl border border-outline-variant transition-all hover:bg-surface-container-high">
-<summary class="flex justify-between items-center font-label-md text-on-surface cursor-pointer list-none">
-                            What is the 'Institutional Registry'?
-                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-4 text-body-md text-on-surface-variant">
-                            The Institutional Registry is our internal database of corporate compliance records, available for review by partners and enterprise clients to ensure our operational transparency.
-                        </div>
-</details>
-</div>
-</div>
-</section>
 </main>
 <!-- Footer -->
 <Footer />
-<script>
-        // Micro-interactions for details elements
-        document.querySelectorAll('details').forEach((el) => {
-            el.addEventListener('toggle', (e) => {
-                if (el.open) {
-                    el.classList.add('shadow-lg');
-                } else {
-                    el.classList.remove('shadow-lg');
-                }
-            });
-        });
-
-        // Add scroll effect to TopAppBar
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('py-2');
-                nav.classList.remove('py-4');
-            } else {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-2');
-            }
-        });
-    </script>
 </body></html>

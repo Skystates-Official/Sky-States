@@ -1,115 +1,24 @@
 {
   "hero": {
-    "headline": "deAccelerate Your <br/>Legacy in <span class=\"italic text-primary-fixed-dim\">Technology</span>.",
-    "button1_text": "Book Free Career Consultation",
-    "button2_text": "Explore Programs",
-    "background_image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDEHAmLGmejsYAJmPjlY8Opm3zVPusez6LL0xdxcNuq7frjd5XnQDiMfV-iHRH45XhGl_gluqoP65ianRqs54QT_Kgb-vu5mQBQb9ozHrNZKWQHjxQAeimKfcUbdv8sDVKpUMGV-4gxotmmY0h5zL38u4Z3-MXUCY1e6H73mQ_8HoTcw2oIpjEFSWihmVn_wAlEfc6bW8w93CsQGXCLTyBB5m8-9io_ZnEtITp21EtVq-5fBiiwamNd1fUKaC-Nio5H0zUX3v76Aqk"
+    "headline": "Sky States is a US-registered Career Acceleration Platform <br/><span class=\"text-primary italic\">for senior professionals.</span>",
+    "description": "We provide live, instructor-led training and active placement support for career transitions into Data Science, Cyber Security, and DevOps.",
+    "button_text": "Read Student Stories",
+    "button_url": "https://skyreviews.us"
   },
-  "stats": [
-    {
-      "value": "10k+",
-      "label": "Careers Transformed"
-    },
-    {
-      "value": "3",
-      "label": "Specialized Tracks"
-    },
-    {
-      "value": "1-on-1",
-      "label": "Mentorship Model"
-    },
-    {
-      "value": "95%",
-      "label": "Placement Rate"
-    }
+  "trust_bar": [
+    "US Registered Company",
+    "Microsoft DP-900 Preparation",
+    "Live Weekend Instruction",
+    "Active Placement Support",
+    "EMI Available"
   ],
-  "tracks_section": {
-    "subtitle": "Elite Tracks",
-    "title": "The Architect’s Curriculum",
-    "tracks": [
-      {
-        "id": "01",
-        "icon": "analytics",
-        "title": "Data Science & AI",
-        "description": "Master the math and engineering behind the generative revolution. Move beyond APIs into true predictive architecture.",
-        "tags": [
-          "Neural Networks",
-          "Big Data Ops"
-        ]
-      },
-      {
-        "id": "02",
-        "icon": "shield",
-        "title": "Cyber Security",
-        "description": "Defensive and offensive security strategies for modern infrastructure. Learn to architect zero-trust environments.",
-        "tags": [
-          "Penetration Testing",
-          "Risk Mgmt"
-        ]
-      },
-      {
-        "id": "03",
-        "icon": "terminal",
-        "title": "DevOps",
-        "description": "Scale production with precision. Master CI/CD pipelines, Kubernetes, and cloud-native orchestration at the highest level.",
-        "tags": [
-          "K8S Mastery",
-          "Terraform"
-        ]
-      }
-    ]
+  "about": {
+    "title": "Accelerate Your Transition with Expert Mentorship",
+    "description": "At Sky States, we don't just teach courses; we build careers. Our platform is specifically designed for professionals looking to make a significant shift into high-demand tech roles through practical, project-based learning and direct access to industry experts."
   },
-  "advantage_section": {
-    "title": "The Sky States Advantage",
-    "elite_title": "Elite Path",
-    "elite_items": [
-      "Personalized roadmap based on current legacy assets.",
-      "1-on-1 mentorship with active FAANG architects.",
-      "Project-based learning on enterprise-grade codebases."
-    ],
-    "traditional_title": "Traditional Education",
-    "traditional_items": [
-      "Generic curriculum built for the masses.",
-      "Passive video lectures with no feedback."
-    ]
-  },
-  "evidence_section": {
-    "subtitle": "Evidence",
-    "title": "The Transformation Files",
-    "stories": [
-      {
-        "name": "Julian Vance",
-        "role": "Zero → Lead Cloud Engineer at Stripe",
-        "quote": "The structure at Sky States didn't just teach me tools; it taught me the architecture of thinking. I skipped four rungs on the career ladder in 8 months.",
-        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAuKJRzU-1t0Z0eBMY25tpHeZG0FUlYmW3FZiQDphz3ZOiAEhPXbAx05JKIdoS75-NepsG0CXmrsjEAoqrjFhGvFtB3xnYs8LnAzNnX5KxjiHq4BbZ5-UnK5K_JXrNb77-7Bwhd7CUgJN18ZY4hDf_mLmxgHG-hf_HeXmYfqXiFgwrUIzbelaPeAX3OrLszht3CM24sPM2uAM_yQG0lq4cBVepTttfNT00raw-o1mzXIwRK_ZH0k6KUusAZmojbB0PW0MdA5Bm9b5g"
-      },
-      {
-        "name": "Dr. Elena Thorne",
-        "role": "Academia → Principal AI Architect",
-        "quote": "Precision. That's the word. The mentorship refined my theoretical knowledge into high-precision industrial application.",
-        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDWUAYqTapHc9dZWg-H2439rl7DjLFmPfjNZKO6oblJ2Kml-6wZYb7F7aLbhME4HcoVF80XW0tNKI8NJuxpqN8L8oTeo1pGlFl113I5pig2ddZsYQIZtsf9iB9EAeeLurvjWUZFVDO3BZEe4xU-HtKvq22q3DaP84YVu-95sMUmL-C7EpWEmE9oBJUMbkqbZ6aclMZurmq3_nctMg20zT90Vmc0G-66w25uk_12MwArXEzgdto62IQgsZ1G_rISso19IAhVV7vjYW8"
-      }
-    ]
-  },
-  "mentors_section": {
-    "title": "Institutional Architects",
-    "mentors": [
-      {
-        "name": "Marcus Chen",
-        "role": "Lead Architect, ex-Netflix",
-        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQxlrSbYtrSwApsFa8UuKZb45cjMQNF95G_cH-rdurzPHdImT6vlDBNgxXQjMW8zaOKWfWU33BCom4H4taWYYobYgg3LCfc6gXaeW6W_H6NKXlQe2Ck2ZHbD3qMAPIUe7bmH7qQITdropoa3Nc7qhFgqJXshkpipbJxHzLRSCw55ju_HwG0RXEvrl-xJOUEoQ3nJeNY2BNc09YCN2z8HB8bOxpC72bsSVgKWfF8l3o2A3zIHbg_MSlsDvXQrzY-l7bcNoCoFwm6Q"
-      },
-      {
-        "name": "Sarah Lin",
-        "role": "VP Security, Stealth Unicorn",
-        "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBP4GVatJPyaRPlupspLqlVEP2bR262rDYGF6I7haAXEnFPiLnunBvJzNXFgHE57yKU6GZG7WKObtYbeniJALxiXOeTGzRwbBXQOW49Q55-w6yY318cIUNIYg6uCvyLSx0qgg4wrgK7ueuH_-MIK8XDmKov_xca5qY1npiPuHF3XwfMfiwZh-4GzK5huiF7cMHwn5bLIbQctaT3NMkuihvIO9Z7hMd7MPFFaxQ68vYy4ytfBXvocsguV3US0bJxzZ9UZ0QjY0rwR4o"
-      }
-    ]
-  },
-  "cta_section": {
-    "subtitle": "Exclusive Access",
-    "title": "Claim Your Professional Dominance.",
-    "description": "Limited to 15 consultations per month to ensure architectural integrity.",
-    "button_text": "Request Consultation"
+  "pricing": {
+    "title": "Transparent Pricing",
+    "amount": "$2,999",
+    "subtitle": "All-inclusive program fee"
   }
 }
