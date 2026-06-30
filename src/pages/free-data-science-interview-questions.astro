@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Data Science Q&A - Sky States</title>
+  <meta name="description" content="Access free high-yield data science interview questions, detailed answers, and career preparation materials from Sky States." />
+  <link rel="canonical" href="https://skystates.us/free-data-science-interview-questions" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <Header />
+  <main class="mt-20">
+    <!-- Hero Section -->
+    <section class="py-20 bg-surface-bright text-center px-6 border-b border-outline-variant/10">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md tracking-wide uppercase font-bold">Educational Resources</span>
+        <h1 class="font-headline-xl text-5xl font-bold text-on-background leading-tight">Data Science Interview Q&A</h1>
+        <p class="text-secondary font-body-lg max-w-2xl mx-auto">Master your next technical interview with these high-frequency Data Science and AI architectural questions compiled by FAANG instructors.</p>
+      </div>
+    </section>
+
+    <!-- Q&A Content -->
+    <section class="py-section-gap max-w-4xl mx-auto px-6">
+      <div class="space-y-8">
+        
+        <!-- Question 1 -->
+        <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/10 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-primary font-bold">
+            <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">Q1</span>
+            <h3 class="text-lg font-headline-md text-on-surface">What is the difference between bagging and boosting algorithms?</h3>
+          </div>
+          <div class="pl-11 text-secondary font-body-md leading-relaxed space-y-2">
+            <p><strong>Bagging (Bootstrap Aggregating)</strong> runs models in parallel on bootstrapped subsets of data. It aims to reduce variance (overfitting) by averaging results (e.g., Random Forest).</p>
+            <p><strong>Boosting</strong> runs models sequentially. Each new model focuses on correcting the errors made by previous models, aiming to reduce bias (e.g., XGBoost, Gradient Boosting).</p>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/10 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-primary font-bold">
+            <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">Q2</span>
+            <h3 class="text-lg font-headline-md text-on-surface">How do you handle class imbalance in machine learning datasets?</h3>
+          </div>
+          <div class="pl-11 text-secondary font-body-md leading-relaxed space-y-2">
+            <p>Class imbalance can be addressed through several strategies:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>Resampling:</strong> Oversampling the minority class (e.g., SMOTE) or undersampling the majority class.</li>
+              <li><strong>Algorithmic adjustments:</strong> Using class-weighted loss functions to penalize minority misclassifications heavier.</li>
+              <li><strong>Metrics Selection:</strong> Focusing on Precision, Recall, F1-Score, or ROC-AUC instead of raw accuracy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/10 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-primary font-bold">
+            <span class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-sm">Q3</span>
+            <h3 class="text-lg font-headline-md text-on-surface">Explain the vanishing gradient problem in deep neural networks.</h3>
+          </div>
+          <div class="pl-11 text-secondary font-body-md leading-relaxed space-y-2">
+            <p>The vanishing gradient problem occurs during backpropagation when gradients are scaled down multiplicatively by small values as they propagate backward through layers. This causes weights in early layers to update very slowly or not at all, hindering training.</p>
+            <p><strong>Solutions:</strong> Using non-saturating activation functions (like ReLU), implementing residual connections (ResNets), or using batch normalization.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>

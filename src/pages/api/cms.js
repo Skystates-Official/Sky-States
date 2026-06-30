@@ -50,7 +50,7 @@ export async function POST({ request, url }) {
   try {
     // Check auth cookie to ensure secure operations
     const cookieHeader = request.headers.get('cookie') || '';
-    if (!cookieHeader.includes('admin_session=authenticated')) {
+    if (!cookieHeader.includes('admin_session=sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a')) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
 

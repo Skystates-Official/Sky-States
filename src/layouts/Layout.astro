@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Logo from '../components/Logo.astro';
 
 interface Props {
   title?: string;
@@ -10,6 +11,8 @@ const {
   title = "Sky States | Accelerate Your Legacy in Technology", 
   description = "Institutional excellence in technology. Book a free career consultation and explore our elite tracks in AI, DevOps, and Cyber Security." 
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://skystates.us');
 ---
 
 <!DOCTYPE html>
@@ -19,6 +22,7 @@ const {
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
   
   <!-- SEO and OpenGraph -->
   <meta property="og:title" content={title} />
@@ -32,7 +36,9 @@ const {
   <!-- Top Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant">
     <div class="max-w-container-max mx-auto px-margin-mobile flex justify-between items-center h-20">
-      <a href="/" class="font-display-xl text-headline-md tracking-tighter font-bold text-primary">SKY STATES</a>
+      <a href="/" class="flex items-center">
+        <Logo class="h-8 w-auto" />
+      </a>
       <button class="p-2 text-primary" id="menu-btn" aria-label="Open menu">
         <span class="material-symbols-outlined">menu</span>
       </button>
@@ -80,7 +86,7 @@ const {
   <!-- Footer -->
   <footer class="bg-surface-container-lowest border-t border-outline-variant py-20 px-margin-mobile">
     <div class="space-y-12">
-      <span class="font-headline-md text-headline-md font-bold text-primary">SKY STATES</span>
+      <Logo class="h-10 w-auto" />
       <div class="grid grid-cols-2 gap-8">
         <div class="space-y-4">
           <p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Programs</p>

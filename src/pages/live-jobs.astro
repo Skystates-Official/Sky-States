@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import jobsData from '../data/jobs.json';
+
+const allTags = Array.from(new Set(jobsData.flatMap(job => job.tags || [])));
 ---
 
 <!DOCTYPE html>
@@ -12,6 +14,43 @@ import jobsData from '../data/jobs.json';
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Active Placements & Live Jobs | Sky States</title>
     <meta content="Explore active high-paying job opportunities available for graduates of Sky States career acceleration programs." name="description"/>
+    <link rel="canonical" href="https://skystates.us/live-jobs" />
+    
+    <meta property="og:title" content="Active Placements & Live Jobs | Sky States" />
+    <meta property="og:description" content="Explore active high-paying job opportunities available for graduates of Sky States career acceleration programs." />
+    <meta property="og:type" content="website" />
+
+    {jobsData.map(job => (
+        <script type="application/ld+json" set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "JobPosting",
+          "title": job.title,
+          "description": job.description || job.title,
+          "datePosted": "2026-06-12",
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": job.company,
+            "sameAs": "https://skystates.us"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": job.location,
+              "addressCountry": "US"
+            }
+          },
+          "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": {
+              "@type": "QuantitativeValue",
+              "value": job.salary,
+              "unitText": "YEAR"
+            }
+          }
+        })} />
+    ))}
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -33,6 +72,12 @@ import jobsData from '../data/jobs.json';
     <Header />
 
     <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
+        <!-- Breadcrumbs -->
+        <nav class="mb-6 text-[10px] font-bold uppercase tracking-widest text-secondary flex items-center gap-2">
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <span class="material-symbols-outlined text-[12px] opacity-40">chevron_right</span>
+            <span class="text-on-surface-variant">Live Placements</span>
+        </nav>
         <!-- Hero Header Section -->
         <div class="mb-12 rounded-xl p-12 upward-gradient flex flex-col gap-2 relative overflow-hidden shadow-sm">
             <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
@@ -59,9 +104,9 @@ import jobsData from '../data/jobs.json';
             </div>
             <div class="flex gap-2 flex-wrap" id="tags-filter-container">
                 <button class="px-4 py-2 text-xs font-bold uppercase bg-primary text-white rounded-full transition-all filter-tag-btn" onclick="filterByTag('all')">All Roles</button>
-                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Python')">Python</button>
-                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Kubernetes')">Kubernetes</button>
-                <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick="filterByTag('Zero-Trust')">Zero-Trust</button>
+                {allTags.map(tag => (
+                    <button class="px-4 py-2 text-xs font-bold uppercase bg-surface-container text-secondary rounded-full hover:bg-primary-fixed hover:text-primary transition-all filter-tag-btn" onclick={`filterByTag('${tag}')`}>{tag}</button>
+                ))}
             </div>
         </div>
 

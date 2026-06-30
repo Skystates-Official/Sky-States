@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Sky States</title>
+  <meta name="description" content="Read the Sky States privacy policy. Learn how we secure your data, protect student privacy, and enforce strict zero-SSN collection policies." />
+  <link rel="canonical" href="https://skystates.us/privacy-policy" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <Header />
+  <main class="mt-20">
+    <!-- Hero Section -->
+    <section class="py-20 bg-surface-bright text-center px-6 border-b border-outline-variant/10">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md tracking-wide uppercase font-bold">Data Trust</span>
+        <h1 class="font-headline-xl text-5xl font-bold text-on-background leading-tight">Privacy Policy</h1>
+        <p class="text-secondary font-body-lg max-w-2xl mx-auto">At Sky States, we hold student data security and privacy to institutional standards. Read our comprehensive policies below.</p>
+      </div>
+    </section>
+
+    <!-- Policy Content -->
+    <section class="py-section-gap max-w-4xl mx-auto px-6 space-y-12">
+      
+      <!-- Section 1: Security Commitment -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">lock</span>
+          1. Security Commitment & Non-Collection of SSNs
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          Sky States is committed to protecting your personal information. We enforce a strict policy regarding sensitive personal identifiers: <strong>Sky States does NOT collect, store, or process Social Security Numbers (SSN)</strong> or equivalent national identification numbers from our students or applicants.
+        </p>
+      </div>
+
+      <!-- Section 2: Data We Collect -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">database</span>
+          2. Information We Collect
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          We collect minimal personal details necessary to facilitate your training, career services, and billing:
+        </p>
+        <ul class="list-disc pl-6 text-secondary space-y-2">
+          <li><strong>Contact Information:</strong> Name, professional email address, phone number, and physical address.</li>
+          <li><strong>Academic & Professional History:</strong> Resume, LinkedIn URL, and academic/STEM background to tailor career placement.</li>
+          <li><strong>Billing Information:</strong> Payments are securely processed via certified, PCI-compliant third-party gateways (e.g., Stripe). Sky States does not store your credit card credentials on our servers.</li>
+        </ul>
+      </div>
+
+      <!-- Section 3: Screen Share and Live Labs -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">screen_share</span>
+          3. Screen Share & Live Class Interaction
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          During our live weekend instruction, interactive labs, and capstone project evaluations, students may be requested to share their screens. This is conducted solely for real-time pedagogical support, code debugging, and skills assessment. Screen sharing sessions are never recorded without explicit, prior student consent.
+        </p>
+      </div>
+
+      <!-- Section 4: Data Retention & Protection -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">shield</span>
+          4. Data Protection Standards
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          All data transmitted to or from the Sky States platform is encrypted in transit using industry-standard SSL/TLS technology. Access to student records is strictly restricted to authorized educational mentors and career services coordinators.
+        </p>
+      </div>
+
+      <!-- Section 5: Contact Our Privacy Team -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">contact_support</span>
+          5. Privacy Inquiries
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          For any questions, modifications, or deletion requests regarding your personal data records, please reach out directly to our privacy officer at <a href="mailto:info@skystates.us" class="text-primary font-semibold hover:underline">info@skystates.us</a>.
+        </p>
+      </div>
+
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>

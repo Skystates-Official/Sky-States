@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const professors = [
+  {
+    name: "Dr. Aris Thorne",
+    role: "Lead Faculty, AI & Deep Learning",
+    credentials: "Ph.D. in Computer Science (Stanford University) | Former Principal Scientist at Google DeepMind",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAuKJRzU-1t0Z0eBMY25tpHeZG0FUlYmW3FZiQDphz3ZOiAEhPXbAx05JKIdoS75-NepsG0CXmrsjEAoqrjFhGvFtB3xnYs8LnAzNnX5KxjiHq4BbZ5-UnK5K_JXrNb77-7Bwhd7CUgJN18ZY4hDf_mLmxgHG-hf_HeXmYfqXiFgwrUIzbelaPeAX3OrLszht3CM24sPM2uAM_yQG0lq4cBVepTttfNT00raw-o1mzXIwRK_ZH0k6KUusAZmojbB0PW0MdA5Bm9b5g",
+    bio: "Dr. Thorne has spent over 15 years pioneering neural network architectures. At Google DeepMind, he led research teams developing core components of state-of-the-art LLMs. At Sky States, he leads our advanced AI weekend cohort, guiding senior developers into machine learning leadership roles.",
+    specialties: ["Large Language Models", "Neural Architecture", "TensorFlow & PyTorch"]
+  },
+  {
+    name: "Sarah Jenkins, CISSP",
+    role: "Director of Cybersecurity Studies",
+    credentials: "M.S. in Information Security (MIT) | Former Chief Information Security Officer at Stripe",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDWUAYqTapHc9dZWg-H2439rl7DjLFmPfjNZKO6oblJ2Kml-6wZYb7F7aLbhME4HcoVF80XW0tNKI8NJuxpqN8L8oTeo1pGlFl113I5pig2ddZsYQIZtsf9iB9EAeeLurvjWUZFVDO3BZEe4xU-HtKvq22q3DaP84YVu-95sMUmL-C7EpWEmE9oBJUMbkqbZ6aclMZurmq3_nctMg20zT90Vmc0G-66w25uk_12MwArXEzgdto62IQgsZ1G_rISso19IAhVV7vjYW8",
+    bio: "Sarah is a distinguished security strategist with a focus on high-volume financial transactions. She has architected defense paradigms protecting billions in transaction value and serves on corporate governance boards. She teaches security risk architecture and threat simulation.",
+    specialties: ["Zero Trust Architecture", "Cryptographic Protocols", "Board-Level Risk Mitigation"]
+  },
+  {
+    name: "David Chen",
+    role: "Principal Fellow, Cloud & DevOps Infrastructure",
+    credentials: "B.S. in Computer Engineering (UC Berkeley) | Former Principal Cloud Architect at Netflix",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQxlrSbYtrSwApsFa8UuKZb45cjMQNF95G_cH-rdurzPHdImT6vlDBNgxXQjMW8zaOKWfWU33BCom4H4taWYYobYgg3LCfc6gXaeW6W_H6NKXlQe2Ck2ZHbD3qMAPIUe7bmH7qQITdropoa3Nc7qhFgqJXshkpipbJxHzLRSCw55ju_HwG0RXEvrl-xJOUEoQ3nJeNY2BNc09YCN2z8HB8bOxpC72bsSVgKWfF8l3o2A3zIHbg_MSlsDvXQrzY-l7bcNoCoFwm6Q",
+    bio: "David is an open-source contributor and high-availability infrastructure expert. Having designed cloud orchestration fabrics at Netflix during their rapid global scaling, he brings deep knowledge of container systems, serverless networks, and CI/CD automation to our senior students.",
+    specialties: ["Kubernetes & Orchestration", "GitOps & Infrastructure as Code", "Chaos Engineering"]
+  }
+];
+---
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty & Mentors | Sky States</title>
+  <meta name="description" content="Meet the elite Sky States faculty. Learn from Stanford and MIT graduates, former FAANG principal scientists, and C-level tech executives." />
+  <link rel="canonical" href="https://skystates.us/instructors" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .upward-gradient {
+      background: linear-gradient(180deg, #d3e2ed 0%, #f9f9f9 100%);
+    }
+    .mentor-card-shadow {
+      box-shadow: 0 12px 40px -12px rgba(15, 29, 37, 0.06);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <Header />
+  
+  <main class="mt-20">
+    <!-- Hero Banner -->
+    <section class="upward-gradient pt-24 pb-16 px-6">
+      <div class="max-w-6xl mx-auto text-center space-y-6">
+        <div class="flex justify-center mb-4">
+          <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Instructors & Mentors' }]} />
+        </div>
+        <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-label-sm uppercase tracking-widest font-bold">Academic Merit & Industry Authority</span>
+        <h1 class="font-headline-xl text-5xl font-bold text-on-background leading-tight">Elite Faculty & Mentors</h1>
+        <p class="text-secondary font-body-lg max-w-2xl mx-auto">At Sky States, we reject passive learning. Our courses are designed and delivered live by industry leaders who have engineered the systems you are learning to master.</p>
+      </div>
+    </section>
+
+    <!-- Faculty Roster -->
+    <section class="py-20 px-6 bg-white">
+      <div class="max-w-6xl mx-auto space-y-16">
+        {professors.map(prof => (
+          <div class="flex flex-col lg:flex-row gap-12 items-center p-8 bg-surface-container-lowest border border-outline-variant/30 rounded-3xl mentor-card-shadow hover:scale-[1.01] transition-transform duration-500">
+            <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-2xl overflow-hidden flex-shrink-0 bg-surface-container">
+              <img src={prof.image} alt={prof.name} class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 space-y-4">
+              <div>
+                <span class="text-primary font-bold text-xs uppercase tracking-widest">{prof.role}</span>
+                <h2 class="font-headline-lg text-3xl font-bold text-on-background mt-1">{prof.name}</h2>
+                <p class="text-secondary font-body-sm text-sm italic mt-1.5">{prof.credentials}</p>
+              </div>
+              <p class="text-on-surface-variant font-body-md leading-relaxed">{prof.bio}</p>
+              
+              <div class="pt-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-secondary">Core Expertise:</span>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {prof.specialties.map(spec => (
+                    <span class="px-3 py-1 text-xs font-semibold bg-surface border border-outline-variant/20 rounded-full text-secondary">
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Trust Panel / Advisory Council -->
+    <section class="py-16 bg-surface-container-low border-y border-outline-variant/10 px-6 text-center">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <h3 class="font-headline-md text-2xl font-bold text-on-background">Live Interactive Weekend Labs</h3>
+        <p class="text-secondary font-body-md max-w-2xl mx-auto">All training sessions are fully interactive, live, and led directly by our primary faculty. You will participate in live code walk-throughs, collaborative defense scenarios, and structural system design evaluations.</p>
+        <a href="/contact-us" class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white hover:bg-opacity-95 rounded-xl font-label-md text-xs uppercase tracking-wider font-bold shadow-md transition-all mt-4">
+          <span>Speak With a Mentor</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</body>
+</html>

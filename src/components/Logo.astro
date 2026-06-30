@@ -1,0 +1,13 @@
+---
+// src/components/Logo.astro
+interface Props {
+  class?: string;
+}
+
+const { class: className = "h-8 w-auto" } = Astro.props;
+---
+<img 
+  src="/admin/file.svg" 
+  alt="Sky States Logo" 
+  class={className}
+/>

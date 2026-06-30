@@ -12,8 +12,9 @@ const { hero, trust_bar, about, pricing } = homepageData;
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sky States | Career Acceleration &amp; Transition Platform</title>
+<title>Sky States | Accelerate Your Legacy in Technology</title>
 <meta content="US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support." name="description"/>
+<link rel="canonical" href="https://skystates.us" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -25,6 +26,13 @@ const { hero, trust_bar, about, pricing } = homepageData;
         .ambient-shadow {
             box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
         }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee {
+            animation: marquee 30s linear infinite;
+        }
     </style>
 <script type="application/ld+json">
     {
@@ -32,7 +40,7 @@ const { hero, trust_bar, about, pricing } = homepageData;
       "@type": "Organization",
       "name": "Sky States",
       "url": "https://skystates.us",
-      "logo": "https://skystates.us/logo.png",
+      "logo": "https://skystates.us/logo.svg",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+1-888-810-2434",
@@ -50,7 +58,7 @@ const { hero, trust_bar, about, pricing } = homepageData;
         "name": "Is Sky States a legitimate company?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Sky States is a US-registered Career Acceleration Platform based in Wyoming and Delaware, focusing on senior professional career transitions."
+          "text": "Yes, Sky States is a US-registered Career Acceleration Platform based in Wyoming and Delaware, focusing on career transitions for ambitious individuals at all experience levels."
         }
       }, {
         "@type": "Question",
@@ -72,7 +80,8 @@ const { hero, trust_bar, about, pricing } = homepageData;
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "During live labs and project evaluations, screen sharing may be used to provide direct instructor feedback and support."
-        }]
+        }
+      }]
     }
     </script>
 </head>
@@ -85,15 +94,15 @@ const { hero, trust_bar, about, pricing } = homepageData;
 <div class="flex flex-col gap-6">
 <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-fixed text-on-primary-fixed rounded-full w-fit">
 <span class="material-symbols-outlined text-sm">verified</span>
-<span class="text-label-sm font-label-sm uppercase tracking-wider">US Registered Company</span>
+<span class="text-label-sm font-bold uppercase tracking-wider">US Registered Company</span>
 </div>
-<h1 class="font-headline-xl text-3xl md:text-headline-xl text-on-surface leading-tight" set:html={hero.headline}>
+<h1 class="text-headline-xl text-on-surface leading-tight" set:html={hero.headline}>
 </h1>
-<p class="font-body-lg text-lg md:text-body-lg text-on-surface-variant max-w-lg">
+<p class="text-body-lg text-on-surface-variant max-w-lg">
     {hero.description}
 </p>
 <div class="flex flex-col sm:flex-row gap-4 mt-4">
-<a class="flex items-center justify-center px-8 py-4 rounded-xl text-primary font-label-md text-lg border-2 border-primary-fixed hover:bg-primary-fixed/10 transition-all" href={hero.button_url} target="_blank">
+<a class="flex items-center justify-center px-8 py-4 rounded-xl text-primary text-label-md border-2 border-primary-fixed hover:bg-primary-fixed/10 transition-all" href={hero.button_url} target="_blank">
     {hero.button_text}
 </a>
 </div>
@@ -101,7 +110,7 @@ const { hero, trust_bar, about, pricing } = homepageData;
 <div class="relative group">
 <div class="absolute -inset-4 bg-primary-fixed/20 blur-3xl rounded-full"></div>
 <video autoplay loop muted playsinline class="relative rounded-3xl ambient-shadow w-full h-[400px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-[1.01]">
-<source src="/admin/home%20page%20hero%20section.mp4" type="video/mp4"/>
+<source src="/assets/videos/home%20page%20hero%20section.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
 </div>
@@ -125,8 +134,8 @@ Your browser does not support the video tag.
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div class="flex flex-col gap-6">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface">{about.title}</h2>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<h2 class="text-headline-lg text-on-surface">{about.title}</h2>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
     {about.description}
 </p>
 <div class="grid grid-cols-2 gap-6 mt-4">
@@ -134,31 +143,34 @@ Your browser does not support the video tag.
 <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">work</span>
 </div>
-<span class="font-label-md text-on-surface">Real Project Exposure</span>
+<span class="text-label-md text-on-surface font-semibold">Real Project Exposure</span>
 </div>
 <div class="flex flex-col gap-2">
 <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">assignment_turned_in</span>
 </div>
-<span class="font-label-md text-on-surface">Active Placement Help</span>
+<span class="text-label-md text-on-surface font-semibold">Active Placement Help</span>
 </div>
 <div class="flex flex-col gap-2">
 <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">groups</span>
 </div>
-<span class="font-label-md text-on-surface">Live Expert Sessions</span>
+<span class="text-label-md text-on-surface font-semibold">Live Expert Sessions</span>
 </div>
 <div class="flex flex-col gap-2">
 <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
 <span class="material-symbols-outlined">person_pin</span>
 </div>
-<span class="font-label-md text-on-surface">One-on-One Support</span>
+<span class="text-label-md text-on-surface font-semibold">One-on-One Support</span>
 </div>
 </div>
 </div>
 <div class="relative">
-<div class="aspect-video bg-white rounded-3xl ambient-shadow overflow-hidden border border-outline-variant/30 flex items-center justify-center">
-<img alt="Learning Environment" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5aVH1e5_rupMo08HJ0pjBB36nvrfwIhK39PkI0GIqzOdl9S-u8qH5uqsJQHC8F9GICSh9Aw3QqUJFDGNt8fSIukEWWpkMAFbfaoWxK00Sa-lyLTgpsg4KzWmSmPAm9XwKjt9XYRrMrmsFYlP8_tAveDI2ra7wbC7Nisg3MqrU8tEWKZTBFo4XV67t-dmvIA8hB7BWPx6jHKk05kI13iwVt7nRsKdFn3axjAYh9zuFudiIF9Fqaz8ghCn4E7PZt4AHM9a3QiCSUxw"/>
+<div class="aspect-video bg-white rounded-3xl ambient-shadow overflow-hidden border border-outline-variant/30 flex items-center justify-center relative">
+<video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+<source src="/admin/Sky_States_career_acceleration_p…_202606270007.mp4" type="video/mp4"/>
+Your browser does not support the video tag.
+</video>
 </div>
 </div>
 </div>
@@ -167,7 +179,7 @@ Your browser does not support the video tag.
 <!-- Popular Programs Section -->
 <section class="py-section-gap max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-4">Instructor-Led Programs</h2>
+<h2 class="text-headline-lg text-on-surface mb-4">Instructor-Led Programs</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto">Master high-demand skills with 6+ months of intensive training and certification prep.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -176,11 +188,11 @@ Your browser does not support the video tag.
 <div class="w-14 h-14 rounded-xl bg-primary-fixed/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
 </div>
-<h3 class="font-headline-md text-xl mb-4">Data Scientist &amp; ML Engineer</h3>
-<p class="font-body-md text-on-surface-variant flex-grow mb-6">6-month program covering Python, ML, and GenAI. Microsoft DP-900 certification prep included.</p>
+<h3 class="text-headline-md mb-4">Data Scientist &amp; ML Engineer</h3>
+<p class="text-body-md text-on-surface-variant flex-grow mb-6">6-month program covering Python, ML, and GenAI. Microsoft DP-900 certification prep included.</p>
 <div class="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-<span class="font-headline-md text-primary">{pricing.amount}</span>
-<a href="/programs/data-science-ai" class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
+<span class="text-headline-md text-primary">{pricing.amount}</span>
+<a href="/programs/data-science-ai" class="text-primary text-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
 <!-- Card 2 -->
@@ -188,11 +200,11 @@ Your browser does not support the video tag.
 <div class="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-white text-3xl">security</span>
 </div>
-<h3 class="font-headline-md text-xl mb-4">SOC Analyst &amp; Ethical Hacker</h3>
-<p class="font-body-md text-primary-fixed flex-grow mb-6">6-month intensive masterclass in network security and threat intel. DP-900 exam prep included.</p>
+<h3 class="text-headline-md mb-4">SOC Analyst &amp; Ethical Hacker</h3>
+<p class="text-body-md text-primary-fixed flex-grow mb-6">6-month intensive masterclass in network security and threat intel. DP-900 exam prep included.</p>
 <div class="flex justify-between items-center pt-6 border-t border-white/10">
-<span class="font-headline-md text-white">{pricing.amount}</span>
-<a href="/programs/cyber-security" class="text-white font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
+<span class="text-headline-md text-white">{pricing.amount}</span>
+<a href="/programs/cyber-security" class="text-white text-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
 <!-- Card 3 -->
@@ -200,11 +212,11 @@ Your browser does not support the video tag.
 <div class="w-14 h-14 rounded-xl bg-primary-fixed/30 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-primary text-3xl">cloud_queue</span>
 </div>
-<h3 class="font-headline-md text-xl mb-4">Cloud Architect &amp; DevOps Lead</h3>
-<p class="font-body-md text-on-surface-variant flex-grow mb-6">6-month deep dive into AWS/Azure and CLI/CD automation. Includes DP-900 certification prep.</p>
+<h3 class="text-headline-md mb-4">Cloud Architect &amp; DevOps Lead</h3>
+<p class="text-body-md text-on-surface-variant flex-grow mb-6">6-month deep dive into AWS/Azure and CLI/CD automation. Includes DP-900 certification prep.</p>
 <div class="flex justify-between items-center pt-6 border-t border-outline-variant/10">
-<span class="font-headline-md text-primary">{pricing.amount}</span>
-<a href="/programs/devops" class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
+<span class="text-headline-md text-primary">{pricing.amount}</span>
+<a href="/programs/devops" class="text-primary text-label-md flex items-center gap-1 hover:gap-2 transition-all">Details <span class="material-symbols-outlined">arrow_forward</span></a>
 </div>
 </div>
 </div>
@@ -214,10 +226,10 @@ Your browser does not support the video tag.
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
 <div class="max-w-2xl">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-4">Verified Student Outcomes</h2>
-<p class="font-body-md text-on-surface-variant">Real stories from professionals who successfully transitioned their careers through our platform.</p>
+<h2 class="text-headline-lg text-on-surface mb-4">Verified Student Outcomes</h2>
+<p class="text-body-md text-on-surface-variant">Real stories from professionals who successfully transitioned their careers through our platform.</p>
 </div>
-<a class="text-primary font-label-md flex items-center gap-2" href="https://skyreviews.us" target="_blank">Read more at skyreviews.us <span class="material-symbols-outlined">open_in_new</span></a>
+<a class="text-primary text-label-md flex items-center gap-2" href="https://skyreviews.us" target="_blank">Read more at skyreviews.us <span class="material-symbols-outlined">open_in_new</span></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 <!-- Testimonial Card 1 -->
@@ -225,7 +237,7 @@ Your browser does not support the video tag.
 <div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
 <p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Achieved Data Scientist role at a leading FinTech firm after completing the DS&amp;AI Program. The project work was vital."</p>
 <div class="mt-4">
-<div class="font-label-md text-on-surface">Andrew C.</div>
+<div class="text-label-md text-on-surface font-semibold">Andrew C.</div>
 <div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
 </div>
 </div>
@@ -234,7 +246,7 @@ Your browser does not support the video tag.
 <div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
 <p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Successfully pivoted to Cyber Security Lead at a healthcare provider. The placement support was unmatched."</p>
 <div class="mt-4">
-<div class="font-label-md text-on-surface">Ahmed H.</div>
+<div class="text-label-md text-on-surface font-semibold">Ahmed H.</div>
 <div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
 </div>
 </div>
@@ -243,7 +255,7 @@ Your browser does not support the video tag.
 <div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
 <p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Transitioned to Cloud Engineer from a traditional IT role. Live sessions helped me master complex CI/CD pipelines."</p>
 <div class="mt-4">
-<div class="font-label-md text-on-surface">Kevin R.</div>
+<div class="text-label-md text-on-surface font-semibold">Kevin R.</div>
 <div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
 </div>
 </div>
@@ -254,12 +266,12 @@ Your browser does not support the video tag.
 <section class="py-section-gap bg-white">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-4">What Sky States Is — And Is Not</h2>
+<h2 class="text-headline-lg text-on-surface mb-4">What Sky States Is — And Is Not</h2>
 <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="bg-surface-container-low p-8 rounded-3xl border-l-8 border-error">
-<h3 class="font-headline-md text-error mb-6 flex items-center gap-2">
+<h3 class="text-headline-md text-error mb-6 flex items-center gap-2">
 <span class="material-symbols-outlined">cancel</span> Common Assumptions
             </h3>
 <ul class="space-y-4 text-on-surface-variant">
@@ -270,7 +282,7 @@ Your browser does not support the video tag.
 </ul>
 </div>
 <div class="bg-primary-container/10 p-8 rounded-3xl border-l-8 border-primary">
-<h3 class="font-headline-md text-primary mb-6 flex items-center gap-2">
+<h3 class="text-headline-md text-primary mb-6 flex items-center gap-2">
 <span class="material-symbols-outlined">check_circle</span> The Facts
             </h3>
 <ul class="space-y-4 text-on-surface-variant">
@@ -287,45 +299,242 @@ Your browser does not support the video tag.
 <section class="py-section-gap bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-4">Your Roadmap to Success</h2>
+<h2 class="text-headline-lg text-on-surface mb-4">Your Roadmap to Success</h2>
 <p class="text-on-surface-variant">A clear, 5-step process from consultation to your new career.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
 <div class="p-6 text-center">
 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">1</div>
-<h4 class="font-label-md mb-2">Intro Session</h4>
+<h4 class="text-label-md mb-2 font-semibold">Intro Session</h4>
 <p class="text-sm text-on-surface-variant">$99 consultation to assess your profile and goals.</p>
 </div>
 <div class="p-6 text-center">
 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">2</div>
-<h4 class="font-label-md mb-2">Enrollment</h4>
+<h4 class="text-label-md mb-2 font-semibold">Enrollment</h4>
 <p class="text-sm text-on-surface-variant">Access the platform, prep materials, and advisor.</p>
 </div>
 <div class="p-6 text-center">
 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">3</div>
-<h4 class="font-label-md mb-2">Live Training</h4>
+<h4 class="text-label-md mb-2 font-semibold">Live Training</h4>
 <p class="text-sm text-on-surface-variant">6 months of weekend live labs and certification prep.</p>
 </div>
 <div class="p-6 text-center">
 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">4</div>
-<h4 class="font-label-md mb-2">Project Phase</h4>
+<h4 class="text-label-md mb-2 font-semibold">Project Phase</h4>
 <p class="text-sm text-on-surface-variant">Build a production-grade portfolio with experts.</p>
 </div>
 <div class="p-6 text-center">
 <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">5</div>
-<h4 class="font-label-md mb-2">Placement</h4>
+<h4 class="text-label-md mb-2 font-semibold">Placement</h4>
 <p class="text-sm text-on-surface-variant">Resume building, interview prep, and active referrals.</p>
 </div>
 </div>
 </div>
 </section>
+
+<!-- EXPERIENCE SKY STATES (Immersive Documentary Preview) -->
+<section id="experience-sky-states" class="py-section-gap bg-surface-bright dark:bg-background relative overflow-hidden transition-all duration-1000">
+  <!-- Soft Ambient Background Gradients -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-fixed/10 dark:bg-primary-container/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
+    <!-- Header: Editorial Typography -->
+    <div class="max-w-3xl mb-16 md:mb-24">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/10 dark:bg-primary-fixed/20 border border-primary/20 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-xs uppercase tracking-widest text-primary dark:text-primary-fixed-dim font-bold">Documentary Preview</span>
+      </div>
+      <h2 class="text-headline-xl text-on-surface tracking-tight leading-tight mb-6">
+        Experience Sky States
+      </h2>
+      <p class="text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">
+        Take a look inside our classrooms, learning platform, mentorship sessions, and daily operations. Reduce the hesitation and see exactly how real careers are accelerated.
+      </p>
+    </div>
+
+    <!-- Layout: Editorial Grid (Desktop: 12 Cols, Mobile/Tablet Asymmetrical Stack) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <!-- Left Column: Featured Video & Primary Storytelling (6 Cols) -->
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Main Cinematic Video Card -->
+        <div class="group relative rounded-3xl overflow-hidden bg-black aspect-video shadow-2xl border border-outline-variant/15 dark:border-white/10 transition-all duration-500 hover:scale-[1.005] hover:shadow-primary/5 cursor-pointer" id="play-video-trigger">
+          <!-- Autoplay Muted Loop Preview -->
+          <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" preload="none" id="preview-video">
+            <source src="/admin/home%20page%20hero%20section.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Interactive Vignette Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 flex flex-col justify-between p-6 md:p-8">
+            <!-- Top Badge / Category Indicators -->
+            <div class="flex justify-between items-start">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-semibold">
+                <span class="material-symbols-outlined text-[14px] text-green-400">check_circle</span> Live Session
+              </span>
+              <span class="text-xs font-mono text-white/60 tracking-wider">01:45 PREVIEW</span>
+            </div>
+
+            <!-- Play & Title Container -->
+            <div class="flex items-center gap-4 md:gap-6 mt-auto">
+              <!-- Play Button (Glassmorphism & Glow) -->
+              <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-lg shadow-black/20 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                <span class="material-symbols-outlined text-3xl font-variation-settings-fill select-none ml-1">play_arrow</span>
+              </div>
+              <div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-primary-fixed transition-colors">
+                  Inside the Weekend Classroom
+                </h3>
+                <p class="text-xs md:text-sm text-white/70">
+                  Watch live instructor teaching & student code reviews.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile/Tablet Storytelling Carousel Indicators / Mobile layout spacer -->
+        <div class="hidden lg:grid grid-cols-2 gap-6">
+          <div class="bg-surface-container-low dark:bg-surface-container/30 border border-outline-variant/10 p-6 rounded-2xl relative overflow-hidden group hover:border-primary/20 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
+            <span class="material-symbols-outlined text-primary dark:text-primary text-3xl mb-4">school</span>
+            <h4 class="font-bold text-on-surface mb-2">Live Class Experience</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Every weekend, master complex concepts under live guidance. No pre-recorded passive slides.
+            </p>
+          </div>
+          <div class="bg-surface-container-low dark:bg-surface-container/30 border border-outline-variant/10 p-6 rounded-2xl relative overflow-hidden group hover:border-primary/20 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
+            <span class="material-symbols-outlined text-primary dark:text-primary text-3xl mb-4">support_agent</span>
+            <h4 class="font-bold text-on-surface mb-2">Real Office Operations</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Our support team, mentors, and placement counselors operate transparently out of US hubs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Storytelling Photo Composition & Floating Cards (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6 lg:mt-12 relative">
+        <!-- Floating Glassmorphic Details Card -->
+        <div class="absolute -top-12 -left-12 hidden xl:block z-20 w-64 bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer" id="floating-card-lms">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+            <span class="text-xs font-mono tracking-wider text-on-surface/80">✔ LMS Dashboard</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Real-time labs, gradebooks, and mentor appointment schedules showing actual student feedback loops.
+          </p>
+        </div>
+
+        <!-- Asymmetric Composite Image Grid -->
+        <div class="space-y-6">
+          <!-- Image 1: Main Storytelling Photo -->
+          <div class="relative group rounded-3xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-xl cursor-pointer">
+            <img 
+              alt="Mentor teaching a student in a physical lab setting" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5aVH1e5_rupMo08HJ0pjBB36nvrfwIhK39PkI0GIqzOdl9S-u8qH5uqsJQHC8F9GICSh9Aw3QqUJFDGNt8fSIukEWWpkMAFbfaoWxK00Sa-lyLTgpsg4KzWmSmPAm9XwKjt9XYRrMrmsFYlP8_tAveDI2ra7wbC7Nisg3MqrU8tEWKZTBFo4XV67t-dmvIA8hB7BWPx6jHKk05kI13iwVt7nRsKdFn3axjAYh9zuFudiIF9Fqaz8ghCn4E7PZt4AHM9a3QiCSUxw" 
+              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" 
+              loading="lazy" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-semibold w-fit mb-2">
+                <span class="material-symbols-outlined text-[14px] text-primary">verified</span> Mentor Discussion
+              </span>
+              <h4 class="text-white font-bold text-lg">One-on-One Live Debugging</h4>
+            </div>
+          </div>
+
+          <!-- Storytelling Composition: Two Column Asymmetrical Layout -->
+          <div class="grid grid-cols-2 gap-6">
+            <!-- Supporting Detail Image 1 -->
+            <div class="relative group rounded-2xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-lg cursor-pointer aspect-square">
+              <img 
+                alt="Sky States student collaboration workspace screen" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtGwaVmlBt-9CHiZRBOUbT-B28wyEIkAVQbTDAPnvHCqp0edGGDP5yya56IQ_xsVxucwNzruLmiY5nHZi3WCL50bitpBib9I0AbclsTydXA9FIYfwv8N3_OkgkzgvdCWlky2KfK6FkYTlOtGq7p2kQW7r1rUN8F59TYdh2AQr4J7aHd_UqvJxjlnlAjiWvI3hp_IG_k1szqHIEkmpbdVRgm5u7yjrEajnwRyrH_Fm-S6KKWIxkJHDj4W3Cd0iH9q_yOZq4nMJcHLc" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                loading="lazy" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-semibold w-fit mb-1">
+                  ✔ Student Collaboration
+                </span>
+                <p class="text-white font-bold text-xs">Dynamic Team Projects</p>
+              </div>
+            </div>
+
+            <!-- Supporting Detail Image 2 -->
+            <div class="relative group rounded-2xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-lg cursor-pointer aspect-square">
+              <img 
+                alt="Workspace with multiple displays and code dashboard" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                loading="lazy" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-semibold w-fit mb-1">
+                  ✔ Project Reviews
+                </span>
+                <p class="text-white font-bold text-xs">High-Speed Code Pipeline</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Glassmorphic Workspace Card -->
+        <div class="absolute -bottom-8 -right-8 hidden xl:block z-20 w-64 bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer" id="floating-card-office">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
+            <span class="text-xs font-mono tracking-wider text-on-surface/80">✔ Office Workspace</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            Take a video tour of our US operations and workspace where live cohorts are built and managed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMERSIVE VIDEO LIGHTBOX MODAL -->
+<div id="video-lightbox" class="fixed inset-0 bg-black/95 z-[999] opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Immersive classroom preview">
+  <div class="absolute inset-0 cursor-pointer" id="lightbox-bg-close"></div>
+  <div class="relative w-full max-w-5xl bg-surface-dim/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col z-10 transition-transform duration-300 scale-95" id="lightbox-content">
+    
+    <!-- Top Bar Control Panel -->
+    <div class="flex justify-between items-center p-4 border-b border-white/10 bg-black/50">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        <span class="text-sm font-bold text-white tracking-wide uppercase">Live Class Documentary Preview</span>
+      </div>
+      <button class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 active:scale-95 transition-all" id="lightbox-close-btn" aria-label="Close modal">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+    </div>
+
+    <!-- Video Element Container -->
+    <div class="aspect-video relative bg-black">
+      <video controls class="w-full h-full object-contain" id="lightbox-player" preload="metadata">
+        <source src="/admin/home%20page%20hero%20section.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Details/Captions Section -->
+    <div class="p-6 bg-surface-dim/95 text-white border-t border-white/10">
+      <h4 class="text-lg font-bold mb-2 text-primary-fixed-dim">Inside Sky States Classrooms & Offices</h4>
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        This documentary preview shows real live mentorship sessions, active group programming projects, career coaching check-ins, and our day-to-day US corporate operational space. We believe in total transparency.
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- TRANSPARENT PRICING -->
 <section class="py-section-gap bg-white">
 <div class="max-w-3xl mx-auto px-4 md:px-margin-desktop text-center">
-<h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-8">{pricing.title}</h2>
+<h2 class="text-headline-lg text-on-surface mb-8">{pricing.title}</h2>
 <div class="bg-surface-container-low rounded-[40px] p-8 md:p-12 ambient-shadow border border-primary/10">
-<div class="text-5xl font-headline-xl text-primary mb-4">{pricing.amount}</div>
-<p class="font-label-md text-on-surface-variant mb-8">{pricing.subtitle}</p>
+<div class="text-5xl font-bold text-primary mb-4">{pricing.amount}</div>
+<p class="text-label-md text-on-surface-variant mb-8 font-semibold">{pricing.subtitle}</p>
 <div class="space-y-4 text-left max-w-md mx-auto mb-10">
 <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">done</span> 6+ Months of Live Weekend Instruction</div>
 <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">done</span> Personal Career Advisor &amp; Mentorship</div>
@@ -334,66 +543,66 @@ Your browser does not support the video tag.
 <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">done</span> Microsoft DP-900 Exam Preparation</div>
 </div>
 <p class="text-xs text-on-surface-variant italic mb-8">Note: The DP-900 exam fee is paid separately directly to Microsoft.</p>
-<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-label-md hover:bg-opacity-90 transition-all">Start Your Journey</button>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl text-label-md font-semibold hover:bg-opacity-90 transition-all">Start Your Journey</button>
 </div>
 </div>
 </section>
 <!-- HOMEPAGE FAQ -->
 <section class="py-section-gap bg-surface-container-low">
 <div class="max-w-4xl mx-auto px-4">
-<h2 class="font-headline-lg text-3xl text-center mb-12">Frequently Asked Questions</h2>
+<h2 class="text-headline-lg text-center mb-12">Frequently Asked Questions</h2>
 <div class="space-y-4">
 <details class="bg-white rounded-xl p-6 ambient-shadow group" open="">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 Is Sky States a legitimate company?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm">Yes, Sky States is a US-registered Career Acceleration Platform with headquarters in Sheridan, WY and Dover, DE. We focus specifically on senior professional career transitions.</p>
+<p class="mt-4 text-on-surface-variant text-sm">Yes, Sky States is a US-registered Career Acceleration Platform with headquarters in Sheridan, WY and Dover, DE. We support individuals at all career stages in making successful transitions into technology.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 How frequent are the training calls?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">Our sessions are live and instructor-led, held every weekend to ensure working professionals can attend without disrupting their current schedule.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 Do you collect my SSN?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm text-error font-bold">No. We explicitly state that we do NOT collect Social Security Numbers (SSN) from our students under any circumstances.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 Is screen sharing required?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">During practical lab sessions and project reviews, screen sharing is utilized to provide you with direct, real-time feedback and assistance from your instructor.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 What is your refund policy?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">We maintain a transparent refund policy details of which are provided during the enrollment phase. Satisfaction and quality of instruction are our top priorities.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 Is there any placement assistance?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">Yes, active placement support is a core component of our program, including resume optimization, mock interviews, and referral networks.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 What if I miss a live session?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">All live sessions are recorded and made available on the student platform, though we strongly encourage live attendance for the interactive benefits.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="font-label-md cursor-pointer list-none flex justify-between items-center">
+<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 Can I pay in installments?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
@@ -402,20 +611,8 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
-<!-- STUDENT OUTCOMES (Pulled from skyreviews.us) -->
-<section class="py-section-gap bg-white border-b border-outline-variant/10">
-<div class="max-w-7xl mx-auto px-4 text-center">
-<h3 class="font-headline-md text-2xl mb-8">Join Our Global Network of Success</h3>
-<div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale">
-<span class="font-headline-md text-3xl">TECHCORP</span>
-<span class="font-headline-md text-3xl">GLOBO</span>
-<span class="font-headline-md text-3xl">NEXUS</span>
-<span class="font-headline-md text-3xl">SYNERGY</span>
-<span class="font-headline-md text-3xl">VANTAGE</span>
-</div>
-<p class="mt-12 text-on-surface-variant font-label-sm">Detailed reviews and verified outcomes available at <a class="text-primary underline" href="https://skyreviews.us" target="_blank">skyreviews.us</a></p>
-</div>
-</section>
+<!-- STUDENT OUTCOMES (Alumni Placements) -->
+<section class="relative bg-white pt-16 pb-12 overflow-hidden"><div class="max-w-7xl mx-auto px-4"><div class="w-full text-center" style="opacity: 1;"><h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-900">Where Our Alumni Work</h2><p class="mt-3 text-slate-700 text-sm sm:text-base max-w-2xl mx-auto">Sky States graduates have successfully transitioned into roles at these industry-leading global companies.</p></div></div><div class="w-full border-y border-blue-200 py-6 mt-8 overflow-hidden bg-blue-50"><div class="flex w-max items-center marquee"><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Deloitte" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/deloitte.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Capgemini" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/capgemini.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Dell" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/dell.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="KPMG" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/kpmg.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="HP" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/hp.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="IBM" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/ibm.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="EY" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/EY.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Tech Mahindra" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/techmahindra.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Walmart" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/Walmart.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Samsung" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/samsung.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="PUMA" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/puma.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Deloitte" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/deloitte.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Capgemini" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/capgemini.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Dell" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/dell.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="KPMG" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/kpmg.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="HP" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/hp.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="IBM" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/ibm.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="EY" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/EY.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Tech Mahindra" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/techmahindra.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Walmart" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/Walmart.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="Samsung" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/samsung.svg"></div></div><div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"><div class="w-[160px] h-[40px] flex items-center justify-center"><img alt="PUMA" loading="lazy" width="160" height="60" decoding="async" data-nimg="1" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="/assets/companies/puma.svg"></div></div></div></div></section>
 <!-- Footer -->
 <Footer />
 <script>
@@ -430,8 +627,92 @@ Your browser does not support the video tag.
     }, { threshold: 0.1 });
 
     document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+        section.classList.add('transition-[opacity,transform]', 'duration-1000', 'opacity-0', 'translate-y-10');
         observer.observe(section);
     });
+
+    // Lightbox & Interactive Video controller
+    const videoTrigger = document.getElementById('play-video-trigger');
+    const lightbox = document.getElementById('video-lightbox');
+    const lightboxClose = document.getElementById('lightbox-close-btn');
+    const lightboxBgClose = document.getElementById('lightbox-bg-close');
+    const lightboxPlayer = document.getElementById('lightbox-player');
+    const previewVideo = document.getElementById('preview-video');
+
+    function openLightbox() {
+        if (!lightbox || !lightboxPlayer) return;
+        lightbox.classList.remove('opacity-0', 'pointer-events-none');
+        lightbox.classList.add('opacity-100');
+        
+        const content = document.getElementById('lightbox-content');
+        if (content) {
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        // Pause preview, play main video
+        if (previewVideo) previewVideo.pause();
+        lightboxPlayer.play().catch(err => console.log('Playback error:', err));
+    }
+
+    function closeLightbox() {
+        if (!lightbox || !lightboxPlayer) return;
+        lightbox.classList.add('opacity-0', 'pointer-events-none');
+        lightbox.classList.remove('opacity-100');
+        
+        const content = document.getElementById('lightbox-content');
+        if (content) {
+            content.classList.add('scale-95');
+            content.classList.remove('scale-100');
+        }
+
+        lightboxPlayer.pause();
+        lightboxPlayer.currentTime = 0;
+
+        // Resume preview
+        if (previewVideo) previewVideo.play().catch(() => {});
+    }
+
+    if (videoTrigger) {
+        videoTrigger.addEventListener('click', openLightbox);
+    }
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+    if (lightboxBgClose) {
+        lightboxBgClose.addEventListener('click', closeLightbox);
+    }
+
+    // Escape Key Bindings
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+    // Parallax Mouse Movement on Floating Cards
+    const section = document.getElementById('experience-sky-states');
+    const lmsCard = document.getElementById('floating-card-lms');
+    const officeCard = document.getElementById('floating-card-office');
+
+    if (section && window.innerWidth > 1024) {
+        section.addEventListener('mousemove', (e) => {
+            const rect = section.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            if (lmsCard) {
+                lmsCard.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
+            }
+            if (officeCard) {
+                officeCard.style.transform = `translate(${x * -0.015}px, ${y * -0.015}px)`;
+            }
+        });
+        
+        section.addEventListener('mouseleave', () => {
+            if (lmsCard) lmsCard.style.transform = 'translate(0px, 0px)';
+            if (officeCard) officeCard.style.transform = 'translate(0px, 0px)';
+        });
+    }
 </script>
 </body></html>

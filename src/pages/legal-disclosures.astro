@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Disclosures & Corporate Registry - Sky States</title>
+  <meta name="description" content="View the legal disclosures, state registration credentials, filing numbers, and registered corporate addresses for Sky States." />
+  <link rel="canonical" href="https://skystates.us/legal-disclosures" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <Header />
+  <main class="mt-20">
+    <!-- Hero Section -->
+    <section class="py-20 bg-surface-bright text-center px-6 border-b border-outline-variant/10">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md tracking-wide uppercase font-bold">Compliance Disclosures</span>
+        <h1 class="font-headline-xl text-5xl font-bold text-on-background leading-tight">Legal & Registry Disclosures</h1>
+        <p class="text-secondary font-body-lg max-w-2xl mx-auto">Sky States operates under fully compliant state corporate registrations. Below is our formal regulatory registry index.</p>
+      </div>
+    </section>
+
+    <!-- Disclosures Details -->
+    <section class="py-section-gap max-w-4xl mx-auto px-6 space-y-12">
+      
+      <!-- Section: Entity Details -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">corporate_fare</span>
+          Corporate Registrations
+        </h2>
+        <p class="text-secondary leading-relaxed">
+          Sky States is a legally registered corporate entity operating in full compliance with state and federal regulations in the United States. We maintain active corporate standings in both Wyoming and Delaware.
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-outline-variant/30 shadow-sm bg-surface-container-lowest">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-outline-variant/20 text-on-surface font-bold">
+                <th class="p-4">Jurisdiction</th>
+                <th class="p-4">Filing Type</th>
+                <th class="p-4">Filing ID / File Number</th>
+                <th class="p-4">Standing</th>
+              </tr>
+            </thead>
+            <tbody class="text-secondary divide-y divide-outline-variant/10">
+              <tr>
+                <td class="p-4 font-bold text-on-surface">Wyoming</td>
+                <td class="p-4">Active LLC</td>
+                <td class="p-4">2024-001402287</td>
+                <td class="p-4 text-primary font-bold">Good Standing</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-on-surface">Delaware</td>
+                <td class="p-4">Active Corp Registry</td>
+                <td class="p-4">2421319</td>
+                <td class="p-4 text-primary font-bold">Good Standing</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section: Registered Agents & Addresses -->
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">location_on</span>
+          Registered Office Addresses
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- WY Address -->
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/10">
+            <h4 class="font-bold text-on-surface mb-2">Wyoming Address</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              30 N Gould St,<br />
+              Sheridan, WY, 82801, USA
+            </p>
+          </div>
+
+          <!-- DE Address -->
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/10">
+            <h4 class="font-bold text-on-surface mb-2">Delaware Address</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              8 The Green, Suite #14897,<br />
+              Dover, DE, 19901, USA
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Educational Affiliation Disclaimer -->
+      <div class="p-6 rounded-2xl bg-primary/5 border border-primary/15 space-y-3">
+        <h4 class="font-bold text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined">info</span>
+          Institutional & Educational Alignment
+        </h4>
+        <p class="text-secondary text-sm leading-relaxed">
+          Sky States curriculum is mapped directly to standard certification criteria defined by global industry leaders, including Microsoft (SC-900 / DP-900 programs). The platform operates independently to deliver professional bootcamps, resume engineering, and mock interview services.
+        </p>
+      </div>
+
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>

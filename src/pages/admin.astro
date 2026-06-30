@@ -12,12 +12,13 @@ import couponConfigData from '../data/coupon-config.json';
 export const prerender = false;
 
 // Authenticate session
+const SECURE_SESSION_TOKEN = 'sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a';
 let authenticated = false;
 let loginError = '';
 
 if (Astro.cookies.has('admin_session')) {
     const sessionCookie = Astro.cookies.get('admin_session');
-    if (sessionCookie && sessionCookie.value === 'authenticated') {
+    if (sessionCookie && sessionCookie.value === SECURE_SESSION_TOKEN) {
         authenticated = true;
     }
 }
@@ -33,7 +34,7 @@ if (Astro.request.method === 'POST') {
             const password = formData.get('password');
             
             if (username === 'admin' && password === 'Xziant@123') {
-                Astro.cookies.set('admin_session', 'authenticated', {
+                Astro.cookies.set('admin_session', SECURE_SESSION_TOKEN, {
                     path: '/',
                     httpOnly: true,
                     sameSite: 'strict',

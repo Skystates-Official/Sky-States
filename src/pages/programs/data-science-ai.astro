@@ -1,10 +1,13 @@
+---
 import '../../styles/global.css';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import programsData from '../../data/programs.json';
 
 const program = programsData['data-science-ai'];
 const { metaTitle, hero } = program;
+const description = hero?.description || "Master Data Science & AI Architect competencies with our 6-month intensive training program.";
 ---
 
 <!DOCTYPE html>
@@ -13,6 +16,23 @@ const { metaTitle, hero } = program;
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{metaTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href="https://skystates.us/programs/data-science-ai" />
+<meta property="og:title" content={metaTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": metaTitle,
+  "description": description,
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "Sky States",
+    "sameAs": "https://skystates.us"
+  }
+})} />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -32,19 +52,7 @@ const { metaTitle, hero } = program;
             backdrop-filter: blur(12px);
         }
     </style>
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "Data Science & AI Architect: Career Acceleration Program",
-      "description": "An elite 12-week immersive program focused on Data Science, AI architecture, and MLOps, featuring live instructor-led weekend sessions and Microsoft DP-900 certification prep.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Sky States",
-        "sameAs": "https://skyreviews.us"
-      }
-    }
-    </script>
+
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -78,23 +86,15 @@ const { metaTitle, hero } = program;
 <!-- TopAppBar -->
 <Header />
 <main class="mt-20">
-<!-- Verified Reviews Bar -->
-<div class="bg-surface-container-highest/50 py-2 border-b border-outline-variant/10">
-<div class="max-w-7xl mx-auto px-margin-desktop flex justify-center items-center gap-4 text-label-sm font-label-sm text-on-surface-variant">
-<div class="flex items-center text-primary">
-<span class="material-symbols-outlined text-sm">stars</span>
-<span class="material-symbols-outlined text-sm">stars</span>
-<span class="material-symbols-outlined text-sm">stars</span>
-<span class="material-symbols-outlined text-sm">stars</span>
-<span class="material-symbols-outlined text-sm">stars</span>
-</div>
-<span>4.9/5 Rating based on 1,200+ Alumni Reviews at <a class="underline font-bold text-primary" href="https://skyreviews.us">skyreviews.us</a></span>
-</div>
-</div>
+
+
 <!-- Section 1: Hero -->
 <section class="bg-surface-bright min-h-[90vh] flex flex-col justify-center relative px-margin-mobile md:px-margin-desktop overflow-hidden py-12">
 <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
 <div class="z-10">
+<div class="mb-6">
+  <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Programs' }, { label: 'Data Science & AI' }]} />
+</div>
 <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Career Acceleration Program</span>
 <h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
@@ -103,9 +103,109 @@ const { metaTitle, hero } = program;
 <span>Enrollment open for Q3 Weekend Cohort</span>
 </div>
 <div class="flex flex-wrap gap-6"><button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all">Start Application</button><button class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all">Download Syllabus</button></div></div>
-<div class="relative mt-12 lg:mt-0"><div class="relative"><div class="rounded-3xl overflow-hidden ambient-shadow transition-transform duration-700 hover:scale-[1.02] transition-all opacity-100 translate-y-0"><video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-[1.49]"><source src="/admin/data%20science%20hero%20section%20video.mp4" type="video/mp4"/>Your browser does not support the video tag.</video></div><div class="absolute -bottom-8 -left-8 glass-card p-8 rounded-2xl ambient-shadow border border-white/20 max-w-[280px] z-20 transition-all duration-700 opacity-100 translate-y-0"><div class="flex items-center gap-4 mb-3"><div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-primary text-3xl">trending_up</span></div><span class="font-headline-xl text-4xl text-primary font-bold">140%</span></div><p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Average salary lift reported by Class of 2023 graduates.</p></div><div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div></div></div>
+<div class="relative mt-12 lg:mt-0"><div class="relative"><div class="rounded-3xl overflow-hidden ambient-shadow transition-transform duration-700 hover:scale-[1.02] transition-all opacity-100 translate-y-0"><video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-[1.49]"><source src="/assets/videos/data%20science%20hero%20section%20video.mp4" type="video/mp4"/>Your browser does not support the video tag.</video></div><div class="mt-6 md:mt-0 md:absolute md:-bottom-8 md:-left-8 glass-card p-6 md:p-8 rounded-2xl ambient-shadow border border-white/20 max-w-full md:max-w-[280px] z-20 transition-all duration-700 opacity-100 translate-y-0"><div class="flex items-center gap-4 mb-3"><div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-primary text-3xl">trending_up</span></div><span class="font-headline-xl text-4xl text-primary font-bold">140%</span></div><p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Average salary lift reported by Class of 2023 graduates.</p></div><div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div></div></div>
 </div>
 </section>
+
+<!-- Program Quick Info Bar with Countdown -->
+<section class="py-6 bg-surface-container-low border-b border-outline-variant/10">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
+    
+    <!-- Next Cohort Column -->
+    <div class="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">schedule</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">Next Cohort Start</p>
+        <!-- Countdown Wrapper -->
+        <div class="flex items-center gap-2 font-bold text-on-surface justify-center md:justify-start" id="countdown-timer">
+          <div class="flex flex-col items-center">
+            <span class="text-lg" id="timer-days">0</span>
+            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Days</span>
+          </div>
+          <span class="text-secondary">:</span>
+          <div class="flex flex-col items-center">
+            <span class="text-lg" id="timer-hours">00</span>
+            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Hrs</span>
+          </div>
+          <span class="text-secondary">:</span>
+          <div class="flex flex-col items-center">
+            <span class="text-lg" id="timer-minutes">00</span>
+            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Min</span>
+          </div>
+          <span class="text-secondary">:</span>
+          <div class="flex flex-col items-center">
+            <span class="text-lg" id="timer-seconds">00</span>
+            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Sec</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Program Duration Column -->
+    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">calendar_today</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Program Duration</p>
+        <h4 class="text-lg font-extrabold text-on-surface">6 Months</h4>
+      </div>
+    </div>
+
+    <!-- Learning Format Column -->
+    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">menu_book</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Learning Format</p>
+        <h4 class="text-lg font-extrabold text-on-surface">Online Bootcamp</h4>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    // Dynamic real-time countdown script targeting the next cohort
+    const targetDate = new Date("2026-07-18T20:00:00").getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+      
+      if (difference <= 0) {
+        const timerContainer = document.getElementById("countdown-timer");
+        if (timerContainer) {
+          timerContainer.innerHTML = "<span class='text-primary text-sm font-bold uppercase tracking-wider'>The Wait Is Over. Cohort Starting!</span>";
+        }
+        return;
+      }
+      
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      
+      const daysEl = document.getElementById("timer-days");
+      const hoursEl = document.getElementById("timer-hours");
+      const minutesEl = document.getElementById("timer-minutes");
+      const secondsEl = document.getElementById("timer-seconds");
+      
+      if (daysEl) daysEl.innerText = days;
+      if (hoursEl) hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+      if (minutesEl) minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+      if (secondsEl) secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
+</script>
+
 <!-- Section 2: Trusted By -->
 <section class="bg-surface border-y border-outline-variant/10 py-8">
 <div class="max-w-7xl mx-auto px-margin-desktop">
@@ -119,6 +219,116 @@ const { metaTitle, hero } = program;
 </div>
 </div>
 </section>
+
+<!-- Section: Program Overview & Key Features -->
+<section class="py-section-gap bg-surface-container-lowest border-b border-outline-variant/10">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      
+      <!-- Left Column: Overview -->
+      <div class="lg:col-span-5 space-y-6">
+        <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Overview</span>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Data Science & AI Program Overview</h2>
+        <p class="text-secondary font-body-md leading-relaxed">
+          Are you looking to embark on an exciting career in Data Science and Artificial Intelligence (AI)? Look no further! Our company is dedicated to providing top-notch training in these cutting edge fields, and we offer a comprehensive 6-month course designed to transform you into a skilled data scientist or AI expert. With our experienced trainers and a commitment to high-quality content delivery, we’re your ultimate partner in achieving your career goals. Plus, our course includes the added advantage of Microsoft Azure certification, powered by Microsoft, ensuring you gain industry-recognized credentials that will set you apart in the job market.
+        </p>
+      </div>
+
+      <!-- Right Column: Key Features -->
+      <div class="lg:col-span-7 space-y-8">
+        <div>
+          <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Core Benefits</span>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Key Features</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Feature 1 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">100% Job Assistance</strong>
+              Through our in-house recruitment agency with over 250 hiring partners.
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Sky States Credentials</strong>
+              Industry-recognized advanced Data Scientist and AI certificate from Sky States.
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Domain Capstones</strong>
+              Hands-on capstones from various domains and industry relevant projects.
+            </div>
+          </div>
+          <!-- Feature 4 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Career Pivot Design</strong>
+              Program carefully crafted to initiate your professional journey as a Data Scientist.
+            </div>
+          </div>
+          <!-- Feature 5 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantage</strong>
+              Professional-level training and industry-recognized certificate from Microsoft.
+            </div>
+          </div>
+          <!-- Feature 6 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Integrated Labs</strong>
+              Sandbox environments and integrated labs for hands-on learning experience.
+            </div>
+          </div>
+          <!-- Feature 7 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Live Expert Sessions</strong>
+              Dedicated live sessions by faculty of senior industry experts.
+            </div>
+          </div>
+          <!-- Feature 8 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">LMS Lifetime Access</strong>
+              Lifetime access to self-paced learning content through our LMS.
+            </div>
+          </div>
+          <!-- Feature 9 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Personalized Batches</strong>
+              Small batch sizes to ensure each student receives customized attention.
+            </div>
+          </div>
+          <!-- Feature 10 -->
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+            <div class="text-sm text-secondary">
+              <strong class="text-on-surface block font-bold mb-0.5">Skill Enhancement</strong>
+              Free access to self-paced certification courses on emerging industry skills.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Section: Microsoft DP-900 Prep (NEW) -->
 <section class="py-section-gap bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -182,10 +392,10 @@ const { metaTitle, hero } = program;
                     Who This Is For
                 </h3>
 <ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Mid-career professionals looking to transition to AI leadership.</li>
-<li class="flex items-start gap-2">• Working analysts seeking a 10x ROI on their skill set.</li>
-<li class="flex items-start gap-2">• Engineers wanting to master MLOps and production-grade AI.</li>
-<li class="flex items-start gap-2">• High-discipline individuals who prefer live, weekend-based study.</li>
+<li class="flex items-start gap-2">• Mid-career professionals looking to transition to advanced AI leadership roles.</li>
+<li class="flex items-start gap-2">• Ambitious analysts and developers seeking a significant return on their skill set.</li>
+<li class="flex items-start gap-2">• Tech enthusiasts and engineers wanting to master production-grade MLOps pipelines.</li>
+<li class="flex items-start gap-2">• Goal-oriented learners of all backgrounds who thrive in a structured, live, and interactive weekend study format.</li>
 </ul>
 </div>
 <div class="bg-white p-10 rounded-3xl border-t-8 border-outline shadow-sm">
@@ -194,10 +404,10 @@ const { metaTitle, hero } = program;
                     Who This Is Not For
                 </h3>
 <ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Absolute beginners with no coding or math foundation.</li>
-<li class="flex items-start gap-2">• Those looking for "get rich quick" automated passive income tips.</li>
-<li class="flex items-start gap-2">• Individuals unable to commit to 10+ hours of study per week.</li>
-<li class="flex items-start gap-2">• People looking for a generic video-only course with no interaction.</li>
+<li class="flex items-start gap-2">• Learners seeking purely theoretical lectures rather than hands-on building and code execution.</li>
+<li class="flex items-start gap-2">• Anyone looking for short-cut certifications instead of deep, industry-recognized professional excellence.</li>
+<li class="flex items-start gap-2">• Students who prefer a completely self-paced, casual study format without active interactive schedules.</li>
+<li class="flex items-start gap-2">• People looking for a generic video-only course with no live support or direct real-time collaboration.</li>
 </ul>
 </div>
 </div>
@@ -224,6 +434,7 @@ const { metaTitle, hero } = program;
 <span class="font-label-md text-label-md opacity-80">Global Alumni</span>
 </div>
 </div>
+<p class="text-xs text-center text-white/60 mt-8">Note: Salary lift and placement statistics are based on verified career transition data compiled by our partner staffing network.</p>
 </div>
 <div class="absolute inset-0 opacity-10 pointer-events-none">
 <div class="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl"></div>
@@ -434,38 +645,67 @@ const { metaTitle, hero } = program;
 </div>
 </section>
 <!-- Section 8: Tools -->
-<section class="py-section-gap">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="flex flex-col md:flex-row items-center justify-between gap-12">
-<div class="md:w-1/3">
+<section class="py-section-gap overflow-hidden bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-margin-desktop mb-12">
+<div class="text-center max-w-3xl mx-auto">
+<span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Ecosystem</span>
 <h2 class="font-headline-lg text-headline-lg mb-6">Master the Stack</h2>
-<p class="text-secondary font-body-md">Don't just learn tools; learn the ecosystems that power global enterprises.</p>
-</div>
-<div class="md:w-2/3 grid grid-cols-2 sm:grid-cols-4 gap-8">
-<div class="flex flex-col items-center gap-2">
-<div class="w-20 h-20 bg-surface-container flex items-center justify-center rounded-2xl hover:border-2 border-primary transition-all">
-<span class="font-bold text-primary">Python</span>
+<p class="text-secondary font-body-md">Don't just learn tools; learn the ecosystems that power global enterprise AI and machine learning platforms.</p>
 </div>
 </div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-20 h-20 bg-surface-container flex items-center justify-center rounded-2xl hover:border-2 border-primary transition-all">
-<span class="font-bold text-primary">PyTorch</span>
-</div>
-</div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-20 h-20 bg-surface-container flex items-center justify-center rounded-2xl hover:border-2 border-primary transition-all">
-<span class="font-bold text-primary">AWS</span>
-</div>
-</div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-20 h-20 bg-surface-container flex items-center justify-center rounded-2xl hover:border-2 border-primary transition-all">
-<span class="font-bold text-primary">Snowflake</span>
-</div>
-</div>
-</div>
-</div>
+
+<!-- CSS Marquee Loop -->
+<div class="relative w-full overflow-hidden py-4 select-none">
+  <!-- Gradient overlays for smooth fading effect at edges -->
+  <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>
+  
+  <div class="flex gap-12 w-max animate-marquee hover:[animation-play-state:paused]">
+    <!-- Original Track -->
+    <div class="flex gap-12 items-center justify-around min-w-full">
+      <img src="https://skystates.us/wp-content/uploads/2025/12/11.webp" alt="Tool logo 11" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/10.svg" alt="Tool logo 10" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png" alt="Tool logo 9" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/8.png" alt="Tool logo 8" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/7.png" alt="Tool logo 7" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/6.png" alt="Tool logo 6" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/5.png" alt="Tool logo 5" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png" alt="Tool logo 4" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/3.webp" alt="Tool logo 3" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/2.png" alt="Tool logo 2" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/1.png" alt="Tool logo 1" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+    </div>
+    <!-- Duplicate Track for Infinite Loop -->
+    <div class="flex gap-12 items-center justify-around min-w-full" aria-hidden="true">
+      <img src="https://skystates.us/wp-content/uploads/2025/12/11.webp" alt="Tool logo 11" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/10.svg" alt="Tool logo 10" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png" alt="Tool logo 9" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/8.png" alt="Tool logo 8" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/7.png" alt="Tool logo 7" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/6.png" alt="Tool logo 6" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/5.png" alt="Tool logo 5" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png" alt="Tool logo 4" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/3.webp" alt="Tool logo 3" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/2.png" alt="Tool logo 2" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+      <img src="https://skystates.us/wp-content/uploads/2025/12/1.png" alt="Tool logo 1" class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+    </div>
+  </div>
 </div>
 </section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+</style>
 <!-- Section 9: Certification -->
 <section class="py-section-gap bg-surface-container-low">
 <div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -511,6 +751,77 @@ const { metaTitle, hero } = program;
 </div>
 </div>
 </section>
+
+<!-- Section: What Can I Become? -->
+<section class="py-section-gap bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Left column: Visual callout & Title -->
+    <div class="lg:col-span-5 space-y-6">
+      <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Horizons</span>
+      <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">What Can I Become?</h2>
+      <p class="text-secondary font-body-md leading-relaxed">
+        The integration of big data analytics and generative artificial intelligence has unlocked unprecedented professional paths. Graduates of this program transition into leading high-agency architectural and analytic positions globally.
+      </p>
+      <div class="relative rounded-2xl overflow-hidden shadow-lg border border-white/20 bg-primary/5 p-4 max-w-[360px]">
+        <img loading="lazy" decoding="async" src="https://skystates.us/wp-content/uploads/2025/12/12.webp" alt="Data Science Career path illustration" class="w-full h-auto rounded-xl object-cover aspect-square hover:scale-[1.03] transition-transform duration-500" />
+      </div>
+    </div>
+
+    <!-- Right column: Interactive Grid of Career Titles -->
+    <div class="lg:col-span-7">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Title 1 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">analytics</span>
+          <span class="font-label-md text-on-surface font-semibold">Data Scientist</span>
+        </div>
+        <!-- Title 2 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">insights</span>
+          <span class="font-label-md text-on-surface font-semibold">Data Analyst</span>
+        </div>
+        <!-- Title 3 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">query_stats</span>
+          <span class="font-label-md text-on-surface font-semibold">Business Analyst</span>
+        </div>
+        <!-- Title 4 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">manage_accounts</span>
+          <span class="font-label-md text-on-surface font-semibold">Analytics Manager</span>
+        </div>
+        <!-- Title 5 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">psychology_alt</span>
+          <span class="font-label-md text-on-surface font-semibold">AI Research Scientist</span>
+        </div>
+        <!-- Title 6 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">brain</span>
+          <span class="font-label-md text-on-surface font-semibold">AI Data Scientist</span>
+        </div>
+        <!-- Title 7 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">support_agent</span>
+          <span class="font-label-md text-on-surface font-semibold">Data Science Consultant</span>
+        </div>
+        <!-- Title 8 -->
+        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
+          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">settings_suggest</span>
+          <span class="font-label-md text-on-surface font-semibold">ML Engineer</span>
+        </div>
+        <!-- Title 9 -->
+        <div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-xl border border-dashed border-slate-200 group">
+          <span class="material-symbols-outlined text-primary text-xl animate-pulse">more_horiz</span>
+          <span class="font-label-md text-secondary font-semibold italic">and many more...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- Section 11: Career Opportunities -->
 <section class="py-section-gap bg-on-background text-on-primary" id="career">
 <div class="max-w-7xl mx-auto px-margin-desktop">
@@ -538,6 +849,7 @@ const { metaTitle, hero } = program;
 </div>
 </div>
 </div>
+<p class="text-xs text-secondary/50 mt-6 text-center">Note: Expected salary statistics and job designations are compiled from historical placement records verified by our partner staffing network.</p>
 </div>
 </section>
 <!-- Section 12: Alumni Testimonials -->
@@ -641,15 +953,7 @@ const { metaTitle, hero } = program;
 <span class="text-headline-xl font-headline-xl text-primary">$2,999</span>
 <span class="text-secondary">/ total</span>
 </div>
-<div class="bg-surface p-4 rounded-xl mb-8">
-<span class="text-xs font-bold uppercase text-on-surface-variant block mb-3">Tuition Breakdown:</span>
-<ul class="space-y-2 text-sm text-secondary">
-<li class="flex justify-between"><span>Live Weekend Classes</span> <span>$1,200</span></li>
-<li class="flex justify-between"><span>Mentorship &amp; Reviews</span> <span>$800</span></li>
-<li class="flex justify-between"><span>Project Portfolio Lab</span> <span>$600</span></li>
-<li class="flex justify-between"><span>Interview Prep &amp; DP-900</span> <span>$399</span></li>
-</ul>
-</div>
+
 <ul class="space-y-4 mb-10 flex-grow">
 <li class="flex items-center gap-3 font-label-md"><span class="material-symbols-outlined text-primary">check</span> 12-Week Immersive Syllabus</li>
 <li class="flex items-center gap-3 font-label-md"><span class="material-symbols-outlined text-primary">check</span> Microsoft DP-900 Voucher</li>
@@ -695,7 +999,7 @@ const { metaTitle, hero } = program;
         }, observerOptions);
 
         document.querySelectorAll('.ambient-shadow').forEach(card => {
-            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            card.classList.add('transition-[opacity,transform]', 'duration-700', 'opacity-0', 'translate-y-10');
             observer.observe(card);
         });
     </script>

@@ -1,0 +1,42 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  url?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+// Generate structured data for search engines and AI crawlers
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": item.label,
+    ...(item.url ? { "item": `https://skystates.us${item.url}` } : {})
+  }))
+};
+---
+
+<nav class="flex items-center flex-wrap gap-1.5 text-[10px] font-bold uppercase tracking-widest text-secondary" aria-label="Breadcrumb">
+  {items.map((item, idx) => (
+    <div class="flex items-center gap-1.5">
+      {item.url && idx < items.length - 1 ? (
+        <a href={item.url} class="hover:text-primary transition-colors text-secondary">{item.label}</a>
+      ) : (
+        <span class="text-on-surface-variant font-semibold">{item.label}</span>
+      )}
+      {idx < items.length - 1 && (
+        <span class="material-symbols-outlined text-[12px] opacity-30 select-none">chevron_right</span>
+      )}
+    </div>
+  ))}
+</nav>
+
+<!-- Inject structured BreadcrumbList schema -->
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

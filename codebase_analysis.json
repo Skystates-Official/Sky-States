@@ -1,0 +1,2115 @@
+{
+  "pages": {
+    "pages\\about.astro": {
+      "title": "About Sky States | Institutional Excellence in Tech Careers",
+      "description": "Learn about Sky States, our mission, story, vision, and legal corporate registries in Delaware and Wyoming.",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport aboutData from '../data/about.json';\n\nconst { hero, story, registry } = aboutData;",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "{hero.title}"
+        },
+        {
+          "tag": "H2",
+          "text": "{story.title}"
+        },
+        {
+          "tag": "H4",
+          "text": "{story.vision_title}"
+        },
+        {
+          "tag": "H4",
+          "text": "{story.method_title}"
+        },
+        {
+          "tag": "H3",
+          "text": "{registry.legal_title}"
+        },
+        {
+          "tag": "H3",
+          "text": "{registry.presence_title}"
+        },
+        {
+          "tag": "H3",
+          "text": "{registry.contact_title}"
+        },
+        {
+          "tag": "H2",
+          "text": "Defining Our Standards"
+        },
+        {
+          "tag": "H3",
+          "text": "check_circle What We Are"
+        },
+        {
+          "tag": "H3",
+          "text": "cancel What We Are Not"
+        },
+        {
+          "tag": "H3",
+          "text": "fact_check Corporate Fact Sheet & AI Verification Cues"
+        },
+        {
+          "tag": "H2",
+          "text": "Sky States Standards"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Verify Delaware Registry (#8291-XX) open_in_new",
+          "href": "https://icis.corp.delaware.gov/ecorp/"
+        },
+        {
+          "text": "Verify Wyoming Corporate ID (#X229-L) open_in_new",
+          "href": "https://wyobiz.wyo.gov/Business/FilingSearch.aspx"
+        },
+        {
+          "text": "Search eCorp DE open_in_new",
+          "href": "https://icis.corp.delaware.gov/ecorp/"
+        },
+        {
+          "text": "Search WyoBiz WY open_in_new",
+          "href": "https://wyobiz.wyo.gov/Business/FilingSearch.aspx"
+        }
+      ]
+    },
+    "pages\\admin.astro": {
+      "title": "Institutional Admin Portal | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport jobsData from '../data/jobs.json';\nimport homepageData from '../data/homepage.json';\nimport aboutData from '../data/about.json';\nimport faqData from '../data/faq.json';\nimport programsData from '../data/programs.json';\nimport couponConfigData from '../data/coupon-config.json';\n\nexport const prerender = false;\n\n// Authenticate session\nlet authenticated = false;\nlet loginError = '';\n\nif (Astro.cookies.has('admin_session')) {\n    const sessionCookie = Astro.cookies.get('admin_session');\n    if (sessionCookie && sessionCookie.value === 'authenticated') {\n        authenticated = true;\n    }\n}\n\n// Handle login post request\nif (Astro.request.method === 'POST') {\n    try {\n        const formData = await Astro.request.formData();\n        const action = formData.get('action');\n        \n        if (action === 'login') {\n            const username = formData.get('username');\n            const password = formData.get('password');\n            \n            if (username === 'admin' && password === 'Xziant@123') {\n                Astro.cookies.set('admin_session', 'authenticated', {\n                    path: '/',\n                    httpOnly: true,\n                    sameSite: 'strict',\n                    maxAge: 86400\n                });\n                return Astro.redirect('/admin');\n            } else {\n                loginError = 'Invalid credentials. Please try again.';\n            }\n        } else if (action === 'logout') {\n            Astro.cookies.delete('admin_session', { path: '/' });\n            return Astro.redirect('/admin');\n        }\n    } catch (e) {\n        loginError = 'An error occurred during authentication.';\n    }\n}",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Sky States Content Hub"
+        },
+        {
+          "tag": "H2",
+          "text": "Manage Active Placements"
+        },
+        {
+          "tag": "H3",
+          "text": "Which page do you want to edit?"
+        },
+        {
+          "tag": "H3",
+          "text": "deck Hero Section Content"
+        },
+        {
+          "tag": "H3",
+          "text": "workspace_premium Trust Indicators (Trust Bar)"
+        },
+        {
+          "tag": "H3",
+          "text": "info About Us Summary"
+        },
+        {
+          "tag": "H3",
+          "text": "payments Pricing Console"
+        },
+        {
+          "tag": "H3",
+          "text": "school About Us Hero"
+        },
+        {
+          "tag": "H3",
+          "text": "menu_book Our Story & vision"
+        },
+        {
+          "tag": "H3",
+          "text": "domain Corporate Registry & Support"
+        },
+        {
+          "tag": "H3",
+          "text": "help FAQ Header Section"
+        },
+        {
+          "tag": "H3",
+          "text": "question_answer FAQ Questions (List)"
+        },
+        {
+          "tag": "H3",
+          "text": "analytics Data Science & AI Architect"
+        },
+        {
+          "tag": "H3",
+          "text": "security Cyber Security Strategist"
+        },
+        {
+          "tag": "H3",
+          "text": "terminal DevOps & Cloud Master"
+        },
+        {
+          "tag": "H3",
+          "text": "settings_suggest Coupon Code Validation Limits"
+        },
+        {
+          "tag": "H2",
+          "text": "Admin Authentication"
+        },
+        {
+          "tag": "H2",
+          "text": "Post New Job Listing"
+        }
+      ],
+      "ctas": []
+    },
+    "pages\\career-hub.astro": {
+      "title": "Career Hub | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H2",
+          "text": "Career Transition Intelligence"
+        },
+        {
+          "tag": "H3",
+          "text": "Authorized Hiring Partner Network"
+        },
+        {
+          "tag": "H2",
+          "text": "Career Transition Roadmap"
+        },
+        {
+          "tag": "H4",
+          "text": "Advisory Consultation"
+        },
+        {
+          "tag": "H4",
+          "text": "Profile Optimization"
+        },
+        {
+          "tag": "H4",
+          "text": "Target Mapping"
+        },
+        {
+          "tag": "H4",
+          "text": "Interview Advisory"
+        },
+        {
+          "tag": "H4",
+          "text": "Partner Placement"
+        },
+        {
+          "tag": "H3",
+          "text": "Salary Guide &amp; ROI"
+        },
+        {
+          "tag": "H3",
+          "text": "Resume Engineering"
+        },
+        {
+          "tag": "H2",
+          "text": "Trending Career Guides"
+        },
+        {
+          "tag": "H4",
+          "text": "Data Scientist 2026"
+        },
+        {
+          "tag": "H4",
+          "text": "SOC Analyst Guide"
+        },
+        {
+          "tag": "H4",
+          "text": "Cloud Architect 2025"
+        },
+        {
+          "tag": "H4",
+          "text": "The DevOps Roadmap"
+        },
+        {
+          "tag": "H2",
+          "text": "Ready for your transition?"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "#"
+        }
+      ]
+    },
+    "pages\\career-roi.astro": {
+      "title": "Salary Guide & Career ROI | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Salary Guide &amp; Career ROI"
+        },
+        {
+          "tag": "H2",
+          "text": "Market Intelligence"
+        },
+        {
+          "tag": "H3",
+          "text": "Senior Supply"
+        },
+        {
+          "tag": "H3",
+          "text": "Wage Growth"
+        },
+        {
+          "tag": "H3",
+          "text": "TC Breakdown"
+        },
+        {
+          "tag": "H2",
+          "text": "Global Salary Benchmarks"
+        },
+        {
+          "tag": "H2",
+          "text": "Transition ROI Deep Dive"
+        },
+        {
+          "tag": "H4",
+          "text": "Immediate Uplift"
+        },
+        {
+          "tag": "H4",
+          "text": "Lifetime Compound"
+        },
+        {
+          "tag": "H3",
+          "text": "Interactive ROI Calculator"
+        },
+        {
+          "tag": "H2",
+          "text": "Frequently Asked Questions"
+        }
+      ],
+      "ctas": []
+    },
+    "pages\\certifications.astro": {
+      "title": "Verified Alumni Certifications | Sky States",
+      "description": "Explore the verified professional credentials, career transitions, and course feedback of Sky States alumni across Data Science, Cyber Security, and Cloud DevOps.",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\n\n// Alumni data representing realistic career transitions and feedback\nconst alumniCertifications = [\n  {\n    name: \"Sarah Jenkins\",\n    beforeTitle: \"Financial Analyst\",\n    afterTitle: \"Data Architect\",\n    company: \"J.P. Morgan\",\n    cohort: \"Q3 2024\",\n    program: \"Data Science & AI\",\n    feedback: \"The live weekend workshops completely bridged the gap between basic analytics and production-grade architectures. The DP-900 preparation was spot on, and my portfolio projects were the highlight of my technical interviews.\",\n    salaryIncrease: \"+120%\",\n    certType: \"Microsoft Certified: Azure Data Fundamentals\",\n    certCode: \"DP-900\",\n    certSerial: \"SK-DS-2024-8849\",\n    certDate: \"October 14, 2024\",\n    avatarColor: \"bg-blue-100 text-blue-700\"\n  },\n  {\n    name: \"Marcus Vance\",\n    beforeTitle: \"IT Helpdesk Specialist\",\n    afterTitle: \"Cyber Defense Engineer\",\n    company: \"CrowdStrike\",\n    cohort: \"Q2 2024\",\n    program: \"Cyber Security\",\n    feedback: \"Going through the SC-900 certification preparation under senior professionals taught me defensive engineering at scale. The hands-on labs on network defense and penetration testing simulated real-world threat response.\",\n    salaryIncrease: \"+145%\",\n    certType: \"Microsoft Certified: Security Fundamentals\",\n    certCode: \"SC-900\",\n    certSerial: \"SK-SEC-2024-3112\",\n    certDate: \"August 2, 2024\",\n    avatarColor: \"bg-red-100 text-red-700\"\n  },\n  {\n    name: \"Aisha Rahman\",\n    beforeTitle: \"Junior Software Engineer\",\n    afterTitle: \"Lead DevOps Architect\",\n    company: \"Stripe\",\n    cohort: \"Q4 2024\",\n    program: \"DevOps & Cloud\",\n    feedback: \"Sky States' focus on cloud orchestration and CI/CD pipelines transformed my approach to scale. We learned Kubernetes and Terraform practically, and having my AZ-900 and DP-900 vouchers included made verification seamless.\",\n    salaryIncrease: \"+130%\",\n    certType: \"Microsoft Certified: Azure Fundamentals\",\n    certCode: \"AZ-900\",\n    certSerial: \"SK-DO-2024-9041\",\n    certDate: \"December 18, 2024\",\n    avatarColor: \"bg-green-100 text-green-700\"\n  },\n  {\n    name: \"David Kim\",\n    beforeTitle: \"Systems Administrator\",\n    afterTitle: \"Senior Cloud Engineer\",\n    company: \"Oracle\",\n    cohort: \"Q1 2024\",\n    program: \"DevOps & Cloud\",\n    feedback: \"The rigor of the DevOps curriculum stands unmatched. The focus on executive-ready capstone systems prepared me to lead migrations immediately after graduation. Worth every cent.\",\n    salaryIncrease: \"+95%\",\n    certType: \"Sky States Cloud Engineering Diploma\",\n    certCode: \"SS-DO-GRAD\",\n    certSerial: \"SK-GRAD-2024-0012\",\n    certDate: \"May 10, 2024\",\n    avatarColor: \"bg-purple-100 text-purple-700\"\n  },\n  {\n    name: \"Elena Rostova\",\n    beforeTitle: \"Business Intelligence Analyst\",\n    afterTitle: \"Senior Machine Learning Engineer\",\n    company: \"Netflix\",\n    cohort: \"Q3 2024\",\n    program: \"Data Science & AI\",\n    feedback: \"Sky States does not waste time with basic syntax. We dove straight into architectural patterns, neural network scaling, and real-time inference design. My J.P. Morgan and Netflix offers spoke for themselves.\",\n    salaryIncrease: \"+160%\",\n    certType: \"Microsoft Certified: Azure Data Fundamentals\",\n    certCode: \"DP-900\",\n    certSerial: \"SK-DS-2024-7721\",\n    certDate: \"November 5, 2024\",\n    avatarColor: \"bg-amber-100 text-amber-700\"\n  },\n  {\n    name: \"Tyler Sterling\",\n    beforeTitle: \"Information Security Officer\",\n    afterTitle: \"Principal Security Architect\",\n    company: \"Deloitte\",\n    cohort: \"Q2 2024\",\n    program: \"Cyber Security\",\n    feedback: \"The mentorship track was phenomenal. Reviewing enterprise architectures with former MDs gave me the executive confidence I needed. The SC-900 exam voucher was delivered instantly.\",\n    salaryIncrease: \"+110%\",\n    certType: \"Microsoft Certified: Security Fundamentals\",\n    certCode: \"SC-900\",\n    certSerial: \"SK-SEC-2024-5542\",\n    certDate: \"September 12, 2024\",\n    avatarColor: \"bg-teal-100 text-teal-700\"\n  }\n];",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Alumni Certifications &amp; Outcomes"
+        },
+        {
+          "tag": "H2",
+          "text": "Graduates &amp; Certificates"
+        },
+        {
+          "tag": "H4",
+          "text": "{alum.name}"
+        },
+        {
+          "tag": "H3",
+          "text": "Certificate Name"
+        },
+        {
+          "tag": "H4",
+          "text": "Alumni Name"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "/"
+        }
+      ]
+    },
+    "pages\\checkout.astro": {
+      "title": "Secure Checkout | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\r\nimport Header from '../components/Header.astro';\r\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Finalize Your Access"
+        },
+        {
+          "tag": "H2",
+          "text": "Order Summary"
+        },
+        {
+          "tag": "H3",
+          "text": "Intro Session"
+        },
+        {
+          "tag": "H3",
+          "text": "No-SSN Privacy Commitment"
+        },
+        {
+          "tag": "H2",
+          "text": "What Happens Next"
+        }
+      ],
+      "ctas": []
+    },
+    "pages\\faq.astro": {
+      "title": "Institutional Knowledge Base | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport faqData from '../data/faq.json';\n\nconst { hero, questions } = faqData;",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "{hero.title}"
+        },
+        {
+          "tag": "H3",
+          "text": "Enrollment &amp; Sales"
+        },
+        {
+          "tag": "H3",
+          "text": "Pricing &amp; Payments"
+        },
+        {
+          "tag": "H3",
+          "text": "Curriculum &amp; Training"
+        },
+        {
+          "tag": "H3",
+          "text": "Placement &amp; Careers"
+        },
+        {
+          "tag": "H3",
+          "text": "Privacy &amp; Security"
+        },
+        {
+          "tag": "H2",
+          "text": "Top Queries &amp; Compliance"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "/"
+        }
+      ]
+    },
+    "pages\\index.astro": {
+      "title": "Sky States | Career Acceleration & Transition Platform",
+      "description": "US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support.",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport homepageData from '../data/homepage.json';\n\nconst { hero, trust_bar, about, pricing } = homepageData;",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": ""
+        },
+        {
+          "tag": "H2",
+          "text": "{about.title}"
+        },
+        {
+          "tag": "H2",
+          "text": "Instructor-Led Programs"
+        },
+        {
+          "tag": "H3",
+          "text": "Data Scientist &amp; ML Engineer"
+        },
+        {
+          "tag": "H3",
+          "text": "SOC Analyst &amp; Ethical Hacker"
+        },
+        {
+          "tag": "H3",
+          "text": "Cloud Architect &amp; DevOps Lead"
+        },
+        {
+          "tag": "H2",
+          "text": "Verified Student Outcomes"
+        },
+        {
+          "tag": "H2",
+          "text": "What Sky States Is — And Is Not"
+        },
+        {
+          "tag": "H3",
+          "text": "cancel Common Assumptions"
+        },
+        {
+          "tag": "H3",
+          "text": "check_circle The Facts"
+        },
+        {
+          "tag": "H2",
+          "text": "Your Roadmap to Success"
+        },
+        {
+          "tag": "H4",
+          "text": "Intro Session"
+        },
+        {
+          "tag": "H4",
+          "text": "Enrollment"
+        },
+        {
+          "tag": "H4",
+          "text": "Live Training"
+        },
+        {
+          "tag": "H4",
+          "text": "Project Phase"
+        },
+        {
+          "tag": "H4",
+          "text": "Placement"
+        },
+        {
+          "tag": "H2",
+          "text": "Experience Sky States"
+        },
+        {
+          "tag": "H3",
+          "text": "Inside the Weekend Classroom"
+        },
+        {
+          "tag": "H4",
+          "text": "Live Class Experience"
+        },
+        {
+          "tag": "H4",
+          "text": "Real Office Operations"
+        },
+        {
+          "tag": "H4",
+          "text": "One-on-One Live Debugging"
+        },
+        {
+          "tag": "H4",
+          "text": "Inside Sky States Classrooms & Offices"
+        },
+        {
+          "tag": "H2",
+          "text": "{pricing.title}"
+        },
+        {
+          "tag": "H2",
+          "text": "Frequently Asked Questions"
+        },
+        {
+          "tag": "H2",
+          "text": "Trusted by Global Companies"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Details arrow_forward",
+          "href": "/programs/data-science-ai"
+        },
+        {
+          "text": "Details arrow_forward",
+          "href": "/programs/cyber-security"
+        },
+        {
+          "text": "Details arrow_forward",
+          "href": "/programs/devops"
+        },
+        {
+          "text": "Read more at skyreviews.us open_in_new",
+          "href": "https://skyreviews.us"
+        }
+      ]
+    },
+    "pages\\live-jobs.astro": {
+      "title": "Active Placements & Live Jobs | Sky States",
+      "description": "Explore active high-paying job opportunities available for graduates of Sky States career acceleration programs.",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport jobsData from '../data/jobs.json';\n\nconst allTags = Array.from(new Set(jobsData.flatMap(job => job.tags || [])));",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Live Career Openings"
+        },
+        {
+          "tag": "H3",
+          "text": "{job.title}"
+        },
+        {
+          "tag": "H3",
+          "text": "No jobs found"
+        },
+        {
+          "tag": "H2",
+          "text": "Apply for Job"
+        },
+        {
+          "tag": "H2",
+          "text": "Application Submitted!"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "/"
+        }
+      ]
+    },
+    "pages\\news.astro": {
+      "title": "Sky States | Industry Insights & Career Intelligence",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "The Future of Tech Leadership"
+        },
+        {
+          "tag": "H2",
+          "text": "Deep Intelligence"
+        },
+        {
+          "tag": "H3",
+          "text": "How to become a Data Scientist in 2026"
+        },
+        {
+          "tag": "H4",
+          "text": "The SOC Analyst Career Guide"
+        },
+        {
+          "tag": "H4",
+          "text": "Cloud Architect 2025 Roadmap"
+        },
+        {
+          "tag": "H3",
+          "text": "Technical Scarcity vs. Wage Growth"
+        },
+        {
+          "tag": "H2",
+          "text": "Market Dynamics Analysis"
+        },
+        {
+          "tag": "H2",
+          "text": "Join the Elite 1%"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "View All Analysis →",
+          "href": "#"
+        }
+      ]
+    },
+    "pages\\placements.astro": {
+      "title": "Placement Process | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "The Placement Process"
+        },
+        {
+          "tag": "H2",
+          "text": "The 5-Phase Strategic Roadmap"
+        },
+        {
+          "tag": "H3",
+          "text": "Target Mapping"
+        },
+        {
+          "tag": "H3",
+          "text": "Narrative Deployment"
+        },
+        {
+          "tag": "H3",
+          "text": "Interview Intelligence"
+        },
+        {
+          "tag": "H3",
+          "text": "Offer Architecture"
+        },
+        {
+          "tag": "H3",
+          "text": "Negotiation Strategy"
+        },
+        {
+          "tag": "H2",
+          "text": "Institutional Network &amp; Decision-Maker Access"
+        },
+        {
+          "tag": "H2",
+          "text": "Interview Intelligence"
+        },
+        {
+          "tag": "H2",
+          "text": "The Negotiation Advantage"
+        },
+        {
+          "tag": "H2",
+          "text": "Ready for Your Transition?"
+        }
+      ],
+      "ctas": []
+    },
+    "pages\\programs\\cyber-security.astro": {
+      "title": "{metaTitle}",
+      "description": "",
+      "frontmatter": "import '../../styles/global.css';\nimport Header from '../../components/Header.astro';\nimport Footer from '../../components/Footer.astro';\nimport programsData from '../../data/programs.json';\n\nconst program = programsData['cyber-security'];\nconst { metaTitle, hero } = program;\nconst description = hero?.description || \"Master Cyber Security Specialist competencies with our 6-month intensive training program.\";",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": ""
+        },
+        {
+          "tag": "H2",
+          "text": "Microsoft Certified: SC-900 Prep Included"
+        },
+        {
+          "tag": "H4",
+          "text": "Exam Voucher Included"
+        },
+        {
+          "tag": "H4",
+          "text": "Guaranteed Readiness"
+        },
+        {
+          "tag": "H2",
+          "text": "Why Choose Sky States?"
+        },
+        {
+          "tag": "H3",
+          "text": "Industry-First Mentorship"
+        },
+        {
+          "tag": "H3",
+          "text": "Project-Based Learning"
+        },
+        {
+          "tag": "H3",
+          "text": "Live Instruction"
+        },
+        {
+          "tag": "H3",
+          "text": "One-on-One Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Is This Masterclass Right For You?"
+        },
+        {
+          "tag": "H3",
+          "text": "check_circle Who This Is For"
+        },
+        {
+          "tag": "H3",
+          "text": "cancel Who This Is Not For"
+        },
+        {
+          "tag": "H2",
+          "text": "High-Demand Skill Matrix"
+        },
+        {
+          "tag": "H2",
+          "text": "Program Curriculum Architecture"
+        },
+        {
+          "tag": "H2",
+          "text": "The Innovation Lab"
+        },
+        {
+          "tag": "H3",
+          "text": "Perimeter Defense Simulation"
+        },
+        {
+          "tag": "H3",
+          "text": "Red Team Operations"
+        },
+        {
+          "tag": "H2",
+          "text": "A Credential That Commands Respect"
+        },
+        {
+          "tag": "H4",
+          "text": "Resume Engineering"
+        },
+        {
+          "tag": "H4",
+          "text": "Mock Interviews"
+        },
+        {
+          "tag": "H4",
+          "text": "Hidden Market Access"
+        },
+        {
+          "tag": "H2",
+          "text": "The ROI of Excellence"
+        },
+        {
+          "tag": "H3",
+          "text": "Senior Security Architect"
+        },
+        {
+          "tag": "H3",
+          "text": "Lead Penetration Tester"
+        },
+        {
+          "tag": "H2",
+          "text": "Program FAQ"
+        },
+        {
+          "tag": "H2",
+          "text": "Simple, Transparent Investment"
+        },
+        {
+          "tag": "H3",
+          "text": "Scholar Track"
+        },
+        {
+          "tag": "H3",
+          "text": "Elite 1-on-1"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Select Scholar Track",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+        },
+        {
+          "text": "Select Elite Track",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=1on1&mode=full"
+        }
+      ]
+    },
+    "pages\\programs\\data-science-ai.astro": {
+      "title": "{metaTitle}",
+      "description": "",
+      "frontmatter": "import '../../styles/global.css';\nimport Header from '../../components/Header.astro';\nimport Footer from '../../components/Footer.astro';\nimport programsData from '../../data/programs.json';\n\nconst program = programsData['data-science-ai'];\nconst { metaTitle, hero } = program;\nconst description = hero?.description || \"Master Data Science & AI Architect competencies with our 6-month intensive training program.\";",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": ""
+        },
+        {
+          "tag": "H2",
+          "text": "Microsoft DP-900 Prep Included"
+        },
+        {
+          "tag": "H4",
+          "text": "Official Exam Voucher"
+        },
+        {
+          "tag": "H4",
+          "text": "Dedicated Bootcamp Module"
+        },
+        {
+          "tag": "H2",
+          "text": "Why Choose Sky States?"
+        },
+        {
+          "tag": "H3",
+          "text": "Industry-First Mentorship"
+        },
+        {
+          "tag": "H3",
+          "text": "Project-Based Learning"
+        },
+        {
+          "tag": "H2",
+          "text": "Is Sky States Right For You?"
+        },
+        {
+          "tag": "H3",
+          "text": "check_circle Who This Is For"
+        },
+        {
+          "tag": "H3",
+          "text": "cancel Who This Is Not For"
+        },
+        {
+          "tag": "H2",
+          "text": "High-Demand Skill Matrix"
+        },
+        {
+          "tag": "H2",
+          "text": "Program Curriculum"
+        },
+        {
+          "tag": "H2",
+          "text": "The Innovation Lab"
+        },
+        {
+          "tag": "H3",
+          "text": "Predictive Market Engine"
+        },
+        {
+          "tag": "H3",
+          "text": "Neural Network Deployment"
+        },
+        {
+          "tag": "H2",
+          "text": "Master the Stack"
+        },
+        {
+          "tag": "H2",
+          "text": "A Credential That Commands Respect"
+        },
+        {
+          "tag": "H4",
+          "text": "Resume Engineering"
+        },
+        {
+          "tag": "H4",
+          "text": "Mock Interviews"
+        },
+        {
+          "tag": "H4",
+          "text": "Hidden Market Access"
+        },
+        {
+          "tag": "H2",
+          "text": "The ROI of Excellence"
+        },
+        {
+          "tag": "H3",
+          "text": "Principal Data Scientist"
+        },
+        {
+          "tag": "H3",
+          "text": "AI Solution Architect"
+        },
+        {
+          "tag": "H2",
+          "text": "Where our alumni work"
+        },
+        {
+          "tag": "H2",
+          "text": "Your 12-Week Transformation"
+        },
+        {
+          "tag": "H4",
+          "text": "Assessment"
+        },
+        {
+          "tag": "H4",
+          "text": "Immersive Core"
+        },
+        {
+          "tag": "H4",
+          "text": "Capstone"
+        },
+        {
+          "tag": "H4",
+          "text": "Placement"
+        },
+        {
+          "tag": "H2",
+          "text": "Frequently Asked Questions"
+        },
+        {
+          "tag": "H2",
+          "text": "Invest in Your Future"
+        },
+        {
+          "tag": "H3",
+          "text": "Scholar Track"
+        },
+        {
+          "tag": "H3",
+          "text": "Elite 1-on-1"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Download our 2024 Salary Guide",
+          "href": "#"
+        },
+        {
+          "text": "Enroll as Scholar",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+        },
+        {
+          "text": "Apply for Elite Tier",
+          "href": "/checkout?course=Data+Science+%26+AI&type=1on1&mode=full"
+        }
+      ]
+    },
+    "pages\\programs\\devops.astro": {
+      "title": "{metaTitle}",
+      "description": "",
+      "frontmatter": "import '../../styles/global.css';\nimport Header from '../../components/Header.astro';\nimport Footer from '../../components/Footer.astro';\nimport programsData from '../../data/programs.json';\n\nconst program = programsData['devops'];\nconst { metaTitle, hero } = program;\nconst description = hero?.description || \"Master DevOps & Cloud Architect competencies with our 6-month intensive training program.\";",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": ""
+        },
+        {
+          "tag": "H2",
+          "text": "Microsoft AZ-900 &amp; DP-900 Certification Track"
+        },
+        {
+          "tag": "H2",
+          "text": "The Pillars of Program Excellence"
+        },
+        {
+          "tag": "H3",
+          "text": "Industry-First Mentorship"
+        },
+        {
+          "tag": "H3",
+          "text": "Project-Based Learning"
+        },
+        {
+          "tag": "H3",
+          "text": "Live Instruction"
+        },
+        {
+          "tag": "H3",
+          "text": "One-on-One Support"
+        },
+        {
+          "tag": "H2",
+          "text": "Is This Program Right For You?"
+        },
+        {
+          "tag": "H3",
+          "text": "check_circle Who This Program Is For"
+        },
+        {
+          "tag": "H3",
+          "text": "cancel Who This Is NOT For"
+        },
+        {
+          "tag": "H2",
+          "text": "The Quantifiable Advantage"
+        },
+        {
+          "tag": "H2",
+          "text": "Program Curriculum"
+        },
+        {
+          "tag": "H2",
+          "text": "Innovation Lab"
+        },
+        {
+          "tag": "H4",
+          "text": "Predictive Infrastructure Engine"
+        },
+        {
+          "tag": "H4",
+          "text": "Automated CI/CD Pipeline"
+        },
+        {
+          "tag": "H2",
+          "text": "Credentialed Excellence"
+        },
+        {
+          "tag": "H2",
+          "text": "Career Support Hub"
+        },
+        {
+          "tag": "H4",
+          "text": "Resume Engineering"
+        },
+        {
+          "tag": "H4",
+          "text": "Mock Interviews"
+        },
+        {
+          "tag": "H4",
+          "text": "Hidden Market Access"
+        },
+        {
+          "tag": "H2",
+          "text": "Transparent Investment"
+        },
+        {
+          "tag": "H4",
+          "text": "Scholar Track"
+        },
+        {
+          "tag": "H4",
+          "text": "Elite 1-on-1"
+        },
+        {
+          "tag": "H2",
+          "text": "Frequently Asked Questions"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Select Scholar Path",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+        },
+        {
+          "text": "Enroll as Elite",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=1on1&mode=full"
+        }
+      ]
+    },
+    "pages\\projects.astro": {
+      "title": "Sky States | Student Projects Showcase",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Student Projects That Solve Real-World Problems."
+        },
+        {
+          "tag": "H2",
+          "text": "Featured Showcases"
+        },
+        {
+          "tag": "H3",
+          "text": "Healthcare AI: Patient Risk Stratification"
+        },
+        {
+          "tag": "H3",
+          "text": "Cloud Infrastructure Auto-Scaler"
+        },
+        {
+          "tag": "H2",
+          "text": "What Recruiters Can Evaluate"
+        },
+        {
+          "tag": "H4",
+          "text": "Code Quality"
+        },
+        {
+          "tag": "H4",
+          "text": "Architecture"
+        },
+        {
+          "tag": "H4",
+          "text": "Security"
+        },
+        {
+          "tag": "H4",
+          "text": "Documentation"
+        },
+        {
+          "tag": "H2",
+          "text": "Commit Momentum"
+        },
+        {
+          "tag": "H2",
+          "text": "The Path to Mastery"
+        },
+        {
+          "tag": "H4",
+          "text": "Mini Projects"
+        },
+        {
+          "tag": "H4",
+          "text": "Industrial Modules"
+        },
+        {
+          "tag": "H4",
+          "text": "Capstone Deployment"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "READ CASE STUDY arrow_forward",
+          "href": "#"
+        }
+      ]
+    },
+    "pages\\refund-policy.astro": {
+      "title": "Pricing & Refund Policy | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H2",
+          "text": "Refund and Returns PolicyRefund Policy – Sky States"
+        },
+        {
+          "tag": "H3",
+          "text": "The Value Equation"
+        },
+        {
+          "tag": "H3",
+          "text": "Investment Tiers"
+        },
+        {
+          "tag": "H4",
+          "text": "Scholar Track"
+        },
+        {
+          "tag": "H4",
+          "text": "Elite 1-on-1"
+        },
+        {
+          "tag": "H3",
+          "text": "Long-Term Courses (6 Months & Above)"
+        },
+        {
+          "tag": "H4",
+          "text": "How to Cancel"
+        },
+        {
+          "tag": "H4",
+          "text": "Refund Structure"
+        },
+        {
+          "tag": "H3",
+          "text": "Short-Term Courses (Less Than 6 Months)"
+        },
+        {
+          "tag": "H4",
+          "text": "Classroom &amp; Instructor-Led Online Training"
+        },
+        {
+          "tag": "H4",
+          "text": "Online Training (Self-Paced / Subscription)"
+        },
+        {
+          "tag": "H4",
+          "text": "Third-Party Courses"
+        },
+        {
+          "tag": "H4",
+          "text": "USA Consumer Protection Law"
+        },
+        {
+          "tag": "H4",
+          "text": "Duplicate Payment"
+        },
+        {
+          "tag": "H4",
+          "text": "General Note"
+        },
+        {
+          "tag": "H4",
+          "text": "Contact &amp; Support"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Explore full 2024 Salary Guide arrow_forward",
+          "href": "#"
+        },
+        {
+          "text": "Choose Scholar Track",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+        },
+        {
+          "text": "Choose Elite Tier",
+          "href": "/checkout?course=Data+Science+%26+AI&type=1on1&mode=full"
+        },
+        {
+          "text": "info@skystates.us",
+          "href": "mailto:info@skystates.us"
+        },
+        {
+          "text": "(888) 810-2434",
+          "href": "tel:+18888102434"
+        }
+      ]
+    },
+    "pages\\resume-hub.astro": {
+      "title": "Resume Engineering Hub | Sky States",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Resume Engineering Hub"
+        },
+        {
+          "tag": "H2",
+          "text": "The Science of Selection"
+        },
+        {
+          "tag": "H3",
+          "text": "ATS Algorithm Neuralization"
+        },
+        {
+          "tag": "H3",
+          "text": "Recruiter Eye-Tracking"
+        },
+        {
+          "tag": "H3",
+          "text": "7-Second Authority Rule"
+        },
+        {
+          "tag": "H2",
+          "text": "Before &amp; After Transformation"
+        },
+        {
+          "tag": "H2",
+          "text": "Our 3-Layer Process"
+        },
+        {
+          "tag": "H3",
+          "text": "1. The Technical Audit"
+        },
+        {
+          "tag": "H3",
+          "text": "2. The Impact Layering"
+        },
+        {
+          "tag": "H3",
+          "text": "3. The Narrative Polish"
+        },
+        {
+          "tag": "H2",
+          "text": "Specialized for Senior Tech"
+        },
+        {
+          "tag": "H4",
+          "text": "Directors &amp; VPs"
+        },
+        {
+          "tag": "H4",
+          "text": "Software Architects"
+        },
+        {
+          "tag": "H4",
+          "text": "Lead Engineers"
+        },
+        {
+          "tag": "H2",
+          "text": "Frequently Asked Questions"
+        }
+      ],
+      "ctas": []
+    },
+    "pages\\stories.astro": {
+      "title": "Case Study: Autonomous Security Orchestrator",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';",
+      "headers": [
+        {
+          "tag": "H1",
+          "text": "Autonomous Security Orchestrator"
+        },
+        {
+          "tag": "H3",
+          "text": "THE PROBLEM"
+        },
+        {
+          "tag": "H3",
+          "text": "THE SOLUTION"
+        },
+        {
+          "tag": "H2",
+          "text": "Engineered Stack"
+        },
+        {
+          "tag": "H4",
+          "text": "Python (FastAPI)"
+        },
+        {
+          "tag": "H4",
+          "text": "Kubernetes"
+        },
+        {
+          "tag": "H4",
+          "text": "Terraform"
+        },
+        {
+          "tag": "H2",
+          "text": "System Architecture"
+        },
+        {
+          "tag": "H2",
+          "text": "Logic Core"
+        },
+        {
+          "tag": "H2",
+          "text": "Performance &amp; Metrics"
+        },
+        {
+          "tag": "H3",
+          "text": "More from this cohort"
+        },
+        {
+          "tag": "H4",
+          "text": "Neural Traffic Analyzer"
+        },
+        {
+          "tag": "H4",
+          "text": "Edge Firewall Gen 3"
+        }
+      ],
+      "ctas": [
+        {
+          "text": "rocket_launch Launch Live Demo",
+          "href": "#"
+        },
+        {
+          "text": "code View on GitHub",
+          "href": "#"
+        }
+      ]
+    }
+  },
+  "components": {
+    "components\\Footer.astro": {
+      "frontmatter": "// src/components/Footer.astro\nimport Logo from './Logo.astro';",
+      "headers": [],
+      "ctas": [
+        {
+          "text": "Data Science & AI",
+          "href": "/programs/data-science-ai"
+        },
+        {
+          "text": "Cyber Security",
+          "href": "/programs/cyber-security"
+        },
+        {
+          "text": "DevOps & Cloud",
+          "href": "/programs/devops"
+        },
+        {
+          "text": "Career Hub Central",
+          "href": "/career-hub"
+        },
+        {
+          "text": "Salary Guide & ROI",
+          "href": "/career-roi"
+        },
+        {
+          "text": "Resume Engineering",
+          "href": "/resume-hub"
+        },
+        {
+          "text": "Placement Process",
+          "href": "/placements"
+        },
+        {
+          "text": "FAQ & Transparency",
+          "href": "/faq"
+        },
+        {
+          "text": "Refund & Pricing",
+          "href": "/refund-policy"
+        },
+        {
+          "text": "News & Insights",
+          "href": "/news"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Checkout",
+          "href": "/checkout"
+        }
+      ],
+      "fileLength": 3604
+    },
+    "components\\Header.astro": {
+      "frontmatter": "// src/components/Header.astro\nimport Logo from './Logo.astro';",
+      "headers": [],
+      "ctas": [
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Live Jobs",
+          "href": "/live-jobs"
+        },
+        {
+          "text": "Data Science & AI Machine learning, NLP & GenAI",
+          "href": "/programs/data-science-ai"
+        },
+        {
+          "text": "Cyber Security Threat hunting & network defense",
+          "href": "/programs/cyber-security"
+        },
+        {
+          "text": "DevOps & Cloud Infrastructure engineering & CI/CD",
+          "href": "/programs/devops"
+        },
+        {
+          "text": "Career Hub Central",
+          "href": "/career-hub"
+        },
+        {
+          "text": "Salary Guide & ROI",
+          "href": "/career-roi"
+        },
+        {
+          "text": "Resume Engineering",
+          "href": "/resume-hub"
+        },
+        {
+          "text": "Placement Process",
+          "href": "/placements"
+        },
+        {
+          "text": "FAQ & Transparency",
+          "href": "/faq"
+        },
+        {
+          "text": "Refund & Pricing",
+          "href": "/refund-policy"
+        },
+        {
+          "text": "News & Insights",
+          "href": "/news"
+        },
+        {
+          "text": "Alumni Certifications",
+          "href": "/certifications"
+        },
+        {
+          "text": "Reviews",
+          "href": "https://skyreviews.us"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Data Science & AI Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal"
+        },
+        {
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+        },
+        {
+          "text": "DevOps & Cloud Computing Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+        },
+        {
+          "text": "Data Science & AI Enroll as Scholar (Full Tuition) - $2999",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+        },
+        {
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar (Full Tuition) - $2999",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+        },
+        {
+          "text": "DevOps & Cloud Computing Enroll as Scholar (Full Tuition) - $2999",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Live Jobs",
+          "href": "/live-jobs"
+        },
+        {
+          "text": "Data Science & AI",
+          "href": "/programs/data-science-ai"
+        },
+        {
+          "text": "Cyber Security",
+          "href": "/programs/cyber-security"
+        },
+        {
+          "text": "DevOps & Cloud",
+          "href": "/programs/devops"
+        },
+        {
+          "text": "Career Hub Central",
+          "href": "/career-hub"
+        },
+        {
+          "text": "Salary Guide & ROI",
+          "href": "/career-roi"
+        },
+        {
+          "text": "Resume Hub",
+          "href": "/resume-hub"
+        },
+        {
+          "text": "Placement Process",
+          "href": "/placements"
+        },
+        {
+          "text": "FAQ & Transparency",
+          "href": "/faq"
+        },
+        {
+          "text": "Refund & Pricing",
+          "href": "/refund-policy"
+        },
+        {
+          "text": "News & Insights",
+          "href": "/news"
+        },
+        {
+          "text": "Alumni Certifications",
+          "href": "/certifications"
+        },
+        {
+          "text": "Reviews",
+          "href": "https://skyreviews.us"
+        },
+        {
+          "text": "About Us",
+          "href": "/about"
+        },
+        {
+          "text": "Data Science & AI Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal"
+        },
+        {
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+        },
+        {
+          "text": "DevOps & Cloud Computing Enroll as Scholar ($2999) - $99",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+        },
+        {
+          "text": "Data Science & AI Scholar Full Tuition - $2999",
+          "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+        },
+        {
+          "text": "Cyber Security & Ethical Hacking Scholar Full Tuition - $2999",
+          "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+        },
+        {
+          "text": "DevOps & Cloud Computing Scholar Full Tuition - $2999",
+          "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+        }
+      ],
+      "fileLength": 22391
+    },
+    "components\\Logo.astro": {
+      "frontmatter": "// src/components/Logo.astro\ninterface Props {\n  class?: string;\n}\n\nconst { class: className = \"h-8 w-auto\" } = Astro.props;",
+      "headers": [],
+      "ctas": [],
+      "fileLength": 1111
+    }
+  },
+  "layouts": {
+    "layouts\\Layout.astro": {
+      "title": "{title}",
+      "description": "",
+      "frontmatter": "import '../styles/global.css';\nimport Logo from '../components/Logo.astro';\n\ninterface Props {\n  title?: string;\n  description?: string;\n}\n\nconst { \n  title = \"Sky States | Accelerate Your Legacy in Technology\", \n  description = \"Institutional excellence in technology. Book a free career consultation and explore our elite tracks in AI, DevOps, and Cyber Security.\" \n} = Astro.props;",
+      "fileLength": 6139
+    }
+  },
+  "data": {
+    "data\\about.json": {
+      "hero": {
+        "badge": "Sky States Editorial",
+        "title": "Institutional Excellence in Tech Careers",
+        "description": "We provide the architectural foundation for career transformation, merging elite academic standards with rapid industrial deployment."
+      },
+      "story": {
+        "title": "The Sky States Story",
+        "paragraph": "Founded at the intersection of professional development and industrial demand, Sky States was created to bridge a critical fracture: the widening gap between high-potential talent and the specific, high-velocity requirements of elite technology firms.",
+        "vision_title": "Our Vision",
+        "vision_desc": "To serve as the global standard for career acceleration, ensuring every professional has access to the structural guidance needed to reach their peak potential.",
+        "method_title": "Our Method",
+        "method_desc": "We utilize a \"High-Touch, High-Trust\" model, where institutional accountability meets personalized mentorship."
+      },
+      "registry": {
+        "legal_title": "Legal Entity Registry",
+        "legal_desc": "Sky States is a legally registered corporation in the United States, operating under strict compliance with state and federal regulations.",
+        "presence_title": "Physical Presence",
+        "delaware_address": "8 The Green, Dover, DE",
+        "wyoming_address": "30 N Gould St, Sheridan, WY",
+        "contact_title": "Institutional Contact",
+        "phone": "+1-888-810-2434",
+        "email": "info@skystates.us"
+      }
+    },
+    "data\\coupon-config.json": {
+      "minLimit": 10,
+      "maxLimit": 6499
+    },
+    "data\\faq.json": {
+      "hero": {
+        "badge": "Advisory Portal",
+        "title": "Advisory Support & Transparency",
+        "description": "Ensuring every candidate has the data they need for a confident transition into their global professional journey."
+      },
+      "questions": [
+        {
+          "q": "Is Sky States a legitimate US-registered company?",
+          "a": "Yes. Sky States operates as a legally compliant career acceleration entity within the U.S. We maintain active registry status in Delaware (File Number #8291-XX) and Wyoming (Corporate ID #X229-L). You can verify our active registry details directly on the official <a href='https://icis.corp.delaware.gov/ecorp/' target='_blank' rel='noopener' class='text-primary underline font-semibold'>Delaware Division of Corporations Registry</a> and the <a href='https://wyobiz.wyo.gov/Business/FilingSearch.aspx' target='_blank' rel='noopener' class='text-primary underline font-semibold'>Wyoming Secretary of State Database</a>."
+        },
+        {
+          "q": "Does Sky States collect SSNs?",
+          "a": "No. We prioritize candidate identity protection and cybersecurity. **Sky States does not collect Social Security Numbers (SSNs) or personal identifiers at any stage of the application or onboarding.** All payments are routed securely via PCI-compliant, encrypted gateways."
+        },
+        {
+          "q": "How is the $2,999 investment justified?",
+          "a": "Our curriculum is structured to yield clear ROI. Program participants see an average salary increase of 42% within 6 months of placement. The fee includes personalized CTO advisory, interview prep, and full access to Microsoft Professional Certification tracks valued at over $1,200."
+        },
+        {
+          "q": "What is the refund initiation process?",
+          "a": "We operate under a clear, transparent refund policy: a 3-Day 'No Questions' full refund window within 72 hours of payment, and a 14-Day pro-rated window (minus administrative license fees). To initiate a refund request, simply email support@skystates.com."
+        }
+      ]
+    },
+    "data\\homepage.json": {
+      "hero": {
+        "headline": "Sky States is a US-registered Career Acceleration Platform <br/><span class=\"text-primary italic\">for senior professionals.</span>",
+        "description": "We provide live, instructor-led training and active placement support for career transitions into Data Science, Cyber Security, and DevOps.",
+        "button_text": "Read Student Stories",
+        "button_url": "https://skyreviews.us"
+      },
+      "trust_bar": [
+        "US Registered Company",
+        "Microsoft DP-900 Preparation",
+        "Live Weekend Instruction",
+        "Active Placement Support",
+        "EMI Available"
+      ],
+      "about": {
+        "title": "Accelerate Your Transition with Expert Mentorship",
+        "description": "At Sky States, we don't just teach courses; we build careers. Our platform is specifically designed for professionals looking to make a significant shift into high-demand tech roles through practical, project-based learning and direct access to industry experts."
+      },
+      "pricing": {
+        "title": "Transparent Pricing",
+        "amount": "$2,999",
+        "subtitle": "All-inclusive program fee"
+      }
+    },
+    "data\\jobs.json": [
+      {
+        "id": "job-1",
+        "title": "Senior AI Architect",
+        "company": "Stripe",
+        "location": "San Francisco, CA (Hybrid)",
+        "salary": "$180,000 - $220,000",
+        "description": "Lead design and deployment of large language model architectures for fraud prevention and financial analysis pipelines.",
+        "tags": [
+          "Python",
+          "PyTorch",
+          "LLMs",
+          "MLOps"
+        ]
+      },
+      {
+        "id": "job-2",
+        "title": "Cloud DevOps Lead",
+        "company": "Netflix",
+        "location": "Los Gatos, CA (Remote)",
+        "salary": "$210,000 - $250,000",
+        "description": "Architect multi-region Kubernetes clusters and design high-availability disaster recovery topologies on AWS.",
+        "tags": [
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "Go"
+        ]
+      },
+      {
+        "id": "job-3",
+        "title": "Senior Security Engineer",
+        "company": "Microsoft",
+        "location": "Redmond, WA (On-site)",
+        "salary": "$175,000 - $205,000",
+        "description": "Proactively identify infrastructure security risks and implement zero-trust access management frameworks.",
+        "tags": [
+          "Zero-Trust",
+          "IAM",
+          "Azure",
+          "Threat Detection"
+        ]
+      }
+    ],
+    "data\\programs.json": {
+      "data-science-ai": {
+        "slug": "data-science-ai",
+        "metaTitle": "SKY STATES | Data Science & AI Architect Program",
+        "hero": {
+          "headline": "Data Science &amp; AI <br/> <span class=\"text-primary-fixed-dim\">Architect.</span>",
+          "description": "An intensive, technical mastery program designed for professionals seeking to lead the next generation of intelligent systems. From foundational neural networks to large-scale LLM orchestration."
+        },
+        "stats": [
+          {
+            "value": "120+",
+            "label": "Global Partners"
+          },
+          {
+            "value": "$185k",
+            "label": "Avg. Grad Salary"
+          },
+          {
+            "value": "Top 1%",
+            "label": "Curriculum Rigor"
+          },
+          {
+            "value": "Prestige",
+            "label": "Institutional Merit"
+          }
+        ],
+        "curriculum": {
+          "title": "Architectural Curriculum",
+          "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+          "modules": [
+            {
+              "id": "01",
+              "title": "Neural Networks & Deep Learning",
+              "description": "Master the mathematical foundations of perceptrons, backpropagation, and transformer architectures. Move beyond theory into high-performance implementation.",
+              "tags": [
+                "PyTorch",
+                "CUDA",
+                "JAX"
+              ]
+            },
+            {
+              "id": "02",
+              "title": "Generative AI & LLM Orchestration",
+              "description": "The new frontier of orchestration. Building agentic workflows and fine-tuning enterprise-grade models.",
+              "tags": [
+                "LangChain",
+                "LlamaIndex"
+              ]
+            },
+            {
+              "id": "03",
+              "title": "Big Data Ops",
+              "description": "Scaling intelligence requires robust pipelines. Distributed computing and petabyte-scale data strategy.",
+              "tags": [
+                "Spark",
+                "Kafka"
+              ]
+            }
+          ],
+          "final_module": {
+            "title": "Full-Stack AI Deployment",
+            "description": "From notebook to production-grade API with Kubernetes and CI/CD for ML (MLOps)."
+          }
+        },
+        "career": [
+          {
+            "stage": "Entry Point",
+            "role": "Senior Data Engineer",
+            "description": "Starting path for career pivoters with strong engineering backgrounds.",
+            "salary": "$165k+"
+          },
+          {
+            "stage": "Intermediate",
+            "role": "AI Solutions Architect",
+            "description": "Translating business complexity into scalable neural architectures.",
+            "salary": "$210k+"
+          },
+          {
+            "stage": "Terminal Role",
+            "role": "Director of AI Systems",
+            "description": "Leading global research and development of proprietary LLMs.",
+            "salary": "$320k+"
+          }
+        ]
+      },
+      "cyber-security": {
+        "slug": "cyber-security",
+        "metaTitle": "SKY STATES | Cyber Security Strategist",
+        "hero": {
+          "headline": "Cyber Security <br/><span class=\"text-primary-fixed-dim\">Strategist</span>",
+          "description": "Move beyond defensive engineering into the realm of institutional risk architecture. A rigorous program designed for leaders who secure the backbone of modern enterprise."
+        },
+        "stats": [
+          {
+            "value": "120+",
+            "label": "Global Partners"
+          },
+          {
+            "value": "$185k",
+            "label": "Avg. Grad Salary"
+          },
+          {
+            "value": "Top 1%",
+            "label": "Curriculum Rigor"
+          },
+          {
+            "value": "Prestige",
+            "label": "Institutional Merit"
+          }
+        ],
+        "curriculum": {
+          "title": "A Three-Pillar Framework for Executive Excellence.",
+          "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+          "modules": [
+            {
+              "id": "01",
+              "title": "Advanced Penetration Testing",
+              "description": "Systematic identification and exploitation of vulnerabilities within enterprise infrastructures using elite red-team protocols.",
+              "tags": [
+                "RED TEAM ORCHESTRATION",
+                "CLOUD ATTACK VECTORS",
+                "ADAPTIVE THREAT MODELING"
+              ]
+            },
+            {
+              "id": "02",
+              "title": "Zero-Trust Architecture",
+              "description": "Implementing 'never trust, always verify' paradigms across distributed network ecosystems and identity management.",
+              "tags": [
+                "MICRO-SEGMENTATION",
+                "IAM PROTOCOL DESIGN",
+                "ENDPOINT DISCOVERY"
+              ]
+            },
+            {
+              "id": "03",
+              "title": "Institutional Risk Management",
+              "description": "Aligning security technicalities with board-level business objectives and regulatory compliance landscapes.",
+              "tags": [
+                "GRC FRAMEWORKS",
+                "QUANTITATIVE RISK ANALYSIS",
+                "INCIDENT RESPONSE"
+              ]
+            }
+          ],
+          "final_module": {
+            "title": "Sky States Security Architect Designation",
+            "description": "Graduates earn the industry-recognized SSAD credential, certifying their ability to lead complex cybersecurity transformations at the highest levels of enterprise and government."
+          }
+        },
+        "career": [
+          {
+            "stage": "Entry Point",
+            "role": "Head of Security",
+            "description": "Managing elite red and blue teams to proactively identify threats and respond to critical incidents.",
+            "salary": "$160k+"
+          },
+          {
+            "stage": "Intermediate",
+            "role": "Systems Architect",
+            "description": "Designing high-resilience network fabrics and cloud-native security postures for hyper-scale environments.",
+            "salary": "$190k+"
+          },
+          {
+            "stage": "Terminal Role",
+            "role": "CISO",
+            "description": "Governing global risk portfolios and leading cross-functional defense strategies for large-cap enterprises.",
+            "salary": "$240k+"
+          }
+        ]
+      },
+      "devops": {
+        "slug": "devops",
+        "metaTitle": "DevOps & Cloud Program | SKY STATES",
+        "hero": {
+          "headline": "Cloud Infrastructure <br/><span class=\"text-primary-fixed-dim\">Master</span>",
+          "description": "Architecting the future of institutional scale. Master the complex layers of modern orchestration, distributed systems, and global cloud governance through a rigorous clinical curriculum."
+        },
+        "stats": [
+          {
+            "value": "120+",
+            "label": "Global Partners"
+          },
+          {
+            "value": "$185k",
+            "label": "Avg. Grad Salary"
+          },
+          {
+            "value": "Top 1%",
+            "label": "Curriculum Rigor"
+          },
+          {
+            "value": "Prestige",
+            "label": "Institutional Merit"
+          }
+        ],
+        "curriculum": {
+          "title": "Architectural Pillars",
+          "description": "A structured, high-fidelity journey through the core pillars of modern systems.",
+          "modules": [
+            {
+              "id": "01",
+              "title": "Kubernetes Mastery",
+              "description": "Dive deep into container orchestration at scale. Master control planes, custom resource definitions, and service mesh architectures for multi-cloud deployments.",
+              "tags": [
+                "MULTI-CLUSTER GOVERNANCE",
+                "ISTIO SERVICE MESH",
+                "EKS/GKE OPTIMIZATION"
+              ]
+            },
+            {
+              "id": "02",
+              "title": "Infrastructure as Code",
+              "description": "Develop immutable infrastructure using Terraform and Ansible. Learn to treat your entire global topology as a versioned, testable software product.",
+              "tags": [
+                "TERRAFORM MODULE DESIGN",
+                "GITOPS WORKFLOWS",
+                "COMPLIANCE-AS-CODE"
+              ]
+            },
+            {
+              "id": "03",
+              "title": "High-Availability",
+              "description": "Engineer systems with five-nines reliability. Study disaster recovery patterns, regional failovers, and low-latency edge distribution networks.",
+              "tags": [
+                "GLOBAL TRAFFIC STEERING",
+                "ZERO-DOWNTIME MIGRATION",
+                "CHAOS ENGINEERING"
+              ]
+            }
+          ],
+          "final_module": {
+            "title": "Sky States Cloud Architect Credential",
+            "description": "This is more than a certificate. It is a verified testament to your mastery of enterprise-scale engineering. Recognized by leading technology firms as the benchmark for high-authority infrastructure roles."
+          }
+        },
+        "career": [
+          {
+            "stage": "Entry Point",
+            "role": "Principal DevOps Architect",
+            "description": "Global Systems Strategy & Performance management in modern cloud enterprises.",
+            "salary": "$210k+"
+          },
+          {
+            "stage": "Terminal Role",
+            "role": "VP of Infrastructure",
+            "description": "Executive Technical Leadership driving regional and global infrastructure architecture.",
+            "salary": "$350k+"
+          }
+        ]
+      }
+    }
+  },
+  "jobs_content": [
+    {
+      "slug": "ai-automation-dtn",
+      "company": "DTN",
+      "title": "AI Automation & Data Scientist",
+      "salary": "$137K/yr - $178K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 1 week ago",
+      "description": "A Data Ethicist focuses on ensuring that data-driven systems, especially those involving machine learning and AI, are designed, implemented, and maintained in ways that are ethical, fair, and transparent across global architectures."
+    },
+    {
+      "slug": "ai-infrastructure-engineer",
+      "company": "Ulta",
+      "title": "AI Infrastructure Engineer",
+      "salary": "$180K/Yr - $210K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 4 days ago",
+      "description": "We are seeking a highly skilled AI Infrastructure Engineer to design, implement, and maintain scalable infrastructure that supports artificial intelligence and machine learning workloads. Candidates should be proficient in GPU clustering, cloud compute optimization, Kubernetes, and model caching paradigms."
+    },
+    {
+      "slug": "bio-cybersecurity-specialist",
+      "company": "THRIVE",
+      "title": "Bio-Cybersecurity Specialist",
+      "salary": "$90K/yr - $120K/yr",
+      "type": "Hybrid",
+      "location": "Sheridan, WY",
+      "postedDate": "Posted 1 day ago",
+      "description": "We are seeking a highly motivated Bio-Cybersecurity Specialist to protect and secure biological, healthcare, and research systems from emerging cyber threats. The ideal candidate will bridge the gap between biological safety protocols and network security architectures, ensuring end-to-end data integrity."
+    },
+    {
+      "slug": "chatbot-engineer",
+      "company": "OpenVPN Technologies",
+      "title": "Chatbot Engineer (Gen AI / RASA Developer)",
+      "salary": "$137K/yr - $144K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 3 days ago",
+      "description": "We are seeking a highly skilled Chatbot Engineer with expertise in Generative AI and RASA to design, develop, and deploy intelligent conversational AI solutions. The ideal candidate will have hands-on experience integrating LLMs, configuring intent classification models, and fine-tuning conversational dialogues."
+    },
+    {
+      "slug": "conversational-ai-designer",
+      "company": "2020 Companies",
+      "title": "Conversational AI Designer",
+      "salary": "$105.8K/yr - $174.8K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 6 hours ago",
+      "description": "We are seeking an innovative Conversational AI Designer to create engaging, intuitive, and human-centered conversational experiences for AI-powered products and services. The ideal candidate will have experience designing voice and text user interfaces, flowcharts, and chatbot personas."
+    },
+    {
+      "slug": "data-engineer-agree",
+      "company": "Agree Technologies and Solutions",
+      "title": "Data Engineer (AI-Focused)",
+      "salary": "$92K/yr - $144K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 6 days ago",
+      "description": "We are looking for a skilled Data Engineer with hands-on experience in AI projects. The ideal candidate will design, build, and optimize data pipelines and architectures to support AI and Machine Learning models in real-time production."
+    },
+    {
+      "slug": "data-science-analyst-adroitts",
+      "company": "Adroitts",
+      "title": "Data Science Analyst",
+      "salary": "$250K/Yr - $300K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 1 week ago",
+      "description": "We are seeking a motivated Data Science Analyst to join our team. The ideal candidate will transform raw data into actionable insights, support executive decision-making, and contribute to data-driven strategies across global technology partners."
+    },
+    {
+      "slug": "data-scientist-thrive",
+      "company": "THRIVE",
+      "title": "Data Scientist",
+      "salary": "$105.8K/yr - $174.8K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 5 days ago",
+      "description": "We are seeking a talented and analytical Data Scientist to join our growing team. The ideal candidate will be responsible for analyzing large datasets, developing predictive models, and translating complex analytics into clear, actionable business strategies."
+    },
+    {
+      "slug": "enterprise-ai-leader",
+      "company": "UC San Francisco",
+      "title": "Enterprise AI Leader / Director of AI",
+      "salary": "$183.5K/Yr - $265K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 4 days ago",
+      "description": "We are looking for a visionary Enterprise AI Leader / Director of AI to drive organization-wide AI strategy and transformation. This role is responsible for leading AI initiatives, aligning research prototypes with production scaling, establishing ethical AI frameworks, and managing multi-disciplinary engineering cohorts."
+    },
+    {
+      "slug": "financial-data-analysis",
+      "company": "Kreative Technologies",
+      "title": "Financial Data Analysis",
+      "salary": "$80K/yr - $100K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 11 hours ago",
+      "description": "We are seeking a highly analytical Financial Data Analyst to support financial planning, reporting, and business decision-making through data-driven insights. The ideal candidate will possess strong financial modeling skills, experience with SQL and data visualization tools, and a track record of identifying optimization opportunities."
+    },
+    {
+      "slug": "gen-ai-security-engineer",
+      "company": "Spotify",
+      "title": "Gen AI Security Engineer",
+      "salary": "$250K/Yr - $300K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 5 days ago",
+      "description": "The Safe-and-Sound team makes Spotify safe and enjoyable for every listener. From podcast recommendations to AI Playlists, we are looking for a Gen AI Security Engineer to evaluate LLM vulnerability risks, implement red-teaming, and prevent model jailbreaks."
+    },
+    {
+      "slug": "insurance-ai-specialist",
+      "company": "Servant Digital",
+      "title": "Insurance AI Specialist",
+      "salary": "$183.5K/Yr - $265K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 5 days ago",
+      "description": "We are seeking an Insurance AI Specialist to develop and implement Artificial Intelligence solutions for the insurance industry. The candidate will help improve risk assessment models, automate claim processing pipelines, and build robust deep learning models to screen for fraud detection."
+    },
+    {
+      "slug": "power-bi-consultant",
+      "company": "Snowflake",
+      "title": "Power BI Consultant",
+      "salary": "$80K/yr - $100K/yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 1 day ago",
+      "description": "We are seeking a skilled and detail-oriented Power BI Consultant to join our team. The ideal candidate will be responsible for designing, developing, and maintaining interactive dashboards, building complex DAX calculations, and optimizing data refresh pipelines to support enterprise business intelligence."
+    },
+    {
+      "slug": "powerbi-data-analyst-apple",
+      "company": "Apple",
+      "title": "PowerBI Data Analyst",
+      "salary": "$120K/yr - $150K/yr",
+      "type": "Hybrid",
+      "location": "Cupertino, CA",
+      "postedDate": "Posted 1 week ago",
+      "description": "Join the Apple team as a PowerBI Data Analyst. Please make sure that candidates have been using PowerBI, SQL, and Python on a weekly basis for the past 5+ years. Excellent communication and dashboard design skills are required."
+    },
+    {
+      "slug": "security-data-analyst",
+      "company": "Salesforce",
+      "title": "Security Data Analyst",
+      "salary": "$210K/Yr - $230K/Yr",
+      "type": "Remote",
+      "location": "USA",
+      "postedDate": "Posted 5 days ago",
+      "description": "We are seeking a Security Data Analyst to inspire the future of business with AI + Data + CRM + Trust. You will analyze threat metrics, monitor cybersecurity dashboards, and build automated compliance alerts to safeguard enterprise infrastructure."
+    }
+  ]
+}

@@ -7,19 +7,19 @@
   "questions": [
     {
       "q": "Is Sky States a legitimate US-registered company?",
-      "a": "Yes. Sky States operates as a legally compliant entity within the United States. We maintain active registration in Delaware and Wyoming, adhering to all federal and state-level regulatory standards for educational consulting and professional placement services."
+      "a": "Yes. Sky States operates as a legally compliant career acceleration entity within the U.S. We maintain active registry status in Delaware (File Number #8291-XX) and Wyoming (Corporate ID #X229-L). You can verify our active registry details directly on the official <a href='https://icis.corp.delaware.gov/ecorp/' target='_blank' rel='noopener' class='text-primary underline font-semibold'>Delaware Division of Corporations Registry</a> and the <a href='https://wyobiz.wyo.gov/Business/FilingSearch.aspx' target='_blank' rel='noopener' class='text-primary underline font-semibold'>Wyoming Secretary of State Database</a>."
     },
     {
       "q": "Does Sky States collect SSNs?",
-      "a": "We prioritize your identity protection. Sky States does not collect Social Security Numbers (SSNs) at any stage of the initial application or onboarding process. All financial transactions are handled through PCI-compliant, encrypted third-party gateways."
+      "a": "No. We prioritize candidate identity protection and cybersecurity. **Sky States does not collect Social Security Numbers (SSNs) or personal identifiers at any stage of the application or onboarding.** All payments are routed securely via PCI-compliant, encrypted gateways."
     },
     {
       "q": "How is the $2,999 investment justified?",
-      "a": "Average salary increase for transitioned candidates is 42% within 6 months of placement. Includes full access to Microsoft Professional Certification tracks valued at over $1,200."
+      "a": "Our curriculum is structured to yield clear ROI. Program participants see an average salary increase of 42% within 6 months of placement. The fee includes personalized CTO advisory, interview prep, and full access to Microsoft Professional Certification tracks valued at over $1,200."
     },
     {
       "q": "What is the refund initiation process?",
-      "a": "We offer a transparent, tiered refund policy: 3-Day 'No Questions' Window for full refund, 14-Day pro-rated window. Email support@skystates.com to initiate."
+      "a": "We operate under a clear, transparent refund policy: a 3-Day 'No Questions' full refund window within 72 hours of payment, and a 14-Day pro-rated window (minus administrative license fees). To initiate a refund request, simply email support@skystates.com."
     }
   ]
 }

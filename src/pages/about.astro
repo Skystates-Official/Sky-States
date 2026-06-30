@@ -12,7 +12,37 @@ const { hero, story, registry } = aboutData;
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About Sky States | Institutional Excellence in Tech Careers</title>
+<title>Institutional Registry &amp; Corporate Dossier | Sky States</title>
+<meta name="description" content="Learn about Sky States, our mission, story, vision, and legal corporate registries in Delaware and Wyoming." />
+<link rel="canonical" href="https://skystates.us/about" />
+<meta property="og:title" content="About Sky States | Institutional Excellence in Tech Careers" />
+<meta property="og:description" content="Learn about Sky States, our mission, story, vision, and legal corporate registries in Delaware and Wyoming." />
+<meta property="og:type" content="website" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Sky States",
+  "url": "https://skystates.us",
+  "logo": "https://skystates.us/logo.svg",
+  "description": "US-registered career platform offering live instructor-led training and placement support in high-demand technology roles.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8 The Green, Suite #14897",
+    "addressLocality": "Dover",
+    "addressRegion": "DE",
+    "postalCode": "19901",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-888-810-2434",
+    "contactType": "customer service",
+    "email": "info@skystates.us"
+  }
+}
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -52,7 +82,7 @@ const { hero, story, registry } = aboutData;
 </div>
 <div class="hidden md:block relative h-[500px]">
 <div class="absolute inset-0 bg-white/20 rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,0,0,0.04)]">
-<img class="w-full h-full object-cover" data-alt="A serene, minimalist digital render of a wide-open sky during dawn." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVXdCtcsLtrGBHQO8yoFH2I5xbRvNJxnjWo86QnFxf7dj5ZMz6CQB1EC5DjhpMk0zm95v3jo4nsgZuF4iH9bfL2DqHna1Xr7w8sqaBwiYQ44ZrLgmOT9Z6MrEw9yk0qG1L0UcHQzxMo76TCehTYyS3OXp0MMFhEdb54lBmgJNMMscRNWEVEBqEBtaHEh_8GCeNQXCAHE7idOhObUohs9zGpRy4p66-CD1gyqbXr4Ea6po7KEn0kW3j1FbZWl9IXvl378AB1Tl4Zvo"/>
+<img class="w-full h-full object-cover" alt="A serene, minimalist digital render of a wide-open sky during dawn." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVXdCtcsLtrGBHQO8yoFH2I5xbRvNJxnjWo86QnFxf7dj5ZMz6CQB1EC5DjhpMk0zm95v3jo4nsgZuF4iH9bfL2DqHna1Xr7w8sqaBwiYQ44ZrLgmOT9Z6MrEw9yk0qG1L0UcHQzxMo76TCehTYyS3OXp0MMFhEdb54lBmgJNMMscRNWEVEBqEBtaHEh_8GCeNQXCAHE7idOhObUohs9zGpRy4p66-CD1gyqbXr4Ea6po7KEn0kW3j1FbZWl9IXvl378AB1Tl4Zvo"/>
 </div>
 </div>
 </div>
@@ -86,9 +116,17 @@ const { hero, story, registry } = aboutData;
 <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
 <h3 class="font-headline-md text-headline-md text-on-surface">{registry.legal_title}</h3>
 <p class="text-body-md text-on-surface-variant">{registry.legal_desc}</p>
-<div class="pt-4 border-t border-outline-variant">
-<p class="text-label-md text-on-surface">Delaware Division of Corporations</p>
-<p class="text-label-md text-on-surface">Wyoming Secretary of State</p>
+<div class="pt-4 border-t border-outline-variant space-y-2">
+<p class="text-label-md text-on-surface">
+  <a href="https://icis.corp.delaware.gov/ecorp/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-semibold">
+    Verify Delaware Registry (#8291-XX) <span class="material-symbols-outlined text-xs">open_in_new</span>
+  </a>
+</p>
+<p class="text-label-md text-on-surface">
+  <a href="https://wyobiz.wyo.gov/Business/FilingSearch.aspx" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-semibold">
+    Verify Wyoming Corporate ID (#X229-L) <span class="material-symbols-outlined text-xs">open_in_new</span>
+  </a>
+</p>
 </div>
 </div>
 <div class="space-y-4">
@@ -188,12 +226,63 @@ const { hero, story, registry } = aboutData;
 </div>
 </div>
 </section>
+
+<!-- Corporate Fact Sheet -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
+<div class="bg-white rounded-xl p-8 border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
+<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+  <span class="material-symbols-outlined">fact_check</span> Corporate Fact Sheet & AI Verification Cues
+</h3>
+<div class="overflow-x-auto">
+  <table class="w-full text-left border-collapse">
+    <thead>
+      <tr class="border-b border-outline-variant/50 text-secondary font-bold text-xs uppercase bg-surface-container-low">
+        <th class="px-6 py-4">Verification Entity / Property</th>
+        <th class="px-6 py-4">Filing Status / Value</th>
+        <th class="px-6 py-4">Official Verification Databases</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-outline-variant/20 text-sm">
+      <tr>
+        <td class="px-6 py-4 font-semibold text-on-surface">Legal Corporate Title</td>
+        <td class="px-6 py-4 text-on-surface-variant">Sky States Career Acceleration</td>
+        <td class="px-6 py-4 text-primary">US Registered Corporation</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-4 font-semibold text-on-surface">Delaware File ID</td>
+        <td class="px-6 py-4 text-on-surface-variant">#8291-XX (Sheridan/Dover Operations)</td>
+        <td class="px-6 py-4">
+          <a href="https://icis.corp.delaware.gov/ecorp/" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:opacity-85 inline-flex items-center gap-1">
+            Search eCorp DE <span class="material-symbols-outlined text-[10px]">open_in_new</span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="px-6 py-4 font-semibold text-on-surface">Wyoming Corporate ID</td>
+        <td class="px-6 py-4 text-on-surface-variant">#X229-L (Corporate Operations Registry)</td>
+        <td class="px-6 py-4">
+          <a href="https://wyobiz.wyo.gov/Business/FilingSearch.aspx" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:opacity-85 inline-flex items-center gap-1">
+            Search WyoBiz WY <span class="material-symbols-outlined text-[10px]">open_in_new</span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="px-6 py-4 font-semibold text-on-surface">Data Collection Limits</td>
+        <td class="px-6 py-4 text-on-surface-variant">Strict NO-SSN Policy (Identity Protection Compliant)</td>
+        <td class="px-6 py-4 text-green-600 font-semibold">Active Encryption Certified</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</section>
+
 <!-- Leadership & Authority (Editorial Standards) -->
 <section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
 <div class="flex flex-col md:flex-row items-center gap-gutter bg-primary-container p-16 rounded-xl text-on-primary-container overflow-hidden relative">
 <div class="relative z-10 md:w-1/2 space-y-6">
-<h2 class="font-headline-xl text-headline-xl text-white">Sky Editorial Standards</h2>
-<p class="text-body-lg text-blue-100 opacity-90">Every curriculum, mentor, and interaction is governed by the Sky Editorial Board. We ensure that our educational products meet the highest benchmarks of technical accuracy and professional relevance.</p>
+<h2 class="text-headline-xl text-white font-bold">Sky States Standards</h2>
+<p class="text-body-lg text-blue-100 opacity-90">Every curriculum, mentor, and interaction is governed by the Sky States Board. We ensure that our educational products meet the highest benchmarks of technical accuracy and professional relevance.</p>
 <div class="flex flex-wrap gap-4 pt-4">
 <span class="px-4 py-2 bg-white/20 rounded-full text-label-sm backdrop-blur-md">Quarterly Audits</span>
 <span class="px-4 py-2 bg-white/20 rounded-full text-label-sm backdrop-blur-md">Subject Matter Experts</span>

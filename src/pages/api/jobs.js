@@ -28,6 +28,11 @@ function writeJobs(jobs) {
   fs.writeFileSync(jsonPath, JSON.stringify(jobs, null, 2), 'utf8');
 }
 
+function checkAuth(request) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  return cookieHeader.includes('admin_session=sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a');
+}
+
 export async function GET() {
   return new Response(JSON.stringify(readJobs()), {
     status: 200,
@@ -37,6 +42,9 @@ export async function GET() {
 
 export async function POST({ request }) {
   try {
+    if (!checkAuth(request)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+    }
     const body = await request.json();
     const jobs = readJobs();
     
@@ -67,6 +75,9 @@ export async function POST({ request }) {
 
 export async function PUT({ request }) {
   try {
+    if (!checkAuth(request)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+    }
     const body = await request.json();
     const jobs = readJobs();
     const index = jobs.findIndex(j => j.id === body.id);
@@ -104,6 +115,9 @@ export async function PUT({ request }) {
 
 export async function DELETE({ request }) {
   try {
+    if (!checkAuth(request)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+    }
     const { id } = await request.json();
     let jobs = readJobs();
     const originalLength = jobs.length;

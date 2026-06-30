@@ -9,7 +9,9 @@ import Footer from '../components/Footer.astro';
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Secure Checkout | Sky Editorial</title>
+<title>Secure Checkout | Sky States</title>
+<meta name="description" content="Securely complete your enrollment in the Sky States Career Acceleration Program. Select your track and apply promotional vouchers." />
+<link rel="canonical" href="https://skystates.us/checkout" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -36,8 +38,8 @@ import Footer from '../components/Footer.astro';
 <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
 <!-- Editorial Header Section -->
 <div class="mb-section-gap rounded-xl p-12 upward-gradient flex flex-col gap-2">
-<h1 class="font-headline-xl text-headline-xl text-primary">Finalize Your Access</h1>
-<p class="text-on-surface-variant max-w-2xl font-body-lg text-body-lg">Begin your journey with Sky Editorial. Secure your introductory session and join a global network of elite scholars and executives.</p>
+<h1 class="text-headline-xl text-primary font-bold">Finalize Your Access</h1>
+<p class="text-on-surface-variant max-w-2xl text-body-lg">Begin your journey with Sky States. Secure your introductory session and join a global network of elite scholars and executives.</p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
 <!-- Left Column: Order Summary & Info -->
@@ -400,6 +402,38 @@ import Footer from '../components/Footer.astro';
 
         // Run on load
         initializeCheckout();
+
+        // Card Input Masking & Validations
+        const cardNumberInput = document.getElementById('card_number');
+        const expiryInput = document.getElementById('expiry');
+        const cvvInput = document.getElementById('cvv');
+        const nameInput = document.getElementById('name');
+
+        cardNumberInput?.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 16);
+            const formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formatted;
+        });
+
+        expiryInput?.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 4);
+            if (value.length > 2) {
+                e.target.value = value.substring(0, 2) + ' / ' + value.substring(2);
+            } else {
+                e.target.value = value;
+            }
+        });
+
+        cvvInput?.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value.substring(0, 4);
+        });
+
+        nameInput?.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+        });
 
         // Lightweight atmospheric effect: Move a soft glow based on mouse
         document.addEventListener('mousemove', (e) => {
