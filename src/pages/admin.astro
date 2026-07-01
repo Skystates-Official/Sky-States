@@ -182,7 +182,14 @@ if (authenticated) {
                             <tbody id="admin-jobs-table-body" class="divide-y divide-outline-variant/10">
                                 {jobsData.map(job => (
                                     <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`row-${job.id}`}>
-                                        <td class="px-6 py-5 font-semibold text-on-surface">{job.title}</td>
+                                        <td class="px-6 py-5">
+                                            <div class="font-semibold text-on-surface">{job.title}</div>
+                                            {job.category && (
+                                                <span class="inline-block mt-1 px-2 py-0.5 text-[9px] uppercase font-bold tracking-wider bg-primary/10 text-primary rounded-md">
+                                                    {job.category}
+                                                </span>
+                                            )}
+                                        </td>
                                         <td class="px-6 py-5 text-secondary">{job.company}</td>
                                         <td class="px-6 py-5 text-secondary">{job.location}</td>
                                         <td class="px-6 py-5 text-secondary">{job.salary}</td>
@@ -936,7 +943,7 @@ if (authenticated) {
     <!-- Modal Form (Create / Edit) -->
     {authenticated && (
         <div id="job-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
-            <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+            <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 id="modal-title" class="font-headline-md text-xl text-primary">Post New Job Listing</h2>
                     <button onclick="closeModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors">
@@ -969,15 +976,68 @@ if (authenticated) {
                         </div>
                     </div>
 
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-category" class="text-xs font-bold uppercase text-secondary">Category</label>
+                            <select id="form-category" class="h-10 px-3 border border-outline-variant/30 bg-white rounded-lg outline-none focus:border-primary transition-all text-sm">
+                                <option value="Uncategorized">Select Category</option>
+                                <option value="Data Science And AI">Data Science And AI</option>
+                                <option value="Cyber Security">Cyber Security</option>
+                                <option value="DevOps & Cloud">DevOps & Cloud</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Computer Engineering">Computer Engineering</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Reviews">Reviews</option>
+                                <option value="Blog">Blog</option>
+                                <option value="Blogs">Blogs</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-featured-image" class="text-xs font-bold uppercase text-secondary">Featured Image URL</label>
+                            <input type="text" id="form-featured-image" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. /assets/jobs/stripe.png" />
+                        </div>
+                    </div>
+
                     <div class="flex flex-col gap-1.5">
                         <label for="form-tags" class="text-xs font-bold uppercase text-secondary">Skills / Tags (comma-separated)</label>
                         <input type="text" id="form-tags" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Python, PyTorch, LLMs" />
                     </div>
 
                     <div class="flex flex-col gap-1.5">
-                        <label for="form-description" class="text-xs font-bold uppercase text-secondary">Role Description</label>
+                        <label for="form-description" class="text-xs font-bold uppercase text-secondary">Role Description / Content</label>
                         <textarea id="form-description" rows="4" class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm resize-none" placeholder="Provide a summary of core requirements and expectations..."></textarea>
                     </div>
+
+                    <!-- Collapsible Yoast SEO Settings Section -->
+                    <details class="border border-outline-variant/30 rounded-xl p-4 bg-surface-container-low group">
+                        <summary class="text-xs font-bold uppercase text-secondary cursor-pointer select-none flex justify-between items-center">
+                            <span class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-primary">seo</span>
+                                <span>Yoast SEO Settings</span>
+                            </span>
+                            <span class="material-symbols-outlined text-[16px] group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="mt-4 space-y-4 pt-3 border-t border-outline-variant/10">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="form-seo-focus" class="text-[10px] font-bold uppercase text-secondary">Focus Keyphrase</label>
+                                <input type="text" id="form-seo-focus" class="h-9 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-xs" placeholder="e.g. AI Architect" />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="form-seo-title" class="text-[10px] font-bold uppercase text-secondary">SEO Title</label>
+                                    <input type="text" id="form-seo-title" class="h-9 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-xs" placeholder="e.g. Senior AI Architect Job at Stripe" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="form-slug" class="text-[10px] font-bold uppercase text-secondary">Slug / Permalink</label>
+                                    <input type="text" id="form-slug" class="h-9 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-xs" placeholder="e.g. senior-ai-architect-stripe" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="form-seo-desc" class="text-[10px] font-bold uppercase text-secondary">Meta Description</label>
+                                <textarea id="form-seo-desc" rows="2" class="p-2.5 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-xs resize-none" placeholder="Google search snippet preview description..."></textarea>
+                            </div>
+                        </div>
+                    </details>
 
                     <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
                         <button type="button" onclick="closeModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
@@ -1892,6 +1952,12 @@ if (authenticated) {
             window.openAddModal = function() {
                 form.reset();
                 document.getElementById('form-job-id').value = '';
+                document.getElementById('form-category').value = 'Uncategorized';
+                document.getElementById('form-featured-image').value = '';
+                document.getElementById('form-seo-focus').value = '';
+                document.getElementById('form-seo-title').value = '';
+                document.getElementById('form-slug').value = '';
+                document.getElementById('form-seo-desc').value = '';
                 modalTitle.textContent = 'Post New Job Listing';
                 modal.classList.remove('hidden');
             }
@@ -1905,8 +1971,26 @@ if (authenticated) {
                 document.getElementById('form-salary').value = job.salary;
                 document.getElementById('form-tags').value = job.tags.join(', ');
                 document.getElementById('form-description').value = job.description;
+                document.getElementById('form-category').value = job.category || 'Uncategorized';
+                document.getElementById('form-featured-image').value = job.featured_image || '';
+                document.getElementById('form-seo-focus').value = job.seo_focus_keyphrase || '';
+                document.getElementById('form-seo-title').value = job.seo_title || '';
+                document.getElementById('form-slug').value = job.slug || '';
+                document.getElementById('form-seo-desc').value = job.seo_meta_description || '';
                 modal.classList.remove('hidden');
             }
+
+            // Auto-generate slug from title
+            document.getElementById('form-title')?.addEventListener('input', function() {
+                const jobId = document.getElementById('form-job-id').value;
+                if (!jobId) {
+                    const slugInput = document.getElementById('form-slug');
+                    slugInput.value = this.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/(^-|-$)/g, '');
+                }
+            });
 
             window.closeModal = function() {
                 modal.classList.add('hidden');
@@ -1926,8 +2010,27 @@ if (authenticated) {
                 const salary = document.getElementById('form-salary').value;
                 const tags = document.getElementById('form-tags').value.split(',').map(t => t.trim()).filter(Boolean);
                 const description = document.getElementById('form-description').value;
+                const category = document.getElementById('form-category').value;
+                const featured_image = document.getElementById('form-featured-image').value;
+                const seo_focus_keyphrase = document.getElementById('form-seo-focus').value;
+                const seo_title = document.getElementById('form-seo-title').value;
+                const slug = document.getElementById('form-slug').value.toLowerCase().replace(/[^a-z0-9-/]+/g, '-');
+                const seo_meta_description = document.getElementById('form-seo-desc').value;
 
-                const payload = { title, company, location, salary, tags, description };
+                const payload = { 
+                    title, 
+                    company, 
+                    location, 
+                    salary, 
+                    tags, 
+                    description,
+                    category,
+                    featured_image,
+                    seo_focus_keyphrase,
+                    seo_title,
+                    slug,
+                    seo_meta_description
+                };
                 
                 let method = 'POST';
                 if (jobId) {
