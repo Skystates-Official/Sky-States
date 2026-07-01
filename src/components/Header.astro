@@ -17,6 +17,7 @@
   <div class="nav-links" aria-label="Primary navigation">
     <a href="/" class="nav-link-item">Home</a>
     <a href="/live-jobs" class="nav-link-item">Live Jobs</a>
+    <a href="/stories" class="nav-link-item">Stories</a>
     
     <!-- Programs Dropdown -->
     <div class="relative group/drop dropdown-wrapper">
@@ -61,15 +62,15 @@
         <div class="dropdown-content">
           <a href="/checkout?course=Data+Science+%26+AI&type=normal" class="dropdown-item">
             <span class="item-title">Data Science & AI</span>
-            <span class="item-desc">Enroll as Scholar ($2999) - $99</span>
+            <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
           <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal" class="dropdown-item">
             <span class="item-title">Cyber Security & Ethical Hacking</span>
-            <span class="item-desc">Enroll as Scholar ($2999) - $99</span>
+            <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
           <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal" class="dropdown-item">
             <span class="item-title">DevOps & Cloud Computing</span>
-            <span class="item-desc">Enroll as Scholar ($2999) - $99</span>
+            <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
         </div>
       </div>
@@ -83,20 +84,20 @@
       </button>
       <div class="dropdown-menu dropdown-right">
         <div class="dropdown-header">
-          <span>Full Tuition - $2999 Enrollment</span>
+          <span>Full Tuition Enrollment</span>
         </div>
         <div class="dropdown-content">
           <a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="dropdown-item">
             <span class="item-title">Data Science & AI</span>
-            <span class="item-desc">Full Tuition Enrollment - $2999</span>
+            <span class="item-desc">Full Tuition Enrollment</span>
           </a>
           <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="dropdown-item">
             <span class="item-title">Cyber Security & Ethical Hacking</span>
-            <span class="item-desc">Full Tuition Enrollment - $2999</span>
+            <span class="item-desc">Full Tuition Enrollment</span>
           </a>
           <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="dropdown-item">
             <span class="item-title">DevOps & Cloud Computing</span>
-            <span class="item-desc">Full Tuition Enrollment - $2999</span>
+            <span class="item-desc">Full Tuition Enrollment</span>
           </a>
         </div>
       </div>
@@ -116,6 +117,7 @@
   <div class="mobile-nav-inner">
     <a tabindex="-1" href="/">Home</a>
     <a tabindex="-1" href="/live-jobs">Live Jobs</a>
+    <a tabindex="-1" href="/stories">Stories</a>
     <div class="w-full border-t border-slate-200/50 my-2"></div>
     
     <!-- Mobile Program Links -->
@@ -151,15 +153,15 @@
       <div class="mobile-cta-grid">
         <a tabindex="-1" href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="mobile-cta-sub-btn outline">
           <span class="cta-sub-title">Data Science & AI</span>
-          <span class="cta-sub-price">$2999 Full</span>
+          <span class="cta-sub-price">Full Tuition</span>
         </a>
         <a tabindex="-1" href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="mobile-cta-sub-btn outline">
           <span class="cta-sub-title">Cyber Security</span>
-          <span class="cta-sub-price">$2999 Full</span>
+          <span class="cta-sub-price">Full Tuition</span>
         </a>
         <a tabindex="-1" href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="mobile-cta-sub-btn outline">
           <span class="cta-sub-title">DevOps & Cloud</span>
-          <span class="cta-sub-price">$2999 Full</span>
+          <span class="cta-sub-price">Full Tuition</span>
         </a>
       </div>
     </div>
@@ -186,18 +188,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: calc(1rem - 0.5rem * var(--nav-scroll, 0)) 1.25rem;
-    background-color: rgba(255, 255, 255, calc(0.8 + 0.2 * var(--nav-scroll, 0)));
+    padding: 0.5rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(226, 232, 240, var(--nav-scroll, 0));
-    box-shadow: 0 4px 30px rgba(0, 0, 0, calc(var(--nav-scroll, 0) * 0.02));
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
     transition: padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s, border-bottom 0.25s, box-shadow 0.25s;
     font-family: 'Outfit', 'Inter', sans-serif;
   }
 
   @media (min-width: 768px) {
     .nav {
-      padding: calc(1.5rem - 1rem * var(--nav-scroll, 0)) 2.5rem;
+      padding: 0.5rem 2.5rem;
     }
   }
 

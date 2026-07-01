@@ -13,6 +13,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en"><head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{metaTitle}</title>
@@ -21,6 +22,10 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <meta property="og:title" content={metaTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -34,8 +39,8 @@ const description = hero?.description || "Master Data Science & AI Architect com
   }
 })} />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 
 <style>
         .material-symbols-outlined {
@@ -167,11 +172,20 @@ const description = hero?.description || "Master Data Science & AI Architect com
 
   </div>
 </section>
-
 <script is:inline>
   (() => {
-    // Dynamic real-time countdown script targeting the next cohort
-    const targetDate = new Date("2026-07-18T20:00:00").getTime();
+    function getNextSaturday() {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const daysUntilSaturday = (6 - currentDay + 7) % 7;
+      const nextSaturday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilSaturday);
+      nextSaturday.setHours(9, 0, 0, 0);
+      if (nextSaturday.getTime() <= now.getTime()) {
+        nextSaturday.setDate(nextSaturday.getDate() + 7);
+      }
+      return nextSaturday.getTime();
+    }
+    const targetDate = getNextSaturday();
     
     function updateCountdown() {
       const now = new Date().getTime();
@@ -206,19 +220,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
   })();
 </script>
 
-<!-- Section 2: Trusted By -->
-<section class="bg-surface border-y border-outline-variant/10 py-8">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<p class="text-center font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-8">Trusted by innovators at</p>
-<div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
-<div class="h-8 w-24 bg-on-surface-variant/20 rounded"></div>
-<div class="h-8 w-32 bg-on-surface-variant/20 rounded"></div>
-<div class="h-8 w-28 bg-on-surface-variant/20 rounded"></div>
-<div class="h-8 w-36 bg-on-surface-variant/20 rounded"></div>
-<div class="h-8 w-20 bg-on-surface-variant/20 rounded"></div>
-</div>
-</div>
-</section>
+
 
 <!-- Section: Program Overview & Key Features -->
 <section class="py-section-gap bg-surface-container-lowest border-b border-outline-variant/10">
@@ -753,68 +755,157 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </section>
 
 <!-- Section: What Can I Become? -->
-<section class="py-section-gap bg-surface-container-low border-y border-outline-variant/10">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    <!-- Left column: Visual callout & Title -->
-    <div class="lg:col-span-5 space-y-6">
-      <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Horizons</span>
-      <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">What Can I Become?</h2>
-      <p class="text-secondary font-body-md leading-relaxed">
-        The integration of big data analytics and generative artificial intelligence has unlocked unprecedented professional paths. Graduates of this program transition into leading high-agency architectural and analytic positions globally.
-      </p>
-      <div class="relative rounded-2xl overflow-hidden shadow-lg border border-white/20 bg-primary/5 p-4 max-w-[360px]">
-        <img loading="lazy" decoding="async" src="https://skystates.us/wp-content/uploads/2025/12/12.webp" alt="Data Science Career path illustration" class="w-full h-auto rounded-xl object-cover aspect-square hover:scale-[1.03] transition-transform duration-500" />
+<section class="py-section-gap bg-slate-50 border-y border-slate-100">
+<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+  <div class="text-center mb-16">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Horizons</span>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
+    <p class="text-secondary max-w-2xl mx-auto">
+      The integration of big data analytics and generative artificial intelligence has unlocked unprecedented professional paths. Graduates of this program transition into leading high-agency architectural and analytic positions globally.
+    </p>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Role 1 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">settings_suggest</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$145k - $190k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Machine Learning Engineer</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Design, build, and productionize machine learning pipelines, pipelines, and intelligent API endpoints at scale.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">PyTorch</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Docker</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">MLOps</span>
+        </div>
       </div>
     </div>
 
-    <!-- Right column: Interactive Grid of Career Titles -->
-    <div class="lg:col-span-7">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Title 1 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">analytics</span>
-          <span class="font-label-md text-on-surface font-semibold">Data Scientist</span>
+    <!-- Role 2 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">analytics</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$120k - $165k</span>
         </div>
-        <!-- Title 2 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">insights</span>
-          <span class="font-label-md text-on-surface font-semibold">Data Analyst</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Data Scientist</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Analyze complex datasets, extract business-critical insights, build predictive models, and guide executive decisions.</p>
         </div>
-        <!-- Title 3 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">query_stats</span>
-          <span class="font-label-md text-on-surface font-semibold">Business Analyst</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Python</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SQL</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Statistics</span>
         </div>
-        <!-- Title 4 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">manage_accounts</span>
-          <span class="font-label-md text-on-surface font-semibold">Analytics Manager</span>
+      </div>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">psychology_alt</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$160k - $210k</span>
         </div>
-        <!-- Title 5 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">psychology_alt</span>
-          <span class="font-label-md text-on-surface font-semibold">AI Research Scientist</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">AI Solutions Architect</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Translate complex business objectives into scalable GenAI applications and multi-cloud neural network architectures.</p>
         </div>
-        <!-- Title 6 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">brain</span>
-          <span class="font-label-md text-on-surface font-semibold">AI Data Scientist</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">LLM Orch</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">System Design</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Cloud Architect</span>
         </div>
-        <!-- Title 7 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">support_agent</span>
-          <span class="font-label-md text-on-surface font-semibold">Data Science Consultant</span>
+      </div>
+    </div>
+
+    <!-- Role 4 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">database</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$115k - $155k</span>
         </div>
-        <!-- Title 8 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">settings_suggest</span>
-          <span class="font-label-md text-on-surface font-semibold">ML Engineer</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Data Engineer</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Build robust data pipeline infrastructures, govern ETL processing loops, and maintain enterprise databases.</p>
         </div>
-        <!-- Title 9 -->
-        <div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-xl border border-dashed border-slate-200 group">
-          <span class="material-symbols-outlined text-primary text-xl animate-pulse">more_horiz</span>
-          <span class="font-label-md text-secondary font-semibold italic">and many more...</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Spark</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kafka</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">ETL Pipelines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 5 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">brain</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$135k - $180k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Generative AI Specialist</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Develop custom AI agents, implement Retrieval-Augmented Generation (RAG), and fine-tune open-source models.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">LangChain</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">RAG System</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Fine-Tuning</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 6 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">manage_accounts</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$130k - $170k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Analytics Manager</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Manage cross-functional data science teams, direct data strategies, and align data analysis outputs with product goals.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Agile Analytics</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SQL Dashboards</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Team Strategy</span>
         </div>
       </div>
     </div>
@@ -822,7 +913,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </section>
 
-<!-- Section 11: Career Opportunities -->
+<!-- Section 11: Career Opportunities commented out as requested
 <section class="py-section-gap bg-on-background text-on-primary" id="career">
 <div class="max-w-7xl mx-auto px-margin-desktop">
 <h2 class="font-headline-lg text-headline-lg text-center mb-8">The ROI of Excellence</h2>
@@ -852,8 +943,9 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <p class="text-xs text-secondary/50 mt-6 text-center">Note: Expected salary statistics and job designations are compiled from historical placement records verified by our partner staffing network.</p>
 </div>
 </section>
+-->
 <!-- Section 12: Alumni Testimonials -->
-<section class="py-section-gap sky-gradient-up">
+<!-- <section class="py-section-gap sky-gradient-up">
 <div class="max-w-4xl mx-auto px-margin-mobile text-center">
 <span class="material-symbols-outlined text-primary text-6xl opacity-20 mb-8">format_quote</span>
 <p class="font-headline-lg text-headline-lg italic text-on-background mb-10 leading-relaxed">"The rigor of the Sky States program transformed my approach to problem-solving. It's not just a course; it's a paradigm shift for anyone serious about leading in the age of AI."</p>
@@ -865,7 +957,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </div>
 </div>
-</section>
+</section> -->
 <!-- Section 13: Hiring Partners -->
 <section class="py-24 bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop text-center">

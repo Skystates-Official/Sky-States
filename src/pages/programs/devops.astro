@@ -13,6 +13,7 @@ const description = hero?.description || "Master DevOps & Cloud Architect compet
 <!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en"><head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{metaTitle}</title>
@@ -21,6 +22,10 @@ const description = hero?.description || "Master DevOps & Cloud Architect compet
 <meta property="og:title" content={metaTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -34,9 +39,9 @@ const description = hero?.description || "Master DevOps & Cloud Architect compet
   }
 })} />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+
 
 <style>
         .material-symbols-outlined {
@@ -58,41 +63,47 @@ const description = hero?.description || "Master DevOps & Cloud Architect compet
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopAppBar -->
 <Header />
+<main class="mt-20">
 <!-- Hero Section -->
-<section class="relative overflow-hidden upward-gradient pt-24 pb-section-gap px-margin-mobile md:px-0">
-
-<div class="max-w-[1280px] mx-auto md:px-margin-desktop flex flex-col md:flex-row items-center gap-16 relative z-10">
-<div class="flex-1 space-y-8">
-<div class="mb-2">
+<section class="bg-surface-bright min-h-[90vh] flex flex-col justify-center relative px-margin-mobile md:px-margin-desktop overflow-hidden py-12">
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+<div class="z-10">
+<div class="mb-6">
   <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Programs' }, { label: 'DevOps & Cloud' }]} />
 </div>
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
-                    ADVANCED CLOUD TRACK
-                </div>
-<h1 class="font-headline-xl text-headline-xl text-on-surface leading-tight" set:html={hero.headline}></h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">{hero.description}</p>
-<div class="flex flex-wrap gap-4 pt-4">
-<button class="px-10 py-4 bg-primary text-white rounded-xl font-label-md text-label-md shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all flex items-center gap-2">
-                        Enroll Now <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<button class="px-10 py-4 bg-secondary-container text-primary rounded-xl font-label-md text-label-md hover:bg-secondary-fixed-dim transition-all">
-                        Download Syllabus
-                    </button>
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Advanced Cloud Track</span>
+<h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
+<div class="flex items-center gap-3 mb-10 text-primary font-bold">
+<span class="material-symbols-outlined">verified</span>
+<span>AWS &amp; Kubernetes Academy Curriculum</span>
+</div>
+<div class="flex flex-wrap gap-6">
+<button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all">Enroll Now — $2,999</button>
+<button class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all">Download Syllabus</button>
 </div>
 </div>
-<div class="flex-1 w-full max-w-2xl">
-<div class="relative rounded-2xl overflow-hidden shadow-2xl">
-<video autoplay loop muted playsinline class="w-full aspect-video object-cover">
+<div class="relative mt-12 lg:mt-0">
+<div class="relative">
+<div class="rounded-3xl overflow-hidden ambient-shadow transition-transform duration-700 hover:scale-[1.02]">
+<video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-[1.49]">
 <source src="/assets/videos/devops%20hero%20section.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
-<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+</div>
+<div class="mt-6 md:mt-0 md:absolute md:-bottom-8 md:-left-8 glass-card p-6 md:p-8 rounded-2xl ambient-shadow border border-white/20 max-w-full md:max-w-[280px] z-20">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">cloud</span>
+</div>
+<span class="font-headline-xl text-4xl text-primary font-bold">96%</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">AWS Certified Solutions Architect success rate.</p>
+</div>
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
 </div>
 </div>
 </div>
-<!-- Abstract Background Detail -->
-<div class="absolute -bottom-48 -left-48 w-96 h-96 bg-primary-fixed-dim/30 rounded-full blur-[100px] pointer-events-none"></div>
 </section>
 
 <!-- Program Quick Info Bar with Countdown -->
@@ -158,8 +169,18 @@ Your browser does not support the video tag.
 
 <script is:inline>
   (() => {
-    // Dynamic real-time countdown script targeting the next cohort
-    const targetDate = new Date("2026-07-18T20:00:00").getTime();
+    function getNextSaturday() {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const daysUntilSaturday = (6 - currentDay + 7) % 7;
+      const nextSaturday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilSaturday);
+      nextSaturday.setHours(9, 0, 0, 0);
+      if (nextSaturday.getTime() <= now.getTime()) {
+        nextSaturday.setDate(nextSaturday.getDate() + 7);
+      }
+      return nextSaturday.getTime();
+    }
+    const targetDate = getNextSaturday();
     
     function updateCountdown() {
       const now = new Date().getTime();
@@ -194,18 +215,7 @@ Your browser does not support the video tag.
   })();
 </script>
 
-<!-- Trusted By -->
-<section class="bg-white py-12 border-y border-outline-variant">
-<div class="max-w-[1280px] mx-auto px-margin-desktop">
-<p class="text-center font-label-sm text-label-sm text-on-surface-variant mb-8 tracking-widest uppercase">Trusted by Global Infrastructure Leaders</p>
-<div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-<div class="text-2xl font-extrabold text-on-surface-variant">TechCorp</div>
-<div class="text-2xl font-extrabold text-on-surface-variant italic">Globo</div>
-<div class="text-2xl font-extrabold text-on-surface-variant tracking-tighter">NEXUS</div>
-<div class="text-2xl font-extrabold text-on-surface-variant">CloudFlow</div>
-</div>
-</div>
-</section>
+
 
 <!-- Section: Program Overview & Key Features -->
 <section class="py-section-gap bg-surface-container-lowest border-b border-outline-variant/10">
@@ -735,68 +745,157 @@ Who This Is NOT For
 </section>
 
 <!-- Section: What Can I Become? -->
-<section class="py-section-gap bg-surface-container-low border-y border-outline-variant/10">
-<div class="max-w-[1280px] mx-auto px-margin-desktop">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    <!-- Left column: Visual callout & Title -->
-    <div class="lg:col-span-5 space-y-6">
-      <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Cloud Horizons</span>
-      <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">What Can I Become?</h2>
-      <p class="text-secondary font-body-md leading-relaxed">
-        The shift to microservices, serverless computing, and continuous delivery has made cloud competence highly valuable. Completing this course opens the door to high-impact cloud administration and engineering roles.
-      </p>
-      <div class="relative rounded-2xl overflow-hidden shadow-lg border border-white/20 bg-primary/5 p-4 max-w-[360px]">
-        <img loading="lazy" decoding="async" src="https://skystates.us/wp-content/uploads/2025/12/12.webp" alt="DevOps Career path illustration" class="w-full h-auto rounded-xl object-cover aspect-square hover:scale-[1.03] transition-transform duration-500" />
+<section class="py-section-gap bg-slate-50 border-y border-slate-100">
+<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+  <div class="text-center mb-16">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Cloud Horizons</span>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
+    <p class="text-secondary max-w-2xl mx-auto">
+      The shift to microservices, serverless computing, and continuous delivery has made cloud competence highly valuable. Completing this course opens the door to high-impact cloud administration and engineering roles.
+    </p>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Role 1 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">construction</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$125k - $165k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">DevOps Engineer</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Bridge software development and operations through build automation, automated CI/CD deployment pipelines, and observability frameworks.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Jenkins / GitHub</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">CI/CD</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Docker</span>
+        </div>
       </div>
     </div>
 
-    <!-- Right column: Interactive Grid of Career Titles -->
-    <div class="lg:col-span-7">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Title 1 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">construction</span>
-          <span class="font-label-md text-on-surface font-semibold">DevOps Engineer</span>
+    <!-- Role 2 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">dns</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$155k - $210k</span>
         </div>
-        <!-- Title 2 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">cloud_queue</span>
-          <span class="font-label-md text-on-surface font-semibold">Cloud Administrator</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Cloud Infrastructure Architect</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Design, build, and optimize high-availability global cloud systems for large-scale enterprise performance.</p>
         </div>
-        <!-- Title 3 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">settings_applications</span>
-          <span class="font-label-md text-on-surface font-semibold">Systems Engineer</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">AWS / Azure</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Sys Design</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Multi-Cloud</span>
         </div>
-        <!-- Title 4 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">dns</span>
-          <span class="font-label-md text-on-surface font-semibold">Infrastructure Architect</span>
+      </div>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">settings_applications</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$135k - $180k</span>
         </div>
-        <!-- Title 5 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">build_circle</span>
-          <span class="font-label-md text-on-surface font-semibold">Site Reliability Engineer (SRE)</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Kubernetes Administrator</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Manage cluster orchestrations, configure service meshes (Istio), and optimize multi-cloud container deployments.</p>
         </div>
-        <!-- Title 6 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">speed</span>
-          <span class="font-label-md text-on-surface font-semibold">CI/CD Pipeline Specialist</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kubernetes</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Helm Charts</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">EKS/GKE</span>
         </div>
-        <!-- Title 7 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">security</span>
-          <span class="font-label-md text-on-surface font-semibold">DevSecOps Engineer</span>
+      </div>
+    </div>
+
+    <!-- Role 4 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">build_circle</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$140k - $190k</span>
         </div>
-        <!-- Title 8 -->
-        <div class="flex items-center gap-3 p-4 bg-white rounded-xl soft-elevation border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">terminal</span>
-          <span class="font-label-md text-on-surface font-semibold">Automation Architect</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Site Reliability Engineer (SRE)</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Maintain high system uptime, perform chaos engineering, and implement automated alerting and observability dashboards.</p>
         </div>
-        <!-- Title 9 -->
-        <div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-xl border border-dashed border-slate-200 group">
-          <span class="material-symbols-outlined text-primary text-xl animate-pulse">more_horiz</span>
-          <span class="font-label-md text-secondary font-semibold italic">and many more...</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Grafana</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Prometheus</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Chaos Eng</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 5 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">terminal</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$130k - $175k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Infrastructure as Code (IaC) Engineer</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Automate provisioning of secure, immutable global cloud topologies using declarative software configurations.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Terraform</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Ansible</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">GitOps</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 6 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">speed</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$110k - $150k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Release &amp; Build Engineer</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Manage repository versioning, build automation systems, and ensure zero-downtime application deployments.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Maven / Gradle</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Git branches</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Version control</span>
         </div>
       </div>
     </div>
@@ -879,8 +978,8 @@ Who This Is NOT For
                     </div>
 </details>
 </div>
-</div>
 </section>
+</main>
 <!-- Footer -->
 <Footer />
 <script>

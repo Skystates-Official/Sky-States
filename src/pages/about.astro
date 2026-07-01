@@ -10,6 +10,7 @@ const { hero, story, registry } = aboutData;
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Institutional Registry &amp; Corporate Dossier | Sky States</title>
@@ -29,10 +30,10 @@ const { hero, story, registry } = aboutData;
   "description": "US-registered career platform offering live instructor-led training and placement support in high-demand technology roles.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "8 The Green, Suite #14897",
-    "addressLocality": "Dover",
-    "addressRegion": "DE",
-    "postalCode": "19901",
+    "streetAddress": "30 N Gould St",
+    "addressLocality": "Sheridan",
+    "addressRegion": "WY",
+    "postalCode": "82801",
     "addressCountry": "US"
   },
   "contactPoint": {
@@ -44,9 +45,9 @@ const { hero, story, registry } = aboutData;
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+
+
+
 
 <style>
         .material-symbols-outlined {
@@ -61,6 +62,21 @@ const { hero, story, registry } = aboutData;
         }
         .text-midnight { color: #0f1d25; }
         .bg-horizon { background-color: #0077b6; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-team-card {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 <style>
     body {
@@ -134,11 +150,7 @@ const { hero, story, registry } = aboutData;
 <h3 class="font-headline-md text-headline-md text-on-surface">{registry.presence_title}</h3>
 <div class="space-y-6">
 <div>
-<p class="text-label-sm text-primary uppercase">Delaware HQ</p>
-<p class="text-body-md text-on-surface">{registry.delaware_address}</p>
-</div>
-<div>
-<p class="text-label-sm text-primary uppercase">Wyoming Operations</p>
+<p class="text-label-sm text-primary uppercase">Corporate Office</p>
 <p class="text-body-md text-on-surface">{registry.wyoming_address}</p>
 </div>
 </div>
@@ -148,8 +160,11 @@ const { hero, story, registry } = aboutData;
 <h3 class="font-headline-md text-headline-md text-on-surface">{registry.contact_title}</h3>
 <p class="text-body-md text-on-surface-variant">For official inquiries, compliance audits, or partnership proposals.</p>
 <div class="space-y-2 pt-4">
-<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href={`tel:${registry.phone.replace(/[^0-9+]/g, '')}`}>
-<span class="material-symbols-outlined text-sm">call</span> {registry.phone}
+<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href="tel:+18888102434">
+<span class="material-symbols-outlined text-sm">call</span> (888) 810-2434
+                            </a>
+<a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href="tel:+18889277072">
+<span class="material-symbols-outlined text-sm">call</span> (888) 927-7072
                             </a>
 <a class="flex items-center gap-2 text-label-md text-primary hover:underline transition-all" href={`mailto:${registry.email}`}>
 <span class="material-symbols-outlined text-sm">mail</span> {registry.email}
@@ -227,53 +242,58 @@ const { hero, story, registry } = aboutData;
 </div>
 </section>
 
-<!-- Corporate Fact Sheet -->
+<!-- Core Leadership Team Section -->
 <section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
-<div class="bg-white rounded-xl p-8 border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
-<h3 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
-  <span class="material-symbols-outlined">fact_check</span> Corporate Fact Sheet & AI Verification Cues
-</h3>
-<div class="overflow-x-auto">
-  <table class="w-full text-left border-collapse">
-    <thead>
-      <tr class="border-b border-outline-variant/50 text-secondary font-bold text-xs uppercase bg-surface-container-low">
-        <th class="px-6 py-4">Verification Entity / Property</th>
-        <th class="px-6 py-4">Filing Status / Value</th>
-        <th class="px-6 py-4">Official Verification Databases</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-outline-variant/20 text-sm">
-      <tr>
-        <td class="px-6 py-4 font-semibold text-on-surface">Legal Corporate Title</td>
-        <td class="px-6 py-4 text-on-surface-variant">Sky States Career Acceleration</td>
-        <td class="px-6 py-4 text-primary">US Registered Corporation</td>
-      </tr>
-      <tr>
-        <td class="px-6 py-4 font-semibold text-on-surface">Delaware File ID</td>
-        <td class="px-6 py-4 text-on-surface-variant">#8291-XX (Sheridan/Dover Operations)</td>
-        <td class="px-6 py-4">
-          <a href="https://icis.corp.delaware.gov/ecorp/" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:opacity-85 inline-flex items-center gap-1">
-            Search eCorp DE <span class="material-symbols-outlined text-[10px]">open_in_new</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td class="px-6 py-4 font-semibold text-on-surface">Wyoming Corporate ID</td>
-        <td class="px-6 py-4 text-on-surface-variant">#X229-L (Corporate Operations Registry)</td>
-        <td class="px-6 py-4">
-          <a href="https://wyobiz.wyo.gov/Business/FilingSearch.aspx" target="_blank" rel="noopener noreferrer" class="text-primary underline hover:opacity-85 inline-flex items-center gap-1">
-            Search WyoBiz WY <span class="material-symbols-outlined text-[10px]">open_in_new</span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td class="px-6 py-4 font-semibold text-on-surface">Data Collection Limits</td>
-        <td class="px-6 py-4 text-on-surface-variant">Strict NO-SSN Policy (Identity Protection Compliant)</td>
-        <td class="px-6 py-4 text-green-600 font-semibold">Active Encryption Certified</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="text-center mb-16">
+<span class="inline-block px-4 py-1 rounded-full bg-primary-container text-on-primary-container text-label-sm uppercase tracking-widest font-bold">Executive Board</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-4">Core Leadership Team</h2>
+<p class="text-body-md text-on-surface-variant max-w-2xl mx-auto mt-2">Our institution is guided by veteran engineers, security directors, and platform architects dedicated to student placement outcomes.</p>
 </div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+  <!-- CTO Card -->
+  <div class="animate-team-card bg-white rounded-2xl overflow-hidden border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/20 transition-all duration-300 flex flex-col" style="animation-delay: 100ms;">
+    <div class="h-64 overflow-hidden relative bg-slate-100">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="Dr. Evelyn Sterling" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div class="p-6 text-center space-y-1">
+      <h3 class="font-bold text-lg text-midnight">Dr. Evelyn Sterling</h3>
+      <p class="text-primary text-xs font-semibold uppercase tracking-wider">Chief Technology Officer</p>
+    </div>
+  </div>
+
+  <!-- Security Card -->
+  <div class="animate-team-card bg-white rounded-2xl overflow-hidden border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/20 transition-all duration-300 flex flex-col" style="animation-delay: 200ms;">
+    <div class="h-64 overflow-hidden relative bg-slate-100">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" alt="Arthur Vance" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div class="p-6 text-center space-y-1">
+      <h3 class="font-bold text-lg text-midnight">Arthur Vance</h3>
+      <p class="text-primary text-xs font-semibold uppercase tracking-wider">Director of Security Operations</p>
+    </div>
+  </div>
+
+  <!-- DevOps Card -->
+  <div class="animate-team-card bg-white rounded-2xl overflow-hidden border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/20 transition-all duration-300 flex flex-col" style="animation-delay: 300ms;">
+    <div class="h-64 overflow-hidden relative bg-slate-100">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" alt="Sarah Jenkins" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div class="p-6 text-center space-y-1">
+      <h3 class="font-bold text-lg text-midnight">Sarah Jenkins</h3>
+      <p class="text-primary text-xs font-semibold uppercase tracking-wider">Head of DevOps & Placements</p>
+    </div>
+  </div>
+
+  <!-- Manager Card -->
+  <div class="animate-team-card bg-white rounded-2xl overflow-hidden border border-outline-variant/30 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/20 transition-all duration-300 flex flex-col" style="animation-delay: 400ms;">
+    <div class="h-64 overflow-hidden relative bg-slate-100">
+      <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" alt="David Choi" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div class="p-6 text-center space-y-1">
+      <h3 class="font-bold text-lg text-midnight">David Choi</h3>
+      <p class="text-primary text-xs font-semibold uppercase tracking-wider">Student Success Manager</p>
+    </div>
+  </div>
 </div>
 </section>
 

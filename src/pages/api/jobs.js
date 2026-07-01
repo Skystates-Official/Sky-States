@@ -1,3 +1,5 @@
+import { getSessionUser } from '../../db/auth.js';
+
 import fs from 'fs';
 import path from 'path';
 
@@ -29,8 +31,7 @@ function writeJobs(jobs) {
 }
 
 function checkAuth(request) {
-  const cookieHeader = request.headers.get('cookie') || '';
-  return cookieHeader.includes('admin_session=sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a');
+  return !!getSessionUser(request);
 }
 
 export async function GET() {

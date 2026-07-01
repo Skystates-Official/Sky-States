@@ -1,3 +1,5 @@
+import { getSessionUser } from '../../db/auth.js';
+
 import fs from 'fs';
 import path from 'path';
 
@@ -49,8 +51,8 @@ export async function GET({ url }) {
 export async function POST({ request, url }) {
   try {
     // Check auth cookie to ensure secure operations
-    const cookieHeader = request.headers.get('cookie') || '';
-    if (!cookieHeader.includes('admin_session=sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a')) {
+    const session = getSessionUser(request);
+    if (!session) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
 

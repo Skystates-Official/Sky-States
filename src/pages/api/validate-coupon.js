@@ -8,15 +8,9 @@ export async function POST({ request }) {
     const { code, basePrice } = await request.json();
     const cleanCode = (code || '').trim().toLowerCase();
     
-    // Read limits and allowed coupons from coupon-config.json
+    // Read limits from coupon-config.json
     let minLimit = 10;
     let maxLimit = 1000;
-    let allowedCoupons = {
-      "sky100": 100,
-      "sky200": 200,
-      "sky500": 500,
-      "sky1000": 1000
-    };
     
     try {
       const configPath = path.resolve('src/data/coupon-config.json');
@@ -24,23 +18,22 @@ export async function POST({ request }) {
         const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         if (typeof configData.minLimit === 'number') minLimit = configData.minLimit;
         if (typeof configData.maxLimit === 'number') maxLimit = configData.maxLimit;
-        if (configData.allowedCoupons && typeof configData.allowedCoupons === 'object') {
-          allowedCoupons = configData.allowedCoupons;
-        }
       }
     } catch (e) {
       // fallback to defaults
     }
 
-    if (!allowedCoupons.hasOwnProperty(cleanCode)) {
-      return new Response(JSON.stringify({ valid: false, error: 'Invalid coupon code or coupon has expired.' }), { status: 400 });
+    // Match code format: 'sky' followed by digits (e.g., 'sky459' -> $459 discount)
+    const match = cleanCode.match(/^sky(\d+)$/);
+    if (!match) {
+      return new Response(JSON.stringify({ valid: false, error: 'Invalid coupon code.' }), { status: 400 });
     }
     
-    const discountAmount = allowedCoupons[cleanCode];
+    const discountAmount = parseInt(match[1], 10);
     
-    // Verify coupon range
+    // Verify coupon range against configured limits
     if (discountAmount < minLimit || discountAmount > maxLimit) {
-      return new Response(JSON.stringify({ valid: false, error: `Coupon value must be between $${minLimit} and $${maxLimit}.` }), { status: 400 });
+      return new Response(JSON.stringify({ valid: false, error: 'Invalid coupon code or coupon has expired.' }), { status: 400 });
     }
     
     // Calculate new pricing totals (capped at $0 minimum)

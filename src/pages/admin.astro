@@ -9,21 +9,26 @@ import faqData from '../data/faq.json';
 import programsData from '../data/programs.json';
 import couponConfigData from '../data/coupon-config.json';
 
+import { authenticateUser, verifySessionToken, createSessionToken } from '../db/auth.js';
+
 export const prerender = false;
 
 // Authenticate session
-const SECURE_SESSION_TOKEN = 'sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a';
 let authenticated = false;
+let userSession = null;
 let loginError = '';
 
 if (Astro.cookies.has('admin_session')) {
     const sessionCookie = Astro.cookies.get('admin_session');
-    if (sessionCookie && sessionCookie.value === SECURE_SESSION_TOKEN) {
-        authenticated = true;
+    if (sessionCookie) {
+        userSession = verifySessionToken(sessionCookie.value);
+        if (userSession) {
+            authenticated = true;
+        }
     }
 }
 
-// Handle login post request
+// Handle login/logout requests
 if (Astro.request.method === 'POST') {
     try {
         const formData = await Astro.request.formData();
@@ -33,8 +38,10 @@ if (Astro.request.method === 'POST') {
             const username = formData.get('username');
             const password = formData.get('password');
             
-            if (username === 'admin' && password === 'Xziant@123') {
-                Astro.cookies.set('admin_session', SECURE_SESSION_TOKEN, {
+            const user = await authenticateUser(username, password);
+            if (user) {
+                const token = createSessionToken(user.username, user.role);
+                Astro.cookies.set('admin_session', token, {
                     path: '/',
                     httpOnly: true,
                     sameSite: 'strict',
@@ -52,17 +59,30 @@ if (Astro.request.method === 'POST') {
         loginError = 'An error occurred during authentication.';
     }
 }
+
+import { query as sqlQuery } from '../db/sqlite.js';
+let mediaItems = [];
+let dynamicPages = [];
+if (authenticated) {
+    try {
+        mediaItems = await sqlQuery.all("SELECT * FROM media ORDER BY created_at DESC");
+        dynamicPages = await sqlQuery.all("SELECT * FROM pages ORDER BY created_at DESC");
+    } catch (dbErr) {
+        console.error("Error loading CMS items:", dbErr.message);
+    }
+}
 ---
 
 <!DOCTYPE html>
 <html class="light" lang="en">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Institutional Admin Portal | Sky States</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    
     
     <style>
         .material-symbols-outlined {
@@ -115,6 +135,20 @@ if (Astro.request.method === 'POST') {
                     class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
                 >
                     Page Content CMS
+                </button>
+                <button 
+                    onclick="switchTab('media')" 
+                    id="tab-btn-media" 
+                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
+                >
+                    Media Library
+                </button>
+                <button 
+                    onclick="switchTab('pages')" 
+                    id="tab-btn-pages" 
+                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
+                >
+                    Dynamic Pages
                 </button>
             </div>
 
@@ -185,6 +219,144 @@ if (Astro.request.method === 'POST') {
                 </div>
             </div>
 
+            <!-- TAB 3: MEDIA LIBRARY -->
+            <div id="panel-media" class="tab-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-headline-md text-xl text-on-surface">Media Assets Library</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Upload File Sidebar -->
+                    <div class="lg:col-span-4 bg-white p-6 rounded-xl border border-outline-variant/20 shadow-sm space-y-4 h-fit">
+                        <h3 class="font-bold text-sm text-primary uppercase tracking-wider">Upload Asset</h3>
+                        
+                        <form id="media-upload-form" onsubmit="uploadMedia(event)" class="space-y-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Choose File</label>
+                                <input type="file" id="media-file-input" required class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Alt Text</label>
+                                <input type="text" id="media-alt-input" placeholder="Describe this asset for SEO..." class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs" />
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Title</label>
+                                <input type="text" id="media-title-input" placeholder="Friendly title..." class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs" />
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white hover:bg-opacity-90 transition-all py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                                <span class="material-symbols-outlined text-[16px]">upload</span>
+                                <span>Upload to CDN</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Files Grid -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="media-library-grid">
+                            {mediaItems.map(item => (
+                                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm flex flex-col justify-between" id={`media-${item.id}`}>
+                                    <div class="aspect-video bg-slate-900 flex items-center justify-center overflow-hidden border-b border-outline-variant/10 relative group">
+                                        {item.mime_type.startsWith('image/') ? (
+                                            <img src={item.path} alt={item.alt_text} class="w-full h-full object-cover" />
+                                        ) : item.mime_type.startsWith('video/') ? (
+                                            <video src={item.path} class="w-full h-full object-cover" muted />
+                                        ) : (
+                                            <span class="material-symbols-outlined text-4xl text-slate-400">description</span>
+                                        )}
+                                    </div>
+                                    <div class="p-3 flex-1 flex flex-col justify-between">
+                                        <div class="truncate">
+                                            <h4 class="font-semibold text-xs text-slate-800 truncate" title={item.filename}>{item.filename}</h4>
+                                            <p class="text-[10px] text-slate-400 mt-0.5 truncate">{item.path}</p>
+                                        </div>
+                                        <div class="flex gap-1.5 mt-3">
+                                            <button 
+                                                onclick={`copyToClipboard('${item.path}')`} 
+                                                class="flex-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 py-1.5 rounded text-[10px] font-bold uppercase tracking-wider flex items-center justify-center gap-1 cursor-pointer"
+                                                title="Copy Link"
+                                            >
+                                                <span class="material-symbols-outlined text-[12px]">link</span>
+                                                <span>Copy</span>
+                                            </button>
+                                            <button 
+                                                onclick={`deleteMedia(${item.id})`}
+                                                class="bg-error/5 hover:bg-error/10 text-error p-1.5 rounded border border-error/10 flex items-center justify-center cursor-pointer"
+                                                title="Delete File"
+                                            >
+                                                <span class="material-symbols-outlined text-[14px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: DYNAMIC PAGES -->
+            <div id="panel-pages" class="tab-panel hidden space-y-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-headline-md text-xl text-on-surface">Manage Dynamic Pages</h2>
+                    <button 
+                        onclick="openPageModal()" 
+                        class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm cursor-pointer"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">add</span>
+                        <span>Create New Page</span>
+                    </button>
+                </div>
+
+                <!-- Page List Table -->
+                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Page Title</th>
+                                    <th class="px-6 py-4">Slug / URL Path</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Created At</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-pages-table-body" class="divide-y divide-outline-variant/10">
+                                {dynamicPages.map(p => (
+                                    <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`page-row-${p.id}`}>
+                                        <td class="px-6 py-5 font-semibold text-on-surface">{p.title}</td>
+                                        <td class="px-6 py-5 text-secondary">
+                                            <a href={`/${p.slug}`} target="_blank" class="hover:underline text-primary font-semibold">/{p.slug}</a>
+                                        </td>
+                                        <td class="px-6 py-5">
+                                            <span class={`px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider rounded ${p.status === 'published' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-amber-50 text-amber-700 border border-amber-100'}`}>
+                                                {p.status}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-5 text-secondary">{new Date(p.created_at).toLocaleDateString()}</td>
+                                        <td class="px-6 py-5 text-right space-x-2">
+                                            <button 
+                                                onclick={`openPageEditor(${JSON.stringify(p)})`} 
+                                                class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer"
+                                                title="Edit Page Blocks"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">construction</span>
+                                            </button>
+                                            <button 
+                                                onclick={`deletePage(${p.id})`} 
+                                                class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer"
+                                                title="Delete Page"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- TAB 2: PAGE CONTENT CMS -->
             <div id="panel-homepage" class="tab-panel hidden space-y-6">
                 <!-- Dropdown selector for page-by-page editing -->
@@ -230,16 +402,26 @@ if (Astro.request.method === 'POST') {
                                     <input type="text" id="cms-hero-btn-url" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
                                 </div>
                             </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Consultation Link Label</label>
+                                    <input type="text" id="cms-hero-consult-text" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Consultation Link URL</label>
+                                    <input type="text" id="cms-hero-consult-url" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
                         </div>
                         <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
                             <div class="border-b border-outline-variant/10 pb-4">
                                 <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
                                     <span class="material-symbols-outlined">workspace_premium</span>
-                                    <span>Trust Indicators (Trust Bar)</span>
+                                    <span>Highlights (4 Items)</span>
                                 </h3>
                             </div>
                             <div class="flex flex-col gap-1.5">
-                                <label class="text-xs font-bold uppercase text-secondary">Trust Items (Comma-separated)</label>
+                                <label class="text-xs font-bold uppercase text-secondary">Highlight Items (Comma-separated, exactly 4)</label>
                                 <input type="text" id="cms-trust-bar" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
                             </div>
                         </div>
@@ -255,10 +437,184 @@ if (Astro.request.method === 'POST') {
                                 <input type="text" id="cms-about-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
                             </div>
                             <div class="flex flex-col gap-1.5">
-                                <label class="text-xs font-bold uppercase text-secondary">About Section Description</label>
-                                <textarea id="cms-about-description" rows="4" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                                <label class="text-xs font-bold uppercase text-secondary">About Section Description (Use double newlines for paragraphs)</label>
+                                <textarea id="cms-about-description" rows="6" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
                             </div>
                         </div>
+
+                        <!-- Why Choose SkyStates Edit Fields -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">help</span>
+                                    <span>Why Should You Choose SkyStates? (6 Pillars)</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 1</label>
+                                    <input type="text" id="cms-why-1-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-1-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 2</label>
+                                    <input type="text" id="cms-why-2-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-2-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 3</label>
+                                    <input type="text" id="cms-why-3-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-3-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 4</label>
+                                    <input type="text" id="cms-why-4-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-4-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 5</label>
+                                    <input type="text" id="cms-why-5-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-5-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Pillar 6</label>
+                                    <input type="text" id="cms-why-6-title" placeholder="Title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full" />
+                                    <textarea id="cms-why-6-desc" placeholder="Description" rows="2" required class="p-2 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-xs w-full resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discover Programs Section Edit Fields -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">menu_book</span>
+                                    <span>Discover SkyStates Technology Programs Section</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Title</label>
+                                    <input type="text" id="cms-prog-section-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Subtitle</label>
+                                    <input type="text" id="cms-prog-section-subtitle" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="space-y-4 pt-4 border-t border-slate-100">
+                                <!-- Program Card 1 -->
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <h4 class="text-xs font-bold text-primary uppercase">Program 1 (Data Science & AI)</h4>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <input type="text" id="cms-prog-1-title" placeholder="Title" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-1-price" placeholder="Price" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-1-highlights" placeholder="Highlights (comma-separated)" required class="h-9 px-3 border rounded text-xs w-full" />
+                                    </div>
+                                    <textarea id="cms-prog-1-desc" placeholder="Description" rows="2" required class="p-2 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <!-- Program Card 2 -->
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <h4 class="text-xs font-bold text-primary uppercase">Program 2 (Cybersecurity)</h4>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <input type="text" id="cms-prog-2-title" placeholder="Title" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-2-price" placeholder="Price" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-2-highlights" placeholder="Highlights (comma-separated)" required class="h-9 px-3 border rounded text-xs w-full" />
+                                    </div>
+                                    <textarea id="cms-prog-2-desc" placeholder="Description" rows="2" required class="p-2 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <!-- Program Card 3 -->
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <h4 class="text-xs font-bold text-primary uppercase">Program 3 (DevOps)</h4>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <input type="text" id="cms-prog-3-title" placeholder="Title" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-3-price" placeholder="Price" required class="h-9 px-3 border rounded text-xs w-full" />
+                                        <input type="text" id="cms-prog-3-highlights" placeholder="Highlights (comma-separated)" required class="h-9 px-3 border rounded text-xs w-full" />
+                                    </div>
+                                    <textarea id="cms-prog-3-desc" placeholder="Description" rows="2" required class="p-2 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Learning Paths Edit Fields -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">route</span>
+                                    <span>Learning Paths Matches Your Goals</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Title</label>
+                                    <input type="text" id="cms-paths-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Subtitle</label>
+                                    <input type="text" id="cms-paths-subtitle" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Path 1 (Short-Term)</label>
+                                    <input type="text" id="cms-path-1-title" placeholder="Title" required class="h-9 px-3 border rounded text-xs w-full" />
+                                    <textarea id="cms-path-1-desc" placeholder="Description" rows="3" required class="p-2 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-4 border border-slate-100 rounded-lg space-y-3">
+                                    <label class="text-xs font-bold uppercase text-secondary block">Path 2 (Long-Term)</label>
+                                    <input type="text" id="cms-path-2-title" placeholder="Title" required class="h-9 px-3 border rounded text-xs w-full" />
+                                    <textarea id="cms-path-2-desc" placeholder="Description" rows="3" required class="p-2 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Methodology Edit Fields -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">history_edu</span>
+                                    <span>Our Learning Methodology</span>
+                                </h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Title</label>
+                                    <input type="text" id="cms-meth-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="text-xs font-bold uppercase text-secondary">Section Subtitle</label>
+                                    <input type="text" id="cms-meth-subtitle" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="text-xs font-bold uppercase text-secondary">Section Main Description</label>
+                                <textarea id="cms-meth-description" rows="3" required class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm resize-none"></textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                                <div class="p-3 border rounded space-y-2">
+                                    <label class="text-[10px] font-bold uppercase text-secondary block">Step 1</label>
+                                    <input type="text" id="cms-meth-1-title" placeholder="Title" required class="h-8 px-2 border rounded text-xs w-full" />
+                                    <textarea id="cms-meth-1-desc" placeholder="Description" rows="2" required class="p-1.5 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-3 border rounded space-y-2">
+                                    <label class="text-[10px] font-bold uppercase text-secondary block">Step 2</label>
+                                    <input type="text" id="cms-meth-2-title" placeholder="Title" required class="h-8 px-2 border rounded text-xs w-full" />
+                                    <textarea id="cms-meth-2-desc" placeholder="Description" rows="2" required class="p-1.5 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-3 border rounded space-y-2">
+                                    <label class="text-[10px] font-bold uppercase text-secondary block">Step 3</label>
+                                    <input type="text" id="cms-meth-3-title" placeholder="Title" required class="h-8 px-2 border rounded text-xs w-full" />
+                                    <textarea id="cms-meth-3-desc" placeholder="Description" rows="2" required class="p-1.5 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                                <div class="p-3 border rounded space-y-2">
+                                    <label class="text-[10px] font-bold uppercase text-secondary block">Step 4</label>
+                                    <input type="text" id="cms-meth-4-title" placeholder="Title" required class="h-8 px-2 border rounded text-xs w-full" />
+                                    <textarea id="cms-meth-4-desc" placeholder="Description" rows="2" required class="p-1.5 border rounded text-xs w-full resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing Console -->
                         <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
                             <div class="border-b border-outline-variant/10 pb-4">
                                 <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
@@ -281,6 +637,7 @@ if (Astro.request.method === 'POST') {
                                 </div>
                             </div>
                         </div>
+
                         <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save Homepage Changes</button>
                     </form>
                 </div>
@@ -629,6 +986,107 @@ if (Astro.request.method === 'POST') {
                 </form>
             </div>
         </div>
+
+        <!-- PAGE CREATION MODAL -->
+        <div id="page-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
+                    <h2 class="font-headline-md text-xl text-primary">Create Dynamic Page</h2>
+                    <button onclick="closePageModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+                <form onsubmit="createPage(event)" class="space-y-4">
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold uppercase text-secondary">Page Title</label>
+                        <input type="text" id="page-create-title" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="e.g. Career Bootcamp" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold uppercase text-secondary">Slug / URL Path</label>
+                        <input type="text" id="page-create-slug" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="e.g. bootcamp" />
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white hover:bg-opacity-90 transition-all py-3 rounded-lg font-bold text-xs uppercase tracking-wider">
+                        Create Page Draft
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PAGE BLOCK BUILDER EDITOR OVERLAY -->
+        <div id="page-editor-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+            <div class="bg-slate-50 rounded-2xl w-full max-w-6xl h-[90vh] p-8 shadow-2xl relative border border-outline-variant/15 flex flex-col justify-between" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center pb-4 border-b border-outline-variant/10 shrink-0">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-primary font-bold">Dynamic block layout</span>
+                        <h2 class="font-headline-md text-2xl text-slate-800" id="editor-page-title">Edit Page</h2>
+                    </div>
+                    <button onclick="closePageEditor()" class="p-2 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto my-6 grid grid-cols-1 lg:grid-cols-12 gap-8 pr-2">
+                    <!-- Left Column: Settings -->
+                    <div class="lg:col-span-4 bg-white p-6 rounded-xl border border-outline-variant/15 shadow-sm space-y-4 h-fit">
+                        <h3 class="font-bold text-xs uppercase text-slate-400 tracking-wider">Page Configurations</h3>
+                        <input type="hidden" id="editor-page-id" />
+                        
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[10px] font-bold uppercase text-secondary">Title</label>
+                            <input type="text" id="editor-title" required class="h-10 px-3 border border-outline-variant/30 rounded-lg text-sm outline-none focus:border-primary" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[10px] font-bold uppercase text-secondary">Slug / URL</label>
+                            <input type="text" id="editor-slug" required class="h-10 px-3 border border-outline-variant/30 rounded-lg text-sm outline-none focus:border-primary" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[10px] font-bold uppercase text-secondary">Status</label>
+                            <select id="editor-status" class="h-10 px-3 border border-outline-variant/30 rounded-lg text-sm outline-none focus:border-primary bg-white">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[10px] font-bold uppercase text-secondary">Meta Title</label>
+                            <input type="text" id="editor-meta-title" class="h-10 px-3 border border-outline-variant/30 rounded-lg text-sm outline-none focus:border-primary" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[10px] font-bold uppercase text-secondary">Meta Description</label>
+                            <textarea id="editor-meta-desc" rows="3" class="p-3 border border-outline-variant/30 rounded-lg text-sm outline-none focus:border-primary resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Block list -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-xs uppercase text-slate-400 tracking-wider">Page Content Blocks</h3>
+                            <div class="flex gap-2 items-center">
+                                <select id="block-select" class="h-9 px-3 border border-outline-variant/30 rounded-lg text-xs outline-none focus:border-primary bg-white">
+                                    <option value="hero">Hero Block</option>
+                                    <option value="features">Features Block</option>
+                                    <option value="cta">CTA Banner</option>
+                                    <option value="faq">FAQ Accordion</option>
+                                    <option value="rich_text">HTML Rich Text</option>
+                                </select>
+                                <button type="button" onclick="addEditorBlock()" class="bg-primary text-white hover:bg-opacity-90 px-4 py-1.5 rounded-lg text-[10px] uppercase font-bold tracking-wider cursor-pointer">
+                                    Add Block
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Active Builder Block List -->
+                        <div id="editor-blocks-container" class="space-y-4">
+                            <!-- Blocks will render dynamically here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-outline-variant/10 flex justify-end gap-3 shrink-0">
+                    <button onclick="closePageEditor()" class="px-6 py-2.5 border border-outline-variant/40 hover:bg-slate-200 rounded-lg text-xs uppercase tracking-wider font-bold">Cancel</button>
+                    <button onclick="savePageBlocks()" class="px-6 py-2.5 bg-primary text-white hover:bg-opacity-95 rounded-lg text-xs uppercase tracking-wider font-bold">Save Layout</button>
+                </div>
+            </div>
+        </div>
     )}
 
     <!-- Footer -->
@@ -657,6 +1115,440 @@ if (Astro.request.method === 'POST') {
                 }
             }
 
+            // Media Library Client-Side Operations
+            window.uploadMedia = async function(e) {
+                e.preventDefault();
+                const fileInput = document.getElementById('media-file-input');
+                const altInput = document.getElementById('media-alt-input');
+                const titleInput = document.getElementById('media-title-input');
+                
+                if (!fileInput.files.length) {
+                    alert('Please select a file to upload.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                formData.append('alt_text', altInput.value);
+                formData.append('title', titleInput.value);
+
+                try {
+                    const response = await fetch('/api/media', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        alert('Asset uploaded successfully!');
+                        window.location.reload();
+                    } else {
+                        const errData = await response.json();
+                        alert('Upload failed: ' + (errData.error || 'Unknown error'));
+                    }
+                } catch (err) {
+                    console.error('Upload request error:', err);
+                    alert('Upload request failed.');
+                }
+            }
+
+            window.copyToClipboard = function(text) {
+                const absoluteUrl = window.location.origin + text;
+                navigator.clipboard.writeText(absoluteUrl).then(() => {
+                    alert('Copied URL to clipboard: ' + absoluteUrl);
+                }).catch(err => {
+                    console.error('Clipboard error:', err);
+                    alert('Failed to copy. URL: ' + absoluteUrl);
+                });
+            }
+
+            window.deleteMedia = async function(id) {
+                if (!confirm('Are you sure you want to permanently delete this asset?')) return;
+
+                try {
+                    const response = await fetch('/api/media', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+
+                    if (response.ok) {
+                        const el = document.getElementById(`media-${id}`);
+                        if (el) el.remove();
+                    } else {
+                        const errData = await response.json();
+                        alert('Delete failed: ' + (errData.error || 'Unknown error'));
+                    }
+                } catch (err) {
+                    console.error('Delete request error:', err);
+                    alert('Delete request failed.');
+                }
+            }
+
+            // Dynamic Pages Operations
+            const pageModal = document.getElementById('page-modal');
+            const pageEditorModal = document.getElementById('page-editor-modal');
+            let activePageBlocks = [];
+
+            window.openPageModal = function() {
+                document.getElementById('page-create-title').value = '';
+                document.getElementById('page-create-slug').value = '';
+                pageModal.classList.remove('hidden');
+            }
+
+            window.closePageModal = function() {
+                pageModal.classList.add('hidden');
+            }
+
+            window.createPage = async function(e) {
+                e.preventDefault();
+                const title = document.getElementById('page-create-title').value;
+                const slug = document.getElementById('page-create-slug').value.toLowerCase().replace(/[^a-z0-9-/]+/g, '-');
+
+                try {
+                    const response = await fetch('/api/pages', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ title, slug })
+                    });
+
+                    if (response.ok) {
+                        alert('Page draft created successfully!');
+                        window.location.reload();
+                    } else {
+                        const err = await response.json();
+                        alert('Error: ' + (err.error || 'Failed to create page'));
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Request failed');
+                }
+            }
+
+            window.deletePage = async function(id) {
+                if (!confirm('Are you absolutely sure you want to delete this page? All dynamic blocks will be lost.')) return;
+
+                try {
+                    const response = await fetch('/api/pages', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+
+                    if (response.ok) {
+                        const row = document.getElementById(`page-row-${id}`);
+                        if (row) row.remove();
+                    } else {
+                        alert('Delete page failed.');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Request failed');
+                }
+            }
+
+            window.openPageEditor = function(page) {
+                document.getElementById('editor-page-title').textContent = `Edit Layout: ${page.title}`;
+                document.getElementById('editor-page-id').value = page.id;
+                document.getElementById('editor-title').value = page.title;
+                document.getElementById('editor-slug').value = page.slug;
+                document.getElementById('editor-status').value = page.status;
+                document.getElementById('editor-meta-title').value = page.meta_title || '';
+                document.getElementById('editor-meta-desc').value = page.meta_description || '';
+                
+                try {
+                    activePageBlocks = JSON.parse(page.content_blocks || '[]');
+                } catch (e) {
+                    activePageBlocks = [];
+                }
+                
+                renderEditorBlocks();
+                pageEditorModal.classList.remove('hidden');
+            }
+
+            window.closePageEditor = function() {
+                pageEditorModal.classList.add('hidden');
+            }
+
+            window.renderEditorBlocks = function() {
+                const container = document.getElementById('editor-blocks-container');
+                container.innerHTML = '';
+
+                if (activePageBlocks.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-8 border border-dashed border-outline-variant/35 rounded-xl text-center text-secondary text-sm">
+                            No content blocks yet. Pick a block type above and click "Add Block" to start designing.
+                        </div>
+                    `;
+                    return;
+                }
+
+                activePageBlocks.forEach((block, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-5 rounded-xl border border-outline-variant/20 shadow-sm space-y-4';
+                    
+                    let fieldsHtml = '';
+                    if (block.type === 'hero') {
+                        fieldsHtml = `
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">Badge Text</label>
+                                    <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="badge" value="${block.data.badge || ''}" />
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">CTA Button Text</label>
+                                    <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="cta_label" value="${block.data.cta_label || ''}" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">Hero Headline (Supports HTML/Tags)</label>
+                                <textarea class="block-input p-3 border border-outline-variant/30 rounded text-xs resize-none" rows="2" data-key="headline">${block.data.headline || ''}</textarea>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">Hero Subtitle / Description</label>
+                                <textarea class="block-input p-3 border border-outline-variant/30 rounded text-xs resize-none" rows="2" data-key="subtitle">${block.data.subtitle || ''}</textarea>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">CTA Button URL Link</label>
+                                <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="cta_url" value="${block.data.cta_url || ''}" />
+                            </div>
+                        `;
+                    } else if (block.type === 'cta') {
+                        fieldsHtml = `
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">Banner Headline</label>
+                                <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="title" value="${block.data.title || ''}" />
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">Description</label>
+                                <textarea class="block-input p-3 border border-outline-variant/30 rounded text-xs resize-none" rows="2" data-key="description">${block.data.description || ''}</textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">Button Text</label>
+                                    <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="btn_label" value="${block.data.btn_label || ''}" />
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">Button Link URL</label>
+                                    <input type="text" class="block-input h-9 px-3 border border-outline-variant/30 rounded text-xs" data-key="btn_url" value="${block.data.btn_url || ''}" />
+                                </div>
+                            </div>
+                        `;
+                    } else if (block.type === 'rich_text') {
+                        fieldsHtml = `
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">HTML Markup Content</label>
+                                <textarea class="block-input p-3 border border-outline-variant/30 rounded text-xs font-mono" rows="6" data-key="content">${block.data.content || ''}</textarea>
+                            </div>
+                        `;
+                    } else if (block.type === 'features') {
+                        fieldsHtml = `
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase">Feature List</span>
+                                    <button type="button" onclick="addFeatureItem(${idx})" class="text-primary hover:underline text-[10px] font-bold uppercase tracking-wider cursor-pointer">Add Item</button>
+                                </div>
+                                <div class="space-y-3" id="feature-items-${idx}">
+                                    ${(block.data.items || []).map((item, itemIdx) => `
+                                        <div class="p-3 border border-outline-variant/15 rounded bg-slate-50 relative space-y-2">
+                                            <button type="button" onclick="removeFeatureItem(${idx}, ${itemIdx})" class="absolute top-2 right-2 text-error text-[10px] font-bold hover:underline cursor-pointer">Remove</button>
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <input type="text" placeholder="Icon (e.g. verified)" class="feat-icon h-8 px-2 border rounded text-xs" value="${item.icon || ''}" />
+                                                <input type="text" placeholder="Title" class="feat-title h-8 px-2 border rounded text-xs" value="${item.title || ''}" />
+                                            </div>
+                                            <input type="text" placeholder="Short description..." class="feat-desc h-8 px-2 border rounded text-xs w-full" value="${item.description || ''}" />
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    } else if (block.type === 'faq') {
+                        fieldsHtml = `
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase">FAQ Accordion Questions</span>
+                                    <button type="button" onclick="addFaqItem(${idx})" class="text-primary hover:underline text-[10px] font-bold uppercase tracking-wider cursor-pointer">Add Question</button>
+                                </div>
+                                <div class="space-y-3" id="faq-items-${idx}">
+                                    ${(block.data.items || []).map((item, itemIdx) => `
+                                        <div class="p-3 border border-outline-variant/15 rounded bg-slate-50 relative space-y-2">
+                                            <button type="button" onclick="removeFaqItem(${idx}, ${itemIdx})" class="absolute top-2 right-2 text-error text-[10px] font-bold hover:underline cursor-pointer">Remove</button>
+                                            <input type="text" placeholder="Question" class="faq-q h-8 px-2 border rounded text-xs w-full" value="${item.q || ''}" />
+                                            <textarea placeholder="Answer..." class="faq-a p-2 border rounded text-xs w-full resize-none" rows="2">${item.a || ''}</textarea>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center pb-2 border-b border-outline-variant/10">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded bg-slate-100 border text-[9px] uppercase tracking-wider font-bold text-slate-500">${block.type}</span>
+                                <h4 class="font-bold text-xs text-slate-700">Block #${idx + 1}</h4>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" onclick="moveBlock(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="p-1 hover:bg-slate-100 rounded text-slate-500 disabled:opacity-30 cursor-pointer">
+                                    <span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                </button>
+                                <button type="button" onclick="moveBlock(${idx}, 1)" ${idx === activePageBlocks.length - 1 ? 'disabled' : ''} class="p-1 hover:bg-slate-100 rounded text-slate-500 disabled:opacity-30 cursor-pointer">
+                                    <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+                                </button>
+                                <button type="button" onclick="removeBlock(${idx})" class="p-1 hover:bg-red-50 text-error rounded cursor-pointer">
+                                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="space-y-3 block-form-fields" data-index="${idx}">
+                            ${fieldsHtml}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            window.addEditorBlock = function() {
+                const select = document.getElementById('block-select');
+                const type = select.value;
+                
+                let defaultData = {};
+                if (type === 'hero') {
+                    defaultData = { badge: 'New', headline: 'Dynamic Title', subtitle: 'Block details here.', cta_label: 'Button', cta_url: '/' };
+                } else if (type === 'cta') {
+                    defaultData = { title: 'Call to Action', description: 'Highlight this layout banner.', btn_label: 'Proceed', btn_url: '/' };
+                } else if (type === 'rich_text') {
+                    defaultData = { content: '<p>Edit this markup content...</p>' };
+                } else if (type === 'features') {
+                    defaultData = { items: [{ icon: 'verified', title: 'Feature', description: 'Details here' }] };
+                } else if (type === 'faq') {
+                    defaultData = { items: [{ q: 'Question?', a: 'Answer.' }] };
+                }
+
+                activePageBlocks.push({ type, data: defaultData });
+                renderEditorBlocks();
+            }
+
+            window.moveBlock = function(idx, direction) {
+                // Sync values first
+                syncBlocksState();
+                const targetIdx = idx + direction;
+                if (targetIdx < 0 || targetIdx >= activePageBlocks.length) return;
+                
+                const temp = activePageBlocks[idx];
+                activePageBlocks[idx] = activePageBlocks[targetIdx];
+                activePageBlocks[targetIdx] = temp;
+                
+                renderEditorBlocks();
+            }
+
+            window.removeBlock = function(idx) {
+                syncBlocksState();
+                activePageBlocks.splice(idx, 1);
+                renderEditorBlocks();
+            }
+
+            // Feature Item helpers
+            window.addFeatureItem = function(blockIdx) {
+                syncBlocksState();
+                activePageBlocks[blockIdx].data.items.push({ icon: 'verified', title: 'Feature Item', description: 'Detail text' });
+                renderEditorBlocks();
+            }
+
+            window.removeFeatureItem = function(blockIdx, itemIdx) {
+                syncBlocksState();
+                activePageBlocks[blockIdx].data.items.splice(itemIdx, 1);
+                renderEditorBlocks();
+            }
+
+            // FAQ Item helpers
+            window.addFaqItem = function(blockIdx) {
+                syncBlocksState();
+                activePageBlocks[blockIdx].data.items.push({ q: 'Question?', a: 'Answer detail.' });
+                renderEditorBlocks();
+            }
+
+            window.removeFaqItem = function(blockIdx, itemIdx) {
+                syncBlocksState();
+                activePageBlocks[blockIdx].data.items.splice(itemIdx, 1);
+                renderEditorBlocks();
+            }
+
+            // Syncs the DOM inputs back into the activePageBlocks array in memory
+            function syncBlocksState() {
+                const forms = document.querySelectorAll('.block-form-fields');
+                forms.forEach(form => {
+                    const idx = parseInt(form.getAttribute('data-index'), 10);
+                    const block = activePageBlocks[idx];
+                    
+                    if (block.type === 'hero' || block.type === 'cta' || block.type === 'rich_text') {
+                        const inputs = form.querySelectorAll('.block-input');
+                        inputs.forEach(input => {
+                            const key = input.getAttribute('data-key');
+                            block.data[key] = input.value;
+                        });
+                    } else if (block.type === 'features') {
+                        const items = [];
+                        const rows = form.querySelectorAll('#feature-items-' + idx + ' > div');
+                        rows.forEach(row => {
+                            const icon = row.querySelector('.feat-icon').value;
+                            const title = row.querySelector('.feat-title').value;
+                            const description = row.querySelector('.feat-desc').value;
+                            items.push({ icon, title, description });
+                        });
+                        block.data.items = items;
+                    } else if (block.type === 'faq') {
+                        const items = [];
+                        const rows = form.querySelectorAll('#faq-items-' + idx + ' > div');
+                        rows.forEach(row => {
+                            const q = row.querySelector('.faq-q').value;
+                            const a = row.querySelector('.faq-a').value;
+                            items.push({ q, a });
+                        });
+                        block.data.items = items;
+                    }
+                });
+            }
+
+            window.savePageBlocks = async function() {
+                syncBlocksState();
+                const id = document.getElementById('editor-page-id').value;
+                const title = document.getElementById('editor-title').value;
+                const slug = document.getElementById('editor-slug').value.toLowerCase().replace(/[^a-z0-9-/]+/g, '-');
+                const status = document.getElementById('editor-status').value;
+                const meta_title = document.getElementById('editor-meta-title').value;
+                const meta_description = document.getElementById('editor-meta-desc').value;
+
+                const payload = {
+                    id,
+                    title,
+                    slug,
+                    status,
+                    meta_title,
+                    meta_description,
+                    canonical_url: window.location.origin + '/' + slug,
+                    content_blocks: activePageBlocks
+                };
+
+                try {
+                    const response = await fetch('/api/pages', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alert('Page layout and configurations saved successfully!');
+                        window.location.reload();
+                    } else {
+                        const err = await response.json();
+                        alert('Save failed: ' + (err.error || 'Unknown error'));
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Request failed');
+                }
+            }
+
             // CMS Page-by-Page Selector Logic
             window.switchCmsPage = function(pageId) {
                 const subPanels = document.querySelectorAll('.cms-sub-panel');
@@ -672,9 +1564,69 @@ if (Astro.request.method === 'POST') {
                 document.getElementById('cms-hero-description').value = homepageData.hero?.description || '';
                 document.getElementById('cms-hero-btn-text').value = homepageData.hero?.button_text || '';
                 document.getElementById('cms-hero-btn-url').value = homepageData.hero?.button_url || '';
+                document.getElementById('cms-hero-consult-text').value = homepageData.hero?.consultation_text || '';
+                document.getElementById('cms-hero-consult-url').value = homepageData.hero?.consultation_url || '';
                 document.getElementById('cms-trust-bar').value = (homepageData.trust_bar || []).join(', ');
                 document.getElementById('cms-about-title').value = homepageData.about?.title || '';
                 document.getElementById('cms-about-description').value = homepageData.about?.description || '';
+                
+                // Why Choose
+                if (homepageData.why_choose) {
+                    homepageData.why_choose.forEach((feat, idx) => {
+                        const titleEl = document.getElementById(`cms-why-${idx + 1}-title`);
+                        const descEl = document.getElementById(`cms-why-${idx + 1}-desc`);
+                        if (titleEl) titleEl.value = feat.title || '';
+                        if (descEl) descEl.value = feat.description || '';
+                    });
+                }
+
+                // Programs
+                if (homepageData.programs_section) {
+                    document.getElementById('cms-prog-section-title').value = homepageData.programs_section.title || '';
+                    document.getElementById('cms-prog-section-subtitle').value = homepageData.programs_section.subtitle || '';
+                    if (homepageData.programs_section.programs) {
+                        homepageData.programs_section.programs.forEach((prog, idx) => {
+                            const titleEl = document.getElementById(`cms-prog-${idx + 1}-title`);
+                            const priceEl = document.getElementById(`cms-prog-${idx + 1}-price`);
+                            const highlightsEl = document.getElementById(`cms-prog-${idx + 1}-highlights`);
+                            const descEl = document.getElementById(`cms-prog-${idx + 1}-desc`);
+                            if (titleEl) titleEl.value = prog.title || '';
+                            if (priceEl) priceEl.value = prog.price || '';
+                            if (highlightsEl) highlightsEl.value = (prog.highlights || []).join(', ');
+                            if (descEl) descEl.value = prog.description || '';
+                        });
+                    }
+                }
+
+                // Paths
+                if (homepageData.learning_paths) {
+                    document.getElementById('cms-paths-title').value = homepageData.learning_paths.title || '';
+                    document.getElementById('cms-paths-subtitle').value = homepageData.learning_paths.subtitle || '';
+                    if (homepageData.learning_paths.paths) {
+                        homepageData.learning_paths.paths.forEach((pathItem, idx) => {
+                            const titleEl = document.getElementById(`cms-path-${idx + 1}-title`);
+                            const descEl = document.getElementById(`cms-path-${idx + 1}-desc`);
+                            if (titleEl) titleEl.value = pathItem.title || '';
+                            if (descEl) descEl.value = pathItem.description || '';
+                        });
+                    }
+                }
+
+                // Methodology
+                if (homepageData.methodology) {
+                    document.getElementById('cms-meth-title').value = homepageData.methodology.title || '';
+                    document.getElementById('cms-meth-subtitle').value = homepageData.methodology.subtitle || '';
+                    document.getElementById('cms-meth-description').value = homepageData.methodology.description || '';
+                    if (homepageData.methodology.steps) {
+                        homepageData.methodology.steps.forEach((step, idx) => {
+                            const titleEl = document.getElementById(`cms-meth-${idx + 1}-title`);
+                            const descEl = document.getElementById(`cms-meth-${idx + 1}-desc`);
+                            if (titleEl) titleEl.value = step.title || '';
+                            if (descEl) descEl.value = step.description || '';
+                        });
+                    }
+                }
+
                 document.getElementById('cms-pricing-title').value = homepageData.pricing?.title || '';
                 document.getElementById('cms-pricing-amount').value = homepageData.pricing?.amount || '';
                 document.getElementById('cms-pricing-subtitle').value = homepageData.pricing?.subtitle || '';
@@ -749,17 +1701,72 @@ if (Astro.request.method === 'POST') {
                 const description = document.getElementById('cms-hero-description').value;
                 const button_text = document.getElementById('cms-hero-btn-text').value;
                 const button_url = document.getElementById('cms-hero-btn-url').value;
+                const consultation_text = document.getElementById('cms-hero-consult-text').value;
+                const consultation_url = document.getElementById('cms-hero-consult-url').value;
                 const trust_bar = document.getElementById('cms-trust-bar').value.split(',').map(item => item.trim()).filter(Boolean);
                 const about_title = document.getElementById('cms-about-title').value;
                 const about_description = document.getElementById('cms-about-description').value;
+
+                // Read Why Choose
+                const why_choose = [];
+                for (let i = 1; i <= 6; i++) {
+                    const titleVal = document.getElementById(`cms-why-${i}-title`).value;
+                    const descVal = document.getElementById(`cms-why-${i}-desc`).value;
+                    why_choose.push({ title: titleVal, description: descVal });
+                }
+
+                // Read Programs Section
+                const progSectionTitle = document.getElementById('cms-prog-section-title').value;
+                const progSectionSubtitle = document.getElementById('cms-prog-section-subtitle').value;
+                const programs = [];
+                const progIds = ['data-science-ai', 'cyber-security', 'devops'];
+                for (let i = 1; i <= 3; i++) {
+                    const titleVal = document.getElementById(`cms-prog-${i}-title`).value;
+                    const priceVal = document.getElementById(`cms-prog-${i}-price`).value;
+                    const highlightsVal = document.getElementById(`cms-prog-${i}-highlights`).value.split(',').map(item => item.trim()).filter(Boolean);
+                    const descVal = document.getElementById(`cms-prog-${i}-desc`).value;
+                    programs.push({
+                        id: progIds[i - 1],
+                        title: titleVal,
+                        price: priceVal,
+                        description: descVal,
+                        highlights: highlightsVal
+                    });
+                }
+
+                // Read Paths Section
+                const pathsTitle = document.getElementById('cms-paths-title').value;
+                const pathsSubtitle = document.getElementById('cms-paths-subtitle').value;
+                const paths = [];
+                for (let i = 1; i <= 2; i++) {
+                    const titleVal = document.getElementById(`cms-path-${i}-title`).value;
+                    const descVal = document.getElementById(`cms-path-${i}-desc`).value;
+                    paths.push({ title: titleVal, description: descVal });
+                }
+
+                // Read Methodology Section
+                const methTitle = document.getElementById('cms-meth-title').value;
+                const methSubtitle = document.getElementById('cms-meth-subtitle').value;
+                const methDesc = document.getElementById('cms-meth-description').value;
+                const steps = [];
+                for (let i = 1; i <= 4; i++) {
+                    const titleVal = document.getElementById(`cms-meth-${i}-title`).value;
+                    const descVal = document.getElementById(`cms-meth-${i}-desc`).value;
+                    steps.push({ id: String(i), title: titleVal, description: descVal });
+                }
+
                 const pricing_title = document.getElementById('cms-pricing-title').value;
                 const pricing_amount = document.getElementById('cms-pricing-amount').value;
                 const pricing_subtitle = document.getElementById('cms-pricing-subtitle').value;
 
                 const payload = {
-                    hero: { headline, description, button_text, button_url },
+                    hero: { headline, description, button_text, button_url, consultation_text, consultation_url },
                     trust_bar,
                     about: { title: about_title, description: about_description },
+                    why_choose,
+                    programs_section: { title: progSectionTitle, subtitle: progSectionSubtitle, programs },
+                    learning_paths: { title: pathsTitle, subtitle: pathsSubtitle, paths },
+                    methodology: { title: methTitle, subtitle: methSubtitle, description: methDesc, steps },
                     pricing: { title: pricing_title, amount: pricing_amount, subtitle: pricing_subtitle }
                 };
 

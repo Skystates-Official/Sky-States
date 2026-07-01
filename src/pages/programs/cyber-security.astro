@@ -13,6 +13,7 @@ const description = hero?.description || "Master Cyber Security Specialist compe
 <!DOCTYPE html>
 
 <html class="light scroll-smooth" lang="en"><head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{metaTitle}</title>
@@ -21,6 +22,10 @@ const description = hero?.description || "Master Cyber Security Specialist compe
 <meta property="og:title" content={metaTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -34,8 +39,8 @@ const description = hero?.description || "Master Cyber Security Specialist compe
   }
 })} />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
 
 <style>
         .material-symbols-outlined {
@@ -163,8 +168,18 @@ Your browser does not support the video tag.
 
 <script is:inline>
   (() => {
-    // Dynamic real-time countdown script targeting the next cohort
-    const targetDate = new Date("2026-07-18T20:00:00").getTime();
+    function getNextSaturday() {
+      const now = new Date();
+      const currentDay = now.getDay();
+      const daysUntilSaturday = (6 - currentDay + 7) % 7;
+      const nextSaturday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilSaturday);
+      nextSaturday.setHours(9, 0, 0, 0);
+      if (nextSaturday.getTime() <= now.getTime()) {
+        nextSaturday.setDate(nextSaturday.getDate() + 7);
+      }
+      return nextSaturday.getTime();
+    }
+    const targetDate = getNextSaturday();
     
     function updateCountdown() {
       const now = new Date().getTime();
@@ -199,19 +214,7 @@ Your browser does not support the video tag.
   })();
 </script>
 
-<!-- Section 2: Trusted By -->
-<section class="bg-surface border-y border-outline-variant/10 py-12">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<p class="text-center font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-12">Hiring partners &amp; Alumni Network at</p>
-<div class="flex flex-wrap justify-center items-center gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
-<div class="font-bold text-2xl">TECHCORP</div>
-<div class="font-bold text-2xl">GLOBO</div>
-<div class="font-bold text-2xl">SECURE-IT</div>
-<div class="font-bold text-2xl">INFRASTRUCTURE</div>
-<div class="font-bold text-2xl">CYBER-GEN</div>
-</div>
-</div>
-</section>
+
 
 <!-- Section: Program Overview & Key Features -->
 <section class="py-section-gap bg-surface-container-lowest border-b border-outline-variant/10">
@@ -804,68 +807,157 @@ Your browser does not support the video tag.
 </section>
 
 <!-- Section: What Can I Become? -->
-<section class="py-section-gap bg-surface-container-low border-y border-outline-variant/10">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-    <!-- Left column: Visual callout & Title -->
-    <div class="lg:col-span-5 space-y-6">
-      <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Security Horizons</span>
-      <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">What Can I Become?</h2>
-      <p class="text-secondary font-body-md leading-relaxed">
-        Modern cyber defense and offensive operations demand highly specialized, versatile professionals. Completing this program equips you to step confidently into critical security roles across enterprise sectors.
-      </p>
-      <div class="relative rounded-2xl overflow-hidden shadow-lg border border-white/20 bg-primary/5 p-4 max-w-[360px]">
-        <img loading="lazy" decoding="async" src="https://skystates.us/wp-content/uploads/2025/12/12.webp" alt="Cyber Security Career path illustration" class="w-full h-auto rounded-xl object-cover aspect-square hover:scale-[1.03] transition-transform duration-500" />
+<section class="py-section-gap bg-slate-50 border-y border-slate-100">
+<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+  <div class="text-center mb-16">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Security Horizons</span>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
+    <p class="text-secondary max-w-2xl mx-auto">
+      Modern cyber defense and offensive operations demand highly specialized, versatile professionals. Completing this program equips you to step confidently into critical security roles across enterprise sectors.
+    </p>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Role 1 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">security</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$95k - $130k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Security Analyst (SOC)</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Monitor enterprise network traffic, detect security incidents, triage alerts, and mitigate active threat vectors in real-time.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SIEM Tools</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Threat Intel</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">WireShark</span>
+        </div>
       </div>
     </div>
 
-    <!-- Right column: Interactive Grid of Career Titles -->
-    <div class="lg:col-span-7">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Title 1 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">security</span>
-          <span class="font-label-md text-on-surface font-semibold">Security Analyst</span>
+    <!-- Role 2 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">admin_panel_settings</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$115k - $160k</span>
         </div>
-        <!-- Title 2 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">admin_panel_settings</span>
-          <span class="font-label-md text-on-surface font-semibold">Ethical Hacker</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Ethical Hacker / Penetration Tester</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Proactively simulate offensive cyber attacks on target infrastructures to locate and remediate security vulnerabilities before adversaries do.</p>
         </div>
-        <!-- Title 3 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">shield</span>
-          <span class="font-label-md text-on-surface font-semibold">Penetration Tester</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Metasploit</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Nmap</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kali Linux</span>
         </div>
-        <!-- Title 4 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">policy</span>
-          <span class="font-label-md text-on-surface font-semibold">Compliance Auditor</span>
+      </div>
+    </div>
+
+    <!-- Role 3 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">gavel</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$110k - $150k</span>
         </div>
-        <!-- Title 5 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">gavel</span>
-          <span class="font-label-md text-on-surface font-semibold">Incident Responder</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Incident Responder</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Lead containment, forensic investigations, and disaster mitigation during active security breaches to minimize business downtime.</p>
         </div>
-        <!-- Title 6 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">vpn_lock</span>
-          <span class="font-label-md text-on-surface font-semibold">Network Security Engineer</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Digital Forensics</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Reverse Eng</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Incident Plans</span>
         </div>
-        <!-- Title 7 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">cloud_done</span>
-          <span class="font-label-md text-on-surface font-semibold">Cloud Security Architect</span>
+      </div>
+    </div>
+
+    <!-- Role 4 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">cloud_done</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$150k - $200k</span>
         </div>
-        <!-- Title 8 -->
-        <div class="flex items-center gap-3 p-4 bg-surface rounded-xl border border-slate-100 hover:border-primary hover:shadow-sm transition-all group">
-          <span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">manage_accounts</span>
-          <span class="font-label-md text-on-surface font-semibold">Security Consultant</span>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Cloud Security Architect</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Design and implement secure infrastructure configurations, IAM policies, and cloud-native container security postures.</p>
         </div>
-        <!-- Title 9 -->
-        <div class="flex items-center gap-3 p-4 bg-surface-container-low rounded-xl border border-dashed border-slate-200 group">
-          <span class="material-symbols-outlined text-primary text-xl animate-pulse">more_horiz</span>
-          <span class="font-label-md text-secondary font-semibold italic">and many more...</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">AWS/Azure Sec</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">IAM Roles</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kubernetes Sec</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 5 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">policy</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$100k - $140k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Compliance Auditor / GRC Specialist</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Audit enterprise environments to ensure strict adherence to global regulatory frameworks, standards, and data privacy policies.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SOC 2 / ISO</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">GDPR / HIPAA</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Risk Frameworks</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Role 6 -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+      <div class="space-y-6">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl font-bold">manage_accounts</span>
+          </div>
+          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$120k - $170k</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Security Consultant</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Provide executive-level guidance on enterprise threat prevention roadmaps, security controls, and system designs.</p>
+        </div>
+      </div>
+      <div class="mt-6 pt-6 border-t border-slate-50">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Security Advisory</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Risk Analysis</span>
+          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Client Strategy</span>
         </div>
       </div>
     </div>
@@ -873,7 +965,7 @@ Your browser does not support the video tag.
 </div>
 </section>
 
-<!-- The ROI of Excellence -->
+<!-- The ROI of Excellence commented out as requested
 <section class="py-section-gap bg-on-background text-on-primary" id="career">
 <div class="max-w-7xl mx-auto px-margin-desktop">
 <h2 class="font-headline-lg text-headline-lg text-center mb-8">The ROI of Excellence</h2>
@@ -903,8 +995,9 @@ Your browser does not support the video tag.
 <p class="text-xs text-secondary/50 mt-6 text-center">Note: Expected salary statistics and job designations are compiled from historical placement records verified by our partner staffing network.</p>
 </div>
 </section>
+-->
 <!-- Testimonial Section -->
-<section class="py-section-gap sky-gradient-up">
+<!-- <section class="py-section-gap sky-gradient-up">
 <div class="max-w-4xl mx-auto px-margin-mobile text-center">
 <span class="material-symbols-outlined text-primary text-6xl opacity-20 mb-8">format_quote</span>
 <p class="text-headline-lg italic text-on-background mb-10 leading-relaxed">"The rigor of the Sky States program transformed my approach to defense. It's not just a course; it's a paradigm shift for anyone serious about leading in the age of persistent threats."</p>
@@ -917,7 +1010,7 @@ Your browser does not support the video tag.
 </div>
 <div class="mt-8 text-primary font-bold">Verified at skyreviews.us</div>
 </div>
-</section>
+</section> -->
 <!-- FAQ Section -->
 <section class="py-section-gap bg-surface-container" id="faq">
 <div class="max-w-3xl mx-auto px-margin-mobile">

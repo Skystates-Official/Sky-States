@@ -1,20 +1,130 @@
 {
   "hero": {
-    "headline": "Sky States is a US-registered Career Acceleration Platform <br/><span class=\"text-primary italic\">for everyone.</span>",
-    "description": "We provide live, instructor-led training and active placement support for career transitions into Data Science, Cyber Security, and DevOps.",
-    "button_text": "Read Student Stories",
-    "button_url": "https://skyreviews.us"
+    "headline": "Launch Your Career in AI, Cybersecurity & Cloud Computing",
+    "description": "Become job-ready with Data Science & AI, Cybersecurity & Ethical Hacking, and DevOps & Cloud Computing programs. Learn from experienced industry experts and develop real-world projects to help you succeed in today’s technology prospects. demo",
+    "button_text": "Explore Programs",
+    "button_url": "#programs",
+    "consultation_text": "Book a Free Career Consultation",
+    "consultation_url": "/contact-us"
   },
   "trust_bar": [
-    "US Registered Company",
-    "Microsoft DP-900 Preparation",
-    "Live Weekend Instruction",
-    "Active Placement Support",
-    "EMI Available"
+    "Live online Classes",
+    "Hands-on Projects",
+    "Career Support",
+    "Flexible Learning"
   ],
   "about": {
-    "title": "Accelerate Your Transition with Expert Mentorship",
-    "description": "At Sky States, we don't just teach courses; we build careers. Our platform is specifically designed for professionals looking to make a significant shift into high-demand tech roles through practical, project-based learning and direct access to industry experts."
+    "title": "Changing Learners into Technological Experts",
+    "description": "SkyStates is a career-driven technology education platform dedicated to guiding students, freshers, and working professionals to develop skills. The curriculum gets updated to recognize current industry standards and emerging technologies.\n\nWe offer hands-on experience using our equipped & guided labs, mentorship, and also provide customized career assistance. Sky States every program is developed to fill the gap between academic knowledge and real-life industry scenarios."
+  },
+  "why_choose": [
+    {
+      "title": "Learn from Industry Professionals",
+      "description": "Sky States instructors have many years of experience in AI, Cybersecurity, and DevOps. They share their practical insights with you."
+    },
+    {
+      "title": "Practical Learning Method",
+      "description": "Every course integrates instructor-led sessions with assignments, labs, and industry-related projects that are a simulation of real workplace challenges."
+    },
+    {
+      "title": "Adaptable Learning Paths",
+      "description": "If you are starting your career or advancing your technical skills, select from short-term certifications and wide career programs."
+    },
+    {
+      "title": "Career Development Assistance",
+      "description": "Get guidance for resume preparation, interview techniques, LinkedIn optimization, portfolio development, and career planning."
+    },
+    {
+      "title": "Updated Curriculum",
+      "description": "The technology is evolving very quickly in today’s times. Our programs are regularly reviewed to make sure learners are aligned with the latest tools, frameworks, and industry insights."
+    },
+    {
+      "title": "Continuous Learning",
+      "description": "Access the learning resources, recorded sessions & lectures, and project materials that help in assisting your overall educational journey."
+    }
+  ],
+  "programs_section": {
+    "title": "Discover SkyStates Technology Programs",
+    "subtitle": "Sky States provides multiple job-ready programs to get yourself upgraded.",
+    "programs": [
+      {
+        "id": "data-science-ai",
+        "title": "Data Science & AI",
+        "price": "$2999",
+        "description": "Learn Python, SQL, ML, Deep learning, Natural Language Processing, Data Visualization, and Generative AI while developing AI applications.",
+        "highlights": [
+          "Live AI Projects",
+          "Python & SQL Training",
+          "Industry-based Curriculum",
+          "Industry-ready Career Guidance"
+        ]
+      },
+      {
+        "id": "cyber-security",
+        "title": "Cybersecurity & Ethical Hacking",
+        "price": "$2999",
+        "description": "Get an expert in ethical hacking, penetration testing, digital forensics, SOC operations, cloud security, and incident response.",
+        "highlights": [
+          "Hands-On Practice in Security Labs",
+          "Ethical Hacking Tools",
+          "Real-life Scenarios-based Training",
+          "Provide Renowned Certifications"
+        ]
+      },
+      {
+        "id": "devops",
+        "title": "DevOps & Cloud Computing",
+        "price": "$2999",
+        "description": "Learn Linux & Windows administration, AWS, MS Azure, Docker, Kubernetes, Terraform, Jenkins, CI/CD pipelines, monitoring, and cloud automation.",
+        "highlights": [
+          "Multi-cloud Training",
+          "CI/CD Pipeline Projects",
+          "Docker & Kubernetes",
+          "Infrastructure Automation"
+        ]
+      }
+    ]
+  },
+  "learning_paths": {
+    "title": "Learning Path Matches Your Goals",
+    "subtitle": "Choose the pace and depth that aligns with your professional ambitions.",
+    "paths": [
+      {
+        "title": "Short-Term Programs",
+        "description": "These Programs best for experts who are looking for specialized upskilling programs in particular technologies. During these Programs, we focus on execution and industry-recognized skills in a short duration."
+      },
+      {
+        "title": "Long-Term Career Programs",
+        "description": "Wide learning paths covering main concepts, upgraded technologies, portfolio projects, career preparation, and mentorship for those looking for an overall career change."
+      }
+    ]
+  },
+  "methodology": {
+    "title": "Our Learning Methodology",
+    "subtitle": "Education goes beyond lectures.",
+    "description": "SkyStates organized learning method integrates live sessions, practical labs, industry-related projects, and feedback to help learners build confidence through practical experience. The focus stays on concepts to solve real-life problems instead of memorizing theoretical concepts.",
+    "steps": [
+      {
+        "id": "1",
+        "title": "Live Interactive Sessions",
+        "description": "Engage with instructors in real-time, ask questions, and follow step-by-step guidance."
+      },
+      {
+        "id": "2",
+        "title": "Equipped Practical Labs",
+        "description": "Get hands-on experience in cloud and security sandbox labs designed to mimic industry networks."
+      },
+      {
+        "id": "3",
+        "title": "Real-life Projects",
+        "description": "Build production-ready code, configure pipelines, or perform mock penetration tests."
+      },
+      {
+        "id": "4",
+        "title": "Expert Mentorship & Feedback",
+        "description": "Get direct feedback on code commits, design choices, and resume optimizations."
+      }
+    ]
   },
   "pricing": {
     "title": "Transparent Pricing",

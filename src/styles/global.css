@@ -111,3 +111,14 @@
 .timeline-line {
   background: linear-gradient(to bottom, transparent, #c6c6ce 15%, #c6c6ce 85%, transparent);
 }
+
+/* Global Hero Section Offset to prevent content overlap under the fixed header */
+.nav + *, nav + * {
+  margin-top: calc(64px + 2vh) !important;
+}
+@media (min-width: 768px) {
+  .nav + *, nav + * {
+    margin-top: calc(94px + 2vh) !important;
+  }
+}
+

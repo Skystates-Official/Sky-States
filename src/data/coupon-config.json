@@ -1,12 +1,4 @@
 {
-  "minLimit": 10,
-  "maxLimit": 1000,
-  "allowedCoupons": {
-    "sky100": 100,
-    "sky200": 200,
-    "sky500": 500,
-    "sky1000": 1000,
-    "skyearly": 500,
-    "skyvip": 1000
-  }
+  "minLimit": 1,
+  "maxLimit": 6500
 }

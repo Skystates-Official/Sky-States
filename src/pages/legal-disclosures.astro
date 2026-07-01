@@ -7,13 +7,14 @@ import Footer from '../components/Footer.astro';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legal Disclosures & Corporate Registry - Sky States</title>
   <meta name="description" content="View the legal disclosures, state registration credentials, filing numbers, and registered corporate addresses for Sky States." />
   <link rel="canonical" href="https://skystates.us/legal-disclosures" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  
 </head>
 <body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
   <Header />
@@ -72,28 +73,17 @@ import Footer from '../components/Footer.astro';
       <div class="space-y-6">
         <h2 class="text-2xl font-bold text-on-surface flex items-center gap-3">
           <span class="material-symbols-outlined text-primary">location_on</span>
-          Registered Office Addresses
+          Registered Office Address
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
+        <div>
           <!-- WY Address -->
           <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/10">
-            <h4 class="font-bold text-on-surface mb-2">Wyoming Address</h4>
+            <h4 class="font-bold text-on-surface mb-2">Corporate Office</h4>
             <p class="text-secondary text-sm leading-relaxed">
               30 N Gould St,<br />
               Sheridan, WY, 82801, USA
             </p>
           </div>
-
-          <!-- DE Address -->
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/10">
-            <h4 class="font-bold text-on-surface mb-2">Delaware Address</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              8 The Green, Suite #14897,<br />
-              Dover, DE, 19901, USA
-            </p>
-          </div>
-
         </div>
       </div>
 
