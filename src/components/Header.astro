@@ -171,9 +171,9 @@
 <!-- Page Transition Overlay -->
 <div id="page-transition-overlay" class="page-transition-overlay" style="display: none; opacity: 0; pointer-events: none;">
   <div class="transition-video-container">
-    <video id="trans-video-ds" src="/admin/Page_transition_Data_Science_AI_202606270237.mp4" preload="auto" muted playsinline></video>
-    <video id="trans-video-cs" src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4" preload="auto" muted playsinline></video>
-    <video id="trans-video-do" src="/admin/devops_loop_transi._202606270238.mp4" preload="auto" muted playsinline></video>
+    <video id="trans-video-ds" src="/admin/Page_transition_Data_Science_AI_202606270237.mp4" preload="none" muted playsinline></video>
+    <video id="trans-video-cs" src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4" preload="none" muted playsinline></video>
+    <video id="trans-video-do" src="/admin/devops_loop_transi._202606270238.mp4" preload="none" muted playsinline></video>
   </div>
 </div>
 
@@ -705,6 +705,25 @@
       '/programs/cyber-security': 'cyber-security',
       '/programs/devops': 'devops'
     };
+
+    // Preload transition video on link hover for performance (LCP optimization)
+    document.addEventListener('mouseenter', (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+      
+      const href = link.getAttribute('href');
+      if (href) {
+        const matchedKey = programUrls[href] || Object.keys(programUrls).find(key => href.endsWith(key) && !href.includes('checkout'));
+        if (matchedKey) {
+          const programKey = programUrls[matchedKey];
+          const video = transitionVideos[programKey];
+          if (video && video.preload !== 'auto') {
+            video.preload = 'auto';
+            video.load();
+          }
+        }
+      }
+    }, true);
 
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a');
