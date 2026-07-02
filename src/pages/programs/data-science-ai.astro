@@ -8,6 +8,7 @@ import programsData from '../../data/programs.json';
 const program = programsData['data-science-ai'];
 const { metaTitle, hero } = program;
 const description = hero?.description || "Master Data Science & AI Architect competencies with our 6-month intensive training program.";
+export const prerender = false;
 ---
 
 <!DOCTYPE html>
@@ -103,11 +104,29 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Career Acceleration Program</span>
 <h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
-<div class="flex items-center gap-3 mb-10 text-primary font-bold">
-<span class="material-symbols-outlined">calendar_today</span>
-<span>Enrollment open for Q3 Weekend Cohort</span>
-</div>
-<div class="flex flex-wrap gap-6"><button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all">Start Application</button><button class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all">Download Syllabus</button></div></div>
+<ul class="space-y-2 mb-8 text-on-surface-variant font-label-md">
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>6 Month online Program</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Live engaging classes</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Real-based industry projects</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Microsoft Learning Benefit</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Career Service and Placement Support</span>
+  </li>
+</ul>
+<div class="flex flex-wrap gap-6"><a href="#pricing" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all text-center">Enroll Now</a><!-- <a href="#faq" class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all text-center">Connect to Advisor</a> --></div></div>
 <div class="relative mt-12 lg:mt-0"><div class="relative"><div class="rounded-3xl overflow-hidden ambient-shadow transition-transform duration-700 hover:scale-[1.02] transition-all opacity-100 translate-y-0"><video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-[1.49]"><source src="/assets/videos/data%20science%20hero%20section%20video.mp4" type="video/mp4"/>Your browser does not support the video tag.</video></div><div class="mt-6 md:mt-0 md:absolute md:-bottom-8 md:-left-8 glass-card p-6 md:p-8 rounded-2xl ambient-shadow border border-white/20 max-w-full md:max-w-[280px] z-20 transition-all duration-700 opacity-100 translate-y-0"><div class="flex items-center gap-4 mb-3"><div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-primary text-3xl">trending_up</span></div><span class="font-headline-xl text-4xl text-primary font-bold">140%</span></div><p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Average salary lift reported by Class of 2023 graduates.</p></div><div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div></div></div>
 </div>
 </section>
@@ -116,57 +135,36 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <section class="py-6 bg-surface-container-low border-b border-outline-variant/10">
   <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
     
-    <!-- Next Cohort Column -->
-    <div class="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start">
-      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl">schedule</span>
-      </div>
-      <div>
-        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">Next Cohort Start</p>
-        <!-- Countdown Wrapper -->
-        <div class="flex items-center gap-2 font-bold text-on-surface justify-center md:justify-start" id="countdown-timer">
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-days">0</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Days</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-hours">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Hrs</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-minutes">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Min</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-seconds">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Sec</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Program Duration Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
+    <!-- Column 1: 6 Month Program -->
+    <div class="flex items-center gap-4 justify-center md:justify-start">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">calendar_today</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Program Duration</p>
-        <h4 class="text-lg font-extrabold text-on-surface">6 Months</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">6 Month Program</h4>
       </div>
     </div>
 
-    <!-- Learning Format Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+    <!-- Column 2: Online Learning Bootcamp -->
+    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">menu_book</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Learning Format</p>
-        <h4 class="text-lg font-extrabold text-on-surface">Online Bootcamp</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">Online Learning Bootcamp</h4>
+      </div>
+    </div>
+
+    <!-- Column 3: Real-World Experience -->
+    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">work</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Applied Practice</p>
+        <h4 class="text-lg font-extrabold text-on-surface">Real-World Experience</h4>
       </div>
     </div>
 
@@ -230,10 +228,23 @@ const description = hero?.description || "Master Data Science & AI Architect com
       <!-- Left Column: Overview -->
       <div class="lg:col-span-5 space-y-6">
         <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Overview</span>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Data Science & AI Program Overview</h2>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Why Learn Data Science and AI?</h2>
         <p class="text-secondary font-body-md leading-relaxed">
-          Are you looking to embark on an exciting career in Data Science and Artificial Intelligence (AI)? Look no further! Our company is dedicated to providing top-notch training in these cutting edge fields, and we offer a comprehensive 6-month course designed to transform you into a skilled data scientist or AI expert. With our experienced trainers and a commitment to high-quality content delivery, we’re your ultimate partner in achieving your career goals. Plus, our course includes the added advantage of Microsoft Azure certification, powered by Microsoft, ensuring you gain industry-recognized credentials that will set you apart in the job market.
+          AI is changing every industry from healthcare to finance. Organizations require experts who can evaluate data, develop models, automate decisions, and utilize AI-driven solutions.
+          <br /><br />
+          If you are beginning your career, changing industry, or advancing your technical skills, this program prepare with practical knowledge employers look for.
         </p>
+        
+        <!-- Pricing / Overview Card -->
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/30 mt-6 space-y-4">
+          <h4 class="font-bold text-sm text-on-surface">Data Science & AI Program Overview</h4>
+          <p class="text-xs text-secondary leading-relaxed">SkyStates is dedicated to providing the best training in Data Science & AI, and we offer a comprehensive 6-month course developed to change you into a skilled data scientist or AI expert.</p>
+          <div class="flex items-baseline gap-2 pt-2">
+            <span class="text-2xl font-bold text-primary">$2,999</span>
+            <span class="text-xs text-secondary">/ 6 Month Program / Online Program</span>
+          </div>
+          <a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="block w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:opacity-90 transition-all">Buy Now</a>
+        </div>
       </div>
 
       <!-- Right Column: Key Features -->
@@ -248,8 +259,8 @@ const description = hero?.description || "Master Data Science & AI Architect com
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">100% Job Assistance</strong>
-              Through our in-house recruitment agency with over 250 hiring partners.
+              <strong class="text-on-surface block font-bold mb-0.5">Job Assistance</strong>
+              Job assistance through our in-house recruitment agency.
             </div>
           </div>
           <!-- Feature 2 -->
@@ -257,23 +268,23 @@ const description = hero?.description || "Master Data Science & AI Architect com
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
               <strong class="text-on-surface block font-bold mb-0.5">Sky States Credentials</strong>
-              Industry-recognized advanced Data Scientist and AI certificate from Sky States.
+              Industry-advanced Data Scientist and AI certificate from Sky States.
             </div>
           </div>
           <!-- Feature 3 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Domain Capstones</strong>
-              Hands-on capstones from various domains and industry relevant projects.
+              <strong class="text-on-surface block font-bold mb-0.5">Applied Projects</strong>
+              Applied projects from multiple domains and industry-relevant projects.
             </div>
           </div>
           <!-- Feature 4 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Career Pivot Design</strong>
-              Program carefully crafted to initiate your professional journey as a Data Scientist.
+              <strong class="text-on-surface block font-bold mb-0.5">Career Pivot</strong>
+              Program made to begin your journey as a Data Scientist.
             </div>
           </div>
           <!-- Feature 5 -->
@@ -281,47 +292,39 @@ const description = hero?.description || "Master Data Science & AI Architect com
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
               <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantage</strong>
-              Professional-level training and industry-recognized certificate from Microsoft.
+              Expert-level training from Microsoft, industry-recognized certificate from Microsoft.
             </div>
           </div>
           <!-- Feature 6 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Integrated Labs</strong>
-              Sandbox environments and integrated labs for hands-on learning experience.
+              <strong class="text-on-surface block font-bold mb-0.5">Combined Labs</strong>
+              Combined labs for practical learning experience.
             </div>
           </div>
           <!-- Feature 7 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Live Expert Sessions</strong>
-              Dedicated live sessions by faculty of senior industry experts.
+              <strong class="text-on-surface block font-bold mb-0.5">Live Classes</strong>
+              Live classes by faculty of industry experts.
             </div>
           </div>
           <!-- Feature 8 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">LMS Lifetime Access</strong>
-              Lifetime access to self-paced learning content through our LMS.
+              <strong class="text-on-surface block font-bold mb-0.5">LMS Access</strong>
+              Get lifetime access to learning resources via the Learning Management System (LMS).
             </div>
           </div>
           <!-- Feature 9 -->
-          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100 text-secondary">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
-            <div class="text-sm text-secondary">
+            <div class="text-sm">
               <strong class="text-on-surface block font-bold mb-0.5">Personalized Batches</strong>
-              Small batch sizes to ensure each student receives customized attention.
-            </div>
-          </div>
-          <!-- Feature 10 -->
-          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
-            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
-            <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Skill Enhancement</strong>
-              Free access to self-paced certification courses on emerging industry skills.
+              Small batches to make sure every student receives attention and instructions.
             </div>
           </div>
         </div>
@@ -336,8 +339,8 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div>
 <span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Core Validator</span>
-<h2 class="font-headline-lg text-headline-lg mb-6">Microsoft DP-900 Prep Included</h2>
-<p class="text-secondary font-body-md mb-8">We don't just teach theory. Our curriculum is specifically aligned with the <strong>Microsoft Certified: Azure Data Fundamentals</strong> certification, ensuring you graduate with a globally recognized industry standard.</p>
+<h2 class="font-headline-lg text-headline-lg mb-6">Data Science and AI Certification Benefits</h2>
+<p class="text-secondary font-body-md mb-8">At SkyStates, get certified in data science & AI with the Microsoft Azure program and get both Data Science AI and Microsoft Azure certificates to improve your career chances. Gain access to expert classes and an in-house career assistance program.</p>
 <div class="space-y-4">
 <div class="flex gap-4 p-4 rounded-xl bg-surface">
 <span class="material-symbols-outlined text-primary">verified</span>
@@ -372,7 +375,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <span class="material-symbols-outlined text-primary text-3xl">group</span>
 </div>
 <h3 class="font-headline-md text-headline-md">Industry-First Mentorship</h3>
-<p class="text-secondary font-body-md">Learn directly from Principal Data Scientists at FAANG companies through 1-on-1 sessions designed to bridge the gap between theory and high-stakes production environments.</p>
+<p class="text-secondary font-body-md">Learn directly from Principal Data Scientists at top tier tech companies through 1-on-1 sessions designed to bridge the gap between theory and high-stakes production environments.</p>
 </div>
 <div class="p-10 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4 transition-all duration-700 opacity-100 translate-y-0">
 <div class="w-14 h-14 bg-tertiary-container rounded-2xl flex items-center justify-center mb-4">
@@ -383,35 +386,43 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </div>
 </section>
-<!-- Reputation Section: Who this is for/not for (NEW) -->
+<!-- Section: Right Program for Every Learner -->
 <section class="py-section-gap bg-surface-container-low">
 <div class="max-w-7xl mx-auto px-margin-desktop">
-<h2 class="font-headline-lg text-headline-lg text-center mb-16">Is Sky States Right For You?</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="bg-white p-10 rounded-3xl border-t-8 border-primary shadow-sm">
-<h3 class="font-headline-md mb-6 flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">check_circle</span>
-                    Who This Is For
-                </h3>
-<ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Mid-career professionals looking to transition to advanced AI leadership roles.</li>
-<li class="flex items-start gap-2">• Ambitious analysts and developers seeking a significant return on their skill set.</li>
-<li class="flex items-start gap-2">• Tech enthusiasts and engineers wanting to master production-grade MLOps pipelines.</li>
-<li class="flex items-start gap-2">• Goal-oriented learners of all backgrounds who thrive in a structured, live, and interactive weekend study format.</li>
-</ul>
-</div>
-<div class="bg-white p-10 rounded-3xl border-t-8 border-outline shadow-sm">
-<h3 class="font-headline-md mb-6 flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">cancel</span>
-                    Who This Is Not For
-                </h3>
-<ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Learners seeking purely theoretical lectures rather than hands-on building and code execution.</li>
-<li class="flex items-start gap-2">• Anyone looking for short-cut certifications instead of deep, industry-recognized professional excellence.</li>
-<li class="flex items-start gap-2">• Students who prefer a completely self-paced, casual study format without active interactive schedules.</li>
-<li class="flex items-start gap-2">• People looking for a generic video-only course with no live support or direct real-time collaboration.</li>
-</ul>
-</div>
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Right Program for Every Learner</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <!-- Card 1 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">school</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Students and Freshers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Develop practical skills that employers value and introduce your career in Data Science.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">work</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Working Experts</h3>
+    <p class="text-secondary text-sm leading-relaxed">Change into high-growth AI and analytical roles with organized learning.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">terminal</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Software Engineers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Scale your expertise with Machine Learning, Deep Learning, and AI Engineering.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">analytics</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Business Analyst</h3>
+    <p class="text-secondary text-sm leading-relaxed">Learn upgraded analytics, visualization, and predictive modeling.</p>
+  </div>
 </div>
 </div>
 </section>
@@ -428,11 +439,11 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <span class="font-label-md text-label-md opacity-80">Placement Rate</span>
 </div>
 <div class="flex flex-col gap-2">
-<span class="text-headline-xl font-headline-xl">450+</span>
+<span class="text-headline-xl font-headline-xl">250+</span>
 <span class="font-label-md text-label-md opacity-80">Hiring Partners</span>
 </div>
 <div class="flex flex-col gap-2">
-<span class="text-headline-xl font-headline-xl">12k+</span>
+<span class="text-headline-xl font-headline-xl">1,200+</span>
 <span class="font-label-md text-label-md opacity-80">Global Alumni</span>
 </div>
 </div>
@@ -474,149 +485,170 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0" open="">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">01</span> Python Programming
+<span class="text-primary font-bold">01</span> Programming Foundations
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Learn the fundamentals of Python, a versatile and powerful programming language. This module covers essential concepts like syntax, data types, control structures, and functions, laying the foundation for data science and software development.</p>
+<p>Learn Python programming, data structures, functions, object-oriented programming, and automation.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Python</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Git</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Jupyter Notebook</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Problem Solving</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">02</span> Libraries of Python Programming with EDA
+<span class="text-primary font-bold">02</span> Data Analysis & Visualization
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Dive into essential Python libraries like NumPy, Pandas, and Matplotlib. Learn to perform Exploratory Data Analysis (EDA) to uncover insights, visualize trends, and prepare datasets for advanced analytics and modeling.</p>
+<p>Change raw data into meaningful business insights using industry-standard tools.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">NumPy</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Pandas</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Matplotlib</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Seaborn</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Exploratory Data Analysis (EDA)</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">03</span> Mathematics for Data Science
+<span class="text-primary font-bold">03</span> Statistics & Mathematics
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Master statistical concepts like probability, hypothesis testing, and regression analysis. Learn to interpret data trends, make data-driven decisions, and build a strong foundation for machine learning models.</p>
+<p>Develop the mathematical foundation required for predictive analytics and machine learning.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Probability</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Statistics</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Linear Algebra</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Hypothesis Testing</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Feature Engineering</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">04</span> Machine Learning- Supervised
+<span class="text-primary font-bold">04</span> Machine Learning
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Learn the fundamentals of supervised learning, where models are trained on labeled data to predict outcomes. Explore key algorithms like linear regression, decision trees, and support vector machines for real-world problem-solving.</p>
+<p>Develop supervised and unsupervised learning models using real datasets.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Customer Churn Prediction</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">House Price Prediction</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Fraud Detection</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Recommendation Systems</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">05</span> Machine Learning- Unsupervised
+<span class="text-primary font-bold">05</span> Deep Learning & Generative AI
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Dive into unsupervised learning, where models analyze unlabeled data to uncover hidden patterns. Explore clustering, association, and dimensionality reduction techniques like k-means and PCA for data exploration and insights.</p>
+<p>Learn modern AI technologies powering today's intelligent applications.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Neural Networks</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">TensorFlow</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">PyTorch</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Large Language Models</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Prompt Engineering</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">AI Agents</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Retrieval-Augmented Generation (RAG)</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">06</span> Deep Learning and AI
+<span class="text-primary font-bold">06</span> Databases & SQL
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Explore the foundations of deep learning and artificial intelligence, focusing on neural networks, model training, and optimization techniques. Learn how AI models power innovations in image recognition, NLP, and more.</p>
+<p>Learn to store, retrieve, and manipulate structured data efficiently.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">MySQL</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">PostgreSQL</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">SQL Queries</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Database Tuning</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">07</span> MySQL
+<span class="text-primary font-bold">07</span> Business Intelligence
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Gain proficiency in MySQL, a powerful relational database management system. Learn how to create, manage, and query databases using SQL to store and retrieve data efficiently.</p>
+<p>Generate Dashboards that communicate insights transparently.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Tableau</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Power BI</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Google Looker Studio</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">08</span> Tableau
+<span class="text-primary font-bold">08</span> Data Engineering
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Master Tableau for data visualization, enabling you to create interactive and insightful dashboards. Learn how to connect data, apply filters, and generate compelling visual reports for informed decision-making.</p>
+<p>Understand how business data pipelines are built.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Apache Spark</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Hadoop</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Kafka</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">09</span> Power BI and Google Data Studio
+<span class="text-primary font-bold">09</span> NLP & MLOps
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Explore Power BI and Google Data Studio for powerful data visualization and reporting. Learn to transform raw data into interactive dashboards and reports, empowering data-driven insights and decision-making.</p>
+<p>Implement machine learning models into production while developing intelligent language applications.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">NLP</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">MLOps</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Model Deployment</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">CI/CD</span>
 </div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">10</span> Data Engineering Tools
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Master essential data engineering tools to manage, process, and transform large datasets. Learn to work with technologies like Apache Hadoop, Spark, and Kafka for efficient data pipeline creation and optimization.</p>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">11</span> NLP with MLOPS
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Explore Natural Language Processing (NLP) techniques to analyze and process textual data. Learn to integrate NLP models into production environments using MLOps practices for scalable and efficient machine learning workflows.</p>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">12</span> AI Strategy
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>Learn how to design and implement effective AI strategies for business growth. This module covers key AI technologies, their applications, and how to align AI initiatives with organizational goals for maximum impact.</p>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6 transition-all duration-700 opacity-100 translate-y-0">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">13</span> Domain Wise Capstone Projects
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>The Capstone Project module enables learners to apply their knowledge to real-world problems by working on domain-specific datasets. Participants will gain hands-on experience in data preprocessing, exploratory data analysis, predictive modeling, and result interpretation. This module fosters problem-solving skills and prepares learners for industry challenges while allowing them to showcase their expertise through a comprehensive project.</p>
 </div>
 </details>
 </div>
 </section>
-<!-- Section 7: Hands-on Projects -->
+<!-- Section 7: Hands-on Projects
 <section class="py-section-gap bg-secondary-container/30">
 <div class="max-w-7xl mx-auto px-margin-desktop">
 <h2 class="font-headline-lg text-headline-lg text-center mb-16">The Innovation Lab</h2>
@@ -646,13 +678,16 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </div>
 </section>
+-->
 <!-- Section 8: Tools -->
 <section class="py-section-gap overflow-hidden bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop mb-12">
 <div class="text-center max-w-3xl mx-auto">
 <span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Ecosystem</span>
-<h2 class="font-headline-lg text-headline-lg mb-6">Master the Stack</h2>
-<p class="text-secondary font-body-md">Don't just learn tools; learn the ecosystems that power global enterprise AI and machine learning platforms.</p>
+<h2 class="font-headline-lg text-headline-lg mb-6">Technologies You Will Learn</h2>
+<p class="text-secondary font-body-md leading-relaxed">
+  Python &bull; SQL &bull; NumPy &bull; Pandas &bull; Power BI &bull; TensorFlow &bull; Git &bull; Kafka &bull; Tableau &bull; Scikit-learn &bull; PyTorch &bull; Docker &bull; LangChain &bull; MLflow &bull; Azure AI &bull; Hadoop &bull; Jupyter Notebook &bull; Apache Spark
+</p>
 </div>
 </div>
 
@@ -734,181 +769,59 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </div>
 </section>
-<!-- Section 10: Placement Assistance -->
-<section class="py-section-gap">
+<!-- Section: SkyStates Career Guidance -->
+<section class="py-section-gap bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest">
-<h4 class="font-headline-md text-headline-md mb-4">Resume Engineering</h4>
-<p class="text-secondary font-body-md">Optimize your professional narrative with ATS-compliant, results-oriented engineering of your work history.</p>
-</div>
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest">
-<h4 class="font-headline-md text-headline-md mb-4">Mock Interviews</h4>
-<p class="text-secondary font-body-md">Practice with technical recruiters from Google, Meta, and Netflix to master behavioral and whiteboard challenges.</p>
-</div>
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest">
-<h4 class="font-headline-md text-headline-md mb-4">Hidden Market Access</h4>
-<p class="text-secondary font-body-md">Get exclusive referrals to roles that are never posted on public job boards through our partner network.</p>
-</div>
-</div>
+  <div class="text-center mb-12">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Success</span>
+    <h2 class="font-headline-lg text-headline-lg font-bold">SkyStates Career Guidance</h2>
+    <p class="text-secondary text-sm max-w-xl mx-auto mt-2">Learning technical skills is part of becoming job-ready. We provide full-concierge career assistance.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">badge</span>
+      <h4 class="font-bold text-base mt-2">Resume &amp; Profile</h4>
+      <p class="text-xs text-secondary leading-relaxed">Resume maximization and LinkedIn profile improvement to stand out to modern technical recruiters.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">folder_shared</span>
+      <h4 class="font-bold text-base mt-2">Portfolio Assistance</h4>
+      <p class="text-xs text-secondary leading-relaxed">GitHub portfolio assistance to present your capstones and code structure professionally.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">forum</span>
+      <h4 class="font-bold text-base mt-2">Interview Prep</h4>
+      <p class="text-xs text-secondary leading-relaxed">Mock technical interviews, HR interview preparation, and systematic salary negotiation training.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
+      <h4 class="font-bold text-base mt-2">Mentorship &amp; Networks</h4>
+      <p class="text-xs text-secondary leading-relaxed">1-on-1 career mentorship, network sessions, and full placement support with partner firms.</p>
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- Section: What Can I Become? -->
+<!-- Section: Explore Your Career Options -->
 <section class="py-section-gap bg-slate-50 border-y border-slate-100">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-  <div class="text-center mb-16">
+  <div class="text-center mb-12">
     <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Horizons</span>
-    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
-    <p class="text-secondary max-w-2xl mx-auto">
-      The integration of big data analytics and generative artificial intelligence has unlocked unprecedented professional paths. Graduates of this program transition into leading high-agency architectural and analytic positions globally.
-    </p>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">Explore Your Career Options</h2>
+    <p class="text-secondary max-w-2xl mx-auto mb-8">After completing the program, you can pursue diverse high-paying roles across the global technology ecosystem.</p>
   </div>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Role 1 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">settings_suggest</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$145k - $190k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Machine Learning Engineer</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Design, build, and productionize machine learning pipelines, pipelines, and intelligent API endpoints at scale.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">PyTorch</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Docker</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">MLOps</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 2 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">analytics</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$120k - $165k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Data Scientist</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Analyze complex datasets, extract business-critical insights, build predictive models, and guide executive decisions.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Python</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SQL</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Statistics</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 3 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">psychology_alt</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$160k - $210k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">AI Solutions Architect</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Translate complex business objectives into scalable GenAI applications and multi-cloud neural network architectures.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">LLM Orch</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">System Design</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Cloud Architect</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 4 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">database</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$115k - $155k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Data Engineer</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Build robust data pipeline infrastructures, govern ETL processing loops, and maintain enterprise databases.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Spark</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kafka</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">ETL Pipelines</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 5 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">psychology</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$135k - $180k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Generative AI Specialist</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Develop custom AI agents, implement Retrieval-Augmented Generation (RAG), and fine-tune open-source models.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">LangChain</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">RAG System</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Fine-Tuning</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 6 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">manage_accounts</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$130k - $170k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Analytics Manager</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Manage cross-functional data science teams, direct data strategies, and align data analysis outputs with product goals.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Agile Analytics</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SQL Dashboards</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Team Strategy</span>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Data Scientist</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Data Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Machine Learning Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">AI Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Business Intelligence Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Data Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">AI Consultant</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">NLP Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Analytics Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Research Associate</span>
   </div>
 </div>
 </section>
@@ -959,7 +872,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 </div>
 </section> -->
 <!-- Section 13: Hiring Partners -->
-<section class="py-24 bg-surface-container-lowest">
+<!-- <section class="py-24 bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop text-center">
 <h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-16">Where our alumni work</h2>
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 opacity-50">
@@ -971,34 +884,59 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <div class="font-bold text-2xl">AI FUTURE</div>
 </div>
 </div>
-</section>
-<!-- Section 14: Learning Journey -->
+</section> -->
+<!-- Section: Learning Methodology We Use -->
 <section class="py-section-gap max-w-7xl mx-auto px-margin-desktop">
-<h2 class="font-headline-lg text-headline-lg text-center mb-16">Your 12-Week Transformation</h2>
-<div class="relative">
-<div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-secondary-container -translate-y-1/2"></div>
-<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-<div class="relative z-10 bg-surface p-6 text-center">
-<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-6 font-bold">1</div>
-<h4 class="font-headline-md text-headline-md mb-2">Assessment</h4>
-<p class="text-secondary font-label-md">Skill gap analysis and personalized roadmap.</p>
-</div>
-<div class="relative z-10 bg-surface p-6 text-center">
-<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-6 font-bold">2</div>
-<h4 class="font-headline-md text-headline-md mb-2">Immersive Core</h4>
-<p class="text-secondary font-label-md">8 weeks of intensive architectural study.</p>
-</div>
-<div class="relative z-10 bg-surface p-6 text-center">
-<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-6 font-bold">3</div>
-<h4 class="font-headline-md text-headline-md mb-2">Capstone</h4>
-<p class="text-secondary font-label-md">High-impact enterprise project execution.</p>
-</div>
-<div class="relative z-10 bg-surface p-6 text-center">
-<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-6 font-bold">4</div>
-<h4 class="font-headline-md text-headline-md mb-2">Placement</h4>
-<p class="text-secondary font-label-md">Negotiation support and role placement.</p>
-</div>
-</div>
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Learning Methodology We Use</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Card 1 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">live_tv</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Live Sessions</h3>
+    <p class="text-secondary text-sm leading-relaxed">Learn directly from experienced industry experts.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">science</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Practical Labs</h3>
+    <p class="text-secondary text-sm leading-relaxed">Practice concepts immediately through guided exercises.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">assignment</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Weekly Assignments</h3>
+    <p class="text-secondary text-sm leading-relaxed">Reinforce concepts via organized assessments.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">support_agent</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Mentor Assistance</h3>
+    <p class="text-secondary text-sm leading-relaxed">Receive guidance throughout your learning journey.</p>
+  </div>
+  <!-- Card 5 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">folder_open</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Applied Projects</h3>
+    <p class="text-secondary text-sm leading-relaxed">Solve real business problems using industry datasets.</p>
+  </div>
+  <!-- Card 6 -->
+  <div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/30 flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">cloud_sync</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Lifetime LMS Access</h3>
+    <p class="text-secondary text-sm leading-relaxed">Revisit course materials anytime and anywhere.</p>
+  </div>
 </div>
 </section>
 <!-- Section 15: FAQs -->
@@ -1032,11 +970,14 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <!-- Section 16: Final CTA / Transparent Pricing (UPDATED) -->
 <section class="py-section-gap relative overflow-hidden">
 <div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
-<div class="text-center mb-16">
-<h2 class="font-headline-xl text-headline-xl mb-4">Invest in Your Future</h2>
-<p class="text-secondary font-body-lg">Transparent Pricing. No Hidden Fees.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
+      <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
+        <h2 class="font-headline-xl text-headline-xl mb-4" id="pricing">Develop The Skills That Power the Future of AI</h2>
+        <p class="text-secondary font-body-lg leading-relaxed">If you are beginning your first technology career or upgrading into AI and machine learning, the Sky States Data Science & AI Program offers practical training, real-world projects, expert mentorship, and career assistance to help you become job-ready.</p>
+        <div class="flex flex-wrap gap-4 justify-center pt-4">
+          <a href="#" class="px-6 py-2 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Download the Curriculum</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
 <!-- Pricing Card 1 (Transparent Scholar) -->
 <div class="bg-surface-container-lowest rounded-3xl p-10 ambient-shadow border border-outline-variant/30 flex flex-col transition-all duration-700 opacity-100 translate-y-0">
 <h3 class="font-headline-md text-headline-md mb-2">Scholar Track</h3>
@@ -1057,7 +998,7 @@ const description = hero?.description || "Master Data Science & AI Architect com
 <div class="bg-primary text-on-primary rounded-3xl p-10 shadow-2xl relative flex flex-col scale-105">
 <div class="absolute top-4 right-4 bg-white/20 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest font-bold">Most Popular</div>
 <h3 class="font-headline-md text-headline-md mb-2">Elite 1-on-1</h3>
-<p class="text-white/80 mb-8 font-label-md">FAANG Principal Mentor Track</p>
+<p class="text-white/80 mb-8 font-label-md">Top Industry Mentor Track</p>
 <div class="mb-8">
 <span class="text-headline-xl font-headline-xl">$6,500</span>
 <span class="text-white/60">/ total</span>

@@ -8,6 +8,7 @@ import programsData from '../../data/programs.json';
 const program = programsData['cyber-security'];
 const { metaTitle, hero } = program;
 const description = hero?.description || "Master Cyber Security Specialist competencies with our 6-month intensive training program.";
+export const prerender = false;
 ---
 
 <!DOCTYPE html>
@@ -74,14 +75,29 @@ const description = hero?.description || "Master Cyber Security Specialist compe
 <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Professional Certification Program</span>
 <h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
-<div class="flex items-center gap-3 mb-10 text-primary font-bold">
-<span class="material-symbols-outlined">verified</span>
-<span>Microsoft SC-900 Prep Included</span>
-</div>
-<div class="flex flex-wrap gap-6">
-<button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all">Enroll Now — $2,999</button>
-<button class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all">Download Syllabus</button>
-</div>
+<ul class="space-y-2 mb-8 text-on-surface-variant font-label-md">
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>6 Month Online Program</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Live Engaging Classes</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Practical Cyber Security Labs</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Microsoft Learning Benefits</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Career &amp; Placement Support</span>
+  </li>
+</ul>
+<div class="flex flex-wrap gap-6"><a href="#pricing" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all text-center">Enroll Now</a><!-- <a href="#faq" class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all text-center">Connect to Advisor</a> --></div>
 </div>
 <div class="relative mt-12 lg:mt-0">
 <div class="relative">
@@ -109,57 +125,36 @@ Your browser does not support the video tag.
 <section class="py-6 bg-surface-container-low border-b border-outline-variant/10">
   <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
     
-    <!-- Next Cohort Column -->
-    <div class="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start">
-      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl">schedule</span>
-      </div>
-      <div>
-        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">Next Cohort Start</p>
-        <!-- Countdown Wrapper -->
-        <div class="flex items-center gap-2 font-bold text-on-surface justify-center md:justify-start" id="countdown-timer">
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-days">0</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Days</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-hours">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Hrs</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-minutes">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Min</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-seconds">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Sec</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Program Duration Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
+    <!-- Column 1: 6 Month Program -->
+    <div class="flex items-center gap-4 justify-center md:justify-start">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">calendar_today</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Program Duration</p>
-        <h4 class="text-lg font-extrabold text-on-surface">6 Months</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">6 Month Program</h4>
       </div>
     </div>
 
-    <!-- Learning Format Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+    <!-- Column 2: Online Learning Bootcamp -->
+    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">menu_book</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Learning Format</p>
-        <h4 class="text-lg font-extrabold text-on-surface">Online Bootcamp</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">Online Learning Bootcamp</h4>
+      </div>
+    </div>
+
+    <!-- Column 3: Real-World Experience -->
+    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">work</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Applied Practice</p>
+        <h4 class="text-lg font-extrabold text-on-surface">Real-World Experience</h4>
       </div>
     </div>
 
@@ -224,10 +219,23 @@ Your browser does not support the video tag.
       <!-- Left Column: Overview -->
       <div class="lg:col-span-5 space-y-6">
         <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Overview</span>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Cyber Security Program Overview</h2>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Why Learn Cyber Security and Ethical Hacking?</h2>
         <p class="text-secondary font-body-md leading-relaxed">
-          Are you looking to embark on an exciting career in Cyber Security and Threat Hunting? Look no further! Our company is dedicated to providing top-notch training in these cutting edge fields, and we offer a comprehensive 6-month course designed to transform you into a skilled security analyst or penetration tester. With our experienced trainers and a commitment to high-quality content delivery, we’re your ultimate partner in achieving your career goals. Plus, our course includes the added advantage of Microsoft Certified Security Fundamentals (SC-900) certification, powered by Microsoft, ensuring you gain industry-recognized credentials that will set you apart in the job market.
+          Cyber threats continue to expand across every industry, generating more demand for skilled cybersecurity experts. Organizations need professionals who can find risks, secure networks, prevent attacks, and respond to security incidents before they affect business functions.
+          <br /><br />
+          If you are starting your IT career, changing into cybersecurity, or improving your technical skills, this program helps you with practical, job-ready skills that employers actively look for.
         </p>
+        
+        <!-- Pricing / Overview Card -->
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/30 mt-6 space-y-4">
+          <h4 class="font-bold text-sm text-on-surface">Cyber Security &amp; Ethical Hacking Program Overview</h4>
+          <p class="text-xs text-secondary leading-relaxed">SkyStates offers a 6-month Cyber Security &amp; Ethical Hacking Program built to prepare learners for modern cybersecurity careers. The curriculum integrates theoretical knowledge with practical labs, simulated cyber attacks, and real-world projects to develop professionals capable of protecting digital infrastructures.</p>
+          <div class="flex items-baseline gap-2 pt-2">
+            <span class="text-2xl font-bold text-primary">$2,999</span>
+            <span class="text-xs text-secondary">/ 6 Month Program / Online Program</span>
+          </div>
+          <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="block w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:opacity-90 transition-all">Buy Now</a>
+        </div>
       </div>
 
       <!-- Right Column: Key Features -->
@@ -242,80 +250,64 @@ Your browser does not support the video tag.
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">100% Job Assistance</strong>
-              Through our in-house recruitment agency with over 250 hiring partners.
+              <strong class="text-on-surface block font-bold mb-0.5">Job Support</strong>
+              Job support via an in-house recruitment agency.
             </div>
           </div>
           <!-- Feature 2 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Sky States Credentials</strong>
-              Industry-recognized advanced Cyber Security Specialist certificate from Sky States.
+              <strong class="text-on-surface block font-bold mb-0.5">SkyStates Credentials</strong>
+              Industry-accredited Cyber Security &amp; Ethical Hacking certificate from SkyStates.
             </div>
           </div>
           <!-- Feature 3 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Domain Capstones</strong>
-              Hands-on capstones from various domains and industry relevant threat simulations.
+              <strong class="text-on-surface block font-bold mb-0.5">Practical Labs</strong>
+              Practical cyber security labs and real-world security projects.
             </div>
           </div>
           <!-- Feature 4 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Career Pivot Design</strong>
-              Program carefully crafted to initiate your professional journey as a Security Analyst.
+              <strong class="text-on-surface block font-bold mb-0.5">Beginner Friendly</strong>
+              Beginner-friendly curriculum developed for cybersecurity professionals.
             </div>
           </div>
           <!-- Feature 5 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantage</strong>
-              Professional-level training and industry-recognized certificate from Microsoft (SC-900).
+              <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantages</strong>
+              Microsoft learning advantages and certification preparation.
             </div>
           </div>
           <!-- Feature 6 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Integrated Labs</strong>
-              Sandbox environments and integrated labs for hands-on learning experience.
+              <strong class="text-on-surface block font-bold mb-0.5">Penetration Testing</strong>
+              Practical penetration testing and risk assessment exercises.
             </div>
           </div>
           <!-- Feature 7 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Live Expert Sessions</strong>
-              Dedicated live sessions by faculty of senior industry experts.
+              <strong class="text-on-surface block font-bold mb-0.5">Live Classes</strong>
+              Live classes by cybersecurity professionals.
             </div>
           </div>
           <!-- Feature 8 -->
-          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
+          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100 text-secondary">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
-            <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">LMS Lifetime Access</strong>
-              Lifetime access to self-paced learning content through our LMS.
-            </div>
-          </div>
-          <!-- Feature 9 -->
-          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
-            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
-            <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Personalized Batches</strong>
-              Small batch sizes to ensure each student receives customized attention.
-            </div>
-          </div>
-          <!-- Feature 10 -->
-          <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
-            <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
-            <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Skill Enhancement</strong>
-              Free access to self-paced certification courses on emerging industry skills.
+            <div class="text-sm">
+              <strong class="text-on-surface block font-bold mb-0.5">LMS Access</strong>
+              Lifetime access to learning resources.
             </div>
           </div>
         </div>
@@ -330,14 +322,14 @@ Your browser does not support the video tag.
 <div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div>
 <span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Core Validator</span>
-<h2 class="font-headline-lg text-headline-lg mb-6">Microsoft Certified: SC-900 Prep Included</h2>
-<p class="text-secondary font-body-md mb-8">The industry standard for security, compliance, and identity fundamentals. We integrate the official curriculum into every module to ensure your skills are backed by Microsoft's authority.</p>
+<h2 class="font-headline-lg text-headline-lg mb-6">Cyber Security Certification Benefits</h2>
+<p class="text-secondary font-body-md mb-8">Get an industry-recognized Cyber Security &amp; Ethical Hacking Certificate from SkyStates while preparing for Microsoft Azure Security certifications. Build your professional profile via expert-led training, practical labs, and career guidance.</p>
 <div class="space-y-4">
 <div class="flex gap-4 p-6 rounded-xl bg-surface ambient-shadow">
 <span class="material-symbols-outlined text-primary text-3xl">verified</span>
 <div>
 <h4 class="font-bold">Exam Voucher Included</h4>
-<p class="text-sm text-on-surface-variant">$165 retail value covered in your tuition. No hidden costs.</p>
+<p class="text-sm text-on-surface-variant">One attempt fee covered in your program tuition.</p>
 </div>
 </div>
 <div class="flex gap-4 p-6 rounded-xl bg-surface ambient-shadow">
@@ -354,72 +346,100 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
-<!-- Section 3: Why Choose -->
+<!-- Section: Learning Methodology We Use -->
 <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg mb-4">Why Choose Sky States?</h2>
+<h2 class="font-headline-lg text-headline-lg mb-4">Learning Methodology We Use</h2>
 <div class="w-20 h-1 bg-primary mx-auto"></div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
-<div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
-<div class="w-14 h-14 bg-primary-container/10 rounded-2xl flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-3xl">supervisor_account</span>
-</div>
-<h3 class="font-headline-md text-[20px]">Industry-First Mentorship</h3>
-<p class="text-secondary text-sm">Direct access to CISO-level mentors from Fortune 500 firms for 1-on-1 strategic guidance.</p>
-</div>
-<div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
-<div class="w-14 h-14 bg-secondary-container/10 rounded-2xl flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
-</div>
-<h3 class="font-headline-md text-[20px]">Project-Based Learning</h3>
-<p class="text-secondary text-sm">Simulate enterprise attacks in isolated sandboxes. Build defense perimeters for real companies.</p>
-</div>
-<div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
-<div class="w-14 h-14 bg-tertiary-container/10 rounded-2xl flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-3xl">live_tv</span>
-</div>
-<h3 class="font-headline-md text-[20px]">Live Instruction</h3>
-<p class="text-secondary text-sm">No pre-recorded videos. All sessions are live, interactive, and instructor-led on weekends.</p>
-</div>
-<div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
-<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-3xl">person_pin</span>
-</div>
-<h3 class="font-headline-md text-[20px]">One-on-One Support</h3>
-<p class="text-secondary text-sm">Personalized career coaching and unlimited technical office hours throughout the 6 months.</p>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Card 1 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">live_tv</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Live Sessions</h3>
+    <p class="text-secondary text-sm">Learn directly from experienced industry experts.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">terminal</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Practical Labs</h3>
+    <p class="text-secondary text-sm">Practice concepts immediately through guided exercises.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">assignment</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Weekly Assignments</h3>
+    <p class="text-secondary text-sm">Reinforce concepts via organized assessments.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">support_agent</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Mentor Assistance</h3>
+    <p class="text-secondary text-sm">Receive guidance throughout your learning journey.</p>
+  </div>
+  <!-- Card 5 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">folder_open</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Applied Projects</h3>
+    <p class="text-secondary text-sm">Solve real business problems using industry datasets.</p>
+  </div>
+  <!-- Card 6 -->
+  <div class="p-8 rounded-3xl bg-surface-container-lowest ambient-shadow flex flex-col gap-4">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">menu_book</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Lifetime LMS Access</h3>
+    <p class="text-secondary text-sm">Revisit course materials anytime and anywhere.</p>
+  </div>
 </div>
 </section>
-<!-- Reputation Section -->
+<!-- Section: Right Program for Every Learner -->
 <section class="py-section-gap bg-surface-container-low">
 <div class="max-w-7xl mx-auto px-margin-desktop">
-<h2 class="font-headline-lg text-headline-lg text-center mb-16">Is This Masterclass Right For You?</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="bg-white p-10 rounded-3xl border-t-8 border-primary shadow-sm">
-<h3 class="font-headline-md mb-6 flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">check_circle</span>
-                        Who This Is For
-                    </h3>
-<ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Technology leaders, systems engineers, and software developers seeking advanced cybersecurity specialization.</li>
-<li class="flex items-start gap-2">• Systems administrators moving to next-generation cloud security and DevSecOps roles.</li>
-<li class="flex items-start gap-2">• Driven individuals of all experience levels determined to build a highly structured, enterprise-grade career in IT security.</li>
-<li class="flex items-start gap-2">• Dedicated learners looking to transform their interest in cybersecurity into practical, professional capabilities.</li>
-</ul>
-</div>
-<div class="bg-white p-10 rounded-3xl border-t-8 border-outline shadow-sm">
-<h3 class="font-headline-md mb-6 flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">cancel</span>
-                        Who This Is Not For
-                    </h3>
-<ul class="space-y-4 text-secondary">
-<li class="flex items-start gap-2">• Learners looking for purely passive lectures without interactive hands-on lab training.</li>
-<li class="flex items-start gap-2">• Anyone looking for shortcuts or instant credentials rather than deep, comprehensive professional mastery.</li>
-<li class="flex items-start gap-2">• Students who prefer a self-paced, casual study format over active real-world simulations and live mentor interactions.</li>
-<li class="flex items-start gap-2">• People looking for a generic video-only course with no live support or collaborative exercises.</li>
-</ul>
-</div>
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Right Program for Every Learner</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <!-- Card 1 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">school</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Students &amp; Freshers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Develop a strong cybersecurity foundation via practical labs and introduce your career with industry-related skills.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">work</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">IT Professionals</h3>
+    <p class="text-secondary text-sm leading-relaxed">Change into high-demand cybersecurity roles with well-prepared learning and practical experience.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">dns</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">System &amp; Network Administrators</h3>
+    <p class="text-secondary text-sm leading-relaxed">Extend your expertise in security operations, network defense, and risk management.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">code</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Software Developers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Learn secure coding practices, application security, penetration testing, and cloud security concepts.</p>
+  </div>
 </div>
 </div>
 </section>
@@ -440,7 +460,7 @@ Your browser does not support the video tag.
 <span class="font-label-md text-label-md opacity-80">Hiring Partners</span>
 </div>
 <div class="flex flex-col gap-2">
-<span class="text-headline-xl font-headline-xl">6k+</span>
+<span class="text-headline-xl font-headline-xl">1,200+</span>
 <span class="font-label-md text-label-md opacity-80">Global Alumni</span>
 </div>
 </div>
@@ -490,181 +510,175 @@ Your browser does not support the video tag.
 <details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6" open="">
 <summary class="flex justify-between items-center cursor-pointer list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">01</span> Module 1: Introduction to Cyber Security and Ethical Hacking
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Basics of Cyber Security and Threat Landscape</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Ethical Hacking Concepts and Types of Hackers</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Phases of Ethical Hacking</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Security and Risk Management</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">02</span> Module 2: Networking Fundamentals for Cyber Security
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> OSI and TCP/IP Models</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> IP Addressing and Subnetting</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Networking Protocols (HTTP, DNS, FTP, etc.)</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Firewalls and IDS/IPS Basics</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Packet Analysis with Wireshark</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Networking and Devices</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Proxy and VPN</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">03</span> Module 3: Linux Fundamentals
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Basics of Linux Operating System</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Setting Up the Lab Environment</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Linux File System and Directory Structure</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Common Linux Commands for Cybersecurity Tasks</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Managing Users, Permissions, and Processes</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Shell Scripting Basics</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">04</span> Module 4: Reconnaissance and Footprinting
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Active and Passive Reconnaissance</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Information Gathering Tools</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Network Scanning with Nmap networking and devices</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Identifying Open Ports and Services</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> OSINT</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">05</span> Module 5: Vulnerability Analysis
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Vulnerability Assessment Methodologies</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Tools for Vulnerability Scanning (Nessus, ZAP)</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Identifying CVEs and Exploits</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Analyzing Vulnerability Reports</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">06</span> Module 6: System Hacking
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Password Cracking Techniques</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Privilege Escalation on Windows and Linux</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Backdoors and Trojans</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Anti-Forensics Techniques</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">07</span> Module 7: Web Application Security
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> OWASP Top 10 Vulnerabilities, Juice Shop and DVWA</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Exploiting SQL Injection</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Cross-Site Scripting (XSS) and CSRF Attacks</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Tools for Web Security Testing (Burp Suite, SQLmap)</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">08</span> Module 8: Wireless Network Security
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Wireless Network Standards and Protocols</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Capturing and Cracking Wireless Traffic</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> WPA/WPA2 Hacking with Tools</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Securing Wireless Networks</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">09</span> Module 9: Penetration Testing Methodologies
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Penetration Testing Planning and Scoping</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Reporting and Documentation</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Real-World Penetration Testing Simulations</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">10</span> Module 10: Advanced Topics in Cyber Security
-</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-2 font-body-md">
-<ul class="space-y-2">
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Cloud Security and Common Vulnerabilities</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> IoT Security Threats and Countermeasures</li>
-<li class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full"></span> Basics of Threat Hunting and Mitigation</li>
-</ul>
-</div>
-</details>
-<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
-<summary class="flex justify-between items-center cursor-pointer list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">11</span> Module 11: Capstone Project
+<span class="text-primary font-bold">01</span> Networking Concepts
 </span>
 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
-<p>The capstone project allows learners to apply all the concepts, tools, and techniques learned during the course. Students will be tasked with performing an end-to-end penetration test on a simulated environment, including reconnaissance, vulnerability scanning, exploitation, and reporting. This hands-on project helps solidify practical skills and prepares participants for real-world scenarios in cybersecurity.</p>
+<p>Know how modern computer networks function and develop the base needed for cybersecurity.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">TCP or IP</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">OSI Model</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">DNS</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Routing and Switching</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Network Protocols</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">02</span> Linux &amp; System Administration
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Learn Linux commands, file systems, permissions, shell scripting, and system administration important for ethical hacking.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Linux Administration</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Bash</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">File Permissions</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">User Management</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Shell Scripting</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">03</span> Cyber Security Concepts
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Learn essential cybersecurity concepts, security principles, attack vectors, and defense strategies.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">CIA Triad</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Security Policies</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Threat Intelligence</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Risk Assessment</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Security Frameworks</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">04</span> Ethical Hacking &amp; Penetration Testing
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Know how ethical hackers find risks and secure systems through authorized penetration testing.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Web Application Testing</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Network Penetration Testing</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Password Auditing</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Risk Exploitation</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Security Assessment Reports</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">05</span> Risk Assessment &amp; Security Tools
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Gain hands-on experience with industry-standard cybersecurity tools used by professionals.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Nmap</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Wireshark</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Metasploit</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Burp Suite</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Nessus</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">06</span> Web Application Security
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Get to know common web risks and learn techniques to find and mitigate security risks.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">OWASP</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">SQL Injection</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Cross-Site Scripting</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Authentication Security</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Session Management</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">07</span> Security Operations Center (SOC)
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Learn how modern SOC teams monitor, detect, investigate, and respond to cyber threats.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">SIEM</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Incident Response</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Threat Hunting</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Log Analysis</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Security Monitoring</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">08</span> Cloud Security
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Secure cloud infrastructure and get to know about modern cloud security practices.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Microsoft Azure Security</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Identity &amp; Access Management</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Cloud Compliance</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Cloud Monitoring</span>
+</div>
+</div>
+</details>
+
+<details class="group bg-surface-container-lowest rounded-2xl ambient-shadow p-6">
+<summary class="flex justify-between items-center cursor-pointer list-none">
+<span class="font-headline-md text-headline-md flex items-center gap-4">
+<span class="text-primary font-bold">09</span> Digital Forensics &amp; Incident Response
+</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 text-secondary space-y-3 font-body-md">
+<p>Investigate cyber incidents and recover digital evidence in the industry.</p>
+<div class="flex flex-wrap gap-2 pt-2">
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Evidence Collection</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Malware Analysis</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Incident Investigation</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Reporting</span>
+  <span class="px-2.5 py-1 bg-surface-container text-secondary text-xs rounded-md">Recovery Procedures</span>
+</div>
 </div>
 </details>
 </div>
 </section>
-<!-- The Innovation Lab -->
+<!-- The Innovation Lab
 <section class="py-section-gap bg-secondary-container/10">
 <div class="max-w-7xl mx-auto px-margin-desktop">
 <h2 class="font-headline-lg text-headline-lg text-center mb-16">The Innovation Lab</h2>
@@ -694,14 +708,17 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
+-->
 
 <!-- Section: Master the Stack (Tools Loop) -->
 <section class="py-section-gap overflow-hidden bg-surface-container-lowest border-y border-outline-variant/10">
 <div class="max-w-7xl mx-auto px-margin-desktop mb-12">
 <div class="text-center max-w-3xl mx-auto">
 <span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Ecosystem</span>
-<h2 class="font-headline-lg text-headline-lg mb-6">Master the Stack</h2>
-<p class="text-secondary font-body-md">Acquire hands-on proficiency with the modern security tools and defensive frameworks deployed by elite cybersecurity units worldwide.</p>
+<h2 class="font-headline-lg text-headline-lg mb-6">Technologies You Will Learn</h2>
+<p class="text-secondary font-body-md leading-relaxed">
+  Kali Linux &bull; Linux &bull; Nmap &bull; Wireshark &bull; Metasploit &bull; Burp Suite &bull; Nessus &bull; OWASP ZAP &bull; Microsoft Azure &bull; Windows Server &bull; Active Directory &bull; Splunk &bull; Git &bull; VirtualBox &bull; VMware &bull; PowerShell &bull; Bash &bull; Python
+</p>
 </div>
 </div>
 
@@ -786,181 +803,59 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
-<!-- Placement Assistance -->
-<section class="py-section-gap">
+<!-- Section: SkyStates Career Guidance -->
+<section class="py-section-gap bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest ambient-shadow">
-<h4 class="font-headline-md text-headline-md mb-4">Resume Engineering</h4>
-<p class="text-secondary font-body-md">Optimize your professional narrative with ATS-compliant, security-focused engineering of your work history to clear HR hurdles.</p>
-</div>
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest ambient-shadow">
-<h4 class="font-headline-md text-headline-md mb-4">Mock Interviews</h4>
-<p class="text-secondary font-body-md">Practice technical deep-dives and behavioral rounds with CISOs and recruiters from leading cyber firms to master high-pressure interviews.</p>
-</div>
-<div class="p-8 border-l-4 border-primary bg-surface-container-lowest ambient-shadow">
-<h4 class="font-headline-md text-headline-md mb-4">Hidden Market Access</h4>
-<p class="text-secondary font-body-md">Get exclusive referrals to security roles that are never posted publicly through our secure partner network and alumni channels.</p>
-</div>
-</div>
+  <div class="text-center mb-12">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Success</span>
+    <h2 class="font-headline-lg text-headline-lg font-bold">SkyStates Career Guidance</h2>
+    <p class="text-secondary text-sm max-w-xl mx-auto mt-2">Learning technical skills is only the beginning of the cybersecurity journey. We provide full-concierge career assistance.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">badge</span>
+      <h4 class="font-bold text-base mt-2">Resume &amp; Profile</h4>
+      <p class="text-xs text-secondary leading-relaxed">Resume development and LinkedIn profile improvement to stand out to modern security recruiters.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">folder_shared</span>
+      <h4 class="font-bold text-base mt-2">Portfolio Development</h4>
+      <p class="text-xs text-secondary leading-relaxed">Cyber Security Portfolio Development to present your lab configurations and threat reports professionally.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">forum</span>
+      <h4 class="font-bold text-base mt-2">Interview Prep</h4>
+      <p class="text-xs text-secondary leading-relaxed">Mock technical interviews, HR interview preparation, and systematic GRC/incident response scenarios.</p>
+    </div>
+    <div class="p-6 bg-surface rounded-2xl border border-outline-variant/30 flex flex-col gap-2">
+      <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
+      <h4 class="font-bold text-base mt-2">Career &amp; Placement</h4>
+      <p class="text-xs text-secondary leading-relaxed">Career guidance, network sessions, and full placement assistance with security operations partners.</p>
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- Section: What Can I Become? -->
+<!-- Section: Explore Your Career Options -->
 <section class="py-section-gap bg-slate-50 border-y border-slate-100">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-  <div class="text-center mb-16">
+  <div class="text-center mb-12">
     <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Security Horizons</span>
-    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
-    <p class="text-secondary max-w-2xl mx-auto">
-      Modern cyber defense and offensive operations demand highly specialized, versatile professionals. Completing this program equips you to step confidently into critical security roles across enterprise sectors.
-    </p>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">Explore Your Career Options</h2>
+    <p class="text-secondary max-w-2xl mx-auto mb-8">After completing the program, you can pursue diverse roles.</p>
   </div>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Role 1 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">security</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$95k - $130k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Security Analyst (SOC)</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Monitor enterprise network traffic, detect security incidents, triage alerts, and mitigate active threat vectors in real-time.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SIEM Tools</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Threat Intel</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">WireShark</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 2 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">admin_panel_settings</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$115k - $160k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Ethical Hacker / Penetration Tester</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Proactively simulate offensive cyber attacks on target infrastructures to locate and remediate security vulnerabilities before adversaries do.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Metasploit</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Nmap</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kali Linux</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 3 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">gavel</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$110k - $150k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Incident Responder</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Lead containment, forensic investigations, and disaster mitigation during active security breaches to minimize business downtime.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Digital Forensics</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Reverse Eng</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Incident Plans</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 4 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">cloud_done</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$150k - $200k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Cloud Security Architect</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Design and implement secure infrastructure configurations, IAM policies, and cloud-native container security postures.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">AWS/Azure Sec</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">IAM Roles</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kubernetes Sec</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 5 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">policy</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$100k - $140k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Compliance Auditor / GRC Specialist</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Audit enterprise environments to ensure strict adherence to global regulatory frameworks, standards, and data privacy policies.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">SOC 2 / ISO</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">GDPR / HIPAA</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Risk Frameworks</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 6 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">manage_accounts</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$120k - $170k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Security Consultant</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Provide executive-level guidance on enterprise threat prevention roadmaps, security controls, and system designs.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Security Advisory</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Risk Analysis</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Client Strategy</span>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cyber Security Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">SOC Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Ethical Hacker</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Penetration Tester</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Information Security Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Risk Assessment Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Security Operations Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Incident Response Analyst</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Network Security Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cyber Security Consultant</span>
   </div>
 </div>
 </section>
@@ -1049,11 +944,14 @@ Your browser does not support the video tag.
 <!-- Transparent Pricing -->
 <section class="py-section-gap relative overflow-hidden bg-surface-bright">
 <div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
-<div class="text-center mb-16">
-<h2 class="font-headline-xl text-headline-xl mb-4">Simple, Transparent Investment</h2>
-<p class="text-secondary font-body-lg">Institutional quality education with clear outcomes.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
+      <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
+        <h2 class="font-headline-xl text-headline-xl mb-4" id="pricing">Build The Skills to Protect the Digital World</h2>
+        <p class="text-secondary font-body-lg leading-relaxed">If you are beginning your first cybersecurity career or upgrading your IT expertise, the SkyStates Cyber Security &amp; Ethical Hacking Program offers practical training, live cyber labs, expert mentorship, and career assistance to help you become a confident cybersecurity professional.</p>
+        <div class="flex flex-wrap gap-4 justify-center pt-4">
+          <a href="#" class="px-6 py-2 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Download the Curriculum</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
 <!-- Scholar Track -->
 <div class="bg-surface-container-lowest rounded-[40px] p-12 ambient-shadow border-2 border-primary relative flex flex-col">
 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary px-6 py-1.5 rounded-full text-white text-label-sm font-bold">Most Popular</div>

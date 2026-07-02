@@ -7,6 +7,11 @@ import Footer from '../components/Footer.astro';
 <!DOCTYPE html>
 
 <html lang="en"><head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
   <link rel="icon" type="image/png" href="/favicon.png" />
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -171,138 +176,140 @@ import Footer from '../components/Footer.astro';
     <!-- Left & Middle: Detailed Policy Rules -->
     <div class="lg:col-span-2 space-y-12">
       
-      <!-- Long-Term Courses -->
+      <!-- 1. 7-Day Refund Eligibility Window -->
       <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
         <div class="flex items-center gap-3 mb-6">
           <span class="material-symbols-outlined text-primary text-3xl">calendar_today</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">Long-Term Courses <span class="text-sm font-normal text-secondary">(6 Months & Above)</span></h3>
+          <h3 class="font-headline-md text-headline-md text-on-surface">1. 7-Day Refund Eligibility Window</h3>
         </div>
         
+        <p class="text-secondary text-body-md leading-relaxed mb-6">
+          We offer a full refund on course fees within the first 7 calendar days following your initial payment. The eligibility window is strictly calculated from the exact date and time the payment is processed, subject to the following conditions:
+        </p>
+
         <div class="space-y-6">
           <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">How to Cancel</h4>
-            <p class="text-secondary text-body-md leading-relaxed">
-              If you need to cancel your enrollment, please notify us in person, by email, by Certified Mail, or through direct communication with Sky States. The cancellation will be effective on the date the notice is postmarked or received.
+            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Valid Technical or Quality Grounds</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              Refund requests will only be considered if you experience verifiable issues with a trainer, class quality, or our core services, and our support team is unable to resolve these issues within a reasonable timeframe.
             </p>
           </div>
-          
-          <div class="space-y-4">
-            <h4 class="font-label-md text-on-surface font-bold uppercase tracking-wider">Refund Structure</h4>
-            
-            <div class="border-l-4 border-primary pl-4 py-1">
-              <h5 class="font-label-md text-on-surface font-bold">Full Refund</h5>
-              <p class="text-secondary text-sm mt-1">
-                If we do not accept your application or if you cancel within three business days of signing the agreement and making your initial payment, you will receive a full refund.
-                <br/><span class="italic text-xs text-primary font-medium mt-1 block">Satisfactory Guarantee: If you don’t find the course satisfactory or for any other reason, you can request a cancellation. Your access to the course will be canceled, and the student will be charged only for the number of classes they have attended.</span>
-              </p>
-            </div>
 
-            <div class="border-l-4 border-outline pl-4 py-1">
-              <h5 class="font-label-md text-on-surface font-bold">Before Classes Begin</h5>
-              <p class="text-secondary text-sm mt-1">
-                If you cancel after admission but before your first class, you will receive a refund of all money paid except for the registration fee (capped at $99).
-              </p>
-            </div>
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Personal Circumstance Exemptions</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              Refund requests made within the 7-day window due to personal changes—including, but not limited to, changes in your personal schedule, securing employment, or being assigned new academic/work projects—are strictly non-refundable.
+            </p>
+          </div>
 
-            <div class="border-l-4 border-outline pl-4 py-1">
-              <h5 class="font-label-md text-on-surface font-bold">During Drop/Add Period</h5>
-              <p class="text-secondary text-sm mt-1">
-                If you withdraw during the first week of classes, you will receive a refund of all tuition and fees except for the registration fee.
-              </p>
-            </div>
-
-            <div class="border-l-4 border-outline pl-4 py-1">
-              <h5 class="font-label-md text-on-surface font-bold">After Drop/Add Period</h5>
-              <p class="text-secondary text-sm mt-1">
-                No refunds will be issued after the first week of classes.
-              </p>
-            </div>
-
-            <div class="border-l-4 border-outline pl-4 py-1">
-              <h5 class="font-label-md text-on-surface font-bold">Withdrawal from Program</h5>
-              <p class="text-secondary text-sm mt-1">
-                If you withdraw from the program, the above refund structure will apply.
-              </p>
-            </div>
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Subjective Opinion &amp; Third-Party Reviews</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              Refund requests based on third-party reviews and public forums are strictly excluded from eligibility. Because online reviews are highly subjective and vary per individual experience, they do not constitute objective grounds for a refund.
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- Short-Term Courses -->
+      <!-- 2. Non-Refundable Processing & Payment Fees -->
       <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
         <div class="flex items-center gap-3 mb-6">
-          <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">Short-Term Courses <span class="text-sm font-normal text-secondary">(Less Than 6 Months)</span></h3>
+          <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface">2. Non-Refundable Processing &amp; Payment Fees</h3>
         </div>
+
+        <p class="text-secondary text-body-md leading-relaxed mb-6">
+          Depending on your chosen payment method, certain third-party processing and convenience fees are strictly non-refundable:
+        </p>
         
-        <div class="space-y-6">
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 space-y-4">
-            <h4 class="font-label-md text-primary uppercase tracking-wider">Classroom &amp; Instructor-Led Online Training</h4>
-            <div>
-              <h5 class="font-label-md text-on-surface font-bold">Sky States Cancellations</h5>
-              <p class="text-secondary text-sm mt-1">
-                We may need to postpone or cancel an event due to insufficient enrollments, instructor illness, or force majeure events (e.g., natural disasters, political instability). If we cancel an event, you will receive a 100% refund.
-              </p>
-            </div>
-            <div>
-              <h5 class="font-label-md text-on-surface font-bold">Delegate Cancellations</h5>
-              <ul class="list-disc pl-5 text-sm text-secondary space-y-1 mt-1">
-                <li><strong>7 Days or More Before Event:</strong> 90% refund of the total paid fee (10% retained as a processing fee).</li>
-                <li><strong>Less Than 7 Days Before Event:</strong> No refunds will be provided.</li>
-              </ul>
-            </div>
+        <div class="space-y-4">
+          <div class="border-l-4 border-primary pl-4 py-1">
+            <h5 class="font-label-md text-on-surface font-bold">Installment &amp; Financing Plans</h5>
+            <p class="text-secondary text-sm mt-1 leading-relaxed">
+              If you utilize a third-party financing partner (such as Afterpay, Klarna, Affirm, Zip, Sezzle, or PayPal Credit), any accrued interest or convenience fees charged by the respective provider cannot be refunded.
+            </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20 space-y-4">
-            <h4 class="font-label-md text-primary uppercase tracking-wider">Online Training (Self-Paced / Subscription)</h4>
-            <div>
-              <h5 class="font-label-md text-on-surface font-bold">Delegate Cancellations</h5>
-              <ul class="list-disc pl-5 text-sm text-secondary space-y-1 mt-1">
-                <li><strong>Within 48 Hours of Subscription:</strong> 95% refund of the total paid fee (5% retained as an administration fee).</li>
-                <li><strong>After 48 Hours of Subscription:</strong> No refunds will be issued.</li>
-              </ul>
-            </div>
+          <div class="border-l-4 border-outline pl-4 py-1">
+            <h5 class="font-label-md text-on-surface font-bold">Credit &amp; Debit Cards</h5>
+            <p class="text-secondary text-sm mt-1 leading-relaxed">
+              Processing and convenience fees applied by card networks at the time of purchase are non-refundable.
+            </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Third-Party Courses</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              For courses provided by third parties (e.g., Microsoft Azure Registration, MS SharePoint), we will refund 50% of the total paid fee if cancelled within 48 hours. No refunds will be issued after 48 hours.
+          <div class="border-l-4 border-outline pl-4 py-1">
+            <h5 class="font-label-md text-on-surface font-bold">Wire Transfers &amp; Zelle</h5>
+            <p class="text-secondary text-sm mt-1 leading-relaxed">
+              Payments made via direct bank wire transfer or Zelle are exempt from external processing fees. Consequently, 100% of the payment received by Sky States will be refunded if the request is formally approved.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Legal Protection & General Notes -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 ambient-shadow">
-          <span class="material-symbols-outlined text-primary text-3xl mb-3">gavel</span>
-          <h4 class="font-label-md text-on-surface font-bold uppercase tracking-wider mb-2">USA Consumer Protection Law</h4>
-          <p class="text-secondary text-sm leading-relaxed">
-            USA customers are entitled to a full refund within 14 days of purchase if the content has not been consumed or accessed.
-          </p>
+      <!-- 3. How to Request a Refund & Processing Timeline -->
+      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-primary text-3xl">mail</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface">3. How to Request a Refund &amp; Timeline</h3>
         </div>
-        
-        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 ambient-shadow">
-          <span class="material-symbols-outlined text-primary text-3xl mb-3">content_copy</span>
-          <h4 class="font-label-md text-on-surface font-bold uppercase tracking-wider mb-2">Duplicate Payment</h4>
-          <p class="text-secondary text-sm leading-relaxed">
-            If you accidentally make a duplicate payment, we will process a refund via the original payment method within 5 to 7 working days after notification.
-          </p>
+
+        <p class="text-secondary text-body-md leading-relaxed mb-6">
+          To formally initiate a refund request within the 7-day eligibility window, you must complete the following steps:
+        </p>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-4">
+            <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">1</span>
+            <p class="text-secondary text-sm leading-relaxed">
+              First, contact your assigned Relationship Manager directly to formally discuss your concerns.
+            </p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">2</span>
+            <p class="text-secondary text-sm leading-relaxed">
+              Submit a formal, written refund request via email to <a href="mailto:support@skystates.com" class="text-primary hover:underline font-semibold">support@skystates.com</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-primary-container text-on-primary-container p-6 rounded-2xl flex items-start gap-4">
+          <span class="material-symbols-outlined text-[32px]">info</span>
+          <div>
+            <h4 class="font-label-md font-bold uppercase tracking-wider mb-1">Processing Timeline</h4>
+            <p class="text-sm opacity-90 leading-relaxed">
+              Once a refund request is officially approved by our billing department, the approved funds will be processed and returned to the original payment method within 10 to 15 business days.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div class="bg-primary-container text-on-primary-container p-6 rounded-2xl flex items-start gap-4">
-        <span class="material-symbols-outlined text-[32px]">info</span>
-        <div>
-          <h4 class="font-label-md font-bold uppercase tracking-wider mb-1">General Note</h4>
-          <p class="text-sm opacity-90 leading-relaxed">
-            All refunds will be processed within 30 days of receiving the refund request.
-          </p>
+      <!-- 4. Code of Conduct & Academic Integrity -->
+      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-primary text-3xl">gavel</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface">4. Code of Conduct &amp; Academic Integrity</h3>
+        </div>
+
+        <p class="text-secondary text-body-md leading-relaxed mb-6">
+          Sky States maintains a zero-tolerance policy regarding disruptive behavior and intellectual property infringement. We reserve the absolute right to terminate a student's enrollment at any time, without a refund, under the following circumstances:
+        </p>
+
+        <div class="space-y-6">
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Misbehavior</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              Any form of harassment, disrespect, use of inappropriate language, or misconduct directed toward trainers, staff members, or fellow students.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Copyright Infringement</h4>
+            <p class="text-secondary text-sm leading-relaxed">
+              Sharing, distributing, copying, or replicating Sky States course content, curriculum, recordings, or proprietary study materials with any external parties for commercial or business purposes. Sky States will pursue formal legal action against any violations.
+            </p>
+          </div>
         </div>
       </div>
-
-    </div>
 
     <!-- Right Column: Contacts, Address & Help -->
     <div class="space-y-6 sticky top-24">

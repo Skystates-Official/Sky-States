@@ -1,10 +1,10 @@
 {
   "data-science-ai": {
     "slug": "data-science-ai",
-    "metaTitle": "SKY STATES | Data Science & AI Architect Program",
+    "metaTitle": "SkyStates | Data Science & AI Program",
     "hero": {
-      "headline": "Data Science &amp; AI <br/> <span class=\"text-primary-fixed-dim\">Architect.</span>",
-      "description": "An intensive, technical mastery program designed for professionals seeking to lead the next generation of intelligent systems. From foundational neural networks to large-scale LLM orchestration."
+      "headline": "SkyStates Data Science and AI Program <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready Data Scientist with AI Training</span>",
+      "description": "Master Python, Machine Learning, Deep Learning, SQL, Generative AI, Power BI, and Tableau via live classes, real-life projects, and career guidance. Develop an industry-built portfolio while preparing for globally recognized certifications and interviews."
     },
     "stats": [
       { "value": "120+", "label": "Global Partners" },
@@ -63,10 +63,10 @@
   },
   "cyber-security": {
     "slug": "cyber-security",
-    "metaTitle": "SKY STATES | Cyber Security Strategist",
+    "metaTitle": "SkyStates | Cyber Security & Ethical Hacking Program",
     "hero": {
-      "headline": "Cyber Security <br/><span class=\"text-primary-fixed-dim\">Strategist</span>",
-      "description": "Move beyond defensive engineering into the realm of institutional risk architecture. A rigorous program designed for leaders who secure the backbone of modern enterprise."
+      "headline": "SkyStates Cyber Security & Ethical Hacking <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready Cyber Security Expert</span>",
+      "description": "Take control of networking, Linux, ethical hacking, penetration testing, digital forensics, cloud security, and Security Operations via live online sessions, practical labs, and real-world cyber attack simulations. Develop practical experience while preparing for globally recognized cybersecurity certifications and rewarding careers."
     },
     "stats": [
       { "value": "120+", "label": "Global Partners" },

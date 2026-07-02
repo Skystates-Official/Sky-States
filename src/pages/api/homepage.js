@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { getSessionUser } from '../../db/auth.js';
 
 export const prerender = false;
 
@@ -28,9 +29,9 @@ export async function GET() {
 
 export async function POST({ request }) {
   try {
-    // Check auth cookie to ensure secure operations
-    const cookieHeader = request.headers.get('cookie') || '';
-    if (!cookieHeader.includes('admin_session=sky_admin_secure_session_6c9f7a1e2b4d8c0f3e7a')) {
+    // Verify session using the same auth mechanism as all other API endpoints
+    const session = getSessionUser(request);
+    if (!session) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
 

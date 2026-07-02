@@ -8,6 +8,7 @@ import programsData from '../../data/programs.json';
 const program = programsData['devops'];
 const { metaTitle, hero } = program;
 const description = hero?.description || "Master DevOps & Cloud Architect competencies with our 6-month intensive training program.";
+export const prerender = false;
 ---
 
 <!DOCTYPE html>
@@ -74,14 +75,29 @@ const description = hero?.description || "Master DevOps & Cloud Architect compet
 <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Advanced Cloud Track</span>
 <h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
-<div class="flex items-center gap-3 mb-10 text-primary font-bold">
-<span class="material-symbols-outlined">verified</span>
-<span>AWS &amp; Kubernetes Academy Curriculum</span>
-</div>
-<div class="flex flex-wrap gap-6">
-<button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all">Enroll Now — $2,999</button>
-<button class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all">Download Syllabus</button>
-</div>
+<ul class="space-y-2 mb-8 text-on-surface-variant font-label-md">
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>6 Month Online Program</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Live Engaging Classes</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Practical Cloud &amp; DevOps Labs</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Microsoft Learning Benefits</span>
+  </li>
+  <li class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+    <span>Career &amp; Placement Support</span>
+  </li>
+</ul>
+<div class="flex flex-wrap gap-6"><a href="#pricing" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all text-center">Enroll Now</a><!-- <a href="#faq" class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all text-center">Connect to Advisor</a> --></div>
 </div>
 <div class="relative mt-12 lg:mt-0">
 <div class="relative">
@@ -110,57 +126,36 @@ Your browser does not support the video tag.
 <section class="py-6 bg-surface-container-low border-b border-outline-variant/10">
   <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
     
-    <!-- Next Cohort Column -->
-    <div class="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start">
-      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl">schedule</span>
-      </div>
-      <div>
-        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">Next Cohort Start</p>
-        <!-- Countdown Wrapper -->
-        <div class="flex items-center gap-2 font-bold text-on-surface justify-center md:justify-start" id="countdown-timer">
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-days">0</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Days</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-hours">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Hrs</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-minutes">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Min</span>
-          </div>
-          <span class="text-secondary">:</span>
-          <div class="flex flex-col items-center">
-            <span class="text-lg" id="timer-seconds">00</span>
-            <span class="text-[9px] uppercase text-secondary font-normal tracking-wider">Sec</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Program Duration Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
+    <!-- Column 1: 6 Month Program -->
+    <div class="flex items-center gap-4 justify-center md:justify-start">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">calendar_today</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Program Duration</p>
-        <h4 class="text-lg font-extrabold text-on-surface">6 Months</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">6 Month Program</h4>
       </div>
     </div>
 
-    <!-- Learning Format Column -->
-    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+    <!-- Column 2: Online Learning Bootcamp -->
+    <div class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/50 py-4 md:py-0 md:px-8">
       <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
         <span class="material-symbols-outlined text-2xl">menu_book</span>
       </div>
       <div>
         <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Learning Format</p>
-        <h4 class="text-lg font-extrabold text-on-surface">Online Bootcamp</h4>
+        <h4 class="text-lg font-extrabold text-on-surface">Online Learning Bootcamp</h4>
+      </div>
+    </div>
+
+    <!-- Column 3: Real-World Experience -->
+    <div class="flex items-center gap-4 justify-center md:justify-start md:pl-8">
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl">work</span>
+      </div>
+      <div>
+        <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-0.5">Applied Practice</p>
+        <h4 class="text-lg font-extrabold text-on-surface">Real-World Experience</h4>
       </div>
     </div>
 
@@ -225,10 +220,21 @@ Your browser does not support the video tag.
       <!-- Left Column: Overview -->
       <div class="lg:col-span-5 space-y-6">
         <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Overview</span>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">DevOps & Cloud Program Overview</h2>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">DevOps &amp; Cloud Program Overview</h2>
         <p class="text-secondary font-body-md leading-relaxed">
           Are you looking to embark on an exciting career in DevOps and Cloud Architecture? Look no further! Our company is dedicated to providing top-notch training in these cutting edge fields, and we offer a comprehensive 6-month course designed to transform you into a skilled DevOps engineer or cloud infrastructure architect. With our experienced trainers and a commitment to high-quality content delivery, we’re your ultimate partner in achieving your career goals. Plus, our course includes the added advantage of Microsoft Azure Fundamentals (AZ-900) certification, powered by Microsoft, ensuring you gain industry-recognized credentials that will set you apart in the job market.
         </p>
+        
+        <!-- Pricing / Overview Card -->
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/30 mt-6 space-y-4">
+          <h4 class="font-bold text-sm text-on-surface">DevOps &amp; Cloud Engineering Program Overview</h4>
+          <p class="text-xs text-secondary leading-relaxed">SkyStates offers a 6-month DevOps &amp; Cloud Engineering Program built to prepare learners for modern cloud careers. The curriculum integrates theoretical knowledge with practical labs, CI/CD pipeline deployments, and real-world system architecture projects.</p>
+          <div class="flex items-baseline gap-2 pt-2">
+            <span class="text-2xl font-bold text-primary">$2,999</span>
+            <span class="text-xs text-secondary">/ 6 Month Program / Online Program</span>
+          </div>
+          <a href="/checkout?course=DevOps+%26+Cloud+Engineering&type=normal&mode=full" class="block w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:opacity-90 transition-all">Buy Now</a>
+        </div>
       </div>
 
       <!-- Right Column: Key Features -->
@@ -357,77 +363,101 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
-<!-- Why Choose Sky States -->
-<section class="py-section-gap">
-<div class="max-w-[1280px] mx-auto px-margin-desktop text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">The Pillars of Program Excellence</h2>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Founded on the principle of institutional authority, our pillars ensure your career transition is seamless and superior.</p>
+<!-- Section: Learning Methodology We Use -->
+<section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">Learning Methodology We Use</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
 </div>
-<div class="max-w-[1280px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
-<div class="p-8 bg-white rounded-2xl soft-elevation flex flex-col gap-4 border-t-4 border-primary">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="groups">groups</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Industry-First Mentorship</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Direct access to Lead Architects from Fortune 100 technology firms.</p>
-</div>
-<div class="p-8 bg-white rounded-2xl soft-elevation flex flex-col gap-4 border-t-4 border-primary">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="terminal">terminal</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Project-Based Learning</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Build enterprise-grade infrastructure, not just theoretical models.</p>
-</div>
-<div class="p-8 bg-white rounded-2xl soft-elevation flex flex-col gap-4 border-t-4 border-primary">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="podcasts">podcasts</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">Live Instruction</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Real-time engagement with instructors for dynamic problem solving.</p>
-</div>
-<div class="p-8 bg-white rounded-2xl soft-elevation flex flex-col gap-4 border-t-4 border-primary">
-<span class="material-symbols-outlined text-primary text-3xl" data-icon="person_pin">person_pin</span>
-<h3 class="font-headline-md text-headline-md text-on-surface">One-on-One Support</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Tailored guidance to overcome your specific learning bottlenecks.</p>
-</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <!-- Card 1 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">live_tv</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Live Sessions</h3>
+    <p class="text-secondary text-sm">Learn directly from experienced industry experts.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">terminal</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Practical Labs</h3>
+    <p class="text-secondary text-sm">Practice concepts immediately through guided exercises.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">assignment</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Weekly Assignments</h3>
+    <p class="text-secondary text-sm">Reinforce concepts via organized assessments.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">support_agent</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Mentor Assistance</h3>
+    <p class="text-secondary text-sm">Receive guidance throughout your learning journey.</p>
+  </div>
+  <!-- Card 5 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">folder_open</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Applied Projects</h3>
+    <p class="text-secondary text-sm">Solve real business problems using industry datasets.</p>
+  </div>
+  <!-- Card 6 -->
+  <div class="p-8 rounded-3xl bg-white shadow-sm flex flex-col gap-4 border border-outline-variant/30">
+    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-3xl">menu_book</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Lifetime LMS Access</h3>
+    <p class="text-secondary text-sm">Revisit course materials anytime and anywhere.</p>
+  </div>
 </div>
 </section>
-<!-- Is This Right For You? -->
-<section class="py-section-gap bg-surface-container-low">
-<div class="max-w-[1280px] mx-auto px-margin-desktop">
-<h2 class="font-headline-lg text-headline-lg text-center mb-16 text-on-surface">Is This Program Right For You?</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<!-- Who This Program Is For -->
-<div class="bg-white p-10 rounded-3xl border-t-8 border-primary shadow-sm flex flex-col gap-6">
-<h3 class="font-headline-md text-on-surface mb-2 flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
-Who This Program Is For
-</h3>
-<ul class="space-y-4 text-on-surface-variant font-body-md">
-<li class="flex items-start gap-2">
-• Aspiring engineers of all skill levels determined to master cloud architecture, automation, and DevOps tools.
-</li>
-<li class="flex items-start gap-2">
-• Professionals aiming for senior leadership, systems engineering, or cloud infrastructure specialization roles.
-</li>
-<li class="flex items-start gap-2">
-• Developers, operations staff, and motivated tech newcomers eager to build next-generation scalable infrastructure systems.
-</li>
-</ul>
-</div>
 
-<!-- Who This Is NOT For -->
-<div class="bg-white p-10 rounded-3xl border-t-8 border-outline shadow-sm flex flex-col gap-6">
-<h3 class="font-headline-md text-on-surface mb-2 flex items-center gap-3">
-<span class="material-symbols-outlined text-error" data-icon="cancel">cancel</span>
-Who This Is NOT For
-</h3>
-<ul class="space-y-4 text-on-surface-variant font-body-md">
-<li class="flex items-start gap-2">
-• Learners seeking short, surface-level overviews rather than a comprehensive professional program.
-</li>
-<li class="flex items-start gap-2">
-• Anyone seeking purely theoretical clouds and operations concepts without actual build execution and live lab practices.
-</li>
-<li class="flex items-start gap-2">
-• Students who prefer completely self-paced, casual study formats over structured, live-mentor weekend sessions.
-</li>
-</ul>
-</div>
+<!-- Section: Right Program for Every Learner -->
+<section class="py-section-gap bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Right Program for Every Learner</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <!-- Card 1 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">school</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Students &amp; Freshers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Develop a strong cloud and DevOps foundation via practical labs and introduce your career with industry-related skills.</p>
+  </div>
+  <!-- Card 2 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">work</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">IT Professionals</h3>
+    <p class="text-secondary text-sm leading-relaxed">Change into high-demand DevOps and cloud roles with well-prepared learning and practical experience.</p>
+  </div>
+  <!-- Card 3 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">dns</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">System &amp; Network Administrators</h3>
+    <p class="text-secondary text-sm leading-relaxed">Extend your expertise in CI/CD pipelines, container orchestration, and cloud architecture.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">code</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">Software Developers</h3>
+    <p class="text-secondary text-sm leading-relaxed">Learn Infrastructure as Code, automation practices, security integration, and cloud-native concepts.</p>
+  </div>
 </div>
 </div>
 </section>
@@ -591,7 +621,7 @@ Who This Is NOT For
 </details>
 </div>
 </section>
-<!-- Innovation Lab -->
+<!-- Innovation Lab
 <section class="py-section-gap bg-surface-container">
 <div class="max-w-[1280px] mx-auto px-margin-desktop">
 <div class="flex justify-between items-end mb-12">
@@ -621,6 +651,7 @@ Who This Is NOT For
 </div>
 </div>
 </section>
+-->
 
 <!-- Section: Master the Stack (Tools Loop) -->
 <section class="py-section-gap overflow-hidden bg-surface-container-lowest border-y border-outline-variant/10">
@@ -744,161 +775,26 @@ Who This Is NOT For
 </div>
 </section>
 
-<!-- Section: What Can I Become? -->
+<!-- Section: Explore Your Career Options -->
 <section class="py-section-gap bg-slate-50 border-y border-slate-100">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-  <div class="text-center mb-16">
+  <div class="text-center mb-12">
     <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Cloud Horizons</span>
-    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">What Can I Become?</h2>
-    <p class="text-secondary max-w-2xl mx-auto">
-      The shift to microservices, serverless computing, and continuous delivery has made cloud competence highly valuable. Completing this course opens the door to high-impact cloud administration and engineering roles.
-    </p>
+    <h2 class="text-headline-lg font-bold text-on-surface mt-2 mb-4">Explore Your Career Options</h2>
+    <p class="text-secondary max-w-2xl mx-auto mb-8">After completing the program, you can pursue diverse roles.</p>
   </div>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Role 1 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">construction</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$125k - $165k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">DevOps Engineer</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Bridge software development and operations through build automation, automated CI/CD deployment pipelines, and observability frameworks.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Jenkins / GitHub</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">CI/CD</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Docker</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 2 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">dns</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$155k - $210k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Cloud Infrastructure Architect</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Design, build, and optimize high-availability global cloud systems for large-scale enterprise performance.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">AWS / Azure</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Sys Design</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Multi-Cloud</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 3 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">settings_applications</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$135k - $180k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Kubernetes Administrator</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Manage cluster orchestrations, configure service meshes (Istio), and optimize multi-cloud container deployments.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Kubernetes</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Helm Charts</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">EKS/GKE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 4 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">build_circle</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$140k - $190k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Site Reliability Engineer (SRE)</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Maintain high system uptime, perform chaos engineering, and implement automated alerting and observability dashboards.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Grafana</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Prometheus</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Chaos Eng</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 5 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">terminal</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$130k - $175k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Infrastructure as Code (IaC) Engineer</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Automate provisioning of secure, immutable global cloud topologies using declarative software configurations.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Terraform</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Ansible</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">GitOps</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Role 6 -->
-    <div class="bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-start justify-between">
-          <div class="w-12 h-12 rounded-2xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl font-bold">speed</span>
-          </div>
-          <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-wider">$110k - $150k</span>
-        </div>
-        <div class="space-y-2">
-          <h3 class="text-title-large font-bold text-slate-800 group-hover:text-primary transition-colors">Release &amp; Build Engineer</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">Manage repository versioning, build automation systems, and ensure zero-downtime application deployments.</p>
-        </div>
-      </div>
-      <div class="mt-6 pt-6 border-t border-slate-50">
-        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Core Tools &amp; Skills</span>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Maven / Gradle</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Git branches</span>
-          <span class="px-2.5 py-1 bg-slate-50 text-slate-600 text-xs rounded-md">Version control</span>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">DevOps Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cloud Architect</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Systems Administrator</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Site Reliability Engineer (SRE)</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Build &amp; Release Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cloud Security Specialist</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Infrastructure Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Automation Specialist</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Platform Engineer</span>
+    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Technical Operations Lead</span>
   </div>
 </div>
 </section>
@@ -906,11 +802,14 @@ Who This Is NOT For
 <!-- Transparent Investment -->
 <section class="py-section-gap relative overflow-hidden bg-surface-bright">
 <div class="max-w-[1280px] mx-auto px-margin-desktop relative z-10">
-<div class="text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Transparent Investment</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Choose the path that aligns with your professional ambition.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto">
+      <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
+        <h2 class="font-headline-xl text-headline-xl mb-4" id="pricing">Develop The Skills That Power the Future of Cloud</h2>
+        <p class="text-secondary font-body-lg leading-relaxed">If you are beginning your first technology career or upgrading into cloud architectures, the Sky States DevOps &amp; Cloud Program offers practical training, real-world projects, expert mentorship, and career assistance to help you become job-ready.</p>
+        <div class="flex flex-wrap gap-4 justify-center pt-4">
+          <a href="#" class="px-6 py-2 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Download the Curriculum</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto">
 <!-- Scholar Track -->
 <div class="bg-surface-container-lowest border border-outline-variant/50 p-10 rounded-3xl space-y-8 flex flex-col">
 <div class="space-y-2">
