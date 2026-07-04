@@ -1,13 +1,20 @@
 ---
 // src/components/Header.astro
+const isHome = Astro.url.pathname === "/";
 ---
-<nav class="nav" aria-label="Main" style="--nav-scroll: 0;" id="main-header">
+
+<nav
+  class={`nav ${isHome ? "is-home" : ""}`}
+  aria-label="Main"
+  style="--nav-scroll: 0;"
+  id="main-header"
+>
   <!-- Brand / Logo (Left-aligned) -->
   <a class="brand" aria-label="Sky States home" href="/">
     <div class="logo-wrapper">
-      <img 
-        src="/logo_transparent.svg" 
-        alt="Sky States Logo" 
+      <img
+        src="/logo_transparent.svg"
+        alt="Sky States Logo"
         class="brand-logo-img"
       />
     </div>
@@ -18,12 +25,13 @@
     <a href="/" class="nav-link-item">Home</a>
     <a href="/live-jobs" class="nav-link-item">Live Jobs</a>
     <!-- <a href="/stories" class="nav-link-item">Stories</a> -->
-    
+
     <!-- Programs Dropdown -->
     <div class="relative group/drop dropdown-wrapper">
       <button class="nav-link-item dropdown-trigger">
         Programs
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span>
+        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+        >
       </button>
       <div class="dropdown-menu">
         <div class="dropdown-header">
@@ -53,22 +61,32 @@
     <div class="relative group/drop dropdown-wrapper">
       <button class="btn-cta btn-solid dropdown-trigger">
         Register Now
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span>
+        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+        >
       </button>
       <div class="dropdown-menu dropdown-right">
         <div class="dropdown-header">
           <span>Scholar Tier - $99 Seat Deposit</span>
         </div>
         <div class="dropdown-content">
-          <a href="/checkout?course=Data+Science+%26+AI&type=normal" class="dropdown-item">
+          <a
+            href="/checkout?course=Data+Science+%26+AI&type=normal"
+            class="dropdown-item"
+          >
             <span class="item-title">Data Science & AI</span>
             <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
-          <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal" class="dropdown-item">
+          <a
+            href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+            class="dropdown-item"
+          >
             <span class="item-title">Cyber Security & Ethical Hacking</span>
             <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
-          <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal" class="dropdown-item">
+          <a
+            href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+            class="dropdown-item"
+          >
             <span class="item-title">DevOps & Cloud Computing</span>
             <span class="item-desc">Enroll as Scholar - $99</span>
           </a>
@@ -80,22 +98,32 @@
     <div class="relative group/drop dropdown-wrapper">
       <button class="btn-cta btn-outline dropdown-trigger">
         Enroll Now
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span>
+        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+        >
       </button>
       <div class="dropdown-menu dropdown-right">
         <div class="dropdown-header">
           <span>Full Tuition Enrollment</span>
         </div>
         <div class="dropdown-content">
-          <a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="dropdown-item">
+          <a
+            href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+            class="dropdown-item"
+          >
             <span class="item-title">Data Science & AI</span>
             <span class="item-desc">Full Tuition Enrollment</span>
           </a>
-          <a href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="dropdown-item">
+          <a
+            href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+            class="dropdown-item"
+          >
             <span class="item-title">Cyber Security & Ethical Hacking</span>
             <span class="item-desc">Full Tuition Enrollment</span>
           </a>
-          <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="dropdown-item">
+          <a
+            href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+            class="dropdown-item"
+          >
             <span class="item-title">DevOps & Cloud Computing</span>
             <span class="item-desc">Full Tuition Enrollment</span>
           </a>
@@ -105,9 +133,30 @@
   </div>
 
   <!-- Mobile Hamburger button matching Codesmith -->
-  <button class="mobile-menu-button" type="button" aria-label="Open navigation menu" aria-controls="mobile-nav-panel" aria-expanded="false" id="mobile-menu-toggle">
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true" id="hamburger-icon">
-      <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path>
+  <button
+    class="mobile-menu-button"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-controls="mobile-nav-panel"
+    aria-expanded="false"
+    id="mobile-menu-toggle"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="23"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-menu"
+      aria-hidden="true"
+      id="hamburger-icon"
+    >
+      <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"
+      ></path>
     </svg>
   </button>
 </nav>
@@ -115,32 +164,55 @@
 <!-- Mobile Navigation Panel moved outside the nav to prevent backdrop-filter containment bug -->
 <div class="mobile-nav-panel" id="mobile-nav-panel" aria-hidden="true">
   <div class="mobile-nav-inner">
-    <a tabindex="-1" href="/">Home</a>
-    <a tabindex="-1" href="/live-jobs">Live Jobs</a>
-    <!-- <a tabindex="-1" href="/stories">Stories</a> -->
+    <a tabindex="-1" href="/" class="mobile-nav-link">Home</a>
+    <a tabindex="-1" href="/live-jobs" class="mobile-nav-link">Live Jobs</a>
+    <!-- <a tabindex="-1" href="/stories" class="mobile-nav-link">Stories</a> -->
     <div class="w-full border-t border-slate-200/50 my-2"></div>
-    
+
     <!-- Mobile Program Links -->
-    <span class="block text-xs font-bold uppercase text-slate-400 tracking-widest w-full text-center mb-1">Programs</span>
-    <a tabindex="-1" href="/programs/data-science-ai" class="text-sm">Data Science & AI</a>
-    <a tabindex="-1" href="/programs/cyber-security" class="text-sm">Cyber Security</a>
-    <a tabindex="-1" href="/programs/devops" class="text-sm">DevOps & Cloud</a>
-    
+    <span
+      class="block text-xs font-bold uppercase text-slate-400 tracking-widest w-full text-center mb-1"
+      >Programs</span
+    >
+    <a
+      tabindex="-1"
+      href="/programs/data-science-ai"
+      class="mobile-program-link">Data Science & AI</a
+    >
+    <a tabindex="-1" href="/programs/cyber-security" class="mobile-program-link"
+      >Cyber Security</a
+    >
+    <a tabindex="-1" href="/programs/devops" class="mobile-program-link"
+      >DevOps & Cloud</a
+    >
+
     <div class="w-full border-t border-slate-200/50 my-2"></div>
-    
+
     <!-- Mobile Register Now Section -->
     <div class="mobile-cta-section">
       <span class="mobile-cta-section-title">Register Now (Scholar Tier)</span>
       <div class="mobile-cta-grid">
-        <a tabindex="-1" href="/checkout?course=Data+Science+%26+AI&type=normal" class="mobile-cta-sub-btn">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal"
+          class="mobile-cta-sub-btn"
+        >
           <span class="cta-sub-title">Data Science & AI</span>
           <span class="cta-sub-price">$99 Deposit</span>
         </a>
-        <a tabindex="-1" href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal" class="mobile-cta-sub-btn">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+          class="mobile-cta-sub-btn"
+        >
           <span class="cta-sub-title">Cyber Security</span>
           <span class="cta-sub-price">$99 Deposit</span>
         </a>
-        <a tabindex="-1" href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal" class="mobile-cta-sub-btn">
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+          class="mobile-cta-sub-btn"
+        >
           <span class="cta-sub-title">DevOps & Cloud</span>
           <span class="cta-sub-price">$99 Deposit</span>
         </a>
@@ -151,15 +223,27 @@
     <div class="mobile-cta-section">
       <span class="mobile-cta-section-title">Enroll Now (Full Tuition)</span>
       <div class="mobile-cta-grid">
-        <a tabindex="-1" href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="mobile-cta-sub-btn outline">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+          class="mobile-cta-sub-btn outline"
+        >
           <span class="cta-sub-title">Data Science & AI</span>
           <span class="cta-sub-price">Full Tuition</span>
         </a>
-        <a tabindex="-1" href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full" class="mobile-cta-sub-btn outline">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+          class="mobile-cta-sub-btn outline"
+        >
           <span class="cta-sub-title">Cyber Security</span>
           <span class="cta-sub-price">Full Tuition</span>
         </a>
-        <a tabindex="-1" href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="mobile-cta-sub-btn outline">
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+          class="mobile-cta-sub-btn outline"
+        >
           <span class="cta-sub-title">DevOps & Cloud</span>
           <span class="cta-sub-price">Full Tuition</span>
         </a>
@@ -169,11 +253,30 @@
 </div>
 
 <!-- Page Transition Overlay -->
-<div id="page-transition-overlay" class="page-transition-overlay" style="display: none; opacity: 0; pointer-events: none;">
+<div
+  id="page-transition-overlay"
+  class="page-transition-overlay"
+  style="display: none; opacity: 0; pointer-events: none;"
+>
   <div class="transition-video-container">
-    <video id="trans-video-ds" src="/admin/Page_transition_Data_Science_AI_202606270237.mp4" preload="none" muted playsinline></video>
-    <video id="trans-video-cs" src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4" preload="none" muted playsinline></video>
-    <video id="trans-video-do" src="/admin/devops_loop_transi._202606270238.mp4" preload="none" muted playsinline></video>
+    <video
+      id="trans-video-ds"
+      src="/admin/Page_transition_Data_Science_AI_202606270237.mp4"
+      preload="none"
+      muted
+      playsinline></video>
+    <video
+      id="trans-video-cs"
+      src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4"
+      preload="none"
+      muted
+      playsinline></video>
+    <video
+      id="trans-video-do"
+      src="/admin/devops_loop_transi._202606270238.mp4"
+      preload="none"
+      muted
+      playsinline></video>
   </div>
 </div>
 
@@ -188,19 +291,51 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 1.25rem;
+    padding: 1rem 1.25rem; /* Standardized initial mobile padding */
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: padding 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s, border-bottom 0.25s, box-shadow 0.25s;
-    font-family: 'Outfit', 'Inter', sans-serif;
+    transition:
+      padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: "Outfit", "Inter", sans-serif;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav {
-      padding: 0.5rem 2.5rem;
+      padding: 1.5rem 2.5rem; /* Tall padding initially on desktop */
     }
+  }
+
+  /* Shrink header padding on scroll */
+  .nav.is-scrolled {
+    padding: 0.5rem 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .nav.is-scrolled {
+      padding: 0.75rem 2.5rem;
+    }
+  }
+
+  /* Home page initial transparent state */
+  .nav.is-home:not(.is-scrolled) {
+    background-color: transparent;
+    backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
+  }
+
+  /* Ensure solid white style when mobile menu is open, regardless of scroll or homepage status */
+  .nav.is-mobile-menu-open {
+    padding: 1rem 1.25rem !important; /* Keep mobile padding */
+    background-color: #ffffff !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
   }
 
   .brand {
@@ -209,33 +344,69 @@
     flex-shrink: 0;
   }
 
-  /* Logo cropping and scaling system (scaled up by an additional 30% on desktop, responsive on mobile) */
+  /* Logo cropping and scaling system */
   .logo-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 48px;
-    width: 210px;
+    height: 42px;
+    width: 180px;
+    transition:
+      height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .brand-logo-img {
-    height: 135px;
+    height: 118px;
     width: auto;
     object-fit: contain;
-    margin-top: -4px;
-    transition: transform 0.3s ease;
+    margin-top: -3px;
+    transition:
+      height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  @media (min-width: 768px) {
+  /* Shrink logo on scroll */
+  .nav.is-scrolled .logo-wrapper {
+    height: 34px;
+    width: 145px;
+  }
+
+  .nav.is-scrolled .brand-logo-img {
+    height: 95px;
+    margin-top: -2px;
+  }
+
+  @media (min-width: 1024px) {
     .logo-wrapper {
-      height: 78px; /* 30% larger than 60px */
-      width: 338px; /* 30% larger than 260px */
+      height: 64px; /* Large initially on desktop */
+      width: 278px;
     }
     .brand-logo-img {
-      height: 234px; /* 30% larger than 180px */
-      margin-top: -8px;
+      height: 192px;
+      margin-top: -6px;
     }
+
+    /* Shrink logo on desktop scroll */
+    .nav.is-scrolled .logo-wrapper {
+      height: 48px;
+      width: 208px;
+    }
+    .nav.is-scrolled .brand-logo-img {
+      height: 144px;
+      margin-top: -4px;
+    }
+  }
+
+  /* Keep size when mobile menu is open */
+  .nav.is-mobile-menu-open .logo-wrapper {
+    height: 42px !important;
+    width: 180px !important;
+  }
+  .nav.is-mobile-menu-open .brand-logo-img {
+    height: 118px !important;
+    margin-top: -3px !important;
   }
 
   /* Desktop Navigation Links Layout (Centered) */
@@ -243,7 +414,7 @@
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav-links {
       display: flex;
       align-items: center;
@@ -263,7 +434,7 @@
     margin-left: auto;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .cta-container {
       display: flex;
     }
@@ -289,7 +460,7 @@
     color: var(--primary, #005d90);
   }
 
-  /* CTA Buttons styling - styled as buttons but perfectly aligned */
+  /* CTA Buttons styling */
   .btn-cta {
     display: inline-flex;
     align-items: center;
@@ -434,7 +605,7 @@
     padding: 0.5rem;
     z-index: 10000001 !important; /* Ensure toggler button is on top of nav & panel */
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .mobile-menu-button {
       display: none;
     }
@@ -452,7 +623,9 @@
     z-index: 999999 !important;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -462,8 +635,11 @@
     padding-bottom: 2.5rem;
   }
 
-  .nav.is-mobile-menu-open {
-    background-color: #ffffff !important;
+  /* Desktop overrides: completely hide the mobile panel on laptop/desktop screens */
+  @media (min-width: 1024px) {
+    .mobile-nav-panel {
+      display: none !important;
+    }
   }
 
   .mobile-nav-panel.is-open {
@@ -481,15 +657,34 @@
     padding: 1rem 1.5rem;
   }
 
-  .mobile-nav-inner a {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--on-surface, #1a1c1c);
+  /* Clean mobile link styling */
+  .mobile-nav-link {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1e293b;
     text-decoration: none;
     transition: color 0.2s ease;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
   }
 
-  .mobile-nav-inner a:hover {
+  .mobile-nav-link:hover {
+    color: var(--primary, #005d90);
+  }
+
+  .mobile-program-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem 0;
+  }
+
+  .mobile-program-link:hover {
     color: var(--primary, #005d90);
   }
 
@@ -604,188 +799,232 @@
 
 <script is:inline>
   (() => {
-    const nav = document.getElementById('main-header');
-    
+    const nav = document.getElementById("main-header");
+
     // Dynamic Scroll Progress Calculation
     if (nav) {
       let frame = 0;
       let lastProgress = -1;
       const updateNav = () => {
         frame = 0;
-        const progress = Math.min(Math.max(window.scrollY / 190, 0), 1);
+        const progress = Math.min(Math.max(window.scrollY / 100, 0), 1);
         const eased = progress * progress * (3 - 2 * progress);
         const rounded = Math.round(eased * 100) / 100;
-        if (Math.abs(rounded - lastProgress) < 0.01) return;
-        lastProgress = rounded;
-        nav.style.setProperty('--nav-scroll', rounded.toFixed(2));
+        if (Math.abs(rounded - lastProgress) >= 0.01) {
+          lastProgress = rounded;
+          nav.style.setProperty("--nav-scroll", rounded.toFixed(2));
+        }
+
+        // Toggle is-scrolled class based on 20px scroll threshold
+        nav.classList.toggle("is-scrolled", window.scrollY > 20);
       };
       const requestUpdate = () => {
         if (!frame) frame = window.requestAnimationFrame(updateNav);
       };
       updateNav();
-      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener("scroll", requestUpdate, { passive: true });
     }
 
     // Mobile Hamburger Menu Interaction
-    const menuButton = document.getElementById('mobile-menu-toggle');
-    const panel = document.getElementById('mobile-nav-panel');
+    const menuButton = document.getElementById("mobile-menu-toggle");
+    const panel = document.getElementById("mobile-nav-panel");
     if (menuButton && panel) {
-      const menuIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
-      const closeIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
-      const links = Array.from(panel.querySelectorAll('a'));
-      
+      const menuIcon =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
+      const closeIcon =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
+      const links = Array.from(panel.querySelectorAll("a"));
+
       const setOpen = (open) => {
-        nav?.classList.toggle('is-mobile-menu-open', open);
-        panel?.classList.toggle('is-open', open);
-        menuButton.setAttribute('aria-expanded', String(open));
-        menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+        nav?.classList.toggle("is-mobile-menu-open", open);
+        panel?.classList.toggle("is-open", open);
+        document.body.classList.toggle("overflow-hidden", open); // Prevent background scroll when mobile menu is open
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu",
+        );
         menuButton.innerHTML = open ? closeIcon : menuIcon;
-        panel.setAttribute('aria-hidden', String(!open));
+        panel.setAttribute("aria-hidden", String(!open));
         for (const link of links) {
-          if (open) link.removeAttribute('tabindex');
-          else link.setAttribute('tabindex', '-1');
+          if (open) link.removeAttribute("tabindex");
+          else link.setAttribute("tabindex", "-1");
         }
       };
 
-      menuButton.addEventListener('click', () => {
-        const isOpen = nav?.classList.contains('is-mobile-menu-open');
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav?.classList.contains("is-mobile-menu-open");
         setOpen(!isOpen);
       });
 
       for (const link of links) {
-        link.addEventListener('click', () => setOpen(false));
+        link.addEventListener("click", () => setOpen(false));
       }
+
+      // Close mobile menu panel automatically on resizing to desktop view width
+      window.addEventListener(
+        "resize",
+        () => {
+          if (window.innerWidth >= 1024) {
+            const isOpen = nav?.classList.contains("is-mobile-menu-open");
+            if (isOpen) {
+              setOpen(false);
+            }
+          }
+        },
+        { passive: true },
+      );
     }
 
     // Force light mode theme
     function initTheme() {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+      localStorage.setItem("theme", "light");
     }
     initTheme();
 
     // Page Transition Manager
-    const transitionOverlay = document.getElementById('page-transition-overlay');
+    const transitionOverlay = document.getElementById(
+      "page-transition-overlay",
+    );
     const transitionVideos = {
-      'data-science': document.getElementById('trans-video-ds'),
-      'cyber-security': document.getElementById('trans-video-cs'),
-      'devops': document.getElementById('trans-video-do')
+      "data-science": document.getElementById("trans-video-ds"),
+      "cyber-security": document.getElementById("trans-video-cs"),
+      devops: document.getElementById("trans-video-do"),
     };
 
     // Check if we just transitioned
     try {
-      const pendingTransition = sessionStorage.getItem('page-transition-target');
+      const pendingTransition = sessionStorage.getItem(
+        "page-transition-target",
+      );
       if (pendingTransition && transitionOverlay) {
         // Show the overlay in a solid state first, then fade it out
-        transitionOverlay.style.display = 'flex';
-        transitionOverlay.style.opacity = '1';
-        transitionOverlay.style.pointerEvents = 'all';
-        
+        transitionOverlay.style.display = "flex";
+        transitionOverlay.style.opacity = "1";
+        transitionOverlay.style.pointerEvents = "all";
+
         // Clear the session storage immediately
-        sessionStorage.removeItem('page-transition-target');
-        
+        sessionStorage.removeItem("page-transition-target");
+
         // Smoothly fade out after a brief moment so the page content is ready
         setTimeout(() => {
-          transitionOverlay.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-          transitionOverlay.style.opacity = '0';
+          transitionOverlay.style.transition =
+            "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+          transitionOverlay.style.opacity = "0";
           setTimeout(() => {
-            transitionOverlay.style.display = 'none';
-            transitionOverlay.style.pointerEvents = 'none';
+            transitionOverlay.style.display = "none";
+            transitionOverlay.style.pointerEvents = "none";
           }, 600);
         }, 400);
       }
     } catch (e) {
-      console.warn('Failed to handle entrance transition:', e);
+      console.warn("Failed to handle entrance transition:", e);
     }
 
     // Intercept clicks on program links
     const programUrls = {
-      '/programs/data-science-ai': 'data-science',
-      '/programs/cyber-security': 'cyber-security',
-      '/programs/devops': 'devops'
+      "/programs/data-science-ai": "data-science",
+      "/programs/cyber-security": "cyber-security",
+      "/programs/devops": "devops",
     };
 
-    // Preload transition video on link hover for performance (LCP optimization)
-    document.addEventListener('mouseenter', (e) => {
-      const link = e.target.closest('a');
-      if (!link) return;
-      
-      const href = link.getAttribute('href');
-      if (href) {
-        const matchedKey = programUrls[href] || Object.keys(programUrls).find(key => href.endsWith(key) && !href.includes('checkout'));
-        if (matchedKey) {
-          const programKey = programUrls[matchedKey];
-          const video = transitionVideos[programKey];
-          if (video && video.preload !== 'auto') {
-            video.preload = 'auto';
-            video.load();
+    // Preload transition video on link hover for performance
+    document.addEventListener(
+      "mouseenter",
+      (e) => {
+        const link = e.target.closest("a");
+        if (!link) return;
+
+        const href = link.getAttribute("href");
+        if (href) {
+          const matchedKey =
+            programUrls[href] ||
+            Object.keys(programUrls).find(
+              (key) => href.endsWith(key) && !href.includes("checkout"),
+            );
+          if (matchedKey) {
+            const programKey = programUrls[matchedKey];
+            const video = transitionVideos[programKey];
+            if (video && video.preload !== "auto") {
+              video.preload = "auto";
+              video.load();
+            }
           }
         }
-      }
-    }, true);
+      },
+      true,
+    );
 
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a');
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("a");
       if (!link) return;
-      
-      const href = link.getAttribute('href');
+
+      const href = link.getAttribute("href");
       if (href) {
         // Match both absolute path or relative path
-        const matchedKey = programUrls[href] || Object.keys(programUrls).find(key => href.endsWith(key) && !href.includes('checkout'));
+        const matchedKey =
+          programUrls[href] ||
+          Object.keys(programUrls).find(
+            (key) => href.endsWith(key) && !href.includes("checkout"),
+          );
         if (matchedKey) {
           const programKey = programUrls[matchedKey];
           const video = transitionVideos[programKey];
-          
+
           if (video && transitionOverlay) {
             e.preventDefault();
-            
+
             try {
               // Set target in sessionStorage for the next page to fade out
               try {
-                sessionStorage.setItem('page-transition-target', programKey);
+                sessionStorage.setItem("page-transition-target", programKey);
               } catch (storageErr) {
-                console.warn('sessionStorage is not available:', storageErr);
+                console.warn("sessionStorage is not available:", storageErr);
               }
-              
+
               // Hide all videos first, then show the active one
-              Object.values(transitionVideos).forEach(v => {
+              Object.values(transitionVideos).forEach((v) => {
                 if (v) {
                   try {
-                    v.style.display = 'none';
+                    v.style.display = "none";
                     v.pause();
                   } catch (e) {}
                 }
               });
-              
-              video.style.display = 'block';
+
+              video.style.display = "block";
               try {
                 video.currentTime = 0;
               } catch (e) {}
-              
+
               // Show overlay and play video
-              transitionOverlay.style.transition = 'opacity 0.3s ease';
-              transitionOverlay.style.display = 'flex';
-              transitionOverlay.style.opacity = '1';
-              transitionOverlay.style.pointerEvents = 'all';
-              
+              transitionOverlay.style.transition = "opacity 0.3s ease";
+              transitionOverlay.style.display = "flex";
+              transitionOverlay.style.opacity = "1";
+              transitionOverlay.style.pointerEvents = "all";
+
               const playPromise = video.play();
               if (playPromise !== undefined) {
-                playPromise.catch(err => {
-                  console.warn('Video play was prevented:', err);
+                playPromise.catch((err) => {
+                  console.warn("Video play was prevented:", err);
                   // If video play is blocked (e.g. low power mode), navigate faster
                   setTimeout(() => {
                     window.location.href = href;
                   }, 400);
                 });
               }
-              
+
               // Navigate to the target page after the transition peak (1.6 seconds)
               setTimeout(() => {
                 window.location.href = href;
               }, 1600);
             } catch (err) {
-              console.error('Transition failed, falling back to direct navigation:', err);
+              console.error(
+                "Transition failed, falling back to direct navigation:",
+                err,
+              );
               window.location.href = href;
             }
           }

@@ -1,4 +1,4 @@
 {
-  "minLimit": 1,
-  "maxLimit": 6500
+  "minLimit": 100,
+  "maxLimit": 650
 }

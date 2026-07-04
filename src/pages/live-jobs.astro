@@ -25,8 +25,8 @@ export const prerender = false;
     <meta property="og:description" content="Explore active high-paying job opportunities available for graduates of Sky States career acceleration programs." />
     <meta property="og:type" content="website" />
 
-    {jobsData.map(job => (
-        <script type="application/ld+json" set:html={JSON.stringify({
+    {jobsData.map((job: any) => (
+        <script type="application/ld+json" is:inline set:html={JSON.stringify({
           "@context": "https://schema.org",
           "@type": "JobPosting",
           "title": job.title,
@@ -111,7 +111,7 @@ export const prerender = false;
 
         <!-- Jobs Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jobs-container">
-            {jobsData.map(job => (
+            {jobsData.map((job: any) => (
                 <div class="job-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-primary/20 transition-all flex flex-col justify-between h-full group cursor-pointer" data-job={JSON.stringify(job)} data-tags={JSON.stringify(job.tags)} data-search-text={`${job.title} ${job.company} ${job.description} ${job.location}`}>
                     <div>
                         <!-- Header info -->
@@ -149,7 +149,7 @@ export const prerender = false;
                     <div>
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-1.5 mb-6">
-                            {job.tags.map(tag => (
+                            {job.tags.map((tag: any) => (
                                 <span class="px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider bg-surface-container text-secondary rounded-md">
                                     {tag}
                                 </span>

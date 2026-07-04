@@ -321,9 +321,11 @@ import Footer from '../components/Footer.astro';
         // Smooth scroll implementation or search filtering could go here
         document.querySelectorAll('button, a').forEach(elem => {
             elem.addEventListener('click', (e) => {
-                const target = e.currentTarget;
-                target.classList.add('scale-95');
-                setTimeout(() => target.classList.remove('scale-95'), 150);
+                const target = e.currentTarget as HTMLElement;
+                if (target) {
+                    target.classList.add('scale-95');
+                    setTimeout(() => target.classList.remove('scale-95'), 150);
+                }
             });
         });
     </script>

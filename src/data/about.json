@@ -5,12 +5,13 @@
     "description": "We provide the architectural foundation for career transformation, merging elite academic standards with rapid industrial deployment."
   },
   "story": {
-    "title": "The Sky States Story",
-    "paragraph": "Founded at the intersection of professional development and industrial demand, Sky States was created to bridge a critical fracture: the widening gap between high-potential talent and the specific, high-velocity requirements of elite technology firms.",
-    "vision_title": "Our Vision",
-    "vision_desc": "To serve as the global standard for career acceleration, ensuring every professional has access to the structural guidance needed to reach their peak potential.",
-    "method_title": "Our Method",
-    "method_desc": "We utilize a \"High-Touch, High-Trust\" model, where institutional accountability meets personalized mentorship."
+    "title": "Who We Are",
+    "paragraph": "Every career begins with an opportunity, but opportunity alone is never sufficient. It must be supported by knowledge, guidance, and experience.\n\nSky States was established in 2019 to fill the growing gap between traditional education and the increasingly evolving demands of the technology industry. As organizations continue to adopt cloud computing, cybersecurity, AI, DevOps, and data-powered technologies, the requirement for job-ready professionals has never been greater.",
+    "vision_title": "Our Mission",
+    "vision_desc": "Sky States aims to give technology education via live sessions, practical projects, personalized mentorship, and guidance. Every learning experience is built to provide professionals with practical skills, confidence, and the ability to flourish in a fast digital economy.",
+    "method_title": "What We Do",
+    "method_image": "/logo_transparent.svg",
+    "method_desc": "SkyStates provides career programs to help learners become job-ready in today's technological world. Every program has live classes that are taught by experts. These classes are combined with hands-on learning where people use tools and technology that are used in the industry. People learn by doing assignments and working in labs on projects. This helps them use the things they learn in life. The program also helps people with their careers. This includes helping them make a resume and make their LinkedIn profile better. They even have interviews to help people get ready. They also help people get certified and find a job. People get to talk to mentors all the time and get feedback that's just for them. This helps them get really good at technology and feel confident at work. It also helps them get the skills they need to do in the technology industry, which is always changing."
   },
   "registry": {
     "legal_title": "Legal Entity Registry",
@@ -20,33 +21,50 @@
     "wyoming_address": "1316 Wall St, Suite 2C, Everett, WA 98201, United States",
     "contact_title": "Institutional Contact",
     "phone": "(888) 810-2434 / (888) 927-7072",
-    "email": "Info@skystates.us"
+    "email": "info@skystates.us"
   },
   "team": [
     {
       "name": "Shephali Chaudhary",
       "role": "Chief Executive Officer (CEO)",
-      "photo": "/admin/Shephali.jpeg"
+      "photo": "/admin/Shephali.jpeg",
+      "photo_profile": "/admin/Shephali_profile.jpg",
+      "description": "With more than 17 years of experience, leads SkyStates vision, strategy, and growth while directing innovation in career-focused technology education."
     },
     {
       "name": "Upendra Singh",
-      "role": "Account Manager",
-      "photo": "/admin/Upendra.webp"
+      "role": "Account Manager (AM)",
+      "photo": "/admin/Upendra.webp",
+      "photo_profile": "/admin/Upendra_profile.png",
+      "description": "Bringing 8 years of experience, developing strong client relationships, overseeing partnerships, and ensuring support for learners and stakeholders."
+    },
+    {
+      "name": "Tarun Kumar",
+      "role": "Chief Marketing Technologist (CMT)",
+      "photo": "/admin/tarun.jpg",
+      "photo_profile": "/admin/tarun_profile.jpg",
+      "description": "Having 16 years of experience in the IT industry, leads technical marketing initiatives, strengthens the organization's digital presence, and bridges technology with business growth."
     },
     {
       "name": "Ranjan Pandey",
       "role": "Chief Product Officer (CPO)",
-      "photo": "/admin/Ranjan.jpeg"
+      "photo": "/admin/Ranjan.jpeg",
+      "photo_profile": "/admin/Ranjan_profile.jpg",
+      "description": "Having 9 years experience designs and improves learning programs, making sure every course goes along with industry demands and learner success."
     },
     {
       "name": "Jasdev",
-      "role": "Placement Manager",
-      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+      "role": "Placement Manager (PM)",
+      "photo": "/admin/Jasdev.jpeg",
+      "photo_profile": "/admin/Jasdev_profile.png",
+      "description": "With 10 years experience guides students via career preparation, employer connections, and placement opportunities to help them achieve professional goals."
     },
     {
       "name": "Vidhi Chaudhary",
-      "role": "General Manager Skystates for Business",
-      "photo": "/admin/vidhi.jpeg"
+      "role": "Hiring Manager (HM)",
+      "photo": "/admin/vidhi.jpeg",
+      "photo_profile": "/admin/vidhi_profile.jpg",
+      "description": "With 6 years of experience sees daily operations and processes and ensures a smooth learning experience across all SkyStates programs."
     }
   ]
 }

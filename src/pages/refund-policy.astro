@@ -373,8 +373,10 @@ import Footer from '../components/Footer.astro';
 <Footer />
 <script>
         // Micro-interaction for hover effects
-        document.querySelectorAll('.ambient-shadow').forEach(card => {
-            card.addEventListener('mousemove', e => {
+        document.querySelectorAll('.ambient-shadow').forEach(elem => {
+            const card = elem as HTMLElement;
+            card.addEventListener('mousemove', (event) => {
+                const e = event as MouseEvent;
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;

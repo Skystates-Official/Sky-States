@@ -7,10 +7,22 @@
       "description": "Master Python, Machine Learning, Deep Learning, SQL, Generative AI, Power BI, and Tableau via live classes, real-life projects, and career guidance. Develop an industry-built portfolio while preparing for globally recognized certifications and interviews."
     },
     "stats": [
-      { "value": "120+", "label": "Global Partners" },
-      { "value": "$185k", "label": "Avg. Grad Salary" },
-      { "value": "Top 1%", "label": "Curriculum Rigor" },
-      { "value": "Prestige", "label": "Institutional Merit" }
+      {
+        "value": "120+",
+        "label": "Global Partners"
+      },
+      {
+        "value": "$185k",
+        "label": "Avg. Grad Salary"
+      },
+      {
+        "value": "Top 1%",
+        "label": "Curriculum Rigor"
+      },
+      {
+        "value": "Prestige",
+        "label": "Institutional Merit"
+      }
     ],
     "curriculum": {
       "title": "Architectural Curriculum",
@@ -20,19 +32,29 @@
           "id": "01",
           "title": "Neural Networks & Deep Learning",
           "description": "Master the mathematical foundations of perceptrons, backpropagation, and transformer architectures. Move beyond theory into high-performance implementation.",
-          "tags": ["PyTorch", "CUDA", "JAX"]
+          "tags": [
+            "PyTorch",
+            "CUDA",
+            "JAX"
+          ]
         },
         {
           "id": "02",
           "title": "Generative AI & LLM Orchestration",
           "description": "The new frontier of orchestration. Building agentic workflows and fine-tuning enterprise-grade models.",
-          "tags": ["LangChain", "LlamaIndex"]
+          "tags": [
+            "LangChain",
+            "LlamaIndex"
+          ]
         },
         {
           "id": "03",
           "title": "Big Data Ops",
           "description": "Scaling intelligence requires robust pipelines. Distributed computing and petabyte-scale data strategy.",
-          "tags": ["Spark", "Kafka"]
+          "tags": [
+            "Spark",
+            "Kafka"
+          ]
         }
       ],
       "final_module": {
@@ -69,10 +91,22 @@
       "description": "Take control of networking, Linux, ethical hacking, penetration testing, digital forensics, cloud security, and Security Operations via live online sessions, practical labs, and real-world cyber attack simulations. Develop practical experience while preparing for globally recognized cybersecurity certifications and rewarding careers."
     },
     "stats": [
-      { "value": "120+", "label": "Global Partners" },
-      { "value": "$185k", "label": "Avg. Grad Salary" },
-      { "value": "Top 1%", "label": "Curriculum Rigor" },
-      { "value": "Prestige", "label": "Institutional Merit" }
+      {
+        "value": "120+",
+        "label": "Global Partners"
+      },
+      {
+        "value": "$185k",
+        "label": "Avg. Grad Salary"
+      },
+      {
+        "value": "Top 1%",
+        "label": "Curriculum Rigor"
+      },
+      {
+        "value": "Prestige",
+        "label": "Institutional Merit"
+      }
     ],
     "curriculum": {
       "title": "A Three-Pillar Framework for Executive Excellence.",
@@ -82,19 +116,31 @@
           "id": "01",
           "title": "Advanced Penetration Testing",
           "description": "Systematic identification and exploitation of vulnerabilities within enterprise infrastructures using elite red-team protocols.",
-          "tags": ["RED TEAM ORCHESTRATION", "CLOUD ATTACK VECTORS", "ADAPTIVE THREAT MODELING"]
+          "tags": [
+            "RED TEAM ORCHESTRATION",
+            "CLOUD ATTACK VECTORS",
+            "ADAPTIVE THREAT MODELING"
+          ]
         },
         {
           "id": "02",
           "title": "Zero-Trust Architecture",
           "description": "Implementing 'never trust, always verify' paradigms across distributed network ecosystems and identity management.",
-          "tags": ["MICRO-SEGMENTATION", "IAM PROTOCOL DESIGN", "ENDPOINT DISCOVERY"]
+          "tags": [
+            "MICRO-SEGMENTATION",
+            "IAM PROTOCOL DESIGN",
+            "ENDPOINT DISCOVERY"
+          ]
         },
         {
           "id": "03",
           "title": "Institutional Risk Management",
           "description": "Aligning security technicalities with board-level business objectives and regulatory compliance landscapes.",
-          "tags": ["GRC FRAMEWORKS", "QUANTITATIVE RISK ANALYSIS", "INCIDENT RESPONSE"]
+          "tags": [
+            "GRC FRAMEWORKS",
+            "QUANTITATIVE RISK ANALYSIS",
+            "INCIDENT RESPONSE"
+          ]
         }
       ],
       "final_module": {
@@ -131,10 +177,22 @@
       "description": "Learn Linux, Git, Docker, Kubernetes, Terraform, Jenkins, AWS, Azure, CI/CD pipelines, infrastructure as code, and cloud automation via live sessions, practical projects, and career assistance. Develop production-ready cloud infrastructure and skills while preparing for Microsoft DevOps certifications."
     },
     "stats": [
-      { "value": "120+", "label": "Global Partners" },
-      { "value": "$185k", "label": "Avg. Grad Salary" },
-      { "value": "Top 1%", "label": "Curriculum Rigor" },
-      { "value": "Prestige", "label": "Institutional Merit" }
+      {
+        "value": "120+",
+        "label": "Global Partners"
+      },
+      {
+        "value": "$185k",
+        "label": "Avg. Grad Salary"
+      },
+      {
+        "value": "Top 1%",
+        "label": "Curriculum Rigor"
+      },
+      {
+        "value": "Prestige",
+        "label": "Institutional Merit"
+      }
     ],
     "curriculum": {
       "title": "Architectural Pillars",
@@ -144,19 +202,31 @@
           "id": "01",
           "title": "Kubernetes Mastery",
           "description": "Dive deep into container orchestration at scale. Master control planes, custom resource definitions, and service mesh architectures for multi-cloud deployments.",
-          "tags": ["MULTI-CLUSTER GOVERNANCE", "ISTIO SERVICE MESH", "EKS/GKE OPTIMIZATION"]
+          "tags": [
+            "MULTI-CLUSTER GOVERNANCE",
+            "ISTIO SERVICE MESH",
+            "EKS/GKE OPTIMIZATION"
+          ]
         },
         {
           "id": "02",
           "title": "Infrastructure as Code",
           "description": "Develop immutable infrastructure using Terraform and Ansible. Learn to treat your entire global topology as a versioned, testable software product.",
-          "tags": ["TERRAFORM MODULE DESIGN", "GITOPS WORKFLOWS", "COMPLIANCE-AS-CODE"]
+          "tags": [
+            "TERRAFORM MODULE DESIGN",
+            "GITOPS WORKFLOWS",
+            "COMPLIANCE-AS-CODE"
+          ]
         },
         {
           "id": "03",
           "title": "High-Availability",
           "description": "Engineer systems with five-nines reliability. Study disaster recovery patterns, regional failovers, and low-latency edge distribution networks.",
-          "tags": ["GLOBAL TRAFFIC STEERING", "ZERO-DOWNTIME MIGRATION", "CHAOS ENGINEERING"]
+          "tags": [
+            "GLOBAL TRAFFIC STEERING",
+            "ZERO-DOWNTIME MIGRATION",
+            "CHAOS ENGINEERING"
+          ]
         }
       ],
       "final_module": {

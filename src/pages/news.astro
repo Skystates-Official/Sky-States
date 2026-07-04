@@ -230,7 +230,7 @@ import Footer from '../components/Footer.astro';
 <div class="max-w-5xl mx-auto px-margin-desktop text-center">
 <div class="bg-primary rounded-3xl p-16 relative overflow-hidden text-on-primary shadow-2xl">
 <div class="absolute inset-0 opacity-10 pointer-events-none">
-<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
 <path d="M0 100 C 20 0 50 0 100 100" fill="none" stroke="white" stroke-width="0.5"></path>
 <path d="M0 100 C 20 20 50 20 100 100" fill="none" stroke="white" stroke-width="0.5"></path>
 </svg>
@@ -252,8 +252,9 @@ import Footer from '../components/Footer.astro';
 <Footer />
 <script>
         // Micro-interactions for horizontal scroll pause
-        const marquee = document.querySelector('.animate-\\[scroll_30s_linear_infinite\\]');
+        const marquee = document.querySelector('.animate-\\[scroll_30s_linear_infinite\\]') as HTMLElement;
         if (marquee) {
+            marquee.style.animationPlayState = 'running'; // Ensure initialized
             marquee.addEventListener('mouseenter', () => marquee.style.animationPlayState = 'paused');
             marquee.addEventListener('mouseleave', () => marquee.style.animationPlayState = 'running');
         }

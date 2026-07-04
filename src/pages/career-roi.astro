@@ -181,7 +181,7 @@ import Footer from '../components/Footer.astro';
 <!-- Transition ROI Deep Dive -->
 <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-on-surface text-surface relative overflow-hidden">
 <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
 <path d="M0 100 C 20 0, 50 0, 100 100" fill="none" stroke="white" stroke-width="0.1"></path>
 </svg>
 </div>
@@ -340,17 +340,17 @@ import Footer from '../components/Footer.astro';
     });
 
     // ROI Salary Slider Logic
-    const slider = document.getElementById('salary-slider');
-    const salaryDisplay = document.getElementById('slider-salary-display');
-    const jumpDisplay = document.getElementById('roi-salary-jump');
-    const bonusDisplay = document.getElementById('roi-bonus');
-    const equityDisplay = document.getElementById('roi-equity');
-    const netDisplay = document.getElementById('roi-net-value');
-    const ratioDisplay = document.getElementById('roi-ratio');
-    const barDisplay = document.getElementById('roi-bar');
+    const slider = document.getElementById('salary-slider') as HTMLInputElement;
+    const salaryDisplay = document.getElementById('slider-salary-display') as HTMLElement;
+    const jumpDisplay = document.getElementById('roi-salary-jump') as HTMLElement;
+    const bonusDisplay = document.getElementById('roi-bonus') as HTMLElement;
+    const equityDisplay = document.getElementById('roi-equity') as HTMLElement;
+    const netDisplay = document.getElementById('roi-net-value') as HTMLElement;
+    const ratioDisplay = document.getElementById('roi-ratio') as HTMLElement;
+    const barDisplay = document.getElementById('roi-bar') as HTMLElement;
 
     function updateRoi() {
-        if (!slider) return;
+        if (!slider || !salaryDisplay || !jumpDisplay || !bonusDisplay || !equityDisplay || !netDisplay || !ratioDisplay || !barDisplay) return;
         const currentSalary = parseInt(slider.value, 10);
         
         const jump = Math.round(currentSalary * 0.35);

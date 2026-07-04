@@ -1,518 +1,1039 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import homepageData from '../data/homepage.json';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import homepageData from "../data/homepage.json";
 
-const { hero, trust_bar, about, pricing, why_choose, programs_section, learning_paths, methodology } = homepageData;
+const {
+  hero,
+  trust_bar,
+  about,
+  why_choose,
+  programs_section,
+  learning_paths,
+  methodology,
+} = homepageData;
 export const prerender = false;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sky States | Accelerate Your Legacy in Technology</title>
+    <meta
+      content="US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support."
+      name="description"
+    />
+    <link rel="canonical" href="https://skystates.us" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-<html lang="en"><head>
-  <link rel="icon" type="image/png" href="/favicon.png" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sky States | Accelerate Your Legacy in Technology</title>
-<meta content="US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support." name="description"/>
-<link rel="canonical" href="https://skystates.us" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-
-
-
-
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .ambient-shadow {
-            box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee {
-            animation: marquee 30s linear infinite;
-        }
-    </style>
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Sky States",
-      "url": "https://skystates.us",
-      "logo": "https://skystates.us/logo.svg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-888-810-2434",
-        "contactType": "customer service",
-        "email": ["info@skystates.us", "support@skystates.us"]
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
       }
-    }
+      .ambient-shadow {
+        box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee {
+        animation: marquee 30s linear infinite;
+      }
+    </style>
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Sky States",
+        "url": "https://skystates.us",
+        "logo": "https://skystates.us/logo.svg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-888-810-2434",
+          "contactType": "customer service",
+          "email": ["info@skystates.us", "support@skystates.us"]
+        }
+      }
     </script>
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Is Sky States a legitimate company?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, Sky States is a US-registered Career Acceleration Platform based in Wyoming and Delaware, focusing on career transitions for ambitious individuals at all experience levels."
-        }
-      }, {
-        "@type": "Question",
-        "name": "How frequent are the training calls?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Training sessions are live and instructor-led, held every weekend to accommodate working professionals."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Does Sky States collect my SSN?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Sky States explicitly states that we do NOT collect Social Security Numbers (SSN) from our students."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is screen sharing required?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "During live labs and project evaluations, screen sharing may be used to provide direct instructor feedback and support."
-        }
-      }]
-    }
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Sky States a legitimate company?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Sky States is a US-registered Career Acceleration Platform based in Wyoming and Delaware, focusing on career transitions for ambitious individuals at all experience levels."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How frequent are the training calls?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Training sessions are live and instructor-led, held every weekend to accommodate working professionals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Sky States collect my SSN?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Sky States explicitly states that we do NOT collect Social Security Numbers (SSN) from our students."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is screen sharing required?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "During live labs and project evaluations, screen sharing may be used to provide direct instructor feedback and support."
+            }
+          }
+        ]
+      }
     </script>
-</head>
-<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
-<!-- TopAppBar -->
-<Header />
-<!-- Hero Section -->
-<section class="relative min-h-[80vh] flex flex-col items-center overflow-hidden bg-white pt-24 md:pt-28 lg:pt-32">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 pb-12 pt-4 lg:py-12">
-<div class="flex flex-col gap-6">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-fixed text-on-primary-fixed rounded-full w-fit">
-<span class="material-symbols-outlined text-sm">verified</span>
-<span class="text-label-sm font-bold uppercase tracking-wider">US Registered Company</span>
-</div>
-<h1 class="text-headline-xl text-on-surface leading-tight font-extrabold" set:html={hero.headline}>
-</h1>
-<p class="text-body-lg text-on-surface-variant max-w-lg leading-relaxed">
-  {hero.description}
-</p>
-<div class="flex flex-col sm:flex-row gap-4 mt-4">
-<a class="flex items-center justify-center px-8 py-4 rounded-xl bg-primary text-white text-label-md font-semibold hover:bg-opacity-90 shadow-md transition-all" href={hero.button_url || "#programs"}>
-  {hero.button_text || "Explore Programs"}
-</a>
-<a class="flex items-center justify-center px-8 py-4 rounded-xl text-primary text-label-md border-2 border-primary-fixed hover:bg-primary-fixed/10 transition-all font-semibold" href={hero.consultation_url || "/contact-us"}>
-  {hero.consultation_text || "Book a Free Career Consultation"}
-</a>
-</div>
-</div>
-<div class="relative group w-full max-w-2xl mx-auto lg:mx-0">
-<div class="absolute -inset-4 bg-primary-fixed/20 blur-3xl rounded-full"></div>
-<video autoplay loop muted playsinline class="relative rounded-3xl ambient-shadow w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.01]">
-<source src="/assets/videos/home%20page%20hero%20section.mp4" type="video/mp4"/>
-Your browser does not support the video tag.
-</video>
-</div>
-</div>
-<!-- Trust Bar / Highlights -->
-<div class="w-full bg-slate-50/80 border-y border-slate-100 py-8 mt-16">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-center justify-items-center">
-      
-      {trust_bar && trust_bar.map((highlight, index) => {
-         const icons = ["live_tv", "terminal", "school", "calendar_month"];
-         const labels = ["Classes", "Practice", "Guidance", "Schedule"];
-         return (
-           <div class="flex items-center gap-3 text-left">
-             <div class="w-10 h-10 rounded-full bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shrink-0">
-               <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">{icons[index] || 'verified'}</span>
-             </div>
-             <div>
-               <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest">{labels[index] || 'Highlight'}</span>
-               <span class="text-sm font-semibold text-slate-800">{highlight}</span>
-             </div>
-           </div>
-         );
-      })}
-
-    </div>
-  </div>
-</div>
-</section>
-<!-- About Us Section -->
-<section class="py-section-gap bg-surface-container-lowest">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{about.title}</h2>
-<div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="flex flex-col gap-6">
-{about.description && about.description.split('\n\n').map(p => (
-  <p class="text-body-md text-on-surface-variant leading-relaxed">
-    {p}
-  </p>
-))}
-<div class="mt-4 pt-4 border-t border-slate-100">
-  <h3 class="text-title-medium font-bold text-on-surface mb-4">Get Graduated with Practical Skills and Industry Recognition</h3>
-  <!-- Certification Badges Grid -->
-  <div class="flex flex-wrap gap-4 items-center">
-    <div class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-      <span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
-      <span class="text-xs font-semibold text-slate-700">Microsoft Certified Partner</span>
-    </div>
-    <div class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-      <span class="material-symbols-outlined text-primary text-xl">cloud</span>
-      <span class="text-xs font-semibold text-slate-700">AWS Academy Curriculum</span>
-    </div>
-    <div class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-      <span class="material-symbols-outlined text-primary text-xl">security</span>
-      <span class="text-xs font-semibold text-slate-700">CompTIA Security+ Prep</span>
-    </div>
-  </div>
-</div>
-</div>
-<div class="relative">
-<div class="aspect-video bg-white rounded-3xl ambient-shadow overflow-hidden border border-outline-variant/30 flex items-center justify-center relative">
-<video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-<source src="/admin/Sky_States_career_acceleration_program_202606270007.mp4" type="video/mp4"/>
-Your browser does not support the video tag.
-</video>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Why Should You Choose SkyStates? -->
-<section class="py-section-gap bg-slate-50">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">Why Should You Choose SkyStates?</h2>
-<div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {why_choose && why_choose.map((feat) => {
-    const iconMap = {
-      "Learn from Industry Professionals": "workspace_premium",
-      "Practical Learning Method": "terminal",
-      "Adaptable Learning Paths": "route",
-      "Career Development Assistance": "support_agent",
-      "Updated Curriculum": "sync",
-      "Continuous Learning": "history_edu"
-    };
-    const icon = iconMap[feat.title] || "verified";
-    return (
-      <div class="bg-white p-8 rounded-2xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all">
-        <div class="w-12 h-12 bg-primary-fixed/20 text-primary rounded-xl flex items-center justify-center mb-6">
-          <span class="material-symbols-outlined text-2xl font-bold">{icon}</span>
-        </div>
-        <h3 class="text-title-large font-bold text-on-surface mb-3">{feat.title}</h3>
-        <p class="text-body-md text-on-surface-variant leading-relaxed">
-          {feat.description}
-        </p>
-      </div>
-    );
-  })}
-</div>
-</div>
-</section>
-
-<!-- Discover SkyStates Technology Programs Section -->
-<section id="programs" class="py-section-gap max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{programs_section.title}</h2>
-<p class="text-on-surface-variant max-w-2xl mx-auto">{programs_section.subtitle}</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-{programs_section.programs && programs_section.programs.map((prog, index) => {
-  const cardColors = [
-    "bg-white text-on-surface border border-outline-variant/20 hover:border-primary/30 group",
-    "bg-primary text-on-primary",
-    "bg-white text-on-surface border border-outline-variant/20 hover:border-primary/30 group"
-  ];
-  const iconColors = [
-    "bg-primary-fixed/30 text-primary",
-    "bg-white/20 text-white",
-    "bg-primary-fixed/30 text-primary"
-  ];
-  const bulletColors = [
-    "text-primary",
-    "text-white",
-    "text-primary"
-  ];
-  const buttonColors = [
-    "bg-primary text-white hover:bg-opacity-90",
-    "bg-white text-primary hover:bg-opacity-90",
-    "bg-primary text-white hover:bg-opacity-90"
-  ];
-  const linkColors = [
-    "text-primary",
-    "text-white",
-    "text-primary"
-  ];
-  const textSecondaryColors = [
-    "text-on-surface-variant",
-    "text-primary-fixed",
-    "text-on-surface-variant"
-  ];
-  const labelColors = [
-    "text-slate-400",
-    "text-primary-fixed/60",
-    "text-slate-400"
-  ];
-  const icons = ["analytics", "security", "cloud_queue"];
-  
-  const themeIdx = index % 3;
-  return (
-    <div class={`rounded-2xl p-8 ambient-shadow transition-all flex flex-col h-full ${cardColors[themeIdx]}`}>
-      <div class={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${iconColors[themeIdx]}`}>
-        <span class="material-symbols-outlined text-3xl">{icons[themeIdx] || 'school'}</span>
-      </div>
-      <h3 class="text-headline-md mb-4 font-bold">{prog.title}</h3>
-      <div class="text-3xl font-extrabold mb-4">{prog.price}</div>
-      <p class={`text-body-md flex-grow mb-6 ${textSecondaryColors[themeIdx]}`}>
-        {prog.description}
-      </p>
-      <div class="mb-6">
-        <h4 class={`text-xs font-bold uppercase tracking-wider mb-3 ${labelColors[themeIdx]}`}>Program Highlights</h4>
-        <ul class="space-y-2 text-sm">
-          {prog.highlights.map(h => (
-            <li class="flex items-center gap-2">
-              <span class={`material-symbols-outlined text-base ${bulletColors[themeIdx]}`}>done</span>
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div class="pt-6 border-t border-current/10 flex flex-col gap-4">
-        <a href={`/checkout?program=${prog.id}`} class={`w-full text-center py-3 font-bold rounded-xl transition-all ${buttonColors[themeIdx]}`}>Enroll Today</a>
-        <a href={`/programs/${prog.id}`} class={`text-label-md flex items-center justify-center gap-1 hover:gap-2 transition-all ${linkColors[themeIdx]}`}>Details <span class="material-symbols-outlined">arrow_forward</span></a>
-      </div>
-    </div>
-  );
-})}
-</div>
-</section>
-<!-- Testimonials Section -->
-<section class="py-section-gap bg-surface-container-low overflow-hidden">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">Verified Student Outcomes</h2>
-<p class="text-on-surface-variant max-w-2xl mx-auto">Real stories from professionals who successfully transitioned their careers through our platform.</p>
-<div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
-<a class="text-primary text-label-md inline-flex items-center gap-2" href="https://skyreviews.us" target="_blank">Read more at skyreviews.us <span class="material-symbols-outlined">open_in_new</span></a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Testimonial Card 1 -->
-<div class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow">
-<div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
-<p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Achieved Data Scientist role at a leading FinTech firm after completing the DS&amp;AI Program. The project work was vital."</p>
-<div class="mt-4">
-<div class="text-label-md text-on-surface font-semibold">Andrew C.</div>
-<div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
-</div>
-</div>
-<!-- Testimonial Card 2 -->
-<div class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow">
-<div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
-<p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Successfully pivoted to Cyber Security Lead at a healthcare provider. The placement support was unmatched."</p>
-<div class="mt-4">
-<div class="text-label-md text-on-surface font-semibold">Ahmed H.</div>
-<div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
-</div>
-</div>
-<!-- Testimonial Card 3 -->
-<div class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow">
-<div class="flex text-amber-400 mb-2"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span></div>
-<p class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow">"Transitioned to Cloud Engineer from a traditional IT role. Live sessions helped me master complex CI/CD pipelines."</p>
-<div class="mt-4">
-<div class="text-label-md text-on-surface font-semibold">Kevin R.</div>
-<div class="text-xs text-primary font-bold uppercase tracking-wider">Citations: skyreviews.us</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- WHAT SKY STATES IS — AND IS NOT -->
-<section class="py-section-gap bg-white">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface mb-4">What Sky States Is — And Is Not</h2>
-<div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="bg-surface-container-low p-8 rounded-3xl border-l-8 border-error">
-<h3 class="text-headline-md text-error mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined">cancel</span> Common Assumptions
-            </h3>
-<ul class="space-y-4 text-on-surface-variant">
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-error text-sm mt-1">remove</span> Just another pre-recorded online course</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-error text-sm mt-1">remove</span> A "get-rich-quick" scheme with no work</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-error text-sm mt-1">remove</span> A platform that collects sensitive data like SSN</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-error text-sm mt-1">remove</span> Hands-off learning without instructor access</li>
-</ul>
-</div>
-<div class="bg-primary-container/10 p-8 rounded-3xl border-l-8 border-primary">
-<h3 class="text-headline-md text-primary mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined">check_circle</span> The Facts
-            </h3>
-<ul class="space-y-4 text-on-surface-variant">
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-1">add</span> Live, instructor-led weekend sessions</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-1">add</span> Intensive 6+ month career transition effort</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-1">add</span> US Registered; We explicitly do NOT collect SSN</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-sm mt-1">add</span> Dedicated career advisors and active placement</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<!-- HOW THE PROGRAM WORKS -->
-<section class="py-section-gap bg-surface-container-lowest">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface mb-4">Your Roadmap to Success</h2>
-<p class="text-on-surface-variant">A clear, 5-step process from consultation to your new career.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-<div class="p-6 text-center">
-<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">1</div>
-<h4 class="text-label-md mb-2 font-semibold">Intro Session</h4>
-<p class="text-sm text-on-surface-variant">$99 consultation to assess your profile and goals.</p>
-</div>
-<div class="p-6 text-center">
-<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">2</div>
-<h4 class="text-label-md mb-2 font-semibold">Enrollment</h4>
-<p class="text-sm text-on-surface-variant">Access the platform, prep materials, and advisor.</p>
-</div>
-<div class="p-6 text-center">
-<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">3</div>
-<h4 class="text-label-md mb-2 font-semibold">Live Training</h4>
-<p class="text-sm text-on-surface-variant">6 months of weekend live labs and certification prep.</p>
-</div>
-<div class="p-6 text-center">
-<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">4</div>
-<h4 class="text-label-md mb-2 font-semibold">Project Phase</h4>
-<p class="text-sm text-on-surface-variant">Build a production-grade portfolio with experts.</p>
-</div>
-<div class="p-6 text-center">
-<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">5</div>
-<h4 class="text-label-md mb-2 font-semibold">Placement</h4>
-<p class="text-sm text-on-surface-variant">Resume building, interview prep, and active referrals.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Learning Path Section -->
-<section class="py-section-gap bg-slate-50">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{learning_paths.title}</h2>
-<div class="w-24 h-1 bg-primary mx-auto rounded-full mb-4"></div>
-<p class="text-on-surface-variant max-w-2xl mx-auto">{learning_paths.subtitle}</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-  {learning_paths.paths && learning_paths.paths.map((p, idx) => (
-    <div class="bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between">
-      <div>
-        <div class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 ${idx === 0 ? 'bg-sky-50 text-sky-700' : 'bg-primary-fixed text-on-primary-fixed'}`}>
-          <span class="material-symbols-outlined text-sm">{idx === 0 ? 'schedule' : 'rocket_launch'}</span> {idx === 0 ? 'Short-Term' : 'Long-Term'}
-        </div>
-        <h3 class="text-headline-sm font-bold text-on-surface mb-4">{p.title}</h3>
-        <p class="text-body-md text-on-surface-variant leading-relaxed">
-          {p.description}
-        </p>
-      </div>
-      <div class="mt-8 pt-6 border-t border-slate-100">
-        <a href="#programs" class="text-primary text-label-md font-bold flex items-center gap-1 hover:gap-2 transition-all">
-          {idx === 0 ? 'Explore Short-Term Paths' : 'Explore Career Programs'} <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-      </div>
-    </div>
-  ))}
-</div>
-</div>
-</section>
-
-<!-- Our Learning Methodology Section -->
-<section class="py-section-gap bg-white">
-<div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="text-center mb-16 flex flex-col items-center">
-  <h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{methodology.title}</h2>
-  <h3 class="text-title-large text-slate-500 font-medium max-w-2xl mx-auto">{methodology.subtitle}</h3>
-  <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4"></div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-  <div class="flex flex-col gap-6">
-    <p class="text-body-md text-on-surface-variant leading-relaxed">
-      {methodology.description}
-    </p>
-  </div>
-  <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-    <h4 class="text-title-medium font-bold text-on-surface mb-6">Structured Learning Framework</h4>
-    <div class="space-y-6">
-      {methodology.steps && methodology.steps.map(step => (
-        <div class="flex gap-4">
-          <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">{step.id}</div>
-          <div>
-            <h5 class="text-label-md font-bold text-on-surface">{step.title}</h5>
-            <p class="text-xs text-on-surface-variant mt-1">{step.description}</p>
+  </head>
+  <body
+    class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden"
+  >
+    <!-- TopAppBar -->
+    <Header />
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-[80vh] flex flex-col items-center overflow-hidden bg-white pt-24 md:pt-28 lg:pt-32"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10 pb-12 pt-4 lg:py-12"
+      >
+        <!-- Left Content Column (col-7) -->
+        <div class="flex flex-col gap-6 lg:col-span-7">
+          <!-- Premium Pulsing Badge Pill -->
+          <div
+            class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-sky-50 border border-sky-100 text-sky-700 rounded-full w-fit text-xs font-semibold shadow-sm backdrop-blur-sm"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
+              ></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"
+              ></span>
+            </span>
+            <span
+              class="tracking-wider uppercase font-bold text-[10px] sm:text-xs"
+              >US Registered Platform</span
+            >
+          </div>
+          <!-- Bolder Typography for Hero Headline -->
+          <h1
+            class="text-4xl font-bold text-slate-900 tracking-tight leading-[1.08]"
+            set:html={hero.headline}
+          />
+          <p
+            class="text-base sm:text-lg text-slate-600 text-justify max-w-xl leading-relaxed"
+          >
+            {hero.description}
+          </p>
+          <!-- Tactile conversion-focused action buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-2">
+            <a
+              class="group flex items-center justify-center px-4 py-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 text-white text-label-md font-semibold hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] shadow-lg shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all duration-200"
+              href={hero.button_url || "#programs"}
+            >
+              <span>{hero.button_text || "Explore Programs"}</span>
+              <span
+                class="material-symbols-outlined text-lg ml-2 font-bold transition-transform duration-200 group-hover:translate-x-1"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              class="group flex items-center justify-center px-8 py-4 rounded-xl text-sky-700 bg-sky-50/50 border border-sky-200/80 hover:bg-sky-50 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 font-semibold"
+              href={hero.consultation_url || "/contact-us"}
+            >
+              <span
+                class="material-symbols-outlined text-lg mr-2 font-bold transition-transform duration-200 group-hover:rotate-6"
+                >calendar_month</span
+              >
+              <span
+                >{
+                  hero.consultation_text || "Book a Free Career Consultation"
+                }</span
+              >
+            </a>
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
-</div>
-</section>
 
-{/* EXPERIENCE SKY STATES (Immersive Documentary Preview) - Removed */}
-
-<!-- IMMERSIVE VIDEO LIGHTBOX MODAL -->
-<div id="video-lightbox" class="fixed inset-0 bg-black/95 z-[999] opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Immersive classroom preview">
-  <div class="absolute inset-0 cursor-pointer" id="lightbox-bg-close"></div>
-  <div class="relative w-full max-w-5xl bg-surface-dim/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col z-10 transition-transform duration-300 scale-95" id="lightbox-content">
-    
-    <!-- Top Bar Control Panel -->
-    <div class="flex justify-between items-center p-4 border-b border-white/10 bg-black/50">
-      <div class="flex items-center gap-3">
-        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-        <span class="text-sm font-bold text-white tracking-wide uppercase">Live Class Documentary Preview</span>
+        <!-- Right Video Mockup Column (col-5) -->
+        <div class="relative w-full max-w-5xl lg:mx-0 lg:col-span-5">
+          <!-- Device frame wrapper -->
+          <div
+            class="relative p-1.5 bg-slate-100 rounded-2xl shadow-xl border border-slate-200 overflow-hidden"
+          >
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              class="relative rounded-[14px] w-full aspect-video object-cover"
+            >
+              <source
+                src="/assets/videos/home%20page%20hero%20section.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       </div>
-      <button class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 active:scale-95 transition-all" id="lightbox-close-btn" aria-label="Close modal">
-        <span class="material-symbols-outlined text-lg">close</span>
-      </button>
+
+      <!-- Trust Bar / Highlights -->
+      <div class="w-full py-4 mt-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {
+              trust_bar &&
+                trust_bar.map((highlight, index) => {
+                  const icons = [
+                    "live_tv",
+                    "terminal",
+                    "school",
+                    "calendar_month",
+                  ];
+                  const labels = [
+                    "Classes",
+                    "Practice",
+                    "Guidance",
+                    "Schedule",
+                  ];
+                  return (
+                    <div class="flex items-center gap-4 p-5 bg-sky-50 border border-sky-200/80 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-sky-100/80 transition-all duration-300 group">
+                      <div class="w-12 h-12 rounded-xl bg-sky-50/60 border border-sky-100/50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0">
+                        <span
+                          class="material-symbols-outlined text-xl transition-colors duration-300"
+                          style="font-variation-settings: 'FILL' 1;"
+                        >
+                          {icons[index] || "verified"}
+                        </span>
+                      </div>
+                      <div>
+                        <span class="block text-[16px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">
+                          {labels[index] || "Highlight"}
+                        </span>
+                        <span class="text-base font-bold text-slate-800 tracking-tight leading-tight">
+                          {highlight}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-section-gap bg-surface-container-lowest">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            {about.title}
+          </h2>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Description (left) + Video (right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="flex flex-col gap-6">
+            {
+              about.description &&
+                about.description
+                  .split("\n\n")
+                  .map((p) => (
+                    <p class="text-body-lg text-justify text-on-surface-variant leading-relaxed">
+                      {p}
+                    </p>
+                  ))
+            }
+          </div>
+          <div class="relative">
+            <div
+              class="aspect-video bg-white rounded-3xl ambient-shadow overflow-hidden border border-outline-variant/30 flex items-center justify-center relative"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="absolute inset-0 w-full h-full object-cover"
+              >
+                <source
+                  src="/admin/Sky_States_career_acceleration_program_202606270007.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certification / Recognition block (full width, centered) -->
+        <div class="mt-10 pt-6 border-t border-slate-100 text-center">
+          <h3 class="text-2xl font-bold text-on-surface mb-6">
+            Get Graduated with Practical Skills and Industry Recognition
+          </h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            <div
+              class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+            >
+              <span class="material-symbols-outlined text-primary text-xl"
+                >workspace_premium</span
+              >
+              <span class="text-sm font-semibold text-slate-700"
+                >Microsoft Certified Partner</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+            >
+              <span class="material-symbols-outlined text-primary text-xl"
+                >cloud</span
+              >
+              <span class="text-sm font-semibold text-slate-700"
+                >AWS Academy Curriculum</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"
+            >
+              <span class="material-symbols-outlined text-primary text-xl"
+                >security</span
+              >
+              <span class="text-sm font-semibold text-slate-700"
+                >CompTIA Security+ Prep</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Should You Choose SkyStates? -->
+    <section class="py-section-gap bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            Why Should You Choose SkyStates?
+          </h2>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            why_choose &&
+              why_choose.map((feat) => {
+                const iconMap = {
+                  "Learn from Industry Professionals": "workspace_premium",
+                  "Practical Learning Method": "terminal",
+                  "Adaptable Learning Paths": "route",
+                  "Career Development Assistance": "support_agent",
+                  "Updated Curriculum": "sync",
+                  "Continuous Learning": "history_edu",
+                };
+                const icon = iconMap[feat.title] || "verified";
+                return (
+                  <div class="group bg-sky-50 p-8 rounded-2xl border border-sky-100 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-sky-100 hover:border-sky-200">
+                    <div class="w-14 h-14 bg-white text-primary rounded-full flex items-center justify-center mb-6 shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+                      <span class="material-symbols-outlined text-2xl font-bold">
+                        {icon}
+                      </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-on-surface mb-3">
+                      {feat.title}
+                    </h3>
+                    <p class="text-base leading-relaxed">{feat.description}</p>
+                  </div>
+                );
+              })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Discover SkyStates Technology Programs Section -->
+    <section id="programs" class="w-full bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-section-gap">
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            {programs_section.title}
+          </h2>
+          <p class="text-on-surface-variant max-w-2xl mx-auto text-body-md">
+            {programs_section.subtitle}
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16"
+        >
+          {
+            programs_section.programs &&
+              programs_section.programs.map((prog, index) => {
+                const cardColors = [
+                  "bg-white text-on-surface border border-slate-200 hover:border-sky-300 group",
+                  "bg-sky-700 text-white",
+                  "bg-white text-on-surface border border-slate-200 hover:border-sky-300 group",
+                ];
+                const iconColors = [
+                  "bg-sky-50 text-sky-700",
+                  "bg-white/15 text-white",
+                  "bg-sky-50 text-sky-700",
+                ];
+                const bulletColors = [
+                  "text-sky-700",
+                  "text-white",
+                  "text-sky-700",
+                ];
+                const buttonColors = [
+                  "bg-sky-700 text-white hover:bg-sky-800",
+                  "bg-white text-sky-700 hover:bg-sky-50",
+                  "bg-sky-700 text-white hover:bg-sky-800",
+                ];
+                const linkColors = [
+                  "text-sky-700",
+                  "text-white",
+                  "text-sky-700",
+                ];
+                const textSecondaryColors = [
+                  "text-on-surface-variant",
+                  "text-sky-50",
+                  "text-on-surface-variant",
+                ];
+                const labelColors = [
+                  "text-slate-400",
+                  "text-sky-100/70",
+                  "text-slate-400",
+                ];
+                const icons = ["analytics", "security", "cloud_queue"];
+
+                const themeIdx = index % 3;
+                return (
+                  <div
+                    class={`rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full ${cardColors[themeIdx]}`}
+                  >
+                    <div
+                      class={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-5 sm:mb-6 transition-transform duration-300 group-hover:scale-110 ${iconColors[themeIdx]}`}
+                    >
+                      <span class="material-symbols-outlined text-2xl sm:text-3xl">
+                        {icons[themeIdx] || "school"}
+                      </span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 sm:mb-4 font-bold">
+                      {prog.title}
+                    </h3>
+                    <div class="text-2xl sm:text-3xl font-extrabold mb-4">
+                      {prog.price}
+                    </div>
+                    <p
+                      class={`text-body-md flex-grow mb-6 ${textSecondaryColors[themeIdx]}`}
+                    >
+                      {prog.description}
+                    </p>
+                    <div class="mb-6">
+                      <h4
+                        class={`text-xs font-bold uppercase tracking-wider mb-3 ${labelColors[themeIdx]}`}
+                      >
+                        Program Highlights
+                      </h4>
+                      <ul class="space-y-2 text-sm">
+                        {prog.highlights.map((h) => (
+                          <li class="flex items-start gap-2">
+                            <span
+                              class={`material-symbols-outlined text-base shrink-0 ${bulletColors[themeIdx]}`}
+                            >
+                              done
+                            </span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="pt-6 border-t border-current/10 flex flex-col gap-4">
+                      <a
+                        href={`/checkout?program=${prog.id}`}
+                        class={`w-full text-center py-3 font-bold rounded-xl transition-colors duration-200 ${buttonColors[themeIdx]}`}
+                      >
+                        Enroll Today
+                      </a>
+                      <a
+                        href={`/programs/${prog.id}`}
+                        class={`text-label-md flex items-center justify-center gap-1 hover:gap-2 transition-all duration-200 ${linkColors[themeIdx]}`}
+                      >
+                        Details{" "}
+                        <span class="material-symbols-outlined">
+                          arrow_forward
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                );
+              })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-section-gap bg-surface-container-low overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            Verified Student Outcomes
+          </h2>
+          <p class="text-on-surface-variant max-w-2xl mx-auto">
+            Real stories from professionals who successfully transitioned their
+            careers through our platform.
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
+          <a
+            class="text-primary text-label-md inline-flex items-center gap-2"
+            href="https://skyreviews.us"
+            target="_blank"
+            >Read more at skyreviews.us <span class="material-symbols-outlined"
+              >open_in_new</span
+            ></a
+          >
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Testimonial Card 1 -->
+          <div
+            class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow"
+          >
+            <div class="flex text-amber-400 mb-2">
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              >
+            </div>
+            <p
+              class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow"
+            >
+              "Achieved Data Scientist role at a leading FinTech firm after
+              completing the DS&amp;AI Program. The project work was vital."
+            </p>
+            <div class="mt-4">
+              <div class="text-label-md text-on-surface font-semibold">
+                Andrew C.
+              </div>
+              <div
+                class="text-xs text-primary font-bold uppercase tracking-wider"
+              >
+                Citations: skyreviews.us
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial Card 2 -->
+          <div
+            class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow"
+          >
+            <div class="flex text-amber-400 mb-2">
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              >
+            </div>
+            <p
+              class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow"
+            >
+              "Successfully pivoted to Cyber Security Lead at a healthcare
+              provider. The placement support was unmatched."
+            </p>
+            <div class="mt-4">
+              <div class="text-label-md text-on-surface font-semibold">
+                Ahmed H.
+              </div>
+              <div
+                class="text-xs text-primary font-bold uppercase tracking-wider"
+              >
+                Citations: skyreviews.us
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial Card 3 -->
+          <div
+            class="bg-white p-8 rounded-2xl flex flex-col gap-4 ambient-shadow"
+          >
+            <div class="flex text-amber-400 mb-2">
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              ><span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;">star</span
+              >
+            </div>
+            <p
+              class="text-body-md italic leading-relaxed text-on-surface-variant flex-grow"
+            >
+              "Transitioned to Cloud Engineer from a traditional IT role. Live
+              sessions helped me master complex CI/CD pipelines."
+            </p>
+            <div class="mt-4">
+              <div class="text-label-md text-on-surface font-semibold">
+                Kevin R.
+              </div>
+              <div
+                class="text-xs text-primary font-bold uppercase tracking-wider"
+              >
+                Citations: skyreviews.us
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SKY STATES IS — AND IS NOT -->
+    <section class="py-section-gap bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            What Sky States Is - And Is Not
+          </h2>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="bg-surface-container-low p-8 rounded-3xl border-l-8 border-error"
+          >
+            <h3
+              class="text-headline-md text-error mb-6 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined">cancel</span> Common Assumptions
+            </h3>
+            <ul class="space-y-4 text-on-surface-variant">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-error text-sm mt-1"
+                  >remove</span
+                > Just another pre-recorded online course
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-error text-sm mt-1"
+                  >remove</span
+                > A "get-rich-quick" scheme with no work
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-error text-sm mt-1"
+                  >remove</span
+                > A platform that collects sensitive data like SSN
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-error text-sm mt-1"
+                  >remove</span
+                > Hands-off learning without instructor access
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-primary-container/10 p-8 rounded-3xl border-l-8 border-primary"
+          >
+            <h3
+              class="text-headline-md text-primary mb-6 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined">check_circle</span> The Facts
+            </h3>
+            <ul class="space-y-4 text-on-surface-variant">
+              <li class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >add</span
+                > Live, instructor-led weekend sessions
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >add</span
+                > Intensive 6+ month career transition effort
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >add</span
+                > US Registered; We explicitly do NOT collect SSN
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >add</span
+                > Dedicated career advisors and active placement
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW THE PROGRAM WORKS -->
+    <section class="py-section-gap bg-surface-container-lowest">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            Your Roadmap to Success
+          </h2>
+          <p class="text-on-surface-variant">
+            A clear, 5-step process from consultation to your new career.
+          </p>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
+        </div>
+
+        <div class="relative">
+          <!-- Connector line: horizontal on md+ screens -->
+          <div
+            class="hidden md:block absolute top-6 left-[10%] right-[10%] h-0.5 bg-slate-200 z-0"
+            aria-hidden="true"
+          >
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-0 md:gap-4">
+            <!-- Step 1 -->
+            <div
+              class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center"
+            >
+              <div
+                class="md:hidden absolute left-6 top-12 bottom-0 w-0.5 bg-slate-200 z-0"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="relative z-10 shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                1
+              </div>
+              <div class="pb-10 md:pb-0 md:mt-4 md:px-2">
+                <h4 class="text-label-md mb-2 font-semibold">Intro Session</h4>
+                <p class="text-sm text-on-surface-variant">
+                  $99 consultation to assess your profile and goals.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+              class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center"
+            >
+              <div
+                class="md:hidden absolute left-6 top-12 bottom-0 w-0.5 bg-slate-200 z-0"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="relative z-10 shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                2
+              </div>
+              <div class="pb-10 md:pb-0 md:mt-4 md:px-2">
+                <h4 class="text-label-md mb-2 font-semibold">Enrollment</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Access the platform, prep materials, and advisor.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div
+              class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center"
+            >
+              <div
+                class="md:hidden absolute left-6 top-12 bottom-0 w-0.5 bg-slate-200 z-0"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="relative z-10 shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                3
+              </div>
+              <div class="pb-10 md:pb-0 md:mt-4 md:px-2">
+                <h4 class="text-label-md mb-2 font-semibold">Live Training</h4>
+                <p class="text-sm text-on-surface-variant">
+                  6 months of weekend live labs and certification prep.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div
+              class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center"
+            >
+              <div
+                class="md:hidden absolute left-6 top-12 bottom-0 w-0.5 bg-slate-200 z-0"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="relative z-10 shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                4
+              </div>
+              <div class="pb-10 md:pb-0 md:mt-4 md:px-2">
+                <h4 class="text-label-md mb-2 font-semibold">Project Phase</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Build a production-grade portfolio with experts.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 5 (no connector after this one) -->
+            <div
+              class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-0 md:text-center"
+            >
+              <div
+                class="relative z-10 shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"
+              >
+                5
+              </div>
+              <div class="pb-0 md:mt-4 md:px-2">
+                <h4 class="text-label-md mb-2 font-semibold">Placement</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Resume building, interview prep, and active referrals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Path Section -->
+    <section class="py-section-gap bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            {learning_paths.title}
+          </h2>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+          <p class="text-on-surface-variant max-w-2xl mx-auto">
+            {learning_paths.subtitle}
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {
+            learning_paths.paths &&
+              learning_paths.paths.map((p, idx) => (
+                <div class="bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between">
+                  <div>
+                    <div
+                      class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 ${idx === 0 ? "bg-sky-50 text-sky-700" : "bg-primary-fixed text-on-primary-fixed"}`}
+                    >
+                      <span class="material-symbols-outlined text-sm">
+                        {idx === 0 ? "schedule" : "rocket_launch"}
+                      </span>{" "}
+                      {idx === 0 ? "Short-Term" : "Long-Term"}
+                    </div>
+                    <h3 class="text-headline-sm font-bold text-on-surface mb-4">
+                      {p.title}
+                    </h3>
+                    <p class="text-body-md text-on-surface-variant leading-relaxed">
+                      {p.description}
+                    </p>
+                  </div>
+                  <div class="mt-8 pt-6 border-t border-slate-100">
+                    <a
+                      href="#programs"
+                      class="text-primary text-label-md font-bold flex items-center gap-1 hover:gap-2 transition-all"
+                    >
+                      {idx === 0
+                        ? "Explore Short-Term Paths"
+                        : "Explore Career Programs"}{" "}
+                      <span class="material-symbols-outlined">
+                        arrow_forward
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Learning Methodology Section -->
+    <section class="py-section-gap bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+        <div class="text-center mb-16 flex flex-col items-center">
+          <h2 class="text-headline-lg text-on-surface font-bold mb-4">
+            {methodology.title}
+          </h2>
+          <h3
+            class="text-title-large text-slate-500 font-medium max-w-2xl mx-auto"
+          >
+            {methodology.subtitle}
+          </h3>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4"></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+          <!-- Left: description, styled as a pull-quote so it holds its own visually -->
+          <div class="lg:col-span-2 flex flex-col items-start gap-6">
+            <p
+              class="text-title-large text-on-surface leading-relaxed border-l-4 border-sky-100 pl-6 text-start"
+            >
+              {methodology.description}
+            </p>
+          </div>
+
+          <!-- Right: structured steps -->
+          <div
+            class="lg:col-span-3 bg-slate-50 p-8 rounded-3xl border border-slate-100"
+          >
+            <h4 class="text-title-medium font-bold text-on-surface mb-6">
+              Structured Learning Framework
+            </h4>
+            <div class="space-y-6">
+              {
+                methodology.steps &&
+                  methodology.steps.map((step) => (
+                    <div class="flex gap-4">
+                      <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                        {step.id}
+                      </div>
+                      <div>
+                        <h5 class="text-label-md font-bold text-on-surface">
+                          {step.title}
+                        </h5>
+                        <p class="text-xs text-on-surface-variant mt-1">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* EXPERIENCE SKY STATES (Immersive Documentary Preview) - Removed */}
+
+    <!-- IMMERSIVE VIDEO LIGHTBOX MODAL -->
+    <div
+      id="video-lightbox"
+      class="fixed inset-0 bg-black/95 z-[999] opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4 backdrop-blur-md"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Immersive classroom preview"
+    >
+      <div class="absolute inset-0 cursor-pointer" id="lightbox-bg-close"></div>
+      <div
+        class="relative w-full max-w-5xl bg-surface-dim/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col z-10 transition-transform duration-300 scale-95"
+        id="lightbox-content"
+      >
+        <!-- Top Bar Control Panel -->
+        <div
+          class="flex justify-between items-center p-4 border-b border-white/10 bg-black/50"
+        >
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            <span class="text-sm font-bold text-white tracking-wide uppercase"
+              >Live Class Documentary Preview</span
+            >
+          </div>
+          <button
+            class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white/20 hover:scale-105 active:scale-95 transition-all"
+            id="lightbox-close-btn"
+            aria-label="Close modal"
+          >
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+        </div>
+
+        <!-- Video Element Container -->
+        <div class="aspect-video relative bg-black">
+          <video
+            controls
+            class="w-full h-full object-contain"
+            id="lightbox-player"
+            preload="none"
+          >
+            <source
+              src="/admin/home%20page%20hero%20section.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Details/Captions Section -->
+        <div class="p-6 bg-surface-dim/95 text-white border-t border-white/10">
+          <h4 class="text-lg font-bold mb-2 text-primary-fixed-dim">
+            Inside Sky States Classrooms & Offices
+          </h4>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            This documentary preview shows real live mentorship sessions, active
+            group programming projects, career coaching check-ins, and our
+            day-to-day US corporate operational space. We believe in total
+            transparency.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Video Element Container -->
-    <div class="aspect-video relative bg-black">
-      <video controls class="w-full h-full object-contain" id="lightbox-player" preload="none">
-        <source src="/admin/home%20page%20hero%20section.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
-    <!-- Details/Captions Section -->
-    <div class="p-6 bg-surface-dim/95 text-white border-t border-white/10">
-      <h4 class="text-lg font-bold mb-2 text-primary-fixed-dim">Inside Sky States Classrooms & Offices</h4>
-      <p class="text-sm text-on-surface-variant leading-relaxed">
-        This documentary preview shows real live mentorship sessions, active group programming projects, career coaching check-ins, and our day-to-day US corporate operational space. We believe in total transparency.
-      </p>
-    </div>
-  </div>
-</div>
-
-<!--
+    <!--
 TRANSPARENT PRICING
 <section class="py-section-gap bg-white">
 <div class="max-w-3xl mx-auto px-4 md:px-margin-desktop text-center">
@@ -533,304 +1054,720 @@ TRANSPARENT PRICING
 </div>
 </section>
 -->
-<!-- HOMEPAGE FAQ -->
-<section class="py-section-gap bg-surface-container-low">
-<div class="max-w-4xl mx-auto px-4">
-<h2 class="text-headline-lg text-center mb-12">Frequently Asked Questions</h2>
-<div class="space-y-4">
-<details class="bg-white rounded-xl p-6 ambient-shadow group" open="">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
-                Is Sky States a legitimate company?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">Yes, Sky States is a US-registered Career Acceleration Platform with headquarters in Everett, WA. We support individuals at all career stages in making successful transitions into technology.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
-                How frequent are the training calls?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">Our sessions are live and instructor-led, held every weekend to ensure working professionals can attend without disrupting their current schedule.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
-                Do you collect my SSN?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm text-error font-bold">No. We explicitly state that we do NOT collect Social Security Numbers (SSN) from our students under any circumstances.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
-                Is screen sharing required?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">During practical lab sessions and project reviews, screen sharing is utilized to provide you with direct, real-time feedback and assistance from your instructor.</p>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
+    <!-- HOMEPAGE FAQ -->
+    <section class="bg-surface-container-low">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-headline-lg text-on-surface text-center font-bold">
+          Frequently Asked Questions
+        </h2>
+        <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-3"></div>
+        <div class="space-y-4 py-6">
+          <details class="bg-white rounded-xl p-6 ambient-shadow group" open="">
+            <summary
+              class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+            >
+              Is Sky States a legitimate company?
+              <span
+                class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                >expand_more</span
+              >
+            </summary>
+            <p class="mt-4 text-on-surface-variant text-sm">
+              Yes, Sky States is a US-registered Career Acceleration Platform
+              with headquarters in Everett, WA. We support individuals at all
+              career stages in making successful transitions into technology.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl p-6 ambient-shadow group">
+            <summary
+              class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+            >
+              How frequent are the training calls?
+              <span
+                class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                >expand_more</span
+              >
+            </summary>
+            <p class="mt-4 text-on-surface-variant text-sm">
+              Our sessions are live and instructor-led, held every weekend to
+              ensure working professionals can attend without disrupting their
+              current schedule.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl p-6 ambient-shadow group">
+            <summary
+              class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+            >
+              Do you collect my SSN?
+              <span
+                class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                >expand_more</span
+              >
+            </summary>
+            <p
+              class="mt-4 text-on-surface-variant text-sm text-error font-bold"
+            >
+              No. We explicitly state that we do NOT collect Social Security
+              Numbers (SSN) from our students under any circumstances.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl p-6 ambient-shadow group">
+            <summary
+              class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+            >
+              Is screen sharing required?
+              <span
+                class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                >expand_more</span
+              >
+            </summary>
+            <p class="mt-4 text-on-surface-variant text-sm">
+              During practical lab sessions and project reviews, screen sharing
+              is utilized to provide you with direct, real-time feedback and
+              assistance from your instructor.
+            </p>
+            <details class="bg-white rounded-xl p-6 ambient-shadow group">
+              <summary
+                class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+              >
                 What is your refund policy?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">We offer a 100% money-back guarantee within the first 14 calendar days of the program if you feel it's not the right fit for your career goals. For full terms, please review our <a href="/refund-policy" class="text-primary hover:underline font-semibold">Refund Policy</a>.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span
+                  class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                  >expand_more</span
+                >
+              </summary>
+              <p class="mt-4 text-on-surface-variant text-sm">
+                We offer a 100% money-back guarantee within the first 14
+                calendar days of the program if you feel it's not the right fit
+                for your career goals. For full terms, please review our <a
+                  href="/refund-policy"
+                  class="text-primary hover:underline font-semibold"
+                  >Refund Policy</a
+                >.
+              </p>
+            </details>
+            <details class="bg-white rounded-xl p-6 ambient-shadow group">
+              <summary
+                class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+              >
                 Is there any placement assistance?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">Yes, active placement support is a core component of our program, including resume optimization, mock interviews, and referral networks.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span
+                  class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                  >expand_more</span
+                >
+              </summary>
+              <p class="mt-4 text-on-surface-variant text-sm">
+                Yes, active placement support is a core component of our
+                program, including resume optimization, mock interviews, and
+                referral networks.
+              </p>
+            </details>
+            <details class="bg-white rounded-xl p-6 ambient-shadow group">
+              <summary
+                class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+              >
                 What if I miss a live session?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">All live sessions are recorded and made available on the student platform, though we strongly encourage live attendance for the interactive benefits.</p>
-</details>
-<details class="bg-white rounded-xl p-6 ambient-shadow group">
-<summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span
+                  class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                  >expand_more</span
+                >
+              </summary>
+              <p class="mt-4 text-on-surface-variant text-sm">
+                All live sessions are recorded and made available on the student
+                platform, though we strongly encourage live attendance for the
+                interactive benefits.
+              </p>
+            </details>
+            <details class="bg-white rounded-xl p-6 ambient-shadow group">
+              <summary
+                class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center"
+              >
                 Can I pay in installments?
-                <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm">Yes, EMI options and flexible payment plans are available to make the program accessible to all qualified professionals.</p>
-</details>
-</div>
-</div>
-</section>
-<!-- STUDENT OUTCOMES (Alumni Placements) -->
-<section class="relative bg-white pt-16 pb-12 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="w-full text-center" style="opacity: 1;">
-      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-900">Where Our Alumni Work</h2>
-      <p class="mt-3 text-slate-700 text-sm sm:text-base max-w-2xl mx-auto">Sky States graduates have successfully transitioned into roles at these industry-leading global companies.</p>
-    </div>
-  </div>
-  <div class="w-full border-y border-blue-200 py-6 mt-8 overflow-hidden bg-blue-50">
-    <div class="flex w-max items-center marquee">
-      <!-- Set 1 -->
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Cisco" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/cisco-corp.png">
+                <span
+                  class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                  >expand_more</span
+                >
+              </summary>
+              <p class="mt-4 text-on-surface-variant text-sm">
+                Yes, EMI options and flexible payment plans are available to
+                make the program accessible to all qualified professionals.
+              </p>
+            </details>
+          </details>
         </div>
       </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Starbucks" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/starbuck.png">
+
+      <!-- STUDENT OUTCOMES (Alumni Placements) -->
+      <section class="relative bg-white pt-16 pb-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="w-full text-center" style="opacity: 1;">
+            <h2 class="text-headline-lg text-on-surface text-center font-bold">
+              Where Our Alumni Work
+            </h2>
+            <p
+              class="mt-3 text-on-surface-variant text-sm sm:text-base max-w-2xl mx-auto"
+            >
+              Sky States graduates have successfully transitioned into roles at
+              these industry-leading global companies.
+            </p>
+          </div>
+          <div
+            class="w-full border-y border-blue-200 py-6 mt-8 overflow-hidden bg-blue-50"
+          >
+            <div class="flex w-max items-center marquee">
+              <!-- Set 1 -->
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Cisco"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/cisco-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Starbucks"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/starbuck.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Apple"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/logo-1536x864.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Dell"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/compdd.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Amazon"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/Amazon-Logo-1024x576.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Microsoft"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/Microsoft_logo_2012.svg-1024x218.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Citi"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/city-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Coca Cola"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/cocacola-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Walmart"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/walmart-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Wipro"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/wipro_new-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Visa"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/visa-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Honeywell"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/honeywell-corp.png"
+                  />
+                </div>
+              </div>
+              <!-- Set 2 (for seamless loop) -->
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Cisco"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/cisco-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Starbucks"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/starbuck.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Apple"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/logo-1536x864.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Dell"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/compdd.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Amazon"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/Amazon-Logo-1024x576.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Microsoft"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/Microsoft_logo_2012.svg-1024x218.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Citi"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/city-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Coca Cola"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/cocacola-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Walmart"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/walmart-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Wipro"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/wipro_new-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Visa"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/visa-corp.png"
+                  />
+                </div>
+              </div>
+              <div
+                class="mx-8 lg:mx-10 flex items-center justify-center shrink-0"
+              >
+                <div
+                  class="w-[160px] h-[40px] flex items-center justify-center"
+                >
+                  <img
+                    alt="Honeywell"
+                    loading="lazy"
+                    width="160"
+                    height="60"
+                    decoding="async"
+                    class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    style="color:transparent;width:auto;height:40px"
+                    src="https://skystates.us/wp-content/uploads/2026/01/honeywell-corp.png"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Apple" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/logo-1536x864.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Dell" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/compdd.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Amazon" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/Amazon-Logo-1024x576.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Microsoft" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/Microsoft_logo_2012.svg-1024x218.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Citi" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/city-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Coca Cola" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/cocacola-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Walmart" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/walmart-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Wipro" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/wipro_new-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Visa" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/visa-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Honeywell" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/honeywell-corp.png">
-        </div>
-      </div>
-      <!-- Set 2 (for seamless loop) -->
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Cisco" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/cisco-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Starbucks" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/starbuck.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Apple" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/logo-1536x864.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Dell" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/compdd.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Amazon" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/Amazon-Logo-1024x576.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Microsoft" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/Microsoft_logo_2012.svg-1024x218.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Citi" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/city-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Coca Cola" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/cocacola-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Walmart" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/walmart-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Wipro" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/wipro_new-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Visa" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/visa-corp.png">
-        </div>
-      </div>
-      <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
-        <div class="w-[160px] h-[40px] flex items-center justify-center">
-          <img alt="Honeywell" loading="lazy" width="160" height="60" decoding="async" class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" style="color:transparent;width:auto;height:40px" src="https://skystates.us/wp-content/uploads/2026/01/honeywell-corp.png">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Footer -->
-<Footer />
-<script>
-    // Reveal animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
+
+        <!-- Footer -->
+        <Footer />
+
+        <script>
+          // Reveal animations
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("opacity-100", "translate-y-0");
+                  entry.target.classList.remove("opacity-0", "translate-y-10");
+                }
+              });
+            },
+            { threshold: 0.1 },
+          );
+
+          document.querySelectorAll("section").forEach((section) => {
+            section.classList.add(
+              "transition-[opacity,transform]",
+              "duration-1000",
+              "opacity-0",
+              "translate-y-10",
+            );
+            observer.observe(section);
+          });
+
+          // Lightbox & Interactive Video controller
+          const videoTrigger = document.getElementById("play-video-trigger");
+          const lightbox = document.getElementById("video-lightbox");
+          const lightboxClose = document.getElementById("lightbox-close-btn");
+          const lightboxBgClose = document.getElementById("lightbox-bg-close");
+          const lightboxPlayer = document.getElementById("lightbox-player") as HTMLVideoElement;
+          const previewVideo = document.getElementById("preview-video") as HTMLVideoElement;
+
+          function openLightbox() {
+            if (!lightbox || !lightboxPlayer) return;
+            lightbox.classList.remove("opacity-0", "pointer-events-none");
+            lightbox.classList.add("opacity-100");
+
+            const content = document.getElementById("lightbox-content");
+            if (content) {
+              content.classList.remove("scale-95");
+              content.classList.add("scale-100");
             }
-        });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('transition-[opacity,transform]', 'duration-1000', 'opacity-0', 'translate-y-10');
-        observer.observe(section);
-    });
+            // Pause preview, play main video
+            if (previewVideo) previewVideo.pause();
+            lightboxPlayer
+              .play()
+              .catch((err: any) => console.log("Playback error:", err));
+          }
 
-    // Lightbox & Interactive Video controller
-    const videoTrigger = document.getElementById('play-video-trigger');
-    const lightbox = document.getElementById('video-lightbox');
-    const lightboxClose = document.getElementById('lightbox-close-btn');
-    const lightboxBgClose = document.getElementById('lightbox-bg-close');
-    const lightboxPlayer = document.getElementById('lightbox-player');
-    const previewVideo = document.getElementById('preview-video');
+          function closeLightbox() {
+            if (!lightbox || !lightboxPlayer) return;
+            lightbox.classList.add("opacity-0", "pointer-events-none");
+            lightbox.classList.remove("opacity-100");
 
-    function openLightbox() {
-        if (!lightbox || !lightboxPlayer) return;
-        lightbox.classList.remove('opacity-0', 'pointer-events-none');
-        lightbox.classList.add('opacity-100');
-        
-        const content = document.getElementById('lightbox-content');
-        if (content) {
-            content.classList.remove('scale-95');
-            content.classList.add('scale-100');
-        }
+            const content = document.getElementById("lightbox-content");
+            if (content) {
+              content.classList.add("scale-95");
+              content.classList.remove("scale-100");
+            }
 
-        // Pause preview, play main video
-        if (previewVideo) previewVideo.pause();
-        lightboxPlayer.play().catch(err => console.log('Playback error:', err));
-    }
+            lightboxPlayer.pause();
+            lightboxPlayer.currentTime = 0;
 
-    function closeLightbox() {
-        if (!lightbox || !lightboxPlayer) return;
-        lightbox.classList.add('opacity-0', 'pointer-events-none');
-        lightbox.classList.remove('opacity-100');
-        
-        const content = document.getElementById('lightbox-content');
-        if (content) {
-            content.classList.add('scale-95');
-            content.classList.remove('scale-100');
-        }
+            // Resume preview
+            if (previewVideo) previewVideo.play().catch(() => {});
+          }
 
-        lightboxPlayer.pause();
-        lightboxPlayer.currentTime = 0;
+          if (videoTrigger) {
+            videoTrigger.addEventListener("click", openLightbox);
+          }
+          if (lightboxClose) {
+            lightboxClose.addEventListener("click", closeLightbox);
+          }
+          if (lightboxBgClose) {
+            lightboxBgClose.addEventListener("click", closeLightbox);
+          }
 
-        // Resume preview
-        if (previewVideo) previewVideo.play().catch(() => {});
-    }
+          // Escape Key Bindings
+          window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              closeLightbox();
+            }
+          });
 
-    if (videoTrigger) {
-        videoTrigger.addEventListener('click', openLightbox);
-    }
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', closeLightbox);
-    }
-    if (lightboxBgClose) {
-        lightboxBgClose.addEventListener('click', closeLightbox);
-    }
+          // Parallax Mouse Movement on Floating Cards
+          const section = document.getElementById("experience-sky-states");
+          const lmsCard = document.getElementById("floating-card-lms");
+          const officeCard = document.getElementById("floating-card-office");
 
-    // Escape Key Bindings
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeLightbox();
-        }
-    });
+          if (section && window.innerWidth > 1024) {
+            section.addEventListener("mousemove", (e) => {
+              const rect = section.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
 
-    // Parallax Mouse Movement on Floating Cards
-    const section = document.getElementById('experience-sky-states');
-    const lmsCard = document.getElementById('floating-card-lms');
-    const officeCard = document.getElementById('floating-card-office');
-
-    if (section && window.innerWidth > 1024) {
-        section.addEventListener('mousemove', (e) => {
-            const rect = section.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            if (lmsCard) {
+              if (lmsCard) {
                 lmsCard.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
-            }
-            if (officeCard) {
+              }
+              if (officeCard) {
                 officeCard.style.transform = `translate(${x * -0.015}px, ${y * -0.015}px)`;
-            }
-        });
-        
-        section.addEventListener('mouseleave', () => {
-            if (lmsCard) lmsCard.style.transform = 'translate(0px, 0px)';
-            if (officeCard) officeCard.style.transform = 'translate(0px, 0px)';
-        });
-    }
-</script>
-</body></html>
+              }
+            });
+
+            section.addEventListener("mouseleave", () => {
+              if (lmsCard) lmsCard.style.transform = "translate(0px, 0px)";
+              if (officeCard)
+                officeCard.style.transform = "translate(0px, 0px)";
+            });
+          }
+        </script>
+      </section>
+    </section>
+  </body>
+</html>

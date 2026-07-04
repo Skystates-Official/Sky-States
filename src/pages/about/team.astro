@@ -1,0 +1,122 @@
+---
+import "../../styles/global.css";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import aboutData from "../../data/about.json";
+
+const { team = [] } = aboutData;
+export const prerender = false;
+---
+
+<!doctype html>
+<html class="light" lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Meet Our Team | Sky States</title>
+        <meta
+            name="description"
+            content="Meet the Sky States team of experienced engineers, architects, managers, and product owners."
+        />
+        <link rel="canonical" href="https://skystates.us/about/team" />
+
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    "FILL" 0,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen">
+        <!-- TopAppBar -->
+        <Header />
+        
+        <main class="max-w-[1280px] mx-auto px-4 md:px-margin-desktop pt-28 pb-20">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 mb-8 text-xs font-semibold text-slate-400">
+                <a href="/" class="hover:text-sky-600 transition-colors">Home</a>
+                <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <a href="/about" class="hover:text-sky-600 transition-colors">About Us</a>
+                <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <span class="text-slate-600">Team Profiles</span>
+            </nav>
+
+            <!-- Page Header Section -->
+            <div class="mb-16 rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-sky-50 to-blue-100/50 border border-sky-100 flex flex-col gap-2 relative overflow-hidden text-center items-center">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-300/10 blur-3xl rounded-full"></div>
+                <span class="inline-block px-4 py-1.5 rounded-full bg-sky-100/60 border border-sky-200 text-sky-700 text-[10px] font-bold uppercase tracking-wider">Advisory Board</span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">Executive Leadership & Advisory Team</h1>
+                <p class="text-slate-650 max-w-2xl text-sm sm:text-base leading-relaxed">Meet the experts who motivate, guide, and support every learner's journey.</p>
+            </div>
+
+            <!-- Team Members Grid (3 columns) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {team.map((member) => (
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+                        <!-- Profile Image Section -->
+                        <div class="h-72 overflow-hidden relative bg-slate-100 border-b border-slate-100">
+                            <img 
+                                src={member.photo || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop'} 
+                                alt={member.name} 
+                                class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" 
+                                style={
+                                    member.name === 'Shephali Chaudhary' 
+                                        ? 'object-position: 80% 15%' 
+                                        : 'object-position: top center'
+                                }
+                            />
+                            <div class="absolute bottom-4 left-4">
+                                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-lg text-[10px] font-bold uppercase tracking-wider text-sky-700 border border-sky-100/50 shadow-sm">
+                                    {member.role.replace(/\s*\(.*\)\s*/, '')}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card Details -->
+                        <div class="p-6 flex-1 flex flex-col justify-between gap-4">
+                            <div class="space-y-2">
+                                <h3 class="text-xl font-bold text-slate-900 leading-tight">{member.name}</h3>
+                                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest">{member.role}</p>
+                                <p class="text-slate-650 text-xs sm:text-sm leading-relaxed mt-3">{member.description}</p>
+                            </div>
+                            
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Advisor Profile</span>
+                                <div class="flex items-center gap-1 text-sky-600 font-bold text-xs group-hover:text-sky-500 transition-colors">
+                                    <span>Verified Registry</span>
+                                    <span class="material-symbols-outlined text-sm font-bold">verified</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="mt-20 text-center">
+                <a href="/about" class="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs uppercase font-bold tracking-wider transition-all shadow-sm">
+                    <span class="material-symbols-outlined text-sm font-bold">arrow_back</span>
+                    <span>Back to Corporate Dossier</span>
+                </a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <Footer />
+    </body>
+</html>
