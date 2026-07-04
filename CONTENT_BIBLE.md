@@ -107,11 +107,11 @@ Sky States is an elite, US-registered **Career Acceleration and Transition Platf
 
 ### Products and Services
 1.  **Introductory Profile Consultation ($99):** A high-value 1-on-1 assessment of the candidate's career trajectory, mapping their technical background to target senior roles.
-2.  **Scholar Track ($2,999):** Comprehensive 6-month masterclass. Includes live weekend classes, hands-on lab environments, official Microsoft exam vouchers, and active placement referrals.
+2.  **Scholar Track ($3499):** Comprehensive 6-month masterclass. Includes live weekend classes, hands-on lab environments, official Microsoft exam vouchers, and active placement referrals.
 3.  **Elite 1-on-1 Tier:** Bespoke, high-authority mentorship program featuring direct CTO advisory, resume engineering, and direct hiring partner introductions.
 
 ### Pricing Strategy & Value Equation
-The $2,999 investment is structured to demonstrate immediate, clear ROI:
+The $3499 investment is structured to demonstrate immediate, clear ROI:
 *   **Official Microsoft Certification Vouchers:** Valued at over $1,200 (including exam fees and preparation bootcamps).
 *   **CTO Mentorship & Mock Interviews:** Valued at $1,500.
 *   **Average Salary Jump:** A 42% average increase ($130k -> $185k+) yields payback of the entire tuition within the first month of placement.
@@ -313,7 +313,7 @@ Content flows dynamically from local JSON databases and markdown schemas into As
 ---
 
 ### 7. Salary Guide & Career ROI (`/career-roi`)
-*   **Purpose:** Prove the monetary value and career payback of the $2,999 fee.
+*   **Purpose:** Prove the monetary value and career payback of the $3499 fee.
 *   **Business Goal:** Eliminate price hesitation.
 *   **Target User:** Cost-conscious candidates.
 *   **Stage in Funnel:** MOFU.
@@ -445,7 +445,7 @@ Content flows dynamically from local JSON databases and markdown schemas into As
 *   **Headings:** Use sentence case, ensuring clear keywords are embedded (e.g., "Program Curriculum Architecture" instead of "What You'll Learn").
 
 ### Writing for CTAs & Trust
-*   **CTA Copy:** Be direct and transparent. State the exact action and outcome (e.g., "Select Scholar Track", "Enroll as Scholar (Full Tuition) - $2,999"). Never use vague terms like "Click Here".
+*   **CTA Copy:** Be direct and transparent. State the exact action and outcome (e.g., "Select Scholar Track", "Enroll as Scholar (Full Tuition) - $3499"). Never use vague terms like "Click Here".
 *   **Trust Copy:** Always reference official registries and compliance frameworks. Frame pricing and security around concrete facts.
 
 ### Examples of Good vs. Bad Copy
@@ -595,7 +595,7 @@ graph TD
 ### Landing / Course Pages Checklist
 *   [ ] Meta Title is under 60 characters and conforms to: `Program Name | Sky States`.
 *   [ ] Includes structured `Course` and `Product` schemas.
-*   [ ] Direct, transparent pricing ($2,999 Scholar Track) and No-SSN commitments are highlighted.
+*   [ ] Direct, transparent pricing ($3499 Scholar Track) and No-SSN commitments are highlighted.
 *   [ ] Primary CTAs link to the secure checkout with correct parameters.
 *   [ ] Contains a "What We Are & Are Not" comparative matrix.
 
@@ -620,7 +620,7 @@ graph TD
 *   **The 3-Day Window:** Reassure late-stage buyers with the 72-hour "No Questions Asked" full refund policy.
 
 ### Objection Handling Scripts
-*   *Objection:* "Is $2,999 too expensive?"
+*   *Objection:* "Is $3499 too expensive?"
     *   *Response:* Frame it against the $1,200 in official Microsoft certification vouchers included in the tuition, and the average salary jump of 42% ($185,000 avg graduate compensation).
 *   *Objection:* "Is this a real company?"
     *   *Response:* Direct them to the official Delaware and Wyoming state databases with our active corporate registry numbers.

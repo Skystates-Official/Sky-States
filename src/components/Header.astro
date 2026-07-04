@@ -1,21 +1,15 @@
 ---
 // src/components/Header.astro
-const isHome = Astro.url.pathname === "/";
 ---
 
-<nav
-  class={`nav ${isHome ? "is-home" : ""}`}
-  aria-label="Main"
-  style="--nav-scroll: 0;"
-  id="main-header"
->
+<nav class="nav" aria-label="Main" id="main-header">
   <!-- Brand / Logo (Left-aligned) -->
   <a class="brand" aria-label="Sky States home" href="/">
     <div class="logo-wrapper">
       <img
         src="/logo_transparent.svg"
         alt="Sky States Logo"
-        class="brand-logo-img"
+        class="brand-logo-img w-40 h-40"
       />
     </div>
   </a>
@@ -291,48 +285,24 @@ const isHome = Astro.url.pathname === "/";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.25rem; /* Standardized initial mobile padding */
+    padding: 0.75rem 1.25rem;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition:
-      padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      border-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: "Outfit", "Inter", sans-serif;
   }
 
   @media (min-width: 1024px) {
     .nav {
-      padding: 1.5rem 2.5rem; /* Tall padding initially on desktop */
-    }
-  }
-
-  /* Shrink header padding on scroll */
-  .nav.is-scrolled {
-    padding: 0.5rem 1.25rem;
-  }
-
-  @media (min-width: 1024px) {
-    .nav.is-scrolled {
       padding: 0.75rem 2.5rem;
     }
   }
 
-  /* Home page initial transparent state */
-  .nav.is-home:not(.is-scrolled) {
-    background-color: transparent;
-    backdrop-filter: none;
-    border-bottom: 1px solid transparent;
-    box-shadow: none;
-  }
-
-  /* Ensure solid white style when mobile menu is open, regardless of scroll or homepage status */
+  /* Ensure solid white style when mobile menu is open */
   .nav.is-mobile-menu-open {
-    padding: 1rem 1.25rem !important; /* Keep mobile padding */
-    background-color: #ffffff !important;
+    padding: 0.75rem 1.25rem !important; /* Keep mobile padding */
+    background-color: #ddf3f8 !important;
     backdrop-filter: blur(20px) !important;
     border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
@@ -350,63 +320,36 @@ const isHome = Astro.url.pathname === "/";
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 55px;
-    width: 281px;
-    transition:
-      height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 48px;
+    width: 250px;
   }
 
   .brand-logo-img {
-    height: 153px;
+    height: 134px;
     width: auto;
     object-fit: contain;
-    margin-top: -4px;
-    transition:
-      height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Shrink logo on scroll */
-  .nav.is-scrolled .logo-wrapper {
-    height: 44px;
-    width: 227px;
-  }
-
-  .nav.is-scrolled .brand-logo-img {
-    height: 124px;
     margin-top: -3px;
   }
 
   @media (min-width: 1024px) {
     .logo-wrapper {
-      height: 83px; /* Large initially on desktop */
-      width: 433px;
+      height: 64px;
+      width: 333px;
     }
     .brand-logo-img {
-      height: 250px;
-      margin-top: -8px;
-    }
-
-    /* Shrink logo on desktop scroll */
-    .nav.is-scrolled .logo-wrapper {
-      height: 62px;
-      width: 324px;
-    }
-    .nav.is-scrolled .brand-logo-img {
-      height: 187px;
-      margin-top: -5px;
+      height: 192px;
+      margin-top: -6px;
     }
   }
 
   /* Keep size when mobile menu is open */
   .nav.is-mobile-menu-open .logo-wrapper {
-    height: 55px !important;
-    width: 281px !important;
+    height: 48px !important;
+    width: 250px !important;
   }
   .nav.is-mobile-menu-open .brand-logo-img {
-    height: 153px !important;
-    margin-top: -4px !important;
+    height: 134px !important;
+    margin-top: -3px !important;
   }
 
   /* Desktop Navigation Links Layout (Centered) */
@@ -517,7 +460,7 @@ const isHome = Astro.url.pathname === "/";
     position: absolute;
     top: 100%;
     width: 20rem; /* Exactly 320px for all dropdowns */
-    background: #ffffff;
+    background: #e1f0f4;
     border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
@@ -801,29 +744,7 @@ const isHome = Astro.url.pathname === "/";
   (() => {
     const nav = document.getElementById("main-header");
 
-    // Dynamic Scroll Progress Calculation
-    if (nav) {
-      let frame = 0;
-      let lastProgress = -1;
-      const updateNav = () => {
-        frame = 0;
-        const progress = Math.min(Math.max(window.scrollY / 100, 0), 1);
-        const eased = progress * progress * (3 - 2 * progress);
-        const rounded = Math.round(eased * 100) / 100;
-        if (Math.abs(rounded - lastProgress) >= 0.01) {
-          lastProgress = rounded;
-          nav.style.setProperty("--nav-scroll", rounded.toFixed(2));
-        }
-
-        // Toggle is-scrolled class based on 20px scroll threshold
-        nav.classList.toggle("is-scrolled", window.scrollY > 20);
-      };
-      const requestUpdate = () => {
-        if (!frame) frame = window.requestAnimationFrame(updateNav);
-      };
-      updateNav();
-      window.addEventListener("scroll", requestUpdate, { passive: true });
-    }
+    // Scroll handling is disabled. Header has a fixed layout.
 
     // Mobile Hamburger Menu Interaction
     const menuButton = document.getElementById("mobile-menu-toggle");

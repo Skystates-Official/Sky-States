@@ -1,388 +1,233 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-<html lang="en"><head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-
-  <link rel="icon" type="image/png" href="/favicon.png" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Pricing &amp; Refund Policy | Sky States</title>
-<meta name="description" content="Review the transparent pricing structure, payment options, and the 14-day satisfaction guarantee refund policy at Sky States." />
-<link rel="canonical" href="https://skystates.us/refund-policy" />
-
-
-
-
-
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .sky-glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .ambient-shadow {
-            box-shadow: 0 30px 60px -12px rgba(0, 93, 144, 0.04), 0 18px 36px -18px rgba(0, 0, 0, 0.05);
-        }
-        .upward-gradient {
-            background: linear-gradient(to top, #ffffff 0%, #d3e2ed 100%);
-        }
-        body {
-            background-color: #f9f9f9;
-            color: #1a1c1c;
-            scroll-behavior: smooth;
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing & Refund Policy | Sky States</title>
+    <meta
+      name="description"
+      content="Review the transparent pricing structure, payment options, and the 14-day satisfaction guarantee refund policy at Sky States."
+    />
+    <link rel="canonical" href="https://skystates.us/refund-policy" />
   </head>
-<body class="font-body-md text-on-surface">
-<!-- TopAppBar -->
-<Header />
-<main>
-<!-- Editorial Hero Section -->
-<section class="relative pt-24 pb-32 overflow-hidden upward-gradient">
-<div class="max-w-[1280px] mx-auto px-margin-desktop relative z-10 text-center">
-<nav class="flex justify-center items-center gap-2 mb-6 font-label-sm text-xs opacity-75">
-  <a href="/" class="hover:text-primary transition-colors">Home</a>
-  <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-  <span class="text-on-surface-variant font-bold">Refund and Returns Policy</span>
-</nav>
-<span class="inline-block px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm mb-6 uppercase tracking-widest">Pricing Transparency</span>
-<h1 class="font-headline-xl text-headline-xl mb-6 text-on-surface">Refund and Returns Policy<br/><span class="text-primary-container">Refund Policy – Sky States</span></h1>
-<p class="max-w-3xl mx-auto text-body-lg text-on-surface-variant font-body-lg leading-relaxed">
-    At Sky States, we are dedicated to ensuring that our users have a positive and enriching experience with our training courses, whether they are online or in a classroom setting. We understand that circumstances can change, and we want to be as fair and transparent as possible with our refund policies. By purchasing a course on the Sky States website, you agree to our Privacy Policy, Terms of Use, and the refund terms outlined below.
-</p>
-</div>
-<!-- Decorative element -->
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-64 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
-</section>
-<!-- The Value Equation -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
-<div>
-<h3 class="font-headline-lg text-headline-lg mb-8">The Value Equation</h3>
-<div class="space-y-6">
-<div class="p-6 rounded-xl bg-surface-container-lowest ambient-shadow border border-outline-variant/30">
-<div class="flex items-center gap-4 mb-2">
-<span class="material-symbols-outlined text-primary-container" data-icon="trending_up">trending_up</span>
-<p class="font-label-md text-primary">Avg. Salary Increase</p>
-</div>
-<p class="text-headline-md font-headline-md">$42,500+</p>
-<p class="text-on-surface-variant text-body-md mt-2">Based on our 2023 cohort data across Finance and Tech sectors.</p>
-</div>
-<div class="p-6 rounded-xl bg-surface-container-lowest ambient-shadow border border-outline-variant/30">
-<div class="flex items-center gap-4 mb-2">
-<span class="material-symbols-outlined text-primary-container" data-icon="timer">timer</span>
-<p class="font-label-md text-primary">Placement Velocity</p>
-</div>
-<p class="text-headline-md font-headline-md">84 Days</p>
-<p class="text-on-surface-variant text-body-md mt-2">The average time from enrollment to a signed contract offer.</p>
-</div>
-<a class="inline-flex items-center gap-2 text-primary font-label-md hover:underline group" href="#">
-                            Explore full 2024 Salary Guide 
-                            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</div>
-<div class="relative h-[500px] rounded-2xl overflow-hidden ambient-shadow">
-<img class="absolute inset-0 w-full h-full object-cover" alt="A clean, minimalist data visualization dashboard displayed on a high-end monitor in a bright, modern corporate office. Soft morning light streams through large windows, creating a high-trust professional atmosphere. The screen shows upward trending financial charts in blues and whites, symbolizing growth and ROI. The aesthetic is airy, sophisticated, and focused on institutional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1vTNZdaQkJqJw-mnxaguXwLFPDK3hwthe2lXOgCACLFCdlLBifZ83zzQ50U0cdbREFOM44dM7njcFwfUtWi5ngC1PtDXr7HsfGvCtepPO1bS6EgSErmkCayZjPsr-W2B64vWML3KMzPZGCypS8C1k39EmeHp5zCaDzEca05pQ_9VjIwxyBXuoWIx26p2kzmXM7snhd-WJg_pM2-jJmFlHYGlPnrQTgHrW2jLP5R1G9hXiE8QZNq5R1wEQtIodI5Wycz0cFIXPclQ"/>
-<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
-</div>
-</div>
-</section>
-<!-- Enrollment Tiers -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap">
-<div class="text-center mb-16">
-<h3 class="font-headline-lg text-headline-lg mb-4">Investment Tiers</h3>
-<p class="text-on-surface-variant">Select the path that aligns with your professional velocity.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Scholar Track -->
-<div class="bg-surface-container-lowest p-10 rounded-2xl ambient-shadow flex flex-col border border-outline-variant/20 hover:border-primary-container/40 transition-colors">
-<h4 class="font-headline-md text-headline-md mb-2">Scholar Track</h4>
-<p class="text-on-surface-variant mb-8">Group-led acceleration with peer networking.</p>
-<div class="mb-8">
-<span class="text-headline-xl font-headline-xl">$2,999</span>
-<span class="text-on-surface-variant">/total</span>
-</div>
-<ul class="space-y-4 mb-10 flex-grow">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
-<span>Full access to the Career Hub ecosystem</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
-<span>Bi-weekly group strategy workshops</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary-container" data-icon="check_circle">check_circle</span>
-<span>Standard 14-day refund protection</span>
-</li>
-</ul>
-<a href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full" class="w-full py-4 border-2 border-primary text-primary font-label-md rounded-xl hover:bg-primary/5 transition-colors text-center block">Choose Scholar Track</a>
-</div>
-<!-- Elite 1-on-1 -->
-<div class="bg-primary text-on-primary p-10 rounded-2xl ambient-shadow flex flex-col relative overflow-hidden group">
-<!-- Subtle background texture logic -->
-<div class="absolute top-0 right-0 p-8 opacity-10">
-<span class="material-symbols-outlined text-[120px]" data-icon="star">star</span>
-</div>
-<div class="relative z-10">
-<span class="inline-block px-3 py-1 bg-white/20 rounded-full text-label-sm mb-4">Recommended</span>
-<h4 class="font-headline-md text-headline-md mb-2">Elite 1-on-1</h4>
-<p class="text-on-primary/80 mb-8">Direct mentorship with former MDs and Directors.</p>
-<div class="mb-8">
-<span class="text-headline-xl font-headline-xl">$6,500</span>
-<span class="text-on-primary/80">/total</span>
-</div>
-<ul class="space-y-4 mb-10 flex-grow">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>Dedicated Senior Executive Mentor</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>Priority interview placement service</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span>Lifetime alumni network access</span>
-</li>
-</ul>
-<a href="/checkout?course=Data+Science+%26+AI&type=1on1&mode=full" class="w-full py-4 bg-white text-primary font-label-md rounded-xl shadow-lg shadow-black/20 hover:bg-surface-container-low transition-colors text-center block">Choose Elite Tier</a>
-</div>
-</div>
-</div>
-</section>
-<!-- Detailed Refund Policy Section -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mt-section-gap pb-20">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-    
-    <!-- Left & Middle: Detailed Policy Rules -->
-    <div class="lg:col-span-2 space-y-12">
-      
-      <!-- 1. 14-Day Refund Eligibility Window -->
-      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="material-symbols-outlined text-primary text-3xl">calendar_today</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">1. 14-Day Refund Eligibility Window</h3>
-        </div>
+  <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen">
+    <Header />
+    <main class="min-h-screen pt-32 pb-24 px-4 flex justify-center">
+      <article class="w-full max-w-4xl bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/60 p-8 sm:p-12 md:p-16 space-y-10">
         
-        <p class="text-secondary text-body-md leading-relaxed mb-6">
-          We offer a full refund on course fees within the first 14 calendar days following your initial payment. The eligibility window is strictly calculated from the exact date and time the payment is processed, subject to the following conditions:
-        </p>
-
-        <div class="space-y-6">
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Valid Technical or Quality Grounds</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              Refund requests will only be considered if you experience verifiable issues with a trainer, class quality, or our core services, and our support team is unable to resolve these issues within a reasonable timeframe.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Personal Circumstance Exemptions</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              Refund requests made within the 14-day window due to personal changes—including, but not limited to, changes in your personal schedule, securing employment, or being assigned new academic/work projects—are strictly non-refundable.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Subjective Opinion &amp; Third-Party Reviews</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              Refund requests based on third-party reviews and public forums are strictly excluded from eligibility. Because online reviews are highly subjective and vary per individual experience, they do not constitute objective grounds for a refund.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Non-Refundable Processing & Payment Fees -->
-      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="material-symbols-outlined text-primary text-3xl">payments</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">2. Non-Refundable Processing &amp; Payment Fees</h3>
+        <!-- Hero/Header Section -->
+        <div class="text-center space-y-4 border-b border-slate-100 pb-8">
+          <span
+            class="inline-block bg-sky-50 border border-sky-100 text-sky-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+            >Pricing Transparency</span
+          >
+          <h1 class="text-3xl sm:text-4xl font-bold text-[#0f3473] tracking-tight">
+            Refund and Returns Policy
+          </h1>
+          <p class="text-slate-500 text-base max-w-2xl mx-auto">
+            At Sky States, we are dedicated to ensuring that our users have a positive and enriching experience with our training courses, whether they are online or in a classroom setting. We understand that circumstances can change, and we want to be as fair and transparent as possible with our refund policies. By purchasing a course on the Sky States website, you agree to our Privacy Policy, Terms of Use, and the refund terms outlined below.
+          </p>
         </div>
 
-        <p class="text-secondary text-body-md leading-relaxed mb-6">
-          Depending on your chosen payment method, certain third-party processing and convenience fees are strictly non-refundable:
-        </p>
-        
-        <div class="space-y-4">
-          <div class="border-l-4 border-primary pl-4 py-1">
-            <h5 class="font-label-md text-on-surface font-bold">Installment &amp; Financing Plans</h5>
-            <p class="text-secondary text-sm mt-1 leading-relaxed">
-              If you utilize a third-party financing partner (such as Afterpay, Klarna, Affirm, Zip, Sezzle, or PayPal Credit), any accrued interest or convenience fees charged by the respective provider cannot be refunded.
+        <!-- Policy Content -->
+        <div class="space-y-10 text-slate-700 leading-relaxed text-base">
+          <!-- Section 1 -->
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1b4a9a]">calendar_today</span>
+              1. 14-Day Refund Eligibility Window
+            </h2>
+            <p class="text-slate-600 text-justify leading-relaxed">
+              We offer a full refund on course fees within the first 14 calendar days following your initial payment. The eligibility window is strictly calculated from the exact date and time the payment is processed, subject to the following conditions:
             </p>
-          </div>
-
-          <div class="border-l-4 border-outline pl-4 py-1">
-            <h5 class="font-label-md text-on-surface font-bold">Credit &amp; Debit Cards</h5>
-            <p class="text-secondary text-sm mt-1 leading-relaxed">
-              Processing and convenience fees applied by card networks at the time of purchase are non-refundable.
-            </p>
-          </div>
-
-          <div class="border-l-4 border-outline pl-4 py-1">
-            <h5 class="font-label-md text-on-surface font-bold">Wire Transfers &amp; Zelle</h5>
-            <p class="text-secondary text-sm mt-1 leading-relaxed">
-              Payments made via direct bank wire transfer or Zelle are exempt from external processing fees. Consequently, 100% of the payment received by Sky States will be refunded if the request is formally approved.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. How to Request a Refund & Processing Timeline -->
-      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="material-symbols-outlined text-primary text-3xl">mail</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">3. How to Request a Refund &amp; Timeline</h3>
-        </div>
-
-        <p class="text-secondary text-body-md leading-relaxed mb-6">
-          To formally initiate a refund request within the 14-day eligibility window, you must complete the following steps:
-        </p>
-
-        <div class="space-y-4 mb-6">
-          <div class="flex items-start gap-4">
-            <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">1</span>
-            <p class="text-secondary text-sm leading-relaxed">
-              First, contact your assigned Relationship Manager directly to formally discuss your concerns.
-            </p>
-          </div>
-          <div class="flex items-start gap-4">
-            <span class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">2</span>
-            <p class="text-secondary text-sm leading-relaxed">
-              Submit a formal, written refund request via email to <a href="mailto:support@skystates.com" class="text-primary hover:underline font-semibold">support@skystates.com</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="bg-primary-container text-on-primary-container p-6 rounded-2xl flex items-start gap-4">
-          <span class="material-symbols-outlined text-[32px]">info</span>
-          <div>
-            <h4 class="font-label-md font-bold uppercase tracking-wider mb-1">Processing Timeline</h4>
-            <p class="text-sm opacity-90 leading-relaxed">
-              Once a refund request is officially approved by our billing department, the approved funds will be processed and returned to the original payment method within 10 to 15 business days.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Code of Conduct & Academic Integrity -->
-      <div class="bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/30 ambient-shadow">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="material-symbols-outlined text-primary text-3xl">gavel</span>
-          <h3 class="font-headline-md text-headline-md text-on-surface">4. Code of Conduct &amp; Academic Integrity</h3>
-        </div>
-
-        <p class="text-secondary text-body-md leading-relaxed mb-6">
-          Sky States maintains a zero-tolerance policy regarding disruptive behavior and intellectual property infringement. We reserve the absolute right to terminate a student's enrollment at any time, without a refund, under the following circumstances:
-        </p>
-
-        <div class="space-y-6">
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Misbehavior</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              Any form of harassment, disrespect, use of inappropriate language, or misconduct directed toward trainers, staff members, or fellow students.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/20">
-            <h4 class="font-label-md text-primary uppercase tracking-wider mb-2">Copyright Infringement</h4>
-            <p class="text-secondary text-sm leading-relaxed">
-              Sharing, distributing, copying, or replicating Sky States course content, curriculum, recordings, or proprietary study materials with any external parties for commercial or business purposes. Sky States will pursue formal legal action against any violations.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    <!-- Right Column: Contacts, Address & Help -->
-    <div class="space-y-6 sticky top-24">
-      <div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 ambient-shadow space-y-6">
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary text-3xl">contact_support</span>
-          <h4 class="font-label-lg text-on-surface font-bold uppercase tracking-wider">Contact &amp; Support</h4>
-        </div>
-        
-        <p class="text-secondary text-sm leading-relaxed">
-          If you have any questions or need assistance, don't hesitate to get in touch with our support team. We are here to help and ensure you have the best possible experience.
-        </p>
-
-        <div class="space-y-4 pt-4 border-t border-outline-variant/20">
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-primary text-xl mt-0.5">mail</span>
-            <div>
-              <p class="text-xs uppercase font-bold text-secondary">Email Support</p>
-              <div class="flex flex-col">
-                <a href="mailto:info@skystates.us" class="text-primary font-semibold hover:underline">info@skystates.us</a>
-                <a href="mailto:support@skystates.us" class="text-primary font-semibold hover:underline">support@skystates.us</a>
+            <div class="space-y-4">
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/40">
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-2">Valid Technical or Quality Grounds</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Refund requests will only be considered if you experience verifiable issues with a trainer, class quality, or our core services, and our support team is unable to resolve these issues within a reasonable timeframe.
+                </p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/40">
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-2">Personal Circumstance Exemptions</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Refund requests made within the 14-day window due to personal changes—including, but not limited to, changes in your personal schedule, securing employment, or being assigned new academic/work projects—are strictly non-refundable.
+                </p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/40">
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-2">Subjective Opinion & Third-Party Reviews</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Refund requests based on third-party reviews and public forums are strictly excluded from eligibility. Because online reviews are highly subjective and vary per individual experience, they do not constitute objective grounds for a refund.
+                </p>
               </div>
             </div>
           </div>
 
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-primary text-xl mt-0.5">call</span>
-            <div>
-              <p class="text-xs uppercase font-bold text-secondary">Call Toll Free</p>
-              <a href="tel:+18888102434" class="text-primary font-semibold hover:underline">(888) 810-2434</a><br />
-              <a href="tel:+18889277072" class="text-primary font-semibold hover:underline">(888) 927-7072</a>
+          <!-- Section 2 -->
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1b4a9a]">payments</span>
+              2. Non-Refundable Processing & Payment Fees
+            </h2>
+            <p class="text-slate-600 text-justify leading-relaxed">
+              Depending on your chosen payment method, certain third-party processing and convenience fees are strictly non-refundable:
+            </p>
+            <div class="space-y-4">
+              <div class="border-l-4 border-[#1b4a9a] pl-4 py-1">
+                <h5 class="font-bold text-slate-800 text-base">Installment & Financing Plans</h5>
+                <p class="text-slate-600 text-sm mt-1 leading-relaxed">
+                  If you utilize a third-party financing partner (such as Afterpay, Klarna, Affirm, Zip, Sezzle, or PayPal Credit), any accrued interest or convenience fees charged by the respective provider cannot be refunded.
+                </p>
+              </div>
+              <div class="border-l-4 border-slate-300 pl-4 py-1">
+                <h5 class="font-bold text-slate-800 text-base">Credit & Debit Cards</h5>
+                <p class="text-slate-600 text-sm mt-1 leading-relaxed">
+                  Processing and convenience fees applied by card networks at the time of purchase are non-refundable.
+                </p>
+              </div>
+              <div class="border-l-4 border-slate-300 pl-4 py-1">
+                <h5 class="font-bold text-slate-800 text-base">Wire Transfers & Zelle</h5>
+                <p class="text-slate-600 text-sm mt-1 leading-relaxed">
+                  Payments made via direct bank wire transfer or Zelle are exempt from external processing fees. Consequently, 100% of the payment received by Sky States will be refunded if the request is formally approved.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-primary text-xl mt-0.5">location_on</span>
-            <div>
-              <p class="text-xs uppercase font-bold text-secondary">Office Address</p>
-              <p class="text-sm text-secondary">1316 Wall St, Suite 2C, Everett, WA 98201, United States</p>
+          <!-- Section 3 -->
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1b4a9a]">mail</span>
+              3. How to Request a Refund & Timeline
+            </h2>
+            <p class="text-slate-600 text-justify leading-relaxed">
+              To formally initiate a refund request within the 14-day eligibility window, you must complete the following steps:
+            </p>
+            <div class="space-y-3 pl-2">
+              <div class="flex items-start gap-4">
+                <span class="w-6 h-6 rounded-full bg-[#1b4a9a] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">1</span>
+                <p class="text-slate-600 text-sm leading-relaxed mt-0.5">
+                  First, contact your assigned Relationship Manager directly to formally discuss your concerns.
+                </p>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="w-6 h-6 rounded-full bg-[#1b4a9a] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">2</span>
+                <p class="text-slate-600 text-sm leading-relaxed mt-0.5">
+                  Submit a formal, written refund request via email to <a href="mailto:support@skystates.com" class="text-sky-600 hover:underline font-semibold">support@skystates.com</a>
+                </p>
+              </div>
+            </div>
+            <div class="bg-sky-50 border border-sky-100 p-6 rounded-2xl flex items-start gap-4">
+              <span class="material-symbols-outlined text-[#1b4a9a] text-[32px]">info</span>
+              <div>
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-1">Processing Timeline</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Once a refund request is officially approved by our billing department, the approved funds will be processed and returned to the original payment method within 10 to 15 business days.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <!-- Trust Indicator -->
-      <div class="bg-secondary-container text-on-secondary-container p-6 rounded-3xl space-y-2">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">verified_user</span>
-          <p class="font-label-md font-bold uppercase tracking-wider text-xs">RADICAL CLARITY</p>
-        </div>
-        <p class="text-xs opacity-80 leading-relaxed">
-          No hidden fees or surprises. Everything is clearly documented to guarantee compliance and protect your learning journey.
-        </p>
-      </div>
-    </div>
 
-  </div>
-</section>
-</main>
-<!-- Footer -->
-<Footer />
-<script>
-        // Micro-interaction for hover effects
-        document.querySelectorAll('.ambient-shadow').forEach(elem => {
-            const card = elem as HTMLElement;
-            card.addEventListener('mousemove', (event) => {
-                const e = event as MouseEvent;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
-</body></html>
+          <!-- Section 4 -->
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1b4a9a]">gavel</span>
+              4. Code of Conduct & Academic Integrity
+            </h2>
+            <p class="text-slate-600 text-justify leading-relaxed">
+              Sky States maintains a zero-tolerance policy regarding disruptive behavior and intellectual property infringement. We reserve the absolute right to terminate a student's enrollment at any time, without a refund, under the following circumstances:
+            </p>
+            <div class="space-y-4">
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/40">
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-2">Misbehavior</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Any form of harassment, disrespect, use of inappropriate language, or misconduct directed toward trainers, staff members, or fellow students.
+                </p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/40">
+                <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-2">Copyright Infringement</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Sharing, distributing, copying, or replicating Sky States course content, curriculum, recordings, or proprietary study materials with any external parties for commercial or business purposes. Sky States will pursue formal legal action against any violations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Contact & Inquiries -->
+          <div class="space-y-4 border-t border-slate-100 pt-8">
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-3">
+              <span class="material-symbols-outlined text-[#1b4a9a]">contact_support</span>
+              5. Contact & Support
+            </h2>
+            <p class="text-slate-600 leading-relaxed">
+              If you have any questions or need assistance, don't hesitate to get in touch with our support team. We are here to help and ensure you have the best possible experience.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#1b4a9a] text-xl mt-0.5">mail</span>
+                <div>
+                  <p class="text-xs uppercase font-bold text-slate-500">Email Support</p>
+                  <div class="flex flex-col">
+                    <a href="mailto:info@skystates.us" class="text-sky-600 font-semibold hover:underline">info@skystates.us</a>
+                    <a href="mailto:support@skystates.us" class="text-sky-600 font-semibold hover:underline">support@skystates.us</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[#1b4a9a] text-xl mt-0.5">call</span>
+                <div>
+                  <p class="text-xs uppercase font-bold text-slate-500">Call Toll Free</p>
+                  <div class="flex flex-col">
+                    <a href="tel:+18888102434" class="text-sky-600 font-semibold hover:underline">(888) 810-2434</a>
+                    <a href="tel:+18889277072" class="text-sky-600 font-semibold hover:underline">(888) 927-7072</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 md:col-span-2">
+                <span class="material-symbols-outlined text-[#1b4a9a] text-xl mt-0.5">location_on</span>
+                <div>
+                  <p class="text-xs uppercase font-bold text-slate-500">Office Address</p>
+                  <p class="text-sm text-slate-600 mt-0.5">1316 Wall St, Suite 2C, Everett, WA 98201, United States</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Trust banner -->
+          <div class="bg-slate-50 border border-slate-200/40 p-6 rounded-2xl flex items-start gap-4">
+            <span class="material-symbols-outlined text-[#1b4a9a] text-[32px]">verified_user</span>
+            <div>
+              <h4 class="font-bold text-[#0f3473] text-sm uppercase tracking-wider mb-1">Radical Clarity</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                No hidden fees or surprises. Everything is clearly documented to guarantee compliance and protect your learning journey.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

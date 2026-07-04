@@ -50,7 +50,7 @@
       {
         "id": "data-science-ai",
         "title": "Data Science & AI",
-        "price": "$2999",
+        "price": "$3499",
         "description": "Learn Python, SQL, ML, Deep learning, Natural Language Processing, Data Visualization, and Generative AI while developing AI applications.",
         "highlights": [
           "Live AI Projects",
@@ -62,7 +62,7 @@
       {
         "id": "cyber-security",
         "title": "Cybersecurity & Ethical Hacking",
-        "price": "$2999",
+        "price": "$3499",
         "description": "Get an expert in ethical hacking, penetration testing, digital forensics, SOC operations, cloud security, and incident response.",
         "highlights": [
           "Hands-On Practice in Security Labs",
@@ -74,7 +74,7 @@
       {
         "id": "devops",
         "title": "DevOps & Cloud Computing",
-        "price": "$2999",
+        "price": "$3499",
         "description": "Learn Linux & Windows administration, AWS, MS Azure, Docker, Kubernetes, Terraform, Jenkins, CI/CD pipelines, monitoring, and cloud automation.",
         "highlights": [
           "Multi-cloud Training",
@@ -128,7 +128,7 @@
   },
   "pricing": {
     "title": "Transparent Pricing",
-    "amount": "$2,999",
+    "amount": "$3499",
     "subtitle": "All-inclusive program fee"
   }
 }

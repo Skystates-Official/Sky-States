@@ -551,7 +551,7 @@ import Footer from "../components/Footer.astro";
 
                 let basePrice = 99;
                 if (window.selectedTier === "normal") {
-                    basePrice = isFullPayment ? 2999 : 99;
+                    basePrice = isFullPayment ? 3499 : 99;
                     if (label) label.textContent = "Scholar Tier Program";
                     if (desc)
                         desc.textContent = "Weekend live labs & placement prep";
@@ -681,7 +681,7 @@ import Footer from "../components/Footer.astro";
                 const basePrice =
                     window.selectedTier === "normal"
                         ? isFullPayment
-                            ? 2999
+                            ? 3499
                             : 99
                         : isFullPayment
                           ? 6500
@@ -732,8 +732,8 @@ import Footer from "../components/Footer.astro";
                     window.checkoutMode = "full";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
-                    if (sPrice) sPrice.textContent = "$2,999";
-                    if (ePrice) ePrice.textContent = "$6,500";
+                    if (sPrice) sPrice.textContent = "$3499";
+                    if (ePrice) ePrice.textContent = "$6,499";
                 } else {
                     window.checkoutMode = "registration";
                     const sPrice = document.getElementById("btn-scholar-price");

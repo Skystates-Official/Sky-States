@@ -299,7 +299,7 @@ Lifetime Compound
 A $40k base increase at age 35 equates to an additional $1.2M in lifetime earnings when compounded with standard growth.
 Investment vs. Returns
 Program Investment
-($2,999)
+($3499)
 Direct Salary Jump
 +$45,000
 Signing Bonus Target
@@ -314,9 +314,9 @@ Return Ratio
 Start Acceleration
 Frequently Asked Questions
 Transparency regarding our ROI models and data integrity.
-How is the $2,999 price point justified against the coaching market?
+How is the $3499 price point justified against the coaching market?
 expand_more
-Traditional career coaching focuses on resume reviews. Our $2,999 investment includes executive-level negotiation coaching, legal review of offer letters by employment counsel, and access to proprietary salary bands not available to the public. Most clients recover the entire program cost within their first full month's paycheck after a successful pivot.
+Traditional career coaching focuses on resume reviews. Our $3499 investment includes executive-level negotiation coaching, legal review of offer letters by employment counsel, and access to proprietary salary bands not available to the public. Most clients recover the entire program cost within their first full month's paycheck after a successful pivot.
 Where does your specific salary data come from?
 expand_more
 We synthesize data from three primary streams: 1) Verified U.S. BLS and international equivalent government datasets, 2) LinkedIn Talent Insights premium enterprise data, and 3) Anonymized internal data from over 2,500 successful client placements in 2023-2024.
@@ -429,7 +429,7 @@ Wyoming Corporate ID #X229-L
 Does Sky States collect SSNs?
 expand_more
 We prioritize your identity protection. **Sky States does not collect Social Security Numbers (SSNs) at any stage of the initial application or onboarding process.** All financial transactions are handled through PCI-compliant, encrypted third-party gateways that secure your data without sharing sensitive identifiers with our internal staff.
-How is the $2,999 investment justified?
+How is the $3499 investment justified?
 expand_more
 Direct ROI
 Average salary increase for transitioned candidates is 42% within 6 months of placement.
@@ -464,7 +464,7 @@ Schedule a Callback
 - **SEO Title**: `Sky States | Career Acceleration &amp; Transition Platform`
 - **SEO Meta Description**: `width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sky States | Career Acceleration &amp; Transition Platform</title>
-<meta content="US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support.`
+<meta content="US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $3499 program with active placement support.`
 
 ### Complete Text Copy:
 ```text
@@ -500,19 +500,19 @@ Master high-demand skills with 6+ months of intensive training and certification
 analytics
 Data Scientist & ML Engineer
 6-month program covering Python, ML, and GenAI. Microsoft DP-900 certification prep included.
-$2,999
+$3499
 Details
 arrow_forward
 security
 SOC Analyst & Ethical Hacker
 6-month intensive masterclass in network security and threat intel. DP-900 exam prep included.
-$2,999
+$3499
 Details
 arrow_forward
 cloud_queue
 Cloud Architect & DevOps Lead
 6-month deep dive into AWS/Azure and CI/CD automation. Includes DP-900 certification prep.
-$2,999
+$3499
 Details
 arrow_forward
 Verified Student Outcomes
@@ -582,7 +582,7 @@ Build a production-grade portfolio with experts.
 Placement
 Resume building, interview prep, and active referrals.
 Transparent Pricing
-$2,999
+$3499
 All-inclusive program fee
 done
 6+ Months of Live Weekend Instruction
@@ -826,7 +826,7 @@ Cyber Security & Ethical Hacking Masterclass
 A 6-month intensive masterclass for senior professionals transitioning into security roles. Master the art of defense and penetration testing with institutional authority.
 verified
 Microsoft SC-900 Prep Included
-Enroll Now — $2,999
+Enroll Now — $3499
 Download Syllabus
 security
 94%
@@ -1023,7 +1023,7 @@ Institutional quality education with clear outcomes.
 Most Popular
 Scholar Track
 Full 6-Month Immersive
-$2,999
+$3499
 / total
 check
 6 Months Live Access
@@ -1036,7 +1036,7 @@ Shared Project Portfolio
 Select Scholar Track
 Elite 1-on-1
 Private Mentorship Track
-$6,500
+$6,499
 / total
 check
 Everything in Scholar Tier
@@ -1256,7 +1256,7 @@ Invest in Your Future
 Transparent Pricing. No Hidden Fees.
 Scholar Track
 Full Immersive Journey
-$2,999
+$3499
 / total
 Tuition Breakdown:
 Live Weekend Classes
@@ -1277,7 +1277,7 @@ Enroll as Scholar
 Most Popular
 Elite 1-on-1
 FAANG Principal Mentor Track
-$6,500
+$6,499
 / total
 check
 Everything in Scholar Tier
@@ -1430,7 +1430,7 @@ Exclusive job listings from our network of corporate partners.
 Transparent Investment
 Choose the path that aligns with your professional ambition.
 Scholar Track
-$2,999
+$3499
 Standard Enrollment
 check
 Complete Curriculum Access
@@ -1443,7 +1443,7 @@ Job Board Access
 Select Scholar Path
 Premium Choice
 Elite 1-on-1
-$6,500
+$6,499
 Full Concierge Engineering
 done_all
 Everything in Scholar Track
@@ -1588,7 +1588,7 @@ Investment Tiers
 Select the path that aligns with your professional velocity.
 Scholar Track
 Group-led acceleration with peer networking.
-$2,999
+$3499
 /total
 check_circle
 Full access to the Career Hub ecosystem
@@ -1601,7 +1601,7 @@ star
 Recommended
 Elite 1-on-1
 Direct mentorship with former MDs and Directors.
-$6,500
+$6,499
 /total
 check_circle
 Dedicated Senior Executive Mentor

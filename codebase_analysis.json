@@ -386,7 +386,7 @@
     },
     "pages\\index.astro": {
       "title": "Sky States | Career Acceleration & Transition Platform",
-      "description": "US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $2,999 program with active placement support.",
+      "description": "US-registered career platform offering live instructor-led training in Data Science, Cyber Security, and DevOps. $3499 program with active placement support.",
       "frontmatter": "import '../styles/global.css';\nimport Header from '../components/Header.astro';\nimport Footer from '../components/Footer.astro';\nimport homepageData from '../data/homepage.json';\n\nconst { hero, trust_bar, about, pricing } = homepageData;",
       "headers": [
         {
@@ -1459,27 +1459,27 @@
           "href": "/about"
         },
         {
-          "text": "Data Science & AI Enroll as Scholar ($2999) - $99",
+          "text": "Data Science & AI Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=Data+Science+%26+AI&type=normal"
         },
         {
-          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($2999) - $99",
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
         },
         {
-          "text": "DevOps & Cloud Computing Enroll as Scholar ($2999) - $99",
+          "text": "DevOps & Cloud Computing Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
         },
         {
-          "text": "Data Science & AI Enroll as Scholar (Full Tuition) - $2999",
+          "text": "Data Science & AI Enroll as Scholar (Full Tuition) - $3499",
           "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
         },
         {
-          "text": "Cyber Security & Ethical Hacking Enroll as Scholar (Full Tuition) - $2999",
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar (Full Tuition) - $3499",
           "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
         },
         {
-          "text": "DevOps & Cloud Computing Enroll as Scholar (Full Tuition) - $2999",
+          "text": "DevOps & Cloud Computing Enroll as Scholar (Full Tuition) - $3499",
           "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
         },
         {
@@ -1543,27 +1543,27 @@
           "href": "/about"
         },
         {
-          "text": "Data Science & AI Enroll as Scholar ($2999) - $99",
+          "text": "Data Science & AI Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=Data+Science+%26+AI&type=normal"
         },
         {
-          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($2999) - $99",
+          "text": "Cyber Security & Ethical Hacking Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
         },
         {
-          "text": "DevOps & Cloud Computing Enroll as Scholar ($2999) - $99",
+          "text": "DevOps & Cloud Computing Enroll as Scholar ($3499) - $99",
           "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
         },
         {
-          "text": "Data Science & AI Scholar Full Tuition - $2999",
+          "text": "Data Science & AI Scholar Full Tuition - $3499",
           "href": "/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
         },
         {
-          "text": "Cyber Security & Ethical Hacking Scholar Full Tuition - $2999",
+          "text": "Cyber Security & Ethical Hacking Scholar Full Tuition - $3499",
           "href": "/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
         },
         {
-          "text": "DevOps & Cloud Computing Scholar Full Tuition - $2999",
+          "text": "DevOps & Cloud Computing Scholar Full Tuition - $3499",
           "href": "/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
         }
       ],
@@ -1630,7 +1630,7 @@
           "a": "No. We prioritize candidate identity protection and cybersecurity. **Sky States does not collect Social Security Numbers (SSNs) or personal identifiers at any stage of the application or onboarding.** All payments are routed securely via PCI-compliant, encrypted gateways."
         },
         {
-          "q": "How is the $2,999 investment justified?",
+          "q": "How is the $3499 investment justified?",
           "a": "Our curriculum is structured to yield clear ROI. Program participants see an average salary increase of 42% within 6 months of placement. The fee includes personalized CTO advisory, interview prep, and full access to Microsoft Professional Certification tracks valued at over $1,200."
         },
         {
@@ -1659,7 +1659,7 @@
       },
       "pricing": {
         "title": "Transparent Pricing",
-        "amount": "$2,999",
+        "amount": "$3499",
         "subtitle": "All-inclusive program fee"
       }
     },

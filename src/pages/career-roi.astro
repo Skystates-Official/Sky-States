@@ -1,376 +1,814 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
 
-<html class="scroll-smooth" lang="en"><head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Salary Guide &amp; Career ROI | Sky States</title>
+        <meta
+            name="description"
+            content="Analyze technology salaries, calculate career return-on-investment, and explore career trajectory growth models for senior positions."
+        />
+        <link rel="canonical" href="https://skystates.us/career-roi" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Salary Guide &amp; Career ROI | Sky States</title>
-<meta name="description" content="Analyze technology salaries, calculate career return-on-investment, and explore career trajectory growth models for senior positions." />
-<link rel="canonical" href="https://skystates.us/career-roi" />
-
-
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-        }
-        .upward-gradient {
-            background: linear-gradient(to top, #f9f9f9 0%, #cde5ff 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(205, 229, 255, 0.5);
-        }
-    </style>
-
-</head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
-<!-- TopAppBar -->
-<Header />
-<main>
-<!-- Editorial Hero Section -->
-<section class="upward-gradient pt-20 pb-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
-<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="z-10">
-<span class="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-label-sm mb-6 inline-block uppercase tracking-wider">Executive Intelligence 2024</span>
-<h1 class="font-headline-xl text-on-surface mb-6 leading-tight">Salary Guide &amp; <br/><span class="text-primary">Career ROI</span></h1>
-<p class="font-body-lg text-secondary max-w-xl mb-10">
-                    Stop guessing your worth. Leverage institutional data to project your growth and quantify the impact of strategic career pivots.
-                </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md shadow-lg hover:shadow-primary-container/20 transition-all active:scale-95">Calculate Your Jump</button>
-<button class="bg-white text-primary border-2 border-primary-fixed px-8 py-4 rounded-xl font-label-md hover:bg-primary-fixed transition-all active:scale-95">Download PDF Guide</button>
-</div>
-</div>
-<div class="relative hidden lg:block h-[500px]">
-<div class="absolute inset-0 bg-white/40 backdrop-blur-3xl rounded-[40px] -rotate-3 border border-white/50"></div>
-<img alt="Financial chart" class="w-full h-full object-cover rounded-[40px] shadow-2xl relative z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbzhcnSzfBKTU-WXXJuUPjnAXc1BH10WXZuEqIAQO7HILxXTWOD7BOR7OQv4hPKm1e9VhkiF5cU1EWs008H29J3TXPqpYV-C7NQtX7IqU7zlKid7qRRG41q0GGWsVbkiCTfEn6VBnSh19iTMpd7X9Ekl9Zy9oKgYhvWXZ4ew4eNnDeuaEa1J0qyG8lFy4S03lk-CoGtA7JZ4CSrQfj8nHtE1h0sMitmC_4uQPPp9VFpfWzzv5WvQrLeYjE5k9N1h6YJWt7ogRqw8c"/>
-</div>
-</div>
-</section>
-<!-- Market Intelligence Section -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
-<div class="max-w-[1280px] mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-<div class="max-w-2xl">
-<h2 class="font-headline-lg text-on-surface mb-4">Market Intelligence</h2>
-<p class="font-body-md text-secondary">Verified benchmarks from the Bureau of Labor Statistics (BLS) and LinkedIn Talent Insights for 2024.</p>
-</div>
-<div class="flex gap-4">
-<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-<span class="text-label-sm">BLS 2024</span>
-</div>
-<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="text-label-sm">LinkedIn Data</span>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30">
-<div class="mb-6">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">analytics</span>
-<h3 class="font-headline-md mb-2">Senior Supply</h3>
-<p class="text-label-sm text-secondary uppercase tracking-wider">Market Scarcity Index</p>
-</div>
-<div class="space-y-4">
-<div class="flex justify-between items-end border-b border-outline-variant pb-2">
-<span class="text-on-surface">AI Specialists</span>
-<span class="text-primary font-bold text-xl">4.2% Gap</span>
-</div>
-<p class="text-sm text-on-surface-variant">LinkedIn reports a 35% increase in job postings for Senior AI roles with a 12% decrease in qualified applicants.</p>
-</div>
-</div>
-<div class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30">
-<div class="mb-6">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">trending_up</span>
-<h3 class="font-headline-md mb-2">Wage Growth</h3>
-<p class="text-label-sm text-secondary uppercase tracking-wider">Annual % Delta</p>
-</div>
-<div class="space-y-4">
-<div class="flex justify-between items-end border-b border-outline-variant pb-2">
-<span class="text-on-surface">Cybersecurity</span>
-<span class="text-primary font-bold text-xl">+8.4% YoY</span>
-</div>
-<p class="text-sm text-on-surface-variant">BLS projections indicate a 32% growth rate in Cyber Director roles through 2030, significantly above average.</p>
-</div>
-</div>
-<div class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30">
-<div class="mb-6">
-<span class="material-symbols-outlined text-primary text-4xl mb-4">stars</span>
-<h3 class="font-headline-md mb-2">TC Breakdown</h3>
-<p class="text-label-sm text-secondary uppercase tracking-wider">Compensation Mix</p>
-</div>
-<div class="space-y-4">
-<div class="flex justify-between items-end border-b border-outline-variant pb-2">
-<span class="text-on-surface">Equity/Bonus</span>
-<span class="text-primary font-bold text-xl">40% of TC</span>
-</div>
-<p class="text-sm text-on-surface-variant">Elite tech roles in North America now leverage performance bonuses and RSU grants for nearly half of total comp.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Global Salary Benchmarks -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
-<div class="max-w-[1280px] mx-auto">
-<div class="text-center mb-16">
-<h2 class="font-headline-lg text-on-surface mb-4">Global Salary Benchmarks</h2>
-<p class="font-body-md text-secondary">Median Total Compensation for 2024 (USD Equivalent)</p>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-separate border-spacing-0 min-w-[800px]">
-<thead>
-<tr>
-<th class="py-6 px-8 bg-surface-container font-label-md rounded-tl-2xl border-b-2 border-primary">Role Category</th>
-<th class="py-6 px-8 bg-surface-container font-label-md border-b-2 border-primary">United States (Tier 1)</th>
-<th class="py-6 px-8 bg-surface-container font-label-md border-b-2 border-primary">United Kingdom</th>
-<th class="py-6 px-8 bg-surface-container font-label-md rounded-tr-2xl border-b-2 border-primary">Canada</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-surface-container">
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-8 px-8 font-bold text-on-surface">Data Science &amp; AI</td>
-<td class="py-8 px-8 font-label-md">$182,000 - $265,000</td>
-<td class="py-8 px-8 text-secondary">£85k - £140k</td>
-<td class="py-8 px-8 text-secondary">C$155k - C$210k</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-8 px-8 font-bold text-on-surface">Cybersecurity Architect</td>
-<td class="py-8 px-8 font-label-md">$175,000 - $240,000</td>
-<td class="py-8 px-8 text-secondary">£90k - £135k</td>
-<td class="py-8 px-8 text-secondary">C$145k - C$195k</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-8 px-8 font-bold text-on-surface">DevOps / SRE Lead</td>
-<td class="py-8 px-8 font-label-md">$168,000 - $225,000</td>
-<td class="py-8 px-8 text-secondary">£75k - £125k</td>
-<td class="py-8 px-8 text-secondary">C$140k - C$185k</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="py-8 px-8 font-bold text-on-surface">Solutions Architecture</td>
-<td class="py-8 px-8 font-label-md">$190,000 - $275,000</td>
-<td class="py-8 px-8 text-secondary">£95k - £150k</td>
-<td class="py-8 px-8 text-secondary">C$165k - C$230k</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<!-- Transition ROI Deep Dive -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-on-surface text-surface relative overflow-hidden">
-<div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-<path d="M0 100 C 20 0, 50 0, 100 100" fill="none" stroke="white" stroke-width="0.1"></path>
-</svg>
-</div>
-<div class="max-w-[1280px] mx-auto relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-<div>
-<h2 class="font-headline-xl text-surface mb-8">Transition ROI Deep Dive</h2>
-<p class="font-body-lg text-surface-variant mb-10 leading-relaxed">
-                        Moving into a strategic leadership or specialized technical role isn't just about the next paycheck. It's about fundamental capital allocation for your lifetime earning potential.
-                    </p>
-<div class="space-y-6">
-<div class="flex gap-6 p-6 rounded-2xl bg-surface/10 border border-surface/20">
-<span class="material-symbols-outlined text-primary-fixed-dim text-4xl">payments</span>
-<div>
-<h4 class="font-label-md text-surface mb-1">Immediate Uplift</h4>
-<p class="text-sm text-surface-variant">Average client sees a 22% increase in base salary within the first 6 months post-program completion.</p>
-</div>
-</div>
-<div class="flex gap-6 p-6 rounded-2xl bg-surface/10 border border-surface/20">
-<span class="material-symbols-outlined text-primary-fixed-dim text-4xl">history_edu</span>
-<div>
-<h4 class="font-label-md text-surface mb-1">Lifetime Compound</h4>
-<p class="text-sm text-surface-variant">A $40k base increase at age 35 equates to an additional $1.2M in lifetime earnings when compounded with standard growth.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="bg-surface p-10 rounded-[32px] text-on-surface">
-<h3 class="font-headline-md mb-6 text-center">Interactive ROI Calculator</h3>
-
-<!-- Salary Slider Control -->
-<div class="mb-8 p-4 bg-surface-container rounded-2xl border border-outline-variant/30">
-  <div class="flex justify-between items-center mb-3">
-    <span class="text-secondary font-label-md">Current Annual Salary</span>
-    <span class="font-bold text-primary text-xl" id="slider-salary-display">$120,000</span>
-  </div>
-  <input type="range" id="salary-slider" min="80000" max="250000" step="5000" value="120000" class="w-full h-2 bg-outline-variant/30 rounded-lg appearance-none cursor-pointer accent-primary" />
-  <div class="flex justify-between text-[10px] text-on-surface-variant mt-1">
-    <span>$80k</span>
-    <span>$150k</span>
-    <span>$250k</span>
-  </div>
-</div>
-
-<div class="space-y-4 mb-10">
-<div class="grid grid-cols-2 py-4 border-b border-surface-container">
-<span class="text-secondary">Program Investment</span>
-<span class="text-right font-bold text-error">($2,999)</span>
-</div>
-<div class="grid grid-cols-2 py-4 border-b border-surface-container">
-<span class="text-secondary">Projected Salary Jump (35%)</span>
-<span class="text-right font-bold text-primary" id="roi-salary-jump">+$42,000</span>
-</div>
-<div class="grid grid-cols-2 py-4 border-b border-surface-container">
-<span class="text-secondary">Signing Bonus Target (10%)</span>
-<span class="text-right font-bold text-primary" id="roi-bonus">+$12,000</span>
-</div>
-<div class="grid grid-cols-2 py-4 border-b border-surface-container">
-<span class="text-secondary">Equity Grant Target (20%)</span>
-<span class="text-right font-bold text-primary" id="roi-equity">+$24,000</span>
-</div>
-<div class="grid grid-cols-2 pt-6 items-end">
-<div>
-<span class="font-label-md block">12-Mo ROI</span>
-<span class="text-label-sm text-secondary italic">Net Total Value</span>
-</div>
-<span class="text-right font-headline-md text-primary" id="roi-net-value">$75,001</span>
-</div>
-</div>
-<div class="bg-primary-container/10 p-6 rounded-2xl mb-8">
-<div class="flex justify-between items-center mb-2">
-<span class="text-label-sm uppercase font-bold text-primary">Return Ratio</span>
-<span class="text-primary font-bold text-2xl" id="roi-ratio">25.0x</span>
-</div>
-<div class="w-full bg-surface-container rounded-full h-2">
-<div class="bg-primary h-2 rounded-full" id="roi-bar" style="width: 85%"></div>
-</div>
-</div>
-<button class="w-full bg-primary text-on-primary py-5 rounded-2xl font-label-md shadow-xl hover:scale-[1.02] active:scale-95 transition-all">Start Acceleration</button>
-</div>
-</div>
-</div>
-</section>
-<!-- FAQ Section Deep Dive -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
-<div class="max-w-3xl mx-auto">
-<div class="text-center mb-16">
-<h2 class="font-headline-lg text-on-surface mb-4">Frequently Asked Questions</h2>
-<p class="font-body-md text-secondary">Transparency regarding our ROI models and data integrity.</p>
-</div>
-<div class="space-y-4">
-<details class="group bg-white rounded-2xl border border-surface-container overflow-hidden" open="">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none">
-<span class="font-label-md pr-4">How is the $2,999 price point justified against the coaching market?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm">
-                        Traditional career coaching focuses on resume reviews. Our $2,999 investment includes executive-level negotiation coaching, legal review of offer letters by employment counsel, and access to proprietary salary bands not available to the public. Most clients recover the entire program cost within their first full month's paycheck after a successful pivot.
-                    </div>
-</details>
-<details class="group bg-white rounded-2xl border border-surface-container overflow-hidden">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none">
-<span class="font-label-md pr-4">Where does your specific salary data come from?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm">
-                        We synthesize data from three primary streams: 1) Verified U.S. BLS and international equivalent government datasets, 2) LinkedIn Talent Insights premium enterprise data, and 3) Anonymized internal data from over 2,500 successful client placements in 2023-2024.
-                    </div>
-</details>
-<details class="group bg-white rounded-2xl border border-surface-container overflow-hidden">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none">
-<span class="font-label-md pr-4">Is the ROI figure guaranteed?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm">
-                        While we cannot legally guarantee specific employment outcomes, our methodology is designed around "asymmetric advantage." If your initial offer does not represent at least a 15% increase over your current market value, we provide a secondary intensive support phase at no additional cost.
-                    </div>
-</details>
-<details class="group bg-white rounded-2xl border border-surface-container overflow-hidden">
-<summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none">
-<span class="font-label-md pr-4">Does the program cover international tax implications for remote roles?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm">
-                        Yes. Part of our negotiation intelligence includes "Local Market Normalization." We help you understand the true value of an offer by factoring in regional tax brackets and cost-of-living adjustments for global remote opportunities.
-                    </div>
-</details>
-</div>
-</div>
-</section>
-<!-- Disclaimer -->
-<section class="pb-section-gap px-margin-mobile">
-<div class="max-w-4xl mx-auto text-center opacity-60">
-<p class="text-label-sm leading-relaxed">
-                Disclaimer: Individual outcomes vary. Salary data is based on industry benchmarks and internal client success history. We do not guarantee specific employment offers or salary figures. Your results will depend on your personal experience, interview performance, and current market conditions.
-            </p>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<Footer />
-<script>
-    // Visibility observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    "FILL" 0,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
             }
-        });
-    }, { threshold: 0.1 });
+            .upward-gradient {
+                background: linear-gradient(to top, #f9f9f9 0%, #cde5ff 100%);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(205, 229, 255, 0.5);
+            }
+        </style>
+    </head>
+    <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+        <!-- TopAppBar -->
+        <Header />
+        <main>
+            <!-- Editorial Hero Section -->
+            <section
+                class="upward-gradient pt-20 pb-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden"
+            >
+                <div
+                    class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center"
+                >
+                    <div class="z-10">
+                        <span
+                            class="bg-primary-fixed text-on-primary-fixed px-4 py-1 rounded-full text-label-sm mb-6 inline-block uppercase tracking-wider"
+                            >Executive Intelligence 2024</span
+                        >
+                        <h1
+                            class="font-headline-xl text-on-surface mb-6 leading-tight"
+                        >
+                            Salary Guide &amp; <br /><span class="text-primary"
+                                >Career ROI</span
+                            >
+                        </h1>
+                        <p class="font-body-lg text-secondary max-w-xl mb-10">
+                            Stop guessing your worth. Leverage institutional
+                            data to project your growth and quantify the impact
+                            of strategic career pivots.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button
+                                class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md shadow-lg hover:shadow-primary-container/20 transition-all active:scale-95"
+                                >Calculate Your Jump</button
+                            >
+                            <button
+                                class="bg-white text-primary border-2 border-primary-fixed px-8 py-4 rounded-xl font-label-md hover:bg-primary-fixed transition-all active:scale-95"
+                                >Download PDF Guide</button
+                            >
+                        </div>
+                    </div>
+                    <div class="relative hidden lg:block h-[500px]">
+                        <div
+                            class="absolute inset-0 bg-white/40 backdrop-blur-3xl rounded-[40px] -rotate-3 border border-white/50"
+                        >
+                        </div>
+                        <img
+                            alt="Financial chart"
+                            class="w-full h-full object-cover rounded-[40px] shadow-2xl relative z-10"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbzhcnSzfBKTU-WXXJuUPjnAXc1BH10WXZuEqIAQO7HILxXTWOD7BOR7OQv4hPKm1e9VhkiF5cU1EWs008H29J3TXPqpYV-C7NQtX7IqU7zlKid7qRRG41q0GGWsVbkiCTfEn6VBnSh19iTMpd7X9Ekl9Zy9oKgYhvWXZ4ew4eNnDeuaEa1J0qyG8lFy4S03lk-CoGtA7JZ4CSrQfj8nHtE1h0sMitmC_4uQPPp9VFpfWzzv5WvQrLeYjE5k9N1h6YJWt7ogRqw8c"
+                        />
+                    </div>
+                </div>
+            </section>
+            <!-- Market Intelligence Section -->
+            <section
+                class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface"
+            >
+                <div class="max-w-[1280px] mx-auto">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
+                    >
+                        <div class="max-w-2xl">
+                            <h2 class="font-headline-lg text-on-surface mb-4">
+                                Market Intelligence
+                            </h2>
+                            <p class="font-body-md text-secondary">
+                                Verified benchmarks from the Bureau of Labor
+                                Statistics (BLS) and LinkedIn Talent Insights
+                                for 2024.
+                            </p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant"
+                            >
+                                <span class="w-2 h-2 rounded-full bg-primary"
+                                ></span>
+                                <span class="text-label-sm">BLS 2024</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant"
+                            >
+                                <span class="w-2 h-2 rounded-full bg-secondary"
+                                ></span>
+                                <span class="text-label-sm">LinkedIn Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                        <div
+                            class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30"
+                        >
+                            <div class="mb-6">
+                                <span
+                                    class="material-symbols-outlined text-primary text-4xl mb-4"
+                                    >analytics</span
+                                >
+                                <h3 class="font-headline-md mb-2">
+                                    Senior Supply
+                                </h3>
+                                <p
+                                    class="text-label-sm text-secondary uppercase tracking-wider"
+                                >
+                                    Market Scarcity Index
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="flex justify-between items-end border-b border-outline-variant pb-2"
+                                >
+                                    <span class="text-on-surface"
+                                        >AI Specialists</span
+                                    >
+                                    <span class="text-primary font-bold text-xl"
+                                        >4.2% Gap</span
+                                    >
+                                </div>
+                                <p class="text-sm text-on-surface-variant">
+                                    LinkedIn reports a 35% increase in job
+                                    postings for Senior AI roles with a 12%
+                                    decrease in qualified applicants.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30"
+                        >
+                            <div class="mb-6">
+                                <span
+                                    class="material-symbols-outlined text-primary text-4xl mb-4"
+                                    >trending_up</span
+                                >
+                                <h3 class="font-headline-md mb-2">
+                                    Wage Growth
+                                </h3>
+                                <p
+                                    class="text-label-sm text-secondary uppercase tracking-wider"
+                                >
+                                    Annual % Delta
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="flex justify-between items-end border-b border-outline-variant pb-2"
+                                >
+                                    <span class="text-on-surface"
+                                        >Cybersecurity</span
+                                    >
+                                    <span class="text-primary font-bold text-xl"
+                                        >+8.4% YoY</span
+                                    >
+                                </div>
+                                <p class="text-sm text-on-surface-variant">
+                                    BLS projections indicate a 32% growth rate
+                                    in Cyber Director roles through 2030,
+                                    significantly above average.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-low rounded-2xl border border-outline-variant/30"
+                        >
+                            <div class="mb-6">
+                                <span
+                                    class="material-symbols-outlined text-primary text-4xl mb-4"
+                                    >stars</span
+                                >
+                                <h3 class="font-headline-md mb-2">
+                                    TC Breakdown
+                                </h3>
+                                <p
+                                    class="text-label-sm text-secondary uppercase tracking-wider"
+                                >
+                                    Compensation Mix
+                                </p>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="flex justify-between items-end border-b border-outline-variant pb-2"
+                                >
+                                    <span class="text-on-surface"
+                                        >Equity/Bonus</span
+                                    >
+                                    <span class="text-primary font-bold text-xl"
+                                        >40% of TC</span
+                                    >
+                                </div>
+                                <p class="text-sm text-on-surface-variant">
+                                    Elite tech roles in North America now
+                                    leverage performance bonuses and RSU grants
+                                    for nearly half of total comp.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Global Salary Benchmarks -->
+            <section
+                class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest"
+            >
+                <div class="max-w-[1280px] mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="font-headline-lg text-on-surface mb-4">
+                            Global Salary Benchmarks
+                        </h2>
+                        <p class="font-body-md text-secondary">
+                            Median Total Compensation for 2024 (USD Equivalent)
+                        </p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table
+                            class="w-full text-left border-separate border-spacing-0 min-w-[800px]"
+                        >
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="py-6 px-8 bg-surface-container font-label-md rounded-tl-2xl border-b-2 border-primary"
+                                        >Role Category</th
+                                    >
+                                    <th
+                                        class="py-6 px-8 bg-surface-container font-label-md border-b-2 border-primary"
+                                        >United States (Tier 1)</th
+                                    >
+                                    <th
+                                        class="py-6 px-8 bg-surface-container font-label-md border-b-2 border-primary"
+                                        >United Kingdom</th
+                                    >
+                                    <th
+                                        class="py-6 px-8 bg-surface-container font-label-md rounded-tr-2xl border-b-2 border-primary"
+                                        >Canada</th
+                                    >
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-surface-container">
+                                <tr
+                                    class="hover:bg-surface-container-low transition-colors"
+                                >
+                                    <td
+                                        class="py-8 px-8 font-bold text-on-surface"
+                                        >Data Science &amp; AI</td
+                                    >
+                                    <td class="py-8 px-8 font-label-md"
+                                        >$182,000 - $265,000</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >£85k - £140k</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >C$155k - C$210k</td
+                                    >
+                                </tr>
+                                <tr
+                                    class="hover:bg-surface-container-low transition-colors"
+                                >
+                                    <td
+                                        class="py-8 px-8 font-bold text-on-surface"
+                                        >Cybersecurity Architect</td
+                                    >
+                                    <td class="py-8 px-8 font-label-md"
+                                        >$175,000 - $240,000</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >£90k - £135k</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >C$145k - C$195k</td
+                                    >
+                                </tr>
+                                <tr
+                                    class="hover:bg-surface-container-low transition-colors"
+                                >
+                                    <td
+                                        class="py-8 px-8 font-bold text-on-surface"
+                                        >DevOps / SRE Lead</td
+                                    >
+                                    <td class="py-8 px-8 font-label-md"
+                                        >$168,000 - $225,000</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >£75k - £125k</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >C$140k - C$185k</td
+                                    >
+                                </tr>
+                                <tr
+                                    class="hover:bg-surface-container-low transition-colors"
+                                >
+                                    <td
+                                        class="py-8 px-8 font-bold text-on-surface"
+                                        >Solutions Architecture</td
+                                    >
+                                    <td class="py-8 px-8 font-label-md"
+                                        >$190,000 - $275,000</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >£95k - £150k</td
+                                    >
+                                    <td class="py-8 px-8 text-secondary"
+                                        >C$165k - C$230k</td
+                                    >
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Transition ROI Deep Dive -->
+            <section
+                class="py-section-gap px-margin-mobile md:px-margin-desktop bg-on-surface text-surface relative overflow-hidden"
+            >
+                <div
+                    class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none"
+                >
+                    <svg
+                        class="w-full h-full"
+                        preserveAspectRatio="none"
+                        viewBox="0 0 100 100"
+                    >
+                        <path
+                            d="M0 100 C 20 0, 50 0, 100 100"
+                            fill="none"
+                            stroke="white"
+                            stroke-width="0.1"></path>
+                    </svg>
+                </div>
+                <div class="max-w-[1280px] mx-auto relative z-10">
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center"
+                    >
+                        <div>
+                            <h2 class="font-headline-xl text-surface mb-8">
+                                Transition ROI Deep Dive
+                            </h2>
+                            <p
+                                class="font-body-lg text-surface-variant mb-10 leading-relaxed"
+                            >
+                                Moving into a strategic leadership or
+                                specialized technical role isn't just about the
+                                next paycheck. It's about fundamental capital
+                                allocation for your lifetime earning potential.
+                            </p>
+                            <div class="space-y-6">
+                                <div
+                                    class="flex gap-6 p-6 rounded-2xl bg-surface/10 border border-surface/20"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-primary-fixed-dim text-4xl"
+                                        >payments</span
+                                    >
+                                    <div>
+                                        <h4
+                                            class="font-label-md text-surface mb-1"
+                                        >
+                                            Immediate Uplift
+                                        </h4>
+                                        <p class="text-sm text-surface-variant">
+                                            Average client sees a 22% increase
+                                            in base salary within the first 6
+                                            months post-program completion.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex gap-6 p-6 rounded-2xl bg-surface/10 border border-surface/20"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-primary-fixed-dim text-4xl"
+                                        >history_edu</span
+                                    >
+                                    <div>
+                                        <h4
+                                            class="font-label-md text-surface mb-1"
+                                        >
+                                            Lifetime Compound
+                                        </h4>
+                                        <p class="text-sm text-surface-variant">
+                                            A $40k base increase at age 35
+                                            equates to an additional $1.2M in
+                                            lifetime earnings when compounded
+                                            with standard growth.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-surface p-10 rounded-[32px] text-on-surface"
+                        >
+                            <h3 class="font-headline-md mb-6 text-center">
+                                Interactive ROI Calculator
+                            </h3>
 
-    document.querySelectorAll('section > div').forEach(section => {
-        section.classList.add('transition-[opacity,transform]', 'duration-1000', 'opacity-0', 'translate-y-10');
-        observer.observe(section);
-    });
+                            <!-- Salary Slider Control -->
+                            <div
+                                class="mb-8 p-4 bg-surface-container rounded-2xl border border-outline-variant/30"
+                            >
+                                <div
+                                    class="flex justify-between items-center mb-3"
+                                >
+                                    <span class="text-secondary font-label-md"
+                                        >Current Annual Salary</span
+                                    >
+                                    <span
+                                        class="font-bold text-primary text-xl"
+                                        id="slider-salary-display"
+                                        >$120,000</span
+                                    >
+                                </div>
+                                <input
+                                    type="range"
+                                    id="salary-slider"
+                                    min="80000"
+                                    max="250000"
+                                    step="5000"
+                                    value="120000"
+                                    class="w-full h-2 bg-outline-variant/30 rounded-lg appearance-none cursor-pointer accent-primary"
+                                />
+                                <div
+                                    class="flex justify-between text-[10px] text-on-surface-variant mt-1"
+                                >
+                                    <span>$80k</span>
+                                    <span>$150k</span>
+                                    <span>$250k</span>
+                                </div>
+                            </div>
 
-    // ROI Salary Slider Logic
-    const slider = document.getElementById('salary-slider') as HTMLInputElement;
-    const salaryDisplay = document.getElementById('slider-salary-display') as HTMLElement;
-    const jumpDisplay = document.getElementById('roi-salary-jump') as HTMLElement;
-    const bonusDisplay = document.getElementById('roi-bonus') as HTMLElement;
-    const equityDisplay = document.getElementById('roi-equity') as HTMLElement;
-    const netDisplay = document.getElementById('roi-net-value') as HTMLElement;
-    const ratioDisplay = document.getElementById('roi-ratio') as HTMLElement;
-    const barDisplay = document.getElementById('roi-bar') as HTMLElement;
+                            <div class="space-y-4 mb-10">
+                                <div
+                                    class="grid grid-cols-2 py-4 border-b border-surface-container"
+                                >
+                                    <span class="text-secondary"
+                                        >Program Investment</span
+                                    >
+                                    <span
+                                        class="text-right font-bold text-error"
+                                        >($3499)</span
+                                    >
+                                </div>
+                                <div
+                                    class="grid grid-cols-2 py-4 border-b border-surface-container"
+                                >
+                                    <span class="text-secondary"
+                                        >Projected Salary Jump (35%)</span
+                                    >
+                                    <span
+                                        class="text-right font-bold text-primary"
+                                        id="roi-salary-jump">+$42,000</span
+                                    >
+                                </div>
+                                <div
+                                    class="grid grid-cols-2 py-4 border-b border-surface-container"
+                                >
+                                    <span class="text-secondary"
+                                        >Signing Bonus Target (10%)</span
+                                    >
+                                    <span
+                                        class="text-right font-bold text-primary"
+                                        id="roi-bonus">+$12,000</span
+                                    >
+                                </div>
+                                <div
+                                    class="grid grid-cols-2 py-4 border-b border-surface-container"
+                                >
+                                    <span class="text-secondary"
+                                        >Equity Grant Target (20%)</span
+                                    >
+                                    <span
+                                        class="text-right font-bold text-primary"
+                                        id="roi-equity">+$24,000</span
+                                    >
+                                </div>
+                                <div class="grid grid-cols-2 pt-6 items-end">
+                                    <div>
+                                        <span class="font-label-md block"
+                                            >12-Mo ROI</span
+                                        >
+                                        <span
+                                            class="text-label-sm text-secondary italic"
+                                            >Net Total Value</span
+                                        >
+                                    </div>
+                                    <span
+                                        class="text-right font-headline-md text-primary"
+                                        id="roi-net-value">$75,001</span
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="bg-primary-container/10 p-6 rounded-2xl mb-8"
+                            >
+                                <div
+                                    class="flex justify-between items-center mb-2"
+                                >
+                                    <span
+                                        class="text-label-sm uppercase font-bold text-primary"
+                                        >Return Ratio</span
+                                    >
+                                    <span
+                                        class="text-primary font-bold text-2xl"
+                                        id="roi-ratio">25.0x</span
+                                    >
+                                </div>
+                                <div
+                                    class="w-full bg-surface-container rounded-full h-2"
+                                >
+                                    <div
+                                        class="bg-primary h-2 rounded-full"
+                                        id="roi-bar"
+                                        style="width: 85%"
+                                    >
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full bg-primary text-on-primary py-5 rounded-2xl font-label-md shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
+                                >Start Acceleration</button
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- FAQ Section Deep Dive -->
+            <section
+                class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface"
+            >
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="font-headline-lg text-on-surface mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                        <p class="font-body-md text-secondary">
+                            Transparency regarding our ROI models and data
+                            integrity.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <details
+                            class="group bg-white rounded-2xl border border-surface-container overflow-hidden"
+                            open=""
+                        >
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none"
+                            >
+                                <span class="font-label-md pr-4"
+                                    >How is the $3499 price point justified
+                                    against the coaching market?</span
+                                >
+                                <span
+                                    class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                                    >expand_more</span
+                                >
+                            </summary>
+                            <div
+                                class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm"
+                            >
+                                Traditional career coaching focuses on resume
+                                reviews. Our $3499 investment includes
+                                executive-level negotiation coaching, legal
+                                review of offer letters by employment counsel,
+                                and access to proprietary salary bands not
+                                available to the public. Most clients recover
+                                the entire program cost within their first full
+                                month's paycheck after a successful pivot.
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white rounded-2xl border border-surface-container overflow-hidden"
+                        >
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none"
+                            >
+                                <span class="font-label-md pr-4"
+                                    >Where does your specific salary data come
+                                    from?</span
+                                >
+                                <span
+                                    class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                                    >expand_more</span
+                                >
+                            </summary>
+                            <div
+                                class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm"
+                            >
+                                We synthesize data from three primary streams:
+                                1) Verified U.S. BLS and international
+                                equivalent government datasets, 2) LinkedIn
+                                Talent Insights premium enterprise data, and 3)
+                                Anonymized internal data from over 2,500
+                                successful client placements in 2023-2024.
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white rounded-2xl border border-surface-container overflow-hidden"
+                        >
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none"
+                            >
+                                <span class="font-label-md pr-4"
+                                    >Is the ROI figure guaranteed?</span
+                                >
+                                <span
+                                    class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                                    >expand_more</span
+                                >
+                            </summary>
+                            <div
+                                class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm"
+                            >
+                                While we cannot legally guarantee specific
+                                employment outcomes, our methodology is designed
+                                around "asymmetric advantage." If your initial
+                                offer does not represent at least a 15% increase
+                                over your current market value, we provide a
+                                secondary intensive support phase at no
+                                additional cost.
+                            </div>
+                        </details>
+                        <details
+                            class="group bg-white rounded-2xl border border-surface-container overflow-hidden"
+                        >
+                            <summary
+                                class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface-container-low transition-colors list-none"
+                            >
+                                <span class="font-label-md pr-4"
+                                    >Does the program cover international tax
+                                    implications for remote roles?</span
+                                >
+                                <span
+                                    class="material-symbols-outlined group-open:rotate-180 transition-transform"
+                                    >expand_more</span
+                                >
+                            </summary>
+                            <div
+                                class="p-6 pt-0 text-on-surface-variant leading-relaxed text-sm"
+                            >
+                                Yes. Part of our negotiation intelligence
+                                includes "Local Market Normalization." We help
+                                you understand the true value of an offer by
+                                factoring in regional tax brackets and
+                                cost-of-living adjustments for global remote
+                                opportunities.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </section>
+            <!-- Disclaimer -->
+            <section class="pb-section-gap px-margin-mobile">
+                <div class="max-w-4xl mx-auto text-center opacity-60">
+                    <p class="text-label-sm leading-relaxed">
+                        Disclaimer: Individual outcomes vary. Salary data is
+                        based on industry benchmarks and internal client success
+                        history. We do not guarantee specific employment offers
+                        or salary figures. Your results will depend on your
+                        personal experience, interview performance, and current
+                        market conditions.
+                    </p>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <Footer />
+        <script>
+            // Visibility observer for scroll animations
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add(
+                                "opacity-100",
+                                "translate-y-0",
+                            );
+                            entry.target.classList.remove(
+                                "opacity-0",
+                                "translate-y-10",
+                            );
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
 
-    function updateRoi() {
-        if (!slider || !salaryDisplay || !jumpDisplay || !bonusDisplay || !equityDisplay || !netDisplay || !ratioDisplay || !barDisplay) return;
-        const currentSalary = parseInt(slider.value, 10);
-        
-        const jump = Math.round(currentSalary * 0.35);
-        const bonus = Math.round(currentSalary * 0.10);
-        const equity = Math.round(currentSalary * 0.20);
-        const totalValue = (jump + bonus + equity) - 2999;
-        const ratio = (totalValue / 2999).toFixed(1);
+            document.querySelectorAll("section > div").forEach((section) => {
+                section.classList.add(
+                    "transition-[opacity,transform]",
+                    "duration-1000",
+                    "opacity-0",
+                    "translate-y-10",
+                );
+                observer.observe(section);
+            });
 
-        salaryDisplay.textContent = '$' + currentSalary.toLocaleString();
-        jumpDisplay.textContent = '+$' + jump.toLocaleString();
-        bonusDisplay.textContent = '+$' + bonus.toLocaleString();
-        equityDisplay.textContent = '+$' + equity.toLocaleString();
-        netDisplay.textContent = '$' + totalValue.toLocaleString();
-        ratioDisplay.textContent = ratio + 'x';
+            // ROI Salary Slider Logic
+            const slider = document.getElementById(
+                "salary-slider",
+            ) as HTMLInputElement;
+            const salaryDisplay = document.getElementById(
+                "slider-salary-display",
+            ) as HTMLElement;
+            const jumpDisplay = document.getElementById(
+                "roi-salary-jump",
+            ) as HTMLElement;
+            const bonusDisplay = document.getElementById(
+                "roi-bonus",
+            ) as HTMLElement;
+            const equityDisplay = document.getElementById(
+                "roi-equity",
+            ) as HTMLElement;
+            const netDisplay = document.getElementById(
+                "roi-net-value",
+            ) as HTMLElement;
+            const ratioDisplay = document.getElementById(
+                "roi-ratio",
+            ) as HTMLElement;
+            const barDisplay = document.getElementById(
+                "roi-bar",
+            ) as HTMLElement;
 
-        const percentage = Math.min(100, Math.max(10, (totalValue / 150000) * 100));
-        barDisplay.style.width = percentage + '%';
-    }
+            function updateRoi() {
+                if (
+                    !slider ||
+                    !salaryDisplay ||
+                    !jumpDisplay ||
+                    !bonusDisplay ||
+                    !equityDisplay ||
+                    !netDisplay ||
+                    !ratioDisplay ||
+                    !barDisplay
+                )
+                    return;
+                const currentSalary = parseInt(slider.value, 10);
 
-    slider?.addEventListener('input', updateRoi);
-    updateRoi();
-</script>
-</body></html>
+                const jump = Math.round(currentSalary * 0.35);
+                const bonus = Math.round(currentSalary * 0.1);
+                const equity = Math.round(currentSalary * 0.2);
+                const totalValue = jump + bonus + equity - 3499;
+                const ratio = (totalValue / 3499).toFixed(1);
+
+                salaryDisplay.textContent =
+                    "$" + currentSalary.toLocaleString();
+                jumpDisplay.textContent = "+$" + jump.toLocaleString();
+                bonusDisplay.textContent = "+$" + bonus.toLocaleString();
+                equityDisplay.textContent = "+$" + equity.toLocaleString();
+                netDisplay.textContent = "$" + totalValue.toLocaleString();
+                ratioDisplay.textContent = ratio + "x";
+
+                const percentage = Math.min(
+                    100,
+                    Math.max(10, (totalValue / 150000) * 100),
+                );
+                barDisplay.style.width = percentage + "%";
+            }
+
+            slider?.addEventListener("input", updateRoi);
+            updateRoi();
+        </script>
+    </body>
+</html>
