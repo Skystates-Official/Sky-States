@@ -2323,18 +2323,20 @@ export const prerender = false;
         const summary = el.querySelector("summary");
         const content = el.querySelector("div");
 
-        summary.addEventListener("click", (e) => {
-          if (el.open) return; // Allow default closing behavior
-          e.preventDefault();
-          el.open = true;
-          content.style.opacity = "0";
-          content.style.transform = "translateY(-10px)";
-          requestAnimationFrame(() => {
-            content.style.transition = "all 0.4s ease";
-            content.style.opacity = "1";
-            content.style.transform = "translateY(0)";
+        if (summary && content) {
+          summary.addEventListener("click", (e) => {
+            if (el.open) return; // Allow default closing behavior
+            e.preventDefault();
+            el.open = true;
+            content.style.opacity = "0";
+            content.style.transform = "translateY(-10px)";
+            requestAnimationFrame(() => {
+              content.style.transition = "all 0.4s ease";
+              content.style.opacity = "1";
+              content.style.transform = "translateY(0)";
+            });
           });
-        });
+        }
       });
     </script>
   </body>

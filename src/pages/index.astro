@@ -132,25 +132,9 @@ export const prerender = false;
       >
         <!-- Left Content Column (col-7) -->
         <div class="flex flex-col gap-6 lg:col-span-7">
-          <!-- Premium Pulsing Badge Pill -->
-          <div
-            class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-sky-50 border border-sky-100 text-sky-700 rounded-full w-fit text-xs font-semibold shadow-sm backdrop-blur-sm"
-          >
-            <span class="relative flex h-2 w-2">
-              <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
-              ></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"
-              ></span>
-            </span>
-            <span
-              class="tracking-wider uppercase font-bold text-[10px] sm:text-xs"
-              >US Registered Platform</span
-            >
-          </div>
           <!-- Bolder Typography for Hero Headline -->
           <h1
-            class="text-4xl font-bold text-slate-900 tracking-tight leading-[1.08]"
+            class="text-4xl font-bold text-sky-500 tracking-tight leading-[1.3]"
             set:html={hero.headline}
           />
           <p
@@ -1685,8 +1669,12 @@ TRANSPARENT PRICING
           const lightbox = document.getElementById("video-lightbox");
           const lightboxClose = document.getElementById("lightbox-close-btn");
           const lightboxBgClose = document.getElementById("lightbox-bg-close");
-          const lightboxPlayer = document.getElementById("lightbox-player") as HTMLVideoElement;
-          const previewVideo = document.getElementById("preview-video") as HTMLVideoElement;
+          const lightboxPlayer = document.getElementById(
+            "lightbox-player",
+          ) as HTMLVideoElement;
+          const previewVideo = document.getElementById(
+            "preview-video",
+          ) as HTMLVideoElement;
 
           function openLightbox() {
             if (!lightbox || !lightboxPlayer) return;
