@@ -116,7 +116,7 @@ import Footer from "../components/Footer.astro";
                                 >
                                     <span
                                         class="text-[10px] font-bold uppercase tracking-wider text-sky-700"
-                                        >Scholar Tier</span
+                                        >batch classes</span
                                     >
                                     <span
                                         class="text-lg font-black mt-1 text-slate-850"
@@ -145,7 +145,7 @@ import Footer from "../components/Footer.astro";
                                 >
                                     <span
                                         class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                                        >Elite Tier</span
+                                        >personalised classes</span
                                     >
                                     <span
                                         class="text-lg font-black mt-1 text-slate-850"
@@ -175,7 +175,7 @@ import Footer from "../components/Footer.astro";
                                     class="font-bold text-slate-850 text-sm"
                                     id="display-tier-label"
                                 >
-                                    Scholar Tier Program
+                                    batch classes Program
                                 </p>
                                 <p
                                     class="text-xs text-slate-400 mt-0.5"
@@ -552,12 +552,12 @@ import Footer from "../components/Footer.astro";
                 let basePrice = 99;
                 if (window.selectedTier === "normal") {
                     basePrice = isFullPayment ? 3499 : 99;
-                    if (label) label.textContent = "Scholar Tier Program";
+                    if (label) label.textContent = "batch classes Program";
                     if (desc)
                         desc.textContent = "Weekend live labs & placement prep";
                 } else {
                     basePrice = isFullPayment ? 6499 : 499;
-                    if (label) label.textContent = "Elite Tier (1-on-1)";
+                    if (label) label.textContent = "personalised classes";
                     if (desc)
                         desc.textContent =
                             "Personal Industry mentor & 1-on-1 guidance";
