@@ -350,18 +350,18 @@ const isHome = Astro.url.pathname === "/";
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 42px;
-    width: 180px;
+    height: 55px;
+    width: 281px;
     transition:
       height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .brand-logo-img {
-    height: 118px;
+    height: 153px;
     width: auto;
     object-fit: contain;
-    margin-top: -3px;
+    margin-top: -4px;
     transition:
       height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
       margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -369,44 +369,44 @@ const isHome = Astro.url.pathname === "/";
 
   /* Shrink logo on scroll */
   .nav.is-scrolled .logo-wrapper {
-    height: 34px;
-    width: 145px;
+    height: 44px;
+    width: 227px;
   }
 
   .nav.is-scrolled .brand-logo-img {
-    height: 95px;
-    margin-top: -2px;
+    height: 124px;
+    margin-top: -3px;
   }
 
   @media (min-width: 1024px) {
     .logo-wrapper {
-      height: 64px; /* Large initially on desktop */
-      width: 278px;
+      height: 83px; /* Large initially on desktop */
+      width: 433px;
     }
     .brand-logo-img {
-      height: 192px;
-      margin-top: -6px;
+      height: 250px;
+      margin-top: -8px;
     }
 
     /* Shrink logo on desktop scroll */
     .nav.is-scrolled .logo-wrapper {
-      height: 48px;
-      width: 208px;
+      height: 62px;
+      width: 324px;
     }
     .nav.is-scrolled .brand-logo-img {
-      height: 144px;
-      margin-top: -4px;
+      height: 187px;
+      margin-top: -5px;
     }
   }
 
   /* Keep size when mobile menu is open */
   .nav.is-mobile-menu-open .logo-wrapper {
-    height: 42px !important;
-    width: 180px !important;
+    height: 55px !important;
+    width: 281px !important;
   }
   .nav.is-mobile-menu-open .brand-logo-img {
-    height: 118px !important;
-    margin-top: -3px !important;
+    height: 153px !important;
+    margin-top: -4px !important;
   }
 
   /* Desktop Navigation Links Layout (Centered) */
