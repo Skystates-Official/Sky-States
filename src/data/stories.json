@@ -1,0 +1,38 @@
+[
+  {
+    "id": "story-david-k",
+    "name": "David K.",
+    "role": "AWS Solutions Architect (Sky States Graduate)",
+    "track": "Cyber Security",
+    "headline": "Industry Career Acceleration",
+    "quote": "Sky States provided the exact architectural depth and white-glove negotiation coaching needed to jump from legacy systems engineer to an AWS Cloud Architect. The salary uplift was instant, but the career trajectory shift was priceless.",
+    "type": "video",
+    "video_url": "/admin/Sky_States_career_acceleration_program_202606270007.mp4",
+    "poster": "https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8",
+    "slug": "industry-career-acceleration-david-k"
+  },
+  {
+    "id": "story-sarah-j",
+    "name": "Sarah J.",
+    "role": "GenAI Lead (Sky States Graduate)",
+    "track": "Data Science & AI",
+    "headline": "Transitioning to GenAI Lead",
+    "quote": "The hands-on labs on Large Language Models and model serving pipelines gave me the confidence to ace interviews at top scale-ups. I received three offers within a month of completing the program.",
+    "type": "video",
+    "video_url": "/admin/data science hero section video.mp4",
+    "poster": "https://lh3.googleusercontent.com/aida-public/AB6AXuD1ZOgxknVGFRLEJ3rDvAQ5Tv7jSNtFuxYyE9jnG4INfB7tq0pE4KO0GLB0dYKQidfmTrR7JkgYrlgQKyRmB43TWOE-Coky2nCf6DXvWY3AJwZ2m2AAO1xv-1SjnltpMzfbjpEgZAXB2uIjH81sXP4MPEywvCBjyHCb4NrXAWrrYVgCsyLyWwHNmAPgk0JLhuJopVv8sB1fh0lf-Mey9DKjzZx_VF5mbAnwUo4LTJIxGoVbl75zKBhi9a2UOTvfzTodngk71VldFyA",
+    "slug": "transitioning-to-genai-lead-sarah-j"
+  },
+  {
+    "id": "story-raj-p",
+    "name": "Raj P.",
+    "role": "Lead DevOps Architect (Sky States Graduate)",
+    "track": "DevOps & Cloud",
+    "headline": "Scale and Infrastructure Mastery",
+    "quote": "I learned how to construct fully automated, self-healing architectures under production load. The mentorship and mock interview drills helped me stand out from other candidates.",
+    "type": "video",
+    "video_url": "/admin/devops hero section.mp4",
+    "poster": "https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c",
+    "slug": "scale-and-infrastructure-mastery-raj-p"
+  }
+]

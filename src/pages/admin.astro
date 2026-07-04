@@ -61,12 +61,22 @@ if (Astro.request.method === 'POST') {
 }
 
 import { query as sqlQuery } from '../db/sqlite.js';
+import fs from 'fs';
+import path from 'path';
+
 let mediaItems = [];
 let dynamicPages = [];
+let storiesData = [];
+
 if (authenticated) {
     try {
         mediaItems = await sqlQuery.all("SELECT * FROM media ORDER BY created_at DESC");
         dynamicPages = await sqlQuery.all("SELECT * FROM pages ORDER BY created_at DESC");
+        
+        const storiesPath = path.resolve('src/data/stories.json');
+        if (fs.existsSync(storiesPath)) {
+            storiesData = JSON.parse(fs.readFileSync(storiesPath, 'utf8'));
+        }
     } catch (dbErr) {
         console.error("Error loading CMS items:", dbErr.message);
     }
@@ -128,6 +138,13 @@ if (authenticated) {
                     class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-primary text-primary transition-all cursor-pointer"
                 >
                     Placement Directory
+                </button>
+                <button 
+                    onclick="switchTab('stories')" 
+                    id="tab-btn-stories" 
+                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
+                >
+                    Stories & Podcasts
                 </button>
                 <button 
                     onclick="switchTab('homepage')" 
@@ -214,6 +231,70 @@ if (authenticated) {
                                                 onclick={`deleteJob('${job.id}')`} 
                                                 class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center"
                                                 title="Delete Job"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: STORIES & PODCASTS -->
+            <div id="panel-stories" class="tab-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-headline-md text-xl text-on-surface">Manage Stories & Podcasts</h2>
+                    <button 
+                        onclick="openAddStoryModal()" 
+                        class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">add</span>
+                        <span>Add New Story / Podcast</span>
+                    </button>
+                </div>
+
+                <!-- Table of Stories -->
+                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden ambient-shadow">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Name / Role</th>
+                                    <th class="px-6 py-4">Headline</th>
+                                    <th class="px-6 py-4">Track</th>
+                                    <th class="px-6 py-4">Type</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-stories-table-body" class="divide-y divide-outline-variant/10">
+                                {storiesData.map(story => (
+                                    <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`story-row-${story.id}`}>
+                                        <td class="px-6 py-5">
+                                            <div class="font-semibold text-on-surface">{story.name}</div>
+                                            <div class="text-xs text-secondary mt-0.5">{story.role}</div>
+                                        </td>
+                                        <td class="px-6 py-5 text-secondary max-w-xs truncate">{story.headline}</td>
+                                        <td class="px-6 py-5 text-secondary">{story.track}</td>
+                                        <td class="px-6 py-5">
+                                            <span class={`inline-block px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded-md ${story.type === 'podcast' ? 'bg-indigo-100 text-indigo-700' : 'bg-sky-100 text-sky-700'}`}>
+                                                {story.type}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-5 text-right space-x-2">
+                                            <button 
+                                                onclick={`openEditStoryModal(${JSON.stringify(story)})`} 
+                                                class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center"
+                                                title="Edit Story"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button 
+                                                onclick={`deleteStory('${story.id}')`} 
+                                                class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center"
+                                                title="Delete Story"
                                             >
                                                 <span class="material-symbols-outlined text-[20px]">delete</span>
                                             </button>
@@ -740,6 +821,24 @@ if (authenticated) {
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Core Leadership Team Members Editor -->
+                        <div class="bg-white rounded-xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
+                            <div class="border-b border-outline-variant/10 pb-4 flex justify-between items-center">
+                                <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
+                                    <span class="material-symbols-outlined">groups</span>
+                                    <span>Leadership Team Members</span>
+                                </h3>
+                                <button type="button" onclick="addTeamMember()" class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary/15 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">add</span>
+                                    <span>Add Member</span>
+                                </button>
+                            </div>
+                            <div class="space-y-6" id="cms-team-container">
+                                <!-- Dynamic Team Input lines will be rendered here by JS -->
+                            </div>
+                        </div>
+
                         <button type="submit" class="bg-primary text-white hover:bg-opacity-90 px-8 py-3.5 rounded-xl font-label-md text-sm uppercase tracking-wider font-bold shadow-lg">Save About Us Changes</button>
                     </form>
                 </div>
@@ -993,8 +1092,17 @@ if (authenticated) {
                             </select>
                         </div>
                         <div class="flex flex-col gap-1.5">
-                            <label for="form-featured-image" class="text-xs font-bold uppercase text-secondary">Featured Image URL</label>
-                            <input type="text" id="form-featured-image" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. /assets/jobs/stripe.png" />
+                            <label for="form-featured-image" class="text-xs font-bold uppercase text-secondary">Company Logo / Image URL</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="form-featured-image" class="flex-1 h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. /assets/jobs/stripe.png or https://..." />
+                                <div class="relative">
+                                    <input type="file" id="form-job-logo-file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-24" onchange="handleJobLogoUpload(this)" />
+                                    <button type="button" class="h-10 px-4 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-lg flex items-center gap-1 hover:bg-opacity-95 transition-all whitespace-nowrap">
+                                        <span class="material-symbols-outlined text-[14px]">upload</span>
+                                        <span>Upload</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1042,6 +1150,104 @@ if (authenticated) {
                     <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
                         <button type="button" onclick="closeModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
                         <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- STORIES & PODCASTS MODAL -->
+        <div id="story-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
+                    <h2 id="story-modal-title" class="font-headline-md text-xl text-primary">Add New Success Story / Podcast</h2>
+                    <button onclick="closeStoryModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+
+                <form id="story-form" onsubmit="saveStory(event)" class="space-y-4">
+                    <input type="hidden" id="form-story-id" />
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-name" class="text-xs font-bold uppercase text-secondary">Graduate Name</label>
+                            <input type="text" id="form-story-name" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. David K." />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-role" class="text-xs font-bold uppercase text-secondary">Role Title / Company</label>
+                            <input type="text" id="form-story-role" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. AWS Solutions Architect (Graduate)" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-track" class="text-xs font-bold uppercase text-secondary">Program Track</label>
+                            <select id="form-story-track" class="h-10 px-3 border border-outline-variant/30 bg-white rounded-lg outline-none focus:border-primary transition-all text-sm">
+                                <option value="Cyber Security">Cyber Security</option>
+                                <option value="DevOps & Cloud">DevOps & Cloud</option>
+                                <option value="Data Science & AI">Data Science & AI</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-type" class="text-xs font-bold uppercase text-secondary">Media Type</label>
+                            <select id="form-story-type" onchange="toggleStoryMediaTypeFields(this.value)" class="h-10 px-3 border border-outline-variant/30 bg-white rounded-lg outline-none focus:border-primary transition-all text-sm">
+                                <option value="video">Video Testimonial</option>
+                                <option value="podcast">Podcast (YouTube Link)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-story-headline" class="text-xs font-bold uppercase text-secondary">Headline / Title</label>
+                        <input type="text" id="form-story-headline" required class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. Transition to GenAI Lead" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-story-quote" class="text-xs font-bold uppercase text-secondary">Testimonial Quote / Abstract</label>
+                        <textarea id="form-story-quote" required rows="3" class="p-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm resize-none" placeholder="Provide the quote or summary content..."></textarea>
+                    </div>
+
+                    <!-- Video Upload Fields (Visible when type = video) -->
+                    <div id="story-video-fields" class="space-y-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-video-url" class="text-xs font-bold uppercase text-secondary">Video File Path</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="form-story-video-url" class="flex-1 h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. /uploads/video.mp4" />
+                                <div class="relative">
+                                    <input type="file" id="form-story-video-file" accept="video/mp4,video/*" class="absolute inset-0 opacity-0 cursor-pointer w-24" onchange="handleStoryVideoUpload(this)" />
+                                    <button type="button" class="h-10 px-4 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-lg flex items-center gap-1 hover:bg-opacity-95 transition-all whitespace-nowrap">
+                                        <span class="material-symbols-outlined text-[14px]">upload</span>
+                                        <span>Upload</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-story-poster" class="text-xs font-bold uppercase text-secondary">Poster Image URL (Thumbnail)</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="form-story-poster" class="flex-1 h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. /uploads/thumbnail.png" />
+                                <div class="relative">
+                                    <input type="file" id="form-story-poster-file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-24" onchange="handleStoryPosterUpload(this)" />
+                                    <button type="button" class="h-10 px-4 bg-primary text-white text-[10px] font-bold uppercase tracking-wider rounded-lg flex items-center gap-1 hover:bg-opacity-95 transition-all whitespace-nowrap">
+                                        <span class="material-symbols-outlined text-[14px]">upload</span>
+                                        <span>Upload</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Link Field (Visible when type = podcast) -->
+                    <div id="story-podcast-fields" class="flex flex-col gap-1.5 hidden">
+                        <label for="form-story-youtube-url" class="text-xs font-bold uppercase text-secondary">YouTube Video URL</label>
+                        <input type="text" id="form-story-youtube-url" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. https://www.youtube.com/watch?v=XXXXXX" />
+                    </div>
+
+                    <div class="pt-4 flex gap-3 justify-end border-t border-outline-variant/10 mt-6">
+                        <button type="button" onclick="closeStoryModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save Story</button>
                     </div>
                 </form>
             </div>
@@ -1153,7 +1359,7 @@ if (authenticated) {
     <Footer />
 
     {authenticated && (
-        <script is:inline define:vars={{ homepageData, aboutData, faqData, programsData, couponConfigData }}>
+        <script is:inline define:vars={{ homepageData, aboutData, faqData, programsData, couponConfigData, storiesData }}>
             // Tab Switching Logic
             window.switchTab = function(tabName) {
                 const panels = document.querySelectorAll('.tab-panel');
@@ -1708,6 +1914,140 @@ if (authenticated) {
                 document.getElementById('cms-about-wyoming').value = aboutData.registry?.wyoming_address || '';
                 document.getElementById('cms-about-phone').value = aboutData.registry?.phone || '';
                 document.getElementById('cms-about-email').value = aboutData.registry?.email || '';
+
+                // Team members initialization
+                window.localTeam = JSON.parse(JSON.stringify(aboutData.team || []));
+                
+                window.renderTeam = function() {
+                    const container = document.getElementById('cms-team-container');
+                    if (!container) return;
+                    container.innerHTML = '';
+                    
+                    window.localTeam.forEach((member, idx) => {
+                        const row = document.createElement('div');
+                        row.className = 'team-member-row p-4 border border-outline-variant/30 rounded-xl bg-surface-container-low space-y-4';
+                        row.innerHTML = `
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-bold text-primary uppercase font-bold">Team Member ${idx + 1}</span>
+                                <button type="button" onclick="removeTeamMember(${idx})" class="text-error hover:bg-error/5 px-2.5 py-1 rounded transition-colors text-xs font-bold uppercase tracking-wider cursor-pointer">Remove</button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">Name</label>
+                                    <input type="text" class="team-input-name h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" value="${member.name || ''}" oninput="updateLocalTeamMember(${idx}, 'name', this.value)" required />
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-[10px] font-bold text-secondary uppercase">Role</label>
+                                    <input type="text" class="team-input-role h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" value="${member.role || ''}" oninput="updateLocalTeamMember(${idx}, 'role', this.value)" required />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label class="text-[10px] font-bold text-secondary uppercase">Photo Path / URL</label>
+                                <div class="flex gap-3">
+                                    <input type="text" id="team-photo-path-${idx}" class="team-input-photo flex-1 h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" value="${member.photo || ''}" oninput="updateLocalTeamMember(${idx}, 'photo', this.value)" required />
+                                    <div class="relative">
+                                        <input type="file" id="team-photo-file-${idx}" onchange="handleTeamPhotoUpload(this, ${idx})" class="hidden" accept="image/*" />
+                                        <button type="button" onclick="document.getElementById('team-photo-file-${idx}').click()" class="h-10 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 rounded-lg text-xs font-bold uppercase tracking-wider cursor-pointer flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[16px]">upload</span>
+                                            <span>Upload</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(row);
+                    });
+                };
+                
+                window.updateLocalTeamMember = function(idx, field, value) {
+                    if (window.localTeam[idx]) {
+                        window.localTeam[idx][field] = value;
+                    }
+                };
+                
+                window.addTeamMember = function() {
+                    window.localTeam.push({ name: '', role: '', photo: '' });
+                    window.renderTeam();
+                };
+                
+                window.removeTeamMember = function(idx) {
+                    window.localTeam.splice(idx, 1);
+                    window.renderTeam();
+                };
+                
+                window.handleTeamPhotoUpload = async function(fileInput, idx) {
+                    const file = fileInput.files[0];
+                    if (!file) return;
+                    
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('alt_text', file.name);
+                    formData.append('title', file.name);
+                    
+                    try {
+                        const btn = fileInput.nextElementSibling;
+                        if (btn) btn.innerText = 'Uploading...';
+                        
+                        const response = await fetch('/api/media', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            const res = await response.json();
+                            document.getElementById(`team-photo-path-${idx}`).value = res.media.path;
+                            window.localTeam[idx].photo = res.media.path;
+                            alert('Photo uploaded and path set successfully!');
+                        } else {
+                            const err = await response.json();
+                            alert('Upload failed: ' + (err.error || 'Unknown error'));
+                        }
+                    } catch (e) {
+                        console.error(e);
+                        alert('Upload request failed.');
+                    } finally {
+                        fileInput.value = ''; // Reset file input
+                        window.renderTeam();
+                    }
+                };
+
+                window.renderTeam();
+                
+                window.handleJobLogoUpload = async function(fileInput) {
+                    const file = fileInput.files[0];
+                    if (!file) return;
+                    
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('alt_text', file.name);
+                    formData.append('title', file.name);
+                    
+                    try {
+                        const btn = fileInput.nextElementSibling;
+                        if (btn) btn.innerText = 'Uploading...';
+                        
+                        const response = await fetch('/api/media', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            const res = await response.json();
+                            document.getElementById('form-featured-image').value = res.media.path;
+                            alert('Logo uploaded successfully!');
+                        } else {
+                            const err = await response.json();
+                            alert('Upload failed: ' + (err.error || 'Unknown error'));
+                        }
+                    } catch (e) {
+                        console.error(e);
+                        alert('Upload request failed.');
+                    } finally {
+                        fileInput.value = ''; // Reset file input
+                        const btn = fileInput.nextElementSibling;
+                        if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">upload</span><span>Upload</span>';
+                    }
+                };
             }
 
             if (faqData) {
@@ -1855,7 +2195,8 @@ if (authenticated) {
                 const payload = {
                     hero: { badge, title, description },
                     story: { title: story_title, paragraph: story_para, vision_title, vision_desc, method_title, method_desc },
-                    registry: { legal_title: "Legal Entity Registry", legal_desc: "Sky States is a legally registered corporation in the United States, operating under strict compliance.", presence_title: "Physical Presence", delaware_address, wyoming_address, contact_title: "Institutional Contact", phone, email }
+                    registry: { legal_title: "Legal Entity Registry", legal_desc: "Sky States is a legally registered corporation in the United States, operating under strict compliance.", presence_title: "Physical Presence", delaware_address, wyoming_address, contact_title: "Institutional Contact", phone, email },
+                    team: window.localTeam || []
                 };
 
                 await sendCmsUpdate('about', payload);
@@ -2069,6 +2410,219 @@ if (authenticated) {
 
                     if (response.ok) {
                         const row = document.getElementById(`row-${id}`);
+                        if (row) row.remove();
+                    } else {
+                        alert('Delete operation failed.');
+                    }
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    alert('Request failed.');
+                }
+            }
+
+            // Stories Dialog & Operations
+            const storyModal = document.getElementById('story-modal');
+            const storyForm = document.getElementById('story-form');
+            const storyModalTitle = document.getElementById('story-modal-title');
+
+            window.openAddStoryModal = function() {
+                storyForm.reset();
+                document.getElementById('form-story-id').value = '';
+                document.getElementById('form-story-video-url').value = '';
+                document.getElementById('form-story-poster').value = '';
+                document.getElementById('form-story-youtube-url').value = '';
+                storyModalTitle.textContent = 'Add New Success Story / Podcast';
+                toggleStoryMediaTypeFields('video');
+                storyModal.classList.remove('hidden');
+            }
+
+            window.openEditStoryModal = function(story) {
+                storyModalTitle.textContent = 'Edit Success Story / Podcast';
+                document.getElementById('form-story-id').value = story.id;
+                document.getElementById('form-story-name').value = story.name;
+                document.getElementById('form-story-role').value = story.role;
+                document.getElementById('form-story-track').value = story.track;
+                document.getElementById('form-story-type').value = story.type;
+                document.getElementById('form-story-headline').value = story.headline;
+                document.getElementById('form-story-quote').value = story.quote;
+                
+                if (story.type === 'podcast') {
+                    document.getElementById('form-story-youtube-url').value = story.video_url || '';
+                    document.getElementById('form-story-video-url').value = '';
+                    document.getElementById('form-story-poster').value = '';
+                } else {
+                    document.getElementById('form-story-video-url').value = story.video_url || '';
+                    document.getElementById('form-story-poster').value = story.poster || '';
+                    document.getElementById('form-story-youtube-url').value = '';
+                }
+                
+                toggleStoryMediaTypeFields(story.type);
+                storyModal.classList.remove('hidden');
+            }
+
+            window.closeStoryModal = function() {
+                storyModal.classList.add('hidden');
+            }
+
+            storyModal?.addEventListener('click', (e) => {
+                if (e.target === storyModal) closeStoryModal();
+            });
+
+            window.toggleStoryMediaTypeFields = function(type) {
+                const videoFields = document.getElementById('story-video-fields');
+                const podcastFields = document.getElementById('story-podcast-fields');
+                
+                if (type === 'podcast') {
+                    videoFields.classList.add('hidden');
+                    podcastFields.classList.remove('hidden');
+                } else {
+                    videoFields.classList.remove('hidden');
+                    podcastFields.classList.add('hidden');
+                }
+            }
+
+            window.handleStoryVideoUpload = async function(fileInput) {
+                const file = fileInput.files[0];
+                if (!file) return;
+                
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('alt_text', file.name);
+                formData.append('title', file.name);
+                
+                try {
+                    const btn = fileInput.nextElementSibling;
+                    if (btn) btn.innerText = 'Uploading...';
+                    
+                    const response = await fetch('/api/media', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        const res = await response.json();
+                        document.getElementById('form-story-video-url').value = res.media.path;
+                        alert('Video uploaded successfully!');
+                    } else {
+                        const err = await response.json();
+                        alert('Upload failed: ' + (err.error || 'Unknown error'));
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Upload request failed.');
+                } finally {
+                    fileInput.value = '';
+                    const btn = fileInput.nextElementSibling;
+                    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">upload</span><span>Upload</span>';
+                }
+            }
+
+            window.handleStoryPosterUpload = async function(fileInput) {
+                const file = fileInput.files[0];
+                if (!file) return;
+                
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('alt_text', file.name);
+                formData.append('title', file.name);
+                
+                try {
+                    const btn = fileInput.nextElementSibling;
+                    if (btn) btn.innerText = 'Uploading...';
+                    
+                    const response = await fetch('/api/media', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        const res = await response.json();
+                        document.getElementById('form-story-poster').value = res.media.path;
+                        alert('Thumbnail uploaded successfully!');
+                    } else {
+                        const err = await response.json();
+                        alert('Upload failed: ' + (err.error || 'Unknown error'));
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Upload request failed.');
+                } finally {
+                    fileInput.value = '';
+                    const btn = fileInput.nextElementSibling;
+                    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">upload</span><span>Upload</span>';
+                }
+            }
+
+            window.saveStory = async function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('form-story-id').value;
+                const name = document.getElementById('form-story-name').value;
+                const role = document.getElementById('form-story-role').value;
+                const track = document.getElementById('form-story-track').value;
+                const type = document.getElementById('form-story-type').value;
+                const headline = document.getElementById('form-story-headline').value;
+                const quote = document.getElementById('form-story-quote').value;
+                
+                let video_url = '';
+                let poster = '';
+                
+                if (type === 'podcast') {
+                    video_url = document.getElementById('form-story-youtube-url').value;
+                } else {
+                    video_url = document.getElementById('form-story-video-url').value;
+                    poster = document.getElementById('form-story-poster').value;
+                }
+
+                const payload = {
+                    name,
+                    role,
+                    track,
+                    type,
+                    headline,
+                    quote,
+                    video_url,
+                    poster
+                };
+                
+                let method = 'POST';
+                if (id) {
+                    payload.id = id;
+                    method = 'PUT';
+                }
+
+                try {
+                    const response = await fetch('/api/stories', {
+                        method: method,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        closeStoryModal();
+                        window.location.reload();
+                    } else {
+                        const err = await response.json();
+                        alert('Failed to save success story: ' + (err.error || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Save story error:', error);
+                    alert('Save request failed.');
+                }
+            }
+
+            window.deleteStory = async function(id) {
+                if (!confirm('Are you absolutely sure you want to delete this success story?')) return;
+
+                try {
+                    const response = await fetch('/api/stories', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id })
+                    });
+
+                    if (response.ok) {
+                        const row = document.getElementById(`story-row-${id}`);
                         if (row) row.remove();
                     } else {
                         alert('Delete operation failed.');

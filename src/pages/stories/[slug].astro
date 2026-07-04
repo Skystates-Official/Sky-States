@@ -1,0 +1,149 @@
+---
+import '../../styles/global.css';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import fs from 'fs';
+import path from 'path';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+const jsonPath = path.resolve('src/data/stories.json');
+let stories = [];
+try {
+  if (fs.existsSync(jsonPath)) {
+    stories = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+  }
+} catch (e) {
+  console.error("Error reading stories JSON:", e);
+}
+
+const story = stories.find(s => s.slug === slug);
+
+if (!story) {
+  return Astro.redirect('/404');
+}
+
+// Convert YouTube watch link to embed link if applicable
+function getYouTubeEmbedUrl(url) {
+  if (!url) return '';
+  let videoId = '';
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  if (match && match[2].length === 11) {
+    videoId = match[2];
+  }
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+}
+
+const isYouTube = story.video_url && (story.video_url.includes('youtube.com') || story.video_url.includes('youtu.be'));
+const embedUrl = isYouTube ? getYouTubeEmbedUrl(story.video_url) : '';
+---
+
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>{story.headline} - {story.name} Testimonial | Sky States</title>
+  <meta name="description" content={`Read and watch the detailed career transition story of ${story.name} (${story.role}) at Sky States.`} />
+  <link rel="canonical" href={`https://skystates.us/stories/${story.slug}`} />
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-family: 'Outfit', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .gradient-bg {
+      background: radial-gradient(circle at 50% -20%, #e0f2fe 0%, #f8fafc 60%);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden gradient-bg">
+  <Header />
+
+  <main class="pt-28 pb-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <!-- Back Link -->
+      <div class="mb-8">
+        <a href="/stories" class="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          <span>Back to All Success Stories</span>
+        </a>
+      </div>
+
+      <!-- Main Media Container -->
+      <div class="bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl border border-slate-800 relative aspect-video bg-black flex items-center justify-center mb-10">
+        {isYouTube ? (
+          <iframe 
+            src={`${embedUrl}?autoplay=0&rel=0`}
+            class="w-full h-full border-0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+          ></iframe>
+        ) : (
+          <video 
+            class="w-full h-full object-cover"
+            poster={story.poster}
+            controls
+            autoplay
+          >
+            <source src={story.video_url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
+      </div>
+
+      <!-- Testimonial Bio & Details -->
+      <div class="p-8 sm:p-10 bg-white rounded-[2rem] border border-slate-200/80 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <span class="px-3.5 py-1.5 rounded-full bg-sky-100 text-sky-800 font-bold text-xs uppercase tracking-wider">
+            {story.track}
+          </span>
+          <div class="flex items-center gap-1.5 text-emerald-600 text-xs font-bold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-sm">verified</span>
+            Verified Career Outcome
+          </div>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+          {story.headline}
+        </h1>
+
+        <div class="mt-6 text-slate-700 text-base leading-relaxed italic border-l-4 border-sky-500 pl-6 my-8">
+          "{story.quote}"
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-600">
+            <span class="material-symbols-outlined text-2xl">person</span>
+          </div>
+          <div>
+            <div class="font-extrabold text-slate-950 text-base">{story.name}</div>
+            <div class="text-sm text-slate-500 font-medium">{story.role}</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</body>
+</html>

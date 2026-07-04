@@ -125,10 +125,10 @@
   },
   "devops": {
     "slug": "devops",
-    "metaTitle": "DevOps & Cloud Program | SKY STATES",
+    "metaTitle": "SkyStates | DevOps & Cloud Computing Program",
     "hero": {
-      "headline": "Cloud Infrastructure <br/><span class=\"text-primary-fixed-dim\">Master</span>",
-      "description": "Architecting the future of institutional scale. Master the complex layers of modern orchestration, distributed systems, and global cloud governance through a rigorous clinical curriculum."
+      "headline": "SkyStates DevOps & Cloud Computing Program <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready DevOps & Cloud Engineer</span>",
+      "description": "Learn Linux, Git, Docker, Kubernetes, Terraform, Jenkins, AWS, Azure, CI/CD pipelines, infrastructure as code, and cloud automation via live sessions, practical projects, and career assistance. Develop production-ready cloud infrastructure and skills while preparing for Microsoft DevOps certifications."
     },
     "stats": [
       { "value": "120+", "label": "Global Partners" },

@@ -2,79 +2,112 @@
 // src/components/Footer.astro
 import Logo from './Logo.astro';
 ---
-<footer class="bg-surface-container-lowest border-t border-outline-variant/30 py-10 mt-12 font-body-md text-secondary">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 py-16 mt-20 font-body-md text-secondary relative overflow-hidden">
+  <!-- Ambient glow backdrop -->
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 relative z-10">
     
-    <!-- Column 1: Brand / Description -->
-    <div class="space-y-4">
+    <!-- Column 1: Brand / Description (4/12 Cols) -->
+    <div class="md:col-span-4 space-y-5">
       <div class="flex items-center">
-        <Logo class="h-16 w-auto" />
+        <Logo class="h-14 w-auto" />
       </div>
-      <p class="text-secondary font-body-md leading-relaxed text-sm">
-        Sky States offers a diverse range of professional courses designed to empower students across multiple domains, including software development, cybersecurity, data science, artificial intelligence, cloud computing, and various other emerging fields
+      <p class="text-on-surface-variant text-sm leading-relaxed max-w-sm">
+        Sky States offers a diverse range of professional courses designed to empower students across multiple domains, including software development, cybersecurity, data science, artificial intelligence, cloud computing, and emerging tech fields.
       </p>
     </div>
 
-    <!-- Column 2: Quick Links (Part 1) -->
-    <div class="space-y-3">
-      <h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">Quick Links</h4>
-      <ul class="space-y-2 font-label-sm text-sm">
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/">Home</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/live-jobs">Live Jobs</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/certifications">Alumni Certifications</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/programs/data-science-ai">Program</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/checkout?type=1on1">One to One</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/checkout">Pay Now</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/checkout">Register Now</a></li>
+    <!-- Column 2: Support & Policy (4/12 Cols) -->
+    <div class="md:col-span-4 space-y-4">
+      <h4 class="font-label-md text-sm uppercase tracking-wider text-on-surface font-bold">Support & Policies</h4>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/contact-us">
+            Contact Us
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/privacy-policy">
+            Privacy Policy
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/microsoft-partnership">
+            Microsoft Partnership
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/refund-policy">
+            Refund and Returns Policy
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/faq">
+            Frequently Asked Questions
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/about">
+            About Sky States
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/free-data-science-interview-questions">
+            Free Data Science Q&A
+          </a>
+        </li>
+        <li>
+          <a class="text-secondary hover:text-primary transition-all duration-200 hover:translate-x-1 inline-block" href="/stories">
+            Success Stories & Podcasts
+          </a>
+        </li>
       </ul>
     </div>
 
-    <!-- Column 3: Legal & Resources (Part 2) -->
-    <div class="space-y-3">
-      <h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">Support & Policy</h4>
-      <ul class="space-y-2 font-label-sm text-sm">
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/contact-us">Contact Us</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/privacy-policy">Privacy Policy</a></li>
-
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/microsoft-partnership">Microsoft Partnership</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/refund-policy">Refund and Returns Policy</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/faq">Frequently Asked Questions</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/about">About Sky States</a></li>
-        <li><a class="text-secondary hover:text-primary transition-colors" href="/free-data-science-interview-questions">Free Data Science QnA</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 4: Contacts & Socials -->
-    <div class="space-y-4">
-      <h4 class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-bold">Contacts</h4>
-      <div class="space-y-2 text-sm leading-relaxed">
-        <p>
-          <span class="font-bold text-on-surface">Add:</span> 30 N Gould St, Sheridan,<br />
-          WY, 82801, USA
-        </p>
-        <div class="space-y-1">
-          <p>
-            <span class="font-bold text-on-surface">Call:</span> <a href="tel:+18888102434" class="text-primary hover:underline font-semibold">(888) 810-2434</a>
-          </p>
-          <p>
-            <span class="inline-block w-8"></span> <a href="tel:+18889277072" class="text-primary hover:underline font-semibold">(888) 927-7072</a>
+    <!-- Column 3: Contacts & Socials (4/12 Cols) -->
+    <div class="md:col-span-4 space-y-5">
+      <h4 class="font-label-md text-sm uppercase tracking-wider text-on-surface font-bold">Corporate Office</h4>
+      
+      <div class="space-y-3.5 text-sm">
+        <!-- Address -->
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-lg mt-0.5 select-none">location_on</span>
+          <p class="leading-relaxed">
+            1316 Wall St, Suite 2C,<br />
+            Everett, WA 98201, USA
           </p>
         </div>
-        <p>
-          <span class="font-bold text-on-surface">Email:</span> <a href="mailto:info@skystates.us" class="text-primary hover:underline font-semibold">Info@skystates.us</a>
-        </p>
+
+        <!-- Phone Calls -->
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-lg mt-0.5 select-none">phone</span>
+          <div class="flex flex-col gap-1">
+            <a href="tel:+18888102434" class="hover:text-primary hover:underline transition-colors font-medium">(888) 810-2434</a>
+            <a href="tel:+18889277072" class="hover:text-primary hover:underline transition-colors font-medium">(888) 927-7072</a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-primary text-lg mt-0.5 select-none">mail</span>
+          <div class="flex flex-col gap-1">
+            <a href="mailto:info@skystates.us" class="hover:text-primary hover:underline transition-colors font-medium">info@skystates.us</a>
+            <a href="mailto:support@skystates.us" class="hover:text-primary hover:underline transition-colors font-medium">support@skystates.us</a>
+          </div>
+        </div>
       </div>
       
-      <!-- Social Icons -->
-      <div class="flex items-center gap-3 pt-1">
-        <a href="https://www.linkedin.com/company/skystate/" target="_blank" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      <!-- Social Media Links -->
+      <div class="flex items-center gap-3 pt-3 border-t border-outline-variant/10">
+        <a href="https://www.linkedin.com/company/skystate/" target="_blank" aria-label="LinkedIn" class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-200">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
-        <a href="https://www.instagram.com/skystatess" target="_blank" aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a href="https://www.instagram.com/sky_states" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-200">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://www.youtube.com/@Skystatess" target="_blank" aria-label="YouTube" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.163c-.272-1.016-1.071-1.815-2.087-2.087-1.84-.495-9.21-.495-9.21-.495s-7.371 0-9.21.495c-1.017.272-1.815 1.071-2.087 2.087-.495 1.84-.495 5.767-.495 5.767s0 3.927.495 5.767c.272 1.016 1.07 1.815 2.087 2.087 1.84.495 9.21.495 9.21.495s7.37 0 9.21-.495c1.016-.272 1.815-1.071 2.087-2.087.495-1.84.495-5.767.495-5.767s0-3.927-.495-5.767zm-13.998 9.337v-6.999l6.082 3.5z"/></svg>
+        <a href="https://www.youtube.com/@Skystatess" target="_blank" aria-label="YouTube" class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-all text-secondary shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-200">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.163c-.272-1.016-1.071-1.815-2.087-2.087-1.84-.495-9.21-.495-9.21-.495s-7.371 0-9.21.495c-1.017.272-1.815 1.071-2.087 2.087-.495 1.84-.495 5.767-.495 5.767s0 3.927.495 5.767c.272 1.016 1.07 1.815 2.087 2.087 1.84.495 9.21.495 9.21.495s7.37 0 9.21-.495c1.016-.272 1.815-1.071 2.087-2.087.495-1.84.495-5.767.495-5.767s0-3.927-.495-5.767zm-13.998 9.337v-6.999l6.082 3.5z"/></svg>
         </a>
       </div>
     </div>
@@ -82,11 +115,7 @@ import Logo from './Logo.astro';
   </div>
 
   <!-- Copyright / Secondary Links -->
-  <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs">
+  <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs text-on-surface-variant/80">
     <p>&copy; 2026 Sky States. Institutional Excellence in Technology. All rights reserved.</p>
-    <div class="flex gap-6">
-      <a class="hover:text-primary transition-colors" href="/about">About Us</a>
-      <a class="hover:text-primary transition-colors" href="/checkout">Checkout</a>
-    </div>
   </div>
 </footer>

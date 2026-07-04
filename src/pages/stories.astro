@@ -2,6 +2,38 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import fs from 'fs';
+import path from 'path';
+
+export const prerender = false;
+
+const jsonPath = path.resolve('src/data/stories.json');
+let stories = [];
+try {
+  if (fs.existsSync(jsonPath)) {
+    stories = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+  }
+} catch (e) {
+  console.error("Error loading stories data:", e);
+}
+
+// Fallback if database is empty
+if (stories.length === 0) {
+  stories = [
+    {
+      id: "story-david-k",
+      name: "David K.",
+      role: "AWS Solutions Architect (Sky States Graduate)",
+      track: "Cyber Security",
+      headline: "Industry Career Acceleration",
+      quote: "Sky States provided the exact architectural depth and white-glove negotiation coaching needed...",
+      type: "video",
+      video_url: "/admin/Sky_States_career_acceleration_program_202606270007.mp4",
+      poster: "https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8",
+      slug: "industry-career-acceleration-david-k"
+    }
+  ];
+}
 ---
 
 <!DOCTYPE html>
@@ -15,12 +47,10 @@ import Footer from '../components/Footer.astro';
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Success Stories & Video Testimonials | Sky States</title>
-  <meta name="description" content="Watch video reviews, testimonials, and explore detailed technical case studies from Sky States graduates who transitioned into elite tech roles." />
+  
+  <title>Success Stories, Video Testimonials & Podcasts | Sky States</title>
+  <meta name="description" content="Watch dynamic video reviews, graduate interviews, podcasts, and detailed career transition logs from Sky States alumni." />
   <link rel="canonical" href="https://skystates.us/stories" />
-
-  
-  
 
   <style>
     body {
@@ -28,9 +58,6 @@ import Footer from '../components/Footer.astro';
       color: #0f172a;
       font-family: 'Outfit', 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
-    }
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
     .glass-card {
       background: rgba(255, 255, 255, 0.85);
@@ -40,42 +67,18 @@ import Footer from '../components/Footer.astro';
     .gradient-bg {
       background: radial-gradient(circle at 50% -20%, #e0f2fe 0%, #f8fafc 60%);
     }
-    .video-shadow {
-      box-shadow: 0 25px 50px -12px rgba(0, 93, 144, 0.15);
-    }
-    .play-pulse {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(0, 93, 144, 0.4);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(0, 93, 144, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 93, 144, 0);
-      }
-    }
   </style>
 </head>
 <body class="overflow-x-hidden gradient-bg">
-
-  <!-- Main Navigation Header -->
   <Header />
 
   <main class="pt-28 pb-32">
-    <!-- Hero Header -->
     <section class="max-w-7xl mx-auto px-4 md:px-8 text-center pt-10 pb-12">
-      <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-sky-100 text-sky-800 font-bold text-xs uppercase tracking-widest mb-4">
-        <span class="material-symbols-outlined text-sm">verified</span>
-        Verified Career Outcomes
-      </span>
       <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto leading-tight">
         Real Transitions. <span class="bg-gradient-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent">Institutional Precision.</span>
       </h1>
       <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mt-4 leading-relaxed">
-        Explore video testimonials, career transition logs, and production-grade portfolios created by Sky States graduates.
+        Explore verified video reviews, podcasts, and testimonials from graduates who transitioned into elite tech roles.
       </p>
 
       <!-- Institutional Metrics -->
@@ -99,361 +102,108 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <!-- Dynamic Video Testimonial Section with Playlist -->
-    <section class="max-w-6xl mx-auto px-4 md:px-8 py-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- Main Featured Player & Details (Left Column - 8 cols) -->
-        <div class="lg:col-span-8 flex flex-col gap-6">
-          <div class="bg-slate-900 rounded-[2rem] overflow-hidden video-shadow border border-slate-800 relative aspect-video bg-black flex items-center justify-center">
-            <video 
-              id="main-testimonial-video" 
-              class="w-full h-full object-cover transition-opacity duration-300"
-              poster="https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8"
-              preload="none"
-              controls
-            >
-              <source id="video-source" src="/admin/Sky_States_career_acceleration_program_202606270007.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            
-            <!-- Custom Play Overlay -->
-            <div id="video-overlay" class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-300 hover:bg-black/30">
-              <button class="w-16 h-16 rounded-full bg-white text-sky-600 flex items-center justify-center shadow-2xl play-pulse hover:scale-105 transition-transform">
-                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-              </button>
-              <span class="text-white font-bold tracking-wider uppercase text-[10px] mt-3 drop-shadow">Watch Video Review</span>
-            </div>
-          </div>
+    <!-- Filters Section -->
+    <section class="max-w-7xl mx-auto px-4 md:px-8 mb-8 flex justify-center gap-3">
+      <button onclick="filterStories('all')" id="filter-btn-all" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-primary text-white shadow-sm transition-all cursor-pointer">
+        All Media
+      </button>
+      <button onclick="filterStories('video')" id="filter-btn-video" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-primary transition-all cursor-pointer">
+        Video Reviews
+      </button>
+      <button onclick="filterStories('podcast')" id="filter-btn-podcast" class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-primary transition-all cursor-pointer">
+        Podcasts
+      </button>
+    </section>
 
-          <!-- Active Testimonial Bio & Quote Card -->
-          <div id="active-testimonial-details" class="p-8 bg-slate-900 text-white rounded-3xl border border-slate-800 transition-all duration-300">
-            <span id="active-track" class="text-sky-400 font-bold uppercase tracking-wider text-xs">Featured Success Story</span>
-            <h3 id="active-headline" class="text-2xl md:text-3xl font-extrabold mt-2 leading-tight">
-              Industry Career Acceleration
-            </h3>
-            <p id="active-quote" class="text-slate-300 text-sm mt-4 leading-relaxed italic">
-              "Sky States provided the exact architectural depth and white-glove negotiation coaching needed to jump from legacy systems engineer to an AWS Cloud Architect. The salary uplift was instant, but the career trajectory shift was priceless."
-            </p>
-            <div class="mt-6 border-t border-slate-800 pt-6 flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-sky-900/50 border border-sky-500/30 flex items-center justify-center">
-                <span class="material-symbols-outlined text-sky-400">person</span>
-              </div>
-              <div>
-                <div id="active-name" class="font-bold text-sm text-white">David K.</div>
-                <div id="active-role" class="text-xs text-sky-400 font-medium">AWS Solutions Architect (Sky States Graduate)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Playlist selector column (Right Column - 4 cols) -->
-        <div class="lg:col-span-4 flex flex-col gap-4">
-          <h3 class="text-slate-800 font-extrabold text-lg flex items-center gap-2 px-2">
-            <span class="material-symbols-outlined text-sky-600">playlist_play</span>
-            Success Playlist
-          </h3>
+    <!-- Stories & Podcasts Grid -->
+    <section class="max-w-7xl mx-auto px-4 md:px-8">
+      <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {stories.map(story => {
+          // If podcast, use a default poster or helper if empty
+          const posterImg = story.poster || 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=600&q=80';
           
-          <div class="flex flex-col gap-3 overflow-y-auto max-h-[600px] pr-2">
-            <!-- Playlist Item 1 (David) -->
-            <button 
-              class="playlist-btn text-left p-4 bg-white rounded-2xl border-2 border-sky-500 shadow-sm hover:shadow-md transition-all flex gap-4 group cursor-pointer"
-              data-video="/admin/Sky_States_career_acceleration_program_202606270007.mp4"
-              data-poster="https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8"
-              data-track="Featured Success Story"
-              data-headline="Industry Career Acceleration"
-              data-quote="Sky States provided the exact architectural depth and white-glove negotiation coaching needed to jump from legacy systems engineer to an AWS Cloud Architect. The salary uplift was instant, but the career trajectory shift was priceless."
-              data-name="David K."
-              data-role="AWS Solutions Architect (Sky States Graduate)"
+          return (
+            <a 
+              href={`/stories/${story.slug}`} 
+              class="story-card bg-white rounded-[2rem] overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+              data-type={story.type}
             >
-              <div class="w-16 h-16 rounded-xl overflow-hidden bg-slate-900 flex-shrink-0 relative flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-3xl group-hover:scale-110 transition-transform">play_circle</span>
+              <div class="aspect-video relative overflow-hidden bg-slate-900 flex items-center justify-center flex-shrink-0">
+                <img 
+                  src={posterImg} 
+                  alt={story.headline} 
+                  class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" 
+                />
+                <!-- Type Badge -->
+                <span class={`absolute top-4 left-4 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider text-white ${story.type === 'podcast' ? 'bg-indigo-600' : 'bg-sky-600'}`}>
+                  {story.type === 'podcast' ? 'Podcast' : 'Video Review'}
+                </span>
+                
+                <!-- Center Play Indicator -->
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/35 transition-colors">
+                  <div class="w-14 h-14 rounded-full bg-white text-sky-600 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  </div>
+                </div>
               </div>
-              <div class="flex flex-col justify-center">
-                <span class="text-[10px] text-sky-600 font-bold uppercase tracking-wider">Cyber Security</span>
-                <h4 class="font-bold text-slate-800 text-sm mt-0.5 group-hover:text-sky-600 transition-colors">David K.</h4>
-                <p class="text-xs text-slate-500">AWS Solutions Architect</p>
+              
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] text-sky-600 font-bold uppercase tracking-wider">{story.track}</span>
+                  <h3 class="font-extrabold text-lg text-slate-900 mt-1.5 group-hover:text-sky-600 transition-colors leading-snug">
+                    {story.headline}
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-3 line-clamp-3 italic">
+                    "{story.quote}"
+                  </p>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
+                    <span class="material-symbols-outlined text-sm">person</span>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-xs">{story.name}</h4>
+                    <p class="text-[10px] text-slate-500">{story.role}</p>
+                  </div>
+                </div>
               </div>
-            </button>
-
-            <!-- Playlist Item 2 (Sarah) -->
-            <button 
-              class="playlist-btn text-left p-4 bg-white rounded-2xl border-2 border-slate-200/60 shadow-sm hover:shadow-md transition-all flex gap-4 group cursor-pointer"
-              data-video="/admin/data science hero section video.mp4"
-              data-poster="https://lh3.googleusercontent.com/aida-public/AB6AXuD1ZOgxknVGFRLEJ3rDvAQ5Tv7jSNtFuxYyE9jnG4INfB7tq0pE4KO0GLB0dYKQidfmTrR7JkgYrlgQKyRmB43TWOE-Coky2nCf6DXvWY3AJwZ2m2AAO1xv-1SjnltpMzfbjpEgZAXB2uIjH81sXP4MPEywvCBjyHCb4NrXAWrrYVgCsyLyWwHNmAPgk0JLhuJopVv8sB1fh0lf-Mey9DKjzZx_VF5mbAnwUo4LTJIxGoVbl75zKBhi9a2UOTvfzTodngk71VldFyA"
-              data-track="AI & Data Science Testimonial"
-              data-headline="Transitioning to GenAI Lead"
-              data-quote="The hands-on labs on Large Language Models and model serving pipelines gave me the confidence to ace interviews at top scale-ups. I received three offers within a month of completing the program."
-              data-name="Sarah J."
-              data-role="GenAI Lead (Sky States Graduate)"
-            >
-              <div class="w-16 h-16 rounded-xl overflow-hidden bg-slate-900 flex-shrink-0 relative flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-3xl group-hover:scale-110 transition-transform">play_circle</span>
-              </div>
-              <div class="flex flex-col justify-center">
-                <span class="text-[10px] text-sky-600 font-bold uppercase tracking-wider">Data Science & AI</span>
-                <h4 class="font-bold text-slate-800 text-sm mt-0.5 group-hover:text-sky-600 transition-colors">Sarah J.</h4>
-                <p class="text-xs text-slate-500">GenAI Lead</p>
-              </div>
-            </button>
-
-            <!-- Playlist Item 3 (Raj) -->
-            <button 
-              class="playlist-btn text-left p-4 bg-white rounded-2xl border-2 border-slate-200/60 shadow-sm hover:shadow-md transition-all flex gap-4 group cursor-pointer"
-              data-video="/admin/devops hero section.mp4"
-              data-poster="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c"
-              data-track="DevOps & Cloud Testimonial"
-              data-headline="Scale and Infrastructure Mastery"
-              data-quote="I learned how to construct fully automated, self-healing architectures under production load. The mentorship and mock interview drills helped me stand out from other candidates."
-              data-name="Raj P."
-              data-role="Lead DevOps Architect (Sky States Graduate)"
-            >
-              <div class="w-16 h-16 rounded-xl overflow-hidden bg-slate-900 flex-shrink-0 relative flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-3xl group-hover:scale-110 transition-transform">play_circle</span>
-              </div>
-              <div class="flex flex-col justify-center">
-                <span class="text-[10px] text-sky-600 font-bold uppercase tracking-wider">DevOps & Cloud</span>
-                <h4 class="font-bold text-slate-800 text-sm mt-0.5 group-hover:text-sky-600 transition-colors">Raj P.</h4>
-                <p class="text-xs text-slate-500">Lead DevOps Architect</p>
-              </div>
-            </button>
-          </div>
-        </div>
-        
-      </div>
-    </section>
-
-    <!-- Verified Review Portals Grid -->
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-12">
-      <div class="text-center mb-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Verified Reviews & Journals</h2>
-        <p class="text-slate-500 text-sm mt-1">Read unedited journals and audits from external platforms</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Trust School Review -->
-        <a href="https://trustschool.us" target="_blank" rel="noopener noreferrer" class="group p-6 bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md hover:border-sky-500 transition-all flex flex-col gap-4">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 text-[10px] font-bold uppercase rounded-full tracking-wider">Independent Audit</span>
-            <span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-sky-600 transition-colors">open_in_new</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base">Sky States Rating: 4.9 / 5.0</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Check our verified score, student testimonials, and credential audits on the independent Trust School platform.</p>
-        </a>
-
-        <!-- Medium Journal -->
-        <a href="https://medium.com" target="_blank" rel="noopener noreferrer" class="group p-6 bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md hover:border-sky-500 transition-all flex flex-col gap-4">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 text-[10px] font-bold uppercase rounded-full tracking-wider">Student Vlog & Journal</span>
-            <span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-sky-600 transition-colors">open_in_new</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base">My 6-Month Transition: Legacy Admin to AWS Lead</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Read the complete week-by-week journal documenting curriculum labs, mock trials, and recruitment phases.</p>
-        </a>
-
-        <!-- Negotiation Vlog -->
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="group p-6 bg-white rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md hover:border-sky-500 transition-all flex flex-col gap-4">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 text-[10px] font-bold uppercase rounded-full tracking-wider">Video Panel</span>
-            <span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-sky-600 transition-colors">open_in_new</span>
-          </div>
-          <h4 class="font-bold text-slate-900 text-base">Graduates: Tech Offer Negotiation Success</h4>
-          <p class="text-xs text-slate-500 leading-relaxed">Watch the video panel where three recent graduates break down their offer architectures and counter-offer strategy.</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- Student Technical Portfolios (Success Stories) -->
-    <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 border-t border-slate-200/60">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <div>
-          <span class="text-sky-600 font-bold uppercase tracking-wider text-xs">Portfolio Spotlights</span>
-          <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Elite Graduate Cohort Projects</h2>
-        </div>
-        <p class="text-slate-500 text-sm max-w-md">
-          Sky States programs require deploying a production-ready, peer-reviewed engineering capstone project.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Case Study 1 (Alex Chen) -->
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-md transition-all flex flex-col">
-          <div class="h-48 relative overflow-hidden bg-slate-900">
-            <img class="w-full h-full object-cover opacity-90" alt="Cybersecurity hardware concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtGwaVmlBt-9CHiZRBOUbT-B28wyEIkAVQbTDAPnvHCqp0edGGDP5yya56IQ_xsVxucwNzruLmiY5nHZi3WCL50bitpBib9I0AbclsTydXA9FIYfwv8N3_OkgkzgvdCWlky2KfK6FkYTlOtGq7p2kQW7r1rUN8F59TYdh2AQr4J7aHd_UqvJxjlnlAjiWvI3hp_IG_k1szqHIEkmpbdVRgm5u7yjrEajnwRyrH_Fm-S6KKWIxkJHDj4W3Cd0iH9q_yOZq4nMJcHLc"/>
-            <span class="absolute top-4 left-4 px-2.5 py-1 bg-rose-500 text-white text-[10px] font-bold uppercase rounded-md tracking-wider">Cyber Security</span>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-bold text-lg text-slate-900">Autonomous Security Orchestrator</h3>
-              <p class="text-slate-500 text-xs mt-1">Developed by <strong>Alex Chen</strong> (Staff SecOps Engineer)</p>
-              <p class="text-slate-600 text-sm mt-4 leading-relaxed">
-                An autonomous SOAR layer that intercepts suspicious ingress at the cluster edge, neutralizing threat signatures in under 200ms using heuristic isolation.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-              <span class="text-emerald-600">Deployed to AWS</span>
-              <a href="/stories" class="text-sky-600 hover:text-sky-700 flex items-center gap-1">
-                View Case Study
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Case Study 2 (Sarah Jenkins) -->
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-md transition-all flex flex-col">
-          <div class="h-48 relative overflow-hidden bg-slate-900">
-            <img class="w-full h-full object-cover opacity-90" alt="Global data networks visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c"/>
-            <span class="absolute top-4 left-4 px-2.5 py-1 bg-violet-600 text-white text-[10px] font-bold uppercase rounded-md tracking-wider">DevOps & Cloud</span>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-bold text-lg text-slate-900">Neural Traffic Analyzer</h3>
-              <p class="text-slate-500 text-xs mt-1">Developed by <strong>Sarah Jenkins</strong> (Lead Infrastructure Eng)</p>
-              <p class="text-slate-600 text-sm mt-4 leading-relaxed">
-                Implementing deep learning anomaly detection on edge routing matrices to optimize global traffic distribution and eliminate high-cost routing loops.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-              <span class="text-sky-600">Deployed to GCP</span>
-              <span class="text-slate-400">Archived Capstone</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Case Study 3 (Raj Patel) -->
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/60 shadow-sm hover:shadow-md transition-all flex flex-col">
-          <div class="h-48 relative overflow-hidden bg-slate-900">
-            <img class="w-full h-full object-cover opacity-90" alt="Technical engineering visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1ZOgxknVGFRLEJ3rDvAQ5Tv7jSNtFuxYyE9jnG4INfB7tq0pE4KO0GLB0dYKQidfmTrR7JkgYrlgQKyRmB43TWOE-Coky2nCf6DXvWY3AJwZ2m2AAO1xv-1SjnltpMzfbjpEgZAXB2uIjH81sXP4MPEywvCBjyHCb4NrXAWrrYVgCsyLyWwHNmAPgk0JLhuJopVv8sB1fh0lf-Mey9DKjzZx_VF5mbAnwUo4LTJIxGoVbl75zKBhi9a2UOTvfzTodngk71VldFyA"/>
-            <span class="absolute top-4 left-4 px-2.5 py-1 bg-amber-500 text-white text-[10px] font-bold uppercase rounded-md tracking-wider">Data Science & AI</span>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-bold text-lg text-slate-900">Sub-millisecond Packet Filter</h3>
-              <p class="text-slate-500 text-xs mt-1">Developed by <strong>Raj Patel</strong> (Machine Learning Engineer)</p>
-              <p class="text-slate-600 text-sm mt-4 leading-relaxed">
-                A Rust-based high-concurrency packet processing filter utilizing pre-trained lightweight trees to isolate malicious loads before execution.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-              <span class="text-violet-600">Deployed to Kubernetes</span>
-              <span class="text-slate-400">Archived Capstone</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="max-w-5xl mx-auto px-4 md:px-8 py-8 text-center">
-      <div class="bg-gradient-to-br from-sky-600 to-blue-700 text-white rounded-3xl p-10 md:p-16 shadow-xl border border-sky-400/20">
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Ready to Architect Your Career Evolution?</h2>
-        <p class="text-sky-100 mt-4 max-w-xl mx-auto text-base">
-          Join the elite cohort of graduates making impact at global tech leaders. Book your placement overview call.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/contact-us" class="px-8 py-3.5 bg-white text-sky-600 rounded-full font-bold text-sm hover:bg-sky-50 transition-colors shadow-md">
-            Book Placement Call
-          </a>
-          <a href="/checkout" class="px-8 py-3.5 bg-sky-800/40 text-white border border-sky-400/30 rounded-full font-bold text-sm hover:bg-sky-800/60 transition-colors">
-            Register Now
-          </a>
-        </div>
+            </a>
+          );
+        })}
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
   <Footer />
 
   <script is:inline>
-    // Elements
-    const video = document.getElementById('main-testimonial-video');
-    const overlay = document.getElementById('video-overlay');
-    const playlistButtons = document.querySelectorAll('.playlist-btn');
-    
-    // Details Elements
-    const detailsContainer = document.getElementById('active-testimonial-details');
-    const activeTrack = document.getElementById('active-track');
-    const activeHeadline = document.getElementById('active-headline');
-    const activeQuote = document.getElementById('active-quote');
-    const activeName = document.getElementById('active-name');
-    const activeRole = document.getElementById('active-role');
+    function filterStories(type) {
+      // Toggle button states
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+      });
 
-    // Base Play Overlay Click
-    if (video && overlay) {
-      overlay.addEventListener('click', () => {
-        overlay.style.opacity = '0';
-        overlay.style.pointerEvents = 'none';
-        video.play().catch(err => console.log('Play prevented:', err));
-      });
-      
-      video.addEventListener('pause', () => {
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'all';
-      });
-      
-      video.addEventListener('ended', () => {
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'all';
+      const activeBtn = document.getElementById(`filter-btn-${type}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+        activeBtn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+      }
+
+      // Filter Cards
+      const cards = document.querySelectorAll('.story-card');
+      cards.forEach(card => {
+        const cardType = card.getAttribute('data-type');
+        if (type === 'all' || cardType === type) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
       });
     }
-
-    // Playlist Selection Handler
-    playlistButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Prevent double click on active
-        if (btn.classList.contains('border-sky-500')) return;
-
-        // Remove active class from all buttons
-        playlistButtons.forEach(b => {
-          b.classList.remove('border-sky-500', 'shadow-md');
-          b.classList.add('border-slate-200/60');
-        });
-
-        // Add active class to clicked button
-        btn.classList.remove('border-slate-200/60');
-        btn.classList.add('border-sky-500', 'shadow-md');
-
-        // Extract metadata
-        const newSrc = btn.getAttribute('data-video');
-        const newPoster = btn.getAttribute('data-poster');
-        const newTrack = btn.getAttribute('data-track');
-        const newHeadline = btn.getAttribute('data-headline');
-        const newQuote = btn.getAttribute('data-quote');
-        const newName = btn.getAttribute('data-name');
-        const newRole = btn.getAttribute('data-role');
-
-        // Smoothly fade out active details and video
-        video.style.opacity = '0';
-        detailsContainer.style.opacity = '0';
-
-        setTimeout(() => {
-          // Update Video Sources
-          video.src = newSrc;
-          video.poster = newPoster;
-          video.load();
-
-          // Update Texts
-          activeTrack.textContent = newTrack;
-          activeHeadline.textContent = newHeadline;
-          activeQuote.textContent = `"${newQuote}"`;
-          activeName.textContent = newName;
-          activeRole.textContent = newRole;
-
-          // Reset Play Overlay state
-          overlay.style.opacity = '1';
-          overlay.style.pointerEvents = 'all';
-
-          // Fade back in
-          video.style.opacity = '1';
-          detailsContainer.style.opacity = '1';
-        }, 300);
-      });
-    });
   </script>
 </body>
 </html>

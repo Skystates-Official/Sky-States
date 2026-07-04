@@ -2,7 +2,6 @@
 import '../../styles/global.css';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import programsData from '../../data/programs.json';
 
 const program = programsData['devops'];
@@ -66,16 +65,14 @@ export const prerender = false;
 <Header />
 <main class="mt-20">
 <!-- Hero Section -->
-<section class="bg-surface-bright min-h-[90vh] flex flex-col justify-center relative px-margin-mobile md:px-margin-desktop overflow-hidden py-12">
+<section class="bg-surface-bright relative px-margin-mobile md:px-margin-desktop overflow-hidden py-6 md:py-8">
 <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
 <div class="z-10">
-<div class="mb-6">
-  <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Programs' }, { label: 'DevOps & Cloud' }]} />
-</div>
-<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-8 inline-block tracking-wide uppercase font-bold">Advanced Cloud Track</span>
-<h1 class="font-headline-xl text-6xl font-bold text-on-background mb-6 leading-tight tracking-tight" set:html={hero.headline}></h1>
+
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-4 inline-block tracking-wide uppercase font-bold">Advanced Cloud Track</span>
+<h1 class="font-headline-xl text-3xl sm:text-4xl lg:text-5xl font-bold text-on-background mb-4 leading-tight tracking-tight" set:html={hero.headline}></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-4 max-w-lg leading-relaxed">{hero.description}</p>
-<ul class="space-y-2 mb-8 text-on-surface-variant font-label-md">
+<ul class="space-y-2 mb-6 text-on-surface-variant font-label-md">
   <li class="flex items-center gap-2">
     <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
     <span>6 Month Online Program</span>
@@ -97,12 +94,12 @@ export const prerender = false;
     <span>Career &amp; Placement Support</span>
   </li>
 </ul>
-<div class="flex flex-wrap gap-6"><a href="#pricing" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all text-center">Enroll Now</a><!-- <a href="#faq" class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all text-center">Connect to Advisor</a> --></div>
+<div class="flex flex-wrap gap-6"><a href="#pricing" class="bg-primary text-on-primary px-8 py-3 rounded-xl font-label-md text-label-md shadow-xl shadow-primary/20 hover:scale-105 transition-all text-center">Enroll Now</a><!-- <a href="#faq" class="border-2 border-primary text-primary px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-primary/5 transition-all text-center">Connect to Advisor</a> --></div>
 </div>
 <div class="relative mt-12 lg:mt-0">
 <div class="relative">
 <div class="rounded-3xl overflow-hidden ambient-shadow transition-transform duration-700 hover:scale-[1.02]">
-<video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-[1.49]">
+<video autoplay loop muted playsinline class="w-full h-auto object-cover aspect-video">
 <source src="/assets/videos/devops%20hero%20section.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
@@ -220,20 +217,22 @@ Your browser does not support the video tag.
       <!-- Left Column: Overview -->
       <div class="lg:col-span-5 space-y-6">
         <span class="text-primary font-bold uppercase tracking-widest text-label-sm">Overview</span>
-        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">DevOps &amp; Cloud Program Overview</h2>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">Why Learn DevOps & Cloud Computing?</h2>
         <p class="text-secondary font-body-md leading-relaxed">
-          Are you looking to embark on an exciting career in DevOps and Cloud Architecture? Look no further! Our company is dedicated to providing top-notch training in these cutting edge fields, and we offer a comprehensive 6-month course designed to transform you into a skilled DevOps engineer or cloud infrastructure architect. With our experienced trainers and a commitment to high-quality content delivery, we’re your ultimate partner in achieving your career goals. Plus, our course includes the added advantage of Microsoft Azure Fundamentals (AZ-900) certification, powered by Microsoft, ensuring you gain industry-recognized credentials that will set you apart in the job market.
+          Modern businesses depend on cloud platforms and DevOps practices to give applications quicker, automate infrastructure, and enhance software dependability. Skilled DevOps professionals are in high demand across startups, enterprises, and cloud-first organizations.
+          <br /><br />
+          If you are beginning your IT career, changing into cloud technologies, or expanding your software development skills, this program helps you with practical, industry-ready DevOps expertise via practical learning and real-world projects.
         </p>
         
         <!-- Pricing / Overview Card -->
         <div class="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/30 mt-6 space-y-4">
-          <h4 class="font-bold text-sm text-on-surface">DevOps &amp; Cloud Engineering Program Overview</h4>
-          <p class="text-xs text-secondary leading-relaxed">SkyStates offers a 6-month DevOps &amp; Cloud Engineering Program built to prepare learners for modern cloud careers. The curriculum integrates theoretical knowledge with practical labs, CI/CD pipeline deployments, and real-world system architecture projects.</p>
+          <h4 class="font-bold text-sm text-on-surface">DevOps and Cloud Computing Program Overview</h4>
+          <p class="text-xs text-secondary leading-relaxed">SkyStates offers a comprehensive 6-month DevOps & Cloud Computing Program designed to help you become a job-ready DevOps Engineer. Learn from experienced industry professionals through live online sessions, practical labs, and real-world cloud projects while preparing for Microsoft Azure DevOps certification.</p>
           <div class="flex items-baseline gap-2 pt-2">
             <span class="text-2xl font-bold text-primary">$2,999</span>
             <span class="text-xs text-secondary">/ 6 Month Program / Online Program</span>
           </div>
-          <a href="/checkout?course=DevOps+%26+Cloud+Engineering&type=normal&mode=full" class="block w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:opacity-90 transition-all">Buy Now</a>
+          <a href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full" class="block w-full py-3 bg-primary text-on-primary rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:opacity-90 transition-all">Buy Now</a>
         </div>
       </div>
 
@@ -249,64 +248,64 @@ Your browser does not support the video tag.
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">100% Job Assistance</strong>
-              Through our in-house recruitment agency with over 250 hiring partners.
+              <strong class="text-on-surface block font-bold mb-0.5">Job Support</strong>
+              Job support via an in-house recruitment agency.
             </div>
           </div>
           <!-- Feature 2 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Sky States Credentials</strong>
-              Industry-recognized advanced DevOps & Cloud Engineer certificate from Sky States.
+              <strong class="text-on-surface block font-bold mb-0.5">SkyStates Certification</strong>
+              Industry-recognized DevOps & Cloud Computing certification from SkyStates.
             </div>
           </div>
           <!-- Feature 3 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Domain Capstones</strong>
-              Hands-on capstones from various domains and industry relevant infrastructure builds.
+              <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantage</strong>
+              Microsoft DevOps Engineering learning advantages.
             </div>
           </div>
           <!-- Feature 4 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Career Pivot Design</strong>
-              Program carefully crafted to initiate your professional journey as a DevOps Engineer.
+              <strong class="text-on-surface block font-bold mb-0.5">Applied Projects</strong>
+              Practical applied projects based on real-world cloud environments.
             </div>
           </div>
           <!-- Feature 5 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Microsoft Advantage</strong>
-              Professional-level training and industry-recognized certificate from Microsoft (AZ-900).
+              <strong class="text-on-surface block font-bold mb-0.5">Comprehensive Tooling</strong>
+              Huge training on CI/CD, Docker, Kubernetes, AWS, Azure, and Terraform.
             </div>
           </div>
           <!-- Feature 6 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Integrated Labs</strong>
-              Sandbox environments and integrated labs for hands-on learning experience.
+              <strong class="text-on-surface block font-bold mb-0.5">Cloud Labs</strong>
+              Combined cloud labs for practical learning.
             </div>
           </div>
           <!-- Feature 7 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Live Expert Sessions</strong>
-              Dedicated live sessions by faculty of senior industry experts.
+              <strong class="text-on-surface block font-bold mb-0.5">Live Sessions</strong>
+              Live instructor-led classes by industry professionals.
             </div>
           </div>
           <!-- Feature 8 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">LMS Lifetime Access</strong>
-              Lifetime access to self-paced learning content through our LMS.
+              <strong class="text-on-surface block font-bold mb-0.5">LMS Access</strong>
+              Lifetime access to learning materials through LMS.
             </div>
           </div>
           <!-- Feature 9 -->
@@ -314,15 +313,15 @@ Your browser does not support the video tag.
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
               <strong class="text-on-surface block font-bold mb-0.5">Personalized Batches</strong>
-              Small batch sizes to ensure each student receives customized attention.
+              Small batches for personalized mentorship.
             </div>
           </div>
           <!-- Feature 10 -->
           <div class="flex gap-3 items-start p-4 bg-surface rounded-xl border border-slate-100">
             <span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
             <div class="text-sm text-secondary">
-              <strong class="text-on-surface block font-bold mb-0.5">Skill Enhancement</strong>
-              Free access to self-paced certification courses on emerging industry skills.
+              <strong class="text-on-surface block font-bold mb-0.5">Career Prep</strong>
+              Resume building, interview preparation, and placement support.
             </div>
           </div>
         </div>
@@ -431,8 +430,8 @@ Your browser does not support the video tag.
     <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
       <span class="material-symbols-outlined text-2xl">school</span>
     </div>
-    <h3 class="font-bold text-lg text-on-surface">Students &amp; Freshers</h3>
-    <p class="text-secondary text-sm leading-relaxed">Develop a strong cloud and DevOps foundation via practical labs and introduce your career with industry-related skills.</p>
+    <h3 class="font-bold text-lg text-on-surface">Students</h3>
+    <p class="text-secondary text-sm leading-relaxed">Develop a base knowledge in cloud computing and DevOps while preparing for your technical role.</p>
   </div>
   <!-- Card 2 -->
   <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
@@ -440,23 +439,23 @@ Your browser does not support the video tag.
       <span class="material-symbols-outlined text-2xl">work</span>
     </div>
     <h3 class="font-bold text-lg text-on-surface">IT Professionals</h3>
-    <p class="text-secondary text-sm leading-relaxed">Change into high-demand DevOps and cloud roles with well-prepared learning and practical experience.</p>
+    <p class="text-secondary text-sm leading-relaxed">Advance your skills with cloud platforms, automation, CI/CD, and infrastructure as Code for rapid career growth.</p>
   </div>
   <!-- Card 3 -->
-  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
-    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-      <span class="material-symbols-outlined text-2xl">dns</span>
-    </div>
-    <h3 class="font-bold text-lg text-on-surface">System &amp; Network Administrators</h3>
-    <p class="text-secondary text-sm leading-relaxed">Extend your expertise in CI/CD pipelines, container orchestration, and cloud architecture.</p>
-  </div>
-  <!-- Card 4 -->
   <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
     <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
       <span class="material-symbols-outlined text-2xl">code</span>
     </div>
     <h3 class="font-bold text-lg text-on-surface">Software Developers</h3>
-    <p class="text-secondary text-sm leading-relaxed">Learn Infrastructure as Code, automation practices, security integration, and cloud-native concepts.</p>
+    <p class="text-secondary text-sm leading-relaxed">Learn execution automation, orchestration, and DevOps workflow for modern application development.</p>
+  </div>
+  <!-- Card 4 -->
+  <div class="bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/30 hover:border-primary/30 hover:shadow-md transition-all flex flex-col gap-4">
+    <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+      <span class="material-symbols-outlined text-2xl">dns</span>
+    </div>
+    <h3 class="font-bold text-lg text-on-surface">System and Network Administrators</h3>
+    <p class="text-secondary text-sm leading-relaxed">Change into cloud engineering and DevOps by infrastructure automation, monitoring, and cloud management.</p>
   </div>
 </div>
 </div>
@@ -490,133 +489,198 @@ Your browser does not support the video tag.
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all" open="">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">01</span> Module 1: Introduction to DevOps
+<span class="text-primary font-bold">01</span> Linux & Command Line Fundamentals
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Understand the principles and benefits of DevOps, including collaboration between development and operations teams. Learn about the DevOps lifecycle and key tools to enhance software delivery.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Develop a Linux foundation for managing servers, cloud environments, and DevOps.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Skills you develop:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Linux Administration</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Shell Scripting</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">File Management</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">User Management</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Permission Management</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">02</span> Module 2: Cloud Computing Fundamentals
+<span class="text-primary font-bold">02</span> Version Control with Git & GitHub
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Explore the core concepts of cloud computing, such as virtualization, scalability, and elasticity. Learn about cloud service models (IaaS, PaaS, SaaS) and deployment models (public, private, hybrid).</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Learn collaborative software development and source code management using Git.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Skills you develop:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Git</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">GitHub</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Branching</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Merging</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Repository</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">03</span> Module 3: Version Control Systems
+<span class="text-primary font-bold">03</span> Cloud Computing Fundamentals
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Master Git and other version control systems to track changes in source code. Learn branching, merging, and collaboration techniques to streamline team workflows.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Understand cloud architecture, virtualization, networking, and cloud deployment models.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Topics include:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">IaaS</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">PaaS</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">SaaS</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Public Cloud</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Private Cloud</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Hybrid Cloud</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">04</span> Module 4: Continuous Integration and Delivery
+<span class="text-primary font-bold">04</span> AWS & Microsoft Azure
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Dive into CI/CD pipelines to automate code integration, testing, and deployment. Learn tools like Jenkins, GitHub Actions, and Azure DevOps to build robust CI/CD workflows.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Have practical experience implementing and managing cloud infrastructure.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Services Covered:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Virtual Machines</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Storage</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Networking</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Load Balancing</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Identity Management</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Cloud Security</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">05</span> Module 5: Containerization with Docker
+<span class="text-primary font-bold">05</span> Continuous Integration and Continuous Deployment
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Learn to create, deploy, and manage containers using Docker. Understand containerization concepts, including images, containers, volumes, and networking.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Automate software delivery pipelines for quick and more reliable releases.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Projects include:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Automated Build Pipelines</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Continuous Testing</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Automated Deployment</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Release Management</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">06</span> Module 6: Orchestration with Kubernetes
+<span class="text-primary font-bold">06</span> Containerization with Docker
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Explore Kubernetes for automating deployment, scaling, and managing containerized applications. Learn about pods, services, deployments, and monitoring clusters.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Package, execute, and maintain applications using containers.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Tools You Learn:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Docker Engine</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Docker Compose</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Docker Registry</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Docker Networking</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">07</span> Module 7: Infrastructure as Code (IaC)
+<span class="text-primary font-bold">07</span> Kubernetes Orchestration
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Discover tools like Terraform and CloudFormation to define and provision infrastructure programmatically. Learn best practices for managing infrastructure in a cloud environment.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Implement and manage scalable containerized applications using Kubernetes.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Topics include:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Pods</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Deployments</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Services</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">ConfigMaps</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Scaling</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Cluster Management</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">08</span> Module 8: Cloud Platforms Overview
+<span class="text-primary font-bold">08</span> Infrastructure as Code
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Gain hands-on experience with leading cloud platforms like AWS, Azure, and Google Cloud. Learn core services such as compute, storage, and networking.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Automate infrastructure provisioning utilizing modern DevOps tools.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Tools You Learn:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Terraform</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Infrastructure Automation</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Resource Provisioning</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Cloud Deployment</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">09</span> Module 9: Monitoring and Logging
+<span class="text-primary font-bold">09</span> Monitoring & Logging
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Understand the importance of monitoring and logging in maintaining system health. Explore tools like Prometheus, Grafana, and ELK Stack to analyze system performance.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Monitor applications and infrastructure to ensure performance and reliability.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Tools You Learn:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Prometheus</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Grafana</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">ELK Stack</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Log Management</span>
+</div>
 </div>
 </details>
+
 <details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
 <summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
 <span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">10</span> Module 10: Security in DevOps
+<span class="text-primary font-bold">10</span> DevSecOps & Automation
 </span>
 <span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
 </summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Integrate security into the DevOps process with DevSecOps practices. Learn about securing CI/CD pipelines, monitoring vulnerabilities, and implementing access controls.</p>
+<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4 space-y-2">
+<p>Combine security throughout the DevOps lifecycle while automating infrastructure and implementation processes.</p>
+<p class="font-bold text-xs uppercase text-primary tracking-wider">Topics include:</p>
+<div class="flex flex-wrap gap-2">
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Security Best Practices</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Risk Scanning</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Pipeline Security</span>
+  <span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-semibold">Automation Work Process</span>
 </div>
-</details>
-<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
-<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">11</span> Module 11: Hybrid and Multi-Cloud Environments
-</span>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
-</summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Learn strategies for managing applications across hybrid and multi-cloud setups. Explore tools and frameworks for seamless integration between cloud providers.</p>
-</div>
-</details>
-<details class="group bg-white rounded-2xl soft-elevation p-6 cursor-pointer border-l-4 border-transparent open:border-primary transition-all">
-<summary class="flex justify-between items-center font-label-md text-label-md text-on-surface list-none">
-<span class="font-headline-md text-headline-md flex items-center gap-4">
-<span class="text-primary font-bold">12</span> Module 12: Domain Wise Capstone Project
-</span>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180" data-icon="expand_more">expand_more</span>
-</summary>
-<div class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed border-t border-outline-variant/30 pt-4">
-<p>Apply the knowledge gained throughout the course to complete a real-world project. Design and implement a CI/CD pipeline, containerized application, and monitoring solution in a cloud environment.</p>
 </div>
 </details>
 </div>
@@ -658,7 +722,7 @@ Your browser does not support the video tag.
 <div class="max-w-[1280px] mx-auto px-margin-desktop mb-12">
 <div class="text-center max-w-3xl mx-auto">
 <span class="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Ecosystem</span>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Master the Stack</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Technologies You Will Learn</h2>
 <p class="font-body-md text-body-md text-on-surface-variant">Attain hands-on excellence with the industry standard DevOps tooling and cloud architecture stacks that power modern digital enterprises.</p>
 </div>
 </div>
@@ -711,12 +775,18 @@ Your browser does not support the video tag.
     }
     100% {
       transform: translateX(-50%);
-    }
-  }
-  .animate-marquee {
-    animation: marquee 25s linear infinite;
-  }
-</style>
+
+<!-- Technologies Badges Grid -->
+<div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop mt-12">
+  <div class="flex flex-wrap gap-3 justify-center">
+    {["Linux", "Git", "GitHub", "Docker", "Kubernetes", "Terraform", "Jenkins", "AWS", "Microsoft Azure", "Azure DevOps", "Shell Scripting", "Prometheus", "Grafana", "ELK Stack", "Ansible", "YAML", "CI/CD", "Infrastructure as Code"].map((tech) => (
+      <span class="px-4 py-2 bg-surface text-on-surface font-label-md text-xs font-semibold rounded-xl border border-outline-variant/30 hover:border-primary/50 hover:bg-surface-bright transition-all cursor-default shadow-sm">
+        {tech}
+      </span>
+    ))}
+  </div>
+</div>
+</section>
 
 <!-- Credentialed Excellence -->
 <section class="py-section-gap">
@@ -725,10 +795,10 @@ Your browser does not support the video tag.
 <img alt="Sky States Certification of Excellence" class="w-full max-w-xl shadow-2xl rounded-lg" src="https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1024x724.jpg" srcset="https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1024x724.jpg 1024w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-300x212.jpg 300w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-768x543.jpg 768w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1536x1086.jpg 1536w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-600x424.jpg 600w, https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1.jpg 2000w" sizes="(max-width: 640px) 100vw, 640px"/>
 </div>
 <div class="flex-1 space-y-8">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Credentialed Excellence</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">DevOps & Cloud Computing Certification Benefits</h2>
 <p class="font-body-md text-body-md text-on-surface-variant">
-                    Your success is anchored in institutional trust. Upon completion, receive a blockchain-verified certificate from Sky States, a mark of mastery recognized by executive leadership across the tech sector. 
-                </p>
+  At SkyStates, earn both the DevOps & Cloud Computing Certificate and Microsoft Azure DevOps Certification to build your technical profile and enhance career opportunities. Get benefits from Microsoft learning resources, expert mentorship, and broad placement support.
+</p>
 <div class="space-y-4">
 <div class="flex items-start gap-4">
 <span class="material-symbols-outlined text-primary mt-1" data-icon="shield">shield</span>
@@ -748,32 +818,134 @@ Your browser does not support the video tag.
 </div>
 </div>
 </section>
+
+<!-- Learning Methodology We Use -->
+<section class="py-section-gap bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+  <div class="text-center mb-16">
+    <span class="text-primary font-bold uppercase tracking-widest text-label-sm">How You Learn</span>
+    <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-2">Learning Methodology We Use</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto mt-2">Our structured learning model is designed to take you from a beginner to a job-ready DevOps professional.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Live Sessions -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">live_tv</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Live Sessions</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Learn directly from experienced industry experts in live, interactive classes.</p>
+    </div>
+    <!-- Practical Labs -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">terminal</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Practical Labs</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Practice concepts immediately through guided sandbox exercises and live environments.</p>
+    </div>
+    <!-- Weekly Assignments -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">assignment</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Weekly Assignments</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Reinforce concepts via organized weekly assessments and practical coding milestones.</p>
+    </div>
+    <!-- Mentor Assistance -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">support_agent</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Mentor Assistance</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Receive continuous guidance and 1-on-1 support throughout your learning journey.</p>
+    </div>
+    <!-- Applied Projects -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">analytics</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Applied Projects</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Solve real business challenges using industry datasets and production setups.</p>
+    </div>
+    <!-- Lifetime LMS Access -->
+    <div class="bg-white p-8 rounded-3xl soft-elevation space-y-4 border border-outline-variant/30 hover:border-primary/30 transition-all group">
+      <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+        <span class="material-symbols-outlined">auto_stories</span>
+      </div>
+      <h4 class="font-headline-md text-lg font-bold text-on-surface">Lifetime LMS Access</h4>
+      <p class="font-body-md text-body-md text-on-surface-variant text-sm">Revisit course materials, recorded lectures, and project guides anytime, anywhere.</p>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- Career Support Hub -->
 <section class="py-section-gap bg-surface-container-highest">
 <div class="max-w-[1280px] mx-auto px-margin-desktop">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Career Support Hub</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">We don't just teach; we propel you into your next era.</p>
+<span class="text-primary font-bold uppercase tracking-widest text-label-sm">Career Success</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-2">Sky States Career Support</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto mt-2">Becoming a successful DevOps Engineer needs more than technical skills. We provide full-concierge career assistance.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="bg-white p-10 rounded-3xl soft-elevation space-y-6 text-center">
-<span class="material-symbols-outlined text-primary text-5xl" data-icon="description">description</span>
-<h4 class="font-headline-md text-headline-md text-on-surface">Resume Engineering</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Optimized for ATS and human review by industry veterans.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
+<h4 class="font-bold text-base mt-2">Resume Maximization</h4>
+<p class="text-xs text-secondary leading-relaxed">Optimize your professional resume to pass ATS filters and capture recruiter interest.</p>
 </div>
-<div class="bg-white p-10 rounded-3xl soft-elevation space-y-6 text-center">
-<span class="material-symbols-outlined text-primary text-5xl" data-icon="forum">forum</span>
-<h4 class="font-headline-md text-headline-md text-on-surface">Mock Interviews</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Rigorous behavioral and technical simulations with Lead Architects.</p>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="badge">badge</span>
+<h4 class="font-bold text-base mt-2">LinkedIn Profile Improvement</h4>
+<p class="text-xs text-secondary leading-relaxed">Revamp your LinkedIn profile with targeted keywords and branding for maximum visibility.</p>
 </div>
-<div class="bg-white p-10 rounded-3xl soft-elevation space-y-6 text-center">
-<span class="material-symbols-outlined text-primary text-5xl" data-icon="key">key</span>
-<h4 class="font-headline-md text-headline-md text-on-surface">Hidden Market Access</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Exclusive job listings from our network of corporate partners.</p>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="folder_shared">folder_shared</span>
+<h4 class="font-bold text-base mt-2">GitHub Portfolio Development</h4>
+<p class="text-xs text-secondary leading-relaxed">Build and document complete git repositories highlighting your Cloud & IaC architecture labs.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="forum">forum</span>
+<h4 class="font-bold text-base mt-2">Mock Technical Interviews</h4>
+<p class="text-xs text-secondary leading-relaxed">Practice coding exercises, live architecture sessions, and systems analysis challenges.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="groups">groups</span>
+<h4 class="font-bold text-base mt-2">HR Interview Preparation</h4>
+<p class="text-xs text-secondary leading-relaxed">Polish your behavioral messaging and build absolute confidence for your executive screens.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="explore">explore</span>
+<h4 class="font-bold text-base mt-2">Career Guidance</h4>
+<p class="text-xs text-secondary leading-relaxed">Establish clear career tracks and choose roles aligned with your experience and interests.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="diversity_3">diversity_3</span>
+<h4 class="font-bold text-base mt-2">Networking Sessions</h4>
+<p class="text-xs text-secondary leading-relaxed">Participate in exclusive online meetings with hiring partners, mentors, and corporate peers.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl soft-elevation flex flex-col gap-2 border border-outline-variant/30 hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="handshake">handshake</span>
+<h4 class="font-bold text-base mt-2">Placement Assistance</h4>
+<p class="text-xs text-secondary leading-relaxed">Receive warm referrals to leading cloud organizations through our dedicated recruiters.</p>
 </div>
 </div>
 </div>
 </section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+</style>
 
 <!-- Section: Explore Your Career Options -->
 <section class="py-section-gap bg-slate-50 border-y border-slate-100">
@@ -785,16 +957,20 @@ Your browser does not support the video tag.
   </div>
   
   <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">DevOps Engineer</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cloud Architect</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Systems Administrator</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Site Reliability Engineer (SRE)</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Build &amp; Release Engineer</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Cloud Security Specialist</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Infrastructure Engineer</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Automation Specialist</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Platform Engineer</span>
-    <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100">Technical Operations Lead</span>
+    {[
+      "DevOps Engineer",
+      "Cloud Engineer",
+      "Site Reliability Engineer",
+      "Cloud Operations Engineer",
+      "Infrastructure Engineer",
+      "Platform Engineer",
+      "Automation Engineer",
+      "Kubernetes Administrator",
+      "Build & Release Engineer",
+      "Cloud Support Engineer"
+    ].map((role) => (
+      <span class="px-6 py-3 bg-white text-on-surface font-bold rounded-2xl shadow-sm border border-slate-100 hover:border-primary/30 hover:shadow transition-all cursor-default">{role}</span>
+    ))}
   </div>
 </div>
 </section>
@@ -803,10 +979,13 @@ Your browser does not support the video tag.
 <section class="py-section-gap relative overflow-hidden bg-surface-bright">
 <div class="max-w-[1280px] mx-auto px-margin-desktop relative z-10">
       <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
-        <h2 class="font-headline-xl text-headline-xl mb-4" id="pricing">Develop The Skills That Power the Future of Cloud</h2>
-        <p class="text-secondary font-body-lg leading-relaxed">If you are beginning your first technology career or upgrading into cloud architectures, the Sky States DevOps &amp; Cloud Program offers practical training, real-world projects, expert mentorship, and career assistance to help you become job-ready.</p>
+        <h2 class="font-headline-xl text-headline-xl mb-4" id="pricing">Build the Skills That Power Modern Cloud Infrastructure</h2>
+        <p class="text-secondary font-body-lg leading-relaxed">If you are pursuing your first IT career or advancing into cloud engineering, the SkyStates DevOps & Cloud Computing Program offers practical training, cloud projects, expert mentorship, and career assistance to help you become job-ready.</p>
+        <p class="font-bold text-on-surface tracking-wide uppercase text-sm">Ready to get started?</p>
         <div class="flex flex-wrap gap-4 justify-center pt-4">
-          <a href="#" class="px-6 py-2 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Download the Curriculum</a>
+          <a href="#" class="px-6 py-3 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Download the Curriculum</a>
+          <a href="#faq" class="px-6 py-3 border-2 border-primary text-primary rounded-xl font-label-md hover:bg-primary/5 transition-all">Talk to an Advisor</a>
+          <a href="#pricing" class="px-6 py-3 bg-primary text-on-primary rounded-xl font-label-md hover:opacity-90 transition-all">Enroll Today</a>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto">
@@ -845,7 +1024,7 @@ Your browser does not support the video tag.
 </div>
 </section>
 <!-- Program FAQ -->
-<section class="py-section-gap bg-surface-container-low">
+<section class="py-section-gap bg-surface-container-low" id="faq">
 <div class="max-w-[1280px] mx-auto px-margin-desktop">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center">Frequently Asked Questions</h2>
 <div class="max-w-3xl mx-auto space-y-6">

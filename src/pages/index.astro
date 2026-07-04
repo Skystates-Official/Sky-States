@@ -51,7 +51,7 @@ export const prerender = false;
         "@type": "ContactPoint",
         "telephone": "+1-888-810-2434",
         "contactType": "customer service",
-        "email": "info@skystates.us"
+        "email": ["info@skystates.us", "support@skystates.us"]
       }
     }
     </script>
@@ -116,9 +116,9 @@ export const prerender = false;
 </a>
 </div>
 </div>
-<div class="relative group">
+<div class="relative group w-full max-w-2xl mx-auto lg:mx-0">
 <div class="absolute -inset-4 bg-primary-fixed/20 blur-3xl rounded-full"></div>
-<video autoplay loop muted playsinline class="relative rounded-3xl ambient-shadow w-full h-[400px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-[1.01]">
+<video autoplay loop muted playsinline class="relative rounded-3xl ambient-shadow w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.01]">
 <source src="/assets/videos/home%20page%20hero%20section.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
@@ -152,9 +152,12 @@ Your browser does not support the video tag.
 <!-- About Us Section -->
 <section class="py-section-gap bg-surface-container-lowest">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{about.title}</h2>
+<div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+</div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <div class="flex flex-col gap-6">
-<h2 class="text-headline-lg text-on-surface font-extrabold">{about.title}</h2>
 {about.description && about.description.split('\n\n').map(p => (
   <p class="text-body-md text-on-surface-variant leading-relaxed">
     {p}
@@ -303,12 +306,11 @@ Your browser does not support the video tag.
 <!-- Testimonials Section -->
 <section class="py-section-gap bg-surface-container-low overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
-<div class="max-w-2xl">
-<h2 class="text-headline-lg text-on-surface mb-4">Verified Student Outcomes</h2>
-<p class="text-body-md text-on-surface-variant">Real stories from professionals who successfully transitioned their careers through our platform.</p>
-</div>
-<a class="text-primary text-label-md flex items-center gap-2" href="https://skyreviews.us" target="_blank">Read more at skyreviews.us <span class="material-symbols-outlined">open_in_new</span></a>
+<div class="text-center mb-16">
+<h2 class="text-headline-lg text-on-surface font-extrabold mb-4">Verified Student Outcomes</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Real stories from professionals who successfully transitioned their careers through our platform.</p>
+<div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
+<a class="text-primary text-label-md inline-flex items-center gap-2" href="https://skyreviews.us" target="_blank">Read more at skyreviews.us <span class="material-symbols-outlined">open_in_new</span></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 <!-- Testimonial Card 1 -->
@@ -445,14 +447,13 @@ Your browser does not support the video tag.
 <!-- Our Learning Methodology Section -->
 <section class="py-section-gap bg-white">
 <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+<div class="text-center mb-16 flex flex-col items-center">
+  <h2 class="text-headline-lg text-on-surface font-extrabold mb-4">{methodology.title}</h2>
+  <h3 class="text-title-large text-slate-500 font-medium max-w-2xl mx-auto">{methodology.subtitle}</h3>
+  <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4"></div>
+</div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
   <div class="flex flex-col gap-6">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full w-fit">
-      <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-      <span class="text-xs uppercase tracking-widest text-primary font-bold">Methodology</span>
-    </div>
-    <h2 class="text-headline-lg text-on-surface font-extrabold">{methodology.title}</h2>
-    <h3 class="text-title-large text-slate-500 font-medium">{methodology.subtitle}</h3>
     <p class="text-body-md text-on-surface-variant leading-relaxed">
       {methodology.description}
     </p>
@@ -475,167 +476,7 @@ Your browser does not support the video tag.
 </div>
 </section>
 
-<!-- EXPERIENCE SKY STATES (Immersive Documentary Preview) -->
-<section id="experience-sky-states" class="py-section-gap bg-surface-bright dark:bg-background relative overflow-hidden transition-all duration-1000">
-  <!-- Soft Ambient Background Gradients -->
-  <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-fixed/10 dark:bg-primary-container/5 rounded-full blur-3xl pointer-events-none"></div>
-
-  <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
-    <!-- Header: Editorial Typography -->
-    <div class="max-w-3xl mb-16 md:mb-24">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary/10 dark:bg-primary-fixed/20 border border-primary/20 rounded-full mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-        <span class="text-xs uppercase tracking-widest text-primary dark:text-primary-fixed-dim font-bold">Documentary Preview</span>
-      </div>
-      <h2 class="text-headline-xl text-on-surface tracking-tight leading-tight mb-6">
-        Experience Sky States
-      </h2>
-      <p class="text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">
-        Take a look inside our classrooms, learning platform, mentorship sessions, and daily operations. Reduce the hesitation and see exactly how real careers are accelerated.
-      </p>
-    </div>
-
-    <!-- Layout: Editorial Grid (Desktop: 12 Cols, Mobile/Tablet Asymmetrical Stack) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-      
-      <!-- Left Column: Featured Video & Primary Storytelling (6 Cols) -->
-      <div class="lg:col-span-7 space-y-8">
-        <!-- Main Cinematic Video Card -->
-        <div class="group relative rounded-3xl overflow-hidden bg-black aspect-video shadow-2xl border border-outline-variant/15 dark:border-white/10 transition-all duration-500 hover:scale-[1.005] hover:shadow-primary/5 cursor-pointer" id="play-video-trigger">
-          <!-- Autoplay Muted Loop Preview -->
-          <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" preload="none" id="preview-video">
-            <source src="/admin/home%20page%20hero%20section.mp4" type="video/mp4" />
-          </video>
-
-          <!-- Interactive Vignette Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 flex flex-col justify-between p-6 md:p-8">
-            <!-- Top Badge / Category Indicators -->
-            <div class="flex justify-between items-start">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-semibold">
-                <span class="material-symbols-outlined text-[14px] text-green-400">check_circle</span> Live Session
-              </span>
-              <span class="text-xs font-mono text-white/60 tracking-wider">01:45 PREVIEW</span>
-            </div>
-
-            <!-- Play & Title Container -->
-            <div class="flex items-center gap-4 md:gap-6 mt-auto">
-              <!-- Play Button (Glassmorphism & Glow) -->
-              <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/10 dark:bg-black/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-lg shadow-black/20 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-                <span class="material-symbols-outlined text-3xl font-variation-settings-fill select-none ml-1">play_arrow</span>
-              </div>
-              <div>
-                <h3 class="text-lg md:text-xl font-bold text-white mb-1 group-hover:text-primary-fixed transition-colors">
-                  Inside the Weekend Classroom
-                </h3>
-                <p class="text-xs md:text-sm text-white/70">
-                  Watch live instructor teaching & student code reviews.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mobile/Tablet Storytelling Carousel Indicators / Mobile layout spacer -->
-        <div class="hidden lg:grid grid-cols-2 gap-6">
-          <div class="bg-surface-container-low dark:bg-surface-container/30 border border-outline-variant/10 p-6 rounded-2xl relative overflow-hidden group hover:border-primary/20 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
-            <span class="material-symbols-outlined text-primary dark:text-primary text-3xl mb-4">school</span>
-            <h4 class="font-bold text-on-surface mb-2">Live Class Experience</h4>
-            <p class="text-sm text-on-surface-variant leading-relaxed">
-              Every weekend, master complex concepts under live guidance. No pre-recorded passive slides.
-            </p>
-          </div>
-          <div class="bg-surface-container-low dark:bg-surface-container/30 border border-outline-variant/10 p-6 rounded-2xl relative overflow-hidden group hover:border-primary/20 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
-            <span class="material-symbols-outlined text-primary dark:text-primary text-3xl mb-4">support_agent</span>
-            <h4 class="font-bold text-on-surface mb-2">Real Office Operations</h4>
-            <p class="text-sm text-on-surface-variant leading-relaxed">
-              Our support team, mentors, and placement counselors operate transparently out of US hubs.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Storytelling Photo Composition & Floating Cards (5 Cols) -->
-      <div class="lg:col-span-5 space-y-6 lg:mt-12 relative">
-        <!-- Floating Glassmorphic Details Card -->
-        <div class="absolute -top-12 -left-12 hidden xl:block z-20 w-64 bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer" id="floating-card-lms">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
-            <span class="text-xs font-mono tracking-wider text-on-surface/80">✔ LMS Dashboard</span>
-          </div>
-          <p class="text-xs text-on-surface-variant leading-relaxed">
-            Real-time labs, gradebooks, and mentor appointment schedules showing actual student feedback loops.
-          </p>
-        </div>
-
-        <!-- Asymmetric Composite Image Grid -->
-        <div class="space-y-6">
-          <!-- Image 1: Main Storytelling Photo -->
-          <div class="relative group rounded-3xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-xl cursor-pointer">
-            <img 
-              alt="Mentor teaching a student in a physical lab setting" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5aVH1e5_rupMo08HJ0pjBB36nvrfwIhK39PkI0GIqzOdl9S-u8qH5uqsJQHC8F9GICSh9Aw3QqUJFDGNt8fSIukEWWpkMAFbfaoWxK00Sa-lyLTgpsg4KzWmSmPAm9XwKjt9XYRrMrmsFYlP8_tAveDI2ra7wbC7Nisg3MqrU8tEWKZTBFo4XV67t-dmvIA8hB7BWPx6jHKk05kI13iwVt7nRsKdFn3axjAYh9zuFudiIF9Fqaz8ghCn4E7PZt4AHM9a3QiCSUxw" 
-              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" 
-              loading="lazy" 
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-black/50 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-semibold w-fit mb-2">
-                <span class="material-symbols-outlined text-[14px] text-primary">verified</span> Mentor Discussion
-              </span>
-              <h4 class="text-white font-bold text-lg">One-on-One Live Debugging</h4>
-            </div>
-          </div>
-
-          <!-- Storytelling Composition: Two Column Asymmetrical Layout -->
-          <div class="grid grid-cols-2 gap-6">
-            <!-- Supporting Detail Image 1 -->
-            <div class="relative group rounded-2xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-lg cursor-pointer aspect-square">
-              <img 
-                alt="Sky States student collaboration workspace screen" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtGwaVmlBt-9CHiZRBOUbT-B28wyEIkAVQbTDAPnvHCqp0edGGDP5yya56IQ_xsVxucwNzruLmiY5nHZi3WCL50bitpBib9I0AbclsTydXA9FIYfwv8N3_OkgkzgvdCWlky2KfK6FkYTlOtGq7p2kQW7r1rUN8F59TYdh2AQr4J7aHd_UqvJxjlnlAjiWvI3hp_IG_k1szqHIEkmpbdVRgm5u7yjrEajnwRyrH_Fm-S6KKWIxkJHDj4W3Cd0iH9q_yOZq4nMJcHLc" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                loading="lazy" 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-semibold w-fit mb-1">
-                  ✔ Student Collaboration
-                </span>
-                <p class="text-white font-bold text-xs">Dynamic Team Projects</p>
-              </div>
-            </div>
-
-            <!-- Supporting Detail Image 2 -->
-            <div class="relative group rounded-2xl overflow-hidden border border-outline-variant/15 dark:border-white/10 shadow-lg cursor-pointer aspect-square">
-              <img 
-                alt="Workspace with multiple displays and code dashboard" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2oHGUzcMkWs2og6QBYKx_a5-DJtRKSikz1NlJ4enP5RjcKaNe70BexIKqWizmY4B18iUndEfe2EhgTWlrQuHn558iAJG-vQV_rsx8kIVLim0fwvF1lArlQwoOCBLcez-0aXT2w4WSerShn_rvygHIVplqKsN3VzEfiKzJup_iCQz75pK4KckQRwb0KcO8tmXg8aNcjG2xKPLQ09r-vYjaFSY_wfJZ_VgSTreJfBTX9tJenNQ6SGatIahY4D0vm4m9BNMYGBkp9c" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                loading="lazy" 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4">
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-white rounded-full text-[10px] font-semibold w-fit mb-1">
-                  ✔ Project Reviews
-                </span>
-                <p class="text-white font-bold text-xs">High-Speed Code Pipeline</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floating Glassmorphic Workspace Card -->
-        <div class="absolute -bottom-8 -right-8 hidden xl:block z-20 w-64 bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer" id="floating-card-office">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-            <span class="text-xs font-mono tracking-wider text-on-surface/80">✔ Office Workspace</span>
-          </div>
-          <p class="text-xs text-on-surface-variant leading-relaxed">
-            Take a video tour of our US operations and workspace where live cohorts are built and managed.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{/* EXPERIENCE SKY STATES (Immersive Documentary Preview) - Removed */}
 
 <!-- IMMERSIVE VIDEO LIGHTBOX MODAL -->
 <div id="video-lightbox" class="fixed inset-0 bg-black/95 z-[999] opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Immersive classroom preview">
@@ -702,7 +543,7 @@ TRANSPARENT PRICING
                 Is Sky States a legitimate company?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm">Yes, Sky States is a US-registered Career Acceleration Platform with headquarters in Sheridan, WY and Dover, DE. We support individuals at all career stages in making successful transitions into technology.</p>
+<p class="mt-4 text-on-surface-variant text-sm">Yes, Sky States is a US-registered Career Acceleration Platform with headquarters in Everett, WA. We support individuals at all career stages in making successful transitions into technology.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
 <summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
@@ -724,13 +565,12 @@ TRANSPARENT PRICING
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm">During practical lab sessions and project reviews, screen sharing is utilized to provide you with direct, real-time feedback and assistance from your instructor.</p>
-</details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
 <summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">
                 What is your refund policy?
                 <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm">We maintain a transparent refund policy details of which are provided during the enrollment phase. Satisfaction and quality of instruction are our top priorities.</p>
+<p class="mt-4 text-on-surface-variant text-sm">We offer a 100% money-back guarantee within the first 14 calendar days of the program if you feel it's not the right fit for your career goals. For full terms, please review our <a href="/refund-policy" class="text-primary hover:underline font-semibold">Refund Policy</a>.</p>
 </details>
 <details class="bg-white rounded-xl p-6 ambient-shadow group">
 <summary class="text-label-md font-semibold cursor-pointer list-none flex justify-between items-center">

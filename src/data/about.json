@@ -16,10 +16,37 @@
     "legal_title": "Legal Entity Registry",
     "legal_desc": "Sky States is a legally registered corporation in the United States, operating under strict compliance with state and federal regulations.",
     "presence_title": "Physical Presence",
-    "delaware_address": "30 N Gould St, Sheridan, WY, 82801, USA",
-    "wyoming_address": "30 N Gould St, Sheridan, WY, 82801, USA",
+    "delaware_address": "1316 Wall St, Suite 2C, Everett, WA 98201, United States",
+    "wyoming_address": "1316 Wall St, Suite 2C, Everett, WA 98201, United States",
     "contact_title": "Institutional Contact",
     "phone": "(888) 810-2434 / (888) 927-7072",
     "email": "Info@skystates.us"
-  }
+  },
+  "team": [
+    {
+      "name": "Shephali Chaudhary",
+      "role": "Chief Executive Officer (CEO)",
+      "photo": "/admin/Shephali.jpeg"
+    },
+    {
+      "name": "Upendra Singh",
+      "role": "Account Manager",
+      "photo": "/admin/Upendra.webp"
+    },
+    {
+      "name": "Ranjan Pandey",
+      "role": "Chief Product Officer (CPO)",
+      "photo": "/admin/Ranjan.jpeg"
+    },
+    {
+      "name": "Jasdev",
+      "role": "Placement Manager",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+    },
+    {
+      "name": "Vidhi Chaudhary",
+      "role": "General Manager Skystates for Business",
+      "photo": "/admin/vidhi.jpeg"
+    }
+  ]
 }
