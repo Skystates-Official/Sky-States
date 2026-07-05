@@ -47,10 +47,34 @@
         </div>
       </div>
     </div>
+
+    <!-- Company -->
+    <div class="relative group/drop dropdown-wrapper">
+      <button class="nav-link-item dropdown-trigger">
+        Company
+        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+        >
+      </button>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <a href="/about" class="dropdown-item">
+            <span class="item-title">About Us</span>
+          </a>
+          <a href="/contact-us" class="dropdown-item">
+            <span class="item-title">Contact</span>
+          </a>
+          <a href="/stories" class="dropdown-item">
+            <span class="item-title">Testimonials</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Right CTAs (Right-aligned) -->
   <div class="cta-container">
+    <!-- LMS Login Button -->
+
     <!-- Register Now Dropdown -->
     <div class="relative group/drop dropdown-wrapper">
       <button class="btn-cta btn-solid dropdown-trigger">
@@ -89,7 +113,7 @@
     </div>
 
     <!-- Enroll Now Dropdown -->
-    <div class="relative group/drop dropdown-wrapper">
+    <div class="relative group/drop dropdown-wrapper mr-6">
       <button class="btn-cta btn-outline dropdown-trigger">
         Enroll Now
         <span class="material-symbols-outlined dropdown-caret">expand_more</span
@@ -124,6 +148,17 @@
         </div>
       </div>
     </div>
+
+    <a
+      href="https://learnwithus.sbs/login"
+      class="nav-link-item btn-cta btn-outline"
+      target="_blank"
+    >
+      LMS Login
+      <span class="material-symbols-outlined" style="font-size: 18px;"
+        >login</span
+      >
+    </a>
   </div>
 
   <!-- Mobile Hamburger button matching Codesmith -->
@@ -160,31 +195,35 @@
   <div class="mobile-nav-inner">
     <a tabindex="-1" href="/" class="mobile-nav-link">Home</a>
     <a tabindex="-1" href="/live-jobs" class="mobile-nav-link">Live Jobs</a>
-    <!-- <a tabindex="-1" href="/stories" class="mobile-nav-link">Stories</a> -->
-    <div class="w-full border-t border-slate-200/50 my-2"></div>
 
     <!-- Mobile Program Links -->
     <span
-      class="block text-xs font-bold uppercase text-slate-400 tracking-widest w-full text-center mb-1"
+      class="block text-lg font-bold uppercase text-slate-700 tracking-widest w-full text-center mb-1"
       >Programs</span
     >
-    <a
-      tabindex="-1"
-      href="/programs/data-science-ai"
-      class="mobile-program-link">Data Science & AI</a
+    <a tabindex="-1" href="/programs/data-science-ai" class="text-base"
+      >Data Science & AI</a
     >
-    <a tabindex="-1" href="/programs/cyber-security" class="mobile-program-link"
+    <a tabindex="-1" href="/programs/cyber-security" class="text-base"
       >Cyber Security</a
     >
-    <a tabindex="-1" href="/programs/devops" class="mobile-program-link"
-      >DevOps & Cloud</a
+    <a tabindex="-1" href="/programs/devops" class="text-base">DevOps & Cloud</a
     >
+
+    <!-- Company -->
+    <span
+      class="block text-lg font-bold uppercase text-slate-700 tracking-widest w-full text-center mb-1"
+      >Company</span
+    >
+    <a tabindex="-1" href="/about" class="text-base">About</a>
+    <a tabindex="-1" href="/contact-us" class="text-base">Contact</a>
+    <a tabindex="-1" href="/stories" class="text-base">Testimonials</a>
 
     <div class="w-full border-t border-slate-200/50 my-2"></div>
 
     <!-- Mobile Register Now Section -->
     <div class="mobile-cta-section">
-      <span class="mobile-cta-section-title">Register Now (Scholar Tier)</span>
+      <span class="mobile-cta-section-title">Register Now</span>
       <div class="mobile-cta-grid">
         <a
           tabindex="-1"
@@ -192,7 +231,7 @@
           class="mobile-cta-sub-btn"
         >
           <span class="cta-sub-title">Data Science & AI</span>
-          <span class="cta-sub-price">$99 Deposit</span>
+          <span class="cta-sub-price">$99</span>
         </a>
         <a
           tabindex="-1"
@@ -200,7 +239,7 @@
           class="mobile-cta-sub-btn"
         >
           <span class="cta-sub-title">Cyber Security</span>
-          <span class="cta-sub-price">$99 Deposit</span>
+          <span class="cta-sub-price">$99</span>
         </a>
         <a
           tabindex="-1"
@@ -208,14 +247,14 @@
           class="mobile-cta-sub-btn"
         >
           <span class="cta-sub-title">DevOps & Cloud</span>
-          <span class="cta-sub-price">$99 Deposit</span>
+          <span class="cta-sub-price">$99</span>
         </a>
       </div>
     </div>
 
     <!-- Mobile Enroll Now Section -->
     <div class="mobile-cta-section">
-      <span class="mobile-cta-section-title">Enroll Now (Full Tuition)</span>
+      <span class="mobile-cta-section-title">Enroll Now</span>
       <div class="mobile-cta-grid">
         <a
           tabindex="-1"
@@ -223,7 +262,7 @@
           class="mobile-cta-sub-btn outline"
         >
           <span class="cta-sub-title">Data Science & AI</span>
-          <span class="cta-sub-price">Full Tuition</span>
+          <span class="text-black">$2999</span>
         </a>
         <a
           tabindex="-1"
@@ -231,7 +270,7 @@
           class="mobile-cta-sub-btn outline"
         >
           <span class="cta-sub-title">Cyber Security</span>
-          <span class="cta-sub-price">Full Tuition</span>
+          <span class="text-black">$2999</span>
         </a>
         <a
           tabindex="-1"
@@ -239,10 +278,23 @@
           class="mobile-cta-sub-btn outline"
         >
           <span class="cta-sub-title">DevOps & Cloud</span>
-          <span class="cta-sub-price">Full Tuition</span>
+          <span class="text-black">$2999</span>
         </a>
       </div>
     </div>
+
+    <a
+      tabindex="-1"
+      href="https://learnwithus.sbs/login"
+      target="_blank"
+      class="mobile-program-link flex items-center justify-center gap-1.5 btn-cta btn-outline"
+      style="font-weight: 600; color: #1b4a9a;"
+    >
+      LMS Login
+      <span class="material-symbols-outlined" style="font-size: 16px;"
+        >login</span
+      >
+    </a>
   </div>
 </div>
 
