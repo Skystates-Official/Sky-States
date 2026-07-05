@@ -5,10 +5,7 @@ import Footer from "../../components/Footer.astro";
 import programsData from "../../data/programs.json";
 
 const program = programsData["cyber-security"];
-const { metaTitle, hero } = program;
-const description =
-  hero?.description ||
-  "Master Cyber Security Specialist competencies with our 6-month intensive training program.";
+const { hero } = program;
 export const prerender = false;
 ---
 
@@ -18,11 +15,12 @@ export const prerender = false;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>{metaTitle}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href="https://skystates.us/programs/cyber-security" />
-    <meta property="og:title" content={metaTitle} />
-    <meta property="og:description" content={description} />
+    <title>Cyber Security & Ethical Hacking Bootcamp | Sky States</title>
+    <meta name="description" content="Launch your cybersecurity career with Sky States. Learn ethical hacking, network security, penetration testing, SOC, and hands-on skills with expert-led online training." />
+    <meta name="keywords" content="Cyber Security Bootcamp, Online Cyber Security Training, Ethical Hacking Course, Cyber Security Certification, Cyber Security Program, Cyber Security Course Online" />
+    <link rel="canonical" href="https://skystates.us/programs/cyber-security/" />
+    <meta property="og:title" content="Cyber Security & Ethical Hacking Bootcamp | Sky States" />
+    <meta property="og:description" content="Launch your cybersecurity career with Sky States. Learn ethical hacking, network security, penetration testing, SOC, and hands-on skills with expert-led online training." />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,21 +33,23 @@ export const prerender = false;
       rel="stylesheet"
     />
 
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: metaTitle,
-        description: description,
-        provider: {
-          "@type": "EducationalOrganization",
-          name: "Sky States",
-          sameAs: "https://skystates.us",
-        },
-      })}
-    />
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Cyber Security Bootcamp",
+      "description": "Master Cyber Security, Ethical Hacking, Network Security, Penetration Testing, SOC, and Incident Response.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Sky States",
+        "url": "https://skystates.us"
+      },
+      "url": "https://skystates.us/programs/cyber-security",
+      "courseMode": "Online",
+      "inLanguage": "en",
+      "educationalLevel": "Beginner to Advanced"
+    }
+    </script>
 
     <style>
       .material-symbols-outlined {
