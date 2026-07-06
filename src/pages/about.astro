@@ -109,36 +109,40 @@ export const prerender = false;
       }
     </style>
   </head>
-  <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen">
+  <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen overflow-x-hidden">
     <!-- TopAppBar -->
     <Header />
     <main>
       <!-- Editorial Hero -->
       <section
-        class="relative w-full pt-28 md:pt-36 pb-32 overflow-hidden bg-gradient-to-b from-sky-50 via-white to-slate-50/30 border-b border-slate-100"
+        class="relative w-full py-10 sm:py-16 md:py-24 overflow-hidden bg-gradient-to-b from-sky-50 via-white to-slate-50/30 border-b border-slate-100"
       >
         <div
-          class="max-w-[1280px] mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10"
+          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 relative z-10"
         >
           <div class="space-y-6">
             <span
-              class="inline-block mb-10 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-xs font-bold uppercase tracking-wider"
+              class="inline-block mb-4 md:mb-10 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-xs font-bold uppercase tracking-wider"
               >{hero.badge}</span
             >
             <!-- Our Mission Card -->
             <div class="space-y-6">
-              <h3 class="text-4xl font-bold text-[#0f3473] tracking-tight">
+              <h3
+                class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0f3473] tracking-tight"
+              >
                 {story.vision_title}
               </h3>
-              <p class="text-slate-650 text-base sm:text-base leading-relaxed">
+              <p class="text-slate-650 text-sm sm:text-base leading-relaxed">
                 {story.vision_desc}
               </p>
             </div>
 
-            <h1 class="text-3xl font-bold text-slate-900 tracking-tight">
+            <h1
+              class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight"
+            >
               {hero.title}
             </h1>
-            <p class="text-slate-650 text-base sm:text-base leading-relaxed">
+            <p class="text-slate-650 text-sm sm:text-base leading-relaxed">
               {hero.description}
             </p>
           </div>
@@ -163,13 +167,17 @@ export const prerender = false;
 
       <!-- Stats Section -->
       <section
-        class="max-w-[1280px] mx-auto px-4 md:px-margin-desktop -mt-16 relative z-20"
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop md:-mt-10 relative z-20"
       >
         <div
-          class="bg-white/85 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-lg grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          class="bg-white/85 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-lg grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 text-center"
         >
           <div class="space-y-1">
-            <h3 class="text-3xl md:text-4xl font-black text-sky-600">5,000+</h3>
+            <h3
+              class="text-2xl md:text-3xl lg:text-4xl font-black text-sky-600"
+            >
+              5,000+
+            </h3>
             <p
               class="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider"
             >
@@ -177,7 +185,11 @@ export const prerender = false;
             </p>
           </div>
           <div class="space-y-1 border-l border-slate-200">
-            <h3 class="text-3xl md:text-4xl font-black text-sky-600">140%</h3>
+            <h3
+              class="text-2xl md:text-3xl lg:text-4xl font-black text-sky-600"
+            >
+              140%
+            </h3>
             <p
               class="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider"
             >
@@ -185,7 +197,11 @@ export const prerender = false;
             </p>
           </div>
           <div class="space-y-1 border-l border-slate-200">
-            <h3 class="text-3xl md:text-4xl font-black text-sky-600">96%</h3>
+            <h3
+              class="text-2xl md:text-3xl lg:text-4xl font-black text-sky-600"
+            >
+              96%
+            </h3>
             <p
               class="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider"
             >
@@ -193,7 +209,11 @@ export const prerender = false;
             </p>
           </div>
           <div class="space-y-1 border-l border-slate-200">
-            <h3 class="text-3xl md:text-4xl font-black text-sky-600">1-on-1</h3>
+            <h3
+              class="text-2xl md:text-3xl lg:text-4xl font-black text-sky-600"
+            >
+              1-on-1
+            </h3>
             <p
               class="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider"
             >
@@ -204,20 +224,22 @@ export const prerender = false;
       </section>
 
       <!-- Narrative Stack: Who We Are / Meet Our Team side-by-side (Lepide-style) -->
-      <section class="max-w-[1280px] mx-auto px-4 md:px-margin-desktop py-28">
+      <section
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-12 md:py-28"
+      >
         <div
-          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+          class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
         >
           <!-- Left Column: 2x3 circular avatars grid & button -->
           <div class="lg:col-span-6 flex flex-col items-center gap-10">
             <!-- 2x3 Avatar Grid -->
             <div
-              class="grid grid-cols-3 gap-6 sm:gap-8 justify-items-center w-full max-w-md"
+              class="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full max-w-xs sm:max-w-md mx-auto"
             >
               {
                 team.map((member) => (
                   <div class="flex flex-col items-center group">
-                    <div class="h-24 w-24 sm:h-28 sm:w-28 rounded-full overflow-hidden border-2 border-white shadow-md ring-2 ring-[#1b4a9a] hover:ring-sky-500 hover:scale-[1.03] transition-all duration-300">
+                    <div class="h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 rounded-full overflow-hidden border-2 border-white shadow-md ring-2 ring-[#1b4a9a] hover:ring-sky-500 hover:scale-[1.03] transition-all duration-300">
                       <img
                         src={
                           member.photo_profile ||
@@ -249,7 +271,7 @@ export const prerender = false;
               >The Core Philosophy</span
             >
             <h2
-              class="text-3xl sm:text-4xl font-bold text-[#0f3473] tracking-tight"
+              class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0f3473] tracking-tight"
             >
               {story.title}
             </h2>
@@ -265,11 +287,11 @@ export const prerender = false;
       <!-- Editorial standards card (What We Do methodology card) -->
       <section class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
         <div
-          class="grid grid-cols-1 md:grid-cols-10 items-center gap-15 px-8 py-8"
+          class="relative grid grid-cols-1 md:grid-cols-10 items-center gap-10 px-8 py-8 overflow-hidden"
         >
           <!-- Ambient light effect -->
           <div
-            class="absolute -right-10 -top-10 w-40 h-40 bg-sky-300/10 blur-3xl rounded-full"
+            class="absolute -right-10 -top-10 w-40 h-40 bg-sky-300/10 blur-3xl rounded-full pointer-events-none"
           >
           </div>
 
@@ -301,7 +323,9 @@ export const prerender = false;
       </section>
 
       <!-- What We Are vs What We Are Not -->
-      <section class="max-w-[1280px] mx-auto px-4 md:px-margin-desktop py-10">
+      <section
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-8 md:py-10"
+      >
         <div class="text-center mb-16 space-y-3">
           <span
             class="text-[10px] font-bold uppercase tracking-wider text-sky-700"
@@ -439,13 +463,15 @@ export const prerender = false;
       </section>
 
       <!-- Institutional Registry Info -->
-      <section class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+      <section
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-8 md:py-12"
+      >
         <div
           class="p-8 sm:p-12 text-slate-800 relative overflow-hidden flex flex-col items-center text-center w-full"
         >
           <!-- Ambient light dot -->
           <div
-            class="absolute -right-10 -top-10 w-40 h-40 bg-sky-300/10 blur-3xl rounded-full"
+            class="absolute -right-10 -top-10 w-40 h-40 bg-sky-300/10 blur-3xl rounded-full pointer-events-none"
           >
           </div>
 
@@ -507,9 +533,6 @@ export const prerender = false;
           </div>
         </div>
       </section>
-
-      <!-- book live demo -->
-      <section></section>
     </main>
   </body>
   <!-- Footer -->

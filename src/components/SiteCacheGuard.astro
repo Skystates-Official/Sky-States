@@ -1,0 +1,28 @@
+---
+const SITE_REV = '20260706v2';
+---
+
+<script is:inline define:vars={{ SITE_REV }}>
+  (function () {
+    var key = 'skystates_site_rev';
+    var nav = performance.getEntriesByType('navigation')[0];
+
+    // Back/forward cache often shows an old snapshot — always reload from server.
+    if (nav && nav.type === 'back_forward') {
+      location.reload();
+      return;
+    }
+
+    // If this tab loaded a cached HTML page, bust cache once per site revision.
+    if (nav && nav.transferSize === 0 && localStorage.getItem(key) !== SITE_REV) {
+      localStorage.setItem(key, SITE_REV);
+      var url = new URL(location.href);
+      if (!url.searchParams.has('_nc')) {
+        url.searchParams.set('_nc', SITE_REV);
+        location.replace(url.toString());
+      }
+    } else {
+      localStorage.setItem(key, SITE_REV);
+    }
+  })();
+</script>

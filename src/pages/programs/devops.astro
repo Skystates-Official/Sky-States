@@ -2,6 +2,8 @@
 import "../../styles/global.css";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
 import programsData from "../../data/programs.json";
 
 const program = programsData["devops"];
@@ -16,11 +18,23 @@ export const prerender = false;
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Online DevOps Bootcamp & Certification | Sky States</title>
-    <meta name="description" content="Join Sky States' online DevOps Bootcamp. Master AWS, Docker, Kubernetes, Jenkins, Terraform, CI/CD pipelines, and gain career-ready skills." />
-    <meta name="keywords" content="DevOps Bootcamp, Online DevOps Training, DevOps Certification, DevOps Course Online, DevOps Engineer Training, DevOps Program" />
+    <meta
+      name="description"
+      content="Join Sky States' online DevOps Bootcamp. Master AWS, Docker, Kubernetes, Jenkins, Terraform, CI/CD pipelines, and gain career-ready skills."
+    />
+    <meta
+      name="keywords"
+      content="DevOps Bootcamp, Online DevOps Training, DevOps Certification, DevOps Course Online, DevOps Engineer Training, DevOps Program"
+    />
     <link rel="canonical" href="https://skystates.us/programs/devops/" />
-    <meta property="og:title" content="Online DevOps Bootcamp & Certification | Sky States" />
-    <meta property="og:description" content="Join Sky States' online DevOps Bootcamp. Master AWS, Docker, Kubernetes, Jenkins, Terraform, CI/CD pipelines, and gain career-ready skills." />
+    <meta
+      property="og:title"
+      content="Online DevOps Bootcamp & Certification | Sky States"
+    />
+    <meta
+      property="og:description"
+      content="Join Sky States' online DevOps Bootcamp. Master AWS, Docker, Kubernetes, Jenkins, Terraform, CI/CD pipelines, and gain career-ready skills."
+    />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,21 +48,21 @@ export const prerender = false;
     />
 
     <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "DevOps Bootcamp",
-      "description": "Learn AWS, Docker, Kubernetes, Jenkins, Terraform, Git, Linux, and CI/CD pipelines with hands-on projects.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Sky States",
-        "url": "https://skystates.us"
-      },
-      "url": "https://skystates.us/programs/devops",
-      "courseMode": "Online",
-      "inLanguage": "en",
-      "educationalLevel": "Beginner to Advanced"
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "DevOps Bootcamp",
+        "description": "Learn AWS, Docker, Kubernetes, Jenkins, Terraform, Git, Linux, and CI/CD pipelines with hands-on projects.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Sky States",
+          "url": "https://skystates.us"
+        },
+        "url": "https://skystates.us/programs/devops",
+        "courseMode": "Online",
+        "inLanguage": "en",
+        "educationalLevel": "Beginner to Advanced"
+      }
     </script>
 
     <style>
@@ -678,7 +692,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="/assets/certificate/Microsoft-az-900-DevOps-And-Cloud-Computing.png"
+              src="/assets/certificate/microsoft-az-900-devops.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
               alt="Microsoft DevOps Certification"
             />
@@ -1558,153 +1572,7 @@ export const prerender = false;
             </p>
           </div>
         </div>
-
-        <!-- CSS Marquee Loop -->
-        <div class="relative w-full overflow-hidden py-4 select-none">
-          <!-- Gradient overlays for smooth fading effect at edges -->
-          <div
-            class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"
-          >
-          </div>
-          <div
-            class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"
-          >
-          </div>
-
-          <div
-            class="flex gap-12 w-max animate-marquee hover:[animation-play-state:paused]"
-          >
-            <!-- Original Track -->
-            <div class="flex gap-12 items-center justify-around min-w-full">
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/12-1.png"
-                alt="DevOps tool logo 12"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1-3.png"
-                alt="DevOps tool logo 1"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2-3.png"
-                alt="DevOps tool logo 2"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3-2.png"
-                alt="DevOps tool logo 3"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-2.png"
-                alt="DevOps tool logo 4"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5-1-1.png"
-                alt="DevOps tool logo 5"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6-1-1.png"
-                alt="DevOps tool logo 6"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7-1-1.png"
-                alt="DevOps tool logo 7"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8-1-1.png"
-                alt="DevOps tool logo 8"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-1-1.png"
-                alt="DevOps tool logo 9"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10-1.png"
-                alt="DevOps tool logo 10"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11-2.png"
-                alt="DevOps tool logo 11"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-            <!-- Duplicate Track for Infinite Loop -->
-            <div
-              class="flex gap-12 items-center justify-around min-w-full"
-              aria-hidden="true"
-            >
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/12-1.png"
-                alt="DevOps tool logo 12"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1-3.png"
-                alt="DevOps tool logo 1"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2-3.png"
-                alt="DevOps tool logo 2"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3-2.png"
-                alt="DevOps tool logo 3"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-2.png"
-                alt="DevOps tool logo 4"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5-1-1.png"
-                alt="DevOps tool logo 5"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6-1-1.png"
-                alt="DevOps tool logo 6"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7-1-1.png"
-                alt="DevOps tool logo 7"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8-1-1.png"
-                alt="DevOps tool logo 8"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-1-1.png"
-                alt="DevOps tool logo 9"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10-1.png"
-                alt="DevOps tool logo 10"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11-2.png"
-                alt="DevOps tool logo 11"
-                class="h-12 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-          </div>
-        </div>
+        <ToolLogoMarquee tools={programToolLogos["devops"]} />
 
         <!-- Technologies Badges Grid -->
         <div class="max-w-4xl mx-auto px-4 md:px-margin-desktop mt-10">
@@ -1748,7 +1616,7 @@ export const prerender = false;
             <img
               alt="Sky States Certification of Excellence"
               class="w-full max-w-xl shadow-2xl rounded-2xl border border-slate-150"
-              src="https://skystates.us/wp-content/uploads/2025/10/DevOps-And-Cloud-Computing-1-1024x724.jpg"
+              src="/assets/certificate/microsoft-az-900-devops.png"
             />
           </div>
           <div class="flex-1 space-y-6">
@@ -2140,7 +2008,7 @@ export const prerender = false;
               <a
                 href="/DEVOPS-final.pdf"
                 download="DevOps & Cloud Computing Brouchure.pdf"
-                class="px-6 py-3 border-2 border-slate-200 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-colors duration-200"
+                class="px-6 py-3 border-2 border-slate-200 text-slate-600 rounded-xl font-semibold hover:text-sky-500 hover:border-sky-500 duration-200"
                 >Download the Brouchure</a
               >
             </div>

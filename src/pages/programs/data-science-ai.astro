@@ -2,6 +2,8 @@
 import "../../styles/global.css";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
 import programsData from "../../data/programs.json";
 
 const program = programsData["data-science-ai"];
@@ -16,11 +18,26 @@ export const prerender = false;
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Data Science & AI Certification Program | Sky States</title>
-    <meta name="description" content="Join Sky States' online Data Science & AI Bootcamp. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support." />
-    <meta name="keywords" content="Data Science Bootcamp, AI Bootcamp, Online Data Science Course, Artificial Intelligence Course, Machine Learning Training, Python for Data Science, Generative AI Course, Data Science Certification" />
-    <link rel="canonical" href="https://skystates.us/program/data-science-ai-program/" />
-    <meta property="og:title" content="Data Science & AI Certification Program | Sky States" />
-    <meta property="og:description" content="Join Sky States' online Data Science & AI Bootcamp. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support." />
+    <meta
+      name="description"
+      content="Join Sky States' online Data Science & AI Bootcamp. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support."
+    />
+    <meta
+      name="keywords"
+      content="Data Science Bootcamp, AI Bootcamp, Online Data Science Course, Artificial Intelligence Course, Machine Learning Training, Python for Data Science, Generative AI Course, Data Science Certification"
+    />
+    <link
+      rel="canonical"
+      href="https://skystates.us/program/data-science-ai-program/"
+    />
+    <meta
+      property="og:title"
+      content="Data Science & AI Certification Program | Sky States"
+    />
+    <meta
+      property="og:description"
+      content="Join Sky States' online Data Science & AI Bootcamp. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support."
+    />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,29 +51,29 @@ export const prerender = false;
     />
 
     <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "Data Science & AI Bootcamp",
-      "description": "Learn Python, Machine Learning, Generative AI, Power BI, Tableau, and real-world data science skills with expert-led online training.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Sky States",
-        "url": "https://skystates.us"
-      },
-      "url": "https://skystates.us/programs/data-science-ai",
-      "educationalLevel": "Beginner to Advanced",
-      "courseMode": "Online",
-      "inLanguage": "en",
-      "teaches": [
-        "Python",
-        "Machine Learning",
-        "Generative AI",
-        "Power BI",
-        "Tableau",
-        "SQL"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Data Science & AI Bootcamp",
+        "description": "Learn Python, Machine Learning, Generative AI, Power BI, Tableau, and real-world data science skills with expert-led online training.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Sky States",
+          "url": "https://skystates.us"
+        },
+        "url": "https://skystates.us/programs/data-science-ai",
+        "educationalLevel": "Beginner to Advanced",
+        "courseMode": "Online",
+        "inLanguage": "en",
+        "teaches": [
+          "Python",
+          "Machine Learning",
+          "Generative AI",
+          "Power BI",
+          "Tableau",
+          "SQL"
+        ]
+      }
     </script>
 
     <style>
@@ -636,7 +653,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="/assets/certificate/Microsoft-dp-900-Data-Science ai.png"
+              src="/assets/certificate/microsoft-dp-900-data-science.png"
               class="w-full h-full object-cover relative z-10"
               alt="Microsoft Azure Data Fundamentals Certificate"
             />
@@ -1581,143 +1598,7 @@ export const prerender = false;
             </p>
           </div>
         </div>
-
-        <!-- CSS Marquee Loop -->
-        <div class="relative w-full overflow-hidden py-4 select-none">
-          <!-- Gradient overlays for smooth fading effect at edges -->
-          <div
-            class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-          <div
-            class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-
-          <div
-            class="flex gap-12 w-max animate-marquee hover:[animation-play-state:paused]"
-          >
-            <!-- Original Track -->
-            <div class="flex gap-12 items-center justify-around min-w-full">
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.webp"
-                alt="Tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.svg"
-                alt="Tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png"
-                alt="Tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8.png"
-                alt="Tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7.png"
-                alt="Tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6.png"
-                alt="Tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5.png"
-                alt="Tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png"
-                alt="Tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3.webp"
-                alt="Tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2.png"
-                alt="Tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1.png"
-                alt="Tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-            <!-- Duplicate Track for Infinite Loop -->
-            <div
-              class="flex gap-12 items-center justify-around min-w-full"
-              aria-hidden="true"
-            >
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.webp"
-                alt="Tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.svg"
-                alt="Tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png"
-                alt="Tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8.png"
-                alt="Tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7.png"
-                alt="Tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6.png"
-                alt="Tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5.png"
-                alt="Tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png"
-                alt="Tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3.webp"
-                alt="Tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2.png"
-                alt="Tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1.png"
-                alt="Tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-          </div>
-        </div>
+        <ToolLogoMarquee tools={programToolLogos["data-science-ai"]} />
       </section>
 
       <style>
@@ -1749,7 +1630,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="https://skystates.us/wp-content/uploads/2025/10/Data-Science-ANd-AI-Program-2-1024x724.jpg"
+              src="/assets/certificate/microsoft-dp-900-data-science.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
               alt="Certificate"
             />
@@ -2168,7 +2049,7 @@ export const prerender = false;
               <a
                 href="/Data-Science-&-AI.pdf"
                 download="Data Science & AI Brouchure"
-                class="px-6 py-3 border-2 border-slate-200 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-colors duration-200"
+                class="px-6 py-3 border-2 border-slate-200 text-slate-600 rounded-xl font-semibold hover:text-sky-500 hover:border-sky-500 duration-200"
                 >Download the Brouchure</a
               >
             </div>

@@ -1,0 +1,335 @@
+---
+// src/components/ConsultationModal.astro
+import Logo from "./Logo.astro";
+---
+
+<!-- Modal Backdrop -->
+<div
+  id="consultation-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+>
+  <!-- Modal Card (Square shape) -->
+  <div
+    class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden transform scale-95 opacity-0 transition-all duration-300"
+    id="consultation-modal-card"
+  >
+    <!-- Close button -->
+    <button
+      id="close-consultation-modal"
+      class="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors"
+      aria-label="Close modal"
+    >
+      <svg
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <div class="p-4 flex flex-col items-center">
+      <!-- Top Center Logo -->
+      <div class="mb-1 flex justify-center">
+        <Logo class="h-12 w-auto" />
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 text-center mb-1">
+        Book a Free Career Consultation
+      </h3>
+      <p class="text-xs text-slate-500 text-center mb-6">
+        Fill out the details below, and our program advisor will get in touch
+        with you.
+      </p>
+
+      <form id="consultation-form" class="w-full space-y-4">
+        <!-- Name -->
+        <div>
+          <label
+            for="consult-name"
+            class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Full Name *
+          </label>
+          <input
+            type="text"
+            id="consult-name"
+            name="name"
+            required
+            placeholder="Enter Your Name"
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors"
+          />
+        </div>
+        <div>
+          <label
+            for="consult-name"
+            class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Email *
+          </label>
+          <input
+            type="email"
+            id="consult-email"
+            name="email"
+            required
+            placeholder="Enter Your Email"
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors"
+          />
+        </div>
+
+        <!-- Mobile Number -->
+        <div>
+          <label
+            for="consult-phone"
+            class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Mobile Number *
+          </label>
+          <input
+            type="tel"
+            id="consult-phone"
+            name="phone"
+            required
+            placeholder="+1 (555) 000-0000"
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors"
+          />
+        </div>
+
+        <!-- Program Dropdown -->
+        <div>
+          <label
+            for="consult-program"
+            class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Select Program *
+          </label>
+          <select
+            id="consult-program"
+            name="program"
+            required
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors"
+          >
+            <option value="" disabled selected>Select a program</option>
+            <option value="Data Science & AI">Data Science & AI</option>
+            <option value="Cybersecurity & Ethical Hacking"
+              >Cybersecurity & Ethical Hacking</option
+            >
+            <option value="DevOps & Cloud Computing"
+              >DevOps & Cloud Computing</option
+            >
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Query -->
+        <div>
+          <label
+            for="consult-query"
+            class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
+          >
+            Your Message / Query (Optional)
+          </label>
+          <textarea
+            id="consult-query"
+            name="query"
+            rows="3"
+            placeholder="Ask us anything..."
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-colors resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="submit-consult-btn"
+          class="w-[40%] mt-2 py-3 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm transition-colors flex items-center m-auto justify-center gap-2 shadow-md shadow-sky-600/10 hover:shadow-sky-600/20"
+        >
+          <span id="btn-text">Submit Request</span>
+          <svg
+            id="btn-spinner"
+            class="hidden animate-spin h-4 w-4 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Message feedback -->
+        <div
+          id="form-feedback"
+          class="hidden text-xs text-center font-medium mt-2 p-2 rounded-lg"
+        >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("consultation-modal");
+  const card = document.getElementById("consultation-modal-card");
+  const form = document.getElementById("consultation-form") as HTMLFormElement;
+  const closeBtn = document.getElementById("close-consultation-modal");
+  const submitBtn = document.getElementById(
+    "submit-consult-btn",
+  ) as HTMLButtonElement;
+  const btnText = document.getElementById("btn-text");
+  const btnSpinner = document.getElementById("btn-spinner");
+  const feedback = document.getElementById("form-feedback");
+
+  function openModal() {
+    if (!modal || !card) return;
+    modal.classList.remove("opacity-0", "pointer-events-none");
+    modal.classList.add("opacity-100");
+    card.classList.remove("scale-95", "opacity-0");
+    card.classList.add("scale-100", "opacity-100");
+    document.body.style.overflow = "hidden"; // Disable background scrolling
+  }
+
+  function closeModal() {
+    if (!modal || !card) return;
+    modal.classList.remove("opacity-100");
+    modal.classList.add("opacity-0", "pointer-events-none");
+    card.classList.remove("scale-100", "opacity-100");
+    card.classList.add("scale-95", "opacity-0");
+    document.body.style.overflow = ""; // Re-enable background scrolling
+
+    // Reset form and feedback after animation finishes
+    setTimeout(() => {
+      if (form) form.reset();
+      if (feedback) {
+        feedback.className =
+          "hidden text-xs text-center font-medium mt-2 p-2 rounded-lg";
+        feedback.textContent = "";
+      }
+    }, 300);
+  }
+
+  // Setup click triggers on all links/buttons referencing career consultation modal
+  function setupTriggers() {
+    // Look for links with href="/contact-us" that are career consultation buttons,
+    // or selector-based triggers if we mark them.
+    const consultationTriggers = document.querySelectorAll(
+      "[data-trigger-consultation]",
+    );
+    consultationTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+  }
+
+  // Expose function globally so other scripts can open it
+  (window as any).openConsultationModal = openModal;
+  (window as any).closeConsultationModal = closeModal;
+
+  // Event Listeners
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  // Handle Escape Key
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && !modal.classList.contains("opacity-0")) {
+      closeModal();
+    }
+  });
+
+  // Form Submission
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!submitBtn || !btnText || !btnSpinner || !feedback) return;
+
+      // Loading state
+      submitBtn.disabled = true;
+      btnSpinner.classList.remove("hidden");
+      btnText.textContent = "Submitting...";
+      feedback.className =
+        "hidden text-xs text-center font-medium mt-2 p-2 rounded-lg";
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        program: formData.get("program"),
+        query: formData.get("query"),
+      };
+
+      try {
+        const response = await fetch("/api/consultation", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Success
+          feedback.className =
+            "text-xs text-center font-medium mt-2 p-2 rounded-lg bg-emerald-50 text-emerald-700";
+          feedback.textContent =
+            result.message || "Request submitted successfully!";
+          form.reset();
+
+          // Auto close after 2 seconds
+          setTimeout(() => {
+            closeModal();
+          }, 2500);
+        } else {
+          // Error from API
+          feedback.className =
+            "text-xs text-center font-medium mt-2 p-2 rounded-lg bg-rose-50 text-rose-700";
+          feedback.textContent =
+            result.error || "Something went wrong. Please try again.";
+        }
+      } catch (err) {
+        feedback.className =
+          "text-xs text-center font-medium mt-2 p-2 rounded-lg bg-rose-50 text-rose-700";
+        feedback.textContent = "Network error. Please check your connection.";
+      } finally {
+        submitBtn.disabled = false;
+        btnSpinner.classList.add("hidden");
+        btnText.textContent = "Submit Request";
+      }
+    });
+  }
+
+  // Init triggers on load
+  setupTriggers();
+  document.addEventListener("astro:page-load", setupTriggers);
+</script>

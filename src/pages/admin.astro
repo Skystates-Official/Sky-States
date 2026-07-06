@@ -9,9 +9,24 @@ import faqData from '../data/faq.json';
 import programsData from '../data/programs.json';
 import couponConfigData from '../data/coupon-config.json';
 
-import { authenticateUser, verifySessionToken, createSessionToken } from '../db/auth.js';
+import { authenticateUser, verifySessionToken, createSessionToken, isFullAdminRole, ROLE_LABELS, normalizeRole } from '../db/auth.js';
+import { query as sqlQuery } from '../db/sqlite.js';
+// @ts-ignore
+import fs from 'fs';
+// @ts-ignore
+import path from 'path';
 
 export const prerender = false;
+
+function getRoleLabel(role) {
+    return ROLE_LABELS[normalizeRole(role)] || 'Editor';
+}
+
+function getRoleBadgeClass(role) {
+    const normalized = normalizeRole(role);
+    if (normalized === 'admin') return 'bg-sky-50 text-sky-700 border border-sky-100';
+    return 'bg-slate-50 text-slate-700 border border-slate-100';
+}
 
 // Authenticate session
 let authenticated = false;
@@ -60,29 +75,41 @@ if (Astro.request.method === 'POST') {
     }
 }
 
-import { query as sqlQuery } from '../db/sqlite.js';
-// @ts-ignore
-import fs from 'fs';
-// @ts-ignore
-import path from 'path';
+const isFullAdmin = !!(userSession && isFullAdminRole(userSession.role));
+const signedInRoleLabel = userSession ? getRoleLabel(userSession.role) : '';
 
 let mediaItems = [];
 let dynamicPages = [];
 let storiesData = [];
+let adminUsers = [];
+let couponsList = [];
 
 if (authenticated) {
     try {
         mediaItems = await sqlQuery.all("SELECT * FROM media ORDER BY created_at DESC");
         dynamicPages = await sqlQuery.all("SELECT * FROM pages ORDER BY created_at DESC");
+        couponsList = await sqlQuery.all("SELECT * FROM coupons ORDER BY created_at DESC");
         
         const storiesPath = path.resolve('src/data/stories.json');
         if (fs.existsSync(storiesPath)) {
             storiesData = JSON.parse(fs.readFileSync(storiesPath, 'utf8'));
         }
+
+        if (isFullAdmin) {
+            adminUsers = await sqlQuery.all(
+                "SELECT id, username, role, created_at FROM users ORDER BY created_at ASC"
+            );
+        }
     } catch (dbErr) {
         console.error("Error loading CMS items:", dbErr.message);
     }
 }
+
+const statsJobs = jobsData.length;
+const statsStories = storiesData.length;
+const statsPages = dynamicPages.length;
+const statsCoupons = couponsList.filter((c) => c.active).length;
+const statsMedia = mediaItems.length;
 ---
 
 <!DOCTYPE html>
@@ -91,88 +118,216 @@ if (authenticated) {
   <link rel="icon" type="image/png" href="/favicon.png" />
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Institutional Admin Portal | Sky States</title>
+    <title>Sky States Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
     <style>
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .upward-gradient {
-            background: linear-gradient(to top, #ffffff, #d3e2ed);
+        .admin-shell {
+            display: flex;
+            min-height: 100vh;
+            background: #f4f7fb;
+        }
+        .admin-sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #0c2d48 0%, #083049 100%);
+            color: #fff;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-sidebar-brand {
+            padding: 1.5rem 1.25rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .admin-nav {
+            padding: 1rem 0.75rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .admin-nav-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0.875rem;
+            border-radius: 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.72);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            text-align: left;
+        }
+        .admin-nav-btn:hover,
+        .admin-nav-btn.active {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .admin-nav-btn.active {
+            background: rgba(14, 165, 233, 0.22);
+            box-shadow: inset 0 0 0 1px rgba(125, 211, 252, 0.25);
+        }
+        .admin-main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-topbar {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+        .admin-content {
+            padding: 1.5rem;
+        }
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
         }
         .ambient-shadow {
             box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md overflow-x-hidden">
-    <!-- Top Nav -->
-    <Header />
+<body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
+    {!authenticated && <Header />}
 
     {authenticated ? (
-        <main class="max-w-[1280px] mx-auto px-margin-desktop py-12">
-            <!-- Hero Header -->
-            <div class="mb-8 flex justify-between items-center bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 ambient-shadow">
-                <div>
-                    <span class="text-xs uppercase tracking-widest text-primary font-bold">Systems Console</span>
-                    <h1 class="font-headline-xl text-4xl text-primary leading-tight mt-1">Sky States Content Hub</h1>
-                    <p class="text-on-surface-variant font-body-sm text-sm mt-1">Perform administrative modifications and manage placements.</p>
+        <div class="admin-shell">
+            <aside class="admin-sidebar">
+                <div class="admin-sidebar-brand">
+                    <div class="text-[10px] uppercase tracking-[0.2em] text-sky-300 font-bold">Sky States</div>
+                    <div class="text-lg font-extrabold mt-1">Admin Dashboard</div>
+                    <div class="text-xs text-white/60 mt-2">{userSession?.username}</div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <form method="POST" class="inline m-0">
+                <nav class="admin-nav">
+                    <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="admin-nav-btn active">
+                        <span class="material-symbols-outlined text-[18px]">dashboard</span>
+                        <span>Overview</span>
+                    </button>
+                    <button onclick="switchTab('jobs')" id="tab-btn-jobs" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">work</span>
+                        <span>Jobs & Placements</span>
+                    </button>
+                    <button onclick="switchTab('stories')" id="tab-btn-stories" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">auto_stories</span>
+                        <span>Stories & Blogs</span>
+                    </button>
+                    <button onclick="switchTab('coupons')" id="tab-btn-coupons" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">sell</span>
+                        <span>Coupons</span>
+                    </button>
+                    <button onclick="switchTab('homepage')" id="tab-btn-homepage" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">web</span>
+                        <span>Site Content</span>
+                    </button>
+                    <button onclick="switchTab('media')" id="tab-btn-media" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">perm_media</span>
+                        <span>Media Library</span>
+                    </button>
+                    <button onclick="switchTab('pages')" id="tab-btn-pages" class="admin-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">article</span>
+                        <span>Dynamic Pages</span>
+                    </button>
+                    {isFullAdmin && (
+                        <button onclick="switchTab('users')" id="tab-btn-users" class="admin-nav-btn">
+                            <span class="material-symbols-outlined text-[18px]">group</span>
+                            <span>Team Access</span>
+                        </button>
+                    )}
+                </nav>
+                <div class="p-4 border-t border-white/10">
+                    <form method="POST" class="m-0">
                         <input type="hidden" name="action" value="logout" />
-                        <button type="submit" class="border border-outline-variant hover:bg-surface-container text-on-surface transition-all px-5 py-3 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm bg-white">
-                            <span class="material-symbols-outlined text-[16px]">logout</span>
-                            <span>Log Out</span>
+                        <button type="submit" class="admin-nav-btn w-full">
+                            <span class="material-symbols-outlined text-[18px]">logout</span>
+                            <span>Sign Out</span>
                         </button>
                     </form>
                 </div>
-            </div>
+            </aside>
 
-            <!-- Tab Navigation -->
-            <div class="mb-8 border-b border-outline-variant/20 flex gap-6">
-                <button 
-                    onclick="switchTab('jobs')" 
-                    id="tab-btn-jobs" 
-                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-primary text-primary transition-all cursor-pointer"
-                >
-                    Placement Directory
-                </button>
-                <button 
-                    onclick="switchTab('stories')" 
-                    id="tab-btn-stories" 
-                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
-                >
-                    Stories & Podcasts
-                </button>
-                <button 
-                    onclick="switchTab('homepage')" 
-                    id="tab-btn-homepage" 
-                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
-                >
-                    Page Content CMS
-                </button>
-                <button 
-                    onclick="switchTab('media')" 
-                    id="tab-btn-media" 
-                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
-                >
-                    Media Library
-                </button>
-                <button 
-                    onclick="switchTab('pages')" 
-                    id="tab-btn-pages" 
-                    class="pb-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-secondary hover:text-primary transition-all cursor-pointer"
-                >
-                    Dynamic Pages
-                </button>
+            <div class="admin-main">
+                <header class="admin-topbar">
+                    <div>
+                        <h1 class="text-xl font-bold text-slate-900" id="admin-page-title">Overview</h1>
+                        <p class="text-sm text-slate-500 mt-0.5">Manage content, coupons, jobs, and team access from one place.</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs uppercase tracking-wider text-sky-700 font-bold">{signedInRoleLabel}</div>
+                        <div class="text-sm text-slate-600">{userSession?.username}</div>
+                    </div>
+                </header>
+
+                <div class="admin-content">
+            <!-- DASHBOARD -->
+            <div id="panel-dashboard" class="tab-panel space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+                    <div class="stat-card">
+                        <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Active Jobs</div>
+                        <div class="text-3xl font-black text-slate-900 mt-2">{statsJobs}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Stories</div>
+                        <div class="text-3xl font-black text-slate-900 mt-2">{statsStories}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Active Coupons</div>
+                        <div class="text-3xl font-black text-slate-900 mt-2">{statsCoupons}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Dynamic Pages</div>
+                        <div class="text-3xl font-black text-slate-900 mt-2">{statsPages}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Media Assets</div>
+                        <div class="text-3xl font-black text-slate-900 mt-2">{statsMedia}</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6">
+                        <h2 class="font-bold text-slate-900 mb-3">Quick Actions</h2>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="switchTab('coupons'); openCouponModal();" class="h-11 px-4 rounded-xl bg-sky-600 text-white text-xs font-bold uppercase tracking-wider">Create Coupon</button>
+                            <button onclick="switchTab('jobs'); openAddModal();" class="h-11 px-4 rounded-xl bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">Post Job</button>
+                            <button onclick="switchTab('stories'); openAddStoryModal();" class="h-11 px-4 rounded-xl border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">Add Story</button>
+                            <button onclick="switchTab('homepage')" class="h-11 px-4 rounded-xl border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">Edit Homepage</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6">
+                        <h2 class="font-bold text-slate-900 mb-3">Platform Modules</h2>
+                        <ul class="space-y-2 text-sm text-slate-600">
+                            <li>Jobs, stories, pages, and media are fully editable here.</li>
+                            <li>Coupons can be created with custom codes and dollar discounts.</li>
+                            <li>Legacy SKY### codes still work using validation limits in Site Content.</li>
+                            {isFullAdmin && <li>Administrators can invite editors and manage team access.</li>}
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <!-- TAB 1: PLACEMENTS -->
-            <div id="panel-jobs" class="tab-panel">
+            <div id="panel-jobs" class="tab-panel hidden">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="font-headline-md text-xl text-on-surface">Manage Active Placements</h2>
                     <button 
@@ -298,6 +453,82 @@ if (authenticated) {
                                                 class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center"
                                                 title="Delete Story"
                                             >
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: COUPONS -->
+            <div id="panel-coupons" class="tab-panel hidden space-y-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div>
+                        <h2 class="font-headline-md text-xl text-on-surface">Coupon Management</h2>
+                        <p class="text-sm text-secondary mt-1">Create promotional codes with fixed dollar discounts for checkout.</p>
+                    </div>
+                    <button onclick="openCouponModal()" class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span class="material-symbols-outlined text-[16px]">add</span>
+                        <span>Create Coupon</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-xl p-5 border border-outline-variant/20">
+                        <p class="text-xs uppercase tracking-wider text-secondary font-bold">Custom Coupons</p>
+                        <p class="text-sm text-on-surface-variant mt-2">Use any code like WELCOME150 or LAUNCH99 with a fixed discount amount.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-outline-variant/20">
+                        <p class="text-xs uppercase tracking-wider text-secondary font-bold">Legacy SKY Codes</p>
+                        <p class="text-sm text-on-surface-variant mt-2">SKY150 still works using the validation limits configured under Site Content.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-outline-variant/20">
+                        <p class="text-xs uppercase tracking-wider text-secondary font-bold">Stripe Checkout</p>
+                        <p class="text-sm text-on-surface-variant mt-2">Discounts apply before redirecting customers to Stripe's payment portal.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Code</th>
+                                    <th class="px-6 py-4">Discount</th>
+                                    <th class="px-6 py-4">Usage</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4">Expires</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-coupons-table-body" class="divide-y divide-outline-variant/10">
+                                {couponsList.length === 0 ? (
+                                    <tr>
+                                        <td colspan="6" class="px-6 py-10 text-center text-secondary text-sm">No coupons yet. Create your first promotional code.</td>
+                                    </tr>
+                                ) : couponsList.map((coupon) => (
+                                    <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`coupon-row-${coupon.id}`}>
+                                        <td class="px-6 py-5">
+                                            <div class="font-bold text-on-surface">{coupon.code}</div>
+                                            {coupon.description && <div class="text-xs text-secondary mt-1">{coupon.description}</div>}
+                                        </td>
+                                        <td class="px-6 py-5 font-semibold text-primary">${coupon.discount_amount}</td>
+                                        <td class="px-6 py-5 text-secondary">{coupon.used_count}{coupon.max_uses != null ? ` / ${coupon.max_uses}` : ''}</td>
+                                        <td class="px-6 py-5">
+                                            <span class={`px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider rounded ${coupon.active ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-slate-100 text-slate-500 border border-slate-200'}`}>
+                                                {coupon.active ? 'Active' : 'Inactive'}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-5 text-secondary">{coupon.expires_at ? new Date(coupon.expires_at).toLocaleDateString() : 'No expiry'}</td>
+                                        <td class="px-6 py-5 text-right space-x-2">
+                                            <button onclick={`openCouponModal(${JSON.stringify(coupon)})`} class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer" title="Edit Coupon">
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button onclick={`deleteCoupon(${coupon.id}, ${JSON.stringify(coupon.code)})`} class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer" title="Delete Coupon">
                                                 <span class="material-symbols-outlined text-[20px]">delete</span>
                                             </button>
                                         </td>
@@ -983,7 +1214,80 @@ if (authenticated) {
                     </form>
                 </div>
             </div>
-        </main>
+
+            <div id="panel-users" class={isFullAdmin ? "tab-panel hidden space-y-6" : "hidden"}>
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="font-headline-md text-xl text-on-surface">Team Access</h2>
+                        <p class="text-sm text-secondary mt-1">Invite editors or additional administrators to help manage the platform.</p>
+                    </div>
+                    <button 
+                        onclick="openUserModal()" 
+                        class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm cursor-pointer"
+                    >
+                        <span class="material-symbols-outlined text-[16px]">person_add</span>
+                        <span>Add Admin User</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+                    <div class="bg-white rounded-xl p-5 border border-outline-variant/20">
+                        <p class="text-xs uppercase tracking-wider text-secondary font-bold">Administrator</p>
+                        <p class="text-sm text-on-surface-variant mt-2">Full control of jobs, stories, coupons, pages, media, site content, and team access.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-5 border border-outline-variant/20">
+                        <p class="text-xs uppercase tracking-wider text-secondary font-bold">Editor</p>
+                        <p class="text-sm text-on-surface-variant mt-2">Can update content modules but cannot manage team accounts.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+                                    <th class="px-6 py-4">Username</th>
+                                    <th class="px-6 py-4">Role</th>
+                                    <th class="px-6 py-4">Created</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table-body" class="divide-y divide-outline-variant/10">
+                                {adminUsers.map((user) => (
+                                    <tr class="hover:bg-surface-container-lowest/50 transition-colors" id={`user-row-${user.id}`}>
+                                        <td class="px-6 py-5 font-semibold text-on-surface">{user.username}</td>
+                                        <td class="px-6 py-5">
+                                            <span class={`px-2.5 py-1 text-[10px] uppercase font-bold tracking-wider rounded ${getRoleBadgeClass(user.role)}`}>
+                                                {getRoleLabel(user.role)}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-5 text-secondary">{new Date(user.created_at).toLocaleDateString()}</td>
+                                        <td class="px-6 py-5 text-right space-x-2">
+                                            <button 
+                                                onclick={`openUserModal(${JSON.stringify(user)})`}
+                                                class="text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer"
+                                                title="Edit User"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button 
+                                                onclick={`deleteAdminUser(${user.id}, ${JSON.stringify(user.username)})`}
+                                                class="text-error hover:bg-error/5 p-2 rounded-lg transition-colors inline-flex items-center cursor-pointer"
+                                                title="Delete User"
+                                            >
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
     ) : (
         <div class="min-h-[70vh] flex items-center justify-center px-4 py-12">
             <div class="w-full max-w-md bg-white rounded-3xl p-8 border border-outline-variant/20 ambient-shadow space-y-6">
@@ -991,9 +1295,9 @@ if (authenticated) {
                     <div class="w-16 h-16 bg-primary-fixed text-primary rounded-full flex items-center justify-center mx-auto">
                         <span class="material-symbols-outlined text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">lock</span>
                     </div>
-                    <span class="text-xs uppercase tracking-widest text-primary font-bold">Secure Gateway</span>
-                    <h2 class="font-headline-md text-2xl text-on-surface">Admin Authentication</h2>
-                    <p class="text-on-surface-variant font-body-sm text-sm">Please sign in to access the placement console.</p>
+                    <span class="text-xs uppercase tracking-widest text-primary font-bold">Sky States Admin</span>
+                    <h2 class="font-headline-md text-2xl text-on-surface">Sign in to Dashboard</h2>
+                    <p class="text-on-surface-variant font-body-sm text-sm">Manage jobs, coupons, content, and team access.</p>
                 </div>
 
                 {loginError && (
@@ -1355,14 +1659,102 @@ if (authenticated) {
                 </div>
             </div>
         </div>
+
+        <div id="coupon-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
+                    <h2 id="coupon-modal-title" class="font-headline-md text-xl text-primary">Create Coupon</h2>
+                    <button onclick="closeCouponModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+                <form onsubmit="saveCoupon(event)" class="space-y-4">
+                    <input type="hidden" id="form-coupon-id" />
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-coupon-code" class="text-xs font-bold uppercase text-secondary">Coupon Code</label>
+                        <input type="text" id="form-coupon-code" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm uppercase" placeholder="WELCOME150" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-coupon-discount" class="text-xs font-bold uppercase text-secondary">Discount Amount ($)</label>
+                        <input type="number" id="form-coupon-discount" required min="1" step="1" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="150" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-coupon-description" class="text-xs font-bold uppercase text-secondary">Description</label>
+                        <input type="text" id="form-coupon-description" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="Launch promotion" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-coupon-max-uses" class="text-xs font-bold uppercase text-secondary">Max Uses</label>
+                            <input type="number" id="form-coupon-max-uses" min="1" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="Unlimited" />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="form-coupon-expires" class="text-xs font-bold uppercase text-secondary">Expiry Date</label>
+                            <input type="date" id="form-coupon-expires" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" />
+                        </div>
+                    </div>
+                    <label class="flex items-center gap-2 text-sm text-slate-700">
+                        <input type="checkbox" id="form-coupon-active" checked class="rounded border-slate-300" />
+                        <span>Coupon is active</span>
+                    </label>
+                    <div class="pt-2 flex gap-3 justify-end border-t border-outline-variant/10 mt-4">
+                        <button type="button" onclick="closeCouponModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save Coupon</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="user-modal" class={isFullAdmin ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden" : "hidden"}>
+            <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
+                    <h2 id="user-modal-title" class="font-headline-md text-xl text-primary">Add Admin User</h2>
+                    <button onclick="closeUserModal()" class="p-2 hover:bg-surface-container rounded-lg transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+                <form onsubmit="saveAdminUser(event)" class="space-y-4">
+                    <input type="hidden" id="form-user-id" />
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-user-username" class="text-xs font-bold uppercase text-secondary">Username / Email</label>
+                        <input type="text" id="form-user-username" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="editor@skystates.us" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-user-password" class="text-xs font-bold uppercase text-secondary">Password</label>
+                        <input type="password" id="form-user-password" class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm" placeholder="Minimum 8 characters" />
+                        <p id="form-user-password-help" class="text-[11px] text-secondary">Required for new users. Leave blank when editing to keep the current password.</p>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label for="form-user-role" class="text-xs font-bold uppercase text-secondary">Access Role</label>
+                        <select id="form-user-role" required class="h-11 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary text-sm bg-white">
+                            <option value="editor">Editor — content updates</option>
+                            <option value="admin">Administrator — full platform control</option>
+                        </select>
+                    </div>
+                    <div class="pt-2 flex gap-3 justify-end border-t border-outline-variant/10 mt-4">
+                        <button type="button" onclick="closeUserModal()" class="px-5 py-2.5 border border-outline-variant/40 hover:bg-surface-container rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 bg-primary text-white hover:bg-opacity-90 rounded-lg text-xs uppercase tracking-wider font-bold transition-all">Save User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     )}
 
     <!-- Footer -->
-    <Footer />
+    {!authenticated && <Footer />}
 
     {authenticated && (
         <script is:inline define:vars={{ homepageData, aboutData, faqData, programsData, couponConfigData, storiesData }}>
-            // Tab Switching Logic
+            const adminTitles = {
+                dashboard: 'Overview',
+                jobs: 'Jobs & Placements',
+                stories: 'Stories & Blogs',
+                coupons: 'Coupons',
+                homepage: 'Site Content',
+                media: 'Media Library',
+                pages: 'Dynamic Pages',
+                users: 'Team Access',
+            };
+
             window.switchTab = function(tabName) {
                 const panels = document.querySelectorAll('.tab-panel');
                 panels.forEach(p => p.classList.add('hidden'));
@@ -1370,17 +1762,14 @@ if (authenticated) {
                 const panel = document.getElementById(`panel-${tabName}`);
                 if (panel) panel.classList.remove('hidden');
 
-                const buttons = document.querySelectorAll('[id^="tab-btn-"]');
-                buttons.forEach(btn => {
-                    btn.classList.remove('border-primary', 'text-primary');
-                    btn.classList.add('border-transparent', 'text-secondary');
-                });
+                const buttons = document.querySelectorAll('.admin-nav-btn[id^="tab-btn-"]');
+                buttons.forEach(btn => btn.classList.remove('active'));
 
                 const activeBtn = document.getElementById(`tab-btn-${tabName}`);
-                if (activeBtn) {
-                    activeBtn.classList.remove('border-transparent', 'text-secondary');
-                    activeBtn.classList.add('border-primary', 'text-primary');
-                }
+                if (activeBtn) activeBtn.classList.add('active');
+
+                const titleEl = document.getElementById('admin-page-title');
+                if (titleEl && adminTitles[tabName]) titleEl.textContent = adminTitles[tabName];
             }
 
             // Media Library Client-Side Operations
@@ -2631,6 +3020,163 @@ if (authenticated) {
                     }
                 } catch (error) {
                     console.error('Delete error:', error);
+                    alert('Request failed.');
+                }
+            }
+
+            window.openUserModal = function(user) {
+                const modal = document.getElementById('user-modal');
+                const title = document.getElementById('user-modal-title');
+                const passwordInput = document.getElementById('form-user-password');
+                if (!modal || !title || !passwordInput) return;
+
+                document.getElementById('form-user-id').value = user?.id || '';
+                document.getElementById('form-user-username').value = user?.username || '';
+                document.getElementById('form-user-role').value = user?.role || 'editor';
+                passwordInput.value = '';
+                passwordInput.required = !user;
+
+                title.textContent = user ? 'Edit Admin User' : 'Add Admin User';
+                modal.classList.remove('hidden');
+            }
+
+            window.closeUserModal = function() {
+                const modal = document.getElementById('user-modal');
+                if (modal) modal.classList.add('hidden');
+            }
+
+            window.saveAdminUser = async function(e) {
+                e.preventDefault();
+
+                const id = document.getElementById('form-user-id').value;
+                const username = document.getElementById('form-user-username').value.trim();
+                const password = document.getElementById('form-user-password').value;
+                const role = document.getElementById('form-user-role').value;
+
+                const payload = { username, role };
+                if (password) payload.password = password;
+
+                try {
+                    const response = await fetch('/api/users', {
+                        method: id ? 'PUT' : 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(id ? { ...payload, id: Number(id) } : payload),
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        alert(data.error || 'Unable to save user.');
+                        return;
+                    }
+
+                    closeUserModal();
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Save user error:', error);
+                    alert('Request failed.');
+                }
+            }
+
+            window.deleteAdminUser = async function(id, username) {
+                if (!confirm(`Delete admin user "${username}"?`)) return;
+
+                try {
+                    const response = await fetch('/api/users', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id }),
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        alert(data.error || 'Unable to delete user.');
+                        return;
+                    }
+
+                    const row = document.getElementById(`user-row-${id}`);
+                    if (row) row.remove();
+                } catch (error) {
+                    console.error('Delete user error:', error);
+                    alert('Request failed.');
+                }
+            }
+
+            window.openCouponModal = function(coupon) {
+                const modal = document.getElementById('coupon-modal');
+                const title = document.getElementById('coupon-modal-title');
+                if (!modal || !title) return;
+
+                document.getElementById('form-coupon-id').value = coupon?.id || '';
+                document.getElementById('form-coupon-code').value = coupon?.code || '';
+                document.getElementById('form-coupon-discount').value = coupon?.discount_amount ?? '';
+                document.getElementById('form-coupon-description').value = coupon?.description || '';
+                document.getElementById('form-coupon-max-uses').value = coupon?.max_uses ?? '';
+                document.getElementById('form-coupon-expires').value = coupon?.expires_at ? coupon.expires_at.slice(0, 10) : '';
+                document.getElementById('form-coupon-active').checked = coupon ? !!coupon.active : true;
+
+                title.textContent = coupon ? 'Edit Coupon' : 'Create Coupon';
+                modal.classList.remove('hidden');
+            }
+
+            window.closeCouponModal = function() {
+                const modal = document.getElementById('coupon-modal');
+                if (modal) modal.classList.add('hidden');
+            }
+
+            window.saveCoupon = async function(e) {
+                e.preventDefault();
+
+                const id = document.getElementById('form-coupon-id').value;
+                const payload = {
+                    code: document.getElementById('form-coupon-code').value.trim(),
+                    discount_amount: Number(document.getElementById('form-coupon-discount').value),
+                    description: document.getElementById('form-coupon-description').value.trim(),
+                    max_uses: document.getElementById('form-coupon-max-uses').value || null,
+                    expires_at: document.getElementById('form-coupon-expires').value || null,
+                    active: document.getElementById('form-coupon-active').checked,
+                };
+
+                try {
+                    const response = await fetch('/api/coupons', {
+                        method: id ? 'PUT' : 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(id ? { ...payload, id: Number(id) } : payload),
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        alert(data.error || 'Unable to save coupon.');
+                        return;
+                    }
+
+                    closeCouponModal();
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Save coupon error:', error);
+                    alert('Request failed.');
+                }
+            }
+
+            window.deleteCoupon = async function(id, code) {
+                if (!confirm(`Delete coupon "${code}"?`)) return;
+
+                try {
+                    const response = await fetch('/api/coupons', {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id }),
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        alert(data.error || 'Unable to delete coupon.');
+                        return;
+                    }
+
+                    const row = document.getElementById(`coupon-row-${id}`);
+                    if (row) row.remove();
+                } catch (error) {
+                    console.error('Delete coupon error:', error);
                     alert('Request failed.');
                 }
             }

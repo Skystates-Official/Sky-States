@@ -1,0 +1,1099 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+export const prerender = false;
+
+// Data structures for clean rendering
+const stats = [
+    { value: "4.8/5", label: "Overall Rating" },
+    { value: "4.9/5", label: "Learner Satisfaction" },
+    { value: "5,000+", label: "Successful Learners" },
+    { value: "96%", label: "Career Success Rate" },
+];
+
+const categoryTabs = [
+    { id: "Transitions", name: "Career Transitions" },
+    { id: "DevOps", name: "DevOps and Cloud" },
+    { id: "CyberSecurity", name: "Cyber Security" },
+    { id: "DataScience", name: "Data Science and AI" },
+];
+
+const reviewsData = {
+    Transitions: [
+        {
+            name: "Justin Reed",
+            role: "Cloud Engineer",
+            text: "Having six years in finance, I was not sure if moving into IT was possible. SkyStates' organized learning way and mentor support gave me the confidence to make the switch.",
+        },
+        {
+            name: "Megha Arora",
+            role: "Cloud Solution Architect",
+            text: "Sky States made my career change very easy. The instructors explained concepts smoothly, and the projects helped me understand how everything works in business environments.",
+        },
+        {
+            name: "Jason Miller",
+            role: "IT Operations Manager",
+            text: "I joined with no technical experience and expected the learning curve to be complex. Instead, every element was structured, and the mentors were always available whenever I required guidance.",
+        },
+        {
+            name: "Lauren Mitchell",
+            role: "Project Manager",
+            text: "Switching careers after nearly ten years was not easy at all, but Sky States helped me develop practical skills that employers actually look for. The placement assistance and resume guidance made a difference during my job search.",
+        },
+    ],
+    DevOps: [
+        {
+            name: "Riya Kapoor",
+            role: "DevOps Engineer",
+            text: "The cloud labs were one of my favorite parts of the program. Everything we learned could be applied in real environments. I now work as a Junior DevOps Engineer.",
+        },
+        {
+            name: "Siddharth Tiwari",
+            role: "Cloud Engineer",
+            text: "The mentors shared practical situations instead of focusing only on theory. Working on CI/CD pipelines and cloud infrastructure projects gave me confidence during technical interviews.",
+        },
+        {
+            name: "Andrew Parker",
+            role: "Site Reliability Engineer",
+            text: "I had basic Linux knowledge before joining, but the SkyStates program helped me understand Docker, Kubernetes, and AWS in a proper way. The practical assignments were really useful.",
+        },
+        {
+            name: "Matthew Turner",
+            role: "Cloud Infrastructure Engineer",
+            text: "The curriculum remained updated with current cloud technologies, and every project felt familiar to industry expectations. I valued the detailed feedback provided after each assignment.",
+        },
+    ],
+    CyberSecurity: [
+        {
+            name: "Olivia Parker",
+            role: "Security Analyst",
+            text: "Cybersecurity always looked complicated until I joined Sky States. The instructors simplified every topic and encouraged practice through labs. It prepared me well for my first analyst role.",
+        },
+        {
+            name: "Nicholas Walker",
+            role: "Cyber Security Associate",
+            text: "The ethical hacking labs were interactive. Instead of learning concepts, we learned how to find risks and think like security experts.",
+        },
+        {
+            name: "Brandon Scott",
+            role: "SOC Analyst",
+            text: "Mock interviews and certification assistance were valuable as the technical training. The mentors genuinely wanted every learner to succeed in their career journeys.",
+        },
+        {
+            name: "Karan Malhotra",
+            role: "Information Security Executive",
+            text: "I appreciated how the program maintained networking, functioning systems, and security concepts before moving into upgraded topics. It made learning manageable.",
+        },
+    ],
+    DataScience: [
+        {
+            name: "Ananya Gupta",
+            role: "Data Analyst",
+            text: "The integration of Python, SQL, and machine learning projects helped me made a strong portfolio. I felt prepared when discussing my projects during interviews.",
+        },
+        {
+            name: "Gaurav Sharma",
+            role: "Business Inteliigence Analyst",
+            text: "Every concept was supported with exercises, making even upgraded machine learning concepts easier to understand. The mentors always empowered questions.",
+        },
+        {
+            name: "Sophia Cooper",
+            role: "Machine Learning Engineer",
+            text: "The curriculum covered both traditional analytics and modern AI tools, which made the learning experience very familiar. I majorly enjoyed working on real datasets.",
+        },
+        {
+            name: "Daniel Brooks",
+            role: "Data Scientist",
+            text: "The instructors focused on solving business problems rather than simply teaching approaches. That practical method helped me change into a data analytics role much quicker.",
+        },
+    ],
+};
+
+const expertReviews = [
+    {
+        name: "Sarah Walker",
+        role: "IT Infrastructure Manager",
+        text: "Sky States gives a learning experience that depicts real workplace expectations. The programs integrate structured learning with practical execution, making them valuable for experts looking to build technical expertise.",
+    },
+    {
+        name: "David Richardson",
+        role: "Senior Systems Engineer",
+        text: "I recommended Sky States to some members of my engineering team after reviewing the course module. The curriculum is proper, modern, and offers practical exposure that helps learners apply concepts in professional environments.",
+    },
+    {
+        name: "James Collins",
+        role: "Cloud Solutions Consultant",
+        text: "The Cloud and DevOps training goes with current enterprise practices. From automation tools to strategies, the curriculum covers technologies organizations actively use today. It is the best platform for professionals.",
+    },
+    {
+        name: "Emily Carter",
+        role: "Cybersecurity Consultant",
+        text: "I was impressed by the balance between theory and practical application. Learners complete guided labs, work on realistic projects, and receive mentorship throughout the program. That method generates technical confidence.",
+    },
+    {
+        name: "Ethan Brown",
+        role: "DevOps Architect",
+        text: "Some online training providers focus only on certifications, but Sky States focuses on becoming job-ready. Portfolio projects, interview preparation, career assistance, and technical curriculum make learners better prepared for recruitment processes.",
+    },
+    {
+        name: "Olivia Martinez",
+        role: "Technology Program Manager",
+        text: "Sky States combines live instruction, experienced mentors, updated learning materials, and responsive student support to create an interactive environment for both freshers and professionals.",
+    },
+];
+
+const benefits = [
+    {
+        title: "Career Assistance",
+        desc: "Get customized learning roadmaps and mentoring to help achieve career goals with confidence.",
+        iconPath:
+            "M9 20l-5.447-2.724A2 2 0 013 15.483V7.483a2 2 0 011.553-1.943L9 4m0 16l5.447-2.724A2 2 0 0016 15.483V7.483a2 2 0 00-1.553-1.943L9 4m0 16V4",
+    },
+    {
+        title: "Practical Projects",
+        desc: "Develop real-world experience via practical labs, case studies, assignments, and applied projects.",
+        iconPath:
+            "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+    },
+    {
+        title: "Industry Mentors",
+        desc: "Learn from experienced experts who share practical insights, current technologies, and workplace best practices.",
+        iconPath:
+            "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    },
+    {
+        title: "Placement Support",
+        desc: "Advantage from resume reviews, interview preparation, LinkedIn enhancement, and placement assistance.",
+        iconPath:
+            "M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    },
+    {
+        title: "Updated Curriculum",
+        desc: "Programs are continuously revised to match evolving technologies and current industry needs.",
+        iconPath:
+            "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+    },
+    {
+        title: "Adaptable Learning",
+        desc: "Attend instructor live classes while maintaining balance between work, college, or personal commitments.",
+        iconPath:
+            "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+    },
+];
+
+const achievements = [
+    {
+        title: "24x7 Learning Support",
+        icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z",
+    },
+    {
+        title: "96% Placement Assistance",
+        icon: "M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3",
+    },
+    {
+        title: "Live Professional Mentoring",
+        icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    },
+    {
+        title: "Applied Projects",
+        icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    },
+];
+
+const faqs = [
+    {
+        q: "How are the learner reviews verified?",
+        a: "Every review is submitted by a learner who has signed up for or completed a Sky States program. Reviews are controlled to maintain relevancy.",
+    },
+    {
+        q: "Why should we read learner reviews?",
+        a: "Learner feedback offers a genuine perspective into course quality, mentorship, curriculum, career support, and the entire learning experience before making an informed decision.",
+    },
+    {
+        q: "Do we need prior technical knowledge to leave a review?",
+        a: "No, reviews are welcome from learners at every phase of the journey, including freshers, working experts, and IT practitioners.",
+    },
+    {
+        q: "Can we update our review later?",
+        a: "Yes. If your career grows after finishing the program or you would like to share additional feedback, you can submit an updated review depicting your latest experience.",
+    },
+];
+---
+
+<!doctype html>
+<html class="light" lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sky States Reviews | Trusted by Global Tech Professionals</title>
+        <meta
+            name="description"
+            content="Read verified student reviews and testimonials about Sky States tech bootcamps. Discover how we help professionals transition into DevOps, Cyber Security, AI, and Data Science."
+        />
+        <link rel="canonical" href="https://skystates.us/reviews" />
+        <meta property="og:title" content="Sky States Reviews & Testimonials" />
+        <meta
+            property="og:description"
+            content="Read verified student reviews and testimonials about Sky States tech bootcamps. Discover how we help professionals transition into DevOps, Cyber Security, AI, and Data Science."
+        />
+        <meta property="og:type" content="website" />
+
+        <style>
+            .display-font {
+                font-family: "Space Grotesk", sans-serif;
+            }
+            .mono-font {
+                font-family: "IBM Plex Mono", monospace;
+            }
+            .glass-form {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(16px);
+            }
+            #expert-marquee-scroll::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="bg-white text-[#1e293b] font-sans overflow-x-hidden">
+        <Header />
+
+        <!-- Toast Container -->
+        <div
+            id="toast-container"
+            class="fixed top-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none"
+        >
+        </div>
+
+        <main>
+            <!-- ============================================================ -->
+            <!--  HERO — Left: brand info & stats · Right: review form         -->
+            <!-- ============================================================ -->
+            <section
+                id="reviews-hero"
+                class="relative overflow-hidden bg-[#0B2A4A] bg-cover bg-center pt-28 pb-16 px-4 md:pt-32 md:pb-20 border-b border-outline-variant/10"
+                style="background-image:url('/assets/skystates.png');"
+            >
+                <!-- Background decorative glows & patterns -->
+                <div
+                    class="pointer-events-none absolute inset-0 opacity-[0.08]"
+                >
+                    <div
+                        class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"
+                    >
+                    </div>
+                </div>
+                <div
+                    class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#0077b6]/25 blur-[130px]"
+                >
+                </div>
+                <div
+                    class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#2F9C95]/15 blur-[130px]"
+                >
+                </div>
+
+                <div
+                    class="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center"
+                >
+                    <!-- Left side copy & stats -->
+                    <div class="text-center lg:text-left">
+                        <h1
+                            class="text-4xl font-bold leading-tight text-white display-font md:text-5xl"
+                        >
+                            Sky States Reviews & Ratings
+                        </h1>
+                        <h2
+                            class="mt-3 text-xl sm:text-2xl font-semibold text-[#F5A623] display-font"
+                        >
+                            Real Learning. Real Career Growth. Real Results.
+                        </h2>
+                        <p
+                            class="mt-6 max-w-xl mx-auto lg:mx-0 text-base md:text-lg font-light text-white/80 leading-relaxed"
+                        >
+                            Explore honest feedback from experts, graduates, and
+                            career switchers who changed their skills with Sky
+                            States. From expert mentorship to successful
+                            placements, see why thousands of learners trust us
+                            to speed up their technology careers.
+                        </p>
+
+                        <!-- Stats row -->
+                        <div
+                            class="mt-12 grid grid-cols-2 gap-6 border-t border-white/10 pt-10 sm:grid-cols-4"
+                        >
+                            {
+                                stats.map((stat) => (
+                                    <div class="flex flex-col items-center lg:items-start">
+                                        <span class="text-3xl font-bold text-white display-font">
+                                            {stat.value}
+                                        </span>
+                                        <p class="mt-1 text-xs font-semibold tracking-wider text-white/60 text-center lg:text-left uppercase">
+                                            {stat.label}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Right side Review Submission form -->
+                    <div
+                        class="w-full max-w-md mx-auto lg:max-w-none rounded-3xl border border-white/10 glass-form p-8 shadow-2xl"
+                    >
+                        <div class="mb-6">
+                            <h3
+                                class="text-2xl font-bold text-slate-900 display-font"
+                            >
+                                Share Your Experience
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">
+                                Every learner’s journey is unique. Sharing your
+                                honest feedback with SkyStates helps learners to
+                                make informed decisions.
+                            </p>
+                        </div>
+
+                        <form id="review-submission-form" class="space-y-4">
+                            <!-- Name Field -->
+                            <div class="space-y-1.5">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-wider text-slate-500 mono-font"
+                                    for="form-name">Name</label
+                                >
+                                <input
+                                    type="text"
+                                    id="form-name"
+                                    name="name"
+                                    placeholder="Enter Your Name"
+                                    class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-[#005d90] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#005d90]/20 transition-all"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Email ID Field -->
+                            <div class="space-y-1.5">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-wider text-slate-500 mono-font"
+                                    for="form-email">Email ID</label
+                                >
+                                <input
+                                    type="email"
+                                    id="form-email"
+                                    name="email"
+                                    placeholder="you@company.com"
+                                    class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-[#005d90] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#005d90]/20 transition-all"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Subject Field -->
+                            <div class="space-y-1.5">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-wider text-slate-500 mono-font"
+                                    for="form-subject">Subject</label
+                                >
+                                <input
+                                    type="text"
+                                    id="form-subject"
+                                    name="subject"
+                                    placeholder="e.g., DevOps Bootcamp Review"
+                                    class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-[#005d90] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#005d90]/20 transition-all"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Review Field -->
+                            <div class="space-y-1.5">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-wider text-slate-500 mono-font"
+                                    for="form-message">Review</label
+                                >
+                                <textarea
+                                    id="form-message"
+                                    name="message"
+                                    rows="3"
+                                    placeholder="Share your honest feedback..."
+                                    class="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:border-[#005d90] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#005d90]/20 transition-all"
+                                    required></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                id="form-submit-btn"
+                                class="flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#0b2a4a] px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#153b7c] transition-all hover:shadow-lg active:scale-[0.99] cursor-pointer"
+                            >
+                                <span id="submit-icon" class="material-symbols-outlined text-lg">send</span>
+                                <svg
+                                    id="submit-spinner"
+                                    class="hidden animate-spin h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                                <span id="submit-text">Submit Review</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!--  WHAT OUR LEARNERS SAY                                       -->
+            <!-- ============================================================ -->
+            <section class="bg-slate-50 py-16">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2
+                            class="text-3xl font-bold text-slate-900 display-font md:text-4xl"
+                        >
+                            What Our Learners Say
+                        </h2>
+                        <p class="mt-3 text-base text-slate-500">
+                            See how learners have made successful careers across
+                            our technology programs.
+                        </p>
+                    </div>
+
+                    <!-- Tab Buttons -->
+                    <div class="mb-10 flex flex-wrap justify-center gap-3">
+                        {
+                            categoryTabs.map((tab, idx) => (
+                                <button
+                                    data-tab={tab.id}
+                                    class={`tab-btn rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 active:scale-95 ${
+                                        idx === 0
+                                            ? "bg-[#0B2A4A] text-white shadow-md"
+                                            : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                    }`}
+                                >
+                                    {tab.name}
+                                </button>
+                            ))
+                        }
+                    </div>
+
+                    <!-- Tabs Content Containers -->
+                    <div class="relative">
+                        {
+                            Object.entries(reviewsData).map(
+                                ([catId, reviews], index) => (
+                                    <div
+                                        id={`tab-content-${catId}`}
+                                        class={`tab-grid grid grid-cols-1 gap-6 md:grid-cols-2 ${index !== 0 ? "hidden" : ""}`}
+                                    >
+                                        {reviews.map((rev) => (
+                                            <div class="flex flex-col justify-between rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                                                <div>
+                                                    <div class="flex gap-0.5 text-amber-400 mb-4">
+                                                        {[...Array(5)].map(
+                                                            () => (
+                                                                <svg
+                                                                    class="w-4 h-4 fill-current"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                                                </svg>
+                                                            ),
+                                                        )}
+                                                    </div>
+                                                    <p class="text-sm leading-relaxed text-slate-600 italic">
+                                                        "{rev.text}"
+                                                    </p>
+                                                </div>
+                                                <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-4">
+                                                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-sky-50 font-bold text-xs text-[#005d90]">
+                                                        {rev.name
+                                                            .split(" ")
+                                                            .map((n) => n[0])
+                                                            .join("")}
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="text-sm font-bold text-slate-900">
+                                                            {rev.name}
+                                                        </h4>
+                                                        <p class="text-xs text-slate-500">
+                                                            {rev.role}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ),
+                            )
+                        }
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!--  INDUSTRY EXPERTS TESTIMONIALS                               -->
+            <!-- ============================================================ -->
+            <section class="bg-white py-16 border-t border-slate-100">
+                <div class="max-w-6xl mx-auto px-4 mb-8 text-center">
+                    <h2 class="text-3xl font-bold text-slate-900 display-font">
+                        See What Industry Experts Say About Us
+                    </h2>
+                    <p class="mt-3 text-base text-slate-500">
+                        Technology leaders, consultants, engineers, and IT
+                        professionals share their reviews on Sky States
+                        Programs.
+                    </p>
+                </div>
+
+                <div class="relative overflow-hidden w-full">
+                    <!-- Left and Right Faders -->
+                    <div
+                        class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"
+                    >
+                    </div>
+                    <div
+                        class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"
+                    >
+                    </div>
+
+                    <!-- Scrollable track -->
+                    <div
+                        id="expert-marquee-scroll"
+                        class="flex gap-6 overflow-x-auto scrollbar-hide py-6 px-8 cursor-grab active:cursor-grabbing select-none"
+                        style="scrollbar-width: none; -ms-overflow-style: none;"
+                    >
+                        <!-- Original Track -->
+                        <div
+                            class="flex gap-6 shrink-0"
+                            id="expert-marquee-original"
+                        >
+                            {
+                                expertReviews.map((exp) => (
+                                    <div class="w-[320px] sm:w-[400px] shrink-0 whitespace-normal rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                                        <p class="mb-6 text-sm leading-relaxed text-slate-650 italic">
+                                            "{exp.text}"
+                                        </p>
+                                        <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+                                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-sky-50 text-[#005d90] font-bold text-xs">
+                                                {exp.name
+                                                    .split(" ")
+                                                    .map((n) => n[0])
+                                                    .join("")}
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-slate-900 text-sm">
+                                                    {exp.name}
+                                                </h4>
+                                                <p class="text-xs text-[#005d90] font-medium">
+                                                    {exp.role}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <!-- Duplicate Track for Seamless Loop -->
+                        <div class="flex gap-6 shrink-0">
+                            {
+                                expertReviews.map((exp) => (
+                                    <div class="w-[320px] sm:w-[400px] shrink-0 whitespace-normal rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                                        <p class="mb-6 text-sm leading-relaxed text-slate-650 italic">
+                                            "{exp.text}"
+                                        </p>
+                                        <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+                                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-sky-50 text-[#005d90] font-bold text-xs">
+                                                {exp.name
+                                                    .split(" ")
+                                                    .map((n) => n[0])
+                                                    .join("")}
+                                            </div>
+                                            <div>
+                                                <h4 class="font-bold text-slate-900 text-sm">
+                                                    {exp.name}
+                                                </h4>
+                                                <p class="text-xs text-[#005d90] font-medium">
+                                                    {exp.role}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!--  WHY LEARNERS RECOMMEND SKY STATES                           -->
+            <!-- ============================================================ -->
+            <section class="bg-slate-50 py-16 border-t border-slate-100">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2
+                            class="text-3xl font-bold text-slate-900 display-font"
+                        >
+                            Why do learners recommend Sky States?
+                        </h2>
+                        <p class="mt-3 text-base text-slate-500">
+                            Upgrade your career with expert training, real-life
+                            projects, and organized learning.
+                        </p>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                        {
+                            benefits.map((benefit) => (
+                                <div class="flex items-start gap-5 rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-[#005d90]">
+                                        <svg
+                                            class="w-5 h-5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d={benefit.iconPath}
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="mb-1.5 text-base font-bold text-slate-900 display-font">
+                                            {benefit.title}
+                                        </h3>
+                                        <p class="text-xs leading-relaxed text-slate-500">
+                                            {benefit.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!--  DEVELOPED FOR CAREER SUCCESS                                -->
+            <!-- ============================================================ -->
+            <section
+                class="bg-[#0B2A4A] text-white py-16 relative overflow-hidden"
+            >
+                <div
+                    class="pointer-events-none absolute inset-0 opacity-[0.05]"
+                >
+                    <div
+                        class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"
+                    >
+                    </div>
+                </div>
+
+                <div class="relative z-10 max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold display-font">
+                            Developed for Career Success. Trusted by Learners
+                            Worldwide.
+                        </h2>
+                        <p
+                            class="mt-3 text-sm text-slate-350 max-w-2xl mx-auto"
+                        >
+                            Organizations and professionals choose Sky States
+                            because of its learner-first methodology,
+                            industry-focused curriculum, and long-term career
+                            development.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+                        {
+                            achievements.map((item) => (
+                                <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-center shadow-sm hover:bg-white/10 transition-colors">
+                                    <div class="mx-auto mb-3.5 flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 text-white">
+                                        <svg
+                                            class="w-5 h-5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d={item.icon}
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xs font-bold tracking-wide text-slate-100">
+                                        {item.title}
+                                    </h3>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================ -->
+            <!--  FAQ ACCORDION SECTION                                       -->
+            <!-- ============================================================ -->
+            <section class="bg-white py-16">
+                <div class="max-w-4xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2
+                            class="text-3xl font-bold text-slate-900 display-font"
+                        >
+                            Frequently Asked Questions
+                        </h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        {
+                            faqs.map((faq, index) => (
+                                <div class="faq-item rounded-xl py-2 border border-slate-200 bg-white shadow-sm overflow-hidden">
+                                    <button class="faq-trigger flex w-full items-center justify-between px-6 py-4.5 text-left transition-colors hover:bg-slate-50 cursor-pointer">
+                                        <span class="font-bold text-slate-900 text-sm md:text-base">
+                                            Q{index + 1}. {faq.q}
+                                        </span>
+                                        <span class="faq-icon material-symbols-outlined text-slate-400 transition-transform duration-300">
+                                            expand_more
+                                        </span>
+                                    </button>
+                                    <div
+                                        class="faq-content transition-all duration-300 max-h-0 overflow-hidden"
+                                        style="max-height: 0px;"
+                                    >
+                                        <div class="px-6 pb-5 pt-1 text-sm leading-relaxed text-slate-500 border-t border-slate-100">
+                                            <strong>Ans.</strong> {faq.a}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <Footer />
+
+        <!-- ============================================================ -->
+        <!--  INTERACTIVE CLIENT LOGIC                                      -->
+        <!-- ============================================================ -->
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", () => {
+                // --- 1. TAB CONTROLLER ---
+                const tabButtons = document.querySelectorAll(".tab-btn");
+                const tabGrids = document.querySelectorAll(".tab-grid");
+
+                tabButtons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const selectedTab = btn.getAttribute("data-tab");
+
+                        // Update button styles
+                        tabButtons.forEach((b) => {
+                            b.className =
+                                "tab-btn rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 active:scale-95";
+                        });
+                        btn.className =
+                            "tab-btn rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 bg-[#0B2A4A] text-white shadow-md active:scale-95";
+
+                        // Toggle grid visibilities
+                        tabGrids.forEach((grid) => {
+                            if (grid.id === `tab-content-${selectedTab}`) {
+                                grid.classList.remove("hidden");
+                            } else {
+                                grid.classList.add("hidden");
+                            }
+                        });
+                    });
+                });
+
+                // --- 2. FAQ ACCORDION ---
+                const faqTriggers = document.querySelectorAll(".faq-trigger");
+
+                faqTriggers.forEach((trigger) => {
+                    trigger.addEventListener("click", () => {
+                        const parent = trigger.closest(".faq-item");
+                        const content = parent.querySelector(".faq-content");
+                        const icon = trigger.querySelector(".faq-icon");
+
+                        const isOpen =
+                            content.style.maxHeight &&
+                            content.style.maxHeight !== "0px";
+
+                        // Close all other accordions
+                        document
+                            .querySelectorAll(".faq-content")
+                            .forEach((c) => {
+                                c.style.maxHeight = "0px";
+                            });
+                        document.querySelectorAll(".faq-icon").forEach((i) => {
+                            i.classList.remove("rotate-180");
+                        });
+
+                        // If not open, expand it
+                        if (!isOpen) {
+                            content.style.maxHeight =
+                                content.scrollHeight + "px";
+                            icon.classList.add("rotate-180");
+                        }
+                    });
+                });
+
+                // --- 3. TOAST NOTIFICATION UTILITIES ---
+                function showCustomToast(message, type = "success") {
+                    const container =
+                        document.getElementById("toast-container");
+                    if (!container) return;
+
+                    const toast = document.createElement("div");
+                    toast.className = `flex items-center gap-3.5 px-4 py-3.5 rounded-2xl shadow-xl border text-sm font-bold pointer-events-auto transform translate-y-[-20px] opacity-0 transition-all duration-300 ${
+                        type === "success"
+                            ? "bg-emerald-50 text-emerald-900 border-emerald-200"
+                            : type === "error"
+                              ? "bg-rose-50 text-rose-900 border-rose-200"
+                              : "bg-amber-50 text-amber-900 border-amber-200"
+                    }`;
+
+                    const icon =
+                        type === "success"
+                            ? `<svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+                            : `<svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+
+                    toast.innerHTML = `
+            ${icon}
+            <span>${message}</span>
+          `;
+
+                    container.appendChild(toast);
+
+                    // Force reflow
+                    toast.offsetHeight;
+
+                    // Transition in
+                    requestAnimationFrame(() => {
+                        toast.classList.remove(
+                            "translate-y-[-20px]",
+                            "opacity-0",
+                        );
+                        toast.classList.add("translate-y-0", "opacity-100");
+                    });
+
+                    // Transition out
+                    setTimeout(() => {
+                        toast.classList.remove("translate-y-0", "opacity-100");
+                        toast.classList.add("translate-y-[-20px]", "opacity-0");
+                        setTimeout(() => {
+                            toast.remove();
+                        }, 300);
+                    }, 3500);
+                }
+
+                // --- 4. FORM HANDLER ---
+                const reviewForm = document.getElementById(
+                    "review-submission-form",
+                );
+                const submitBtn = document.getElementById("form-submit-btn");
+                const submitIcon = document.getElementById("submit-icon");
+                const submitSpinner = document.getElementById("submit-spinner");
+                const submitText = document.getElementById("submit-text");
+
+                if (reviewForm) {
+                    reviewForm.addEventListener("submit", async (e) => {
+                        e.preventDefault();
+
+                        // Get values
+                        const nameInput = document.getElementById("form-name");
+                        const emailInput =
+                            document.getElementById("form-email");
+                        const subjectInput =
+                            document.getElementById("form-subject");
+                        const messageInput =
+                            document.getElementById("form-message");
+
+                        if (
+                            !nameInput.value ||
+                            !emailInput.value ||
+                            !subjectInput.value ||
+                            !messageInput.value
+                        ) {
+                            showCustomToast(
+                                "Please fill out all fields.",
+                                "error",
+                            );
+                            return;
+                        }
+
+                        // Set loading state
+                        submitBtn.disabled = true;
+                        if (submitIcon) submitIcon.classList.add("hidden");
+                        if (submitSpinner) submitSpinner.classList.remove("hidden");
+                        submitText.textContent = "Submitting review...";
+
+                        try {
+                            const response = await fetch("/api/reviews", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    name: nameInput.value.trim(),
+                                    email: emailInput.value.trim(),
+                                    subject: subjectInput.value.trim(),
+                                    message: messageInput.value.trim(),
+                                }),
+                            });
+
+                            const data = await response.json();
+                            if (!response.ok) {
+                                throw new Error(data.error || "Unable to submit review.");
+                            }
+
+                            // Show success toast
+                            showCustomToast(
+                                data.message || "Review submitted — thank you for your feedback!",
+                                "success",
+                            );
+
+                            // Reset Form
+                            reviewForm.reset();
+                        } catch (err) {
+                            console.error("Review submission failed:", err);
+                            showCustomToast(
+                                err.message || "Failed to submit review. Please try again.",
+                                "error",
+                            );
+                        } finally {
+                            submitBtn.disabled = false;
+                            if (submitSpinner) submitSpinner.classList.add("hidden");
+                            if (submitIcon) submitIcon.classList.remove("hidden");
+                            submitText.textContent = "Send Review";
+                        }
+                    });
+                }
+
+                // --- 5. EXPERT REVIEWS MARQUEE CONTROLLER ---
+                const scrollContainer = document.getElementById(
+                    "expert-marquee-scroll",
+                );
+                if (scrollContainer) {
+                    let isDown = false;
+                    let startX;
+                    let scrollLeftVal;
+                    let autoScrollActive = true;
+
+                    // Auto scroll speed (pixels per frame)
+                    const speed = 0.55;
+
+                    function step() {
+                        if (autoScrollActive && !isDown) {
+                            scrollContainer.scrollLeft += speed;
+
+                            const originalTrack = document.getElementById(
+                                "expert-marquee-original",
+                            );
+                            if (originalTrack) {
+                                const originalWidth =
+                                    originalTrack.offsetWidth + 24; // Width of cards + gap (6 * 4px)
+                                if (
+                                    scrollContainer.scrollLeft >= originalWidth
+                                ) {
+                                    scrollContainer.scrollLeft -= originalWidth;
+                                }
+                            }
+                        }
+                        requestAnimationFrame(step);
+                    }
+
+                    // Start auto scroll
+                    requestAnimationFrame(step);
+
+                    // Pause auto-scroll on hover
+                    scrollContainer.addEventListener("mouseenter", () => {
+                        autoScrollActive = false;
+                    });
+                    scrollContainer.addEventListener("mouseleave", () => {
+                        if (!isDown) autoScrollActive = true;
+                    });
+
+                    // Mouse Drag Support
+                    scrollContainer.addEventListener("mousedown", (e) => {
+                        isDown = true;
+                        autoScrollActive = false;
+                        scrollContainer.classList.add("cursor-grabbing");
+                        startX = e.pageX - scrollContainer.offsetLeft;
+                        scrollLeftVal = scrollContainer.scrollLeft;
+                    });
+
+                    window.addEventListener("mouseup", () => {
+                        if (isDown) {
+                            isDown = false;
+                            scrollContainer.classList.remove("cursor-grabbing");
+                            setTimeout(() => {
+                                autoScrollActive = true;
+                            }, 1200);
+                        }
+                    });
+
+                    scrollContainer.addEventListener("mousemove", (e) => {
+                        if (!isDown) return;
+                        e.preventDefault();
+                        const x = e.pageX - scrollContainer.offsetLeft;
+                        const walk = (x - startX) * 1.5; // Drag sensitivity
+                        scrollContainer.scrollLeft = scrollLeftVal - walk;
+                    });
+
+                    // Mobile Touch Support
+                    scrollContainer.addEventListener("touchstart", (e) => {
+                        isDown = true;
+                        autoScrollActive = false;
+                        startX =
+                            e.touches[0].pageX - scrollContainer.offsetLeft;
+                        scrollLeftVal = scrollContainer.scrollLeft;
+                    });
+
+                    scrollContainer.addEventListener("touchend", () => {
+                        isDown = false;
+                        setTimeout(() => {
+                            autoScrollActive = true;
+                        }, 1200);
+                    });
+
+                    scrollContainer.addEventListener("touchmove", (e) => {
+                        if (!isDown) return;
+                        const x =
+                            e.touches[0].pageX - scrollContainer.offsetLeft;
+                        const walk = (x - startX) * 1.5;
+                        scrollContainer.scrollLeft = scrollLeftVal - walk;
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
