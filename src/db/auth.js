@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import { query } from './sqlite.js';
 
-const SESSION_SECRET = process.env.SESSION_SECRET || 'sky_states_default_secret_key_change_me';
+const SESSION_SECRET = import.meta.env.SESSION_SECRET || process.env.SESSION_SECRET || 'sky_states_default_secret_key_change_me';
 const COOKIE_NAME = 'admin_session';
 
 export const ROLES = {

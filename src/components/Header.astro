@@ -1,970 +1,472 @@
 ---
-import { PRICING, formatUsd } from '../lib/pricing.js';
-import SiteCacheGuard from './SiteCacheGuard.astro';
-
-const introBatch = formatUsd(PRICING.registration.normal);
-const fullBatch = formatUsd(PRICING.full.normal);
+// src/components/Header.astro
 ---
 
-<SiteCacheGuard />
-<nav class="nav" aria-label="Main" id="main-header">
-  <!-- Brand / Logo (Left-aligned) -->
-  <a class="brand" aria-label="Sky States home" href="/">
-    <div class="logo-wrapper">
-      <img
-        src="/logo_transparent.svg"
-        alt="Sky States Logo"
-        class="brand-logo-img"
-      />
-    </div>
-  </a>
+<nav
+  class="fixed inset-x-0 top-0 z-[1000000] border-b border-slate-200/80 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.02)] backdrop-blur-xl font-sans transition-colors"
+  aria-label="Main"
+  id="main-header"
+>
+  <!--
+    KEY FIX: grid-cols-[auto,1fr,auto] instead of absolute-centered nav-links.
+    Column 1 = logo (auto width), Column 2 = center links (1fr, takes only
+    leftover space so it can NEVER overlap the CTAs), Column 3 = CTAs (auto).
+    This is what removes the overlap bug from before, permanently.
+  -->
+  <div
+    class="mx-auto grid h-16 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-1 pl-1 pr-4 sm:pl-2 sm:pr-6 lg:gap-3 lg:pl-3 lg:pr-10"
+  >
+    <!-- Brand / Logo: bigger, and hugging the left edge (minimal left padding above) -->
+    <a
+      class="flex flex-shrink-0 items-center"
+      aria-label="Sky States home"
+      href="/"
+    >
+      <div
+        class="flex h-14 w-[210px] items-center justify-center overflow-hidden sm:h-16 sm:w-[250px] lg:h-16 lg:w-[340px]"
+      >
+        <img
+          src="/assets/logo_main_skystates.svg"
+          alt="Sky States Logo"
+          class="h-14 w-auto max-h-14 object-contain"
+        />
+      </div>
+    </a>
 
-  <!-- Desktop Navigation Links (Centered) -->
-  <div class="nav-links" aria-label="Primary navigation">
-    <a href="/" class="nav-link-item">Home</a>
-    <a href="/live-jobs" class="nav-link-item">Live Jobs</a>
-    <!-- <a href="/stories" class="nav-link-item">Stories</a> -->
+    <!-- Desktop Navigation Links (Centered inside its own grid column - can't overlap anything) -->
+    <div
+      class="hidden min-w-0 items-center justify-center gap-2 md:flex lg:gap-5"
+      aria-label="Primary navigation"
+    >
+      <a href="/" class="nav-link">Home</a>
+      <a href="/live-jobs" class="nav-link">Live Jobs</a>
 
-    <!-- Programs Dropdown -->
-    <div class="relative group/drop dropdown-wrapper">
-      <button class="nav-link-item dropdown-trigger">
-        Programs
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span
-        >
-      </button>
-      <div class="dropdown-menu">
-        <div class="dropdown-header">
-          <span>Explore Programs</span>
+      <!-- Programs Dropdown -->
+      <div class="group relative">
+        <button class="nav-link dropdown-trigger">
+          Programs
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu left-[-1.5rem]">
+          <div class="dropdown-header">
+            <span>Explore Programs</span>
+          </div>
+          <div class="dropdown-content">
+            <a
+              href="/programs/data-science-ai"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">Data Science &amp; AI</span>
+              <span class="item-desc">Machine learning, NLP &amp; GenAI</span>
+            </a>
+            <a href="/programs/cyber-security" class="dropdown-item group/item">
+              <span class="item-title"
+                >Cyber Security &amp; Ethical Hacking</span
+              >
+              <span class="item-desc">Threat hunting &amp; network defense</span
+              >
+            </a>
+            <a href="/programs/devops" class="dropdown-item group/item">
+              <span class="item-title">DevOps &amp; Cloud</span>
+              <span class="item-desc"
+                >Infrastructure engineering &amp; CI/CD</span
+              >
+            </a>
+          </div>
         </div>
-        <div class="dropdown-content">
-          <a href="/programs/data-science-ai" class="dropdown-item">
-            <span class="item-title">Data Science & AI</span>
-            <span class="item-desc">Machine learning, NLP & GenAI</span>
-          </a>
-          <a href="/programs/cyber-security" class="dropdown-item">
-            <span class="item-title">Cyber Security</span>
-            <span class="item-desc">Threat hunting & network defense</span>
-          </a>
-          <a href="/programs/devops" class="dropdown-item">
-            <span class="item-title">DevOps & Cloud</span>
-            <span class="item-desc">Infrastructure engineering & CI/CD</span>
-          </a>
+      </div>
+
+      <!-- Company -->
+      <div class="group relative">
+        <button class="nav-link dropdown-trigger">
+          Company
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu left-[-1.5rem]">
+          <div class="dropdown-content">
+            <a href="/about" class="dropdown-item group/item">
+              <span class="item-title">About Us</span>
+            </a>
+            <a href="/contact-us" class="dropdown-item group/item">
+              <span class="item-title">Contact</span>
+            </a>
+            <a href="/stories" class="dropdown-item group/item">
+              <span class="item-title">Testimonials</span>
+            </a>
+            <a href="/reviews" class="dropdown-item group/item">
+              <span class="item-title">Reviews</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Company -->
-    <div class="relative group/drop dropdown-wrapper">
-      <button class="nav-link-item dropdown-trigger">
-        Company
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span
-        >
-      </button>
-      <div class="dropdown-menu">
-        <div class="dropdown-content">
-          <a href="/about" class="dropdown-item">
-            <span class="item-title">About Us</span>
-          </a>
-          <a href="/contact-us" class="dropdown-item">
-            <span class="item-title">Contact</span>
-          </a>
-          <a href="/stories" class="dropdown-item">
-            <span class="item-title">Testimonials</span>
-          </a>
+    <!-- Right CTAs: ALL links always visible from md+, nothing hidden -->
+    <div class="hidden min-w-0 items-center justify-end gap-1 md:flex lg:gap-2">
+      <!-- Register Now Dropdown -->
+      <div class="group relative">
+        <button class="btn-cta btn-solid dropdown-trigger">
+          Register Now
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu right-0">
+          <div class="dropdown-header">
+            <span>Scholar Tier - $99 Seat Deposit</span>
+          </div>
+          <div class="dropdown-content">
+            <a
+              href="/checkout?course=Data+Science+%26+AI&type=normal"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">Data Science &amp; AI</span>
+              <span class="item-desc">Enroll as Scholar - $99</span>
+            </a>
+            <a
+              href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title"
+                >Cyber Security &amp; Ethical Hacking</span
+              >
+              <span class="item-desc">Enroll as Scholar - $99</span>
+            </a>
+            <a
+              href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">DevOps &amp; Cloud Computing</span>
+              <span class="item-desc">Enroll as Scholar - $99</span>
+            </a>
+          </div>
         </div>
       </div>
+
+      <!-- Enroll Now Dropdown -->
+      <div class="group relative">
+        <button class="btn-cta btn-outline dropdown-trigger">
+          Enroll Now
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu right-0">
+          <div class="dropdown-header">
+            <span>Full Tuition Enrollment</span>
+          </div>
+          <div class="dropdown-content">
+            <a
+              href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">Data Science &amp; AI</span>
+              <span class="item-desc">Full Tuition Enrollment</span>
+            </a>
+            <a
+              href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title"
+                >Cyber Security &amp; Ethical Hacking</span
+              >
+              <span class="item-desc">Full Tuition Enrollment</span>
+            </a>
+            <a
+              href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">DevOps &amp; Cloud Computing</span>
+              <span class="item-desc">Full Tuition Enrollment</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LMS Login: ALWAYS visible from md+, just shrinks its text/padding on tablet -->
+      <a
+        href="https://learnwithus.sbs/login"
+        class="nav-link btn-cta btn-outline hidden md:inline-flex"
+        target="_blank"
+      >
+        <span class="hidden lg:inline">LMS Login</span>
+        <span class="lg:hidden">LMS</span>
+        <span class="material-symbols-outlined text-[16px] lg:text-[18px]"
+          >login</span
+        >
+      </a>
     </div>
+
+    <!-- Mobile Hamburger -->
+    <button
+      class="justify-self-end p-2 text-slate-900 md:hidden"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobile-nav-panel"
+      aria-expanded="false"
+      id="mobile-menu-toggle"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="23"
+        height="23"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        id="hamburger-icon"
+      >
+        <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"
+        ></path>
+      </svg>
+    </button>
   </div>
+</nav>
 
-  <!-- Right CTAs (Right-aligned) -->
-  <div class="cta-container">
-    <!-- LMS Login Button -->
+<!-- Mobile Navigation Panel -->
+<div
+  class="fixed inset-0 z-[999999] flex invisible flex-col items-center overflow-y-auto bg-white pb-10 pt-20 opacity-0 transition-opacity duration-300 ease-out md:hidden"
+  id="mobile-nav-panel"
+  aria-hidden="true"
+>
+  <div
+    class="mx-auto flex w-full max-w-[340px] flex-col items-center gap-3 px-6"
+  >
+    <a tabindex="-1" href="/" class="mobile-nav-link">Home</a>
+    <a tabindex="-1" href="/live-jobs" class="mobile-nav-link">Live Jobs</a>
 
-    <!-- Register Now Dropdown -->
-    <div class="relative group/drop dropdown-wrapper">
-      <button class="btn-cta btn-solid dropdown-trigger">
-        Register Now
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+    <span class="mobile-section-label">Programs</span>
+    <a
+      tabindex="-1"
+      href="/programs/data-science-ai"
+      class="mobile-program-link">Data Science &amp; AI</a
+    >
+    <a tabindex="-1" href="/programs/cyber-security" class="mobile-program-link"
+      >Cyber Security</a
+    >
+    <a tabindex="-1" href="/programs/devops" class="mobile-program-link"
+      >DevOps &amp; Cloud</a
+    >
+
+    <span class="mobile-section-label">Company</span>
+    <a tabindex="-1" href="/about" class="mobile-program-link">About</a>
+    <a tabindex="-1" href="/contact-us" class="mobile-program-link">Contact</a>
+    <a tabindex="-1" href="/stories" class="mobile-program-link">Testimonials</a
+    >
+
+    <div class="my-2 w-full border-t border-slate-200/50"></div>
+
+    <!-- Register Now -->
+    <div class="mt-2 flex w-full flex-col gap-2">
+      <span
+        class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
+        >Register Now</span
+      >
+      <div class="flex w-full flex-col gap-2">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal"
+          class="mobile-cta-btn"
         >
-      </button>
-      <div class="dropdown-menu dropdown-right">
-        <div class="dropdown-header">
-          <span>Scholar Tier — {introBatch} Seat Deposit</span>
-        </div>
-        <div class="dropdown-content">
-          <a
-            href="/checkout?course=Data+Science+%26+AI&type=normal"
-            class="dropdown-item"
-          >
-            <span class="item-title">Data Science & AI</span>
-            <span class="item-desc">Enroll as Scholar — {introBatch}</span>
-          </a>
-          <a
-            href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
-            class="dropdown-item"
-          >
-            <span class="item-title">Cyber Security & Ethical Hacking</span>
-            <span class="item-desc">Enroll as Scholar — {introBatch}</span>
-          </a>
-          <a
-            href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
-            class="dropdown-item"
-          >
-            <span class="item-title">DevOps & Cloud Computing</span>
-            <span class="item-desc">Enroll as Scholar — {introBatch}</span>
-          </a>
-        </div>
+          <span class="text-[0.85rem]">Data Science &amp; AI</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">Cyber Security</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">DevOps &amp; Cloud</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
       </div>
     </div>
 
-    <!-- Enroll Now Dropdown -->
-    <div class="relative group/drop dropdown-wrapper">
-      <button class="btn-cta btn-outline dropdown-trigger">
-        Enroll Now
-        <span class="material-symbols-outlined dropdown-caret">expand_more</span
+    <!-- Enroll Now -->
+    <div class="mt-2 flex w-full flex-col gap-2">
+      <span
+        class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
+        >Enroll Now</span
+      >
+      <div class="flex w-full flex-col gap-2">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
         >
-      </button>
-      <div class="dropdown-menu dropdown-right">
-        <div class="dropdown-header">
-          <span>Full Tuition Enrollment</span>
-        </div>
-        <div class="dropdown-content">
-          <a
-            href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
-            class="dropdown-item"
-          >
-            <span class="item-title">Data Science & AI</span>
-            <span class="item-desc">Batch Classes — {fullBatch}</span>
-          </a>
-          <a
-            href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
-            class="dropdown-item"
-          >
-            <span class="item-title">Cyber Security & Ethical Hacking</span>
-            <span class="item-desc">Batch Classes — {fullBatch}</span>
-          </a>
-          <a
-            href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
-            class="dropdown-item"
-          >
-            <span class="item-title">DevOps & Cloud Computing</span>
-            <span class="item-desc">Batch Classes — {fullBatch}</span>
-          </a>
-        </div>
+          <span class="text-[0.85rem]">Data Science &amp; AI</span>
+          <span class="text-xs text-slate-500">$2999</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">Cyber Security</span>
+          <span class="text-xs text-slate-500">$2999</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">DevOps &amp; Cloud</span>
+          <span class="text-xs text-slate-500">$2999</span>
+        </a>
       </div>
     </div>
 
     <a
+      tabindex="-1"
       href="https://learnwithus.sbs/login"
-      class="nav-link-item btn-cta btn-outline"
       target="_blank"
+      class="mobile-program-link btn-cta btn-outline mt-2 flex items-center justify-center gap-1.5 font-semibold text-[#1b4a9a]"
     >
       LMS Login
-      <span class="material-symbols-outlined" style="font-size: 18px;"
-        >login</span
-      >
+      <span class="material-symbols-outlined text-base">login</span>
     </a>
-  </div>
-
-  <!-- Mobile Hamburger button matching Codesmith -->
-  <button
-    class="mobile-menu-button"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="mobile-nav-panel"
-    aria-expanded="false"
-    id="mobile-menu-toggle"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="23"
-      height="23"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.8"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-menu"
-      aria-hidden="true"
-      id="hamburger-icon"
-    >
-      <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"
-      ></path>
-    </svg>
-  </button>
-</nav>
-
-<!-- Mobile Navigation Panel -->
-<div class="mobile-nav-panel" id="mobile-nav-panel" aria-hidden="true">
-  <div class="mobile-nav-inner">
-    <nav class="mobile-nav-primary" aria-label="Mobile navigation">
-      <a tabindex="-1" href="/" class="mobile-nav-item">Home</a>
-      <a tabindex="-1" href="/live-jobs" class="mobile-nav-item">Live Jobs</a>
-      <a tabindex="-1" href="/placements" class="mobile-nav-item mobile-nav-item--wide">Placements</a>
-    </nav>
-
-    <div class="mobile-nav-group">
-      <h3 class="mobile-nav-label">Programs</h3>
-      <div class="mobile-nav-sublist">
-        <a tabindex="-1" href="/programs/data-science-ai" class="mobile-nav-subitem">
-          <span>Data Science & AI</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-        <a tabindex="-1" href="/programs/cyber-security" class="mobile-nav-subitem">
-          <span>Cyber Security</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-        <a tabindex="-1" href="/programs/devops" class="mobile-nav-subitem">
-          <span>DevOps & Cloud</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="mobile-nav-group">
-      <h3 class="mobile-nav-label">Company</h3>
-      <div class="mobile-nav-sublist">
-        <a tabindex="-1" href="/about" class="mobile-nav-subitem">
-          <span>About</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-        <a tabindex="-1" href="/contact-us" class="mobile-nav-subitem">
-          <span>Contact</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-        <a tabindex="-1" href="/stories" class="mobile-nav-subitem">
-          <span>Testimonials</span>
-          <span class="material-symbols-outlined mobile-nav-chevron">chevron_right</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="mobile-enroll-card">
-      <div class="mobile-enroll-card-header">
-        <p class="mobile-enroll-eyebrow">Enrollment</p>
-        <h3 class="mobile-enroll-title">Start your program today</h3>
-        <p class="mobile-enroll-desc">Batch classes · Live instruction · Career support included</p>
-      </div>
-      <div class="mobile-enroll-actions">
-        <a
-          tabindex="-1"
-          href="/checkout?mode=full"
-          class="mobile-enroll-btn mobile-enroll-btn-primary"
-        >
-          <span class="mobile-enroll-btn-text">
-            <span class="mobile-enroll-btn-label">Full Program</span>
-            <span class="mobile-enroll-btn-sub">Batch classes</span>
-          </span>
-          <span class="mobile-enroll-btn-price">{fullBatch}</span>
-        </a>
-        <a
-          tabindex="-1"
-          href="/checkout"
-          class="mobile-enroll-btn mobile-enroll-btn-secondary"
-        >
-          <span class="mobile-enroll-btn-text">
-            <span class="mobile-enroll-btn-label">Intro Session</span>
-            <span class="mobile-enroll-btn-sub">Seat deposit</span>
-          </span>
-          <span class="mobile-enroll-btn-price">{introBatch}</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="mobile-nav-footer">
-      <a
-        tabindex="-1"
-        href="https://learnwithus.sbs/login"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mobile-lms-link"
-      >
-        <span class="material-symbols-outlined">login</span>
-        LMS Login
-      </a>
-    </div>
   </div>
 </div>
 
 <!-- Page Transition Overlay -->
 <div
   id="page-transition-overlay"
-  class="page-transition-overlay"
-  style="display: none; opacity: 0; pointer-events: none;"
+  class="pointer-events-none fixed inset-0 z-[100000000] flex items-center justify-center bg-[#0c1013] opacity-0 transition-opacity duration-400 ease-out"
+  style="display: none;"
 >
-  <div class="transition-video-container">
+  <div class="relative flex h-full w-full items-center justify-center">
     <video
       id="trans-video-ds"
       src="/admin/Page_transition_Data_Science_AI_202606270237.mp4"
       preload="none"
       muted
-      playsinline></video>
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
     <video
       id="trans-video-cs"
       src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4"
       preload="none"
       muted
-      playsinline></video>
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
     <video
       id="trans-video-do"
       src="/admin/devops_loop_transi._202606270238.mp4"
       preload="none"
       muted
-      playsinline></video>
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
   </div>
 </div>
 
 <style>
-  /* Base Navigation Styling */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000000 !important; /* Raised z-index to be on top of mobile panel */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.25rem;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    font-family: "Outfit", "Inter", sans-serif;
+  /* Small set of utility classes that combine several Tailwind-style tokens
+     for elements repeated many times, plus the JS-driven state transitions
+     that Tailwind's static class scanner can't safelist automatically. */
+
+  .nav-link {
+    @apply inline-flex h-9 cursor-pointer items-center gap-1 whitespace-nowrap border-none bg-none p-0 text-[0.72rem] font-medium text-slate-600 transition-colors hover:text-[#005d90] lg:h-10 lg:text-[0.95rem];
   }
 
-  @media (min-width: 1024px) {
-    .nav {
-      display: grid;
-      grid-template-columns: minmax(0, max-content) minmax(0, 1fr) minmax(0, max-content);
-      align-items: center;
-      column-gap: 1rem;
-      padding: 0.75rem 2.5rem;
-      overflow: visible;
-    }
-  }
-
-  @media (min-width: 1024px) and (max-width: 1140px) {
-    .nav-links {
-      gap: 0.5rem;
-    }
-
-    .btn-cta {
-      padding: 0 0.625rem;
-      font-size: 0.75rem;
-    }
-
-    .logo-wrapper {
-      width: 200px;
-    }
-
-    .brand-logo-img {
-      height: 140px;
-    }
-  }
-
-  @media (min-width: 1141px) and (max-width: 1320px) {
-    .nav {
-      column-gap: 0.75rem;
-      padding: 0.75rem 1.25rem;
-    }
-
-    .logo-wrapper {
-      width: 240px;
-    }
-
-    .brand-logo-img {
-      height: 160px;
-    }
-  }
-
-  /* Ensure solid white style when mobile menu is open */
-  .nav.is-mobile-menu-open {
-    padding: 0.75rem 1.25rem !important;
-    background-color: #ffffff !important;
-    backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
-    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04) !important;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    justify-self: start;
-    min-width: 0;
-  }
-
-  /* Logo cropping and scaling system — mobile base (+30% vs prior) */
-  .logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    height: 57px;
-    width: 208px;
-    max-width: 58vw;
-  }
-
-  .brand-logo-img {
-    height: 156px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: left center;
-    margin-top: -2px;
-  }
-
-  @media (min-width: 1024px) {
-    .logo-wrapper {
-      height: 64px;
-      width: 333px;
-    }
-    .brand-logo-img {
-      height: 192px;
-      margin-top: -6px;
-    }
-  }
-
-  /* Keep size when mobile menu is open (+30%) */
-  .nav.is-mobile-menu-open .logo-wrapper {
-    height: 62px !important;
-    width: 325px !important;
-  }
-  .nav.is-mobile-menu-open .brand-logo-img {
-    height: 174px !important;
-    margin-top: -3px !important;
-  }
-
-  /* Desktop Navigation Links Layout (Centered in middle column) */
-  .nav-links {
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(0.75rem, 1.6vw, 2.25rem);
-      position: static;
-      left: auto;
-      transform: none;
-      min-width: 0;
-      max-width: 100%;
-      overflow: visible;
-    }
-  }
-
-  /* Desktop CTA Buttons Layout (Right column) */
-  .cta-container {
-    display: none;
-    align-items: center;
-    gap: clamp(0.5rem, 0.9vw, 1rem);
-    margin-left: auto;
-    flex-shrink: 0;
-    justify-self: end;
-  }
-
-  @media (min-width: 1024px) {
-    .cta-container {
-      display: flex;
-      margin-left: 0;
-      overflow: visible;
-    }
-  }
-
-  /* Standardized Trigger Alignments & Fonts */
-  .nav-link-item {
-    font-size: clamp(0.8125rem, 0.9vw, 0.95rem);
-    font-weight: 500;
-    color: var(--on-surface-variant, #404850);
-    transition: color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    height: 40px; /* Force same height bounding box */
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .nav-link-item:hover {
-    color: var(--primary, #005d90);
-  }
-
-  /* CTA Buttons styling */
-  .btn-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    height: 40px;
-    padding: 0 clamp(0.75rem, 1.1vw, 1.25rem);
-    font-size: clamp(0.75rem, 0.85vw, 0.9rem);
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    box-sizing: border-box;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .btn-solid {
-    background: linear-gradient(135deg, var(--primary, #005d90), #0077b6);
-    color: #ffffff;
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 93, 144, 0.15);
-  }
-
-  .btn-solid:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(0, 93, 144, 0.25);
-  }
-
-  .btn-outline {
-    background: rgba(0, 93, 144, 0.03);
-    border: 1.5px solid rgba(0, 93, 144, 0.25);
-    color: var(--primary, #005d90);
-  }
-
-  .btn-outline:hover {
-    background: rgba(0, 93, 144, 0.08);
-    border-color: var(--primary, #005d90);
-    transform: translateY(-1px);
-  }
-
-  /* Dropdown Alignment Caret */
   .dropdown-caret {
-    font-size: 1.1rem !important;
-    display: inline-block;
-    transition: transform 0.25s ease;
-    margin-top: 1px;
+    @apply ml-0.5 inline-block text-base transition-transform duration-200 ease-out lg:text-lg;
   }
-
-  .dropdown-wrapper:hover .dropdown-caret {
-    transform: rotate(180deg);
-  }
-
-  /* Standardized Dropdown Menu System */
-  .dropdown-wrapper {
-    position: relative;
+  .group:hover .dropdown-caret {
+    @apply rotate-180;
   }
 
   .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    width: 20rem; /* Exactly 320px for all dropdowns */
-    background: #e1f0f4;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-    z-index: 999999 !important;
+    @apply invisible absolute top-full z-[999999] w-72 translate-y-2 overflow-hidden rounded-xl border border-slate-200/80 bg-[#e1f0f4] opacity-0 shadow-[0_20px_40px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out lg:w-80;
+  }
+  .group:hover .dropdown-menu {
+    @apply visible translate-y-0.5 opacity-100;
   }
 
-  /* Alignments of Dropdown Menus */
-  .dropdown-menu:not(.dropdown-right) {
-    left: -1.5rem;
-  }
-
-  .dropdown-right {
-    right: 0;
-  }
-
-  .dropdown-wrapper:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(2px);
-  }
-
-  /* Consistent Dropdown Headers */
   .dropdown-header {
-    background: rgba(15, 23, 42, 0.015);
-    padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--primary, #005d90);
+    @apply border-b border-slate-200/60 bg-slate-900/[0.02] px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-[#005d90];
   }
-
-  /* Consistent Dropdown Content */
   .dropdown-content {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    @apply flex flex-col gap-1 p-2;
   }
-
-  /* Unified Dropdown Items */
   .dropdown-item {
-    display: flex;
-    flex-direction: column;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    text-decoration: none;
+    @apply flex flex-col rounded-lg px-4 py-3 no-underline transition-colors hover:bg-[#005d90]/[0.04];
   }
-
-  .dropdown-item:hover {
-    background: rgba(0, 93, 144, 0.04);
-  }
-
   .item-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #1e293b;
-    transition: color 0.2s ease;
+    @apply text-sm font-semibold text-slate-800 transition-colors group-hover/item:text-[#005d90];
   }
-
-  .dropdown-item:hover .item-title {
-    color: var(--primary, #005d90);
-  }
-
   .item-desc {
-    font-size: 0.75rem;
-    color: #64748b;
-    margin-top: 0.15rem;
+    @apply mt-0.5 text-xs text-slate-500;
   }
 
-  /* Mobile menu button */
-  .mobile-menu-button {
-    display: block;
-    background: none;
-    border: none;
-    color: var(--on-surface, #1a1c1c);
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 10000001 !important; /* Ensure toggler button is on top of nav & panel */
+  .btn-cta {
+    @apply inline-flex h-8 cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded-lg px-2 text-[0.7rem] font-semibold transition-all duration-200 lg:h-10 lg:gap-1.5 lg:px-5 lg:text-[0.9rem];
   }
-  @media (min-width: 1024px) {
-    .mobile-menu-button {
-      display: none;
-    }
+  .btn-solid {
+    @apply border-none bg-gradient-to-br from-[#005d90] to-[#0077b6] text-white shadow-[0_2px_8px_rgba(0,93,144,0.15)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,93,144,0.25)];
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] text-[#005d90] hover:-translate-y-px hover:border-[#005d90] hover:bg-[#005d90]/[0.08];
   }
 
-  /* Mobile Nav Panel */
-  .mobile-nav-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #f8fafc;
-    z-index: 999999 !important;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-      visibility 0.25s ease;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  .mobile-nav-link {
+    @apply w-full text-center text-lg font-semibold text-slate-800 no-underline transition-colors hover:text-[#005d90];
+  }
+  .mobile-section-label {
+    @apply w-full pt-1 text-center text-[0.72rem] font-extrabold uppercase tracking-widest text-slate-500;
+  }
+  .mobile-program-link {
+    @apply w-full py-1 text-center text-sm font-medium text-slate-600 no-underline transition-colors hover:text-[#005d90];
+  }
+  .mobile-cta-btn {
+    @apply flex items-center justify-between rounded-lg bg-gradient-to-br from-[#005d90] to-[#0077b6] px-4 py-3 font-semibold text-white no-underline shadow-[0_2px_6px_rgba(0,93,144,0.15)] transition-transform hover:-translate-y-px;
+  }
+  .mobile-cta-btn-outline {
+    @apply flex items-center justify-between rounded-lg border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] px-4 py-3 font-semibold text-[#005d90] no-underline transition-colors hover:bg-[#005d90]/[0.08];
   }
 
-  @media (min-width: 1024px) {
-    .mobile-nav-panel {
-      display: none !important;
-    }
-  }
-
-  .mobile-nav-panel.is-open {
+  /* JS-driven open/close states for the mobile panel & solid-header state */
+  #mobile-nav-panel.is-open {
     opacity: 1;
     visibility: visible;
   }
-
-  .mobile-nav-inner {
-    width: 100%;
-    max-width: 28rem;
-    margin: 0 auto;
-    padding: 0 1.25rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .mobile-nav-primary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-
-  .mobile-nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.625rem 1rem;
-    border-radius: 0.75rem;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-
-  .mobile-nav-item:active {
-    border-color: #0284c7;
-    color: #0369a1;
-  }
-
-  .mobile-nav-item--wide {
-    grid-column: 1 / -1;
-  }
-
-  .mobile-nav-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .mobile-nav-label {
-    margin: 0;
-    padding: 0 0.25rem;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #64748b;
-  }
-
-  .mobile-nav-sublist {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.875rem;
-    overflow: hidden;
-  }
-
-  .mobile-nav-subitem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.875rem 1rem;
-    color: #1e293b;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-bottom: 1px solid #f1f5f9;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .mobile-nav-subitem:last-child {
-    border-bottom: none;
-  }
-
-  .mobile-nav-subitem:active {
-    background: #f8fafc;
-    color: #0369a1;
-  }
-
-  .mobile-nav-chevron {
-    font-size: 1.125rem !important;
-    color: #94a3b8;
-    flex-shrink: 0;
-  }
-
-  .mobile-enroll-card {
-    background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%);
-    border: 1px solid #bae6fd;
-    border-radius: 1rem;
-    padding: 1.125rem;
-    box-shadow: 0 4px 24px rgba(2, 132, 199, 0.08);
-  }
-
-  .mobile-enroll-card-header {
-    margin-bottom: 1rem;
-  }
-
-  .mobile-enroll-eyebrow {
-    margin: 0 0 0.25rem;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #0284c7;
-  }
-
-  .mobile-enroll-title {
-    margin: 0 0 0.375rem;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.3;
-  }
-
-  .mobile-enroll-desc {
-    margin: 0;
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    color: #64748b;
-  }
-
-  .mobile-enroll-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .mobile-enroll-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.875rem 1rem;
-    border-radius: 0.75rem;
-    text-decoration: none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .mobile-enroll-btn:active {
-    transform: scale(0.99);
-  }
-
-  .mobile-enroll-btn-primary {
-    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
-    color: #ffffff;
-    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
-  }
-
-  .mobile-enroll-btn-secondary {
-    background: #ffffff;
-    border: 1.5px solid #cbd5e1;
-    color: #0f172a;
-  }
-
-  .mobile-enroll-btn-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.125rem;
-    min-width: 0;
-  }
-
-  .mobile-enroll-btn-label {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .mobile-enroll-btn-sub {
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0.85;
-  }
-
-  .mobile-enroll-btn-secondary .mobile-enroll-btn-sub {
-    color: #64748b;
-    opacity: 1;
-  }
-
-  .mobile-enroll-btn-price {
-    font-size: 1rem;
-    font-weight: 800;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .mobile-nav-footer {
-    display: flex;
-    justify-content: center;
-    padding-top: 0.25rem;
-  }
-
-  .mobile-lms-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #475569;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: color 0.15s ease;
-  }
-
-  .mobile-lms-link .material-symbols-outlined {
-    font-size: 1.125rem !important;
-  }
-
-  .mobile-lms-link:active {
-    color: #0369a1;
-  }
-
-  /* Page Transition Overlay Styles */
-  .page-transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0c1013;
-    z-index: 100000000 !important; /* Ensure it is above everything else */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .transition-video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .transition-video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
+  #main-header.is-mobile-menu-open {
+    background-color: #ffffff !important;
   }
 </style>
 
 <script is:inline>
   (() => {
     const nav = document.getElementById("main-header");
-
-    // Scroll handling is disabled. Header has a fixed layout.
-
-    // Mobile Hamburger Menu Interaction
     const menuButton = document.getElementById("mobile-menu-toggle");
     const panel = document.getElementById("mobile-nav-panel");
+
     if (menuButton && panel) {
       const menuIcon =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
+        '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
       const closeIcon =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
+        '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
       const links = Array.from(panel.querySelectorAll("a"));
 
       const setOpen = (open) => {
         nav?.classList.toggle("is-mobile-menu-open", open);
-        panel?.classList.toggle("is-open", open);
-        document.body.classList.toggle("overflow-hidden", open); // Prevent background scroll when mobile menu is open
+        panel.classList.toggle("is-open", open);
+        panel.classList.toggle("invisible", !open);
+        document.body.classList.toggle("overflow-hidden", open);
         menuButton.setAttribute("aria-expanded", String(open));
         menuButton.setAttribute(
           "aria-label",
@@ -987,15 +489,12 @@ const fullBatch = formatUsd(PRICING.full.normal);
         link.addEventListener("click", () => setOpen(false));
       }
 
-      // Close mobile menu panel automatically on resizing to desktop view width
       window.addEventListener(
         "resize",
         () => {
-          if (window.innerWidth >= 1024) {
+          if (window.innerWidth >= 768) {
             const isOpen = nav?.classList.contains("is-mobile-menu-open");
-            if (isOpen) {
-              setOpen(false);
-            }
+            if (isOpen) setOpen(false);
           }
         },
         { passive: true },
@@ -1020,21 +519,16 @@ const fullBatch = formatUsd(PRICING.full.normal);
       devops: document.getElementById("trans-video-do"),
     };
 
-    // Check if we just transitioned
     try {
       const pendingTransition = sessionStorage.getItem(
         "page-transition-target",
       );
       if (pendingTransition && transitionOverlay) {
-        // Show the overlay in a solid state first, then fade it out
         transitionOverlay.style.display = "flex";
         transitionOverlay.style.opacity = "1";
         transitionOverlay.style.pointerEvents = "all";
-
-        // Clear the session storage immediately
         sessionStorage.removeItem("page-transition-target");
 
-        // Smoothly fade out after a brief moment so the page content is ready
         setTimeout(() => {
           transitionOverlay.style.transition =
             "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
@@ -1049,20 +543,17 @@ const fullBatch = formatUsd(PRICING.full.normal);
       console.warn("Failed to handle entrance transition:", e);
     }
 
-    // Intercept clicks on program links
     const programUrls = {
       "/programs/data-science-ai": "data-science",
       "/programs/cyber-security": "cyber-security",
       "/programs/devops": "devops",
     };
 
-    // Preload transition video on link hover for performance
     document.addEventListener(
       "mouseenter",
       (e) => {
         const link = e.target.closest("a");
         if (!link) return;
-
         const href = link.getAttribute("href");
         if (href) {
           const matchedKey =
@@ -1086,10 +577,8 @@ const fullBatch = formatUsd(PRICING.full.normal);
     document.addEventListener("click", (e) => {
       const link = e.target.closest("a");
       if (!link) return;
-
       const href = link.getAttribute("href");
       if (href) {
-        // Match both absolute path or relative path
         const matchedKey =
           programUrls[href] ||
           Object.keys(programUrls).find(
@@ -1101,16 +590,13 @@ const fullBatch = formatUsd(PRICING.full.normal);
 
           if (video && transitionOverlay) {
             e.preventDefault();
-
             try {
-              // Set target in sessionStorage for the next page to fade out
               try {
                 sessionStorage.setItem("page-transition-target", programKey);
               } catch (storageErr) {
                 console.warn("sessionStorage is not available:", storageErr);
               }
 
-              // Hide all videos first, then show the active one
               Object.values(transitionVideos).forEach((v) => {
                 if (v) {
                   try {
@@ -1125,7 +611,6 @@ const fullBatch = formatUsd(PRICING.full.normal);
                 video.currentTime = 0;
               } catch (e) {}
 
-              // Show overlay and play video
               transitionOverlay.style.transition = "opacity 0.3s ease";
               transitionOverlay.style.display = "flex";
               transitionOverlay.style.opacity = "1";
@@ -1135,14 +620,12 @@ const fullBatch = formatUsd(PRICING.full.normal);
               if (playPromise !== undefined) {
                 playPromise.catch((err) => {
                   console.warn("Video play was prevented:", err);
-                  // If video play is blocked (e.g. low power mode), navigate faster
                   setTimeout(() => {
                     window.location.href = href;
                   }, 400);
                 });
               }
 
-              // Navigate to the target page after the transition peak (1.6 seconds)
               setTimeout(() => {
                 window.location.href = href;
               }, 1600);

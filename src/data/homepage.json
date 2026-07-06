@@ -130,5 +130,25 @@
     "title": "Transparent Pricing",
     "amount": "$3499",
     "subtitle": "All-inclusive program fee"
-  }
+  },
+  "certificate": [
+    {
+      "title": "Data Science & AI",
+      "image": "assets/certificate/microsoft-dp-900-data-science.png",
+      "href": "/programs/data-science-ai",
+      "description": "Master Python, Machine Learning, Azure AI and prepare for Microsoft certification."
+    },
+    {
+      "title": "Cyber Security",
+      "image": "assets/certificate/microsoft-sc-900-cyber-security.png",
+      "href": "/programs/cyber-security",
+      "description": "Build enterprise security skills including Defender, Sentinel and Zero Trust."
+    },
+    {
+      "title": "DevOps & Cloud",
+      "image": "assets/certificate/microsoft-az-900-devops.png",
+      "href": "/programs/devops",
+      "description": "Learn CI/CD, Docker, Kubernetes and Azure DevOps from industry experts."
+    }
+  ]
 }

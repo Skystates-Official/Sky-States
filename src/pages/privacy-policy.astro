@@ -27,10 +27,17 @@ import Footer from "../components/Footer.astro";
       content="Read the Sky States privacy policy. Learn how we secure your data, protect student privacy, and enforce strict zero-SSN collection policies."
     />
     <link rel="canonical" href="https://skystates.us/privacy-policy" />
+    <style>
+      body { overflow-x: hidden; }
+      /* Push content below fixed navbar */
+      main { padding-top: 4rem; }
+      @media (min-width: 768px) { main { padding-top: 4.5rem; } }
+      @media (min-width: 1024px) { main { padding-top: 5rem; } }
+    </style>
   </head>
-  <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen">
+  <body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen overflow-x-hidden">
     <Header />
-    <main class="min-h-screen pt-32 pb-24 px-4 flex justify-center">
+    <main class="min-h-screen pb-24 px-4 sm:px-6 flex justify-center">
       <article
         class="w-full max-w-4xl bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/60 p-8 sm:p-12 md:p-16 space-y-10"
       >

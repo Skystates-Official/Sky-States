@@ -2,9 +2,56 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import stories from "../data/stories.json";
+import storiesData from "../data/stories.json";
 
 export const prerender = true;
+
+interface StoryData {
+  id: string;
+  name: string;
+  track: string;
+  headline: string;
+  paragraph1: string;
+  paragraph2: string;
+}
+
+const mappedStories = (storiesData as StoryData[]).map(story => {
+  const displayTrack = story.track === "DevOps" ? "DevOps & Cloud" : story.track;
+  const initials = story.name
+    .split(" ")
+    .map(n => n[0])
+    .join("");
+
+  return {
+    ...story,
+    track: displayTrack,
+    initials
+  };
+});
+
+const gridStories = mappedStories;
+
+function getTrackStyles(track: string) {
+  if (track === "Data Science & AI") {
+    return {
+      pillBg: "bg-violet-50 text-violet-700 border-violet-100",
+      avatarBg: "bg-violet-50 text-violet-750 border-violet-200",
+      icon: "database"
+    };
+  } else if (track === "Cyber Security") {
+    return {
+      pillBg: "bg-indigo-50 text-indigo-700 border-indigo-100",
+      avatarBg: "bg-indigo-50 text-indigo-750 border-indigo-200",
+      icon: "shield"
+    };
+  } else {
+    return {
+      pillBg: "bg-sky-50 text-sky-700 border-sky-100",
+      avatarBg: "bg-sky-50 text-sky-755 border-sky-200",
+      icon: "terminal"
+    };
+  }
+}
 ---
 
 <!doctype html>
@@ -17,7 +64,7 @@ export const prerender = true;
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -28,149 +75,206 @@ export const prerender = true;
     <title>Success Stories & Alumni Transitions | Sky States</title>
     <meta
       name="description"
-      content="Read the inspiring stories of Sky States graduates who successfully transitioned from non-tech fields into DevOps, Cyber Security, and Data Science."
+      content="Read inspiring stories of Sky States graduates who transitioned from non-tech fields into DevOps, Cyber Security, and Data Science through structured training and mentorship."
     />
     <link rel="canonical" href="https://skystates.us/stories" />
 
     <style>
       body {
-        background-color: #f8fafc;
-        color: #0f172a;
-        font-family: "Outfit", "Inter", sans-serif;
-        -webkit-font-smoothing: antialiased;
+        font-family: "Inter", sans-serif;
       }
-      .gradient-bg {
-        background: radial-gradient(circle at 50% -20%, #e0f2fe 0%, #f8fafc 60%);
-      }
-      .story-card {
+      .story-card, .featured-card {
         transition:
-          opacity 0.3s ease,
-          transform 0.3s ease,
-          box-shadow 0.3s ease,
-          border-color 0.3s ease;
+          opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       }
     </style>
   </head>
-  <body class="overflow-x-hidden gradient-bg">
+  <body class="bg-white text-[#1e293b] overflow-x-hidden antialiased">
     <Header />
 
-    <main class="pt-32 pb-24">
-      <!-- Header Section -->
-      <section class="max-w-7xl mx-auto px-4 md:px-margin-desktop text-center pt-10 pb-16">
-        <span
-          class="inline-block bg-sky-50 border border-sky-100 text-sky-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4"
-        >
-          SkyStates Success Stories
-        </span>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#0f3473] max-w-4xl mx-auto leading-tight">
-          Real Transitions. <span class="text-sky-600">Real Careers.</span>
-        </h1>
-        <p class="text-slate-500 text-base sm:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
-          Read the detailed logs of actual professionals who broke into elite technology roles through our structured
-          programs and live mentorship.
-        </p>
+    <main>
+      <!-- Hero Section -->
+      <section
+        id="stories-hero"
+        class="relative overflow-hidden bg-[#0B2A4A] bg-cover bg-center pt-28 pb-16 px-4 md:pt-32 md:pb-20 border-b border-outline-variant/10 text-center"
+        style="background-image:url('/assets/reviews_hero_bg.png');"
+      >
+        <!-- Background decorative glows & patterns -->
+        <div class="pointer-events-none absolute inset-0 opacity-[0.06]">
+          <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        </div>
+        <div class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#0077b6]/20 blur-[130px]"></div>
+        <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#2F9C95]/12 blur-[130px]"></div>
+
+        <div class="relative z-10 mx-auto max-w-4xl pt-8 pb-4">
+         
+          <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+            Where Learning Creates Opportunities
+          </h1>
+          <p class="mt-4 text-sm sm:text-base text-white/80 max-w-2xl mx-auto leading-relaxed font-light">
+            Explore how learners transformed ambition into achievement through expert training, practical projects, and career support.
+
+          </p>
+        </div>
+      </section>
+
+      <!-- Achievement / Stats Bar -->
+      <section class="relative z-25 -mt-10 max-w-5xl mx-auto px-4">
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-md p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <!-- Stat 1 -->
+          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+              </svg>
+            </div>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">200+</span>
+            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Graduates</span>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-700">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                <path d="M16 7h6v6"></path>
+              </svg>
+            </div>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">96%</span>
+            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Placement Rate</span>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">$50K</span>
+            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Avg. Salary Hike</span>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="flex flex-col items-center">
+            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">20+</span>
+            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Hiring Partners</span>
+          </div>
+        </div>
       </section>
 
       <!-- Filters Section -->
-      <section class="max-w-7xl mx-auto px-4 md:px-margin-desktop mb-12 flex flex-wrap justify-center gap-3">
-        <button
-          onclick="filterStories('all')"
-          id="filter-btn-all"
-          class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1b4a9a] text-white shadow-sm transition-all cursor-pointer border border-[#1b4a9a]"
-        >
-          All Stories
-        </button>
-        <button
-          onclick="filterStories('Data Science & AI')"
-          id="filter-btn-ds"
-          class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-[#1b4a9a] transition-all cursor-pointer"
-        >
-          Data Science & AI
-        </button>
-        <button
-          onclick="filterStories('Cyber Security')"
-          id="filter-btn-cs"
-          class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-[#1b4a9a] transition-all cursor-pointer"
-        >
-          Cyber Security
-        </button>
-        <button
-          onclick="filterStories('DevOps')"
-          id="filter-btn-devops"
-          class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 hover:text-[#1b4a9a] transition-all cursor-pointer"
-        >
-          DevOps & Cloud
-        </button>
+      <section class="bg-white pt-14 pb-8 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop flex flex-wrap justify-center gap-3">
+          <button
+            onclick="filterStories('all')"
+            id="filter-btn-all"
+            class="filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-[#0B2A4A] text-white shadow-md active:scale-95 cursor-pointer"
+          >
+            All Stories
+          </button>
+          <button
+            onclick="filterStories('Data Science & AI')"
+            id="filter-btn-ds"
+            class="filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 border border-outline-variant/35 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 active:scale-95 cursor-pointer"
+          >
+            Data Science & AI
+          </button>
+          <button
+            onclick="filterStories('Cyber Security')"
+            id="filter-btn-cs"
+            class="filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 border border-outline-variant/35 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 active:scale-95 cursor-pointer"
+          >
+            Cyber Security
+          </button>
+          <button
+            onclick="filterStories('DevOps & Cloud')"
+            id="filter-btn-devops"
+            class="filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 border border-outline-variant/35 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 active:scale-95 cursor-pointer"
+          >
+            DevOps & Cloud
+          </button>
+        </div>
       </section>
 
       <!-- Stories Grid -->
-      <section class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {
-            stories.map((story) => {
-              const initials = story.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("");
+      <section class="bg-white pt-16 pb-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[#0B2A4A] tracking-tight">
+              Alumni Outcomes Portfolio
+            </h2>
+            <p class="mt-2 text-slate-555 text-sm max-w-md mx-auto leading-relaxed">
+              Explore the rest of our student transition directories across all career programs.
+            </p>
+          </div>
 
-              let trackClass = "";
-              let icon = "";
-              if (story.track === "Data Science & AI") {
-                trackClass = "bg-violet-50 text-violet-700 border-violet-100/80";
-                icon = "database";
-              } else if (story.track === "Cyber Security") {
-                trackClass = "bg-indigo-50 text-indigo-700 border-indigo-100/80";
-                icon = "shield";
-              } else {
-                trackClass = "bg-sky-50 text-sky-700 border-sky-100/80";
-                icon = "terminal";
-              }
+          <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {
+              gridStories.map((story) => {
+                const styles = getTrackStyles(story.track);
 
-              return (
-                <div
-                  class="story-card bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/60 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-                  data-track={story.track}
-                >
-                  <div>
-                    <!-- Card Header -->
-                    <div class="flex items-center justify-between mb-4">
-                      <span
-                        class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${trackClass}`}
-                      >
-                        <span class="material-symbols-outlined text-[12px]">{icon}</span>
-                        {story.track === "DevOps" ? "DevOps & Cloud" : story.track}
-                      </span>
-                      <span class="material-symbols-outlined text-slate-200 text-3xl">format_quote</span>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-[#0f3473] tracking-tight leading-snug">
-                      {story.headline}
-                    </h3>
-
-                    <p class="text-slate-650 text-sm sm:text-base leading-relaxed mt-4 text-justify">
-                      {story.paragraph1}
-                    </p>
-
-                    <p class="text-slate-500 text-sm leading-relaxed mt-4 text-justify border-l-2 border-sky-100 pl-4 italic">
-                      {story.paragraph2}
-                    </p>
-                  </div>
-
-                  <!-- Card Footer -->
-                  <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-700 font-bold text-sm">
-                      {initials}
-                    </div>
+                return (
+                  <div
+                    class="story-card bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                    data-track={story.track}
+                  >
                     <div>
-                      <h4 class="font-bold text-slate-800 text-sm">{story.name}</h4>
-                      <p class="text-xs text-slate-500 font-medium">Sky States Alumni</p>
+                      {/* Tag */}
+                      <div class="flex items-center justify-between mb-4">
+                        <span
+                          class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border ${styles.pillBg}`}
+                        >
+                          <span class="material-symbols-outlined text-[11px]">{styles.icon}</span>
+                          {story.track}
+                        </span>
+                        
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
+                          Sky States Alumni
+                        </span>
+                      </div>
+
+                      <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-snug">
+                        {story.headline}
+                      </h3>
+
+                      <p class="text-slate-700 text-sm leading-relaxed mt-3.5 text-justify font-sans">
+                        {story.paragraph1}
+                      </p>
+
+                      <!-- Short Quote -->
+                      <div class="mt-4 border-l-3 border-slate-350 bg-slate-100/50 p-3 rounded-r-xl">
+                        <p class="text-slate-650 text-xs leading-relaxed italic text-justify font-sans">
+                          {story.paragraph2}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
+                      <div class={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs border shadow-sm shrink-0 ${styles.avatarBg}`}>
+                        {story.initials}
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-slate-900 text-xs leading-none mb-1">{story.name}</h4>
+                        <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide leading-none">Sky States Alumni</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          }
-        </div>
+                );
+              })
+            }
       </section>
     </main>
 
@@ -181,29 +285,57 @@ export const prerender = true;
         // Toggle button states
         const buttons = document.querySelectorAll(".filter-btn");
         buttons.forEach((btn) => {
-          btn.classList.remove("bg-[#1b4a9a]", "text-white", "shadow-sm", "border-[#1b4a9a]");
-          btn.classList.add("bg-white", "border", "border-slate-200", "text-slate-600", "hover:text-[#1b4a9a]");
+          btn.className =
+            "filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 border border-outline-variant/35 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 active:scale-95 cursor-pointer";
         });
 
         // Update active button state
         let activeBtnId = "filter-btn-all";
         if (track === "Data Science & AI") activeBtnId = "filter-btn-ds";
         else if (track === "Cyber Security") activeBtnId = "filter-btn-cs";
-        else if (track === "DevOps") activeBtnId = "filter-btn-devops";
+        else if (track === "DevOps & Cloud") activeBtnId = "filter-btn-devops";
 
         const activeBtn = document.getElementById(activeBtnId);
         if (activeBtn) {
-          activeBtn.classList.remove(
-            "bg-white",
-            "border",
-            "border-slate-200",
-            "text-slate-600",
-            "hover:text-[#1b4a9a]"
-          );
-          activeBtn.classList.add("bg-[#1b4a9a]", "text-white", "shadow-sm", "border-[#1b4a9a]");
+          activeBtn.className =
+            "filter-btn rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-200 bg-[#0B2A4A] text-white shadow-md active:scale-95 cursor-pointer";
         }
 
-        // Filter Cards
+        // Toggle featured container titles & gallery based on filter selection
+        const featuredHeader = document.querySelector("#featured-stories-container h2");
+        const featuredDesc = document.querySelector("#featured-stories-container p");
+        const gallerySec = document.getElementById("gallery-section");
+
+        if (track !== "all") {
+          if (featuredHeader) featuredHeader.style.display = "none";
+          if (featuredDesc) featuredDesc.style.display = "none";
+          if (gallerySec) gallerySec.style.display = "none";
+        } else {
+          if (featuredHeader) featuredHeader.style.display = "block";
+          if (featuredDesc) featuredDesc.style.display = "block";
+          if (gallerySec) gallerySec.style.display = "block";
+        }
+
+        // Filter Featured Cards
+        const featuredCards = document.querySelectorAll(".featured-card");
+        featuredCards.forEach((card) => {
+          const cardTrack = card.getAttribute("data-track");
+          if (track === "all" || cardTrack === track) {
+            card.style.display = "flex";
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 50);
+          } else {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(8px)";
+            setTimeout(() => {
+              card.style.display = "none";
+            }, 300);
+          }
+        });
+
+        // Filter Grid Cards
         const cards = document.querySelectorAll(".story-card");
         cards.forEach((card) => {
           const cardTrack = card.getAttribute("data-track");

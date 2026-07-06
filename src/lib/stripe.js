@@ -3,7 +3,8 @@ import Stripe from 'stripe';
 let stripeClient;
 
 export function getStripe() {
-  const secretKey = process.env.STRIPE_SECRET_KEY;
+  const secretKey = import.meta.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
+
   if (!secretKey) {
     throw new Error('STRIPE_SECRET_KEY is not configured');
   }
@@ -16,5 +17,6 @@ export function getStripe() {
 }
 
 export function getStripePublishableKey() {
-  return process.env.STRIPE_PUBLISHABLE_KEY || process.env.PUBLIC_STRIPE_PUBLISHABLE_KEY || '';
+  return import.meta.env.STRIPE_PUBLISHABLE_KEY || process.env.STRIPE_PUBLISHABLE_KEY || process.env.PUBLIC_STRIPE_PUBLISHABLE_KEY || '';
+
 }

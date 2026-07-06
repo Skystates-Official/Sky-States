@@ -1,337 +1,699 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 export const prerender = false;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
+<html class="light" lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
 
-<html class="light" lang="en"><head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Placement Process | Sky States</title>
+        <meta
+            name="description"
+            content="Learn about the Sky States placement and recruitment process, student portfolio building, and our partner staffing network."
+        />
+        <link rel="canonical" href="https://skystates.us/placements" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Placement Process | Sky States</title>
-<meta name="description" content="Learn about the Sky States placement and recruitment process, student portfolio building, and our partner staffing network." />
-<link rel="canonical" href="https://skystates.us/placements" />
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    "FILL" 0,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(185, 201, 211, 0.3);
+            }
+            .upward-gradient {
+                background: linear-gradient(to top, #f9f9f9 0%, #e2eafc 100%);
+            }
+            .ambient-shadow {
+                box-shadow: 0 20px 30px -10px rgba(15, 29, 37, 0.04);
+            }
+            .timeline-line {
+                background: linear-gradient(to bottom, #005d90, #d3e2ed);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed"
+    >
+        <!-- TopAppBar -->
+        <Header />
+        <main>
+            <!-- Hero Section -->
+            <section
+                class="relative py-10 md:pb-section-gap overflow-hidden upward-gradient"
+            >
+                <div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
+                    <div class="max-w-3xl">
+                        <span
+                            class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold text-label-sm mb-6 uppercase tracking-widest"
+                            >Career Acceleration</span
+                        >
+                        <h1 class="text-headline-xl text-on-surface mb-6">
+                            The Placement Process
+                        </h1>
+                        <p
+                            class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed"
+                        >
+                            An End-to-End White-Glove Service from Target
+                            Identification to Contract Negotiation. We don't
+                            just find jobs; we architect career evolutions.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button
+                                class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md text-label-md shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                            >
+                                Book Placement Call
+                                <span
+                                    class="material-symbols-outlined"
+                                    data-icon="arrow_forward"
+                                    >arrow_forward</span
+                                >
+                            </button>
+                            <button
+                                class="bg-surface-container-high text-on-surface px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-dim transition-all"
+                            >
+                                Review Methodology
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative Element -->
+                <div
+                    class="absolute -right-20 top-0 w-1/2 h-full opacity-10 pointer-events-none"
+                >
+                    <span
+                        class="material-symbols-outlined text-[400px]"
+                        data-icon="architecture">architecture</span
+                    >
+                </div>
+            </section>
+            <!-- The 5-Phase Roadmap -->
+            <section class="py-section-gap bg-surface">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div class="text-center mb-16">
+                        <h2 class="text-headline-lg text-on-surface">
+                            The 5-Phase Strategic Roadmap
+                        </h2>
+                        <p
+                            class="text-on-surface-variant mt-4 max-w-2xl mx-auto"
+                        >
+                            Our rigorous framework ensures you are never just
+                            another applicant, but the primary candidate.
+                        </p>
+                    </div>
+                    <div
+                        class="relative grid grid-cols-1 md:grid-cols-5 gap-gutter"
+                    >
+                        <!-- Progress Line (Desktop) -->
+                        <div
+                            class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-outline-variant z-0"
+                        >
+                        </div>
+                        <!-- Phase 1 -->
+                        <div
+                            class="relative z-10 flex flex-col items-center text-center group"
+                        >
+                            <div
+                                class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110"
+                            >
+                                <span class="text-3xl font-bold">1</span>
+                            </div>
+                            <h3 class="text-headline-md mb-2">
+                                Target Mapping
+                            </h3>
+                            <p class="text-label-sm text-on-surface-variant">
+                                Identification of key institutional targets and
+                                cultural fit audit.
+                            </p>
+                        </div>
+                        <!-- Phase 2 -->
+                        <div
+                            class="relative z-10 flex flex-col items-center text-center group"
+                        >
+                            <div
+                                class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110"
+                            >
+                                <span class="text-3xl font-bold">2</span>
+                            </div>
+                            <h3 class="text-headline-md mb-2">
+                                Narrative Deployment
+                            </h3>
+                            <p class="text-label-sm text-on-surface-variant">
+                                Optimizing your executive persona for maximum
+                                market impact.
+                            </p>
+                        </div>
+                        <!-- Phase 3 -->
+                        <div
+                            class="relative z-10 flex flex-col items-center text-center group"
+                        >
+                            <div
+                                class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110"
+                            >
+                                <span class="text-3xl font-bold">3</span>
+                            </div>
+                            <h3 class="text-headline-md mb-2">
+                                Interview Intelligence
+                            </h3>
+                            <p class="text-label-sm text-on-surface-variant">
+                                Deep-dive preparation with industry-specific
+                                mock trials.
+                            </p>
+                        </div>
+                        <!-- Phase 4 -->
+                        <div
+                            class="relative z-10 flex flex-col items-center text-center group"
+                        >
+                            <div
+                                class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110"
+                            >
+                                <span class="text-3xl font-bold">4</span>
+                            </div>
+                            <h3 class="text-headline-md mb-2">
+                                Offer Architecture
+                            </h3>
+                            <p class="text-label-sm text-on-surface-variant">
+                                Structuring compensation and equity for
+                                long-term wealth.
+                            </p>
+                        </div>
+                        <!-- Phase 5 -->
+                        <div
+                            class="relative z-10 flex flex-col items-center text-center group"
+                        >
+                            <div
+                                class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110"
+                            >
+                                <span class="text-3xl font-bold">5</span>
+                            </div>
+                            <h3 class="text-headline-md mb-2">
+                                Negotiation Strategy
+                            </h3>
+                            <p class="text-label-sm text-on-surface-variant">
+                                Closing the gap between market value and your
+                                personal goal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Decision-Maker Access: Bento Grid style -->
+            <section class="py-section-gap bg-surface-container-low">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center"
+                    >
+                        <div>
+                            <h2 class="text-headline-lg text-on-surface mb-6">
+                                Institutional Network &amp; Decision-Maker
+                                Access
+                            </h2>
+                            <p
+                                class="text-body-md text-on-surface-variant mb-8"
+                            >
+                                Sky States operates at the highest tier of the
+                                'Hidden Job Market'. 70% of high-end placements
+                                happen before a public listing is ever created.
+                                Our network provides direct access to the
+                                stakeholders that matter.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div
+                                    class="p-6 bg-surface rounded-xl ambient-shadow"
+                                >
+                                    <div
+                                        class="text-primary font-headline-lg mb-2"
+                                    >
+                                        250+
+                                    </div>
+                                    <div
+                                        class="text-label-sm font-bold text-on-surface-variant uppercase"
+                                    >
+                                        Hiring Partners
+                                    </div>
+                                </div>
+                                <div
+                                    class="p-6 bg-surface rounded-xl ambient-shadow"
+                                >
+                                    <div
+                                        class="text-primary font-headline-lg mb-2"
+                                    >
+                                        Tier 1
+                                    </div>
+                                    <div
+                                        class="text-label-sm font-bold text-on-surface-variant uppercase"
+                                    >
+                                        Global Exposure
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="col-span-2 h-64 bg-cover bg-center rounded-2xl shadow-xl overflow-hidden group"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVf5199LLCl_gNZr9Q3zOUgD62mSds3maXgGbW9XyHxwsAUdQo2-2Aa7g6rY_4129e7oNGtKCLzkDfcybjJEvqzYV2wblHbwoLxMdTDbvi1YYuIFPsAlFL8zQqoH7yb_azUabm3NDxB_3sdeccCtmrHa_n3rer3QEDpK4ddENLnL3BbHBzXeUZuhp3NmzYns6w93KmAhw0rIOKQwYmizDCgaVkwja7g0I8u5hi9ag_Vyiago84aTdB1ZVJfyZZryjY5Mt22dK41K8')"
+                            >
+                                <div
+                                    class="w-full h-full bg-primary/20 group-hover:bg-primary/0 transition-all"
+                                >
+                                </div>
+                            </div>
+                            <div
+                                class="h-48 bg-surface-container-highest rounded-2xl flex flex-col items-center justify-center p-6 text-center"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-primary text-4xl mb-2"
+                                    data-icon="hub">hub</span
+                                >
+                                <span class="font-label-md"
+                                    >Direct CTO Referrals</span
+                                >
+                            </div>
+                            <div
+                                class="h-48 bg-primary text-on-primary rounded-2xl flex flex-col items-center justify-center p-6 text-center"
+                            >
+                                <span
+                                    class="material-symbols-outlined text-4xl mb-2"
+                                    data-icon="visibility_off"
+                                    >visibility_off</span
+                                >
+                                <span class="font-label-md"
+                                    >Unlisted Inventory</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Interview Intelligence -->
+            <section class="py-section-gap overflow-hidden">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div class="flex flex-col lg:flex-row gap-gutter">
+                        <div class="lg:w-1/3">
+                            <h2 class="text-headline-lg text-on-surface mb-6">
+                                Interview Intelligence
+                            </h2>
+                            <p
+                                class="text-body-md text-on-surface-variant mb-6 leading-relaxed"
+                            >
+                                Stop guessing. Our mock interview simulations
+                                are led by practicing Lead Architects and active
+                                CTOs from Fortune 500 firms. We simulate the
+                                pressure, the technical depth, and the cultural
+                                nuance of the highest-paying roles in the world.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="material-symbols-outlined text-primary"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="text-on-surface"
+                                        >Architectural Whiteboard Simulations</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="material-symbols-outlined text-primary"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="text-on-surface"
+                                        >Executive Presence Coaching</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="material-symbols-outlined text-primary"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="text-on-surface"
+                                        >Post-Session Deep-Dive Feedback</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-2/3">
+                            <div
+                                class="relative rounded-3xl overflow-hidden shadow-2xl"
+                            >
+                                <img
+                                    alt="A cinematic collection of three premium video testimonial thumbnails for Sky States. Each thumbnail features a professional technologist in a high-end office setting with shallow depth of field. The lighting is sophisticated and warm, using a deep navy and electric blue color palette with silver accents to convey high-trust editorial excellence and institutional authority. One technologist is a male in a tailored suit, another is a female in professional business attire, and the third is a creative professional."
+                                    class="w-full h-auto object-cover"
+                                    src="https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8"
+                                />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8"
+                                >
+                                    <div
+                                        class="glass-card p-6 rounded-2xl w-full flex justify-between items-center"
+                                    >
+                                        <div>
+                                            <div
+                                                class="font-bold text-on-surface"
+                                            >
+                                                Case Study: Senior Staff
+                                                Engineer
+                                            </div>
+                                            <div
+                                                class="text-on-surface-variant text-sm"
+                                            >
+                                                Role at Global Fintech Lead
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center"
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                                data-icon="play_arrow"
+                                                data-weight="fill"
+                                                >play_arrow</span
+                                            >
+                                        </button>
+                                        <!-- Verified Student Reviews & Vlogs Section -->
+                                        <div
+                                            class="mt-16 border-t border-outline-variant/20 pt-16 w-full"
+                                        >
+                                            <h3
+                                                class="font-headline-md text-2xl text-center text-on-surface mb-8 font-bold"
+                                            >
+                                                Verified Student Reviews & Vlogs
+                                            </h3>
+                                            <div
+                                                class="grid grid-cols-1 md:grid-cols-3 gap-8"
+                                            >
+                                                <!-- Medium Vlog -->
+                                                <a
+                                                    href="https://medium.com"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group"
+                                                >
+                                                    <div
+                                                        class="flex items-center justify-between"
+                                                    >
+                                                        <span
+                                                            class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans"
+                                                            >Student Vlog</span
+                                                        >
+                                                        <span
+                                                            class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all"
+                                                            >open_in_new</span
+                                                        >
+                                                    </div>
+                                                    <h4
+                                                        class="font-bold text-on-surface text-base font-sans"
+                                                    >
+                                                        My 6-Month Career
+                                                        Transition: From Legacy
+                                                        Admin to AWS Lead
+                                                    </h4>
+                                                    <p
+                                                        class="text-xs text-on-surface-variant leading-relaxed font-sans"
+                                                    >
+                                                        Read the complete
+                                                        week-by-week journal and
+                                                        vlog documenting the
+                                                        curriculum, labs, and
+                                                        interview prep on
+                                                        Medium.
+                                                    </p>
+                                                </a>
 
+                                                <!-- Trust School Review -->
+                                                <a
+                                                    href="https://trustschool.us"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group"
+                                                >
+                                                    <div
+                                                        class="flex items-center justify-between"
+                                                    >
+                                                        <span
+                                                            class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans"
+                                                            >Trust School</span
+                                                        >
+                                                        <span
+                                                            class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all"
+                                                            >open_in_new</span
+                                                        >
+                                                    </div>
+                                                    <h4
+                                                        class="font-bold text-on-surface text-base font-sans"
+                                                    >
+                                                        Sky States Institutional
+                                                        Rating: 4.9 / 5.0
+                                                    </h4>
+                                                    <p
+                                                        class="text-xs text-on-surface-variant leading-relaxed font-sans"
+                                                    >
+                                                        Check our verified
+                                                        score, student
+                                                        testimonials, and
+                                                        credential audits on the
+                                                        independent Trust School
+                                                        platform.
+                                                    </p>
+                                                </a>
 
-
-
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(185, 201, 211, 0.3);
-        }
-        .upward-gradient {
-            background: linear-gradient(to top, #f9f9f9 0%, #e2eafc 100%);
-        }
-        .ambient-shadow {
-            box-shadow: 0 20px 30px -10px rgba(15, 29, 37, 0.04);
-        }
-        .timeline-line {
-            background: linear-gradient(to bottom, #005d90, #d3e2ed);
-        }
-    </style>
-
-</head>
-<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-<!-- TopAppBar -->
-<Header />
-<main>
-<!-- Hero Section -->
-<section class="relative pt-24 pb-section-gap overflow-hidden upward-gradient">
-<div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
-<div class="max-w-3xl">
-<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold text-label-sm mb-6 uppercase tracking-widest">Career Acceleration</span>
-<h1 class="text-headline-xl text-on-surface mb-6">The Placement Process</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">
-                        An End-to-End White-Glove Service from Target Identification to Contract Negotiation. We don't just find jobs; we architect career evolutions.
+                                                <!-- Partner Staffing Vlog -->
+                                                <a
+                                                    href="https://youtube.com"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group"
+                                                >
+                                                    <div
+                                                        class="flex items-center justify-between"
+                                                    >
+                                                        <span
+                                                            class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans"
+                                                            >Video Case Study</span
+                                                        >
+                                                        <span
+                                                            class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all"
+                                                            >open_in_new</span
+                                                        >
+                                                    </div>
+                                                    <h4
+                                                        class="font-bold text-on-surface text-base font-sans"
+                                                    >
+                                                        Graduates Panel:
+                                                        Navigating Tech Offer
+                                                        Salary Negotiations
+                                                    </h4>
+                                                    <p
+                                                        class="text-xs text-on-surface-variant leading-relaxed font-sans"
+                                                    >
+                                                        Watch the video panel
+                                                        where three recent
+                                                        graduates break down
+                                                        their offer
+                                                        architectures and
+                                                        counter-offer successes.
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- The Negotiation Advantage -->
+            <section
+                class="py-section-gap bg-primary text-on-primary relative overflow-hidden"
+            >
+                <!-- Background Decoration -->
+                <div
+                    class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none"
+                >
+                    <span
+                        class="material-symbols-outlined text-[600px]"
+                        data-icon="trending_up">trending_up</span
+                    >
+                </div>
+                <div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
+                    <div class="flex flex-col items-center text-center">
+                        <h2 class="font-headline-lg text-headline-lg mb-8">
+                            The Negotiation Advantage
+                        </h2>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full"
+                        >
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="text-headline-xl font-extrabold mb-2"
+                                >
+                                    $15,000
+                                </div>
+                                <div
+                                    class="text-primary-fixed font-label-md uppercase tracking-wide"
+                                >
+                                    Avg. Immediate Increase
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="text-headline-xl font-extrabold mb-2"
+                                >
+                                    92%
+                                </div>
+                                <div
+                                    class="text-primary-fixed font-label-md uppercase tracking-wide"
+                                >
+                                    Success Rate on Counters
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="text-headline-xl font-extrabold mb-2"
+                                >
+                                    4.8 Days
+                                </div>
+                                <div
+                                    class="text-primary-fixed font-label-md uppercase tracking-wide"
+                                >
+                                    Avg. Faster Closing Time
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-16 max-w-2xl bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20"
+                        >
+                            <p class="text-body-lg italic">
+                                "Sky States' offer architecture didn't just get
+                                me more money; they restructured my entire
+                                equity package to favor long-term wealth over
+                                taxable salary. The difference was over $45k in
+                                the first year alone."
+                            </p>
+                            <div class="mt-6 font-bold">
+                                — Principal Product Manager, Tier 1 SaaS
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Institutional Disclaimer -->
+            <section class="py-12 bg-surface-container-high">
+                <div class="max-w-7xl mx-auto px-margin-desktop text-center">
+                    <p
+                        class="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2"
+                    >
+                        Notice of Terms
                     </p>
-<div class="flex flex-wrap gap-4">
-<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md text-label-md shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
-                            Book Placement Call
-                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<button class="bg-surface-container-high text-on-surface px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-dim transition-all">
-                            Review Methodology
-                        </button>
-</div>
-</div>
-</div>
-<!-- Decorative Element -->
-<div class="absolute -right-20 top-0 w-1/2 h-full opacity-10 pointer-events-none">
-<span class="material-symbols-outlined text-[400px]" data-icon="architecture">architecture</span>
-</div>
-</section>
-<!-- The 5-Phase Roadmap -->
-<section class="py-section-gap bg-surface">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="text-center mb-16">
-<h2 class="text-headline-lg text-on-surface">The 5-Phase Strategic Roadmap</h2>
-<p class="text-on-surface-variant mt-4 max-w-2xl mx-auto">Our rigorous framework ensures you are never just another applicant, but the primary candidate.</p>
-</div>
-<div class="relative grid grid-cols-1 md:grid-cols-5 gap-gutter">
-<!-- Progress Line (Desktop) -->
-<div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-outline-variant z-0"></div>
-<!-- Phase 1 -->
-<div class="relative z-10 flex flex-col items-center text-center group">
-<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110">
-<span class="text-3xl font-bold">1</span>
-</div>
-<h3 class="text-headline-md mb-2">Target Mapping</h3>
-<p class="text-label-sm text-on-surface-variant">Identification of key institutional targets and cultural fit audit.</p>
-</div>
-<!-- Phase 2 -->
-<div class="relative z-10 flex flex-col items-center text-center group">
-<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110">
-<span class="text-3xl font-bold">2</span>
-</div>
-<h3 class="text-headline-md mb-2">Narrative Deployment</h3>
-<p class="text-label-sm text-on-surface-variant">Optimizing your executive persona for maximum market impact.</p>
-</div>
-<!-- Phase 3 -->
-<div class="relative z-10 flex flex-col items-center text-center group">
-<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110">
-<span class="text-3xl font-bold">3</span>
-</div>
-<h3 class="text-headline-md mb-2">Interview Intelligence</h3>
-<p class="text-label-sm text-on-surface-variant">Deep-dive preparation with industry-specific mock trials.</p>
-</div>
-<!-- Phase 4 -->
-<div class="relative z-10 flex flex-col items-center text-center group">
-<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110">
-<span class="text-3xl font-bold">4</span>
-</div>
-<h3 class="text-headline-md mb-2">Offer Architecture</h3>
-<p class="text-label-sm text-on-surface-variant">Structuring compensation and equity for long-term wealth.</p>
-</div>
-<!-- Phase 5 -->
-<div class="relative z-10 flex flex-col items-center text-center group">
-<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary mb-6 shadow-xl transition-transform group-hover:scale-110">
-<span class="text-3xl font-bold">5</span>
-</div>
-<h3 class="text-headline-md mb-2">Negotiation Strategy</h3>
-<p class="text-label-sm text-on-surface-variant">Closing the gap between market value and your personal goal.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Decision-Maker Access: Bento Grid style -->
-<section class="py-section-gap bg-surface-container-low">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div>
-<h2 class="text-headline-lg text-on-surface mb-6">Institutional Network &amp; Decision-Maker Access</h2>
-<p class="text-body-md text-on-surface-variant mb-8">
-                            Sky States operates at the highest tier of the 'Hidden Job Market'. 70% of high-end placements happen before a public listing is ever created. Our network provides direct access to the stakeholders that matter.
-                        </p>
-<div class="grid grid-cols-2 gap-4">
-<div class="p-6 bg-surface rounded-xl ambient-shadow">
-<div class="text-primary font-headline-lg mb-2">250+</div>
-<div class="text-label-sm font-bold text-on-surface-variant uppercase">Hiring Partners</div>
-</div>
-<div class="p-6 bg-surface rounded-xl ambient-shadow">
-<div class="text-primary font-headline-lg mb-2">Tier 1</div>
-<div class="text-label-sm font-bold text-on-surface-variant uppercase">Global Exposure</div>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="col-span-2 h-64 bg-cover bg-center rounded-2xl shadow-xl overflow-hidden group" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVf5199LLCl_gNZr9Q3zOUgD62mSds3maXgGbW9XyHxwsAUdQo2-2Aa7g6rY_4129e7oNGtKCLzkDfcybjJEvqzYV2wblHbwoLxMdTDbvi1YYuIFPsAlFL8zQqoH7yb_azUabm3NDxB_3sdeccCtmrHa_n3rer3QEDpK4ddENLnL3BbHBzXeUZuhp3NmzYns6w93KmAhw0rIOKQwYmizDCgaVkwja7g0I8u5hi9ag_Vyiago84aTdB1ZVJfyZZryjY5Mt22dK41K8')">
-<div class="w-full h-full bg-primary/20 group-hover:bg-primary/0 transition-all"></div>
-</div>
-<div class="h-48 bg-surface-container-highest rounded-2xl flex flex-col items-center justify-center p-6 text-center">
-<span class="material-symbols-outlined text-primary text-4xl mb-2" data-icon="hub">hub</span>
-<span class="font-label-md">Direct CTO Referrals</span>
-</div>
-<div class="h-48 bg-primary text-on-primary rounded-2xl flex flex-col items-center justify-center p-6 text-center">
-<span class="material-symbols-outlined text-4xl mb-2" data-icon="visibility_off">visibility_off</span>
-<span class="font-label-md">Unlisted Inventory</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Interview Intelligence -->
-<section class="py-section-gap overflow-hidden">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="flex flex-col lg:flex-row gap-gutter">
-<div class="lg:w-1/3">
-<h2 class="text-headline-lg text-on-surface mb-6">Interview Intelligence</h2>
-<p class="text-body-md text-on-surface-variant mb-6 leading-relaxed">
-                            Stop guessing. Our mock interview simulations are led by practicing Lead Architects and active CTOs from Fortune 500 firms. We simulate the pressure, the technical depth, and the cultural nuance of the highest-paying roles in the world.
-                        </p>
-<ul class="space-y-4">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
-<span class="text-on-surface">Architectural Whiteboard Simulations</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
-<span class="text-on-surface">Executive Presence Coaching</span>
-</li>
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
-<span class="text-on-surface">Post-Session Deep-Dive Feedback</span>
-</li>
-</ul>
-</div>
-<div class="lg:w-2/3">
-<div class="relative rounded-3xl overflow-hidden shadow-2xl">
-<img alt="A cinematic collection of three premium video testimonial thumbnails for Sky States. Each thumbnail features a professional technologist in a high-end office setting with shallow depth of field. The lighting is sophisticated and warm, using a deep navy and electric blue color palette with silver accents to convey high-trust editorial excellence and institutional authority. One technologist is a male in a tailored suit, another is a female in professional business attire, and the third is a creative professional." class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtWc86eqN7wYWoDWBuVQOUYPxBuWgxwZWg5ICi3A91egN4sl-0pumSqVMRURYXGk46SZN5XTx1tVgpCbubOqzHS_94BTv8FWvKx5M8aBcquV7Kolu3JVHXpwP_RjeuaKm3SKW2T_GV9ILPyEOihn-QEV8Vi6wWN5wQHhbQdUQyAJ-eGef3L79_tT8NzUJUzB4f0F75itv3b3Id1h54jLls6rvp43PbHC-xsLvV9FDXTQ8Jx_n97L3u0q-8"/>
-<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8">
-<div class="glass-card p-6 rounded-2xl w-full flex justify-between items-center">
-<div>
-<div class="font-bold text-on-surface">Case Study: Senior Staff Engineer</div>
-<div class="text-on-surface-variant text-sm">Role at Global Fintech Lead</div>
-</div>
-<button class="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="play_arrow" data-weight="fill">play_arrow</span>
-</button>
-<!-- Verified Student Reviews & Vlogs Section -->
-<div class="mt-16 border-t border-outline-variant/20 pt-16 w-full">
-  <h3 class="font-headline-md text-2xl text-center text-on-surface mb-8 font-bold">Verified Student Reviews & Vlogs</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Medium Vlog -->
-    <a href="https://medium.com" target="_blank" rel="noopener noreferrer" class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group">
-      <div class="flex items-center justify-between">
-        <span class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans">Student Vlog</span>
-        <span class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all">open_in_new</span>
-      </div>
-      <h4 class="font-bold text-on-surface text-base font-sans">My 6-Month Career Transition: From Legacy Admin to AWS Lead</h4>
-      <p class="text-xs text-on-surface-variant leading-relaxed font-sans">Read the complete week-by-week journal and vlog documenting the curriculum, labs, and interview prep on Medium.</p>
-    </a>
-    
-    <!-- Trust School Review -->
-    <a href="https://trustschool.us" target="_blank" rel="noopener noreferrer" class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group">
-      <div class="flex items-center justify-between">
-        <span class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans">Trust School</span>
-        <span class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all">open_in_new</span>
-      </div>
-      <h4 class="font-bold text-on-surface text-base font-sans">Sky States Institutional Rating: 4.9 / 5.0</h4>
-      <p class="text-xs text-on-surface-variant leading-relaxed font-sans">Check our verified score, student testimonials, and credential audits on the independent Trust School platform.</p>
-    </a>
-
-    <!-- Partner Staffing Vlog -->
-    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="p-6 bg-white rounded-2xl border border-outline-variant/30 hover:border-primary transition-all flex flex-col gap-4 shadow-sm group">
-      <div class="flex items-center justify-between">
-        <span class="px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase rounded-full tracking-wider font-sans">Video Case Study</span>
-        <span class="material-symbols-outlined text-[18px] text-secondary opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all">open_in_new</span>
-      </div>
-      <h4 class="font-bold text-on-surface text-base font-sans">Graduates Panel: Navigating Tech Offer Salary Negotiations</h4>
-      <p class="text-xs text-on-surface-variant leading-relaxed font-sans">Watch the video panel where three recent graduates break down their offer architectures and counter-offer successes.</p>
-    </a>
-  </div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- The Negotiation Advantage -->
-<section class="py-section-gap bg-primary text-on-primary relative overflow-hidden">
-<!-- Background Decoration -->
-<div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
-<span class="material-symbols-outlined text-[600px]" data-icon="trending_up">trending_up</span>
-</div>
-<div class="max-w-7xl mx-auto px-margin-desktop relative z-10">
-<div class="flex flex-col items-center text-center">
-<h2 class="font-headline-lg text-headline-lg mb-8">The Negotiation Advantage</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
-<div class="flex flex-col items-center">
-<div class="text-headline-xl font-extrabold mb-2">$15,000</div>
-<div class="text-primary-fixed font-label-md uppercase tracking-wide">Avg. Immediate Increase</div>
-</div>
-<div class="flex flex-col items-center">
-<div class="text-headline-xl font-extrabold mb-2">92%</div>
-<div class="text-primary-fixed font-label-md uppercase tracking-wide">Success Rate on Counters</div>
-</div>
-<div class="flex flex-col items-center">
-<div class="text-headline-xl font-extrabold mb-2">4.8 Days</div>
-<div class="text-primary-fixed font-label-md uppercase tracking-wide">Avg. Faster Closing Time</div>
-</div>
-</div>
-<div class="mt-16 max-w-2xl bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
-<p class="text-body-lg italic">
-                            "Sky States' offer architecture didn't just get me more money; they restructured my entire equity package to favor long-term wealth over taxable salary. The difference was over $45k in the first year alone."
-                        </p>
-<div class="mt-6 font-bold">— Principal Product Manager, Tier 1 SaaS</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Institutional Disclaimer -->
-<section class="py-12 bg-surface-container-high">
-<div class="max-w-7xl mx-auto px-margin-desktop text-center">
-<p class="text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Notice of Terms</p>
-<p class="max-w-4xl mx-auto text-on-surface-variant text-sm leading-relaxed">
-                    Disclaimer: Results depend on individual performance, professional history, and current market conditions. Sky States Career Acceleration provides the framework and access, but specific placement guarantees are subject to final hiring partner approval and individual candidate execution during the roadmap phases.
-                </p>
-</div>
-</section>
-<!-- Final Conversion CTA -->
-<section class="py-section-gap relative">
-<div class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop">
-<div class="bg-surface-container rounded-[2rem] p-8 md:p-20 text-center shadow-2xl border border-outline-variant/30">
-<h2 class="text-headline-xl text-on-surface mb-6">Ready for Your Transition?</h2>
-<p class="text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">
-                        Join the elite 1% of technologists who navigate the career ladder with institutional precision.
+                    <p
+                        class="max-w-4xl mx-auto text-on-surface-variant text-sm leading-relaxed"
+                    >
+                        Disclaimer: Results depend on individual performance,
+                        professional history, and current market conditions. Sky
+                        States Career Acceleration provides the framework and
+                        access, but specific placement guarantees are subject to
+                        final hiring partner approval and individual candidate
+                        execution during the roadmap phases.
                     </p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-primary text-on-primary px-10 py-4 rounded-full text-headline-md shadow-xl hover:scale-105 transition-transform">
-                            Book Consultation
-                        </button>
-<button class="bg-white text-primary border border-primary px-10 py-4 rounded-full text-headline-md hover:bg-primary-fixed transition-colors">
-                            Explore Career Hub
-                        </button>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<Footer />
-<script>
-        // Micro-interactions
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mousedown', () => {
-                button.classList.add('scale-95');
+                </div>
+            </section>
+            <!-- Final Conversion CTA -->
+            <section class="py-section-gap relative">
+                <div
+                    class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop"
+                >
+                    <div
+                        class="bg-surface-container rounded-[2rem] p-8 md:p-20 text-center shadow-2xl border border-outline-variant/30"
+                    >
+                        <h2 class="text-headline-xl text-on-surface mb-6">
+                            Ready for Your Transition?
+                        </h2>
+                        <p
+                            class="text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto"
+                        >
+                            Join the elite 1% of technologists who navigate the
+                            career ladder with institutional precision.
+                        </p>
+                        <div
+                            class="flex flex-col sm:flex-row gap-4 justify-center"
+                        >
+                            <button
+                                class="bg-primary text-on-primary px-10 py-4 rounded-full text-headline-md shadow-xl hover:scale-105 transition-transform"
+                            >
+                                Book Consultation
+                            </button>
+                            <button
+                                class="bg-white text-primary border border-primary px-10 py-4 rounded-full text-headline-md hover:bg-primary-fixed transition-colors"
+                            >
+                                Explore Career Hub
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <Footer />
+        <script>
+            // Micro-interactions
+            document.querySelectorAll("button").forEach((button) => {
+                button.addEventListener("mousedown", () => {
+                    button.classList.add("scale-95");
+                });
+                button.addEventListener("mouseup", () => {
+                    button.classList.remove("scale-95");
+                });
             });
-            button.addEventListener('mouseup', () => {
-                button.classList.remove('scale-95');
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("opacity-100");
+                        entry.target.classList.remove("translate-y-10");
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll("section").forEach((section) => {
+                section.classList.add(
+                    "transition-[opacity,transform]",
+                    "duration-700",
+                    "ease-out",
+                    "translate-y-10",
+                    "opacity-0",
+                );
+                observer.observe(section);
             });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100');
-                    entry.target.classList.remove('translate-y-10');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('transition-[opacity,transform]', 'duration-700', 'ease-out', 'translate-y-10', 'opacity-0');
-            observer.observe(section);
-        });
-    </script>
-</body></html>
+        </script>
+    </body>
+</html>

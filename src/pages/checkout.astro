@@ -7,8 +7,8 @@ import { PRICING } from "../lib/pricing.js";
 export const prerender = false;
 
 const pricingConfig = {
-  registration: PRICING.registration,
-  full: PRICING.full,
+    registration: PRICING.registration,
+    full: PRICING.full,
 };
 ---
 
@@ -83,9 +83,13 @@ const pricingConfig = {
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start"
+            >
                 <!-- Left Column: Order Summary & Info -->
-                <div class="lg:col-span-5 flex flex-col gap-6 lg:gap-8 order-2 lg:order-1">
+                <div
+                    class="lg:col-span-5 flex flex-col gap-6 lg:gap-8 order-2 lg:order-1"
+                >
                     <!-- Order Summary Card -->
                     <section
                         class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-6"
@@ -114,7 +118,9 @@ const pricingConfig = {
                                 class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3"
                                 >Select Program Tier</span
                             >
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+                            >
                                 <!-- Scholar Tier Card -->
                                 <button
                                     type="button"
@@ -175,7 +181,7 @@ const pricingConfig = {
                             </div>
                         </div>
 
-                        <div
+                        <!-- <div
                             class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 pt-4 border-t border-slate-100"
                         >
                             <div class="min-w-0">
@@ -198,7 +204,7 @@ const pricingConfig = {
                             >
                                 $99
                             </p>
-                        </div>
+                        </div> -->
 
                         <!-- Promo Code Section (full program only) -->
                         <div
@@ -209,7 +215,9 @@ const pricingConfig = {
                                 class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
                                 >Promotional Code</label
                             >
-                            <p class="text-[11px] text-slate-500">Available for full program enrollment only.</p>
+                            <p class="text-[11px] text-slate-500">
+                                Available for full program enrollment only.
+                            </p>
                             <div class="flex flex-col sm:flex-row gap-2">
                                 <input
                                     type="text"
@@ -234,15 +242,20 @@ const pricingConfig = {
                             id="coupon-registration-note"
                             class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 leading-relaxed"
                         >
-                            Promotional codes are not available for intro sessions. Enroll in the
-                            <a href="/checkout?mode=full" class="text-sky-700 font-semibold hover:underline">full program</a>
+                            Promotional codes are not available for intro
+                            sessions. Enroll in the
+                            <a
+                                href="/checkout?mode=full"
+                                class="text-sky-700 font-semibold hover:underline"
+                                >full program</a
+                            >
                             to use a coupon.
                         </p>
 
                         <div
                             class="mt-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 font-bold text-slate-800 border-t border-slate-100 pt-4"
                         >
-                            <p class="text-sm">Total Investment</p>
+                            <p class="text-sm">Total</p>
                             <p
                                 class="text-lg font-black text-slate-900"
                                 id="display-total-value"
@@ -253,7 +266,7 @@ const pricingConfig = {
                     </section>
 
                     <!-- Privacy Commitment -->
-                    <section
+                    <!-- <section
                         class="bg-sky-50/50 border border-sky-100/50 rounded-3xl p-6 flex gap-4 items-start"
                     >
                         <div
@@ -276,7 +289,7 @@ const pricingConfig = {
                                 for institutional registry.
                             </p>
                         </div>
-                    </section>
+                    </section> -->
 
                     <!-- What Happens Next -->
                     <section class="flex flex-col gap-6 px-1">
@@ -348,85 +361,261 @@ const pricingConfig = {
                 </div>
 
                 <!-- Right Column: Checkout -->
-                <div class="lg:col-span-7 lg:sticky lg:top-28 order-1 lg:order-2">
+                <div
+                    class="lg:col-span-7 lg:sticky lg:top-28 order-1 lg:order-2"
+                >
                     <div
                         class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border border-slate-200/80 shadow-sm"
                     >
-                        <h2 class="text-lg font-bold text-slate-900 mb-1">Complete Enrollment</h2>
-                        <p class="text-sm text-slate-500 mb-6">Enter your details below — you'll pay securely on Stripe with cards, wallets, bank transfer, or buy-now-pay-later options.</p>
+                        <h2 class="text-lg font-bold text-slate-900 mb-1">
+                            Complete Enrollment
+                        </h2>
+                        <p class="text-sm text-slate-500 mb-6">
+                            Enter your details below — you'll pay securely on
+                            Stripe with cards, wallets, bank transfer, or
+                            buy-now-pay-later options.
+                        </p>
 
                         <form class="flex flex-col gap-6" id="payment-form">
-                                <div class="flex flex-col gap-2">
-                                    <label
-                                        class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                                        for="email">Email Address</label
+                            <div class="flex flex-col gap-2">
+                                <label
+                                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
+                                    for="email">Email Address</label
+                                >
+                                <input
+                                    class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none transition-all duration-200 text-sm"
+                                    id="email"
+                                    placeholder="you@example.com"
+                                    type="email"
+                                    required
+                                />
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label
+                                    class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
+                                    for="name">Full Name</label
+                                >
+                                <input
+                                    class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none transition-all duration-200 text-sm"
+                                    id="name"
+                                    placeholder="Name Enter"
+                                    type="text"
+                                    required
+                                />
+                            </div>
+
+                            <div
+                                class="rounded-2xl border border-sky-100 bg-sky-50/40 p-5 space-y-4"
+                            >
+                                <div class="flex gap-3 items-start">
+                                    <span
+                                        class="material-symbols-outlined text-sky-600 shrink-0"
+                                        >lock</span
                                     >
-                                    <input
-                                        class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none transition-all duration-200 text-sm"
-                                        id="email"
-                                        placeholder="you@example.com"
-                                        type="email"
-                                        required
-                                    />
-                                </div>
-
-                                <div class="flex flex-col gap-2">
-                                    <label
-                                        class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
-                                        for="name">Full Name</label
+                                    <div
+                                        class="text-sm text-slate-600 leading-relaxed"
                                     >
-                                    <input
-                                        class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none transition-all duration-200 text-sm"
-                                        id="name"
-                                        placeholder="Johnathan Doe"
-                                        type="text"
-                                        required
-                                    />
-                                </div>
-
-                                <div
-                                    class="rounded-2xl border border-sky-100 bg-sky-50/40 p-5 space-y-4"
-                                >
-                                    <div class="flex gap-3 items-start">
-                                        <span class="material-symbols-outlined text-sky-600 shrink-0">lock</span>
-                                        <div class="text-sm text-slate-600 leading-relaxed">
-                                            <p class="font-semibold text-slate-800 mb-1">Secure checkout powered by Stripe</p>
-                                            <p>On the next page you can pay with cards, Apple Pay, Google Pay, Link, ACH bank transfer, and buy-now-pay-later options such as Affirm, Klarna, or Afterpay — when enabled in your region.</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Accepted payment methods</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Visa</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Mastercard</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Amex</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Discover</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Apple Pay</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Google Pay</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Link</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Affirm</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Klarna</span>
-                                            <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-600">Afterpay</span>
-                                        </div>
-                                        <p class="text-[11px] text-slate-500 mt-2">Available options depend on order amount and eligibility. Enable methods in <a href="https://dashboard.stripe.com/settings/payment_methods" target="_blank" rel="noopener noreferrer" class="text-sky-700 font-semibold hover:underline">Stripe Dashboard → Payment methods</a>.</p>
+                                        <p
+                                            class="font-semibold text-slate-800 mb-1"
+                                        >
+                                            Secure checkout powered by Stripe
+                                        </p>
+                                        <p>
+                                            On the next page you can pay with
+                                            cards, Apple Pay, Google Pay, Link,
+                                            ACH bank transfer, and
+                                            buy-now-pay-later options such as
+                                            Affirm, Klarna, or Afterpay — when
+                                            enabled in your region.
+                                        </p>
                                     </div>
                                 </div>
-
-                                <div
-                                    id="payment-message"
-                                    class="text-xs font-semibold text-red-500 hidden"
-                                >
+                                <div>
+                                    <p
+                                        class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2.5"
+                                    >
+                                        Accepted payment methods
+                                    </p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <!-- Visa -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3 w-auto"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M19 6H15.6L12.5 15.3L10.7 7.7C10.2 6.5 9.2 6 8.1 6H4v.5c1.9.5 3.3 1.3 3.8 2.7l3 11.2h3.5L19.5 6H19zM22.5 6H20L17.8 18.5h2.8L22.5 6z"
+                                                    fill="#1A1F71"></path>
+                                            </svg>
+                                            Visa
+                                        </span>
+                                        <!-- Mastercard -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3.5 w-auto"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <circle
+                                                    cx="8"
+                                                    cy="12"
+                                                    r="6.5"
+                                                    fill="#EB001B"
+                                                    fill-opacity="0.9"></circle>
+                                                <circle
+                                                    cx="16"
+                                                    cy="12"
+                                                    r="6.5"
+                                                    fill="#F79E1B"
+                                                    fill-opacity="0.9"></circle>
+                                            </svg>
+                                            Mastercard
+                                        </span>
+                                        <!-- Amex -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3.5 w-auto"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <rect
+                                                    width="24"
+                                                    height="24"
+                                                    rx="4"
+                                                    fill="#0070CD"></rect>
+                                                <path
+                                                    d="M4 17L5.5 13H8.5L10 17H8.5L7.8 15H6.2L5.5 17H4ZM6.5 14L7 12L7.5 14H6.5ZM12 17V13H15V14H13V15.5H14.5V16.5H13V17H12ZM17 17V13H19.5V14H18V15.5H19.5V16.5H18V17H17Z"
+                                                    fill="white"
+                                                    font-weight="bold"></path>
+                                            </svg>
+                                            Amex
+                                        </span>
+                                        <!-- Discover -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3.5 w-auto"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M2 17h4.5a3.5 3.5 0 000-7H2v7zm1.5-5.5h3a2 2 0 010 4h-3v-4zM9 17h1.5v-7H9v7zm4 0h1.5v-7h-1.5v3.5a1.5 1.5 0 01-3 0v-3.5h-1.5v7h1.5v-3.5a3 3 0 003 0V17zm4.5 0a3.5 3.5 0 000-7H16v7h1.5zm0-5.5a2 2 0 010 4H17.5v-4h0zm4.5.5h-1.5a1 1 0 00-2 0v2a1 1 0 002 0v-2"
+                                                    fill="#E65A00"></path>
+                                            </svg>
+                                            Discover
+                                        </span>
+                                        <!-- Apple Pay -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3.5 w-auto text-slate-900"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M17.05 20.28c-.98.95-2.05.98-3.08.4-1.09-.58-2.03-.55-3.14.03-1.04.55-1.99.52-2.93-.38-3.51-3.41-3.01-9.61 1.05-9.61 1.93 0 2.92.93 3.96.93 1.03 0 2.21-.99 4.19-.9 2.08.1 3.58 1.11 4.29 2.45-4.4 2.24-3.69 7.84.51 9.08-.85 1.95-2.35 4.1-4.85 6.0zM14.73 3c.96-1.12 1.62-2.7 1.44-4.28-1.54.06-3.41.97-4.52 2.22-.96 1.08-1.8 2.68-1.56 4.23 1.72.13 3.47-.84 4.64-2.17z"
+                                                ></path>
+                                            </svg>
+                                            Apple Pay
+                                        </span>
+                                        <!-- Google Pay -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <svg
+                                                class="h-3.5 w-auto"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                                    fill="#4285F4"></path>
+                                                <path
+                                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                                    fill="#34A853"></path>
+                                                <path
+                                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                                    fill="#FBBC05"></path>
+                                                <path
+                                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                                    fill="#EA4335"></path>
+                                            </svg>
+                                            Google Pay
+                                        </span>
+                                        <!-- Link -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <span
+                                                class="w-2 h-2 rounded-full bg-[#00D4B2] shrink-0"
+                                            ></span>
+                                            Link
+                                        </span>
+                                        <!-- Affirm -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <span
+                                                class="w-2 h-2 rounded-full bg-[#4A00E0] shrink-0"
+                                            ></span>
+                                            Affirm
+                                        </span>
+                                        <!-- Klarna -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <span
+                                                class="w-2 h-2 rounded-full bg-[#FFB3C7] shrink-0"
+                                            ></span>
+                                            Klarna
+                                        </span>
+                                        <!-- Afterpay -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[10px] font-bold text-slate-700 shadow-sm hover:border-slate-300 transition-colors"
+                                        >
+                                            <span
+                                                class="w-2 h-2 rounded-full bg-[#B2FCE4] shrink-0"
+                                            ></span>
+                                            Afterpay
+                                        </span>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <button
-                                    class="w-full h-12 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl text-xs uppercase font-bold tracking-wider shadow-md hover:from-sky-500 hover:to-blue-600 hover:shadow-lg hover:shadow-sky-600/10 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                                    type="submit"
-                                    id="submit-payment-btn"
+                            <div
+                                id="payment-message"
+                                class="text-xs font-semibold text-red-500 hidden"
+                            >
+                            </div>
+
+                            <button
+                                class="w-full h-12 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl text-xs uppercase font-bold tracking-wider shadow-md hover:from-sky-500 hover:to-blue-600 hover:shadow-lg hover:shadow-sky-600/10 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                                type="submit"
+                                id="submit-payment-btn"
+                            >
+                                <span>Continue to Secure Checkout</span>
+                                <span
+                                    class="material-symbols-outlined text-sm font-bold"
+                                    >arrow_forward</span
                                 >
-                                    <span>Continue to Secure Checkout</span>
-                                    <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
-                                </button>
-                            </form>
+                            </button>
+                        </form>
 
                         <!-- Trust Badges -->
                         <div
@@ -479,7 +668,8 @@ const pricingConfig = {
             window.getOrderTotal = function () {
                 const isFullPayment = window.checkoutMode === "full";
                 const modeKey = isFullPayment ? "full" : "registration";
-                const tierKey = window.selectedTier === "1on1" ? "1on1" : "normal";
+                const tierKey =
+                    window.selectedTier === "1on1" ? "1on1" : "normal";
                 let basePrice = P[modeKey][tierKey];
                 let discount = 0;
                 if (window.activeCoupon && isFullPayment) {
@@ -491,9 +681,12 @@ const pricingConfig = {
             window.updateCouponVisibility = function () {
                 const isFull = window.checkoutMode === "full";
                 const couponSection = document.getElementById("coupon-section");
-                const couponNote = document.getElementById("coupon-registration-note");
+                const couponNote = document.getElementById(
+                    "coupon-registration-note",
+                );
 
-                if (couponSection) couponSection.classList.toggle("hidden", !isFull);
+                if (couponSection)
+                    couponSection.classList.toggle("hidden", !isFull);
                 if (couponNote) couponNote.classList.toggle("hidden", isFull);
 
                 if (!isFull) {
@@ -501,7 +694,8 @@ const pricingConfig = {
                     const input = document.getElementById("coupon-code-input");
                     const feedback = document.getElementById("coupon-feedback");
                     if (input) input.value = "";
-                    if (feedback) feedback.className = "text-xs font-semibold hidden";
+                    if (feedback)
+                        feedback.className = "text-xs font-semibold hidden";
                 }
             };
 
@@ -509,24 +703,31 @@ const pricingConfig = {
                 window.updateCouponVisibility();
 
                 const label = document.getElementById("display-tier-label");
-                const desc = document.getElementById("display-tier-description");
+                const desc = document.getElementById(
+                    "display-tier-description",
+                );
                 const priceEl = document.getElementById("display-price-value");
                 const totalEl = document.getElementById("display-total-value");
                 const feedbackEl = document.getElementById("coupon-feedback");
                 const isFullPayment = window.checkoutMode === "full";
                 const modeKey = isFullPayment ? "full" : "registration";
-                const tierKey = window.selectedTier === "1on1" ? "1on1" : "normal";
+                const tierKey =
+                    window.selectedTier === "1on1" ? "1on1" : "normal";
                 let basePrice = P[modeKey][tierKey];
 
                 if (window.selectedTier === "normal") {
                     if (label) label.textContent = "batch classes Program";
-                    if (desc) desc.textContent = "Weekend live labs & placement prep";
+                    if (desc)
+                        desc.textContent = "Weekend live labs & placement prep";
                 } else {
                     if (label) label.textContent = "personalised classes";
-                    if (desc) desc.textContent = "Personal Industry mentor & 1-on-1 guidance";
+                    if (desc)
+                        desc.textContent =
+                            "Personal Industry mentor & 1-on-1 guidance";
                 }
 
-                if (priceEl) priceEl.textContent = "$" + basePrice.toLocaleString();
+                if (priceEl)
+                    priceEl.textContent = "$" + basePrice.toLocaleString();
 
                 let discount = 0;
                 if (window.activeCoupon && isFullPayment) {
@@ -546,7 +747,8 @@ const pricingConfig = {
                 if (feedbackEl) {
                     if (window.activeCoupon && isFullPayment) {
                         feedbackEl.textContent = `Coupon ${window.activeCoupon.code} applied: -$${discount.toLocaleString()}`;
-                        feedbackEl.className = "text-xs font-semibold text-green-600 block";
+                        feedbackEl.className =
+                            "text-xs font-semibold text-green-600 block";
                     } else {
                         feedbackEl.className = "text-xs font-semibold hidden";
                     }
@@ -628,23 +830,28 @@ const pricingConfig = {
                 if (!input || !feedback) return;
 
                 if (window.checkoutMode !== "full") {
-                    feedback.textContent = "Promotional codes apply to full program enrollment only.";
-                    feedback.className = "text-xs font-semibold text-red-500 block";
+                    feedback.textContent =
+                        "Promotional codes apply to full program enrollment only.";
+                    feedback.className =
+                        "text-xs font-semibold text-red-500 block";
                     return;
                 }
 
                 const code = input.value.trim();
                 if (!code) {
                     feedback.textContent = "Please enter a coupon code.";
-                    feedback.className = "text-xs font-semibold text-red-500 block";
+                    feedback.className =
+                        "text-xs font-semibold text-red-500 block";
                     return;
                 }
 
-                const basePrice = P.full[window.selectedTier === "1on1" ? "1on1" : "normal"];
+                const basePrice =
+                    P.full[window.selectedTier === "1on1" ? "1on1" : "normal"];
 
                 try {
                     feedback.textContent = "Validating coupon...";
-                    feedback.className = "text-xs font-semibold text-gray-500 block";
+                    feedback.className =
+                        "text-xs font-semibold text-gray-500 block";
 
                     const response = await fetch("/api/validate-coupon", {
                         method: "POST",
@@ -655,19 +862,26 @@ const pricingConfig = {
                     const data = await response.json();
 
                     if (response.ok && data.valid) {
-                        window.activeCoupon = { code: data.code, discount: data.discount };
+                        window.activeCoupon = {
+                            code: data.code,
+                            discount: data.discount,
+                        };
                         window.updatePricingDisplay();
                     } else {
                         window.activeCoupon = null;
                         window.updatePricingDisplay();
-                        feedback.textContent = data.error || "Invalid coupon code.";
-                        feedback.className = "text-xs font-semibold text-red-500 block";
+                        feedback.textContent =
+                            data.error || "Invalid coupon code.";
+                        feedback.className =
+                            "text-xs font-semibold text-red-500 block";
                     }
                 } catch (err) {
                     window.activeCoupon = null;
                     window.updatePricingDisplay();
-                    feedback.textContent = "Connection error. Please try again.";
-                    feedback.className = "text-xs font-semibold text-red-500 block";
+                    feedback.textContent =
+                        "Connection error. Please try again.";
+                    feedback.className =
+                        "text-xs font-semibold text-red-500 block";
                 }
             };
 
@@ -682,14 +896,20 @@ const pricingConfig = {
                     window.checkoutMode = "full";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
-                    if (sPrice) sPrice.textContent = "$" + P.full.normal.toLocaleString();
-                    if (ePrice) ePrice.textContent = "$" + P.full["1on1"].toLocaleString();
+                    if (sPrice)
+                        sPrice.textContent =
+                            "$" + P.full.normal.toLocaleString();
+                    if (ePrice)
+                        ePrice.textContent =
+                            "$" + P.full["1on1"].toLocaleString();
                 } else {
                     window.checkoutMode = "registration";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
-                    if (sPrice) sPrice.textContent = "$" + P.registration.normal;
-                    if (ePrice) ePrice.textContent = "$" + P.registration["1on1"];
+                    if (sPrice)
+                        sPrice.textContent = "$" + P.registration.normal;
+                    if (ePrice)
+                        ePrice.textContent = "$" + P.registration["1on1"];
                 }
 
                 if (courseName) {
@@ -716,31 +936,65 @@ const pricingConfig = {
                 const messageEl = document.getElementById("payment-message");
                 if (!messageEl) return;
                 if (!message) {
-                    messageEl.textContent = "";
-                    messageEl.className = "text-xs font-semibold hidden";
+                    messageEl.innerHTML = "";
+                    messageEl.className = "hidden";
                     return;
                 }
-                messageEl.textContent = message;
-                messageEl.className = isError
-                    ? "text-xs font-semibold text-red-500 block"
-                    : "text-xs font-semibold text-green-600 block";
+
+                let displayMessage = message;
+                if (isError) {
+                    const lowercaseMsg = message.toLowerCase();
+                    if (
+                        lowercaseMsg.includes("stripe_secret_key") ||
+                        lowercaseMsg.includes("stripe key") ||
+                        lowercaseMsg.includes("not configured") ||
+                        lowercaseMsg.includes("database") ||
+                        lowercaseMsg.includes("sqlite") ||
+                        lowercaseMsg.includes("secretkey")
+                    ) {
+                        displayMessage =
+                            "We are experiencing a payment gateway configuration issue. Please contact support at support@skystates.us to complete your enrollment.";
+                    }
+                }
+
+                if (isError) {
+                    messageEl.innerHTML = `
+                        <div class="flex items-start gap-2.5 p-3.5 rounded-xl bg-rose-50 border border-rose-100 text-rose-800 text-xs leading-relaxed font-medium">
+                            <span class="material-symbols-outlined text-[16px] text-rose-600 shrink-0 mt-0.5">error</span>
+                            <span>${displayMessage}</span>
+                        </div>
+                    `;
+                } else {
+                    messageEl.innerHTML = `
+                        <div class="flex items-start gap-2.5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs leading-relaxed font-medium">
+                            <span class="material-symbols-outlined text-[16px] text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                            <span>${displayMessage}</span>
+                        </div>
+                    `;
+                }
+                messageEl.className = "block mb-4";
             }
 
             const checkoutParams = new URLSearchParams(window.location.search);
             if (checkoutParams.get("canceled") === "1") {
-                showPaymentMessage("Checkout was canceled. You can try again when ready.", true);
+                showPaymentMessage(
+                    "Checkout was canceled. You can try again when ready.",
+                    true,
+                );
             }
 
             function getCheckoutPayload() {
                 return {
-                    email: (document.getElementById("email")?.value || "").trim(),
+                    email: (
+                        document.getElementById("email")?.value || ""
+                    ).trim(),
                     name: (document.getElementById("name")?.value || "").trim(),
                     mode: window.checkoutMode,
                     tier: window.selectedTier,
                     couponCode: window.activeCoupon?.code || "",
                     courseName:
-                        document.getElementById("display-course-name")?.textContent ||
-                        "Intro Session",
+                        document.getElementById("display-course-name")
+                            ?.textContent || "Intro Session",
                 };
             }
 
@@ -758,41 +1012,60 @@ const pricingConfig = {
                 try {
                     const payload = getCheckoutPayload();
                     if (!payload.email || !payload.name) {
-                        throw new Error("Please enter your email and full name.");
+                        throw new Error(
+                            "Please enter your email and full name.",
+                        );
                     }
 
-                    const response = await fetch("/api/payments/create-checkout-session", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload),
-                    });
-
-                    const data = await response.json();
-                    if (!response.ok) {
-                        throw new Error(data.error || "Unable to start checkout.");
-                    }
-
-                    if (data.freeCheckout) {
-                        const freeResponse = await fetch("/api/payments/confirm-free", {
+                    const response = await fetch(
+                        "/api/payments/create-checkout-session",
+                        {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(payload),
-                        });
+                        },
+                    );
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(
+                            data.error || "Unable to start checkout.",
+                        );
+                    }
+
+                    if (data.freeCheckout) {
+                        const freeResponse = await fetch(
+                            "/api/payments/confirm-free",
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(payload),
+                            },
+                        );
                         const freeData = await freeResponse.json();
                         if (!freeResponse.ok) {
-                            throw new Error(freeData.error || "Unable to complete checkout.");
+                            throw new Error(
+                                freeData.error ||
+                                    "Unable to complete checkout.",
+                            );
                         }
                         window.location.href = "/checkout/success?free=1";
                         return;
                     }
 
                     if (!data.url) {
-                        throw new Error("Stripe checkout URL was not returned.");
+                        throw new Error(
+                            "Stripe checkout URL was not returned.",
+                        );
                     }
 
                     window.location.href = data.url;
                 } catch (err) {
-                    showPaymentMessage(err.message || "Checkout failed. Please try again.");
+                    console.error("Checkout process failed:", err);
+                    showPaymentMessage(
+                        err.message || "Checkout failed. Please try again.",
+                        true,
+                    );
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalBtnContent;
                 }

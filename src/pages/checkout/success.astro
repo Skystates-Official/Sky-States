@@ -8,7 +8,13 @@ export const prerender = false;
 
 const sessionId = Astro.url.searchParams.get("session_id");
 const isFreeCheckout = Astro.url.searchParams.get("free") === "1";
-let payment = null;
+let payment: {
+  status: string;
+  amount_total: number;
+  id: string;
+  metadata: Record<string, any>;
+  customer_email: string;
+} | null = null;
 let orderRef = "";
 let emailSent = false;
 let isProcessing = false;

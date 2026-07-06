@@ -5,7 +5,8 @@ import { buildCheckoutSessionParams } from '../../../lib/stripe-checkout.js';
 
 export const prerender = false;
 
-const SITE_URL = process.env.SITE_URL || 'https://skystates.us';
+const SITE_URL = import.meta.env.SITE_URL || process.env.SITE_URL || 'https://skystates.us';
+
 
 export async function POST({ request }) {
   try {

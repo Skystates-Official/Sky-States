@@ -1,281 +1,537 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
 
-<html class="scroll-smooth" lang="en"><head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Sky States | Industry Insights &amp; Career Intelligence</title>
+        <meta
+            name="description"
+            content="Read our latest technical insights, architectural guides, career transition reports, and market analyses for senior tech roles."
+        />
+        <link rel="canonical" href="https://skystates.us/news" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sky States | Industry Insights &amp; Career Intelligence</title>
-<meta name="description" content="Read our latest technical insights, architectural guides, career transition reports, and market analyses for senior tech roles." />
-<link rel="canonical" href="https://skystates.us/news" />
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings:
+                    "FILL" 0,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .upward-gradient {
+                background: linear-gradient(to top, #ffffff, #d6e5ef);
+            }
+            .ambient-shadow {
+                box-shadow: 0 30px 60px -12px rgba(15, 29, 37, 0.04);
+            }
+            .hover-lift {
+                transition:
+                    transform 0.4s cubic-bezier(0.2, 1, 0.3, 1),
+                    box-shadow 0.4s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 40px 80px -15px rgba(15, 29, 37, 0.08);
+            }
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
 
-
-
-
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .upward-gradient {
-            background: linear-gradient(to top, #ffffff, #d6e5ef);
-        }
-        .ambient-shadow {
-            box-shadow: 0 30px 60px -12px rgba(15, 29, 37, 0.04);
-        }
-        .hover-lift {
-            transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease;
-        }
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 40px 80px -15px rgba(15, 29, 37, 0.08);
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
-
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
-<!-- TopAppBar -->
-<Header />
-<main>
-<!-- Editorial Hero Section -->
-<section class="upward-gradient pt-24 pb-32">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="grid md:grid-cols-2 gap-gutter items-center">
-<div class="space-y-6">
-<span class="inline-block px-4 py-1 bg-primary-container text-on-primary-container rounded-full font-label-sm text-label-sm">EDITORIAL HUB</span>
-<h1 class="font-headline-xl text-headline-xl text-primary max-w-xl">
-                            The Future of Tech Leadership
-                        </h1>
-<p class="font-body-lg text-body-lg text-secondary max-w-lg">
-                            Architectural-grade career transformation for the next generation of digital pioneers. Navigate the shifting landscape of high-authority technical roles.
-                        </p>
-<div class="pt-4 flex gap-4">
-<button class="h-12 px-8 bg-primary text-on-primary rounded-full font-label-md text-label-md shadow-lg hover:opacity-90 transition-opacity">
-                                Explore The Hub
+        <style>
+            body {
+                min-height: max(884px, 100dvh);
+            }
+        </style>
+    </head>
+    <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+        <!-- TopAppBar -->
+        <Header />
+        <main>
+            <!-- Editorial Hero Section -->
+            <section class="upward-gradient py-10 md:pb-24">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div class="grid md:grid-cols-2 gap-gutter items-center">
+                        <div class="space-y-6">
+                            <span
+                                class="inline-block px-4 py-1 bg-primary-container text-on-primary-container rounded-full font-label-sm text-label-sm"
+                                >EDITORIAL HUB</span
+                            >
+                            <h1
+                                class="font-headline-xl text-headline-xl text-primary max-w-xl"
+                            >
+                                The Future of Tech Leadership
+                            </h1>
+                            <p
+                                class="font-body-lg text-body-lg text-secondary max-w-lg"
+                            >
+                                Architectural-grade career transformation for
+                                the next generation of digital pioneers.
+                                Navigate the shifting landscape of
+                                high-authority technical roles.
+                            </p>
+                            <div class="pt-4 flex gap-4">
+                                <button
+                                    class="h-12 px-8 bg-primary text-on-primary rounded-full font-label-md text-label-md shadow-lg hover:opacity-90 transition-opacity"
+                                >
+                                    Explore The Hub
+                                </button>
+                                <button
+                                    class="h-12 px-8 border-2 border-primary text-primary rounded-full font-label-md text-label-md hover:bg-primary-container hover:border-primary-container transition-all"
+                                >
+                                    Advisor Consultation
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <div
+                                class="aspect-[4/3] rounded-xl overflow-hidden ambient-shadow"
+                            >
+                                <img
+                                    alt="A breathtaking view of modern architectural glass skyscrapers reaching toward a clear sky-blue horizon. The perspective is from the ground looking up, emphasizing height and vertical growth. The scene is illuminated by crisp, morning light, creating a sense of clarity, ambition, and institutional strength. The color palette is dominated by clean whites and serene blues."
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXasxUU3l3Uq4Mt48hHxziBZ0fNItTv07ow81XBWwwR9yJaow8bSkjDThEj5nBb9Ti_K9M6rU-H3B1gHWvmv7ZbiQ68wqcmcHAVHymvwroK_LKZN6c3A1vJDIesKIg_xdoCfd-jekjiTV86D2uyL-zPLUysu1C53ACRMhuROp9SaNpyWmjYW9snpn7Cu1CEh1L5WEY8W6rBasERtIgAciUJSKPoz4s_MmRQ4TbwuPHHHv32BFBPyyWwX633lP7Qxklz9DoaNFG7Vs"
+                                />
+                            </div>
+                            <div
+                                class="absolute -bottom-8 -left-8 bg-surface p-6 rounded-xl ambient-shadow max-w-xs hidden lg:block"
+                            >
+                                <p
+                                    class="text-label-md text-primary mb-2 font-semibold"
+                                >
+                                    Active Intelligence
+                                </p>
+                                <p class="text-body-md text-on-surface">
+                                    "Leadership is no longer about management;
+                                    it's about architectural foresight."
+                                </p>
+                                <p
+                                    class="mt-2 text-label-sm text-secondary font-semibold"
+                                >
+                                    — Sky States Board
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Topic Marquee -->
+            <section
+                class="py-12 bg-surface-container-low border-y border-outline-variant overflow-hidden"
+            >
+                <div
+                    class="flex items-center gap-8 animate-[scroll_30s_linear_infinite] whitespace-nowrap no-scrollbar hover:pause"
+                >
+                    <div class="flex gap-4 px-margin-desktop">
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Data Science & AI</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Cyber Security</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Cloud & DevOps</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Executive Leadership</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Quantum Computing</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Strategic FinTech</span
+                        >
+                    </div>
+                    <!-- Duplicate for seamless scroll -->
+                    <div class="flex gap-4 px-margin-desktop">
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Data Science & AI</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Cyber Security</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Cloud & DevOps</span
+                        >
+                        <span
+                            class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed"
+                            >Executive Leadership</span
+                        >
+                    </div>
+                </div>
+            </section>
+            <!-- Featured Analysis -->
+            <section class="py-section-gap">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div class="mb-12 flex justify-between items-end">
+                        <div>
+                            <h2
+                                class="font-headline-lg text-headline-lg text-on-surface"
+                            >
+                                Deep Intelligence
+                            </h2>
+                            <p class="text-secondary mt-2">
+                                Premium curriculum research and market
+                                synthesis.
+                            </p>
+                        </div>
+                        <a
+                            class="text-primary font-label-md hover:underline mb-2"
+                            href="#">View All Analysis →</a
+                        >
+                    </div>
+                    <div class="grid lg:grid-cols-3 gap-gutter">
+                        <!-- Featured Large Card -->
+                        <article class="lg:col-span-2 group cursor-pointer">
+                            <div
+                                class="relative rounded-xl overflow-hidden aspect-video ambient-shadow mb-6"
+                            >
+                                <img
+                                    alt="A sophisticated digital interface displaying complex data visualizations and neural network structures in a dark room. The lighting is high-contrast with soft horizon-blue glows highlighting specific nodes. The aesthetic is extremely modern and high-tech, representing the advanced state of data science in 2026. Minimalist yet detailed, the image conveys intellectual depth and technical mastery."
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6-pBdWVAXvA7EuQaKLyYQxi9O3ZO6nu70wvL7oPZoC9i7E1WT16hFSYWtlYQ24IQELk9mObTkc548j-U5CoiD_LAHYFn2vbZ_l6IRHtGX8KStD9B16HSYlI1jdLz2C8ZBSIMVyUqmQ_a6McxeFnVEaepGTrdFX0jO73MfTtsL5BdZrfOdKNSpf6Slix1rrSZu4icEKInOx6zGk3dlkyDqD8JJwi7VbmB1N6ICj9mQEew40zrRGQ5otjW4RqhwCSXx4T1IFz4PWV0"
+                                />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                                >
+                                </div>
+                                <div class="absolute bottom-8 left-8 right-8">
+                                    <span
+                                        class="bg-primary text-on-primary px-3 py-1 rounded text-label-sm uppercase tracking-wider mb-4 inline-block font-semibold"
+                                        >Roadmap</span
+                                    >
+                                    <h3
+                                        class="text-headline-lg text-white mb-2"
+                                    >
+                                        How to become a Data Scientist in 2026
+                                    </h3>
+                                    <div
+                                        class="flex items-center text-white/80 gap-3 text-label-sm font-semibold"
+                                    >
+                                        <span
+                                            class="material-symbols-outlined text-sm"
+                                            data-icon="person">person</span
+                                        >
+                                        <span>Sky States Board</span>
+                                        <span
+                                            class="w-1 h-1 bg-white/40 rounded-full"
+                                        ></span>
+                                        <span>12 Min Read</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Sidebar Feed -->
+                        <div class="space-y-8">
+                            <div class="group cursor-pointer">
+                                <div
+                                    class="aspect-video bg-surface-container rounded-lg overflow-hidden mb-4"
+                                >
+                                    <img
+                                        alt="A minimalist close-up of a high-security server room with glowing blue status lights. The focus is sharp on a single sleek server unit, while the background falls into a soft blue blur. The atmosphere is clinical, secure, and professional, utilizing a palette of deep navy and bright sky blue. It represents the precision and authority of high-level cyber security."
+                                        class="w-full h-full object-cover group-hover:opacity-80 transition-opacity"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIJk8KCfP2P_ocXo_LhLOUP5GCX2oJT_3gw5-LTJEH9FOgZEA2zNggB2zqcnzENq9tMghWN6BC2-BUonDuJixzykCYyCsNeUBOX2LiCfc0LpPIVmBYzKg8UTiRHX4ypXGLCs6Jcq4m8u7b9cqgeJdQiuU1oHBs3U4OnsOEkORZCQpSKOFxrmrRS4uArabKb6ThEhjBWhtUFSqWjPJIDGZ9iyiE8bssy7rpG7gCNErF-7oX4GtdB1_2KNGRXuj-_Jg2CyN-SAShKbE"
+                                    />
+                                </div>
+                                <h4
+                                    class="font-headline-md text-headline-md group-hover:text-primary transition-colors"
+                                >
+                                    The SOC Analyst Career Guide
+                                </h4>
+                                <p class="text-secondary mt-2 line-clamp-2">
+                                    A comprehensive technical blueprint for
+                                    navigating the transition from security
+                                    operations to strategic lead.
+                                </p>
+                            </div>
+                            <div class="group cursor-pointer">
+                                <div
+                                    class="aspect-video bg-surface-container rounded-lg overflow-hidden mb-4"
+                                >
+                                    <img
+                                        alt="An abstract representation of cloud network infrastructure using flowing, luminous blue lines against a crisp white background. The lines form complex, organic web patterns that suggest connectivity and vast scale. The lighting is ethereal and bright, reinforcing an airy, modern minimalist aesthetic that evokes growth and limitless technical potential."
+                                        class="w-full h-full object-cover group-hover:opacity-80 transition-opacity"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSH62ztuA6-9Pi7bGTA9IQaiHw1sVin4suHMU02vckYRNRwbkmpIBJ2UR9GIDhKvO7sD8IIGCdxC1SYltFrJb89pmTzJxoAgNwnUn-NM41XHD9GHMQescpWRXSZNYtQOaAKes8S6Geu1crksr0CxYJOLVeUQlfepUk3meEAbe1KB377ZiV9b82N_4GchYHSuUQJfEAxcqst-1xkUoFJRi6RK8gpT_2ArtF2Nm7qKhlQAp764Iv9lIMtEFCHzYJlGioSzdIDc44keE"
+                                    />
+                                </div>
+                                <h4
+                                    class="font-headline-md text-headline-md group-hover:text-primary transition-colors"
+                                >
+                                    Cloud Architect 2025 Roadmap
+                                </h4>
+                                <p class="text-secondary mt-2 line-clamp-2">
+                                    Moving beyond infrastructure: Why the 2025
+                                    Cloud Architect must master FinOps and AI
+                                    orchestration.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Market Trends Block -->
+            <section class="py-section-gap bg-surface-container-low">
+                <div class="max-w-7xl mx-auto px-margin-desktop">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div
+                            class="bg-surface p-10 rounded-2xl ambient-shadow border border-secondary-fixed"
+                        >
+                            <h3 class="font-headline-lg text-headline-lg mb-8">
+                                Technical Scarcity vs. Wage Growth
+                            </h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-label-md"
+                                            >AI Engineering</span
+                                        >
+                                        <span class="font-label-md text-primary"
+                                            >+24% Annual Growth</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="h-3 w-full bg-secondary-container rounded-full overflow-hidden"
+                                    >
+                                        <div
+                                            class="h-full bg-primary rounded-full"
+                                            style="width: 85%"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-label-md"
+                                            >Cyber Risk Management</span
+                                        >
+                                        <span class="font-label-md text-primary"
+                                            >+18% Annual Growth</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="h-3 w-full bg-secondary-container rounded-full overflow-hidden"
+                                    >
+                                        <div
+                                            class="h-full bg-primary rounded-full"
+                                            style="width: 72%"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-label-md"
+                                            >Cloud Architecture</span
+                                        >
+                                        <span class="font-label-md text-primary"
+                                            >+15% Annual Growth</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="h-3 w-full bg-secondary-container rounded-full overflow-hidden"
+                                    >
+                                        <div
+                                            class="h-full bg-primary rounded-full"
+                                            style="width: 65%"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="mt-10 p-6 bg-primary-container/30 rounded-xl"
+                            >
+                                <p
+                                    class="font-body-md italic text-on-primary-fixed-variant"
+                                >
+                                    "The gap between legacy technical talent and
+                                    architectural-grade leadership is widening,
+                                    creating unprecedented leverage for the
+                                    elite 1%."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <span
+                                class="material-symbols-outlined text-primary text-5xl"
+                                data-icon="trending_up">trending_up</span
+                            >
+                            <h2 class="font-headline-xl text-headline-xl">
+                                Market Dynamics Analysis
+                            </h2>
+                            <p class="font-body-lg text-body-lg text-secondary">
+                                Our proprietary Market Sentiment Engine monitors
+                                over 1.2M senior leadership transitions
+                                annually. We translate these macro trends into
+                                actionable career maneuvers for our members.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="material-symbols-outlined text-primary mt-1"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="font-body-md"
+                                        >Real-time salary benchmarking across 40
+                                        global tech hubs.</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="material-symbols-outlined text-primary mt-1"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="font-body-md"
+                                        >Scarcity reporting for emerging tech
+                                        stacks.</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="material-symbols-outlined text-primary mt-1"
+                                        data-icon="check_circle"
+                                        >check_circle</span
+                                    >
+                                    <span class="font-body-md"
+                                        >Predictive modeling for 12-month
+                                        leadership demand.</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- CTA Section -->
+            <section class="py-section-gap">
+                <div class="max-w-5xl mx-auto px-margin-desktop text-center">
+                    <div
+                        class="bg-primary rounded-3xl p-16 relative overflow-hidden text-on-primary shadow-2xl"
+                    >
+                        <div
+                            class="absolute inset-0 opacity-10 pointer-events-none"
+                        >
+                            <svg
+                                class="w-full h-full"
+                                preserveAspectRatio="none"
+                                viewBox="0 0 100 100"
+                            >
+                                <path
+                                    d="M0 100 C 20 0 50 0 100 100"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="0.5"></path>
+                                <path
+                                    d="M0 100 C 20 20 50 20 100 100"
+                                    fill="none"
+                                    stroke="white"
+                                    stroke-width="0.5"></path>
+                            </svg>
+                        </div>
+                        <div class="relative z-10">
+                            <h2 class="font-headline-xl text-headline-xl mb-6">
+                                Join the Elite 1%
+                            </h2>
+                            <p
+                                class="font-body-lg text-body-lg mb-10 max-w-2xl mx-auto text-primary-fixed"
+                            >
+                                Stop reacting to the market. Start architecting
+                                your future with precision. Get your
+                                personalized career blueprint today.
+                            </p>
+                            <button
+                                class="h-16 px-12 bg-white text-primary rounded-full font-headline-md text-headline-md hover:scale-105 transition-transform shadow-xl"
+                            >
+                                Book Career Consultation
                             </button>
-<button class="h-12 px-8 border-2 border-primary text-primary rounded-full font-label-md text-label-md hover:bg-primary-container hover:border-primary-container transition-all">
-                                Advisor Consultation
-                            </button>
-</div>
-</div>
-<div class="relative group">
-<div class="aspect-[4/3] rounded-xl overflow-hidden ambient-shadow">
-<img alt="A breathtaking view of modern architectural glass skyscrapers reaching toward a clear sky-blue horizon. The perspective is from the ground looking up, emphasizing height and vertical growth. The scene is illuminated by crisp, morning light, creating a sense of clarity, ambition, and institutional strength. The color palette is dominated by clean whites and serene blues." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXasxUU3l3Uq4Mt48hHxziBZ0fNItTv07ow81XBWwwR9yJaow8bSkjDThEj5nBb9Ti_K9M6rU-H3B1gHWvmv7ZbiQ68wqcmcHAVHymvwroK_LKZN6c3A1vJDIesKIg_xdoCfd-jekjiTV86D2uyL-zPLUysu1C53ACRMhuROp9SaNpyWmjYW9snpn7Cu1CEh1L5WEY8W6rBasERtIgAciUJSKPoz4s_MmRQ4TbwuPHHHv32BFBPyyWwX633lP7Qxklz9DoaNFG7Vs"/>
-</div>
-<div class="absolute -bottom-8 -left-8 bg-surface p-6 rounded-xl ambient-shadow max-w-xs hidden lg:block">
-<p class="text-label-md text-primary mb-2 font-semibold">Active Intelligence</p>
-<p class="text-body-md text-on-surface">"Leadership is no longer about management; it's about architectural foresight."</p>
-<p class="mt-2 text-label-sm text-secondary font-semibold">— Sky States Board</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Topic Marquee -->
-<section class="py-12 bg-surface-container-low border-y border-outline-variant overflow-hidden">
-<div class="flex items-center gap-8 animate-[scroll_30s_linear_infinite] whitespace-nowrap no-scrollbar hover:pause">
-<div class="flex gap-4 px-margin-desktop">
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Data Science & AI</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Cyber Security</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Cloud & DevOps</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Executive Leadership</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Quantum Computing</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Strategic FinTech</span>
-</div>
-<!-- Duplicate for seamless scroll -->
-<div class="flex gap-4 px-margin-desktop">
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Data Science & AI</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Cyber Security</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Cloud & DevOps</span>
-<span class="px-6 py-3 bg-surface-lowest text-primary rounded-full font-label-md text-label-md shadow-sm border border-secondary-fixed">Executive Leadership</span>
-</div>
-</div>
-</section>
-<!-- Featured Analysis -->
-<section class="py-section-gap">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="mb-12 flex justify-between items-end">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Deep Intelligence</h2>
-<p class="text-secondary mt-2">Premium curriculum research and market synthesis.</p>
-</div>
-<a class="text-primary font-label-md hover:underline mb-2" href="#">View All Analysis →</a>
-</div>
-<div class="grid lg:grid-cols-3 gap-gutter">
-<!-- Featured Large Card -->
-<article class="lg:col-span-2 group cursor-pointer">
-<div class="relative rounded-xl overflow-hidden aspect-video ambient-shadow mb-6">
-<img alt="A sophisticated digital interface displaying complex data visualizations and neural network structures in a dark room. The lighting is high-contrast with soft horizon-blue glows highlighting specific nodes. The aesthetic is extremely modern and high-tech, representing the advanced state of data science in 2026. Minimalist yet detailed, the image conveys intellectual depth and technical mastery." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6-pBdWVAXvA7EuQaKLyYQxi9O3ZO6nu70wvL7oPZoC9i7E1WT16hFSYWtlYQ24IQELk9mObTkc548j-U5CoiD_LAHYFn2vbZ_l6IRHtGX8KStD9B16HSYlI1jdLz2C8ZBSIMVyUqmQ_a6McxeFnVEaepGTrdFX0jO73MfTtsL5BdZrfOdKNSpf6Slix1rrSZu4icEKInOx6zGk3dlkyDqD8JJwi7VbmB1N6ICj9mQEew40zrRGQ5otjW4RqhwCSXx4T1IFz4PWV0"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-<div class="absolute bottom-8 left-8 right-8">
-<span class="bg-primary text-on-primary px-3 py-1 rounded text-label-sm uppercase tracking-wider mb-4 inline-block font-semibold">Roadmap</span>
-<h3 class="text-headline-lg text-white mb-2">How to become a Data Scientist in 2026</h3>
-<div class="flex items-center text-white/80 gap-3 text-label-sm font-semibold">
-<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
-<span>Sky States Board</span>
-<span class="w-1 h-1 bg-white/40 rounded-full"></span>
-<span>12 Min Read</span>
-</div>
-</div>
-</div>
-</article>
-<!-- Sidebar Feed -->
-<div class="space-y-8">
-<div class="group cursor-pointer">
-<div class="aspect-video bg-surface-container rounded-lg overflow-hidden mb-4">
-<img alt="A minimalist close-up of a high-security server room with glowing blue status lights. The focus is sharp on a single sleek server unit, while the background falls into a soft blue blur. The atmosphere is clinical, secure, and professional, utilizing a palette of deep navy and bright sky blue. It represents the precision and authority of high-level cyber security." class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIJk8KCfP2P_ocXo_LhLOUP5GCX2oJT_3gw5-LTJEH9FOgZEA2zNggB2zqcnzENq9tMghWN6BC2-BUonDuJixzykCYyCsNeUBOX2LiCfc0LpPIVmBYzKg8UTiRHX4ypXGLCs6Jcq4m8u7b9cqgeJdQiuU1oHBs3U4OnsOEkORZCQpSKOFxrmrRS4uArabKb6ThEhjBWhtUFSqWjPJIDGZ9iyiE8bssy7rpG7gCNErF-7oX4GtdB1_2KNGRXuj-_Jg2CyN-SAShKbE"/>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">The SOC Analyst Career Guide</h4>
-<p class="text-secondary mt-2 line-clamp-2">A comprehensive technical blueprint for navigating the transition from security operations to strategic lead.</p>
-</div>
-<div class="group cursor-pointer">
-<div class="aspect-video bg-surface-container rounded-lg overflow-hidden mb-4">
-<img alt="An abstract representation of cloud network infrastructure using flowing, luminous blue lines against a crisp white background. The lines form complex, organic web patterns that suggest connectivity and vast scale. The lighting is ethereal and bright, reinforcing an airy, modern minimalist aesthetic that evokes growth and limitless technical potential." class="w-full h-full object-cover group-hover:opacity-80 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSH62ztuA6-9Pi7bGTA9IQaiHw1sVin4suHMU02vckYRNRwbkmpIBJ2UR9GIDhKvO7sD8IIGCdxC1SYltFrJb89pmTzJxoAgNwnUn-NM41XHD9GHMQescpWRXSZNYtQOaAKes8S6Geu1crksr0CxYJOLVeUQlfepUk3meEAbe1KB377ZiV9b82N_4GchYHSuUQJfEAxcqst-1xkUoFJRi6RK8gpT_2ArtF2Nm7qKhlQAp764Iv9lIMtEFCHzYJlGioSzdIDc44keE"/>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Cloud Architect 2025 Roadmap</h4>
-<p class="text-secondary mt-2 line-clamp-2">Moving beyond infrastructure: Why the 2025 Cloud Architect must master FinOps and AI orchestration.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Market Trends Block -->
-<section class="py-section-gap bg-surface-container-low">
-<div class="max-w-7xl mx-auto px-margin-desktop">
-<div class="grid lg:grid-cols-2 gap-16 items-center">
-<div class="bg-surface p-10 rounded-2xl ambient-shadow border border-secondary-fixed">
-<h3 class="font-headline-lg text-headline-lg mb-8">Technical Scarcity vs. Wage Growth</h3>
-<div class="space-y-8">
-<div>
-<div class="flex justify-between mb-2">
-<span class="font-label-md">AI Engineering</span>
-<span class="font-label-md text-primary">+24% Annual Growth</span>
-</div>
-<div class="h-3 w-full bg-secondary-container rounded-full overflow-hidden">
-<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between mb-2">
-<span class="font-label-md">Cyber Risk Management</span>
-<span class="font-label-md text-primary">+18% Annual Growth</span>
-</div>
-<div class="h-3 w-full bg-secondary-container rounded-full overflow-hidden">
-<div class="h-full bg-primary rounded-full" style="width: 72%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between mb-2">
-<span class="font-label-md">Cloud Architecture</span>
-<span class="font-label-md text-primary">+15% Annual Growth</span>
-</div>
-<div class="h-3 w-full bg-secondary-container rounded-full overflow-hidden">
-<div class="h-full bg-primary rounded-full" style="width: 65%"></div>
-</div>
-</div>
-</div>
-<div class="mt-10 p-6 bg-primary-container/30 rounded-xl">
-<p class="font-body-md italic text-on-primary-fixed-variant">"The gap between legacy technical talent and architectural-grade leadership is widening, creating unprecedented leverage for the elite 1%."</p>
-</div>
-</div>
-<div class="space-y-8">
-<span class="material-symbols-outlined text-primary text-5xl" data-icon="trending_up">trending_up</span>
-<h2 class="font-headline-xl text-headline-xl">Market Dynamics Analysis</h2>
-<p class="font-body-lg text-body-lg text-secondary">
-                            Our proprietary Market Sentiment Engine monitors over 1.2M senior leadership transitions annually. We translate these macro trends into actionable career maneuvers for our members.
-                        </p>
-<ul class="space-y-4">
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
-<span class="font-body-md">Real-time salary benchmarking across 40 global tech hubs.</span>
-</li>
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
-<span class="font-body-md">Scarcity reporting for emerging tech stacks.</span>
-</li>
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
-<span class="font-body-md">Predictive modeling for 12-month leadership demand.</span>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<!-- CTA Section -->
-<section class="py-section-gap">
-<div class="max-w-5xl mx-auto px-margin-desktop text-center">
-<div class="bg-primary rounded-3xl p-16 relative overflow-hidden text-on-primary shadow-2xl">
-<div class="absolute inset-0 opacity-10 pointer-events-none">
-<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-<path d="M0 100 C 20 0 50 0 100 100" fill="none" stroke="white" stroke-width="0.5"></path>
-<path d="M0 100 C 20 20 50 20 100 100" fill="none" stroke="white" stroke-width="0.5"></path>
-</svg>
-</div>
-<div class="relative z-10">
-<h2 class="font-headline-xl text-headline-xl mb-6">Join the Elite 1%</h2>
-<p class="font-body-lg text-body-lg mb-10 max-w-2xl mx-auto text-primary-fixed">
-                            Stop reacting to the market. Start architecting your future with precision. Get your personalized career blueprint today.
-                        </p>
-<button class="h-16 px-12 bg-white text-primary rounded-full font-headline-md text-headline-md hover:scale-105 transition-transform shadow-xl">
-                            Book Career Consultation
-                        </button>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<Footer />
-<script>
-        // Micro-interactions for horizontal scroll pause
-        const marquee = document.querySelector('.animate-\\[scroll_30s_linear_infinite\\]') as HTMLElement;
-        if (marquee) {
-            marquee.style.animationPlayState = 'running'; // Ensure initialized
-            marquee.addEventListener('mouseenter', () => marquee.style.animationPlayState = 'paused');
-            marquee.addEventListener('mouseleave', () => marquee.style.animationPlayState = 'running');
-        }
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <Footer />
+        <script>
+            // Micro-interactions for horizontal scroll pause
+            const marquee = document.querySelector(
+                ".animate-\\[scroll_30s_linear_infinite\\]",
+            ) as HTMLElement;
+            if (marquee) {
+                marquee.style.animationPlayState = "running"; // Ensure initialized
+                marquee.addEventListener(
+                    "mouseenter",
+                    () => (marquee.style.animationPlayState = "paused"),
+                );
+                marquee.addEventListener(
+                    "mouseleave",
+                    () => (marquee.style.animationPlayState = "running"),
+                );
+            }
 
-        // Intersection Observer for scroll reveal effects
-        const observerOptions = {
-            threshold: 0.1
-        };
+            // Intersection Observer for scroll reveal effects
+            const observerOptions = {
+                threshold: 0.1,
+            };
 
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                }
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(
+                            "opacity-100",
+                            "translate-y-0",
+                        );
+                        entry.target.classList.remove(
+                            "opacity-0",
+                            "translate-y-10",
+                        );
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll("section").forEach((section) => {
+                section.classList.add(
+                    "transition-[opacity,transform]",
+                    "duration-1000",
+                    "opacity-0",
+                    "translate-y-10",
+                );
+                revealObserver.observe(section);
             });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('transition-[opacity,transform]', 'duration-1000', 'opacity-0', 'translate-y-10');
-            revealObserver.observe(section);
-        });
-    </script>
-</body></html>
+        </script>
+    </body>
+</html>

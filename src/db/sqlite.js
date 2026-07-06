@@ -206,8 +206,9 @@ function initializeDatabase() {
 }
 
 function syncAdminFromEnv() {
-  const username = process.env.ADMIN_USERNAME;
-  const password = process.env.ADMIN_PASSWORD;
+  const username = import.meta.env.ADMIN_USERNAME || process.env.ADMIN_USERNAME;
+  const password = import.meta.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD;
+
 
   if (!username || !password) {
     db.get('SELECT COUNT(*) AS count FROM users', (err, row) => {
