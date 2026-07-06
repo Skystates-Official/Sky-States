@@ -2,6 +2,10 @@
 import "../../styles/global.css";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
 import programsData from "../../data/programs.json";
 
 const program = programsData["cyber-security"];
@@ -604,7 +608,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="/assets/certificate/Microsoft-cyber-security-SC-900.png"
+              src="/assets/certificate/microsoft-sc-900-cyber-security.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
               alt="SC-900 Certification"
             />
@@ -1464,153 +1468,7 @@ export const prerender = false;
             </p>
           </div>
         </div>
-
-        <!-- CSS Marquee Loop -->
-        <div class="relative w-full overflow-hidden py-4 select-none">
-          <!-- Gradient overlays for smooth fading effect at edges -->
-          <div
-            class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-          <div
-            class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-
-          <div
-            class="flex gap-12 w-max animate-marquee hover:[animation-play-state:paused]"
-          >
-            <!-- Original Track -->
-            <div class="flex gap-12 items-center justify-around min-w-full">
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1-1.png"
-                alt="Cyber Security tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3-1.png"
-                alt="Cyber Security tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-1.png"
-                alt="Cyber Security tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5-1.png"
-                alt="Cyber Security tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6-1.png"
-                alt="Cyber Security tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7-1.png"
-                alt="Cyber Security tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8-1.png"
-                alt="Cyber Security tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2-1.png"
-                alt="Cyber Security tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-1.png"
-                alt="Cyber Security tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.png"
-                alt="Cyber Security tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.png"
-                alt="Cyber Security tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/12.png"
-                alt="Cyber Security tool logo 12"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-            <!-- Duplicate Track for Infinite Loop -->
-            <div
-              class="flex gap-12 items-center justify-around min-w-full"
-              aria-hidden="true"
-            >
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1-1.png"
-                alt="Cyber Security tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3-1.png"
-                alt="Cyber Security tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-1.png"
-                alt="Cyber Security tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5-1.png"
-                alt="Cyber Security tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6-1.png"
-                alt="Cyber Security tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7-1.png"
-                alt="Cyber Security tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8-1.png"
-                alt="Cyber Security tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2-1.png"
-                alt="Cyber Security tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-1.png"
-                alt="Cyber Security tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.png"
-                alt="Cyber Security tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.png"
-                alt="Cyber Security tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/12.png"
-                alt="Cyber Security tool logo 12"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-          </div>
-        </div>
+        <ToolLogoMarquee tools={programToolLogos["cyber-security"]} />
       </section>
 
       <style>
@@ -1642,7 +1500,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="https://skystates.us/wp-content/uploads/2025/10/Cyber-Security-And-Ethical-Hacking--1024x724.jpg"
+              src="/assets/certificate/microsoft-sc-900-cyber-security.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
               alt="Certificate"
             />

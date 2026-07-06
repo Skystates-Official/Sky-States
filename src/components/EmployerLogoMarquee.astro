@@ -1,0 +1,31 @@
+---
+import { employerLogos } from '../data/employer-logos.js';
+
+const imgClass =
+  'h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity';
+---
+
+<div class="w-full border-y border-blue-200 py-6 mt-8 overflow-hidden bg-blue-50">
+  <div class="flex w-max items-center marquee">
+    {[0, 1].map((set) => (
+      <div class={`flex items-center ${set === 1 ? '' : ''}`} aria-hidden={set === 1 ? 'true' : undefined}>
+        {employerLogos.map((logo) => (
+          <div class="mx-8 lg:mx-10 flex items-center justify-center shrink-0">
+            <div class="w-[160px] h-[40px] flex items-center justify-center">
+              <img
+                alt={logo.name}
+                loading="lazy"
+                width="160"
+                height="60"
+                decoding="async"
+                class={imgClass}
+                style="color:transparent;width:auto;height:40px"
+                src={logo.src}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>

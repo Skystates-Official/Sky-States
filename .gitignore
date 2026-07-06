@@ -21,3 +21,8 @@ pnpm-debug.log*
 # system files
 .DS_Store
 Thumbs.db
+
+# local database and archives
+data.db
+*.zip
+sky_states.zip

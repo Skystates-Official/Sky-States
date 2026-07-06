@@ -2,6 +2,10 @@
 import "../../styles/global.css";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
 import programsData from "../../data/programs.json";
 
 const program = programsData["data-science-ai"];
@@ -636,7 +640,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="/assets/certificate/Microsoft-dp-900-Data-Science ai.png"
+              src="/assets/certificate/microsoft-dp-900-data-science.png"
               class="w-full h-full object-cover relative z-10"
               alt="Microsoft Azure Data Fundamentals Certificate"
             />
@@ -1581,143 +1585,7 @@ export const prerender = false;
             </p>
           </div>
         </div>
-
-        <!-- CSS Marquee Loop -->
-        <div class="relative w-full overflow-hidden py-4 select-none">
-          <!-- Gradient overlays for smooth fading effect at edges -->
-          <div
-            class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-          <div
-            class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"
-          >
-          </div>
-
-          <div
-            class="flex gap-12 w-max animate-marquee hover:[animation-play-state:paused]"
-          >
-            <!-- Original Track -->
-            <div class="flex gap-12 items-center justify-around min-w-full">
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.webp"
-                alt="Tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.svg"
-                alt="Tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png"
-                alt="Tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8.png"
-                alt="Tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7.png"
-                alt="Tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6.png"
-                alt="Tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5.png"
-                alt="Tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png"
-                alt="Tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3.webp"
-                alt="Tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2.png"
-                alt="Tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1.png"
-                alt="Tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-            <!-- Duplicate Track for Infinite Loop -->
-            <div
-              class="flex gap-12 items-center justify-around min-w-full"
-              aria-hidden="true"
-            >
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/11.webp"
-                alt="Tool logo 11"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/10.svg"
-                alt="Tool logo 10"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/9-scaled.png"
-                alt="Tool logo 9"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/8.png"
-                alt="Tool logo 8"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/7.png"
-                alt="Tool logo 7"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/6.png"
-                alt="Tool logo 6"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/5.png"
-                alt="Tool logo 5"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/4-scaled.png"
-                alt="Tool logo 4"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/3.webp"
-                alt="Tool logo 3"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/2.png"
-                alt="Tool logo 2"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-              <img
-                src="https://skystates.us/wp-content/uploads/2025/12/1.png"
-                alt="Tool logo 1"
-                class="h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-          </div>
-        </div>
+        <ToolLogoMarquee tools={programToolLogos["data-science-ai"]} />
       </section>
 
       <style>
@@ -1749,7 +1617,7 @@ export const prerender = false;
               decoding="async"
               width="640"
               height="453"
-              src="https://skystates.us/wp-content/uploads/2025/10/Data-Science-ANd-AI-Program-2-1024x724.jpg"
+              src="/assets/certificate/microsoft-dp-900-data-science.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
               alt="Certificate"
             />

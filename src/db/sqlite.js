@@ -135,33 +135,136 @@ function initializeDatabase() {
       )
     `);
 
-    // Seed default admin user if users table is empty
-    db.get("SELECT COUNT(*) AS count FROM users", (err, row) => {
-      if (err) {
-        console.error('Error checking users count:', err.message);
-        return;
-      }
-      if (row && row.count === 0) {
-        const defaultUsername = process.env.ADMIN_USERNAME || 'admin';
-        const defaultPassword = process.env.ADMIN_PASSWORD || 'Xziant@123';
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(defaultPassword, salt);
-        
-        db.run(
-          "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)",
-          [defaultUsername, hash, 'super_admin'],
-          (insertErr) => {
-            if (insertErr) {
-              console.error('Error seeding default admin:', insertErr.message);
-            } else {
-              console.log(`Default admin user '${defaultUsername}' seeded successfully.`);
-            }
-          }
-        );
+    // 7. Coupons Table
+    db.run(`
+      CREATE TABLE IF NOT EXISTS coupons (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        code TEXT UNIQUE NOT NULL,
+        discount_amount REAL NOT NULL,
+        description TEXT,
+        active INTEGER DEFAULT 1,
+        max_uses INTEGER,
+        used_count INTEGER DEFAULT 0,
+        expires_at DATETIME,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    db.run("UPDATE users SET role = 'admin' WHERE role = 'super_admin'");
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_ref TEXT UNIQUE NOT NULL,
+        customer_email TEXT NOT NULL,
+        customer_name TEXT NOT NULL,
+        course_name TEXT NOT NULL,
+        total_due REAL NOT NULL,
+        amount_paid REAL DEFAULT 0,
+        status TEXT DEFAULT 'open',
+        checkout_mode TEXT,
+        tier TEXT,
+        coupon_code TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS order_payments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_ref TEXT NOT NULL,
+        stripe_session_id TEXT,
+        amount REAL NOT NULL,
+        payment_type TEXT DEFAULT 'full',
+        payment_method TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (order_ref) REFERENCES orders (order_ref)
+      )
+    `);
+
+    db.run(`ALTER TABLE order_payments ADD COLUMN payment_method TEXT`, (err) => {
+      if (err && !String(err.message).includes('duplicate column')) {
+        console.warn('order_payments.payment_method migration:', err.message);
       }
     });
 
+    db.run(`
+      CREATE TABLE IF NOT EXISTS email_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        reference_id TEXT NOT NULL,
+        email_type TEXT NOT NULL,
+        recipient TEXT NOT NULL,
+        sent_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE(reference_id, email_type)
+      )
+    `);
+
+    syncAdminFromEnv();
     console.log('Database tables verified/initialized successfully.');
+  });
+}
+
+function syncAdminFromEnv() {
+  const username = process.env.ADMIN_USERNAME;
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!username || !password) {
+    db.get('SELECT COUNT(*) AS count FROM users', (err, row) => {
+      if (err || !row || row.count > 0) return;
+
+      const defaultUsername = 'admin';
+      const defaultPassword = 'Xziant@123';
+      const hash = bcrypt.hashSync(defaultPassword, bcrypt.genSaltSync(10));
+      db.run(
+        'INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)',
+        [defaultUsername, hash, 'admin'],
+        (insertErr) => {
+          if (insertErr) {
+            console.error('Error seeding default admin:', insertErr.message);
+          } else {
+            console.log(`Default admin user '${defaultUsername}' seeded successfully.`);
+          }
+        }
+      );
+    });
+    return;
+  }
+
+  const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+  db.get('SELECT id FROM users WHERE username = ?', [username], (err, row) => {
+    if (err) {
+      console.error('Error checking admin user:', err.message);
+      return;
+    }
+
+    if (row) {
+      db.run(
+        'UPDATE users SET password_hash = ?, role = ? WHERE username = ?',
+        [hash, 'admin', username],
+        (updateErr) => {
+          if (updateErr) {
+            console.error('Error updating admin user:', updateErr.message);
+          } else {
+            console.log(`Super admin '${username}' synced from environment.`);
+          }
+        }
+      );
+      return;
+    }
+
+    db.run(
+      'INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)',
+      [username, hash, 'admin'],
+      (insertErr) => {
+        if (insertErr) {
+          console.error('Error creating admin user:', insertErr.message);
+        } else {
+          console.log(`Super admin '${username}' created from environment.`);
+        }
+      }
+    );
   });
 }
 

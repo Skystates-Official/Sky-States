@@ -1,53 +1,37 @@
-import fs from 'fs';
-import path from 'path';
+import { validateCouponCode } from '../../lib/pricing.js';
 
 export const prerender = false;
 
 export async function POST({ request }) {
   try {
-    const { code, basePrice } = await request.json();
-    const cleanCode = (code || '').trim().toLowerCase();
-    
-    // Read limits from coupon-config.json
-    let minLimit = 10;
-    let maxLimit = 1000;
-    
-    try {
-      const configPath = path.resolve('src/data/coupon-config.json');
-      if (fs.existsSync(configPath)) {
-        const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-        if (typeof configData.minLimit === 'number') minLimit = configData.minLimit;
-        if (typeof configData.maxLimit === 'number') maxLimit = configData.maxLimit;
-      }
-    } catch (e) {
-      // fallback to defaults
+    const { code, basePrice, mode } = await request.json();
+    const price = Number(basePrice);
+
+    if (!Number.isFinite(price) || price <= 0) {
+      return new Response(JSON.stringify({ valid: false, error: 'Invalid base price.' }), { status: 400 });
     }
 
-    // Match code format: 'sky' followed by digits (e.g., 'sky459' -> $459 discount)
-    const match = cleanCode.match(/^sky(\d+)$/);
-    if (!match) {
-      return new Response(JSON.stringify({ valid: false, error: 'Invalid coupon code.' }), { status: 400 });
+    if (mode !== 'full') {
+      return new Response(JSON.stringify({
+        valid: false,
+        error: 'Promotional codes apply to full program enrollment only.',
+      }), { status: 400 });
     }
-    
-    const discountAmount = parseInt(match[1], 10);
-    
-    // Verify coupon range against configured limits
-    if (discountAmount < minLimit || discountAmount > maxLimit) {
-      return new Response(JSON.stringify({ valid: false, error: 'Invalid coupon code or coupon has expired.' }), { status: 400 });
+
+    const result = await validateCouponCode(code, price, 'full');
+
+    if (!result.valid) {
+      return new Response(JSON.stringify({ valid: false, error: result.error }), { status: 400 });
     }
-    
-    // Calculate new pricing totals (capped at $0 minimum)
-    const appliedDiscount = Math.min(discountAmount, basePrice);
-    const newTotal = Math.max(0, basePrice - appliedDiscount);
 
     return new Response(JSON.stringify({
       valid: true,
-      code: cleanCode.toUpperCase(),
-      discount: appliedDiscount,
-      newTotal: newTotal
+      code: result.code,
+      discount: result.discount,
+      newTotal: result.total,
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 400 });
