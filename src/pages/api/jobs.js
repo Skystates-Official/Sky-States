@@ -1,34 +1,7 @@
 import { getSessionUser } from '../../db/auth.js';
-
-import fs from 'fs';
-import path from 'path';
+import { readJobs, writeJobs } from '../../lib/jobs.js';
 
 export const prerender = false;
-
-// Resolve target JSON file path
-const jsonPath = path.resolve('src/data/jobs.json');
-
-// Read jobs helper
-function readJobs() {
-  try {
-    if (!fs.existsSync(jsonPath)) {
-      // Ensure file directory exists
-      fs.mkdirSync(path.dirname(jsonPath), { recursive: true });
-      fs.writeFileSync(jsonPath, '[]', 'utf8');
-      return [];
-    }
-    const data = fs.readFileSync(jsonPath, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    return [];
-  }
-}
-
-// Write jobs helper
-function writeJobs(jobs) {
-  fs.mkdirSync(path.dirname(jsonPath), { recursive: true });
-  fs.writeFileSync(jsonPath, JSON.stringify(jobs, null, 2), 'utf8');
-}
 
 function checkAuth(request) {
   return !!getSessionUser(request);

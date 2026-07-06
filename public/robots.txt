@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+Disallow: /db
 
 Sitemap: https://skystates.us/sitemap.xml
