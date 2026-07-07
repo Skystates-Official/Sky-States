@@ -9,6 +9,7 @@ export const prerender = false;
 const pricingConfig = {
     registration: PRICING.registration,
     full: PRICING.full,
+    offline: PRICING.offline,
 };
 ---
 
@@ -666,8 +667,8 @@ const pricingConfig = {
             window.selectedTier = "normal";
 
             window.getOrderTotal = function () {
-                const isFullPayment = window.checkoutMode === "full";
-                const modeKey = isFullPayment ? "full" : "registration";
+                const isFullPayment = window.checkoutMode === "full" || window.checkoutMode === "offline";
+                const modeKey = window.checkoutMode;
                 const tierKey =
                     window.selectedTier === "1on1" ? "1on1" : "normal";
                 let basePrice = P[modeKey][tierKey];
@@ -679,7 +680,7 @@ const pricingConfig = {
             };
 
             window.updateCouponVisibility = function () {
-                const isFull = window.checkoutMode === "full";
+                const isFull = window.checkoutMode === "full" || window.checkoutMode === "offline";
                 const couponSection = document.getElementById("coupon-section");
                 const couponNote = document.getElementById(
                     "coupon-registration-note",
@@ -709,8 +710,8 @@ const pricingConfig = {
                 const priceEl = document.getElementById("display-price-value");
                 const totalEl = document.getElementById("display-total-value");
                 const feedbackEl = document.getElementById("coupon-feedback");
-                const isFullPayment = window.checkoutMode === "full";
-                const modeKey = isFullPayment ? "full" : "registration";
+                const isFullPayment = window.checkoutMode === "full" || window.checkoutMode === "offline";
+                const modeKey = window.checkoutMode;
                 const tierKey =
                     window.selectedTier === "1on1" ? "1on1" : "normal";
                 let basePrice = P[modeKey][tierKey];
@@ -892,7 +893,17 @@ const pricingConfig = {
                 const type = params.get("type");
                 const mode = params.get("mode");
 
-                if (mode === "full") {
+                if (mode === "offline") {
+                    window.checkoutMode = "offline";
+                    const sPrice = document.getElementById("btn-scholar-price");
+                    const ePrice = document.getElementById("btn-elite-price");
+                    if (sPrice)
+                        sPrice.textContent =
+                            "$" + P.offline.normal.toLocaleString();
+                    if (ePrice)
+                        ePrice.textContent =
+                            "$" + P.offline["1on1"].toLocaleString();
+                } else if (mode === "full") {
                     window.checkoutMode = "full";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");

@@ -1,0 +1,2793 @@
+---
+import "../../styles/global.css";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { employerLogos } from "../../data/employer-logos.js";
+
+export const prerender = false;
+---
+
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>In-Person Tech Programs & Practical Labs | Sky States</title>
+    <meta
+      name="description"
+      content="Accelerate your technology career with Sky States' offline classroom programs in Noida (Delhi NCR) and Seattle (WA). Face-to-face mentoring, 100% lab infrastructure, and alumni placement networks."
+    />
+    <meta
+      name="keywords"
+      content="offline data science course, classroom training noida, data science training in noida, cyber security classroom course, devops offline course, coding bootcamp in-person"
+    />
+    <link
+      rel="canonical"
+      href="https://skystates.us/programs/offline-classes"
+    />
+
+    <!-- OpenGraph -->
+    <meta
+      property="og:title"
+      content="In-Person Tech Programs & Practical Labs | Sky States"
+    />
+    <meta
+      property="og:description"
+      content="Accelerate your career in Noida or Seattle with our offline classroom bootcamps. Face-to-face mentorship and dedicated lab infrastructure."
+    />
+    <meta property="og:image" content="/assets/noida_tech_classroom.png" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .sky-gradient-text {
+        background: linear-gradient(135deg, #005d90 0%, #0077b6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ambient-shadow {
+        box-shadow: 0 20px 40px -15px rgba(0, 93, 144, 0.08);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px border-slate-200/50;
+      }
+      /* Details summary arrow animation */
+      details[open] summary span.arrow-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Infinite Marquee Scroll Right-to-Left */
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        display: flex;
+        width: max-content;
+        animation: marquee 30s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-slate-800 font-sans overflow-x-hidden">
+    <Header />
+
+    <!-- Spaced below the navbar to prevent content cutoff -->
+    <main class="mt-18 md:mt-12 bg-white">
+      <!-- HERO SECTION -->
+      <section
+        class="relative px-4 md:px-margin-desktop overflow-hidden py-12 md:py-20 bg-white"
+      >
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+        >
+          <!-- Left Content -->
+          <div class="z-10 lg:col-span-7 flex flex-col gap-6">
+            <h1
+              class="text-4xl font-bold text-slate-900 tracking-tight leading-[1.1]"
+            >
+              Elite Classroom Training <br />
+              <span class="text-sky-300">For Professional Tech Roles</span>
+            </h1>
+
+            <p
+              class="text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl"
+            >
+              Accelerate your pivot into high-prestige technology positions.
+              Learn in modern physical labs with live weekend guidance from
+              active CTOs. No-SSN collection, real certification vouchers, and
+              targeted corporate placement pipelines.
+            </p>
+
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2 text-sm font-semibold text-slate-700"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-sky-600 bg-sky-50 p-1.5 rounded-lg"
+                  >workspace_premium</span
+                >
+                <span>Microsoft DP/SC/AZ-900 Prep</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-sky-600 bg-sky-50 p-1.5 rounded-lg"
+                  >speed</span
+                >
+                <span>Gigabit Workstations &amp; Server Labs</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-sky-600 bg-sky-50 p-1.5 rounded-lg"
+                  >diversity_3</span
+                >
+                <span>Face-to-Face Code Reviews</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-sky-600 bg-sky-50 p-1.5 rounded-lg"
+                  >business_center</span
+                >
+                <span>120+ Partner Placement Drive</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-2">
+              <a
+                href="#curriculum-explorer"
+                class="group flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 text-white text-sm font-semibold hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] shadow-lg shadow-sky-600/15 hover:shadow-sky-600/25 active:scale-[0.98] transition-all duration-200 text-center"
+              >
+                <span>Explore &amp; Enroll Now</span>
+                <span
+                  class="material-symbols-outlined text-lg ml-2 font-bold transition-transform duration-200 group-hover:translate-x-1"
+                  >arrow_forward</span
+                >
+              </a>
+              <a
+                href="#centers"
+                class="group flex items-center justify-center px-8 py-4 rounded-xl text-sky-700 bg-sky-50 border border-sky-200/80 hover:bg-sky-50 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 font-semibold text-center"
+              >
+                <span>Find Physical Center</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Premium Classroom Video -->
+          <div
+            class="relative w-full max-w-2xl mx-auto lg:mx-0 lg:col-span-5 mt-8 lg:mt-0"
+          >
+            <div
+              class="absolute -inset-4 bg-gradient-to-tr from-sky-400/10 to-blue-500/15 blur-3xl opacity-75 rounded-full pointer-events-none"
+            >
+            </div>
+
+            <div
+              class="relative p-1.5 bg-slate-105 rounded-[24px] shadow-xl border border-slate-200 overflow-hidden"
+            >
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="relative rounded-[18px] w-full aspect-video object-cover"
+              >
+                <source
+                  src="/assets/videos/home%20page%20hero%20section.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRAND TRUST MARQUEE -->
+      <section
+        class="py-10 bg-white border-y border-slate-200/50 overflow-hidden"
+      >
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop text-center">
+          <p
+            class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6"
+          >
+            Our Graduates Work At Top Global Technology Firms
+          </p>
+
+          <div class="relative w-full overflow-hidden flex items-center">
+            <div
+              class="flex items-center gap-16 animate-marquee whitespace-nowrap"
+            >
+              <!-- First Set -->
+              <div class="flex items-center gap-16 shrink-0">
+                {
+                  employerLogos.map((logo) => (
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      class="h-8 object-contain opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                    />
+                  ))
+                }
+              </div>
+              <!-- Duplicated Set for Seamless Loop -->
+              <div class="flex items-center gap-16 shrink-0" aria-hidden="true">
+                {
+                  employerLogos.map((logo) => (
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      class="h-8 object-contain opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE CURRICULUM SELECTOR (IIT DELHI / COURSERA STYLE) -->
+      <section
+        id="curriculum-explorer"
+        class="py-16 md:py-24 px-4 md:px-margin-desktop bg-white"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-3">
+            <h3 class="text-4xl font-bold text-slate-900 tracking-tight">
+              Explore Our Offline Programs
+            </h3>
+            <p
+              class="text-sm sm:text-base text-slate-500 leading-relaxed max-w-2xl mx-auto"
+            >
+              Compare our structured physical classroom programs. Switch tabs to
+              preview curricula, duration, stack, and salary goals.
+            </p>
+          </div>
+
+          <!-- Interactive Switcher Tab Container -->
+          <div class="flex flex-col gap-10">
+            <!-- Tabs Headers -->
+            <div
+              class="flex justify-center border-b border-slate-200 max-w-2xl mx-auto w-full gap-2 sm:gap-6"
+            >
+              <button
+                class="tab-btn pb-4 px-4 text-sm sm:text-base font-bold text-sky-600 border-b-2 border-sky-600 transition-all focus:outline-none"
+                data-tab="ds-ai"
+              >
+                Data Science &amp; AI
+              </button>
+              <button
+                class="tab-btn pb-4 px-4 text-sm sm:text-base font-medium text-slate-400 border-b-2 border-transparent hover:text-slate-600 transition-all focus:outline-none"
+                data-tab="cyber"
+              >
+                Cyber Security
+              </button>
+              <button
+                class="tab-btn pb-4 px-4 text-sm sm:text-base font-medium text-slate-400 border-b-2 border-transparent hover:text-slate-600 transition-all focus:outline-none"
+                data-tab="devops"
+              >
+                DevOps &amp; Cloud
+              </button>
+            </div>
+
+            <!-- Tabs Content (Full White Panels with Light Slate Borders) -->
+            <div class="w-full transition-all">
+              <!-- TAB 1: Data Science & AI -->
+              <div
+                id="tab-ds-ai"
+                class="tab-pane grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+              >
+                <!-- Left Column: Video, Details, and Buttons -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                  <!-- Video Frame -->
+                  <div
+                    class="p-1 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm"
+                  >
+                    <video
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="relative rounded-xl w-full aspect-video object-cover"
+                    >
+                      <source
+                        src="/assets/videos/data%20science%20hero%20section%20video.mp4"
+                        type="video/mp4"
+                      />
+                    </video>
+                  </div>
+
+                  <!-- Metadata Details -->
+                  <div class="flex flex-col gap-4">
+                    <span
+                      class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded text-xs font-bold uppercase w-fit tracking-wider"
+                      >In-Person Masterclass</span
+                    >
+                    <h4 class="text-2.5xl font-bold text-slate-900">
+                      Data Science &amp; AI Architect
+                    </h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                      A comprehensive, weekends-led physical program mapping
+                      mathematical foundations of deep learning to
+                      petabyte-scale distributed computing.
+                    </p>
+
+                    <div
+                      class="border-y border-slate-200/60 py-4 grid grid-cols-3 gap-4 text-xs font-bold text-slate-500 uppercase tracking-wide"
+                    >
+                      <div>
+                        <p class="text-slate-400">Duration</p>
+                        <p class="text-slate-800 text-sm mt-0.5">24 Weeks</p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Lectures</p>
+                        <p class="text-slate-800 text-sm mt-0.5 font-semibold">
+                          In-Person Labs
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Tuition Fee</p>
+                        <p class="text-sky-700 text-sm mt-0.5 font-bold">
+                          $9,999
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3 mt-2">
+                      <h5
+                        class="text-xs font-bold uppercase tracking-widest text-slate-450"
+                      >
+                        Core Lab Modules:
+                      </h5>
+                      <div class="space-y-2 text-sm text-slate-700">
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Neural
+                          Networks, PyTorch &amp; CUDA implementations
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Generative
+                          AI, LangChain LLM orchestration, agent building
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Distributed
+                          computing via Apache Spark &amp; Kafka pipelines
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                      <a
+                        href="/checkout?course=Data+Science+%26+AI+Offline+Classroom&mode=offline&type=normal"
+                        class="flex-1 px-6 py-3.5 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:from-sky-500 hover:to-blue-600 transition-all text-center shadow-md active:scale-[0.98]"
+                      >
+                        Enroll in Program
+                      </a>
+                      <a
+                        href="/Data-Science-&-AI.pdf"
+                        target="_blank"
+                        class="flex-1 px-6 py-3.5 border border-sky-600 text-sky-700 rounded-xl text-sm font-semibold hover:bg-sky-50 transition-colors text-center"
+                      >
+                        Download Curriculum
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Program Curriculum Architecture -->
+                <div class="lg:col-span-7 space-y-4">
+                  <div class="mb-6">
+                    <span
+                      class="text-xs font-bold text-sky-700 uppercase tracking-widest block"
+                      >Syllabus Details</span
+                    >
+                    <h5 class="text-2xl font-bold text-slate-900 mt-1">
+                      Program Curriculum Architecture
+                    </h5>
+                  </div>
+
+                  <div class="space-y-3.5">
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                      open
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">01</span> Python
+                          Programming
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Learn the fundamentals of Python, a versatile and
+                          powerful programming language. This module covers
+                          essential concepts like syntax, data types, control
+                          structures, and functions, laying the foundation for
+                          data science and software development.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Python</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Syntax</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Functions</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Programming Foundations</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">02</span> Libraries
+                          of Python Programming with EDA
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Dive into essential Python libraries like NumPy,
+                          Pandas, and Matplotlib. Learn to perform Exploratory
+                          Data Analysis (EDA) to uncover insights, visualize
+                          trends, and prepare datasets for advanced analytics
+                          and modeling.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >NumPy</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Pandas</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Matplotlib</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >EDA</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Data Visualization</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">03</span> Mathematics
+                          for Data Science
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Master statistical concepts like probability,
+                          hypothesis testing, and regression analysis. Learn to
+                          interpret data trends, make data-driven decisions, and
+                          build a strong foundation for machine learning models.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Probability</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Hypothesis Testing</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Regression Analysis</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Statistics</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">04</span> Machine
+                          Learning- Supervised
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Learn the fundamentals of supervised learning, where
+                          models are trained on labeled data to predict
+                          outcomes. Explore key algorithms like linear
+                          regression, decision trees, and support vector
+                          machines for real-world problem-solving.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Supervised Learning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Linear Regression</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Decision Trees</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >SVM</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">05</span> Machine
+                          Learning- Unsupervised
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Dive into unsupervised learning, where models analyze
+                          unlabeled data to uncover hidden patterns. Explore
+                          clustering, association, and dimensionality reduction
+                          techniques like k-means and PCA for data exploration
+                          and insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Unsupervised Learning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Clustering</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >PCA</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >K-Means</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">06</span> Deep
+                          Learning and AI
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Explore the foundations of deep learning and
+                          artificial intelligence, focusing on neural networks,
+                          model training, and optimization techniques. Learn how
+                          AI models power innovations in image recognition, NLP,
+                          and more.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Deep Learning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Neural Networks</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >AI</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Model Optimization</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-850 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">07</span> MySQL
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Gain proficiency in MySQL, a powerful relational
+                          database management system. Learn how to create,
+                          manage, and query databases using SQL to store and
+                          retrieve data efficiently.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >MySQL</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Relational Database</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >SQL Queries</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Data Storage</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-850 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">08</span> Tableau
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Master Tableau for data visualization, enabling you to
+                          create interactive and insightful dashboards. Learn
+                          how to connect data, apply filters, and generate
+                          compelling visual reports for informed
+                          decision-making.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Tableau</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Data Visualization</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Interactive Dashboards</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Reporting</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-850 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">09</span> Power
+                          BI and Google Data Studio
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Explore Power BI and Google Data Studio for powerful
+                          data visualization and reporting. Learn to transform
+                          raw data into interactive dashboards and reports,
+                          empowering data-driven insights and decision-making.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Power BI</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Google Data Studio</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Dashboards</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Insights</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-850 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">10</span> Data
+                          Engineering Tools
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Master essential data engineering tools to manage,
+                          process, and transform large datasets. Learn to work
+                          with technologies like Apache Hadoop, Spark, and Kafka
+                          for efficient data pipeline creation and optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Apache Hadoop</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Apache Spark</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Kafka</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Data Pipelines</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: Cyber Security (Hidden by default) -->
+              <div
+                id="tab-cyber"
+                class="tab-pane hidden grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+              >
+                <!-- Left Column: Video, Details, and Buttons -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                  <!-- Video Frame -->
+                  <div
+                    class="p-1 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm"
+                  >
+                    <video
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="relative rounded-xl w-full aspect-video object-cover"
+                    >
+                      <source
+                        src="/assets/videos/cyber%20security%20hero%20section.mp4"
+                        type="video/mp4"
+                      />
+                    </video>
+                  </div>
+
+                  <!-- Metadata Details -->
+                  <div class="flex flex-col gap-4">
+                    <span
+                      class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded text-xs font-bold uppercase w-fit tracking-wider"
+                      >Security Sandbox</span
+                    >
+                    <h4 class="text-2.5xl font-bold text-slate-900">
+                      Cyber Security &amp; Pen Testing Strategist
+                    </h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                      Designed for systems administrators looking to govern
+                      zero-trust ecosystems, execute red-team operations, and
+                      analyze risk landscapes.
+                    </p>
+
+                    <div
+                      class="border-y border-slate-200/60 py-4 grid grid-cols-3 gap-4 text-xs font-bold text-slate-500 uppercase tracking-wide"
+                    >
+                      <div>
+                        <p class="text-slate-400">Duration</p>
+                        <p class="text-slate-800 text-sm mt-0.5">24 Weeks</p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Labs</p>
+                        <p class="text-slate-800 text-sm mt-0.5 font-semibold">
+                          Red Team Sandbox
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Tuition Fee</p>
+                        <p class="text-sky-700 text-sm mt-0.5 font-bold">
+                          $9,999
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3 mt-2">
+                      <h5
+                        class="text-xs font-bold uppercase tracking-widest text-slate-450"
+                      >
+                        Core Lab Modules:
+                      </h5>
+                      <div class="space-y-2 text-sm text-slate-700">
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Enterprise
+                          penetration testing and attack simulation
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Implementing
+                          zero-trust models &amp; IAM directory structures
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Compliance
+                          frameworks &amp; quantitative threat analysis
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                      <a
+                        href="/checkout?course=Cyber+Security+%26+Ethical+Hacking+Offline+Classroom&mode=offline&type=normal"
+                        class="flex-1 px-6 py-3.5 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:from-sky-500 hover:to-blue-600 transition-all text-center shadow-md active:scale-[0.98]"
+                      >
+                        Enroll in Program
+                      </a>
+                      <a
+                        href="/CYBER-SECURITY.pdf"
+                        target="_blank"
+                        class="flex-1 px-6 py-3.5 border border-sky-600 text-sky-700 rounded-xl text-sm font-semibold hover:bg-sky-50 transition-colors text-center"
+                      >
+                        Download Syllabus
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Program Curriculum Architecture -->
+                <div class="lg:col-span-7 space-y-4">
+                  <div class="mb-6">
+                    <span
+                      class="text-xs font-bold text-sky-700 uppercase tracking-widest block"
+                      >Syllabus Details</span
+                    >
+                    <h5 class="text-2xl font-bold text-slate-900 mt-1">
+                      Program Curriculum Architecture
+                    </h5>
+                  </div>
+
+                  <div class="space-y-3.5">
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                      open
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">01</span> Introduction
+                          to Cyber Security
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Introduction to Cyber Security and Ethical Hacking:
+                          Basics of Cyber Security and Threat Landscape, Ethical
+                          Hacking Concepts and Types of Hackers, Phases of
+                          Ethical Hacking, Security and Risk Management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Cyber Security</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Ethical Hacking</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Threat Landscape</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Risk Management</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">02</span> Networking
+                          Fundamentals for Cyber Security
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          OSI and TCP/IP Models, IP Addressing and Subnetting,
+                          Networking Protocols (HTTP, DNS, FTP, etc.), Firewalls
+                          and IDS/IPS Basics, Packet Analysis with Wireshark,
+                          Networking and devices, Proxy and VPN. Microsoft
+                          Ransomware Best Practices.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >TCP/IP</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Subnetting</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Wireshark</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Firewalls &amp; IDS</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >VPN</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">03</span> Linux
+                          Fundamentals
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Basics of Linux Operating System, Setting Up the Lab
+                          Environment, Linux File System and Directory
+                          Structure, Common Linux Commands for Cybersecurity
+                          Tasks, Managing Users, Permissions, and Processes,
+                          Shell Scripting Basics.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Linux OS</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Lab Setup</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Shell Scripting</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >User Permissions</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">04</span> Reconnaissance
+                          and Footprinting
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Active and Passive Reconnaissance, Information
+                          Gathering Tools, Network Scanning with Nmap networking
+                          and devices, Identifying Open Ports and Services,
+                          OSINT.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Reconnaissance</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Nmap</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >OSINT</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Network Scanning</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">05</span> Vulnerability
+                          Analysis
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Vulnerability Assessment Methodologies, Tools for
+                          Vulnerability Scanning (Nessus, ZAP), Identifying CVEs
+                          and Exploits, Analyzing Vulnerability Reports.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Vulnerability Assessment</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Nessus</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >OWASP ZAP</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >CVEs</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">06</span> System
+                          Hacking
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Password Cracking Techniques, Privilege Escalation on
+                          Windows and Linux, Backdoors and Trojans,
+                          Anti-Forensics Techniques.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Password Cracking</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Privilege Escalation</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Trojans</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Anti-Forensics</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">07</span> Web
+                          Application Security
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          OWASP Top 10 Vulnerabilities, Juice Shop and DVWA,
+                          Exploiting SQL Injection, Cross-Site Scripting (XSS)
+                          and CSRF Attacks, Tools for Web Security Testing (Burp
+                          Suite, SQLmap).
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >OWASP Top 10</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >SQL Injection</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >XSS &amp; CSRF</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Burp Suite</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >SQLmap</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">08</span> Wireless
+                          Network Security
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Wireless Network Standards and Protocols, Capturing
+                          and Cracking Wireless Traffic, WPA/WPA2 Hacking with
+                          Tools, Securing Wireless Networks.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Wireless Standards</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >WPA/WPA2</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Traffic Cracking</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Wireless Security</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">09</span> Penetration
+                          Testing Methodologies
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Penetration Testing Planning and Scoping, Reporting
+                          and Documentation, Real-World Penetration Testing
+                          Simulations Module.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Pentesting Planning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Scoping</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Reporting</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Simulations</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">10</span> Advanced
+                          Topics in Cyber Security
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Cloud Security and Common Vulnerabilities, IoT
+                          Security Threats and Countermeasures, Basics of Threat
+                          Hunting and Mitigation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Cloud Security</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >IoT Threats</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Threat Hunting</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">11</span> Capstone
+                          Project
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-100 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          The capstone project allows learners to apply all the
+                          concepts, tools, and techniques learned during the
+                          course. Students will be tasked with performing an
+                          end-to-end penetration test on a simulated
+                          environment, including reconnaissance, vulnerability
+                          scanning, exploitation, and reporting.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Simulated Environment</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Vulnerability Scanning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Exploitation</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Reporting</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 3: DevOps & Cloud (Hidden by default) -->
+              <div
+                id="tab-devops"
+                class="tab-pane hidden grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+              >
+                <!-- Left Column: Video, Details, and Buttons -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                  <!-- Video Frame -->
+                  <div
+                    class="p-1 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm"
+                  >
+                    <video
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="relative rounded-xl w-full aspect-video object-cover"
+                    >
+                      <source
+                        src="/assets/videos/devops%20hero%20section.mp4"
+                        type="video/mp4"
+                      />
+                    </video>
+                  </div>
+
+                  <!-- Metadata Details -->
+                  <div class="flex flex-col gap-4">
+                    <span
+                      class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded text-xs font-bold uppercase w-fit tracking-wider"
+                      >Infrastructure Engineering</span
+                    >
+                    <h4 class="text-2.5xl font-bold text-slate-900">
+                      DevOps &amp; Cloud Systems Master
+                    </h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                      Deploy high-availability container systems at scale.
+                      Master infrastructure as code and configure multi-region
+                      deployment fabrics in our local labs.
+                    </p>
+
+                    <div
+                      class="border-y border-slate-200/60 py-4 grid grid-cols-3 gap-4 text-xs font-bold text-slate-500 uppercase tracking-wide"
+                    >
+                      <div>
+                        <p class="text-slate-400">Duration</p>
+                        <p class="text-slate-800 text-sm mt-0.5">24 Weeks</p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Focus</p>
+                        <p class="text-slate-800 text-sm mt-0.5 font-semibold">
+                          Kubernetes &amp; IaC
+                        </p>
+                      </div>
+                      <div>
+                        <p class="text-slate-400">Tuition Fee</p>
+                        <p class="text-sky-700 text-sm mt-0.5 font-bold">
+                          $9,999
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3 mt-2">
+                      <h5
+                        class="text-xs font-bold uppercase tracking-widest text-slate-400"
+                      >
+                        Core Lab Modules:
+                      </h5>
+                      <div class="space-y-2 text-sm text-slate-700">
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Production-grade
+                          Kubernetes (EKS/GKE) deployments
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Terraform
+                          IaC structures &amp; configuration modules
+                        </div>
+                        <div class="flex items-center gap-3">
+                          <span class="h-2 w-2 bg-sky-500 rounded-full"></span> Automating
+                          CI/CD pipelines &amp; server failovers
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                      <a
+                        href="/checkout?course=DevOps+%26+Cloud+Offline+Classroom&mode=offline&type=normal"
+                        class="flex-1 px-6 py-3.5 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:from-sky-500 hover:to-blue-600 transition-all text-center shadow-md active:scale-[0.98]"
+                      >
+                        Enroll in Program
+                      </a>
+                      <a
+                        href="/DEVOPS-final.pdf"
+                        target="_blank"
+                        class="flex-1 px-6 py-3.5 border border-sky-600 text-sky-700 rounded-xl text-sm font-semibold hover:bg-sky-50 transition-colors text-center"
+                      >
+                        Download Syllabus
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Program Curriculum Architecture -->
+                <div class="lg:col-span-7 space-y-4">
+                  <div class="mb-6">
+                    <span
+                      class="text-xs font-bold text-sky-600 uppercase tracking-widest block"
+                      >Syllabus Details</span
+                    >
+                    <h5 class="text-2xl font-bold text-slate-900 mt-1">
+                      Program Curriculum Architecture
+                    </h5>
+                  </div>
+
+                  <div class="space-y-3.5">
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                      open
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">01</span> Linux
+                          &amp; Command Line Fundamentals
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Develop a Linux foundation for managing servers, cloud
+                          environments, and DevOps.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Skills you develop:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Linux Administration</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Shell Scripting</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >File Management</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >User Management</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-750 text-xs font-semibold rounded border border-sky-100/50"
+                            >Permission Management</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">02</span> Version
+                          Control with Git &amp; GitHub
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Learn collaborative software development and source
+                          code management using Git.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Skills you develop:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Git</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >GitHub</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Branching</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Merging</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Repository</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">03</span> Cloud
+                          Computing Fundamentals
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Understand cloud architecture, virtualization,
+                          networking, and cloud deployment models.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Topics include:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >IaaS</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >PaaS</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >SaaS</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Public Cloud</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Private Cloud</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Hybrid Cloud</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">04</span> AWS
+                          &amp; Microsoft Azure
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Have practical experience implementing and managing
+                          cloud infrastructure.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Services Covered:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Virtual Machines</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Storage</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Networking</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Load Balancing</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Identity Management</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Cloud Security</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">05</span> Continuous
+                          Integration and Continuous Deployment
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Automate software delivery pipelines for quick and
+                          more reliable releases.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Projects include:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Automated Build Pipelines</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Continuous Testing</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Automated Deployment</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Release Management</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">06</span> Containerization
+                          with Docker
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Package, execute, and maintain applications using
+                          containers.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Tools You Learn:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Docker Engine</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Docker Compose</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Docker Registry</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Docker Networking</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">07</span> Kubernetes
+                          Orchestration
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Implement and manage scalable containerized
+                          applications using Kubernetes.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Topics include:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Pods</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Deployments</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Services</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >ConfigMaps</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Scaling</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Cluster Management</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">08</span> Infrastructure
+                          as Code
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Automate infrastructure provisioning utilizing modern
+                          DevOps tools.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Tools You Learn:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Terraform</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Infrastructure Automation</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Resource Provisioning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Cloud Deployment</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">09</span> Monitoring
+                          &amp; Logging
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Monitor applications and infrastructure to ensure
+                          performance and reliability.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Tools You Learn:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Prometheus</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Grafana</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >ELK Stack</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Log Management</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+
+                    <details
+                      class="group bg-white border border-slate-200 rounded-xl p-5 transition-all duration-300"
+                    >
+                      <summary
+                        class="flex justify-between items-center cursor-pointer list-none"
+                      >
+                        <span
+                          class="text-base font-bold text-slate-805 flex items-center gap-4"
+                        >
+                          <span class="text-sky-600 font-bold text-lg">10</span> DevSecOps
+                          &amp; Automation
+                        </span>
+                        <span
+                          class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform arrow-icon"
+                          >expand_more</span
+                        >
+                      </summary>
+                      <div
+                        class="mt-4 pt-4 border-t border-slate-200 text-slate-650 space-y-3 text-sm leading-relaxed"
+                      >
+                        <p>
+                          Combine security throughout the DevOps lifecycle while
+                          automating infrastructure and implementation
+                          processes.
+                        </p>
+                        <p
+                          class="font-bold text-xs uppercase text-sky-700 tracking-wider"
+                        >
+                          Topics include:
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Security Best Practices</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Risk Scanning</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Pipeline Security</span
+                          >
+                          <span
+                            class="px-2.5 py-1 bg-sky-50 text-sky-705 text-xs font-semibold rounded border border-sky-100/50"
+                            >Automation Work Process</span
+                          >
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script is:inline>
+          const buttons = document.querySelectorAll(".tab-btn");
+          const panes = document.querySelectorAll(".tab-pane");
+
+          buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const target = btn.getAttribute("data-tab");
+
+              // Update buttons styles
+              buttons.forEach((b) => {
+                b.classList.remove("text-sky-600", "border-sky-600");
+                b.classList.add("text-slate-400", "border-transparent");
+              });
+              btn.classList.remove("text-slate-400", "border-transparent");
+              btn.classList.add("text-sky-600", "border-sky-600");
+
+              // Update content panes visibility
+              panes.forEach((pane) => {
+                if (pane.id === `tab-${target}`) {
+                  pane.classList.remove("hidden");
+                } else {
+                  pane.classList.add("hidden");
+                }
+              });
+            });
+          });
+        </script>
+      </section>
+
+      <!-- ALUMNI SUCCESS GALLERY (BOSSCODER INSPIRED REVIEWS GRID) -->
+      <section
+        id="alumni-gallery"
+        class="py-16 md:py-24 px-4 md:px-margin-desktop bg-white border-t border-slate-200/50"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h3 class="text-4xl font-bold text-slate-900 tracking-tight mt-2">
+              Transition Stories From Our Labs
+            </h3>
+            <p class="text-sm sm:text-base text-slate-500 mt-2">
+              See how our in-person students transitioned from service firms to
+              major product organizations.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div
+              class="bg-white border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all"
+            >
+              <div>
+                <div class="flex items-center gap-3.5 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center font-bold text-sky-700"
+                  >
+                    RV
+                  </div>
+                  <div>
+                    <h5 class="text-sm font-bold text-slate-800">
+                      Rahul Verma
+                    </h5>
+                    <p class="text-xs text-slate-400">
+                      Classroom Cohort Graduate
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-2 mb-4 bg-white px-3 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 font-semibold w-fit"
+                >
+                  <span>TCS</span>
+                  <span class="material-symbols-outlined text-slate-400 text-sm"
+                    >trending_flat</span
+                  >
+                  <span class="text-sky-700">Amazon (SDE 2)</span>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed italic">
+                  "I was stuck in a legacy service role for 4 years. The
+                  physical classroom labs at Sector 62, Noida gave me the exact
+                  hands-on coding space I needed. Resolving errors with
+                  instructors face-to-face was the game-changer."
+                </p>
+              </div>
+              <div
+                class="border-t border-slate-100 mt-6 pt-4 flex justify-between items-center text-xs font-bold text-emerald-600"
+              >
+                <span>Salary Hike: 65%</span>
+                <span class="flex items-center text-amber-500 text-xs">
+                  <span class="material-symbols-outlined text-sm font-bold"
+                    >star</span
+                  > 5.0 Rating
+                </span>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div
+              class="bg-white border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all"
+            >
+              <div>
+                <div class="flex items-center gap-3.5 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center font-bold text-sky-700"
+                  >
+                    SB
+                  </div>
+                  <div>
+                    <h5 class="text-sm font-bold text-slate-800">
+                      Sourabh Bhavsar
+                    </h5>
+                    <p class="text-xs text-slate-400">
+                      DevOps Classroom Graduate
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-2 mb-4 bg-white px-3 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 font-semibold w-fit"
+                >
+                  <span>Cognizant</span>
+                  <span class="material-symbols-outlined text-slate-400 text-sm"
+                    >trending_flat</span
+                  >
+                  <span class="text-sky-700">PayPal (Cloud Eng)</span>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed italic">
+                  "Writing Terraform script modules and building live automated
+                  Kubernetes deployments under the mentor's eyes helped build
+                  real muscle memory. Sky States mock interviews prepared me to
+                  face high-bar corporate filters."
+                </p>
+              </div>
+              <div
+                class="border-t border-slate-100 mt-6 pt-4 flex justify-between items-center text-xs font-bold text-emerald-600"
+              >
+                <span>Salary Hike: 58%</span>
+                <span class="flex items-center text-amber-500 text-xs">
+                  <span class="material-symbols-outlined text-sm font-bold"
+                    >star</span
+                  > 4.9 Rating
+                </span>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div
+              class="bg-white border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all"
+            >
+              <div>
+                <div class="flex items-center gap-3.5 mb-5">
+                  <div
+                    class="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center font-bold text-sky-700"
+                  >
+                    RK
+                  </div>
+                  <div>
+                    <h5 class="text-sm font-bold text-slate-800">
+                      Rohal Kurup
+                    </h5>
+                    <p class="text-xs text-slate-400">
+                      Security Classroom Graduate
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-2 mb-4 bg-white px-3 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 font-semibold w-fit"
+                >
+                  <span>Wipro</span>
+                  <span class="material-symbols-outlined text-slate-400 text-sm"
+                    >trending_flat</span
+                  >
+                  <span class="text-sky-700">Dassault Systemes</span>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed italic">
+                  "Having physical server racks in the lab for hands-on pen
+                  testing is completely different from virtual slides. The daily
+                  problem-solving assignments and in-person peer cohort built
+                  high confidence in GRC structures."
+                </p>
+              </div>
+              <div
+                class="border-t border-slate-100 mt-6 pt-4 flex justify-between items-center text-xs font-bold text-emerald-600"
+              >
+                <span>Salary Hike: 70%</span>
+                <span class="flex items-center text-amber-500 text-xs">
+                  <span class="material-symbols-outlined text-sm font-bold"
+                    >star</span
+                  > 5.0 Rating
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE IN-PERSON EXPERIENCE FEATURES -->
+      <section
+        class="py-16 md:py-20 px-4 md:px-margin-desktop bg-white border-y border-slate-200/50"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-4xl font-bold text-slate-900 tracking-tight">
+              The Ultimate Classroom Ecosystem
+            </h2>
+            <p class="text-sm sm:text-base text-slate-500 mt-3">
+              Why local candidates prefer our physical training classrooms for
+              skill transitions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              class="flex flex-col gap-3 p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm"
+            >
+              <span class="material-symbols-outlined text-sky-600 text-3xl"
+                >groups</span
+              >
+              <h5 class="text-lg font-bold text-slate-900 mt-2">
+                Face-To-Face Instruction
+              </h5>
+              <p class="text-sm text-slate-505 leading-relaxed">
+                Interact face-to-face with expert developers. Resolve bugs
+                instantly and optimize performance directly.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-3 p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm"
+            >
+              <span class="material-symbols-outlined text-sky-600 text-3xl"
+                >computer</span
+              >
+              <h5 class="text-lg font-bold text-slate-900 mt-2">
+                Equipped Training Labs
+              </h5>
+              <p class="text-sm text-slate-505 leading-relaxed">
+                Access dedicated individual workstations, high-speed network
+                connections, and physical sandboxes.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-3 p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm"
+            >
+              <span class="material-symbols-outlined text-sky-600 text-3xl"
+                >terminal</span
+              >
+              <h5 class="text-lg font-bold text-slate-900 mt-2">
+                Peer Coding Cohorts
+              </h5>
+              <p class="text-sm text-slate-505 leading-relaxed">
+                Work alongside motivated tech colleagues. Build team-level
+                architecture repos and participate in local hackathons.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-3 p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm"
+            >
+              <span class="material-symbols-outlined text-sky-600 text-3xl"
+                >verified</span
+              >
+              <h5 class="text-lg font-bold text-slate-900 mt-2">
+                Verified Placements
+              </h5>
+              <p class="text-sm text-slate-505 leading-relaxed">
+                Connect directly with our local hiring partners. Get referred to
+                high-paying jobs in Noida, Delhi NCR, and Seattle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CENTERS DIRECTORY -->
+      <section
+        id="centers"
+        class="py-16 md:py-24 px-4 md:px-margin-desktop bg-white border-t border-slate-200/50"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h3 class="text-4xl font-bold text-slate-900 tracking-tight mt-2">
+              Visit Our Offline Learning Centers
+            </h3>
+            <p class="text-sm sm:text-base text-slate-500 mt-3">
+              Walk in for a 1-on-1 career consultation or drop by during office
+              hours.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Center 1: Noida Center -->
+            <div
+              class="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-md hover:border-slate-350 transition-all"
+            >
+              <div class="p-8 flex flex-col gap-4">
+                <div class="flex justify-between items-start">
+                  <div
+                    class="flex items-center gap-2.5 px-3 py-1 bg-sky-50 text-sky-808 rounded-full text-xs font-semibold"
+                  >
+                    <span class="h-2 w-2 bg-sky-650 rounded-full"></span> Noida -
+                    Delhi NCR Center
+                  </div>
+                  <span class="text-xs text-slate-505">Established 2024</span>
+                </div>
+
+                <h4 class="text-2xl font-bold text-slate-900 mt-2">
+                  Noida Tech Hub
+                </h4>
+                <p class="text-sm text-slate-505 leading-relaxed">
+                  Located in the major IT corridor of Delhi NCR. High-density
+                  servers, modular lab setups, and dedicated career placement
+                  office.
+                </p>
+
+                <div class="space-y-3.5 my-4 text-sm text-slate-700">
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-605 text-lg mt-0.5"
+                      >location_on</span
+                    >
+                    <span
+                      >C-56, A-12, Sector 62, Noida, Uttar Pradesh 201301, India</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-650 text-lg mt-0.5"
+                      >phone</span
+                    >
+                    <span>+91 120-424-3450</span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-650 text-lg mt-0.5"
+                      >schedule</span
+                    >
+                    <span
+                      >Mon - Sat: 9:00 AM - 7:00 PM | Sun: 10:00 AM - 5:00 PM</span
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2"
+                >
+                  <span
+                    class="text-xs font-bold text-slate-400 uppercase tracking-wide"
+                    >Infrastructure Highlights:</span
+                  >
+                  <div class="grid grid-cols-2 gap-2 text-xs text-slate-500">
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> 60+
+                      Active Workstations
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Gigabit
+                      Dedicated Fiber
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Dedicated
+                      Placement Wing
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Student
+                      Lounges & Labs
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center 2: Seattle Center -->
+            <div
+              class="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-md hover:border-slate-350 transition-all"
+            >
+              <div class="p-8 flex flex-col gap-4">
+                <div class="flex justify-between items-start">
+                  <div
+                    class="flex items-center gap-2.5 px-3 py-1 bg-sky-50 text-sky-808 rounded-full text-xs font-semibold"
+                  >
+                    <span class="h-2 w-2 bg-sky-650 rounded-full"></span> Seattle
+                    Headquarters Center
+                  </div>
+                  <span class="text-xs text-slate-505">Established 2024</span>
+                </div>
+
+                <h4 class="text-2xl font-bold text-slate-900 mt-2">
+                  Seattle WA Center
+                </h4>
+                <p class="text-sm text-slate-505 leading-relaxed">
+                  Our main operational center and executive classroom. Designed
+                  for cloud administrators, tech leads, and high-prestige
+                  certifications.
+                </p>
+
+                <div class="space-y-3.5 my-4 text-sm text-slate-700">
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-605 text-lg mt-0.5"
+                      >location_on</span
+                    >
+                    <span>1316 Wall St, Suite 2C, Everett, WA 98201, USA</span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-650 text-lg mt-0.5"
+                      >phone</span
+                    >
+                    <span>(888) 810-2434</span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span
+                      class="material-symbols-outlined text-sky-650 text-lg mt-0.5"
+                      >schedule</span
+                    >
+                    <span
+                      >Mon - Fri: 8:00 AM - 5:00 PM | Sat: Weekend Batches</span
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2"
+                >
+                  <span
+                    class="text-xs font-bold text-slate-400 uppercase tracking-wide"
+                    >Infrastructure Highlights:</span
+                  >
+                  <div class="grid grid-cols-2 gap-2 text-xs text-slate-500">
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Executive
+                      Boardrooms
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Enterprise
+                      Server Rack Sandbox
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> Microsoft
+                      Exam Testing Labs
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-1.5 w-1.5 bg-sky-500 rounded-full"></span> 1-on-1
+                      CTO Advisories
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OBJECTION ACCORDION FAQS -->
+      <section class="py-16 md:py-24 px-4 md:px-margin-desktop bg-white">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h3 class="text-4xl font-bold text-slate-900 tracking-tight mt-2">
+              Classroom Training FAQ
+            </h3>
+            <p class="text-sm sm:text-base text-slate-500 mt-2">
+              Everything you need to know about physical class access, hardware,
+              and schedules.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <details
+              class="group border border-slate-200 rounded-xl bg-white p-4 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden shadow-sm"
+            >
+              <summary
+                class="flex justify-between items-center cursor-pointer font-bold text-slate-900 text-base list-none"
+              >
+                <span>What are the offline batch timings available?</span>
+                <span
+                  class="material-symbols-outlined text-sky-606 transition-transform duration-300 arrow-icon"
+                  >expand_more</span
+                >
+              </summary>
+              <div
+                class="mt-3 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3"
+              >
+                We operate multiple batches to support both college students and
+                working professionals:
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                  <li>
+                    <strong>Weekday Batches:</strong> Tuesday to Friday (10:00 AM
+                    - 1:00 PM or 2:00 PM - 5:00 PM).
+                  </li>
+                  <li>
+                    <strong>Weekend Batches:</strong> Saturday &amp; Sunday (9:00
+                    AM - 2:00 PM or 3:00 PM - 8:00 PM).
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details
+              class="group border border-slate-200 rounded-xl bg-white p-4 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden shadow-sm"
+            >
+              <summary
+                class="flex justify-between items-center cursor-pointer font-bold text-slate-900 text-base list-none"
+              >
+                <span>Do I need to carry my own laptop for the classes?</span>
+                <span
+                  class="material-symbols-outlined text-sky-606 transition-transform duration-300 arrow-icon"
+                  >expand_more</span
+                >
+              </summary>
+              <div
+                class="mt-3 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3"
+              >
+                No, our classrooms are fully equipped. You will be assigned a
+                high-performance workspace terminal loaded with pre-configured
+                developer environments, GPU access for data science modules, and
+                server sandboxes. However, carrying your laptop is recommended
+                for working on assignments at home.
+              </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details
+              class="group border border-slate-200 rounded-xl bg-white p-4 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden shadow-sm"
+            >
+              <summary
+                class="flex justify-between items-center cursor-pointer font-bold text-slate-900 text-base list-none"
+              >
+                <span
+                  >Can I switch from online courses to offline classroom
+                  batches?</span
+                >
+                <span
+                  class="material-symbols-outlined text-sky-606 transition-transform duration-300 arrow-icon"
+                  >expand_more</span
+                >
+              </summary>
+              <div
+                class="mt-3 text-sm text-slate-505 leading-relaxed border-t border-slate-100 pt-3"
+              >
+                Yes. Active students enrolled in our Scholar or Elite online
+                tracks can request a batch transition to physical classroom
+                sessions in either Noida or Seattle, subject to seat
+                availability in the respective cohort.
+              </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details
+              class="group border border-slate-200 rounded-xl bg-white p-4 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden shadow-sm"
+            >
+              <summary
+                class="flex justify-between items-center cursor-pointer font-bold text-slate-900 text-base list-none"
+              >
+                <span
+                  >Does Sky States provide placement assistance for offline
+                  graduates?</span
+                >
+                <span
+                  class="material-symbols-outlined text-sky-606 transition-transform duration-300 arrow-icon"
+                  >expand_more</span
+                >
+              </summary>
+              <div
+                class="mt-3 text-sm text-slate-505 leading-relaxed border-t border-slate-100 pt-3"
+              >
+                Absolutely. We maintain a dedicated placement desk at our
+                physical centers. In Noida, we have active hiring tie-ups with
+                leading MNCs and service organizations throughout Delhi NCR. Our
+                Seattle office coordinates referrals with global technology
+                enterprises. We conduct in-person mock interviews, resume
+                reviews, and arrange hiring drives.
+              </div>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details
+              class="group border border-slate-200 rounded-xl bg-white p-4 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden shadow-sm"
+            >
+              <summary
+                class="flex justify-between items-center cursor-pointer font-bold text-slate-900 text-base list-none"
+              >
+                <span
+                  >Are the certification exams conducted at the offline center?</span
+                >
+                <span
+                  class="material-symbols-outlined text-sky-606 transition-transform duration-300 arrow-icon"
+                  >expand_more</span
+                >
+              </summary>
+              <div
+                class="mt-3 text-sm text-slate-505 leading-relaxed border-t border-slate-100 pt-3"
+              >
+                Yes. Sky States is a Microsoft Authorized Learning partner. Our
+                centers house testing stations where students can physically
+                schedule and attempt their Microsoft DP-900 (Azure Data), AZ-900
+                (Azure Fundamentals), or SC-900 (Security Fundamentals) exams
+                using the vouchers provided in their tuition.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

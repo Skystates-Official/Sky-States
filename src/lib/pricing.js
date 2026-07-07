@@ -5,6 +5,7 @@ import { validateStoredCoupon } from './coupons.js';
 export const PRICING = {
   registration: { normal: 99, '1on1': 499 },
   full: { normal: 3499, '1on1': 6499 },
+  offline: { normal: 9999, '1on1': 9999 },
 };
 
 /** Single source of truth for displayed prices site-wide */
@@ -61,7 +62,7 @@ function validateLegacySkyCoupon(code, basePrice) {
 }
 
 export async function validateCouponCode(code, basePrice, checkoutMode = 'full') {
-  if (checkoutMode !== 'full') {
+  if (checkoutMode !== 'full' && checkoutMode !== 'offline') {
     return {
       valid: false,
       error: 'Promotional codes apply to full program enrollment only.',
@@ -78,11 +79,11 @@ export async function validateCouponCode(code, basePrice, checkoutMode = 'full')
 }
 
 export async function calculateCheckoutTotal({ mode = 'registration', tier = 'normal', couponCode = '' }) {
-  const checkoutMode = mode === 'full' ? 'full' : 'registration';
+  const checkoutMode = mode === 'full' ? 'full' : (mode === 'offline' ? 'offline' : 'registration');
   const selectedTier = tier === '1on1' ? '1on1' : 'normal';
   const basePrice = PRICING[checkoutMode][selectedTier];
 
-  const effectiveCouponCode = checkoutMode === 'full' ? couponCode : '';
+  const effectiveCouponCode = (checkoutMode === 'full' || checkoutMode === 'offline') ? couponCode : '';
   const coupon = effectiveCouponCode ? await validateCouponCode(effectiveCouponCode, basePrice, checkoutMode) : null;
   const discount = coupon?.valid ? coupon.discount : 0;
   const total = Math.max(0, basePrice - discount);
