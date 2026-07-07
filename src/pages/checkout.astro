@@ -116,11 +116,13 @@ const pricingConfig = {
                         <!-- Dynamic Tier Selector (Interactive Cards) -->
                         <div>
                             <span
+                                id="tier-selector-label"
                                 class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3"
                                 >Select Program Tier</span
                             >
                             <div
                                 class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+                                id="tier-buttons-grid"
                             >
                                 <!-- Scholar Tier Card -->
                                 <button
@@ -757,6 +759,9 @@ const pricingConfig = {
             };
 
             window.selectTier = function (tier) {
+                if (window.checkoutMode === "offline" && tier === "1on1") {
+                    tier = "normal";
+                }
                 window.selectedTier = tier;
                 const btnScholar = document.getElementById("btn-tier-scholar");
                 const btnElite = document.getElementById("btn-tier-elite");
@@ -903,6 +908,14 @@ const pricingConfig = {
                     if (ePrice)
                         ePrice.textContent =
                             "$" + P.offline["1on1"].toLocaleString();
+
+                    // Hide elite tier selection for offline classroom
+                    const btnElite = document.getElementById("btn-tier-elite");
+                    if (btnElite) btnElite.style.display = "none";
+                    const grid = document.getElementById("tier-buttons-grid");
+                    if (grid) grid.classList.remove("sm:grid-cols-2");
+                    const label = document.getElementById("tier-selector-label");
+                    if (label) label.style.display = "none";
                 } else if (mode === "full") {
                     window.checkoutMode = "full";
                     const sPrice = document.getElementById("btn-scholar-price");
@@ -913,6 +926,14 @@ const pricingConfig = {
                     if (ePrice)
                         ePrice.textContent =
                             "$" + P.full["1on1"].toLocaleString();
+
+                    // Show elite tier selection
+                    const btnElite = document.getElementById("btn-tier-elite");
+                    if (btnElite) btnElite.style.display = "";
+                    const grid = document.getElementById("tier-buttons-grid");
+                    if (grid) grid.classList.add("sm:grid-cols-2");
+                    const label = document.getElementById("tier-selector-label");
+                    if (label) label.style.display = "";
                 } else {
                     window.checkoutMode = "registration";
                     const sPrice = document.getElementById("btn-scholar-price");
@@ -921,6 +942,14 @@ const pricingConfig = {
                         sPrice.textContent = "$" + P.registration.normal;
                     if (ePrice)
                         ePrice.textContent = "$" + P.registration["1on1"];
+
+                    // Show elite tier selection
+                    const btnElite = document.getElementById("btn-tier-elite");
+                    if (btnElite) btnElite.style.display = "";
+                    const grid = document.getElementById("tier-buttons-grid");
+                    if (grid) grid.classList.add("sm:grid-cols-2");
+                    const label = document.getElementById("tier-selector-label");
+                    if (label) label.style.display = "";
                 }
 
                 if (courseName) {
@@ -930,7 +959,9 @@ const pricingConfig = {
                     if (displayCourse) displayCourse.textContent = courseName;
                 }
 
-                if (
+                if (mode === "offline") {
+                    window.selectTier("normal");
+                } else if (
                     type === "1on1" ||
                     (courseName &&
                         courseName.toLowerCase().includes("short term"))

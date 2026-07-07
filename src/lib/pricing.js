@@ -80,7 +80,7 @@ export async function validateCouponCode(code, basePrice, checkoutMode = 'full')
 
 export async function calculateCheckoutTotal({ mode = 'registration', tier = 'normal', couponCode = '' }) {
   const checkoutMode = mode === 'full' ? 'full' : (mode === 'offline' ? 'offline' : 'registration');
-  const selectedTier = tier === '1on1' ? '1on1' : 'normal';
+  const selectedTier = (checkoutMode === 'offline') ? 'normal' : (tier === '1on1' ? '1on1' : 'normal');
   const basePrice = PRICING[checkoutMode][selectedTier];
 
   const effectiveCouponCode = (checkoutMode === 'full' || checkoutMode === 'offline') ? couponCode : '';
