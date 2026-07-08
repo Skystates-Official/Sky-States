@@ -118,7 +118,7 @@ export async function sendFreeEnrollmentEmail({ to, customerName, courseName, or
   return { sent: true };
 }
 
-export async function sendConsultationFormEmail({ name, phone, program, query: queryText }) {
+export async function sendConsultationFormEmail({ name, email, phone, program, query: queryText }) {
   const transporter = getTransporter();
   if (!transporter) {
     console.warn('SMTP not configured — consultation email skipped.');
@@ -136,6 +136,10 @@ export async function sendConsultationFormEmail({ name, phone, program, query: q
         <tr>
           <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; width: 120px;">Name</td>
           <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-weight: 600; color: #0f172a;">${name}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600;">Email</td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a;"><a href="mailto:${email}" style="color: #0284c7; text-decoration: none; font-weight: 600;">${email}</a></td>
         </tr>
         <tr>
           <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600;">Mobile Number</td>
@@ -159,7 +163,66 @@ export async function sendConsultationFormEmail({ name, phone, program, query: q
   await transporter.sendMail({
     from: getFromAddress(),
     to: adminEmail,
-    replyTo: adminEmail,
+    replyTo: email || adminEmail,
+    subject,
+    html,
+  });
+
+  return { sent: true };
+}
+
+export async function sendConsultationAutoReplyEmail({ name, email, program }) {
+  const transporter = getTransporter();
+  if (!transporter) {
+    console.warn('SMTP not configured — consultation auto-reply skipped.');
+    return { sent: false, skipped: true, reason: 'smtp_not_configured' };
+  }
+
+  const subject = `We've Received Your Consultation Request - Sky States`;
+
+  const html = `
+    <div style="font-family: Inter, Arial, sans-serif; color: #0f172a; line-height: 1.6; max-width: 560px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px; background-color: #ffffff;">
+      <div style="margin-bottom: 24px; text-align: center;">
+        <h2 style="color: #0369a1; margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.025em;">SKY STATES</h2>
+        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: #64748b; font-weight: bold;">Real Learning. Real Career Growth.</span>
+      </div>
+
+      <p style="font-size: 14px; color: #334155;">Hi ${name},</p>
+      
+      <p style="font-size: 14px; color: #334155; margin-bottom: 20px;">
+        Thank you for your interest in our <strong>${program}</strong> program! We have successfully received your career consultation request.
+      </p>
+
+      <p style="font-size: 14px; color: #334155; margin-bottom: 20px;">
+        One of our program advisors will reach out to you shortly to discuss your career goals and help you choose the best learning path.
+      </p>
+
+      <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 10px; padding: 16px; margin: 24px 0; border: 1px solid #bae6fd;">
+        <p style="font-size: 13px; color: #0369a1; font-weight: 700; margin: 0 0 8px 0;">What happens next?</p>
+        <ul style="font-size: 13px; color: #334155; margin: 0; padding-left: 18px; line-height: 1.8;">
+          <li>Our advisor will call or email you within 24 hours</li>
+          <li>We'll discuss your background and career aspirations</li>
+          <li>You'll receive a personalized program recommendation</li>
+        </ul>
+      </div>
+
+      <p style="font-size: 14px; color: #334155; margin-bottom: 24px;">
+        In the meantime, feel free to explore our programs at <a href="https://skystates.us/programs/offline-classes" style="color: #0284c7; text-decoration: none; font-weight: 600;">skystates.us</a> or reply to this email with any questions.
+      </p>
+
+      <p style="font-size: 14px; color: #334155; margin-top: 24px; margin-bottom: 4px; font-weight: 600;">Warm regards,</p>
+      <p style="font-size: 14px; color: #0369a1; font-weight: 700; margin: 0;">The Sky States Team</p>
+      
+      <div style="font-size: 11px; color: #94a3b8; margin-top: 36px; border-top: 1px solid #f1f5f9; padding-top: 16px; text-align: center;">
+        Sky States · <a href="https://skystates.us" style="color: #94a3b8; text-decoration: none;">skystates.us</a>
+      </div>
+    </div>
+  `;
+
+  await transporter.sendMail({
+    from: getFromAddress(),
+    to: email,
+    replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
     subject,
     html,
   });

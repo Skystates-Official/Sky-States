@@ -228,14 +228,23 @@ import Logo from "./Logo.astro";
 
   // Setup click triggers on all links/buttons referencing career consultation modal
   function setupTriggers() {
-    // Look for links with href="/contact-us" that are career consultation buttons,
-    // or selector-based triggers if we mark them.
     const consultationTriggers = document.querySelectorAll(
       "[data-trigger-consultation]",
     );
+    const programSelect = document.getElementById("consult-program") as HTMLSelectElement | null;
     consultationTriggers.forEach((trigger) => {
       trigger.addEventListener("click", (e) => {
         e.preventDefault();
+        // Auto-select program if data-program attribute is present
+        const programValue = trigger.getAttribute("data-program");
+        if (programValue && programSelect) {
+          // Find matching option (exact or partial match)
+          const options = Array.from(programSelect.options);
+          const match = options.find(opt => opt.value === programValue);
+          if (match) {
+            programSelect.value = match.value;
+          }
+        }
         openModal();
       });
     });
@@ -282,6 +291,7 @@ import Logo from "./Logo.astro";
       const formData = new FormData(form);
       const data = {
         name: formData.get("name"),
+        email: formData.get("email"),
         phone: formData.get("phone"),
         program: formData.get("program"),
         query: formData.get("query"),
