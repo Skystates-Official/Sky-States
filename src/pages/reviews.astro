@@ -2,8 +2,21 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { query } from "../db/sqlite.js";
 
 export const prerender = false;
+
+// Fetch candidate reviews and LinkedIn screenshots from SQLite database
+const dbReviews = await query.all("SELECT * FROM reviews ORDER BY created_at DESC");
+const linkedinReviews = await query.all("SELECT * FROM linkedin_reviews ORDER BY created_at DESC");
+
+// Group by category to match page tabs structure
+const reviewsData = {
+    Transitions: dbReviews.filter((r) => r.category === "Transitions"),
+    DevOps: dbReviews.filter((r) => r.category === "DevOps"),
+    CyberSecurity: dbReviews.filter((r) => r.category === "CyberSecurity"),
+    DataScience: dbReviews.filter((r) => r.category === "DataScience"),
+};
 
 // Data structures for clean rendering
 const stats = [
@@ -19,97 +32,6 @@ const categoryTabs = [
     { id: "CyberSecurity", name: "Cyber Security" },
     { id: "DataScience", name: "Data Science and AI" },
 ];
-
-const reviewsData = {
-    Transitions: [
-        {
-            name: "Justin Reed",
-            role: "Cloud Engineer",
-            text: "Having six years in finance, I was not sure if moving into IT was possible. SkyStates' organized learning way and mentor support gave me the confidence to make the switch.",
-        },
-        {
-            name: "Megha Arora",
-            role: "Cloud Solution Architect",
-            text: "Sky States made my career change very easy. The instructors explained concepts smoothly, and the projects helped me understand how everything works in business environments.",
-        },
-        {
-            name: "Jason Miller",
-            role: "IT Operations Manager",
-            text: "I joined with no technical experience and expected the learning curve to be complex. Instead, every element was structured, and the mentors were always available whenever I required guidance.",
-        },
-        {
-            name: "Lauren Mitchell",
-            role: "Project Manager",
-            text: "Switching careers after nearly ten years was not easy at all, but Sky States helped me develop practical skills that employers actually look for. The placement assistance and resume guidance made a difference during my job search.",
-        },
-    ],
-    DevOps: [
-        {
-            name: "Riya Kapoor",
-            role: "DevOps Engineer",
-            text: "The cloud labs were one of my favorite parts of the program. Everything we learned could be applied in real environments. I now work as a Junior DevOps Engineer.",
-        },
-        {
-            name: "Siddharth Tiwari",
-            role: "Cloud Engineer",
-            text: "The mentors shared practical situations instead of focusing only on theory. Working on CI/CD pipelines and cloud infrastructure projects gave me confidence during technical interviews.",
-        },
-        {
-            name: "Andrew Parker",
-            role: "Site Reliability Engineer",
-            text: "I had basic Linux knowledge before joining, but the SkyStates program helped me understand Docker, Kubernetes, and AWS in a proper way. The practical assignments were really useful.",
-        },
-        {
-            name: "Matthew Turner",
-            role: "Cloud Infrastructure Engineer",
-            text: "The curriculum remained updated with current cloud technologies, and every project felt familiar to industry expectations. I valued the detailed feedback provided after each assignment.",
-        },
-    ],
-    CyberSecurity: [
-        {
-            name: "Olivia Parker",
-            role: "Security Analyst",
-            text: "Cybersecurity always looked complicated until I joined Sky States. The instructors simplified every topic and encouraged practice through labs. It prepared me well for my first analyst role.",
-        },
-        {
-            name: "Nicholas Walker",
-            role: "Cyber Security Associate",
-            text: "The ethical hacking labs were interactive. Instead of learning concepts, we learned how to find risks and think like security experts.",
-        },
-        {
-            name: "Brandon Scott",
-            role: "SOC Analyst",
-            text: "Mock interviews and certification assistance were valuable as the technical training. The mentors genuinely wanted every learner to succeed in their career journeys.",
-        },
-        {
-            name: "Karan Malhotra",
-            role: "Information Security Executive",
-            text: "I appreciated how the program maintained networking, functioning systems, and security concepts before moving into upgraded topics. It made learning manageable.",
-        },
-    ],
-    DataScience: [
-        {
-            name: "Ananya Gupta",
-            role: "Data Analyst",
-            text: "The integration of Python, SQL, and machine learning projects helped me made a strong portfolio. I felt prepared when discussing my projects during interviews.",
-        },
-        {
-            name: "Gaurav Sharma",
-            role: "Business Inteliigence Analyst",
-            text: "Every concept was supported with exercises, making even upgraded machine learning concepts easier to understand. The mentors always empowered questions.",
-        },
-        {
-            name: "Sophia Cooper",
-            role: "Machine Learning Engineer",
-            text: "The curriculum covered both traditional analytics and modern AI tools, which made the learning experience very familiar. I majorly enjoyed working on real datasets.",
-        },
-        {
-            name: "Daniel Brooks",
-            role: "Data Scientist",
-            text: "The instructors focused on solving business problems rather than simply teaching approaches. That practical method helped me change into a data analytics role much quicker.",
-        },
-    ],
-};
 
 const expertReviews = [
     {
@@ -321,7 +243,7 @@ const faqs = [
                             Real Learning. Real Career Growth. Real Results.
                         </h2>
                         <p
-                            class="mt-6 max-w-xl mx-auto lg:mx-0 text-base md:text-lg font-light text-white/80 leading-relaxed"
+                            class="mt-6 max-w-xl mx-auto lg:mx-0 text-base md:text-lg font-medium text-white/80 leading-relaxed"
                         >
                             Explore honest feedback from experts, graduates, and
                             career switchers who changed their skills with Sky
@@ -782,7 +704,7 @@ const faqs = [
                                         <span class="font-bold text-slate-900 text-sm md:text-base">
                                             Q{index + 1}. {faq.q}
                                         </span>
-                                        <span class="faq-icon material-symbols-outlined text-slate-400 transition-transform duration-300">
+                                        <span class="faq-icon material-symbols-outlined text-slate-500 transition-transform duration-300">
                                             expand_more
                                         </span>
                                     </button>
@@ -790,7 +712,7 @@ const faqs = [
                                         class="faq-content transition-all duration-300 max-h-0 overflow-hidden"
                                         style="max-height: 0px;"
                                     >
-                                        <div class="px-6 pb-5 pt-1 text-sm leading-relaxed text-slate-500 border-t border-slate-100">
+                                        <div class="px-6 pb-5 pt-1 text-sm leading-relaxed text-slate-600 border-t border-slate-100">
                                             <strong>Ans.</strong> {faq.a}
                                         </div>
                                     </div>
@@ -801,13 +723,98 @@ const faqs = [
                 </div>
             </section>
         </main>
+        <!-- LINKEDIN WALL OF LOVE -->
+        <!-- LINKEDIN WALL OF LOVE -->
+            {linkedinReviews.length > 0 && (
+                <section class="py-24 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
+                    <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop space-y-16 relative z-10">
+                        <div class="text-center space-y-3">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#0a66c2]/10 text-[#0a66c2] border border-[#0a66c2]/20">
+                                LinkedIn Wall of Love
+                            </span>
+                            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+                                Heard Across the Network
+                            </h2>
+                            <p class="text-slate-600 text-sm md:text-base max-w-xl mx-auto font-medium leading-relaxed">
+                                Candidates post their transition results, certificates, and salary hikes directly on LinkedIn. Click to view their live posts.
+                            </p>
+                        </div>
 
-        <Footer />
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {linkedinReviews.map((post) => (
+                                <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
+                                    <div>
+                                        <div class="aspect-[4/3] w-full bg-slate-50 overflow-hidden relative border-b border-slate-100 flex items-center justify-center">
+                                            <img
+                                                src={post.image_url}
+                                                alt={`${post.name} - image`}
+                                                class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                                            />
+                                        </div>
+                                        <div class="p-6 space-y-4">
+                                            <div class="space-y-1">
+                                                <h3 class="font-bold text-xl text-slate-950 leading-snug">
+                                                    {post.name}
+                                                </h3>
+                                                <p class="text-sm text-slate-500 font-semibold">
+                                                    {post.role || "Verified Alumni"}
+                                                </p>
+                                            </div>
+                                            <div class="text-slate-600 text-sm leading-relaxed">
+                                                {post.text && post.text.length > 180 ? (
+                                                    <p class="review-text-container">
+                                                        <span class="short-text">{post.text.slice(0, 180)}...</span>
+                                                        <span class="full-text hidden">{post.text}</span>
+                                                        <button class="text-[#0a66c2] hover:text-[#004182] font-bold ml-1 text-xs hover:underline cursor-pointer" onclick="toggleReadMore(this)">Read more</button>
+                                                    </p>
+                                                ) : (
+                                                    <p>{post.text}</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="px-6 pb-6 pt-0">
+                                        <a
+                                            href={post.post_url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-block hover:scale-105 transition-transform duration-200"
+                                            title="View LinkedIn Post"
+                                        >
+                                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="24" height="24" rx="4" fill="#0077B5"/>
+                                                <path d="M9 19H6V10H9V19ZM7.5 8.7C6.5 8.7 5.7 7.9 5.7 6.9C5.7 5.9 6.5 5.1 7.5 5.1C8.5 5.1 9.3 5.9 9.3 6.9C9.3 7.9 8.5 8.7 7.5 8.7ZM19 19H16V14.2C16 13.1 15.9 11.6 14.3 11.6C12.7 11.6 12.5 12.9 12.5 14.1V19H9.5V10H12.4V11.2H12.4C12.8 10.5 13.8 9.8 15.2 9.8C18.1 9.8 18.7 11.7 18.7 14.2V19H19Z" fill="white"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            <Footer />
 
         <!-- ============================================================ -->
         <!--  INTERACTIVE CLIENT LOGIC                                      -->
         <!-- ============================================================ -->
         <script is:inline>
+            window.toggleReadMore = function(btn) {
+                const container = btn.parentElement;
+                const shortText = container.querySelector(".short-text");
+                const fullText = container.querySelector(".full-text");
+                if (fullText.classList.contains("hidden")) {
+                    fullText.classList.remove("hidden");
+                    shortText.classList.add("hidden");
+                    btn.innerText = "Read less";
+                } else {
+                    fullText.classList.add("hidden");
+                    shortText.classList.remove("hidden");
+                    btn.innerText = "Read more";
+                }
+            }
+
             document.addEventListener("DOMContentLoaded", () => {
                 // --- 1. TAB CONTROLLER ---
                 const tabButtons = document.querySelectorAll(".tab-btn");
