@@ -22,7 +22,7 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
         <Logo class="h-10 w-auto" />
       </div>
       <p class="text-slate-500 text-sm leading-relaxed">
-        Sky States offers a diverse range of professional courses designed to
+        Sky States LLC offers a diverse range of professional courses designed to
         empower students across multiple domains, including software
         development, cybersecurity, data science, artificial intelligence, cloud
         computing, and emerging tech fields.
@@ -54,7 +54,7 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
           >
         </a>
         <a
-          href="https://www.youtube.com/@Skystatess"
+          href="https://www.youtube.com/@SkyStatesOfficial"
           target="_blank"
           aria-label="YouTube"
           class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-sky-600 hover:border-sky-600 hover:text-white hover:-translate-y-0.5 shadow-sm transition-all duration-200 text-slate-500"
@@ -96,6 +96,14 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
             href="/programs/devops"
           >
             DevOps & Cloud
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/programs/offline-classes"
+          >
+            Offline Classes
           </a>
         </li>
         <li>
@@ -179,6 +187,14 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
             FAQs
           </a>
         </li>
+            <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/blog"
+          >
+            Blogs
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -237,6 +253,8 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
         </div>
       </div>
     </div>
+
+    </div>
   </div>
 
   <!-- Copyright / Secondary Links -->
@@ -244,10 +262,48 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
     class="max-w-5xl mx-auto px-4 sm:px-6 mt-10 pt-6 border-t border-slate-200/60 text-center text-xs text-slate-400"
   >
     <p>
-      &copy; 2026 Sky States. Institutional Excellence in Technology. All rights
+      &copy; 2026 Sky States LLC Institutional Excellence in Technology. All rights
       reserved.
     </p>
   </div>
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sky States LLC",
+      "image": "https://skystates.us/assets/logo_main_skystates.svg",
+      "@id": "https://skystates.us/#organization",
+      "url": "https://skystates.us/",
+      "telephone": "+1-888-810-2434",
+      "priceRange": "$3499",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1316 Wall St Ste 2c",
+        "addressLocality": "Everett",
+        "addressRegion": "WA",
+        "postalCode": "98201-3942",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.97761,
+        "longitude": -122.211867
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:30",
+        "closes": "17:00"
+      }
+    }
+  </script>
 </footer>
 
 <ZohoSalesIQ />

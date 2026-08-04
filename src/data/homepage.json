@@ -1,7 +1,10 @@
 {
   "hero": {
-    "headline": "Accelerate Your Career with Industry Focused AI-Driven Programs at <span class='block'>SKY <span class='text-slate-800'>STATES</span></span>",
-    "description": "Become job-ready with Data Science & AI, Cybersecurity & Ethical Hacking, and DevOps & Cloud Computing programs. Learn from experienced industry experts and develop real-world projects to help you succeed in today’s technology prospects. demo",
+ "headline": "<span class='text-[#12A5D8]'>Accelerate Your Career with Industry Focused AI-Driven Programs at</span> <span class='block'><span class='text-[#12A5D8]'>SKY</span> <span class='text-slate-800'>STATES LLC</span></span>",
+
+
+
+    "description": "Become job-ready with Data Science & AI, Cybersecurity & Ethical Hacking, and DevOps & Cloud Computing programs. Learn from experienced industry experts and develop real-world projects to help you succeed in today’s technology prospects.",
     "button_text": "Explore Programs",
     "button_url": "#programs",
     "consultation_text": "Book a Free Career Consultation",
@@ -15,12 +18,12 @@
   ],
   "about": {
     "title": "Changing Learners into Technological Experts",
-    "description": "SkyStates is a career-driven technology education platform dedicated to guiding students, freshers, and working professionals to develop skills. The curriculum gets updated to recognize current industry standards and emerging technologies.\n\nWe offer hands-on experience using our equipped & guided labs, mentorship, and also provide customized career assistance. Sky States every program is developed to fill the gap between academic knowledge and real-life industry scenarios."
+    "description": "Sky States LLC is a career-driven technology education platform dedicated to guiding students, freshers, and working professionals to develop skills. The curriculum gets updated to recognize current industry standards and emerging technologies.\n\nWe offer hands-on experience using our equipped & guided labs, mentorship, and also provide customized career assistance. Sky States every program is developed to fill the gap between academic knowledge and real-life industry scenarios."
   },
   "why_choose": [
     {
       "title": "Learn from Industry Professionals",
-      "description": "Sky States instructors have many years of experience in AI, Cybersecurity, and DevOps. They share their practical insights with you."
+      "description": "Sky States LLC instructors have many years of experience in AI, Cybersecurity, and DevOps. They share their practical insights with you."
     },
     {
       "title": "Practical Learning Method",
@@ -44,8 +47,8 @@
     }
   ],
   "programs_section": {
-    "title": "Discover SkyStates Technology Programs",
-    "subtitle": "Sky States provides multiple job-ready programs to get yourself upgraded.",
+    "title": "Discover Sky States LLC Technology Programs",
+    "subtitle": "Sky States LLC provides multiple job-ready programs to get yourself upgraded.",
     "programs": [
       {
         "id": "data-science-ai",
@@ -102,7 +105,7 @@
   "methodology": {
     "title": "Our Learning Methodology",
     "subtitle": "Education goes beyond lectures.",
-    "description": "SkyStates organized learning method integrates live sessions, practical labs, industry-related projects, and feedback to help learners build confidence through practical experience. The focus stays on concepts to solve real-life problems instead of memorizing theoretical concepts.",
+    "description": "Sky States LLC organized learning method integrates live sessions, practical labs, industry-related projects, and feedback to help learners build confidence through practical experience. The focus stays on concepts to solve real-life problems instead of memorizing theoretical concepts.",
     "steps": [
       {
         "id": "1",

@@ -1,5 +1,5 @@
 import { query } from '../../db/sqlite.js';
-import { sendConsultationFormEmail } from '../../lib/email.js';
+import { sendConsultationFormEmail, sendConsultationAutoReplyEmail } from '../../lib/email.js';
 
 export const prerender = false;
 
@@ -46,6 +46,7 @@ export async function POST({ request, clientAddress }) {
   try {
     const body = await request.json();
     const name = (body.name || '').trim();
+    const email = (body.email || '').trim();
     const phone = (body.phone || '').trim();
     const program = (body.program || '').trim();
     const queryText = (body.query || '').trim();
@@ -53,6 +54,10 @@ export async function POST({ request, clientAddress }) {
     // 1. DATA VALIDATION
     if (!name || name.length < 2 || name.length > 100) {
       return json({ error: 'Please provide a valid name (2-100 characters).' }, 400);
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return json({ error: 'Please provide a valid email address.' }, 400);
     }
 
     if (!phone || phone.length < 7 || phone.length > 20) {
@@ -64,7 +69,7 @@ export async function POST({ request, clientAddress }) {
     }
 
     // Safety checks for HTML tag injection (XSS mitigation)
-    if (/[<>]/.test(name) || /[<>]/.test(phone) || /[<>]/.test(queryText)) {
+    if (/[<>]/.test(name) || /[<>]/.test(email) || /[<>]/.test(phone) || /[<>]/.test(queryText)) {
       return json({ error: 'HTML tags are not allowed in input fields.' }, 400);
     }
 
@@ -89,6 +94,7 @@ export async function POST({ request, clientAddress }) {
         'consultation',
         JSON.stringify({
           name,
+          email,
           phone,
           program,
           query: queryText,
@@ -100,9 +106,16 @@ export async function POST({ request, clientAddress }) {
 
     // 4. NOTIFICATION EMAIL TO ADMIN
     try {
-      await sendConsultationFormEmail({ name, phone, program, query: queryText });
+      await sendConsultationFormEmail({ name, email, phone, program, query: queryText });
     } catch (emailErr) {
       console.error('Failed to send consultation email:', emailErr);
+    }
+
+    // 5. AUTO-REPLY EMAIL TO USER
+    try {
+      await sendConsultationAutoReplyEmail({ name, email, program });
+    } catch (autoReplyErr) {
+      console.error('Failed to send consultation auto-reply:', autoReplyErr);
     }
 
     return json({ success: true, message: 'Thank you! Your career consultation request has been received. Our advisors will contact you shortly.' });

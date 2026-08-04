@@ -15,17 +15,18 @@ interface StoryData {
   paragraph2: string;
 }
 
-const mappedStories = (storiesData as StoryData[]).map(story => {
-  const displayTrack = story.track === "DevOps" ? "DevOps & Cloud" : story.track;
+const mappedStories = (storiesData as StoryData[]).map((story) => {
+  const displayTrack =
+    story.track === "DevOps" ? "DevOps & Cloud" : story.track;
   const initials = story.name
     .split(" ")
-    .map(n => n[0])
+    .map((n) => n[0])
     .join("");
 
   return {
     ...story,
     track: displayTrack,
-    initials
+    initials,
   };
 });
 
@@ -36,19 +37,19 @@ function getTrackStyles(track: string) {
     return {
       pillBg: "bg-violet-50 text-violet-700 border-violet-100",
       avatarBg: "bg-violet-50 text-violet-750 border-violet-200",
-      icon: "database"
+      icon: "database",
     };
   } else if (track === "Cyber Security") {
     return {
       pillBg: "bg-indigo-50 text-indigo-700 border-indigo-100",
       avatarBg: "bg-indigo-50 text-indigo-750 border-indigo-200",
-      icon: "shield"
+      icon: "shield",
     };
   } else {
     return {
       pillBg: "bg-sky-50 text-sky-700 border-sky-100",
       avatarBg: "bg-sky-50 text-sky-755 border-sky-200",
-      icon: "terminal"
+      icon: "terminal",
     };
   }
 }
@@ -83,7 +84,8 @@ function getTrackStyles(track: string) {
       body {
         font-family: "Inter", sans-serif;
       }
-      .story-card, .featured-card {
+      .story-card,
+      .featured-card {
         transition:
           opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
           transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
@@ -104,80 +106,156 @@ function getTrackStyles(track: string) {
       >
         <!-- Background decorative glows & patterns -->
         <div class="pointer-events-none absolute inset-0 opacity-[0.06]">
-          <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+          <div
+            class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"
+          >
+          </div>
         </div>
-        <div class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#0077b6]/20 blur-[130px]"></div>
-        <div class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#2F9C95]/12 blur-[130px]"></div>
+        <div
+          class="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-[#0077b6]/20 blur-[130px]"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#2F9C95]/12 blur-[130px]"
+        >
+        </div>
 
         <div class="relative z-10 mx-auto max-w-4xl pt-8 pb-4">
-         
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h1
+            class="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+          >
             Where Learning Creates Opportunities
           </h1>
-          <p class="mt-4 text-sm sm:text-base text-white/80 max-w-2xl mx-auto leading-relaxed font-light">
-            Explore how learners transformed ambition into achievement through expert training, practical projects, and career support.
-
+          <p
+            class="mt-4 text-sm sm:text-base text-white/80 max-w-2xl mx-auto leading-relaxed font-light"
+          >
+            Explore how learners transformed ambition into achievement through
+            expert training, practical projects, and career support.
           </p>
         </div>
       </section>
 
       <!-- Achievement / Stats Bar -->
       <section class="relative z-25 -mt-10 max-w-5xl mx-auto px-4">
-        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-md p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div
+          class="bg-white rounded-2xl border border-slate-200/80 shadow-md p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+        >
           <!-- Stat 1 -->
-          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
-            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <div
+            class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4"
+          >
+            <div
+              class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                 <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
               </svg>
             </div>
-            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">200+</span>
-            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Graduates</span>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]"
+              >200+</span
+            >
+            <span
+              class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider"
+              >Graduates</span
+            >
           </div>
 
           <!-- Stat 2 -->
-          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
-            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-700">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <div
+            class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4"
+          >
+            <div
+              class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-700"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
                 <path d="m22 7-8.5 8.5-5-5L2 17"></path>
                 <path d="M16 7h6v6"></path>
               </svg>
             </div>
-            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">96%</span>
-            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Placement Rate</span>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]"
+              >96%</span
+            >
+            <span
+              class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider"
+              >Placement Rate</span
+            >
           </div>
 
           <!-- Stat 3 -->
-          <div class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4">
-            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          <div
+            class="flex flex-col items-center md:border-r border-slate-100 last:border-r-0 md:pr-4"
+          >
+            <div
+              class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path>
               </svg>
             </div>
-            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">$50K</span>
-            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Avg. Salary Hike</span>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]"
+              >$50K</span
+            >
+            <span
+              class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider"
+              >Avg. Salary Hike</span
+            >
           </div>
 
           <!-- Stat 4 -->
           <div class="flex flex-col items-center">
-            <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <div
+              class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
             </div>
-            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]">20+</span>
-            <span class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider">Hiring Partners</span>
+            <span class="text-2xl sm:text-3xl font-extrabold text-[#0B2A4A]"
+              >20+</span
+            >
+            <span
+              class="mt-1 text-[11px] font-bold text-slate-550 uppercase tracking-wider"
+              >Hiring Partners</span
+            >
           </div>
         </div>
       </section>
 
       <!-- Filters Section -->
       <section class="bg-white pt-14 pb-8 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop flex flex-wrap justify-center gap-3">
+        <div
+          class="max-w-7xl mx-auto px-4 md:px-margin-desktop flex flex-wrap justify-center gap-3"
+        >
           <button
             onclick="filterStories('all')"
             id="filter-btn-all"
@@ -210,18 +288,28 @@ function getTrackStyles(track: string) {
       </section>
 
       <!-- Stories Grid -->
+      <!-- Stories Grid -->
       <section class="bg-white pt-16 pb-20">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
           <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-[#0B2A4A] tracking-tight">
+            <h2
+              class="text-2xl md:text-3xl font-extrabold text-[#0B2A4A] tracking-tight"
+            >
               Alumni Outcomes Portfolio
             </h2>
-            <p class="mt-2 text-slate-555 text-sm max-w-md mx-auto leading-relaxed">
-              Explore the rest of our student transition directories across all career programs.
+
+            <p
+              class="mt-2 text-slate-555 text-sm max-w-md mx-auto leading-relaxed"
+            >
+              Explore the rest of our student transition directories across all
+              career programs.
             </p>
           </div>
 
-          <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div
+            id="stories-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          >
             {
               gridStories.map((story) => {
                 const styles = getTrackStyles(story.track);
@@ -237,10 +325,13 @@ function getTrackStyles(track: string) {
                         <span
                           class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border ${styles.pillBg}`}
                         >
-                          <span class="material-symbols-outlined text-[11px]">{styles.icon}</span>
+                          <span class="material-symbols-outlined text-[11px]">
+                            {styles.icon}
+                          </span>
+
                           {story.track}
                         </span>
-                        
+
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
                           Sky States Alumni
                         </span>
@@ -254,7 +345,7 @@ function getTrackStyles(track: string) {
                         {story.paragraph1}
                       </p>
 
-                      <!-- Short Quote -->
+                      {/* Short Quote */}
                       <div class="mt-4 border-l-3 border-slate-350 bg-slate-100/50 p-3 rounded-r-xl">
                         <p class="text-slate-650 text-xs leading-relaxed italic text-justify font-sans">
                           {story.paragraph2}
@@ -263,18 +354,28 @@ function getTrackStyles(track: string) {
                     </div>
 
                     <div class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
-                      <div class={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs border shadow-sm shrink-0 ${styles.avatarBg}`}>
+                      <div
+                        class={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs border shadow-sm shrink-0 ${styles.avatarBg}`}
+                      >
                         {story.initials}
                       </div>
+
                       <div>
-                        <h4 class="font-bold text-slate-900 text-xs leading-none mb-1">{story.name}</h4>
-                        <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide leading-none">Sky States Alumni</p>
+                        <h4 class="font-bold text-slate-900 text-xs leading-none mb-1">
+                          {story.name}
+                        </h4>
+
+                        <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wide leading-none">
+                          Sky States Alumni
+                        </p>
                       </div>
                     </div>
                   </div>
                 );
               })
             }
+          </div>
+        </div>
       </section>
     </main>
 
@@ -302,8 +403,12 @@ function getTrackStyles(track: string) {
         }
 
         // Toggle featured container titles & gallery based on filter selection
-        const featuredHeader = document.querySelector("#featured-stories-container h2");
-        const featuredDesc = document.querySelector("#featured-stories-container p");
+        const featuredHeader = document.querySelector(
+          "#featured-stories-container h2",
+        );
+        const featuredDesc = document.querySelector(
+          "#featured-stories-container p",
+        );
         const gallerySec = document.getElementById("gallery-section");
 
         if (track !== "all") {

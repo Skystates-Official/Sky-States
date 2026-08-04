@@ -89,6 +89,40 @@ function initializeDatabase() {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+    // 4. Blogs Table
+db.run(`
+  CREATE TABLE IF NOT EXISTS blogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    title TEXT NOT NULL,
+
+    slug TEXT UNIQUE NOT NULL,
+
+    category TEXT NOT NULL,
+
+    short_description TEXT,
+
+    content TEXT NOT NULL,
+
+    image TEXT,
+
+    author TEXT,
+
+    tags TEXT,
+
+    seo_title TEXT,
+
+    seo_description TEXT,
+
+    status TEXT DEFAULT 'draft',
+
+    views INTEGER DEFAULT 0,
+
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
 
     // 4. Jobs / Placements Table
     db.run(`
@@ -199,6 +233,20 @@ function initializeDatabase() {
         UNIQUE(reference_id, email_type)
       )
     `);
+    // Verify all tables
+db.all(
+  "SELECT name FROM sqlite_master WHERE type='table'",
+  [],
+  (err, rows) => {
+    if (err) {
+      console.error("Error fetching tables:", err);
+    } else {
+      console.log("Tables in database:", rows);
+    }
+  }
+);
+
+
 
     syncAdminFromEnv();
     console.log('Database tables verified/initialized successfully.');
