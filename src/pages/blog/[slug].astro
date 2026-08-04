@@ -1,0 +1,244 @@
+---
+import "../styles/global.css";
+
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+import { getBlog } from "../../lib/blogs.js";
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+const blog = slug ? await getBlog(slug) : null;
+
+if (!blog) {
+  throw Astro.redirect("/blog");
+}
+---
+
+<Header />
+
+<main class="single-blog-page">
+  <section class="single-blog">
+    <div class="blog-wrapper">
+      <header class="blog-header">
+        <div class="blog-category">
+          {blog.category}
+        </div>
+
+        <h1>
+          {blog.title}
+        </h1>
+
+        <div class="blog-meta">
+          <span>
+            {
+              new Date(blog.created_at).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })
+            }
+          </span>
+        </div>
+      </header>
+
+      {
+        blog.image && (
+          <figure class="blog-feature-image">
+            <img src={blog.image} alt={blog.title} loading="lazy" />
+          </figure>
+        )
+      }
+
+      <article class="blog-content">
+        <p class="short-description">
+          {blog.short_description}
+        </p>
+
+        <div class="content" set:html={blog.content} />
+      </article>
+    </div>
+  </section>
+</main>
+
+<Footer />
+
+<style>
+  .single-blog-page {
+    width: 100%;
+  }
+
+ .single-blog {
+    padding:40px 25px 80px;
+    background:#ffffff;
+}
+
+  .blog-wrapper {
+    max-width: 1100px;
+
+    margin: auto;
+  }
+
+  /* Blog Header */
+
+  .blog-header {
+    text-align: center;
+
+    margin-bottom: 50px;
+  }
+
+  .blog-category {
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+  }
+
+  .blog-header h1 {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    font-size: 48px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    color: #0f172a;
+  }
+
+  .blog-meta {
+    margin-top: 20px;
+
+    color: #64748b;
+
+    font-size: 15px;
+  }
+
+  /* Featured Image */
+
+  .blog-feature-image {
+    width: 100%;
+
+    margin: 0 auto 50px;
+  }
+
+  .blog-feature-image img {
+    width: 100%;
+
+    height: 550px;
+
+    object-fit: cover;
+
+    border-radius: 24px;
+  }
+
+  /* Content */
+
+  .blog-content {
+    max-width: 900px;
+
+    margin: auto;
+  }
+
+  .short-description {
+    font-size: 21px;
+
+    line-height: 1.8;
+
+    color: #334155;
+
+    font-weight: 500;
+
+    margin-bottom: 40px;
+  }
+
+  .content {
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    color: #334155;
+  }
+
+  .content h2 {
+    font-size: 32px;
+
+    color: #0f172a;
+
+    margin-top: 40px;
+
+    margin-bottom: 20px;
+  }
+
+  .content h3 {
+    font-size: 25px;
+
+    color: #0f172a;
+
+    margin-top: 35px;
+  }
+
+  .content p {
+    margin-bottom: 22px;
+  }
+
+  .content ul,
+  .content ol {
+    margin: 20px 0;
+
+    padding-left: 30px;
+  }
+
+  .content li {
+    margin-bottom: 10px;
+  }
+
+  .content img {
+    max-width: 100%;
+
+    border-radius: 15px;
+
+    margin: 30px 0;
+  }
+
+  /* Mobile */
+
+  @media (max-width: 768px) {
+    .single-blog {
+      padding: 50px 15px;
+    }
+
+    .blog-header h1 {
+      font-size: 32px;
+    }
+
+    .blog-feature-image img {
+      height: 250px;
+    }
+
+    .short-description {
+      font-size: 18px;
+    }
+
+    .content {
+      font-size: 16px;
+    }
+  }
+</style>
