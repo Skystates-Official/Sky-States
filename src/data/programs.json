@@ -1,9 +1,10 @@
 {
   "data-science-ai": {
     "slug": "data-science-ai",
-    "metaTitle": "SkyStates | Data Science & AI Program",
+    "metaTitle": "Sky States | Data Science & AI Program",
     "hero": {
-      "headline": "SkyStates Data Science and AI Program <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready Data Scientist with AI Training</span>",
+    "headline": "Sky States Data Science and AI Program <br/><span style=\"color:#12A5D8\" class=\"text-4xl block mt-2\">Become a Job-Ready Data Scientist with AI Training</span>",
+
       "description": "Master Python, Machine Learning, Deep Learning, SQL, Generative AI, Power BI, and Tableau via live classes, real-life projects, and career guidance. Develop an industry-built portfolio while preparing for globally recognized certifications and interviews."
     },
     "stats": [
@@ -85,9 +86,10 @@
   },
   "cyber-security": {
     "slug": "cyber-security",
-    "metaTitle": "SkyStates | Cyber Security & Ethical Hacking Program",
+    "metaTitle": "Sky States | Cyber Security & Ethical Hacking Program",
     "hero": {
-      "headline": "SkyStates Cyber Security & Ethical Hacking <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready Cyber Security Expert</span>",
+      "headline": "Sky States Cyber Security & Ethical Hacking <br/><span style=\"color:#12A5D8\" class=\"text-4xl block mt-2\">Become a Job-Ready Cyber Security Expert</span>",
+
       "description": "Take control of networking, Linux, ethical hacking, penetration testing, digital forensics, cloud security, and Security Operations via live online sessions, practical labs, and real-world cyber attack simulations. Develop practical experience while preparing for globally recognized cybersecurity certifications and rewarding careers."
     },
     "stats": [
@@ -144,8 +146,8 @@
         }
       ],
       "final_module": {
-        "title": "Sky States Security Architect Designation",
-        "description": "Graduates earn the proprietary, industry-recognized Sky States Security Architect Designation (SSAD) credential, certifying their ability to lead complex cybersecurity transformations at the highest levels of enterprise and government."
+        "title": "Sky States LLC Security Architect Designation",
+        "description": "Graduates earn the proprietary, industry-recognized Sky States LLC Security Architect Designation (SSAD) credential, certifying their ability to lead complex cybersecurity transformations at the highest levels of enterprise and government."
       }
     },
     "career": [
@@ -171,9 +173,10 @@
   },
   "devops": {
     "slug": "devops",
-    "metaTitle": "SkyStates | DevOps & Cloud Computing Program",
+    "metaTitle": "Sky States | DevOps & Cloud Computing Program",
     "hero": {
-      "headline": "SkyStates DevOps & Cloud Computing Program <br/><span class=\"text-primary-fixed-dim text-4xl block mt-2\">Become a Job-Ready DevOps & Cloud Engineer</span>",
+      "headline": "Sky States Cyber Security & Ethical Hacking <br/><span style=\"color:#12A5D8\" class=\"text-4xl block mt-2\">Become a Job-Ready Cyber Security Expert</span>",
+
       "description": "Learn Linux, Git, Docker, Kubernetes, Terraform, Jenkins, AWS, Azure, CI/CD pipelines, infrastructure as code, and cloud automation via live sessions, practical projects, and career assistance. Develop production-ready cloud infrastructure and skills while preparing for Microsoft DevOps certifications."
     },
     "stats": [
@@ -230,7 +233,7 @@
         }
       ],
       "final_module": {
-        "title": "Sky States Cloud Architect Credential",
+        "title": "Sky States LLC Cloud Architect Credential",
         "description": "This is more than a certificate. It is a verified testament to your mastery of enterprise-scale engineering. Recognized by leading technology firms as the benchmark for high-authority infrastructure roles."
       }
     },

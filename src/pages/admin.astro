@@ -101,7 +101,7 @@ if (authenticated) {
             );
         }
     } catch (dbErr) {
-        console.error("Error loading CMS items:", dbErr.message);
+        console.error("Error loading CMS items:", dbErr.Message);
     }
 }
 
@@ -110,6 +110,17 @@ const statsStories = storiesData.length;
 const statsPages = dynamicPages.length;
 const statsCoupons = couponsList.filter((c) => c.active).length;
 const statsMedia = mediaItems.length;
+
+
+// ================= BLOGS =================
+const blogs = await sqlQuery.all(`
+    SELECT *
+    FROM blogs
+    ORDER BY created_at DESC
+`);
+console.log("BLOG DATA:", blogs);
+const statsBlogs = blogs.length;
+
 ---
 
 <!DOCTYPE html>
@@ -231,8 +242,13 @@ const statsMedia = mediaItems.length;
                     </button>
                     <button onclick="switchTab('stories')" id="tab-btn-stories" class="admin-nav-btn">
                         <span class="material-symbols-outlined text-[18px]">auto_stories</span>
-                        <span>Stories & Blogs</span>
+                        <span>Stories</span>
                     </button>
+        
+<button onclick="switchTab('blogs')" id="tab-btn-blogs" class="admin-nav-btn">
+    <span class="material-symbols-outlined text-[18px]">article</span>
+    <span>Blogs</span>
+</button>
                     <button onclick="switchTab('coupons')" id="tab-btn-coupons" class="admin-nav-btn">
                         <span class="material-symbols-outlined text-[18px]">sell</span>
                         <span>Coupons</span>
@@ -463,6 +479,279 @@ const statsMedia = mediaItems.length;
                     </div>
                 </div>
             </div>
+            <!-- BLOGS PANEL -->
+<!-- BLOGS PANEL -->
+<div id="panel-blogs" class="tab-panel hidden">
+
+    <div class="flex justify-between items-center mb-6">
+
+        <div>
+            <h2 class="font-headline-md text-xl text-on-surface">
+                Blog Management
+            </h2>
+
+            <p class="text-secondary mt-1">
+                Create, edit and manage blog posts.
+            </p>
+        </div>
+
+
+        <button
+            onclick="openAddBlogModal()"
+            class="bg-primary text-white hover:bg-opacity-90 transition-all px-5 py-2.5 rounded-lg font-label-md text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-sm">
+
+            <span class="material-symbols-outlined text-[16px]">
+                add
+            </span>
+
+            <span>
+                Add New Blog
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <div class="bg-white rounded-xl border border-outline-variant/20 overflow-hidden ambient-shadow">
+
+
+        <div class="overflow-x-auto">
+
+
+            <table class="w-full text-left border-collapse">
+
+
+                <thead>
+
+                    <tr class="bg-surface-container-low text-secondary font-bold text-xs uppercase border-b border-outline-variant/10">
+
+                        <th class="px-6 py-4">
+                            Image
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Title
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Category
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Author
+                        </th>
+
+                        <th class="px-6 py-4">
+                            Status
+                        </th>
+
+                        <th class="px-6 py-4 text-right">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody class="divide-y divide-outline-variant/10">
+
+
+                {
+                    blogs.length === 0 ? (
+
+                        <tr>
+
+                            <td 
+                              colspan="6"
+                              class="px-6 py-10 text-center text-secondary text-sm">
+
+                                No blogs available.
+
+                            </td>
+
+                        </tr>
+
+
+                    ) : (
+
+
+                        blogs.map((blog) => (
+
+                            <tr class="hover:bg-surface-container-lowest/50 transition-colors">
+
+
+                                <!-- IMAGE -->
+
+                                <td class="px-6 py-5">
+
+
+                                    {
+                                        blog.image ? (
+
+                                            <img
+                                                src={blog.image}
+                                                alt={blog.title}
+                                                class="w-20 h-14 rounded-lg object-cover border"
+                                            />
+
+                                        ) : (
+
+                                            <div class="w-20 h-14 rounded-lg bg-slate-100 flex items-center justify-center">
+
+                                                <span class="material-symbols-outlined text-slate-400">
+                                                    image
+                                                </span>
+
+                                            </div>
+
+                                        )
+                                    }
+
+
+                                </td>
+
+
+
+
+                                <!-- TITLE -->
+
+                                <td class="px-6 py-5">
+
+
+                                    <div class="font-bold text-on-surface">
+
+                                        {blog.title}
+
+                                    </div>
+
+
+                                    <div class="text-xs text-secondary mt-1">
+
+                                        {blog.slug}
+
+                                    </div>
+
+
+                                </td>
+
+
+
+
+
+                                <!-- CATEGORY -->
+
+                                <td class="px-6 py-5">
+
+
+                                    <span class="px-2.5 py-1 rounded bg-sky-50 text-sky-700 text-xs font-bold">
+
+                                        {blog.category}
+
+                                    </span>
+
+
+                                </td>
+
+
+
+
+
+                                <!-- AUTHOR -->
+
+                                <td class="px-6 py-5 text-secondary">
+
+                                    {blog.author || "Admin"}
+
+                                </td>
+
+
+
+
+
+                                <!-- STATUS -->
+
+                                <td class="px-6 py-5">
+
+
+                                    <span
+                                      class={`px-2.5 py-1 text-[10px] uppercase font-bold rounded ${
+                                      blog.status === "published"
+                                      ? "bg-emerald-50 text-emerald-700"
+                                      : "bg-slate-100 text-slate-600"
+                                      }`}>
+
+                                        {blog.status}
+
+                                    </span>
+
+
+                                </td>
+
+
+
+
+
+                                <!-- ACTIONS -->
+
+                                <td class="px-6 py-5 text-right space-x-2">
+
+
+                                    <button
+                                        onclick={`editBlog(${blog.id})`}
+                                        class="text-primary hover:bg-primary/5 p-2 rounded-lg">
+
+                                        <span class="material-symbols-outlined text-[20px]">
+                                            edit
+                                        </span>
+
+                                    </button>
+
+
+
+                                    <button
+                                        onclick={`deleteBlog(${blog.id})`}
+                                        class="text-error hover:bg-error/5 p-2 rounded-lg">
+
+
+                                        <span class="material-symbols-outlined text-[20px]">
+                                            delete
+                                        </span>
+
+
+                                    </button>
+
+
+                                </td>
+
+
+
+                            </tr>
+
+
+                        ))
+
+                    )
+
+                }
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
 
             <!-- TAB: COUPONS -->
             <div id="panel-coupons" class="tab-panel hidden space-y-6">
@@ -1558,6 +1847,132 @@ const statsMedia = mediaItems.length;
                 </form>
             </div>
         </div>
+        <!-- BLOG MODAL -->
+<div id="blog-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+
+    <div class="bg-white rounded-2xl w-full max-w-3xl p-8 shadow-2xl relative border border-outline-variant/10 max-h-[90vh] overflow-y-auto">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 id="blog-modal-title"
+                class="text-2xl font-bold">
+
+                Add New Blog
+
+            </h2>
+
+            <button
+                type="button"
+                onclick="closeBlogModal()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <form
+            id="blog-form"
+            onsubmit="saveBlog(event)"
+            class="space-y-5">
+
+            <input
+                type="hidden"
+                id="form-blog-id" />
+
+            <!-- Blog Title -->
+
+            <div>
+
+                <label>Blog Title</label>
+
+                <input
+                    id="form-blog-title"
+                    type="text"
+                    required
+                    class="w-full border rounded-lg p-3" />
+
+            </div>
+
+            <!-- Slug -->
+
+            <div>
+
+                <label>Slug</label>
+
+                <input
+                    id="form-blog-slug"
+                    type="text"
+                    required
+                    class="w-full border rounded-lg p-3" />
+
+            </div>
+
+            <!-- Category -->
+
+            <div>
+
+                <label>Category</label>
+
+                <input
+                    id="form-blog-category"
+                    type="text"
+                    class="w-full border rounded-lg p-3" />
+
+            </div>
+
+            <!-- Short Description -->
+
+            <div>
+
+                <label>Short Description</label>
+
+                <textarea
+                    id="form-blog-short"
+                    rows="3"
+                    class="w-full border rounded-lg p-3"></textarea>
+
+            </div>
+
+            <!-- Blog Content -->
+
+            <div>
+
+                <label>Blog Content</label>
+
+                <textarea
+                    id="form-blog-content"
+                    rows="10"
+                    class="w-full border rounded-lg p-3"></textarea>
+
+            </div>
+
+            <div class="flex justify-end gap-3">
+
+                <button
+                    type="button"
+                    onclick="closeBlogModal()"
+                    class="px-6 py-2 border rounded-lg">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="px-6 py-2 bg-sky-600 text-white rounded-lg">
+
+                    Save Blog
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
         <!-- PAGE CREATION MODAL -->
         <div id="page-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
@@ -2858,6 +3273,112 @@ const statsMedia = mediaItems.length;
             storyModal?.addEventListener('click', (e) => {
                 if (e.target === storyModal) closeStoryModal();
             });
+            // ================= BLOG MODAL =================
+
+const blogModal = document.getElementById("blog-modal");
+
+window.openAddBlogModal = function () {
+
+    document.getElementById("blog-form").reset();
+
+    document.getElementById("form-blog-id").value = "";
+
+    document.getElementById("blog-modal-title").innerText = "Add New Blog";
+
+    blogModal.classList.remove("hidden");
+}
+
+window.closeBlogModal = function () {
+
+    blogModal.classList.add("hidden");
+
+}
+
+blogModal?.addEventListener("click",(e)=>{
+
+    if(e.target===blogModal){
+
+        closeBlogModal();
+
+    }
+
+});
+window.saveBlog = async function(e) {
+
+    e.preventDefault();
+
+    const id = document.getElementById("form-blog-id").value;
+
+    const title = document.getElementById("form-blog-title").value;
+    const slug = document.getElementById("form-blog-slug").value;
+    const category = document.getElementById("form-blog-category").value;
+    const short_description = document.getElementById("form-blog-short").value;
+    const content = document.getElementById("form-blog-content").value;
+
+
+    const payload = {
+        title,
+        slug,
+        category,
+        short_description,
+        content
+    };
+
+
+    let method = "POST";
+
+
+    if(id){
+
+        payload.id = id;
+        method = "PUT";
+
+    }
+
+try {
+
+    const response = await fetch("/api/create",{
+
+        method: method,
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(payload)
+
+    });
+
+
+    if(response.ok){
+
+        alert("Blog saved successfully");
+
+        closeBlogModal();
+
+        window.location.reload();
+
+    }
+    else{
+
+        const errorText = await response.text();
+
+        console.log("API ERROR:", errorText);
+
+        alert("Blog save failed: " + errorText);
+
+    }
+
+
+}
+catch(error){
+
+    console.error(error);
+
+    alert("Blog save failed");
+
+}
+}
 
             window.toggleStoryMediaTypeFields = function(type) {
                 const videoFields = document.getElementById('story-video-fields');
