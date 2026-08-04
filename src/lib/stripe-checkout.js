@@ -136,11 +136,7 @@ export function buildCheckoutSessionParams({
     mode: 'payment',
     customer_email: email,
     client_reference_id: orderRef,
-<<<<<<< HEAD
-    payment_method_types: ['card', 'link', 'us_bank_account', 'afterpay_clearpay', 'klarna', 'cashapp', 'amazon_pay'],
-=======
     payment_method_types: getCheckoutPaymentMethodTypes(),
->>>>>>> 6614b94 (Merging code from main)
     billing_address_collection: 'auto',
     phone_number_collection: { enabled: true },
     line_items: [
