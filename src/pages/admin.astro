@@ -2283,71 +2283,22 @@ const statsBlogs = blogs.length;
 
 
                 <!-- Submit Button -->
-
-                <div class="flex justify-end gap-4">
-
-
+                <div class="flex justify-end gap-4 pt-6 border-t border-slate-200">
                     <button
                         type="button"
                         onclick="closeBlogModal()"
                         class="px-6 py-3 rounded-xl border">
-
                         Cancel
-
                     </button>
-
-
-
                     <button
                         type="submit"
                         class="px-8 py-3 rounded-xl bg-sky-600 text-white font-semibold">
-
                         Save Blog
-
                     </button>
-
-
                 </div>
-
-
-
             </form>
-
-
         </div>
-
     </div>
-
-</div>
-                <!-- Footer -->
-
-                <div class="flex justify-end gap-4 pt-6 border-t">
-
-                    <button
-                        type="button"
-                        onclick="closeBlogModal()"
-                        class="px-6 py-3 rounded-xl border">
-
-                        Cancel
-
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="px-8 py-3 rounded-xl bg-sky-600 text-white">
-
-                        Save Blog
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
 </div>
 
         <!-- PAGE CREATION MODAL -->
@@ -3790,113 +3741,86 @@ window.generateBlogSlug = function () {
 
 }
 window.saveBlog = async function (e) {
-
     e.preventDefault();
 
-    const id = document.getElementById("form-blog-id").value;
+    try {
+        const id = document.getElementById("form-blog-id").value;
+        const title = (document.getElementById("form-blog-title").value || "").trim();
+        let slug = (document.getElementById("form-blog-slug").value || "").trim();
+        const category = (document.getElementById("form-blog-category").value || "").trim() || "General";
+        const author = (document.getElementById("form-blog-author").value || "").trim() || "Admin";
+        const keywords = document.getElementById("form-blog-keywords").value || "";
+        const canonical = document.getElementById("form-blog-canonical")?.value || "";
+        const short_description = document.getElementById("form-blog-short").value || "";
+        const content = typeof getBlogEditorContent === "function"
+            ? getBlogEditorContent()
+            : (document.getElementById("form-blog-content")?.value || "");
+        const seo_title = document.getElementById("form-blog-seo-title").value || "";
+        const seo_description = document.getElementById("form-blog-seo-description").value || "";
+        const status = document.getElementById("form-blog-status").value || "published";
+        const imageFile = document.getElementById("form-blog-image").files[0];
 
-    const title = document.getElementById("form-blog-title").value;
-    const slug = document.getElementById("form-blog-slug").value;
-    const category = document.getElementById("form-blog-category").value;
-    const author = document.getElementById("form-blog-author").value;
-    const keywords = document.getElementById("form-blog-keywords").value;
-    const canonical = document.getElementById("form-blog-canonical")?.value || "";
-    const short_description = document.getElementById("form-blog-short").value;
-    const content = getBlogEditorContent();
-    const seo_title = document.getElementById("form-blog-seo-title").value;
-    const seo_description = document.getElementById("form-blog-seo-description").value;
-    const status = document.getElementById("form-blog-status").value;
+        if (!title) {
+            alert("Please enter a blog title.");
+            return;
+        }
 
-    const imageFile =
-        document.getElementById("form-blog-image").files[0];
-    const payload = {
-        title,
-        slug,
-        category,
-        author,
-        keywords,
-        canonical,
-        short_description,
-        content,
-        seo_title,
-        seo_description,
-        status
-    };
+        if (!slug) {
+            slug = title
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+            document.getElementById("form-blog-slug").value = slug;
+        }
 
+        if (!content || content === "<br>") {
+            alert("Please add blog content before saving.");
+            return;
+        }
 
-    let method = "POST";
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("slug", slug);
+        formData.append("category", category);
+        formData.append("author", author);
+        formData.append("keywords", keywords);
+        formData.append("canonical", canonical);
+        formData.append("short_description", short_description);
+        formData.append("content", content);
+        formData.append("seo_title", seo_title);
+        formData.append("seo_description", seo_description);
+        formData.append("status", status);
+        if (imageFile) formData.append("image", imageFile);
 
+        let response;
+        if (id) {
+            formData.append("id", id);
+            response = await fetch("/api/blog/Update", {
+                method: "PUT",
+                body: formData,
+            });
+        } else {
+            response = await fetch("/api/blog/Create", {
+                method: "POST",
+                body: formData,
+            });
+        }
 
-    if(id){
-
-        payload.id = id;
-        method = "PUT";
-
-    }
-
-try {
-
-const formData = new FormData();
-
-formData.append("title", title);
-formData.append("slug", slug);
-formData.append("category", category);
-formData.append("author", author);
-formData.append("keywords", keywords);
-formData.append("canonical", canonical);
-formData.append("short_description", short_description);
-formData.append("content", content);
-formData.append("seo_title", seo_title);
-formData.append("seo_description", seo_description);
-formData.append("status", status);
-
-if (imageFile) {
-    formData.append("image", imageFile);
-}
-let response;
-
-if (id) {
-    formData.append("id", id);
-    response = await fetch("/api/blog/Update", {
-        method: "PUT",
-        body: formData
-    });
-} else {
-    response = await fetch("/api/blog/Create", {
-        method: "POST",
-        body: formData
-    });
-}
-console.log("Status:", response.status);
-
-    if(response.ok){
-
-        alert("Blog saved successfully");
-
-        closeBlogModal();
-
-        window.location.reload();
-
-    }
-    else{
+        if (response.ok) {
+            alert("Blog saved successfully");
+            closeBlogModal();
+            window.location.reload();
+            return;
+        }
 
         const errorText = await response.text();
-
-        console.log("API ERROR:", errorText);
-
+        console.error("API ERROR:", errorText);
         alert("Blog save failed: " + errorText);
-
+    } catch (error) {
+        console.error(error);
+        alert("Blog save failed: " + (error?.message || "Unknown error"));
     }
-
-
-}
-catch(error){
-
-    console.error(error);
-
-    alert("Blog save failed");
-
-}
 }
 
             window.toggleStoryMediaTypeFields = function(type) {
