@@ -1,0 +1,576 @@
+---
+import AdminLayout from '../../../../layouts/AdminLayout.astro';
+const { id } = Astro.params;
+---
+
+<AdminLayout title="Edit Blog">
+  <!-- Top Bar -->
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sticky top-0 bg-surface-container-lowest z-30 py-4 border-b border-outline-variant">
+    <div class="flex items-center gap-4">
+      <a href="/admin/blogs" class="w-10 h-10 rounded-full bg-surface border border-outline flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+         <i data-feather="arrow-left" class="w-5 h-5"></i>
+      </a>
+      <div>
+        <h1 class="font-headline-md text-on-surface" id="header-title">Loading...</h1>
+        <div class="flex items-center gap-2 mt-1">
+          <span id="header-status" class="bg-outline text-surface px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">...</span>
+          <span class="text-on-surface-variant font-body-md text-sm" id="header-saved"></span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <!-- Workflow Actions -->
+      <button id="btn-delete" class="px-3 py-2 border border-error bg-surface rounded-lg font-label-md text-error hover:bg-error-container hover:text-on-error-container transition-colors flex items-center gap-2" title="Delete Blog">
+        <i data-feather="trash-2" class="w-4 h-4"></i>
+      </button>
+      <button id="btn-save" class="px-4 py-2 border border-outline bg-surface rounded-lg font-label-md text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-2">
+        <i data-feather="save" class="w-4 h-4"></i>
+        Save Draft
+      </button>
+      <div id="workflow-actions" class="flex gap-2">
+         <!-- Dynamic buttons like "Submit to SEO", "Approve & Publish" injected here based on role -->
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-6 pb-20">
+    <!-- Main Content Area -->
+    <div class="flex-1 space-y-6">
+      
+      <!-- Basic Info -->
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm space-y-4">
+        <div>
+           <label class="block font-label-sm text-on-surface mb-1">Blog Title</label>
+           <input type="text" id="input-title" class="w-full px-4 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-on-surface font-headline-md placeholder-on-surface-variant">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+           <div>
+             <label class="block font-label-sm text-on-surface mb-1">Slug (URL)</label>
+             <input type="text" id="input-slug" class="w-full px-4 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-on-surface font-body-md">
+           </div>
+           <div>
+             <label class="block font-label-sm text-on-surface mb-1">Category</label>
+             <input type="text" id="input-category" class="w-full px-4 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-on-surface font-body-md">
+           </div>
+        </div>
+      </div>
+
+      <!-- Rich Text Editor -->
+      <div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col" style="min-h: 600px;">
+         <!-- Quill Toolbar -->
+         <div id="quill-toolbar" class="border-b border-outline-variant bg-surface-container-lowest px-4 py-2 flex-wrap !border-t-0 !border-x-0">
+            <span class="ql-formats">
+              <select class="ql-header">
+                <option value="2">Heading 2</option>
+                <option value="3">Heading 3</option>
+                <option value="4">Heading 4</option>
+                <option selected>Normal</option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold"></button>
+              <button class="ql-italic"></button>
+              <button class="ql-underline"></button>
+              <button class="ql-strike"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-link"></button>
+              <button class="ql-image"></button>
+              <button class="ql-video"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-clean"></button>
+            </span>
+         </div>
+         <!-- Quill Editor Area -->
+         <div id="quill-editor" class="flex-1 p-6 font-body-md text-on-surface !border-0 text-lg" style="min-height: 500px; cursor: text;"></div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar (SEO & Metadata) -->
+    <div class="w-full lg:w-80 shrink-0 space-y-6">
+      
+      <!-- Live SEO Score -->
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm text-center relative overflow-hidden">
+        <h3 class="font-label-md text-on-surface mb-2">Live SEO Score</h3>
+        <div class="flex items-center justify-center gap-2 mb-4">
+           <span class="font-headline-xl text-primary" id="seo-score-display">0</span>
+           <span class="text-on-surface-variant font-label-sm mt-2">/100</span>
+        </div>
+        <button id="btn-analyze" class="w-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm py-2 rounded-lg transition-colors flex items-center justify-center gap-2">
+           <i data-feather="refresh-cw" class="w-4 h-4"></i> Run Analysis
+        </button>
+      </div>
+
+      <!-- Settings Tabs -->
+      <div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+         <div class="flex border-b border-outline-variant">
+           <button class="flex-1 py-3 text-center font-label-sm text-primary bg-surface-container-lowest border-b-2 border-primary transition-colors" id="tab-seo">SEO</button>
+           <button class="flex-1 py-3 text-center font-label-sm text-on-surface-variant hover:bg-surface-container-lowest transition-colors border-b-2 border-transparent" id="tab-meta">Meta</button>
+           <button class="flex-1 py-3 text-center font-label-sm text-on-surface-variant hover:bg-surface-container-lowest transition-colors border-b-2 border-transparent" id="tab-comments">Comments</button>
+         </div>
+        
+        <div class="p-4 space-y-4 max-h-[600px] overflow-y-auto">
+          <!-- SEO Tab Content -->
+          <div id="panel-seo" class="space-y-4">
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Focus Keyword</label>
+               <input type="text" id="seo-keyword" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm">
+             </div>
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Meta Title</label>
+               <input type="text" id="seo-title" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm" placeholder="Overrides blog title">
+             </div>
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Meta Description</label>
+               <textarea id="seo-desc" rows="3" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm"></textarea>
+             </div>
+          </div>
+          
+          <!-- Meta Tab Content -->
+          <div id="panel-meta" class="space-y-4 hidden">
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Featured Image URL</label>
+               <input type="text" id="input-image" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm">
+             </div>
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Author</label>
+               <input type="text" id="input-author" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm" readonly>
+             </div>
+             <div>
+               <label class="block font-label-sm text-on-surface mb-1">Tags (Comma separated)</label>
+               <input type="text" id="input-tags" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm">
+             </div>
+          </div>
+
+          <!-- Comments Tab Content -->
+          <div id="panel-comments" class="space-y-4 hidden flex-col h-[500px]">
+             <div id="comments-list" class="flex-1 overflow-y-auto space-y-4 pr-2 border border-outline-variant bg-surface-container-lowest rounded-lg p-3">
+                <div class="text-center py-10 text-on-surface-variant font-label-sm">Loading comments...</div>
+             </div>
+             <form id="comment-form" class="mt-auto shrink-0 flex gap-2">
+                <input type="text" id="comment-input" placeholder="Type a comment or @mention..." class="flex-1 px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm">
+                <button type="submit" class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-sm hover:bg-primary-fixed transition-colors">Send</button>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Quill Styles and Script -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+  <script is:inline src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  
+  <!-- Add some custom overrides for Quill to match our Tailwind Theme -->
+  <style is:global>
+     .ql-container.ql-snow {
+        border: none;
+     }
+     .ql-toolbar.ql-snow {
+        border: none;
+        border-bottom: 1px solid var(--color-outline-variant);
+        background-color: var(--color-surface-container-lowest);
+        border-radius: 0.75rem 0.75rem 0 0;
+        padding: 12px;
+     }
+     .ql-editor {
+        min-height: 500px;
+        font-family: inherit;
+        font-size: 1.125rem;
+        border: 2px dashed red !important;
+        background-color: #fff9f9;
+     }
+     /* Fix Tailwind overriding SVG stroke/fill */
+     .ql-toolbar.ql-snow .ql-stroke { stroke: #4b5563 !important; }
+     .ql-toolbar.ql-snow .ql-fill { fill: #4b5563 !important; }
+     .ql-toolbar.ql-snow .ql-picker { color: #4b5563 !important; }
+     
+     .ql-editor h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-on-surface); }
+     .ql-editor h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--color-on-surface); }
+     .ql-editor p { margin-bottom: 1.25rem; }
+  </style>
+
+  <script define:vars={{ id }}>
+     // Scope variables for the Astro script explicitly to window
+     window.blogId = id;
+  </script>
+
+  <script>
+     declare const feather: any;
+     declare const Quill: any;
+     declare const window: any;
+
+     let quill: any;
+     let currentBlog: any = null;
+     let currentUser: any = null;
+
+     async function init() {
+        if (typeof feather !== 'undefined') feather.replace();
+
+        // Tab Switching - Attach listeners early so UI works even if Quill fails
+        document.getElementById('tab-seo')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-seo'));
+        document.getElementById('tab-meta')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-meta'));
+        document.getElementById('tab-comments')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-comments'));
+
+        // Init Quill
+        function tryInitQuill(retries = 0) {
+           try {
+              if (typeof Quill !== 'undefined') {
+                 quill = new Quill('#quill-editor', {
+                    modules: { toolbar: '#quill-toolbar' },
+                    theme: 'snow',
+                    placeholder: 'Write your masterpiece...'
+                 });
+                 if (currentBlog && currentBlog.content) {
+                    quill.root.innerHTML = currentBlog.content;
+                 }
+              } else if (retries < 10) {
+                 setTimeout(() => tryInitQuill(retries + 1), 500);
+              }
+           } catch (e) {
+              console.error("Quill failed:", e);
+           }
+        }
+        tryInitQuill();
+
+        // Load Data
+        await fetchUser();
+        await loadBlog();
+        loadComments();
+
+        // Listeners
+        document.getElementById('btn-save')!.addEventListener('click', saveBlog);
+        document.getElementById('btn-delete')!.addEventListener('click', deleteBlog);
+        document.getElementById('btn-analyze')!.addEventListener('click', analyzeSEO);
+        document.getElementById('comment-form')!.addEventListener('submit', submitComment);
+     }
+
+     async function deleteBlog() {
+        if (!confirm("Are you sure you want to delete this blog? This cannot be undone.")) return;
+        try {
+           const res = await fetch('/api/blogs', {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: currentBlog.id })
+           });
+           if (res.ok) {
+              window.location.href = '/admin/blogs';
+           } else {
+              const err = await res.json();
+              alert(err.error || 'Failed to delete blog');
+           }
+        } catch (e) {
+           alert("Network error while deleting");
+        }
+     }
+
+     function switchTab(clickedBtn, panelId) {
+        document.querySelectorAll('#tab-seo, #tab-meta, #tab-comments').forEach(btn => {
+           btn.classList.remove('text-primary', 'border-primary', 'bg-surface-container-lowest');
+           btn.classList.add('text-on-surface-variant', 'border-transparent');
+        });
+        clickedBtn.classList.remove('text-on-surface-variant', 'border-transparent');
+        clickedBtn.classList.add('text-primary', 'border-primary', 'bg-surface-container-lowest');
+
+        document.getElementById('panel-seo')!.classList.add('hidden');
+        document.getElementById('panel-meta')!.classList.add('hidden');
+        document.getElementById('panel-comments')!.classList.add('hidden');
+        document.getElementById('panel-comments')!.classList.remove('flex');
+        
+        document.getElementById(panelId)!.classList.remove('hidden');
+        if (panelId === 'panel-comments') document.getElementById(panelId)!.classList.add('flex');
+     }
+
+     async function fetchUser() {
+        try {
+           const res = await fetch('/api/auth/me');
+           if (res.ok) {
+              const data = await res.json();
+              currentUser = data.user || data;
+           }
+        } catch(e) {}
+     }
+
+     async function loadBlog() {
+        try {
+           const res = await fetch('/api/blogs');
+           const blogs = await res.json();
+           currentBlog = blogs.blogs ? blogs.blogs.find((b: any) => b.id.toString() === window.blogId) : blogs.find((b: any) => b.id.toString() === window.blogId);
+           
+           if (!currentBlog) {
+              alert('Blog not found');
+              window.location.href = '/admin/blogs';
+              return;
+           }
+
+           // Populate UI
+           document.getElementById('header-title')!.textContent = currentBlog.title;
+           document.getElementById('header-status')!.textContent = currentBlog.status.replace('_', ' ');
+           
+           const statusColors = {
+              'published': 'bg-primary-container text-on-primary-container',
+              'draft': 'bg-surface-container-highest text-on-surface',
+              'seo_review': 'bg-secondary-container text-on-secondary-container',
+              'editorial_review': 'bg-tertiary-container text-on-tertiary-container',
+           };
+           document.getElementById('header-status')!.className = `px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${statusColors[currentBlog.status] || 'bg-outline text-surface'}`;
+           
+           (document.getElementById('input-title') as HTMLInputElement).value = currentBlog.title || '';
+           (document.getElementById('input-slug') as HTMLInputElement).value = currentBlog.slug || '';
+           (document.getElementById('input-category') as HTMLInputElement).value = currentBlog.category || '';
+           (document.getElementById('input-image') as HTMLInputElement).value = currentBlog.image || '';
+           (document.getElementById('input-author') as HTMLInputElement).value = currentBlog.author || '';
+           (document.getElementById('input-tags') as HTMLInputElement).value = currentBlog.tags || '';
+
+           // SEO Meta
+           (document.getElementById('seo-title') as HTMLInputElement).value = currentBlog.seo_title || '';
+           (document.getElementById('seo-desc') as HTMLInputElement).value = currentBlog.seo_description || '';
+           document.getElementById('seo-score-display')!.textContent = currentBlog.seo_score || 0;
+           
+           let metaObj: any = {};
+           if (currentBlog.seo_metadata) {
+              try { metaObj = JSON.parse(currentBlog.seo_metadata); } catch(e){}
+           }
+           (document.getElementById('seo-keyword') as HTMLInputElement).value = metaObj.focus_keyword || '';
+
+           // Editor Content
+           if (currentBlog.content) {
+              // Note: Quill expects a delta or raw HTML inside the container. 
+              // `pasteHTML` is an internal method, but for snow we can just set innerHTML of the editor.
+              quill.root.innerHTML = currentBlog.content;
+           }
+
+           renderWorkflowButtons();
+        } catch(err) {
+           console.error(err);
+        }
+     }
+
+     function renderWorkflowButtons() {
+        const container = document.getElementById('workflow-actions');
+        if (!container) return;
+        container.innerHTML = '';
+        
+        if (!currentUser || !currentBlog) return;
+        const role = currentUser.role;
+        const status = currentBlog.status;
+        
+        let actions: any[] = [];
+
+        // Admin/Editor can do anything
+        if (role === 'admin' || role === 'editor') {
+           if (status !== 'published') {
+              actions.push({ action: 'approve', label: 'Approve & Publish', icon: 'check-circle', color: 'bg-primary text-on-primary hover:bg-primary-fixed' });
+           } else {
+              actions.push({ action: 'reject', label: 'Unpublish / Draft', icon: 'x-circle', color: 'bg-error text-on-error hover:bg-error-container hover:text-on-error-container' });
+           }
+        }
+        
+        // Writer workflow
+        if (role === 'writer' && status === 'draft') {
+           actions.push({ action: 'submit_seo', label: 'Submit for SEO', icon: 'send', color: 'bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container' });
+        }
+
+        // SEO workflow
+        if (role === 'seo' && status === 'seo_review') {
+           actions.push({ action: 'submit_editorial', label: 'Send to Editor', icon: 'send', color: 'bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container' });
+           actions.push({ action: 'reject', label: 'Reject to Writer', icon: 'x-circle', color: 'bg-error text-on-error hover:bg-error-container hover:text-on-error-container' });
+        }
+
+        actions.forEach(act => {
+           const btn = document.createElement('button');
+           btn.className = `px-4 py-2 rounded-lg font-label-md transition-colors flex items-center gap-2 shadow-sm ${act.color}`;
+           btn.innerHTML = `<i data-feather="${act.icon}" class="w-4 h-4"></i> ${act.label}`;
+           btn.onclick = () => performWorkflow(act.action);
+           container.appendChild(btn);
+        });
+
+        if (typeof feather !== 'undefined') feather.replace();
+     }
+
+     async function saveBlog() {
+        const btn = document.getElementById('btn-save');
+        if (btn) btn.innerHTML = `<i data-feather="loader" class="w-4 h-4 animate-spin"></i> Saving...`;
+        
+        let metaObj: any = {};
+        if (currentBlog.seo_metadata) {
+           try { metaObj = JSON.parse(currentBlog.seo_metadata); } catch(e){}
+        }
+        metaObj.focus_keyword = (document.getElementById('seo-keyword') as HTMLInputElement).value;
+
+        const payload = {
+           id: currentBlog.id,
+           title: (document.getElementById('input-title') as HTMLInputElement).value,
+           slug: (document.getElementById('input-slug') as HTMLInputElement).value,
+           category: (document.getElementById('input-category') as HTMLInputElement).value,
+           image: (document.getElementById('input-image') as HTMLInputElement).value,
+           tags: (document.getElementById('input-tags') as HTMLInputElement).value,
+           seo_title: (document.getElementById('seo-title') as HTMLInputElement).value,
+           seo_description: (document.getElementById('seo-desc') as HTMLInputElement).value,
+           seo_metadata: JSON.stringify(metaObj),
+           content: quill ? quill.root.innerHTML : currentBlog.content
+        };
+
+        try {
+           const res = await fetch('/api/blogs', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+           });
+           
+           if (res.ok) {
+              const now = new Date();
+              document.getElementById('header-title')!.textContent = payload.title;
+              document.getElementById('header-saved')!.textContent = `Last saved at ${now.toLocaleTimeString()}`;
+              currentBlog = await res.json(); // refresh local state
+              return true;
+           } else {
+              const err = await res.json();
+              alert(err.error || 'Failed to save');
+              return false;
+           }
+        } catch(err) {
+           alert('Network error during save');
+           return false;
+        } finally {
+           if (btn) btn.innerHTML = `<i data-feather="save" class="w-4 h-4"></i> Save Draft`;
+           if (typeof feather !== 'undefined') feather.replace();
+        }
+     }
+
+     async function performWorkflow(action) {
+        if (!confirm(`Are you sure you want to perform: ${action}?`)) return;
+        
+        // Auto-save before changing status
+        const saved = await saveBlog();
+        if (!saved) return;
+        
+        let targetStatus = '';
+        if (action === 'approve') targetStatus = 'published';
+        else if (action === 'reject') targetStatus = 'draft';
+        else if (action === 'submit_seo') targetStatus = 'seo_review';
+        else if (action === 'submit_editorial') targetStatus = 'editorial_review';
+        
+        try {
+           const res = await fetch('/api/blogs/workflow', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: currentBlog.id, status: targetStatus })
+           });
+           
+           if (res.ok) {
+              await loadBlog(); // reload to get new status
+           } else {
+              let errorMsg = 'Workflow failed';
+              try {
+                 const err = await res.json();
+                 errorMsg = err.error || errorMsg;
+              } catch (e) {}
+              alert(errorMsg);
+           }
+        } catch(e) {
+           alert('Network error');
+        }
+     }
+
+     async function analyzeSEO() {
+        const btn = document.getElementById('btn-analyze');
+        if (btn) btn.innerHTML = `<i data-feather="loader" class="w-4 h-4 animate-spin"></i> Analyzing...`;
+        
+        // First, ensure we save the latest content so the analyzer can read it
+        await saveBlog();
+
+        try {
+           const res = await fetch(`/api/blogs/analyze?id=${currentBlog.id}`);
+           if (res.ok) {
+              const data = await res.json();
+              document.getElementById('seo-score-display')!.textContent = data.score;
+              
+              const scoreColor = data.score >= 80 ? 'text-primary' : data.score >= 50 ? 'text-secondary' : 'text-error';
+              document.getElementById('seo-score-display')!.className = `font-headline-xl ${scoreColor}`;
+              
+              alert(`Analysis complete!\nScore: ${data.score}\nWord Count: ${data.analysis.wordCount}`);
+           } else {
+              alert('Failed to analyze');
+           }
+        } catch(e) {
+           alert('Network error');
+        } finally {
+           if (btn) btn.innerHTML = `<i data-feather="refresh-cw" class="w-4 h-4"></i> Run Analysis`;
+           if (typeof feather !== 'undefined') feather.replace();
+        }
+     }
+
+     async function loadComments() {
+        try {
+           const res = await fetch(`/api/blogs/comments?blog_id=${window.blogId}`);
+           if (res.ok) {
+              const comments = await res.json();
+              renderComments(comments);
+           }
+        } catch(e) {
+           console.error("Failed to load comments");
+        }
+     }
+
+     function renderComments(comments) {
+        const list = document.getElementById('comments-list')!;
+        list.innerHTML = '';
+        if (comments.length === 0) {
+           list.innerHTML = '<div class="text-center py-10 text-on-surface-variant font-label-sm">No comments yet.</div>';
+           return;
+        }
+        
+        comments.forEach(c => {
+           const div = document.createElement('div');
+           div.className = "bg-surface p-3 rounded shadow-sm border border-outline-variant";
+           
+           // Highlight @mentions in bold blue
+           let formattedContent = c.content.replace(/@(\w+)/g, '<span class="text-primary font-bold">@$1</span>');
+           
+           div.innerHTML = `
+              <div class="flex justify-between items-center mb-1">
+                 <span class="font-label-sm font-bold text-on-surface">${c.username} <span class="text-xs font-normal text-on-surface-variant">(${c.role})</span></span>
+                 <span class="text-xs text-on-surface-variant">${new Date(c.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+              </div>
+              <div class="text-sm text-on-surface-variant break-words">${formattedContent}</div>
+           `;
+           list.appendChild(div);
+        });
+        
+        // Scroll to bottom
+        list.scrollTop = list.scrollHeight;
+     }
+
+     async function submitComment(e) {
+        e.preventDefault();
+        const input = document.getElementById('comment-input') as HTMLInputElement;
+        const content = input.value.trim();
+        if (!content) return;
+        
+        try {
+           const res = await fetch('/api/blogs/comments', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ blog_id: window.blogId, content })
+           });
+           
+           if (res.ok) {
+              input.value = '';
+              await loadComments(); // Reload to show new comment
+           } else {
+              alert("Failed to send comment");
+           }
+        } catch(e) {
+           alert("Network error sending comment");
+        }
+     }
+
+     document.addEventListener('DOMContentLoaded', init);
+  </script>
+</AdminLayout>

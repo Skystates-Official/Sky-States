@@ -258,8 +258,11 @@ export async function DELETE({ request }) {
       fs.unlinkSync(absolutePath);
     }
 
+    const userRecord = await query.get('SELECT id FROM users WHERE username = ?', [user.username]);
+    const userId = userRecord ? userRecord.id : null;
+
     await query.run("DELETE FROM media WHERE id = ?", [id]);
-    await logActivity(user.id, 'delete_media', `Deleted file: ${item.filename}`, getClientIp(request));
+    await logActivity(userId, 'delete_media', `Deleted file: ${item.filename}`, getClientIp(request));
 
     return json({ success: true });
   } catch (error) {

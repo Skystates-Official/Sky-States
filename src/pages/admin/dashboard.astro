@@ -1,0 +1,173 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+
+<AdminLayout title="Dashboard">
+  <div class="space-y-6" id="dashboard-container">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="font-headline-lg text-on-surface">Dashboard Overview</h1>
+      <button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-primary-fixed transition-colors">
+        <i data-feather="refresh-cw" class="w-4 h-4" id="refresh-icon"></i>
+        Refresh Data
+      </button>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center">
+          <i data-feather="eye" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-label-sm text-on-surface-variant">Total Page Views</p>
+          <p class="font-headline-xl text-on-surface" id="stat-views">...</p>
+        </div>
+      </div>
+
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
+          <i data-feather="file-text" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-label-sm text-on-surface-variant">Published Blogs</p>
+          <p class="font-headline-xl text-on-surface" id="stat-blogs">...</p>
+        </div>
+      </div>
+
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container rounded-lg flex items-center justify-center">
+          <i data-feather="activity" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <p class="font-label-sm text-on-surface-variant">Avg SEO Score</p>
+          <p class="font-headline-xl text-on-surface" id="stat-seo">...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Most Visited Blogs -->
+      <div class="lg:col-span-2 bg-surface p-6 rounded-xl border border-outline-variant shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-headline-md text-on-surface">Top Performing Blogs</h2>
+          <a href="/admin/blogs" class="text-primary font-label-sm hover:underline">View All</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-outline-variant">
+                <th class="py-3 px-2 font-label-sm text-on-surface-variant">Title</th>
+                <th class="py-3 px-2 font-label-sm text-on-surface-variant">Category</th>
+                <th class="py-3 px-2 font-label-sm text-on-surface-variant text-right">Views</th>
+                <th class="py-3 px-2 font-label-sm text-on-surface-variant text-right">SEO Score</th>
+              </tr>
+            </thead>
+            <tbody id="top-blogs-body">
+              <tr><td colspan="4" class="py-4 text-center text-on-surface-variant font-body-md">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm">
+        <h2 class="font-headline-md text-on-surface mb-4">Recent Activity</h2>
+        <div class="space-y-4" id="activity-feed">
+          <p class="text-center text-on-surface-variant font-body-md py-4">Loading...</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    declare const feather: any;
+
+    async function loadDashboard() {
+       try {
+          // Fetch blogs for stats
+          const blogsRes = await fetch('/api/blogs');
+          const data = await blogsRes.json();
+          const blogs = data.blogs || data;
+          
+          let totalViews = 0;
+          let totalSeo = 0;
+          let publishedCount = 0;
+          
+          blogs.forEach(b => {
+             if (b.status === 'published') {
+                publishedCount++;
+                totalViews += (b.views || 0);
+                totalSeo += (b.seo_score || 0);
+             }
+          });
+
+          const avgSeo = publishedCount > 0 ? Math.round(totalSeo / publishedCount) : 0;
+          
+          document.getElementById('stat-views')!.textContent = totalViews.toLocaleString();
+          document.getElementById('stat-blogs')!.textContent = publishedCount.toLocaleString();
+          document.getElementById('stat-seo')!.textContent = avgSeo + '/100';
+
+          // Render Top Blogs
+          const sortedBlogs = [...blogs].sort((a,b) => (b.views||0) - (a.views||0)).slice(0, 5);
+          const topBlogsBody = document.getElementById('top-blogs-body');
+          if (topBlogsBody) {
+             if (sortedBlogs.length === 0) {
+                topBlogsBody.innerHTML = '<tr><td colspan="4" class="py-4 text-center text-on-surface-variant font-body-md">No blogs found.</td></tr>';
+             } else {
+                topBlogsBody.innerHTML = sortedBlogs.map(b => `
+                   <tr class="border-b border-outline-variant last:border-0 hover:bg-surface-container-lowest transition-colors">
+                     <td class="py-3 px-2 font-label-md text-on-surface truncate max-w-[200px]">${b.title}</td>
+                     <td class="py-3 px-2 font-body-md text-on-surface-variant">
+                        <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-xs">${b.category}</span>
+                     </td>
+                     <td class="py-3 px-2 font-body-md text-on-surface text-right">${b.views || 0}</td>
+                     <td class="py-3 px-2 font-body-md text-on-surface text-right">
+                       <span class="${(b.seo_score || 0) >= 80 ? 'text-primary' : (b.seo_score || 0) >= 50 ? 'text-secondary' : 'text-error'} font-bold">
+                          ${b.seo_score || 0}
+                       </span>
+                     </td>
+                   </tr>
+                `).join('');
+             }
+          }
+
+          // Fetch Activity Logs
+          const logsRes = await fetch('/api/audit-logs');
+          if (logsRes.ok) {
+             const data = await logsRes.json();
+             const logs = data.logs || data;
+             const feed = document.getElementById('activity-feed');
+             if (feed) {
+                if (!logs || logs.length === 0) {
+                   feed.innerHTML = '<p class="text-center text-on-surface-variant font-body-md py-4">No recent activity.</p>';
+                } else {
+                   feed.innerHTML = logs.slice(0, 5).map(log => `
+                     <div class="flex items-start gap-3">
+                       <div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5">
+                          <i data-feather="activity" class="w-4 h-4 text-on-surface-variant"></i>
+                       </div>
+                       <div>
+                         <p class="font-body-md text-on-surface text-sm">${log.details}</p>
+                         <p class="font-label-sm text-on-surface-variant text-xs mt-0.5">${new Date(log.created_at).toLocaleString()}</p>
+                       </div>
+                     </div>
+                   `).join('');
+                }
+             }
+          }
+          
+          if (typeof feather !== 'undefined') feather.replace();
+       } catch(err) {
+          console.error(err);
+       }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+       loadDashboard();
+    });
+  </script>
+</AdminLayout>

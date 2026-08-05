@@ -1,0 +1,177 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+---
+
+<AdminLayout title="Content Studio">
+  <div class="space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+      <div>
+        <h1 class="font-headline-lg text-on-surface">Content Studio</h1>
+        <p class="text-on-surface-variant font-body-md mt-1">Manage, write, and optimize your blog posts.</p>
+      </div>
+      <a href="/admin/blogs/create" class="bg-primary hover:bg-primary-fixed text-on-primary hover:text-on-primary-fixed-variant font-label-md px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 shadow-sm">
+        <i data-feather="plus" class="w-4 h-4"></i>
+        New Post
+      </a>
+    </div>
+
+    <!-- Filters & Search -->
+    <div class="bg-surface p-4 rounded-xl border border-outline-variant flex flex-col md:flex-row gap-4 items-center justify-between">
+       <div class="relative w-full md:w-96">
+         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+           <i data-feather="search" class="w-4 h-4 text-on-surface-variant"></i>
+         </div>
+         <input type="text" id="search-input" placeholder="Search blogs by title..." 
+           class="block w-full pl-10 pr-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-on-surface placeholder-on-surface-variant transition-shadow text-sm">
+       </div>
+       <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+          <button class="filter-btn active px-4 py-1.5 rounded-full border border-outline font-label-sm text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap" data-status="all">All</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border border-outline font-label-sm text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap" data-status="published">Published</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border border-outline font-label-sm text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap" data-status="draft">Drafts</button>
+          <button class="filter-btn px-4 py-1.5 rounded-full border border-outline font-label-sm text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap" data-status="seo_review">In Review</button>
+       </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[800px]">
+          <thead>
+            <tr class="border-b border-outline-variant bg-surface-container-lowest">
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant">Title</th>
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant">Status</th>
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant">Author</th>
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant text-right">Views</th>
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant text-right">SEO</th>
+              <th class="py-3 px-4 font-label-sm text-on-surface-variant text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="blogs-body">
+            <tr><td colspan="6" class="py-8 text-center text-on-surface-variant font-body-md">Loading blogs...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .filter-btn.active {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary-container);
+    }
+  </style>
+
+  <script>
+    declare const feather: any;
+    
+    let allBlogs: any[] = [];
+    let currentFilter = 'all';
+
+    async function loadBlogs() {
+       try {
+          const res = await fetch('/api/blogs');
+          if (res.ok) {
+             const data = await res.json();
+             allBlogs = data.blogs || data;
+             renderBlogs();
+          }
+       } catch(err) {
+          console.error('Failed to load blogs', err);
+       }
+    }
+
+    function renderBlogs() {
+       const tbody = document.getElementById('blogs-body') as HTMLElement;
+       const query = (document.getElementById('search-input') as HTMLInputElement).value.toLowerCase();
+       
+       let filtered = allBlogs.filter(b => b.title.toLowerCase().includes(query));
+       
+       if (currentFilter !== 'all') {
+          filtered = filtered.filter(b => b.status === currentFilter);
+       }
+
+       if (filtered.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-on-surface-variant font-body-md">No blogs found.</td></tr>';
+          return;
+       }
+
+       const statusColors = {
+          'published': 'bg-primary-container text-on-primary-container',
+          'draft': 'bg-surface-container-highest text-on-surface',
+          'seo_review': 'bg-secondary-container text-on-secondary-container',
+          'editorial_review': 'bg-tertiary-container text-on-tertiary-container',
+       };
+
+       tbody.innerHTML = filtered.map(b => `
+          <tr class="border-b border-outline-variant last:border-0 hover:bg-surface-container-lowest transition-colors">
+            <td class="py-3 px-4">
+              <div class="font-label-md text-on-surface mb-0.5">${b.title}</div>
+              <div class="font-body-md text-on-surface-variant text-xs">/${b.slug}</div>
+            </td>
+            <td class="py-3 px-4">
+               <span class="${statusColors[b.status] || 'bg-outline text-surface'} px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">
+                 ${b.status.replace('_', ' ')}
+               </span>
+            </td>
+            <td class="py-3 px-4 font-body-md text-on-surface">${b.author}</td>
+            <td class="py-3 px-4 font-body-md text-on-surface text-right">${b.views || 0}</td>
+            <td class="py-3 px-4 font-body-md text-on-surface text-right">
+              <span class="${(b.seo_score || 0) >= 80 ? 'text-primary' : (b.seo_score || 0) >= 50 ? 'text-secondary' : 'text-error'} font-bold">
+                 ${b.seo_score || 0}
+              </span>
+            </td>
+            <td class="py-3 px-4 text-right">
+               <a href="/admin/blogs/edit/${b.id}" class="text-primary hover:text-primary-fixed transition-colors p-2 inline-block" title="Edit">
+                 <i data-feather="edit-2" class="w-4 h-4"></i>
+               </a>
+               <button onclick="deleteBlog(${b.id})" class="text-error hover:text-error-fixed transition-colors p-2 inline-block" title="Delete">
+                 <i data-feather="trash-2" class="w-4 h-4"></i>
+               </button>
+            </td>
+          </tr>
+       `).join('');
+       
+       if (typeof feather !== 'undefined') feather.replace();
+    }
+
+    async function deleteBlog(id) {
+       if (!confirm("Are you sure you want to delete this blog? This cannot be undone.")) return;
+       try {
+          const res = await fetch('/api/blogs', {
+             method: 'DELETE',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({ id })
+          });
+          if (res.ok) {
+             loadBlogs();
+          } else {
+             const data = await res.json();
+             alert(data.error || 'Failed to delete blog');
+          }
+       } catch (e) {
+          alert("Network error while deleting");
+       }
+    }
+
+    // Explicitly expose to window since it's used in inline onclick
+    (window as any).deleteBlog = deleteBlog;
+
+    document.addEventListener('DOMContentLoaded', () => {
+       loadBlogs();
+       
+       document.getElementById('search-input')!.addEventListener('input', renderBlogs);
+       
+       document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+             const target = e.target as HTMLElement;
+             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+             target.classList.add('active');
+             currentFilter = target.dataset.status || 'all';
+             renderBlogs();
+          });
+       });
+    });
+  </script>
+</AdminLayout>

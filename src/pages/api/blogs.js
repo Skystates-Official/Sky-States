@@ -169,12 +169,18 @@ export async function PUT({ request }) {
     // Enforce that status can only be changed via the dedicated /workflow endpoint
     updatedData.status = existing.status;
 
+    // Fetch user ID for the audit logs and versions
+    const userRecord = await query.get('SELECT id FROM users WHERE username = ?', [user.username]);
+    const userId = userRecord ? userRecord.id : null;
+
     // --- VERSION CONTROL BACKUP ---
     // Before overwriting anything, snapshot the CURRENT state into blog_versions
-    await query.run(
-       'INSERT INTO blog_versions (blog_id, user_id, title, content, seo_metadata) VALUES (?, ?, ?, ?, ?)',
-       [existing.id, user.id, existing.title, existing.content, existing.seo_metadata]
-    );
+    if (userId) {
+       await query.run(
+          'INSERT INTO blog_versions (blog_id, user_id, title, content, seo_metadata) VALUES (?, ?, ?, ?, ?)',
+          [existing.id, userId, existing.title, existing.content, existing.seo_metadata]
+       );
+    }
     // ------------------------------
 
     // If SEO, only allow updating seo fields
@@ -191,7 +197,7 @@ export async function PUT({ request }) {
           finalSeoMetadata,
           updatedData.updated_at, id]
        );
-       await logActivity(user.id, 'update_blog_seo', `Updated SEO for blog: ${existing.title}`, getClientIp(request));
+       await logActivity(userId, 'update_blog_seo', `Updated SEO for blog: ${existing.title}`, getClientIp(request));
     } else {
        // Full update
        if (body.slug && body.slug !== existing.slug) {
@@ -215,7 +221,7 @@ export async function PUT({ request }) {
            updatedData.status, updatedData.seo_score, updatedData.published_at, finalSeoMetadata, updatedData.updated_at, id
          ]
        );
-       await logActivity(user.id, 'update_blog', `Updated blog: ${updatedData.title}`, getClientIp(request));
+       await logActivity(userId, 'update_blog', `Updated blog: ${updatedData.title}`, getClientIp(request));
     }
 
     const finalBlog = await query.get('SELECT * FROM blogs WHERE id = ?', [id]);

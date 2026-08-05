@@ -54,9 +54,12 @@ export async function POST({ request }) {
     const blog = await query.get('SELECT title FROM blogs WHERE id = ?', [blog_id]);
     if (!blog) return json({ error: 'Blog not found' }, 404);
 
+    const dbUser = await query.get('SELECT id FROM users WHERE username = ?', [user.username]);
+    if (!dbUser) return json({ error: 'User not found in DB' }, 404);
+
     const result = await query.run(
       'INSERT INTO blog_comments (blog_id, user_id, content) VALUES (?, ?, ?)',
-      [blog_id, user.id, content]
+      [blog_id, dbUser.id, content]
     );
 
     // Parse @mentions
