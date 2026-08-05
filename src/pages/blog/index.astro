@@ -55,9 +55,16 @@ const currentBlogs =
             <section class="blog-grid">
 
                 {
-                    currentBlogs.map((blog) => (
-                        <BlogCard blog={blog} />
-                    ))
+                    currentBlogs.length > 0 ? (
+                        currentBlogs.map((blog) => (
+                            <BlogCard blog={blog} />
+                        ))
+                    ) : (
+                        <div class="blog-empty">
+                            <h2>No published posts yet</h2>
+                            <p>New guides and career insights will appear here soon.</p>
+                        </div>
+                    )
                 }
 
             </section>
@@ -130,6 +137,27 @@ const currentBlogs =
     grid-template-columns:repeat(3,1fr);
     gap:30px;
     margin-top:50px;
+}
+
+.blog-empty{
+    grid-column:1 / -1;
+    text-align:center;
+    padding:60px 20px;
+    border:1px dashed #cbd5e1;
+    border-radius:16px;
+    background:#f8fafc;
+}
+
+.blog-empty h2{
+    font-size:28px;
+    font-weight:750;
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+.blog-empty p{
+    color:#64748b;
+    font-size:16px;
 }
 
 .pagination{

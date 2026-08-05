@@ -10,6 +10,8 @@ services:
     volumes:
       - ./src/data:/app/src/data
       - ./data.db:/app/data.db
+      - ./public/uploads:/app/public/uploads
+      - ./public/uploads:/app/dist/client/uploads
     env_file:
       - .env
     environment:

@@ -3844,37 +3844,16 @@ if (imageFile) {
 let response;
 
 if (id) {
-
-    // Update existing blog
+    formData.append("id", id);
     response = await fetch("/api/blog/Update", {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id,
-            title,
-            slug,
-            category,
-            author,
-            keywords,
-            canonical,
-            short_description,
-            content,
-            seo_title,
-            seo_description,
-            status
-        })
+        body: formData
     });
-
 } else {
-
-    // Create new blog
     response = await fetch("/api/blog/Create", {
         method: "POST",
         body: formData
     });
-
 }
 console.log("Status:", response.status);
 
