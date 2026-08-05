@@ -79,9 +79,18 @@ export function getSessionUser(request) {
     const parts = cookie.trim().split('=');
     if (parts[0] === COOKIE_NAME) {
       const token = decodeURIComponent(parts.slice(1).join('='));
-      return verifySessionToken(token);
+      const session = verifySessionToken(token);
+      if (session) return session;
     }
   }
+
+  // Also support Authorization: Bearer <token> for API clients
+  const authHeader = request.headers.get('authorization') || '';
+  if (authHeader.startsWith('Bearer ')) {
+    const token = authHeader.substring(7);
+    return verifySessionToken(token);
+  }
+
   return null;
 }
 

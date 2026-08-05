@@ -95,9 +95,17 @@ function initializeDatabase() {
         alt_text TEXT,
         title TEXT,
         caption TEXT,
+        description TEXT,
+        dimensions TEXT,
+        uploaded_by INTEGER,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    // Safely attempt to add new columns to an existing media table
+    db.run("ALTER TABLE media ADD COLUMN description TEXT", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN dimensions TEXT", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN uploaded_by INTEGER", (err) => {});
     // 4. Blogs Table
 db.run(`
   CREATE TABLE IF NOT EXISTS blogs (
@@ -108,6 +116,8 @@ db.run(`
     slug TEXT UNIQUE NOT NULL,
 
     category TEXT NOT NULL,
+    
+    subcategory TEXT,
 
     short_description TEXT,
 
@@ -128,6 +138,8 @@ db.run(`
     views INTEGER DEFAULT 0,
     
     seo_score INTEGER DEFAULT 0,
+    
+    published_at DATETIME,
 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
@@ -135,8 +147,10 @@ db.run(`
   )
 `);
 
-    // Safely attempt to add seo_score column to an existing blogs table
+    // Safely attempt to add new columns to an existing blogs table
     db.run("ALTER TABLE blogs ADD COLUMN seo_score INTEGER DEFAULT 0", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN subcategory TEXT", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN published_at DATETIME", (err) => {});
 
     // 4. Jobs / Placements Table
     db.run(`
