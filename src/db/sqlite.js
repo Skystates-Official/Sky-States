@@ -50,11 +50,20 @@ function initializeDatabase() {
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
+        email TEXT UNIQUE,
         password_hash TEXT NOT NULL,
         role TEXT DEFAULT 'editor',
+        reset_token TEXT,
+        reset_token_expiry DATETIME,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    // Safely attempt to add new columns to an existing table
+    db.run("ALTER TABLE users ADD COLUMN email TEXT", (err) => {});
+    db.run("ALTER TABLE users ADD COLUMN reset_token TEXT", (err) => {});
+    db.run("ALTER TABLE users ADD COLUMN reset_token_expiry DATETIME", (err) => {});
+
 
     // 2. Pages Table (Dynamic Routes and Content Blocks)
     db.run(`

@@ -7,11 +7,15 @@ const COOKIE_NAME = 'admin_session';
 export const ROLES = {
   ADMIN: 'admin',
   EDITOR: 'editor',
+  WRITER: 'writer',
+  SEO: 'seo',
 };
 
 export const ROLE_LABELS = {
   admin: 'Administrator',
   editor: 'Editor',
+  writer: 'Content Writer',
+  seo: 'SEO Specialist',
   super_admin: 'Administrator',
 };
 
@@ -101,7 +105,7 @@ export function requireFullAdmin(request) {
 
 export function requireAdminAccess(request) {
   const user = requireAuth(request);
-  if (!hasRole(user, ROLES.ADMIN, ROLES.EDITOR)) return null;
+  if (!hasRole(user, ROLES.ADMIN, ROLES.EDITOR, ROLES.WRITER, ROLES.SEO)) return null;
   return user;
 }
 
