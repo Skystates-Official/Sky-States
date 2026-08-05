@@ -139,6 +139,8 @@ db.run(`
     
     seo_score INTEGER DEFAULT 0,
     
+    seo_metadata TEXT,
+    
     published_at DATETIME,
 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -151,6 +153,7 @@ db.run(`
     db.run("ALTER TABLE blogs ADD COLUMN seo_score INTEGER DEFAULT 0", (err) => {});
     db.run("ALTER TABLE blogs ADD COLUMN subcategory TEXT", (err) => {});
     db.run("ALTER TABLE blogs ADD COLUMN published_at DATETIME", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN seo_metadata TEXT", (err) => {});
 
     // 4. Jobs / Placements Table
     db.run(`

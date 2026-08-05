@@ -103,7 +103,7 @@ export async function POST({ request }) {
     const { 
       title, slug, category, subcategory, short_description, content, 
       image, author, tags, seo_title, seo_description, status, 
-      seo_score, published_at 
+      seo_score, published_at, seo_metadata 
     } = body;
 
     if (!title || !slug || !category || !author || !status || !image || !tags) {
@@ -115,15 +115,17 @@ export async function POST({ request }) {
       return json({ error: 'A blog with this slug already exists.' }, 409);
     }
 
+    const finalSeoMetadata = seo_metadata ? (typeof seo_metadata === 'string' ? seo_metadata : JSON.stringify(seo_metadata)) : null;
+
     const result = await query.run(
       `INSERT INTO blogs (
         title, slug, category, subcategory, short_description, content, 
-        image, author, tags, seo_title, seo_description, status, seo_score, published_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        image, author, tags, seo_title, seo_description, status, seo_score, published_at, seo_metadata
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         title, slug, category, subcategory || null, short_description || null, content || '', 
         image, author, tags, seo_title || null, seo_description || null, status, 
-        seo_score || 0, published_at || null
+        seo_score || 0, published_at || null, finalSeoMetadata
       ]
     );
 
@@ -167,11 +169,16 @@ export async function PUT({ request }) {
 
     // If SEO, only allow updating seo fields
     if (isSeo && !isFullAccess && !isWriterOwn) {
+       const finalSeoMetadata = body.seo_metadata !== undefined 
+         ? (typeof body.seo_metadata === 'string' ? body.seo_metadata : JSON.stringify(body.seo_metadata)) 
+         : existing.seo_metadata;
+         
        await query.run(
-         'UPDATE blogs SET seo_title = ?, seo_description = ?, seo_score = ?, updated_at = ? WHERE id = ?',
+         'UPDATE blogs SET seo_title = ?, seo_description = ?, seo_score = ?, seo_metadata = ?, updated_at = ? WHERE id = ?',
          [body.seo_title !== undefined ? body.seo_title : existing.seo_title, 
           body.seo_description !== undefined ? body.seo_description : existing.seo_description, 
           body.seo_score !== undefined ? body.seo_score : existing.seo_score, 
+          finalSeoMetadata,
           updatedData.updated_at, id]
        );
        await logActivity(user.id, 'update_blog_seo', `Updated SEO for blog: ${existing.title}`, getClientIp(request));
@@ -182,16 +189,20 @@ export async function PUT({ request }) {
          if (duplicate) return json({ error: 'Slug is already in use.' }, 409);
        }
 
+       const finalSeoMetadata = updatedData.seo_metadata !== undefined 
+         ? (typeof updatedData.seo_metadata === 'string' ? updatedData.seo_metadata : JSON.stringify(updatedData.seo_metadata)) 
+         : null;
+
        await query.run(
          `UPDATE blogs SET 
             title = ?, slug = ?, category = ?, subcategory = ?, short_description = ?, 
             content = ?, image = ?, author = ?, tags = ?, seo_title = ?, seo_description = ?, 
-            status = ?, seo_score = ?, published_at = ?, updated_at = ?
+            status = ?, seo_score = ?, published_at = ?, seo_metadata = ?, updated_at = ?
           WHERE id = ?`,
          [
            updatedData.title, updatedData.slug, updatedData.category, updatedData.subcategory, updatedData.short_description,
            updatedData.content, updatedData.image, updatedData.author, updatedData.tags, updatedData.seo_title, updatedData.seo_description,
-           updatedData.status, updatedData.seo_score, updatedData.published_at, updatedData.updated_at, id
+           updatedData.status, updatedData.seo_score, updatedData.published_at, finalSeoMetadata, updatedData.updated_at, id
          ]
        );
        await logActivity(user.id, 'update_blog', `Updated blog: ${updatedData.title}`, getClientIp(request));
