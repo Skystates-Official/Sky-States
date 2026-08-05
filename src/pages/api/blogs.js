@@ -166,6 +166,8 @@ export async function PUT({ request }) {
 
     const updatedData = { ...existing, ...body };
     updatedData.updated_at = new Date().toISOString();
+    // Enforce that status can only be changed via the dedicated /workflow endpoint
+    updatedData.status = existing.status;
 
     // If SEO, only allow updating seo fields
     if (isSeo && !isFullAccess && !isWriterOwn) {
