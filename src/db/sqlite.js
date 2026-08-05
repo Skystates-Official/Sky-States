@@ -98,6 +98,8 @@ function initializeDatabase() {
         description TEXT,
         dimensions TEXT,
         uploaded_by INTEGER,
+        access_level TEXT DEFAULT 'public',
+        allowed_roles TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
@@ -106,6 +108,22 @@ function initializeDatabase() {
     db.run("ALTER TABLE media ADD COLUMN description TEXT", (err) => {});
     db.run("ALTER TABLE media ADD COLUMN dimensions TEXT", (err) => {});
     db.run("ALTER TABLE media ADD COLUMN uploaded_by INTEGER", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN access_level TEXT DEFAULT 'public'", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN allowed_roles TEXT", (err) => {});
+
+    // 3.5 File Versions Table (Version History)
+    db.run(`
+      CREATE TABLE IF NOT EXISTS file_versions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        media_id INTEGER,
+        filename TEXT NOT NULL,
+        path TEXT NOT NULL,
+        size INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE
+      )
+    `);
+
     // 4. Blogs Table
 db.run(`
   CREATE TABLE IF NOT EXISTS blogs (
