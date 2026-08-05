@@ -126,12 +126,17 @@ db.run(`
     status TEXT DEFAULT 'draft',
 
     views INTEGER DEFAULT 0,
+    
+    seo_score INTEGER DEFAULT 0,
 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
+
+    // Safely attempt to add seo_score column to an existing blogs table
+    db.run("ALTER TABLE blogs ADD COLUMN seo_score INTEGER DEFAULT 0", (err) => {});
 
     // 4. Jobs / Placements Table
     db.run(`
