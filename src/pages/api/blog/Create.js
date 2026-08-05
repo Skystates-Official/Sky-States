@@ -28,7 +28,8 @@ const short_description = formData.get("short_description");
 const content = formData.get("content");
 
 const author = formData.get("author");
-const tags = formData.get("tags");
+const keywords = formData.get("keywords");
+const canonical = formData.get("canonical");
 
 const seo_title = formData.get("seo_title");
 const seo_description = formData.get("seo_description");
@@ -57,39 +58,42 @@ if (image && image.size > 0) {
     imagePath = `/uploads/blogs/${fileName}`;
 } 
 console.log("Image Path:", imagePath);
-        await sqlQuery.run(
-             `
-           INSERT INTO blogs
+        
+             await sqlQuery.run(
+`
+INSERT INTO blogs
 (
 title,
 slug,
 category,
+author,
+keywords,
+canonical,
 short_description,
 content,
 image,
-author,
-tags,
 seo_title,
 seo_description,
 status
 )
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-       `,
-        [
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+`,
+[
 title,
 slug,
 category,
+author,
+keywords,
+canonical,
 short_description,
 content,
 imagePath,
-author,
-tags,
 seo_title,
 seo_description,
 status
 ]
-        );
-
+);
+        
 
         return new Response(
             JSON.stringify({

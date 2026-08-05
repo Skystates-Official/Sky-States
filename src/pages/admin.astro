@@ -134,6 +134,7 @@ const statsBlogs = blogs.length;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -219,6 +220,12 @@ const statsBlogs = blogs.length;
             box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
         }
     </style>
+ <script
+src="https://cdn.tiny.cloud/1/942vgdontdhunk85s5vhrtp0a53k1xiq4u4hdovzmszrf60y/tinymce/8/tinymce.min.js"
+referrerpolicy="origin"
+crossorigin="anonymous">
+</script>
+  
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
     {!authenticated && <Header />}
@@ -479,8 +486,7 @@ const statsBlogs = blogs.length;
                     </div>
                 </div>
             </div>
-            <!-- BLOGS PANEL -->
-<!-- BLOGS PANEL -->
+
 <!-- ================= BLOG MANAGEMENT ================= -->
 
 <div id="panel-blogs" class="tab-panel hidden">
@@ -1148,7 +1154,7 @@ const statsBlogs = blogs.length;
                             <div class="border-b border-outline-variant/10 pb-4">
                                 <h3 class="font-headline-md text-lg text-primary flex items-center gap-2">
                                     <span class="material-symbols-outlined">help</span>
-                                    <span>Why Should You Choose SkyStates? (6 Pillars)</span>
+                                    <span>Why Should You Choose Sky States? (6 Pillars)</span>
                                 </h3>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1949,6 +1955,7 @@ const statsBlogs = blogs.length;
 
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl">
 
+
             <!-- Header -->
 
             <div class="flex justify-between items-center border-b px-8 py-6">
@@ -1961,38 +1968,41 @@ const statsBlogs = blogs.length;
 
                 </h2>
 
+
                 <button
                     type="button"
                     onclick="closeBlogModal()">
 
                     <span class="material-symbols-outlined text-3xl">
-
                         close
-
                     </span>
 
                 </button>
 
             </div>
 
+
+
             <form
                 id="blog-form"
                 onsubmit="saveBlog(event)"
                 class="p-8 space-y-8">
 
+
                 <input
                     type="hidden"
                     id="form-blog-id">
+
+
 
                 <!-- Featured Image -->
 
                 <div>
 
                     <label class="font-semibold mb-2 block">
-
                         Featured Image
-
                     </label>
+
 
                     <input
                         id="form-blog-image"
@@ -2000,39 +2010,46 @@ const statsBlogs = blogs.length;
                         accept="image/*"
                         class="w-full border rounded-xl p-3">
 
+
                     <img
                         id="blog-image-preview"
                         class="hidden mt-4 w-52 rounded-xl border">
 
                 </div>
 
+
+
+
                 <!-- Title -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Blog Title
-
                     </label>
 
-                   <input
-    id="form-blog-title"
-    type="text"
-    required
-    oninput="generateBlogSlug()"
-    class="w-full border rounded-xl p-3">
+
+                    <input
+                        id="form-blog-title"
+                        type="text"
+                        required
+                        oninput="generateBlogSlug()"
+                        class="w-full border rounded-xl p-3">
+
                 </div>
+
+
+
+
 
                 <!-- Slug -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Slug
-
                     </label>
+
 
                     <input
                         id="form-blog-slug"
@@ -2040,15 +2057,18 @@ const statsBlogs = blogs.length;
 
                 </div>
 
+
+
+
+
                 <!-- Category -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Category
-
                     </label>
+
 
                     <input
                         id="form-blog-category"
@@ -2056,15 +2076,18 @@ const statsBlogs = blogs.length;
 
                 </div>
 
+
+
+
+
                 <!-- Author -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Author
-
                     </label>
+
 
                     <input
                         id="form-blog-author"
@@ -2073,119 +2096,214 @@ const statsBlogs = blogs.length;
 
                 </div>
 
-                <!-- Tags -->
+
+
+
+
+                <!-- Meta Keywords -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
-                        Tags
-
+                        Meta Keywords
                     </label>
 
-                    <input
-                        id="form-blog-tags"
-                        class="w-full border rounded-xl p-3">
+
+                    <textarea
+                        id="form-blog-keywords"
+                        rows="3"
+                        placeholder="keyword 1, keyword 2, keyword 3"
+                        class="w-full border rounded-xl p-3"></textarea>
+
 
                 </div>
+
+
+
+
 
                 <!-- Short Description -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Short Description
-
                     </label>
+
 
                     <textarea
                         id="form-blog-short"
                         rows="4"
                         class="w-full border rounded-xl p-3"></textarea>
 
+
                 </div>
 
-                <!-- Content -->
+
+
+
+
+                <!-- Blog Content -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         Blog Content
-
                     </label>
+
 
                     <textarea
                         id="form-blog-content"
                         rows="15"
                         class="w-full border rounded-xl p-3"></textarea>
 
+
                 </div>
 
-                <!-- SEO -->
+
+
+
+
+                <!-- SEO Section -->
 
                 <div class="grid grid-cols-2 gap-6">
+
+
+
+                    <!-- SEO Title -->
 
                     <div>
 
                         <label class="font-semibold block mb-2">
-
                             SEO Title
-
                         </label>
+
 
                         <input
                             id="form-blog-seo-title"
                             class="w-full border rounded-xl p-3">
 
+
                     </div>
+
+
+
+
+                    <!-- Status -->
 
                     <div>
 
                         <label class="font-semibold block mb-2">
-
                             Status
-
                         </label>
+
 
                         <select
                             id="form-blog-status"
                             class="w-full border rounded-xl p-3">
 
+
                             <option value="published">
-
                                 Published
-
                             </option>
+
 
                             <option value="draft">
-
                                 Draft
-
                             </option>
+
 
                         </select>
 
                     </div>
 
+
                 </div>
+
+
+
+
+
+                <!-- SEO Description -->
 
                 <div>
 
                     <label class="font-semibold block mb-2">
-
                         SEO Description
-
                     </label>
+
 
                     <textarea
                         id="form-blog-seo-description"
                         rows="4"
                         class="w-full border rounded-xl p-3"></textarea>
 
+
                 </div>
 
+
+
+
+
+                <!-- Canonical URL -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Canonical URL
+                    </label>
+
+
+                    <input
+                        id="form-blog-canonical"
+                        type="url"
+                        placeholder="https://example.com/blog/page-url"
+                        class="w-full border rounded-xl p-3">
+
+
+                </div>
+
+
+
+
+
+                <!-- Submit Button -->
+
+                <div class="flex justify-end gap-4">
+
+
+                    <button
+                        type="button"
+                        onclick="closeBlogModal()"
+                        class="px-6 py-3 rounded-xl border">
+
+                        Cancel
+
+                    </button>
+
+
+
+                    <button
+                        type="submit"
+                        class="px-8 py-3 rounded-xl bg-sky-600 text-white font-semibold">
+
+                        Save Blog
+
+                    </button>
+
+
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
                 <!-- Footer -->
 
                 <div class="flex justify-end gap-4 pt-6 border-t">
@@ -3652,6 +3770,9 @@ window.generateBlogSlug = function () {
 window.saveBlog = async function (e) {
 
     e.preventDefault();
+    if (tinymce.get("form-blog-content")) {
+    tinymce.get("form-blog-content").save();
+}
 
     const id = document.getElementById("form-blog-id").value;
 
@@ -3659,9 +3780,16 @@ window.saveBlog = async function (e) {
     const slug = document.getElementById("form-blog-slug").value;
     const category = document.getElementById("form-blog-category").value;
     const author = document.getElementById("form-blog-author").value;
-    const tags = document.getElementById("form-blog-tags").value;
+  const keywords = document.getElementById("form-blog-keywords").value;
+const canonical = document.getElementById("form-blog-canonical").value;
     const short_description = document.getElementById("form-blog-short").value;
-    const content = document.getElementById("form-blog-content").value;
+  let content = "";
+
+if (tinymce.get("form-blog-content")) {
+    content = tinymce.get("form-blog-content").getContent();
+} else {
+    content = document.getElementById("form-blog-content").value;
+}
     const seo_title = document.getElementById("form-blog-seo-title").value;
     const seo_description = document.getElementById("form-blog-seo-description").value;
     const status = document.getElementById("form-blog-status").value;
@@ -3673,7 +3801,8 @@ window.saveBlog = async function (e) {
         slug,
         category,
         author,
-        tags,
+        keywords,
+        canonical,
         short_description,
         content,
         seo_title,
@@ -3700,7 +3829,8 @@ formData.append("title", title);
 formData.append("slug", slug);
 formData.append("category", category);
 formData.append("author", author);
-formData.append("tags", tags);
+formData.append("keywords", keywords);
+formData.append("canonical", canonical);
 formData.append("short_description", short_description);
 formData.append("content", content);
 formData.append("seo_title", seo_title);
@@ -3726,7 +3856,8 @@ if (id) {
             slug,
             category,
             author,
-            tags,
+            keywords,
+            canonical,
             short_description,
             content,
             seo_title,
@@ -4097,6 +4228,34 @@ catch(error){
                     alert('Request failed.');
                 }
             }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    tinymce.init({
+
+        selector:"#form-blog-content",
+
+        height:600,
+
+        menubar:true,
+
+        plugins:[
+            "lists",
+            "link",
+            "image",
+            "table",
+            "code"
+        ],
+
+        toolbar:
+        "undo redo | bold italic | h1 h2 | bullist numlist | link image table | code"
+
+    });
+
+});
+
+
 
 
         </script>
