@@ -169,6 +169,14 @@ export async function PUT({ request }) {
     // Enforce that status can only be changed via the dedicated /workflow endpoint
     updatedData.status = existing.status;
 
+    // --- VERSION CONTROL BACKUP ---
+    // Before overwriting anything, snapshot the CURRENT state into blog_versions
+    await query.run(
+       'INSERT INTO blog_versions (blog_id, user_id, title, content, seo_metadata) VALUES (?, ?, ?, ?, ?)',
+       [existing.id, user.id, existing.title, existing.content, existing.seo_metadata]
+    );
+    // ------------------------------
+
     // If SEO, only allow updating seo fields
     if (isSeo && !isFullAccess && !isWriterOwn) {
        const finalSeoMetadata = body.seo_metadata !== undefined 
