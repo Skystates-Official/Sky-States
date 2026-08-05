@@ -221,12 +221,6 @@ const statsBlogs = blogs.length;
             box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
         }
     </style>
- <script
-src="https://cdn.tiny.cloud/1/942vgdontdhunk85s5vhrtp0a53k1xiq4u4hdovzmszrf60y/tinymce/8/tinymce.min.js"
-referrerpolicy="origin"
-crossorigin="anonymous">
-</script>
-  
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans overflow-x-hidden">
     {!authenticated && <Header />}
@@ -2152,12 +2146,32 @@ crossorigin="anonymous">
                         Blog Content
                     </label>
 
-
-                    <textarea
-                        id="form-blog-content"
-                        rows="15"
-                        class="w-full border rounded-xl p-3"></textarea>
-
+                    <div class="blog-editor border rounded-xl overflow-hidden">
+                        <div class="blog-editor-toolbar flex flex-wrap gap-1 border-b bg-slate-50 p-2">
+                            <button type="button" class="blog-editor-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                            <button type="button" class="blog-editor-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                            <button type="button" class="blog-editor-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+                            <span class="mx-1 w-px self-stretch bg-slate-200"></span>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="h2" title="Heading 2">H2</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="h3" title="Heading 3">H3</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="p" title="Paragraph">P</button>
+                            <span class="mx-1 w-px self-stretch bg-slate-200"></span>
+                            <button type="button" class="blog-editor-btn" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="createLink" title="Insert link">Link</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="removeFormat" title="Clear formatting">Clear</button>
+                        </div>
+                        <div
+                            id="form-blog-content-editor"
+                            class="blog-editor-surface min-h-[280px] p-4 outline-none"
+                            contenteditable="true"
+                            role="textbox"
+                            aria-multiline="true"
+                            data-placeholder="Write your blog content here..."
+                        ></div>
+                        <textarea id="form-blog-content" class="hidden" aria-hidden="true"></textarea>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Use the toolbar for headings, lists, and links. No external editor required.</p>
 
                 </div>
 
@@ -3646,6 +3660,12 @@ window.openAddBlogModal = function () {
     document.getElementById("form-blog-id").value = "";
 
     document.getElementById("blog-modal-title").innerText = "Add New Blog";
+    setBlogEditorContent("");
+    const preview = document.getElementById("blog-image-preview");
+    if (preview) {
+        preview.src = "";
+        preview.classList.add("hidden");
+    }
 
     blogModal.classList.remove("hidden");
 }
@@ -3679,9 +3699,10 @@ window.editBlog = async function(id) {
         document.getElementById("form-blog-slug").value = blog.slug || "";
         document.getElementById("form-blog-category").value = blog.category || "";
         document.getElementById("form-blog-author").value = blog.author || "";
-        document.getElementById("form-blog-tags").value = blog.tags || "";
+        document.getElementById("form-blog-keywords").value = blog.keywords || "";
+        document.getElementById("form-blog-canonical").value = blog.canonical || "";
         document.getElementById("form-blog-short").value = blog.short_description || "";
-        document.getElementById("form-blog-content").value = blog.content || "";
+        setBlogEditorContent(blog.content || "");
         document.getElementById("form-blog-seo-title").value = blog.seo_title || "";
         document.getElementById("form-blog-seo-description").value = blog.seo_description || "";
         document.getElementById("form-blog-status").value = blog.status || "published";
@@ -3771,9 +3792,6 @@ window.generateBlogSlug = function () {
 window.saveBlog = async function (e) {
 
     e.preventDefault();
-    if (tinymce.get("form-blog-content")) {
-    tinymce.get("form-blog-content").save();
-}
 
     const id = document.getElementById("form-blog-id").value;
 
@@ -3781,16 +3799,10 @@ window.saveBlog = async function (e) {
     const slug = document.getElementById("form-blog-slug").value;
     const category = document.getElementById("form-blog-category").value;
     const author = document.getElementById("form-blog-author").value;
-  const keywords = document.getElementById("form-blog-keywords").value;
-const canonical = document.getElementById("form-blog-canonical").value;
+    const keywords = document.getElementById("form-blog-keywords").value;
+    const canonical = document.getElementById("form-blog-canonical")?.value || "";
     const short_description = document.getElementById("form-blog-short").value;
-  let content = "";
-
-if (tinymce.get("form-blog-content")) {
-    content = tinymce.get("form-blog-content").getContent();
-} else {
-    content = document.getElementById("form-blog-content").value;
-}
+    const content = getBlogEditorContent();
     const seo_title = document.getElementById("form-blog-seo-title").value;
     const seo_description = document.getElementById("form-blog-seo-description").value;
     const status = document.getElementById("form-blog-status").value;
@@ -4210,35 +4222,106 @@ catch(error){
             }
 
 
+function syncBlogEditorToTextarea() {
+    const editor = document.getElementById("form-blog-content-editor");
+    const textarea = document.getElementById("form-blog-content");
+    if (!editor || !textarea) return;
+    const html = editor.innerHTML.trim();
+    textarea.value = html === "<br>" ? "" : html;
+}
+
+window.getBlogEditorContent = function () {
+    syncBlogEditorToTextarea();
+    return document.getElementById("form-blog-content")?.value || "";
+};
+
+window.setBlogEditorContent = function (html) {
+    const editor = document.getElementById("form-blog-content-editor");
+    const textarea = document.getElementById("form-blog-content");
+    const value = html || "";
+    if (editor) editor.innerHTML = value;
+    if (textarea) textarea.value = value;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+    const editor = document.getElementById("form-blog-content-editor");
+    if (!editor) return;
 
-    tinymce.init({
+    document.querySelectorAll(".blog-editor-btn").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => e.preventDefault());
+        btn.addEventListener("click", () => {
+            const cmd = btn.dataset.cmd;
+            if (!cmd) return;
+            editor.focus();
 
-        selector:"#form-blog-content",
+            if (cmd === "createLink") {
+                const url = prompt("Enter link URL", "https://");
+                if (url) document.execCommand("createLink", false, url);
+                syncBlogEditorToTextarea();
+                return;
+            }
 
-        height:600,
+            if (cmd === "formatBlock") {
+                document.execCommand("formatBlock", false, btn.dataset.value || "p");
+                syncBlogEditorToTextarea();
+                return;
+            }
 
-        menubar:true,
-
-        plugins:[
-            "lists",
-            "link",
-            "image",
-            "table",
-            "code"
-        ],
-
-        toolbar:
-        "undo redo | bold italic | h1 h2 | bullist numlist | link image table | code"
-
+            document.execCommand(cmd, false, null);
+            syncBlogEditorToTextarea();
+        });
     });
 
+    editor.addEventListener("input", syncBlogEditorToTextarea);
+    editor.addEventListener("blur", syncBlogEditorToTextarea);
 });
 
-
-
-
         </script>
+
+        <style>
+            .blog-editor-btn {
+                min-width: 2rem;
+                height: 2rem;
+                padding: 0 0.5rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 0.5rem;
+                background: #fff;
+                color: #0f172a;
+                font-size: 0.75rem;
+                font-weight: 700;
+                line-height: 1;
+            }
+            .blog-editor-btn:hover {
+                background: #e0f2fe;
+                border-color: #7dd3fc;
+            }
+            .blog-editor-surface:empty:before {
+                content: attr(data-placeholder);
+                color: #94a3b8;
+            }
+            .blog-editor-surface h2 {
+                font-size: 1.5rem;
+                font-weight: 800;
+                margin: 1rem 0 0.5rem;
+            }
+            .blog-editor-surface h3 {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin: 0.85rem 0 0.45rem;
+            }
+            .blog-editor-surface p {
+                margin: 0 0 0.75rem;
+            }
+            .blog-editor-surface ul,
+            .blog-editor-surface ol {
+                margin: 0.75rem 0;
+                padding-left: 1.25rem;
+            }
+            .blog-editor-surface a {
+                color: #0369a1;
+                text-decoration: underline;
+            }
+        </style>
     )}
 </body>
 </html>
