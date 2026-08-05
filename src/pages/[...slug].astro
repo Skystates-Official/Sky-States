@@ -8,6 +8,13 @@ export const prerender = false;
 const { slug } = Astro.params;
 const cleanSlug = slug || '';
 
+// Reserved app routes must not be handled by the CMS catch-all.
+const reservedRoots = new Set(['blog', 'api', 'admin', 'live-jobs', 'checkout', 'reviews', 'programs']);
+const rootSegment = cleanSlug.split('/')[0];
+if (reservedRoots.has(rootSegment)) {
+  return Astro.redirect('/404');
+}
+
 // Fetch page data from SQLite
 let page = null;
 try {
