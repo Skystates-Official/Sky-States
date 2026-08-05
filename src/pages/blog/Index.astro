@@ -1,170 +1,186 @@
-<!-- ---
+---
 import "../../styles/global.css";
+
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
-const blogs = [
-  {
-    title: "How to Become a Data Scientist",
-    category: "Data Science",
-    date: "July 31, 2026",
-    image: "/assets/blog/blog1.jpg",
-    description: "Learn Data Science from scratch with Python and Machine Learning."
-  },
-  {
-    title: "DevOps Complete Guide",
-    category: "DevOps",
-    date: "July 30, 2026",
-    image: "/assets/blog/blog2.jpg",
-    description: "Everything you need to know about DevOps tools and CI/CD."
-  },
-  {
-    title: "Cloud Computing Roadmap",
-    category: "Cloud",
-    date: "July 29, 2026",
-    image: "/assets/blog/blog3.jpg",
-    description: "Start your cloud career with AWS, Azure and GCP."
-  }
-];
+import BlogHero from "../../components/blog/BlogHero.astro";
+import BlogCard from "../../components/blog/BlogCard.astro";
+
+import { getBlogs } from "../../lib/blogs.js";
+
+export const prerender = false;
+
+const blogs = await getBlogs();
+
+const postsPerPage = 6;
+
+const currentPage =
+    Number(Astro.url.searchParams.get("page")) || 1;
+
+const totalPages =
+    Math.ceil(blogs.length / postsPerPage);
+
+const start =
+    (currentPage - 1) * postsPerPage;
+
+const currentBlogs =
+    blogs.slice(start, start + postsPerPage);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
 
-<link
-href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-rel="stylesheet"/>
-
-<title>Blog | Sky States</title>
-
+    <title>Blog</title>
 </head>
 
-<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<body>
 
-<Header />
+    <Header />
 
-<main class="pt-20">
+    <main class="blog-page mt-20">
 
-<section class="py-20">
+        <div class="blog-container">
 
-<div class="max-w-6xl mx-auto text-center px-6">
+            <BlogHero />
 
-<h1 class="text-5xl font-bold">
+            <section class="blog-grid">
 
-Guides, Tutorials & Software Insights
+                {
+                    currentBlogs.map((blog) => (
+                        <BlogCard blog={blog} />
+                    ))
+                }
 
-</h1>
+            </section>
 
-<p class="text-secondary mt-5">
+            {
+                totalPages > 1 && (
 
-Learn Data Science, AI, DevOps, Cloud Computing,
-Cyber Security and Career Guidance.
+                    <nav class="pagination">
 
-</p>
+                        {
+                            currentPage > 1 && (
+                                <a href={`/blog?page=${currentPage - 1}`}>
+                                    ← Previous
+                                </a>
+                            )
+                        }
 
-</div>
+                        {
+                            Array.from(
+                                { length: totalPages },
+                                (_, index) => index + 1
+                            ).map((page) => (
 
-</section>
-<section class="pb-16">
+                                <a
+                                    href={`/blog?page=${page}`}
+                                    class={page === currentPage ? "active" : ""}
+                                >
+                                    {page}
+                                </a>
 
-<div class="max-w-6xl mx-auto px-6">
+                            ))
+                        }
 
-<div class="grid md:grid-cols-2 gap-6">
+                        {
+                            currentPage < totalPages && (
+                                <a href={`/blog?page=${currentPage + 1}`}>
+                                    Next →
+                                </a>
+                            )
+                        }
 
-<select
-class="border rounded-xl p-4 w-full">
+                    </nav>
 
-<option>Browse by Category</option>
+                )
+            }
 
-<option>Data Science</option>
+        </div>
 
-<option>Cloud</option>
+    </main>
 
-<option>DevOps</option>
-
-<option>Cyber Security</option>
-
-</select>
-
-<input
-
-type="text"
-
-placeholder="Search Articles..."
-
-class="border rounded-xl p-4 w-full"
-
-/>
-
-</div>
-
-</div>
-
-</section>
-<section class="pb-20">
-
-  <div class="max-w-7xl mx-auto px-6">
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      {
-        blogs.map((blog) => (
-
-          <article class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-lg transition">
-
-            <img
-              src={blog.image}
-              alt={blog.title}
-              class="w-full h-56 object-cover"
-            />
-
-            <div class="p-6">
-
-              <span class="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                {blog.category}
-              </span>
-
-              <p class="text-sm text-gray-500 mb-2">
-                {blog.date}
-              </p>
-
-              <h2 class="text-xl font-bold mb-3">
-                {blog.title}
-              </h2>
-
-              <p class="text-gray-600 mb-5">
-                {blog.description}
-              </p>
-
-              <a
-                href="#"
-                class="text-blue-600 font-semibold hover:underline"
-              >
-                Read More →
-              </a>
-
-            </div>
-
-          </article>
-
-        ))
-      }
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<Footer />
+    <Footer />
 
 </body>
+</html>
 
-</html> -->
+<style>
+.blog-page{
+    width:100%;
+}
+
+.blog-container{
+    max-width:1400px;
+    width:100%;
+    margin:0 auto;
+    padding:20px 25px 80px;
+}
+
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    margin-top:50px;
+}
+
+.pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:70px;
+    flex-wrap:wrap;
+}
+
+.pagination a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:45px;
+    height:42px;
+    padding:0 16px;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:600;
+    transition:.3s;
+}
+
+.pagination a:hover{
+    background:#005d90;
+    color:white;
+    border-color:#005d90;
+}
+
+.pagination .active{
+    background:#005d90;
+    color:white;
+    border-color:#005d90;
+}
+
+@media(max-width:1024px){
+    .blog-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px){
+    .blog-container{
+        padding:20px 15px 60px;
+    }
+
+    .blog-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
