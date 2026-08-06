@@ -9,6 +9,7 @@ function getTransporter() {
   const user = import.meta.env.SMTP_USER || process.env.SMTP_USER;
   const pass = import.meta.env.SMTP_PASS || process.env.SMTP_PASS;
 
+
   if (!host || !user || !pass) {
     return null;
   }
@@ -23,6 +24,7 @@ function getTransporter() {
 
 function getFromAddress() {
   return import.meta.env.SMTP_FROM || process.env.SMTP_FROM || 'Sky States <support@skystates.us>';
+
 }
 
 async function wasEmailSent(referenceId, emailType) {
@@ -81,6 +83,7 @@ export async function sendPaymentConfirmationEmail({
     from: getFromAddress(),
     to,
     replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+
     subject,
     html,
   });
@@ -102,6 +105,7 @@ export async function sendFreeEnrollmentEmail({ to, customerName, courseName, or
     from: getFromAddress(),
     to,
     replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+
     subject: `Sky States — Enrollment confirmed (${orderRef})`,
     html: `
       <div style="font-family: Inter, Arial, sans-serif; color: #0f172a; line-height: 1.6;">
@@ -336,5 +340,6 @@ export async function sendReviewUserAutoReplyEmail({ name, email }) {
 
   return { sent: true };
 }
+
 
 

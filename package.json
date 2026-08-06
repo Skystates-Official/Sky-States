@@ -2,6 +2,11 @@
   "name": "sky-states-advance",
   "type": "module",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Skystates-Official/Sky-States.git"
+  },
+  "homepage": "https://skystates.us",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

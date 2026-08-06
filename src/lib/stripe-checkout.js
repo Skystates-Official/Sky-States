@@ -100,6 +100,21 @@ export function formatPaymentMethod(type) {
   return labels[type] || type || 'Card';
 }
 
+export function getCheckoutPaymentMethodTypes() {
+  // Only include methods activated in Stripe Dashboard:
+  // https://dashboard.stripe.com/settings/payment_methods
+  // Affirm and PayPal require separate dashboard activation.
+  return [
+    'card',
+    'link',
+    'us_bank_account',
+    'afterpay_clearpay',
+    'klarna',
+    'cashapp',
+    'amazon_pay',
+  ];
+}
+
 export function buildCheckoutSessionParams({
   email,
   name,
@@ -121,7 +136,7 @@ export function buildCheckoutSessionParams({
     mode: 'payment',
     customer_email: email,
     client_reference_id: orderRef,
-    payment_method_types: ['card', 'link', 'us_bank_account', 'afterpay_clearpay', 'klarna', 'cashapp', 'amazon_pay'],
+    payment_method_types: getCheckoutPaymentMethodTypes(),
     billing_address_collection: 'auto',
     phone_number_collection: { enabled: true },
     line_items: [

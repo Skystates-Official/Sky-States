@@ -10,12 +10,11 @@
     "vision_title": "Our Mission",
     "vision_desc": "Sky States aims to give technology education via live sessions, practical projects, personalized mentorship, and guidance. Every learning experience is built to provide professionals with practical skills, confidence, and the ability to flourish in a fast digital economy.",
     "method_title": "What We Do",
-    "method_image": "/assets/what_we_do.png",
-    "method_desc": "Sky States provides career programs to help learners become job-ready in today's technological world. Every program has live classes that are taught by experts. These classes are combined with hands-on learning where people use tools and technology that are used in the industry. People learn by doing assignments and working in labs on projects. This helps them use the things they learn in life. The program also helps people with their careers. This includes helping them make a resume and make their LinkedIn profile better. They even have interviews to help people get ready. They also help people get certified and find a job. People get to talk to mentors all the time and get feedback that's just for them. This helps them get really good at technology and feel confident at work. It also helps them get the skills they need to do in the technology industry, which is always changing."
+    "method_desc": "SkyStates provides career programs to help learners become job-ready in today's technological world. Every program has live classes that are taught by experts. These classes are combined with hands-on learning where people use tools and technology that are used in the industry. People learn by doing assignments and working in labs on projects. This helps them use the things they learn in life. The program also helps people with their careers. This includes helping them make a resume and make their LinkedIn profile better. They even have interviews to help people get ready. They also help people get certified and find a job. People get to talk to mentors all the time and get feedback that's just for them. This helps them get really good at technology and feel confident at work. It also helps them get the skills they need to do in the technology industry, which is always changing."
   },
   "registry": {
     "legal_title": "Legal Entity Registry",
-    "legal_desc": "Sky States is a legally registered corporation in the United States, operating under strict compliance with state and federal regulations.",
+    "legal_desc": "Sky States is a legally registered corporation in the United States, operating under strict compliance.",
     "presence_title": "Physical Presence",
     "delaware_address": "1316 Wall St, Suite 2C, Everett, WA 98201, United States",
     "wyoming_address": "1316 Wall St, Suite 2C, Everett, WA 98201, United States",
@@ -53,7 +52,7 @@
       "description": "Having 15 years experience designs and improves learning programs, making sure every course goes along with industry demands and learner success."
     },
     {
-      "name": "Jasdev",
+      "name": "Jazz",
       "role": "Placement Manager (PM)",
       "photo": "/admin/Jasdev.jpeg",
       "photo_profile": "/admin/Jasdev_profile.png",
