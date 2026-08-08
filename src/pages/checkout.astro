@@ -373,11 +373,7 @@ const pricingConfig = {
                         <h2 class="text-lg font-bold text-slate-900 mb-1">
                             Complete Enrollment
                         </h2>
-                        <p class="text-sm text-slate-500 mb-6">
-                            Enter your details below — you'll pay securely on
-                            Stripe with cards, wallets, bank transfer, or
-                            buy-now-pay-later options.
-                        </p>
+                      
 
                         <form class="flex flex-col gap-6" id="payment-form">
                             <div class="flex flex-col gap-2">
@@ -407,6 +403,83 @@ const pricingConfig = {
                                     required
                                 />
                             </div>
+                            <!-- Address Information -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <!-- Country -->
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            Country *
+        </label>
+        <input
+            id="country"
+            type="text"
+            placeholder="Enter Country"
+            class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none text-sm"
+            required
+        />
+    </div>
+
+    <!-- State -->
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            State / Province *
+        </label>
+        <input
+            id="state"
+            type="text"
+            placeholder="Enter State / Province"
+            class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none text-sm"
+            required
+        />
+    </div>
+
+    <!-- City -->
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            City *
+        </label>
+        <input
+            id="city"
+            type="text"
+            placeholder="Enter City"
+            class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none text-sm"
+            required
+        />
+    </div>
+
+    <!-- ZIP -->
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            Pin / ZIP Code *
+        </label>
+        <input
+            id="zip"
+            type="text"
+            placeholder="Enter ZIP Code"
+            class="w-full h-12 px-4 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none text-sm"
+            required
+        />
+    </div>
+
+</div>
+
+<!-- Street Address -->
+<div class="flex flex-col gap-2">
+    <label class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+        Street Address *
+    </label>
+   <textarea
+    id="street"
+    placeholder="House No., Street Name, Apartment, etc."
+    class="w-full h-14 px-4 py-3 rounded-xl border border-slate-200/80 focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 outline-none text-sm resize-none"
+    required
+></textarea>
+</div>
+
+
+
 
                             <div
                                 class="rounded-2xl border border-sky-100 bg-sky-50/40 p-5 space-y-4"
@@ -1025,20 +1098,25 @@ const pricingConfig = {
                 );
             }
 
-            function getCheckoutPayload() {
-                return {
-                    email: (
-                        document.getElementById("email")?.value || ""
-                    ).trim(),
-                    name: (document.getElementById("name")?.value || "").trim(),
-                    mode: window.checkoutMode,
-                    tier: window.selectedTier,
-                    couponCode: window.activeCoupon?.code || "",
-                    courseName:
-                        document.getElementById("display-course-name")
-                            ?.textContent || "Intro Session",
-                };
-            }
+           function getCheckoutPayload() {
+    return {
+        email: (document.getElementById("email")?.value || "").trim(),
+        name: (document.getElementById("name")?.value || "").trim(),
+
+        country: (document.getElementById("country")?.value || "").trim(),
+        state: (document.getElementById("state")?.value || "").trim(),
+        city: (document.getElementById("city")?.value || "").trim(),
+        street: (document.getElementById("street")?.value || "").trim(),
+        zip: (document.getElementById("zip")?.value || "").trim(),
+
+        mode: window.checkoutMode,
+        tier: window.selectedTier,
+        couponCode: window.activeCoupon?.code || "",
+        courseName:
+            document.getElementById("display-course-name")?.textContent ||
+            "Intro Session",
+    };
+}
 
             const paymentForm = document.getElementById("payment-form");
             paymentForm?.addEventListener("submit", async (e) => {

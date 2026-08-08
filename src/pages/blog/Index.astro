@@ -11,7 +11,14 @@ import { getBlogs } from "../../lib/blogs.js";
 
 export const prerender = false;
 
-const blogs = await getBlogs();
+let blogs = [];
+
+try {
+    blogs = await getBlogs();
+} catch (error) {
+    console.error("Blog loading error:", error);
+    blogs = [];
+}
 
 const postsPerPage = 6;
 
@@ -28,11 +35,17 @@ const currentBlogs =
     blogs.slice(start, start + postsPerPage);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0" 
+    />
 
     <link
         rel="stylesheet"
@@ -40,40 +53,71 @@ const currentBlogs =
     />
 
     <title>Blog</title>
+
 </head>
+
 
 <body>
 
     <Header />
 
+
     <main class="blog-page mt-20">
 
         <div class="blog-container">
 
+
             <BlogHero />
 
-            <section class="blog-grid">
 
-                {
-                    currentBlogs.map((blog) => (
-                        <BlogCard blog={blog} />
-                    ))
-                }
+            {
+                currentBlogs.length > 0 ? (
 
-            </section>
+                    <section class="blog-grid">
+
+                        {
+                            currentBlogs.map((blog) => (
+
+                                <BlogCard blog={blog} />
+
+                            ))
+                        }
+
+                    </section>
+
+
+                ) : (
+
+                    <div class="text-center py-20">
+
+                        <h2 class="text-2xl font-bold">
+                            No blogs found
+                        </h2>
+
+                    </div>
+
+                )
+            }
+
+
 
             {
                 totalPages > 1 && (
 
                     <nav class="pagination">
 
+
                         {
                             currentPage > 1 && (
+
                                 <a href={`/blog?page=${currentPage - 1}`}>
                                     ← Previous
                                 </a>
+
                             )
                         }
+
+
 
                         {
                             Array.from(
@@ -91,32 +135,46 @@ const currentBlogs =
                             ))
                         }
 
+
+
                         {
                             currentPage < totalPages && (
+
                                 <a href={`/blog?page=${currentPage + 1}`}>
                                     Next →
                                 </a>
+
                             )
                         }
+
 
                     </nav>
 
                 )
             }
 
+
         </div>
+
 
     </main>
 
+
     <Footer />
 
+
 </body>
+
 </html>
 
+
+
 <style>
+
 .blog-page{
     width:100%;
 }
+
 
 .blog-container{
     max-width:1400px;
@@ -125,6 +183,7 @@ const currentBlogs =
     padding:20px 25px 80px;
 }
 
+
 .blog-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -132,16 +191,22 @@ const currentBlogs =
     margin-top:50px;
 }
 
+
+
 .pagination{
+
     display:flex;
     justify-content:center;
     align-items:center;
     gap:12px;
     margin-top:70px;
     flex-wrap:wrap;
+
 }
 
+
 .pagination a{
+
     display:inline-flex;
     align-items:center;
     justify-content:center;
@@ -154,33 +219,58 @@ const currentBlogs =
     color:#0f172a;
     font-weight:600;
     transition:.3s;
+
 }
+
+
 
 .pagination a:hover{
+
     background:#005d90;
     color:white;
     border-color:#005d90;
+
 }
+
+
 
 .pagination .active{
+
     background:#005d90;
     color:white;
     border-color:#005d90;
+
 }
+
+
 
 @media(max-width:1024px){
+
     .blog-grid{
+
         grid-template-columns:repeat(2,1fr);
+
     }
+
 }
+
+
 
 @media(max-width:768px){
+
     .blog-container{
+
         padding:20px 15px 60px;
+
     }
 
+
     .blog-grid{
+
         grid-template-columns:1fr;
+
     }
+
 }
+
 </style>

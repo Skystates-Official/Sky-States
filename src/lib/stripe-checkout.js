@@ -118,6 +118,12 @@ export function getCheckoutPaymentMethodTypes() {
 export function buildCheckoutSessionParams({
   email,
   name,
+  country,
+  state,
+  city,
+  street,
+  zip,
+
   courseLabel,
   paymentLabel,
   tierLabel,
@@ -137,8 +143,8 @@ export function buildCheckoutSessionParams({
     customer_email: email,
     client_reference_id: orderRef,
     payment_method_types: getCheckoutPaymentMethodTypes(),
-    billing_address_collection: 'auto',
-    phone_number_collection: { enabled: true },
+   billing_address_collection: "required",
+    phone_number_collection: {enabled: false,},
     line_items: [
       {
         price_data: {
@@ -154,25 +160,40 @@ export function buildCheckoutSessionParams({
     ],
     success_url: successUrl,
     cancel_url: cancelUrl,
-    metadata: {
-      orderRef,
-      customerEmail: email,
-      customerName: name || 'Customer',
-      courseName: courseLabel,
-      checkoutMode: checkoutMode || 'registration',
-      tier: tier || 'normal',
-      couponCode: couponCode || '',
-      totalDue: String(totalDue),
-      paymentStyle,
-      chargeAmount: String(chargeAmount),
-    },
+   metadata: {
+  orderRef,
+  customerEmail: email,
+  customerName: name || "Customer",
+
+  country: country || "",
+  state: state || "",
+  city: city || "",
+  street: street || "",
+  zip: zip || "",
+
+  courseName: courseLabel,
+  checkoutMode: checkoutMode || "registration",
+  tier: tier || "normal",
+  couponCode: couponCode || "",
+  totalDue: String(totalDue),
+  paymentStyle,
+  chargeAmount: String(chargeAmount),
+},
     payment_intent_data: {
-      metadata: {
-        orderRef,
-        customerEmail: email,
-        customerName: name || 'Customer',
-        courseName: courseLabel,
-      },
+  metadata: {
+    orderRef,
+    customerEmail: email,
+    customerName: name || "Customer",
+
+    country: country || "",
+    state: state || "",
+    city: city || "",
+    street: street || "",
+    zip: zip || "",
+
+    courseName: courseLabel,
+  },
+
     },
     custom_text: {
       submit: {

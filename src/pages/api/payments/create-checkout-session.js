@@ -11,14 +11,33 @@ const SITE_URL = import.meta.env.SITE_URL || process.env.SITE_URL || 'https://sk
 export async function POST({ request }) {
   try {
     const body = await request.json();
-    const email = (body.email || '').trim().toLowerCase();
-    const name = (body.name || '').trim();
-    const courseName = (body.courseName || 'Sky States Program').trim();
+  const email = (body.email || '').trim().toLowerCase();
+const name = (body.name || '').trim();
+const courseName = (body.courseName || 'Sky States Program').trim();
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+const country = (body.country || '').trim();
+const state = (body.state || '').trim();
+const city = (body.city || '').trim();
+const street = (body.street || '').trim();
+const zip = (body.zip || '').trim();
+
+
+if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return json({ error: 'A valid email address is required.' }, 400);
     }
-
+if (
+    !country ||
+    !state ||
+    !city ||
+    !street ||
+    !zip
+  
+) {
+    return json(
+        { error: "Please complete all required address fields." },
+        400
+    );
+}
     const orderRef = generateOrderRef();
 
     const pricing = await calculateCheckoutTotal({
@@ -50,8 +69,14 @@ export async function POST({ request }) {
 
     const session = await stripe.checkout.sessions.create(
       buildCheckoutSessionParams({
-        email,
-        name,
+    email,
+    name,
+    country,
+    state,
+    city,
+    street,
+    zip,
+    
         courseLabel: courseName,
         paymentLabel: modeLabel,
         tierLabel,

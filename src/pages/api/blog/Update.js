@@ -2,65 +2,139 @@ import { query as sqlQuery } from "../../../db/sqlite.js";
 
 export const prerender = false;
 
+
 export async function PUT({ request }) {
 
     try {
 
         const data = await request.json();
 
+
+        const {
+            id,
+            title,
+            slug,
+            category,
+            author,
+            tags,
+            keywords,
+            canonical,
+            short_description,
+            content,
+            seo_title,
+            seo_description,
+            status
+        } = data;
+
+
+
+        if (!id) {
+
+            return new Response(
+                JSON.stringify({
+                    success: false,
+                    error: "Blog ID is required"
+                }),
+                {
+                    status: 400,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+        }
+
+
+
         await sqlQuery.run(
-            `
-            UPDATE blogs
-            SET
-                title=?,
-                slug=?,
-                category=?,
-                short_description=?,
-                content=?,
-                author=?,
-                tags=?,
-                seo_title=?,
-                seo_description=?,
-                status=?
-            WHERE id=?
-            `,
-            [
-                data.title,
-                data.slug,
-                data.category,
-                data.short_description,
-                data.content,
-                data.author,
-                data.tags,
-                data.seo_title,
-                data.seo_description,
-                data.status,
-                data.id
-            ]
-        );
+`
+UPDATE blogs
+SET
+
+title = ?,
+slug = ?,
+category = ?,
+author = ?,
+tags = ?,
+keywords = ?,
+canonical = ?,
+short_description = ?,
+content = ?,
+seo_title = ?,
+seo_description = ?,
+status = ?,
+updated_at = CURRENT_TIMESTAMP
+
+WHERE id = ?
+
+`,
+[
+    title,
+    slug,
+    category,
+    author,
+    tags,
+    keywords,
+    canonical,
+    short_description,
+    content,
+    seo_title,
+    seo_description,
+    status,
+    id
+]
+);
+
+
 
         return new Response(
+
             JSON.stringify({
-                success: true
+
+                success: true,
+
+                message: "Blog updated successfully"
+
             }),
+
             {
                 status: 200,
+
                 headers: {
                     "Content-Type": "application/json"
                 }
             }
+
         );
 
-    } catch (err) {
+
+
+    } catch(error) {
+
+
+        console.error("Blog Update Error:", error);
+
+
 
         return new Response(
+
             JSON.stringify({
+
                 success: false,
-                error: err.message
+
+                error: error.message
+
             }),
+
             {
-                status: 500
+                status: 500,
+
+                headers: {
+                    "Content-Type": "application/json"
+                }
             }
+
         );
 
     }

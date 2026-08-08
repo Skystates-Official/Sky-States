@@ -90,6 +90,7 @@ function initializeDatabase() {
       )
     `);
     // 4. Blogs Table
+
 db.run(`
   CREATE TABLE IF NOT EXISTS blogs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -107,6 +108,8 @@ db.run(`
     image TEXT,
 
     author TEXT,
+
+    tags TEXT,
 
     keywords TEXT,
 
@@ -141,6 +144,14 @@ db.run(
   (err) => {
     if (err && !err.message.includes("duplicate column")) {
       console.log("Canonical migration:", err.message);
+    }
+  }
+);
+db.run(
+  `ALTER TABLE blogs ADD COLUMN tags TEXT`,
+  (err) => {
+    if (err && !err.message.includes("duplicate column")) {
+      console.log("Tags migration:", err.message);
     }
   }
 );

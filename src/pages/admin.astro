@@ -2101,23 +2101,7 @@ crossorigin="anonymous">
 
 
 
-                <!-- Meta Keywords -->
-
-                <div>
-
-                    <label class="font-semibold block mb-2">
-                        Meta Keywords
-                    </label>
-
-
-                    <textarea
-                        id="form-blog-keywords"
-                        rows="3"
-                        placeholder="keyword 1, keyword 2, keyword 3"
-                        class="w-full border rounded-xl p-3"></textarea>
-
-
-                </div>
+               
 
 
 
@@ -2160,6 +2144,37 @@ crossorigin="anonymous">
 
 
                 </div>
+                <!-- Tags -->
+
+<div>
+
+    <label class="font-semibold block mb-2">
+        Tags
+    </label>
+
+    <input
+        id="form-blog-tags"
+        type="text"
+        placeholder="AI, Data Science, Machine Learning"
+        class="w-full border rounded-xl p-3">
+
+</div>
+<!-- Meta Keywords -->
+
+<div>
+
+    <label class="font-semibold block mb-2">
+        Meta Keywords
+    </label>
+
+
+    <textarea
+        id="form-blog-keywords"
+        rows="3"
+        placeholder="keyword 1, keyword 2, keyword 3"
+        class="w-full border rounded-xl p-3"></textarea>
+
+</div>
 
 
 
@@ -2307,26 +2322,7 @@ crossorigin="anonymous">
 </div>
                 <!-- Footer -->
 
-                <div class="flex justify-end gap-4 pt-6 border-t">
 
-                    <button
-                        type="button"
-                        onclick="closeBlogModal()"
-                        class="px-6 py-3 rounded-xl border">
-
-                        Cancel
-
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="px-8 py-3 rounded-xl bg-sky-600 text-white">
-
-                        Save Blog
-
-                    </button>
-
-                </div>
 
             </form>
 
@@ -3648,12 +3644,22 @@ window.openAddBlogModal = function () {
     document.getElementById("blog-modal-title").innerText = "Add New Blog";
 
     blogModal.classList.remove("hidden");
+
+    // Initialize TinyMCE after the modal opens
+    setTimeout(() => {
+        initTinyMCE();
+    }, 100);
 }
 
 window.closeBlogModal = function () {
 
-    blogModal.classList.add("hidden");
+    const editor = tinymce.get("form-blog-content");
 
+    if (editor) {
+        editor.remove();
+    }
+
+    blogModal.classList.add("hidden");
 }
 
 blogModal?.addEventListener("click",(e)=>{
@@ -3673,41 +3679,133 @@ window.editBlog = async function(id) {
 
         const blog = await response.json();
 
-        document.getElementById("form-blog-id").value = blog.id;
 
-        document.getElementById("form-blog-title").value = blog.title || "";
-        document.getElementById("form-blog-slug").value = blog.slug || "";
-        document.getElementById("form-blog-category").value = blog.category || "";
-        document.getElementById("form-blog-author").value = blog.author || "";
-        document.getElementById("form-blog-tags").value = blog.tags || "";
-        document.getElementById("form-blog-short").value = blog.short_description || "";
-        document.getElementById("form-blog-content").value = blog.content || "";
-        document.getElementById("form-blog-seo-title").value = blog.seo_title || "";
-        document.getElementById("form-blog-seo-description").value = blog.seo_description || "";
-        document.getElementById("form-blog-status").value = blog.status || "published";
+        document.getElementById("form-blog-id").value = blog.id || "";
 
-        document.getElementById("blog-modal-title").innerText = "Edit Blog";
 
-        const preview = document.getElementById("blog-image-preview");
+        document.getElementById("form-blog-title").value =
+            blog.title || "";
+
+
+        document.getElementById("form-blog-slug").value =
+            blog.slug || "";
+
+
+        document.getElementById("form-blog-category").value =
+            blog.category || "";
+
+
+        document.getElementById("form-blog-author").value =
+            blog.author || "";
+
+
+        // SEO TAGS
+        document.getElementById("form-blog-tags").value =
+            blog.tags || "";
+
+
+        // SEO KEYWORDS
+        document.getElementById("form-blog-keywords").value =
+            blog.keywords || "";
+
+
+        // CANONICAL URL
+        document.getElementById("form-blog-canonical").value =
+            blog.canonical || "";
+
+
+        document.getElementById("form-blog-short").value =
+            blog.short_description || "";
+
+
+
+        document.getElementById("form-blog-seo-title").value =
+            blog.seo_title || "";
+
+
+
+        document.getElementById("form-blog-seo-description").value =
+            blog.seo_description || "";
+
+
+
+        document.getElementById("form-blog-status").value =
+            blog.status || "published";
+
+
+
+        document.getElementById("blog-modal-title").innerText =
+            "Edit Blog";
+
+
+
+        // IMAGE PREVIEW
+
+        const preview =
+            document.getElementById("blog-image-preview");
+
 
         if(blog.image){
 
             preview.src = blog.image;
+
             preview.classList.remove("hidden");
 
-        }else{
+        }
+        else{
 
             preview.classList.add("hidden");
 
         }
 
-      blogModal.classList.remove("hidden");
 
-    } catch(err){
 
-        console.error(err);
+        // OPEN MODAL
 
-        alert("Unable to load blog.");
+        blogModal.classList.remove("hidden");
+
+
+
+        // LOAD TINYMCE CONTENT
+
+        setTimeout(() => {
+
+
+            initTinyMCE();
+
+
+            const editor =
+            tinymce.get("form-blog-content");
+
+
+
+            if(editor){
+
+                editor.setContent(
+                    blog.content || ""
+                );
+
+            }
+
+
+        },100);
+
+
+
+    }
+    catch(err){
+
+
+        console.error(
+            "Edit Blog Error:",
+            err
+        );
+
+
+        alert(
+            "Unable to load blog."
+        );
+
 
     }
 
@@ -3771,143 +3869,231 @@ window.generateBlogSlug = function () {
 window.saveBlog = async function (e) {
 
     e.preventDefault();
+
+
     if (tinymce.get("form-blog-content")) {
-    tinymce.get("form-blog-content").save();
-}
+        tinymce.get("form-blog-content").save();
+    }
+
+
 
     const id = document.getElementById("form-blog-id").value;
+
 
     const title = document.getElementById("form-blog-title").value;
     const slug = document.getElementById("form-blog-slug").value;
     const category = document.getElementById("form-blog-category").value;
     const author = document.getElementById("form-blog-author").value;
-  const keywords = document.getElementById("form-blog-keywords").value;
-const canonical = document.getElementById("form-blog-canonical").value;
-    const short_description = document.getElementById("form-blog-short").value;
-  let content = "";
 
-if (tinymce.get("form-blog-content")) {
-    content = tinymce.get("form-blog-content").getContent();
-} else {
-    content = document.getElementById("form-blog-content").value;
-}
-    const seo_title = document.getElementById("form-blog-seo-title").value;
-    const seo_description = document.getElementById("form-blog-seo-description").value;
-    const status = document.getElementById("form-blog-status").value;
+    const tags = document.getElementById("form-blog-tags").value;
+
+    const keywords = document.getElementById("form-blog-keywords").value;
+
+    const canonical = document.getElementById("form-blog-canonical").value;
+
+    const short_description = document.getElementById("form-blog-short").value;
+
+
+
+    let content = "";
+
+    if (tinymce.get("form-blog-content")) {
+
+        content = tinymce.get("form-blog-content").getContent();
+
+    } else {
+
+        content = document.getElementById("form-blog-content").value;
+
+    }
+
+
+
+    const seo_title =
+        document.getElementById("form-blog-seo-title").value;
+
+
+    const seo_description =
+        document.getElementById("form-blog-seo-description").value;
+
+
+    const status =
+        document.getElementById("form-blog-status").value;
+
+
 
     const imageFile =
         document.getElementById("form-blog-image").files[0];
-    const payload = {
-        title,
-        slug,
-        category,
-        author,
-        keywords,
-        canonical,
-        short_description,
-        content,
-        seo_title,
-        seo_description,
-        status
-    };
 
 
-    let method = "POST";
 
 
-    if(id){
+    try {
 
-        payload.id = id;
-        method = "PUT";
+
+        let response;
+
+
+
+        // UPDATE BLOG
+
+        if(id){
+
+
+            response = await fetch("/api/blog/Update", {
+
+                method:"PUT",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+
+                body:JSON.stringify({
+
+                    id,
+
+                    title,
+
+                    slug,
+
+                    category,
+
+                    author,
+
+                    tags,
+
+                    keywords,
+
+                    canonical,
+
+                    short_description,
+
+                    content,
+
+                    seo_title,
+
+                    seo_description,
+
+                    status
+
+                })
+
+            });
+
+
+
+        }
+
+
+        // CREATE BLOG
+
+        else {
+
+
+            const formData = new FormData();
+
+
+            formData.append("title", title);
+
+            formData.append("slug", slug);
+
+            formData.append("category", category);
+
+            formData.append("author", author);
+
+            formData.append("tags", tags);
+
+            formData.append("keywords", keywords);
+
+            formData.append("canonical", canonical);
+
+            formData.append("short_description", short_description);
+
+            formData.append("content", content);
+
+            formData.append("seo_title", seo_title);
+
+            formData.append("seo_description", seo_description);
+
+            formData.append("status", status);
+
+
+
+            if(imageFile){
+
+                formData.append("image", imageFile);
+
+            }
+
+
+
+            response = await fetch("/api/blog/Create",{
+
+                method:"POST",
+
+                body:formData
+
+            });
+
+
+        }
+
+
+
+
+        console.log("Response Status:", response.status);
+
+
+
+        const result = await response.json();
+
+
+
+        if(response.ok){
+
+
+            alert("Blog saved successfully");
+
+
+            closeBlogModal();
+
+
+            window.location.reload();
+
+
+        }
+
+        else {
+
+
+            console.log("API ERROR:", result);
+
+
+            alert(
+                "Blog save failed: " + 
+                (result.error || "Unknown error")
+            );
+
+
+        }
+
+
 
     }
 
-try {
+    catch(error){
 
-const formData = new FormData();
 
-formData.append("title", title);
-formData.append("slug", slug);
-formData.append("category", category);
-formData.append("author", author);
-formData.append("keywords", keywords);
-formData.append("canonical", canonical);
-formData.append("short_description", short_description);
-formData.append("content", content);
-formData.append("seo_title", seo_title);
-formData.append("seo_description", seo_description);
-formData.append("status", status);
+        console.error("Save Blog Error:",error);
 
-if (imageFile) {
-    formData.append("image", imageFile);
-}
-let response;
 
-if (id) {
+        alert("Blog save failed");
 
-    // Update existing blog
-    response = await fetch("/api/blog/Update", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id,
-            title,
-            slug,
-            category,
-            author,
-            keywords,
-            canonical,
-            short_description,
-            content,
-            seo_title,
-            seo_description,
-            status
-        })
-    });
-
-} else {
-
-    // Create new blog
-    response = await fetch("/api/blog/Create", {
-        method: "POST",
-        body: formData
-    });
-
-}
-console.log("Status:", response.status);
-
-    if(response.ok){
-
-        alert("Blog saved successfully");
-
-        closeBlogModal();
-
-        window.location.reload();
-
-    }
-    else{
-
-        const errorText = await response.text();
-
-        console.log("API ERROR:", errorText);
-
-        alert("Blog save failed: " + errorText);
 
     }
 
-
 }
-catch(error){
-
-    console.error(error);
-
-    alert("Blog save failed");
-
-}
-}
-
             window.toggleStoryMediaTypeFields = function(type) {
                 const videoFields = document.getElementById('story-video-fields');
                 const podcastFields = document.getElementById('story-podcast-fields');
@@ -4230,36 +4416,53 @@ catch(error){
                 }
             }
 
+   function initTinyMCE() {
 
-document.addEventListener("DOMContentLoaded", () => {
+    if (!window.tinymce) {
+        console.error("TinyMCE not loaded");
+        return;
+    }
+
+    const existing = tinymce.get("form-blog-content");
+
+    if (existing) {
+        existing.remove();
+    }
 
     tinymce.init({
 
-        selector:"#form-blog-content",
+        selector: "#form-blog-content",
 
-        height:600,
+        height: 600,
 
-        menubar:true,
+        promotion: false,
 
-        plugins:[
+        branding: false,
+
+        menubar: true,
+
+        plugins: [
+            "advlist",
+            "autolink",
             "lists",
             "link",
             "image",
             "table",
-            "code"
+            "code",
+            "preview",
+            "fullscreen",
+            "searchreplace",
+            "wordcount"
         ],
 
         toolbar:
-        "undo redo | bold italic | h1 h2 | bullist numlist | link image table | code"
+            "undo redo | blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image table | code preview fullscreen"
 
     });
 
-});
-
-
-
-
-        </script>
+}
+ </script>
+ <script src="/tinymce/tinymce.min.js"></script>
     )}
 </body>
 </html>
