@@ -41,7 +41,7 @@ export async function POST({ request }) {
       seo_meta_description: body.seo_meta_description || ''
     };
     
-    jobs.push(newJob);
+    jobs.unshift(newJob);
     writeJobs(jobs);
     
     return new Response(JSON.stringify(newJob), { 
