@@ -124,7 +124,9 @@ const registrationPrice = formatUsd(PRICING.registration.normal);
     </div>
 
     <!-- Right CTAs: lg+ — compact labels until xl so zoomed layouts still fit -->
-    <div class="hidden min-w-0 flex-shrink-0 items-center justify-end gap-1 lg:flex xl:gap-1.5 2xl:gap-2">
+  <div
+  class="hidden min-w-0 flex-1 items-center justify-center gap-1.5 lg:flex xl:gap-3 2xl:gap-5"
+  style="contain: layout;">
       <!-- Register Now Dropdown -->
       <div class="group relative">
         <button class="btn-cta btn-solid dropdown-trigger">
@@ -405,10 +407,29 @@ const registrationPrice = formatUsd(PRICING.registration.normal);
   .nav-link {
     @apply inline-flex h-8 cursor-pointer items-center gap-0.5 whitespace-nowrap border-none bg-none p-0 text-[0.78rem] font-medium text-slate-600 transition-colors hover:text-[#005d90] xl:h-9 xl:gap-1 xl:text-[0.88rem] 2xl:h-10 2xl:text-[0.95rem];
   }
-
+/* 
   .dropdown-caret {
     @apply ml-0.5 inline-block text-[1rem] transition-transform duration-200 ease-out xl:text-lg;
-  }
+  } */
+   .dropdown-caret {
+  @apply ml-0.5 inline-block text-[1rem] transition-transform duration-200 ease-out xl:text-lg;
+
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+
+}
+
+
   .group:hover .dropdown-caret {
     @apply rotate-180;
   }
@@ -474,6 +495,9 @@ const registrationPrice = formatUsd(PRICING.registration.normal);
 
 <script is:inline>
   (() => {
+   document.fonts.ready.then(() => {
+      document.documentElement.classList.add("fonts-loaded");
+    });
     const nav = document.getElementById("main-header");
     const menuButton = document.getElementById("mobile-menu-toggle");
     const panel = document.getElementById("mobile-nav-panel");
