@@ -5,57 +5,72 @@ const image =
   blog.image && blog.image.trim() !== ""
     ? blog.image
     : "https://placehold.co/600x400?text=No+Image";
+
+const displayDate = blog.created_at
+  ? new Date(blog.created_at).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    })
+  : null;
 ---
 
-<a href={`/blog/${blog.slug}`} class="blog-link">
+<a
+    href={`/blog/${blog.slug}`}
+    class="group block w-full h-full text-inherit no-underline rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0071AD]"
+>
 
-    <article class="blog-card">
+    <article class="flex flex-col w-full h-full bg-white border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ">
 
-        <div class="image">
+        <div class="w-full h-[210px] sm:h-[250px] overflow-hidden bg-slate-50">
 
             <img
                 src={image}
                 alt={blog.title}
                 loading="lazy"
+                class="w-full h-full object-cover block transition-transform duration-500 ease-out "
             />
 
         </div>
 
-        <div class="content">
+        <div class="flex flex-col flex-1 p-5 sm:p-7">
 
-            <div class="meta">
+            <div class="flex justify-between items-center gap-2.5 mb-4 sm:mb-[18px]">
 
-                <span class="category">
-                    {blog.category}
-                </span>
+                {blog.category && (
+                    <span class="bg-[#0071AD] text-white px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wide">
+                        {blog.category}
+                    </span>
+                )}
 
-                <small>
-                    {new Date(blog.created_at).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric"
-                    })}
-                </small>
+                {displayDate && (
+                    <small class="text-slate-500 text-[13px] whitespace-nowrap">
+                        {displayDate}
+                    </small>
+                )}
 
             </div>
 
-            <h3>
+            <h3 class="mb-3 sm:mb-[15px] text-lg sm:text-[22px] leading-snug text-slate-900 font-semibold transition-colors duration-300 group-hover:text-[#0071AD] line-clamp-2">
                 {blog.title}
             </h3>
 
-            <p>
+            <p class="m-0 flex-1 text-slate-500 text-[15px] leading-[1.7] line-clamp-3">
                 {blog.short_description}
             </p>
 
-            <div class="read-more">
+            <div class="flex items-center justify-between mt-6 sm:mt-7 pt-4 sm:pt-5 border-t border-slate-100">
 
-                <span class="read-text">
+                <span class="text-[#0071AD] text-[15px] font-bold transition-colors duration-300 group-hover:text-[#005d90]">
                     Read More
                 </span>
 
-                <span class="arrow-circle">
+                <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0071AD] text-white flex items-center justify-center transition-all duration-300 shadow-[0_5px_15px_rgba(0,113,173,0.25)] group-hover:translate-x-2 group-hover:bg-[#005d90] group-hover:shadow-[0_10px_25px_rgba(0,93,144,0.35)]">
 
-                    <span class="material-symbols-outlined">
+                    <span
+                        class="material-symbols-outlined text-[18px] sm:text-[20px] leading-none"
+                        style="font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;"
+                    >
                         arrow_forward
                     </span>
 
@@ -68,178 +83,3 @@ const image =
     </article>
 
 </a>
-
-
-
-<style>
-.blog-link{
-    display:block;
-    width:100%;
-    height:100%;
-    text-decoration:none;
-    color:inherit;
-}
-
-.blog-card{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    background:#ffffff;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    overflow:hidden;
-    transition:all .35s ease;
-    cursor:pointer;
-}
-
-.blog-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 18px 40px rgba(0,0,0,.12);
-}
-
-.image{
-    width:100%;
-    height:250px;
-    overflow:hidden;
-    background:#f8fafc;
-}
-
-.image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .4s ease;
-}
-
-.blog-card:hover img{
-    transform:scale(1.05);
-}
-
-.content{
-    display:flex;
-    flex-direction:column;
-    flex:1;
-    padding:28px;
-}
-
-.meta{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.category{
-    background:#0071AD;
-    color:#ffffff;
-    padding:6px 14px;
-    border-radius:999px;
-    font-size:12px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.4px;
-}
-
-.meta small{
-    color:#64748b;
-    font-size:13px;
-    white-space:nowrap;
-}
-
-h3{
-    margin:0 0 15px;
-    font-size:22px;
-    line-height:1.4;
-    color:#0f172a;
-    transition:color .3s ease;
-}
-
-.blog-card:hover h3{
-    color:#0071AD;
-}
-
-p{
-    margin:0;
-    flex:1;
-    color:#64748b;
-    font-size:15px;
-    line-height:1.7;
-}
-.read-more{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:28px;
-    padding-top:20px;
-    border-top:1px solid #eef2f7;
-}
-
-.read-text{
-    color:#0071AD;
-    font-size:15px;
-    font-weight:700;
-    transition:.3s ease;
-}
-
-.arrow-circle{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#0071AD;
-    color:#ffffff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:all .35s ease;
-    box-shadow:0 5px 15px rgba(0,113,173,.25);
-}
-
-.arrow-circle .material-symbols-outlined{
-    font-size:20px;
-    line-height:1;
-    font-variation-settings:
-        "FILL" 0,
-        "wght" 600,
-        "GRAD" 0,
-        "opsz" 24;
-}
-
-.blog-card:hover .read-text{
-    color:#005d90;
-}
-
-.blog-card:hover .arrow-circle{
-    transform:translateX(8px);
-    background:#005d90;
-    box-shadow:0 10px 25px rgba(0,93,144,.35);
-}
-
-@media(max-width:768px){
-
-    .image{
-    height:225px;
-}
-
-    h3{
-        font-size:20px;
-    }
-
-    .content{
-        padding:20px;
-    }
-
-    .arrow-circle{
-        width:36px;
-        height:36px;
-    }
-
-    .arrow-circle .material-symbols-outlined{
-        font-size:18px;
-    }
-
-}
-
-</style>

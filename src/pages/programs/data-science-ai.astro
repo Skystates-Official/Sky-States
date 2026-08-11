@@ -1,2187 +1,357 @@
 ---
 import "../../styles/global.css";
+
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
-import { programToolLogos } from "../../data/program-tools.js";
-import programsData from "../../data/programs.json";
 
-const program = programsData["data-science-ai"];
-const { hero } = program;
+import { getBlog } from "../../lib/blogs.js";
+
 export const prerender = false;
+
+const { slug } = Astro.params;
+
+const blog = slug ? await getBlog(slug) : null;
+
+if (!blog) {
+    return Astro.redirect("/blog");
+}
+
+/* ==================================================
+   SEO
+================================================== */
+
+const siteUrl = "https://skystates.us";
+
+const canonicalUrl =
+    blog.canonical || `${siteUrl}/blog/${blog.slug}`;
+
+const seoTitle =
+    blog.seo_title || blog.title;
+
+const seoDescription =
+    blog.seo_description ||
+    blog.short_description ||
+    "";
+
+const publishDate = blog.created_at
+    ? new Date(blog.created_at).toISOString()
+    : new Date().toISOString();
+
+const modifiedDate = blog.updated_at
+    ? new Date(blog.updated_at).toISOString()
+    : publishDate;
+
+/* ==================================================
+   DISPLAY DATE
+   Always derived from the SAME safe value used for
+   SEO (publishDate), so there is no path where this
+   throws or renders "Invalid Date".
+================================================== */
+
+const displayDate = new Date(publishDate).toLocaleDateString(
+    "en-US",
+    {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    }
+);
+
+/* ==================================================
+   READING TIME
+================================================== */
+
+const wordCount = blog.content
+    ? blog.content.replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length
+    : 0;
+
+const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+
+/* ==================================================
+   IMAGE URL
+================================================== */
+
+const imageUrl = blog.image
+    ? blog.image.startsWith("http")
+        ? blog.image
+        : blog.image.startsWith("/")
+            ? blog.image
+            : `/${blog.image}`
+    : "/default-blog-image.jpg";
+
+
+const authorName =
+    blog.author || "Sky States";
+
+const authorInitial = authorName.trim().charAt(0).toUpperCase();
 ---
 
 <!doctype html>
-<html class="scroll-smooth" lang="en">
-  <head>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Online Data Science, Machine Learning & AI Course | Sky States LLC</title>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
     <meta
-      name="description"
-      content="Learn Data Science & AI online with live expert-led training. Master Python, SQL, Machine Learning, Deep Learning & Generative AI with real-world projects."
-    />
-    <meta
-      name="keywords"
-      content="Python for Data Science, AI Certification, Power BI Training, Python Programming Course, Microsoft AI Certification, Data Science Bootcamp, Artificial Intelligence Training, Data Analytics Course, Tableau Training, Generative AI Course, Machine Learning Projects, Online Data Science Course, AI Projects, Data Science Training, Data Engineering Course, AI Certification Online, Data Visualization Course, Machine Learning Training, Deep Learning Course, SQL for Data Science, MLOps Course, Data Scientist Training, AI Engineer Training, Natural Language Processing Course, Azure AI Training, AI Career Program, Job-Ready AI Course, Data Science Course, AI Course, Artificial Intelligence Course, Machine Learning Course, Data Science Certification"
-    />
-    <link
-      rel="canonical"
-      href="https://skystates.us/program/data-science-ai-program/"
-    />
-    <meta
-      property="og:title"
-      content="Data Science & AI Certification Program | Sky States"
-    />
-    <meta
-      property="og:description"
-      content="Join Sky States' online Data Science & AI Bootcamp. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support."
-    />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     />
 
-    <script type="application/ld+json" is:inline>
-      {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Data Science & AI Bootcamp",
-        "description": "Learn Python, Machine Learning, Generative AI, Power BI, Tableau, and real-world data science skills with expert-led online training.",
-        "provider": {
-          "@type": "Organization",
-          "name": "Sky States",
-          "url": "https://skystates.us"
-        },
-        "url": "https://skystates.us/programs/data-science-ai",
-        "educationalLevel": "Beginner to Advanced",
-        "courseMode": "Online",
-        "inLanguage": "en",
-        "teaches": [
-          "Python",
-          "Machine Learning",
-          "Generative AI",
-          "Power BI",
-          "Tableau",
-          "SQL"
-        ]
-      }
+    <title>{seoTitle}</title>
+
+    <meta
+        name="description"
+        content={seoDescription}
+    />
+
+    <meta
+        name="keywords"
+        content={blog.keywords || ""}
+    />
+
+    <link
+        rel="canonical"
+        href={canonicalUrl}
+    />
+
+
+    <!-- ==================================================
+         OPEN GRAPH
+    ================================================== -->
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="article:published_time" content={publishDate} />
+    <meta property="article:modified_time" content={modifiedDate} />
+    <meta property="article:section" content={blog.category || ""} />
+    <meta property="article:author" content={authorName} />
+
+
+    <!-- ==================================================
+         TWITTER
+    ================================================== -->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+
+
+    <!-- ==================================================
+         MATERIAL SYMBOLS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+
+    <!-- ==================================================
+         ARTICLE SCHEMA
+    ================================================== -->
+
+    <script type="application/ld+json">
+        {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: blog.title,
+            description: seoDescription,
+            image: [imageUrl],
+            author: { "@type": "Person", name: authorName },
+            publisher: {
+                "@type": "Organization",
+                name: "Sky States",
+                url: siteUrl,
+                logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` }
+            },
+            datePublished: publishDate,
+            dateModified: modifiedDate,
+            mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+            articleSection: blog.category || "",
+            keywords: blog.keywords || ""
+        })}
     </script>
 
-    <style>
-      .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-      }
-      .sky-gradient-up {
-        background: linear-gradient(to top, #ffffff, #d3e2ed);
-      }
-      .ambient-shadow {
-        box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(12px);
-      }
-    </style>
+</head>
 
-    <script type="application/ld+json" is:inline>
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is the Microsoft exam fee included?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, the Sky States program fee includes one attempt voucher for the Microsoft DP-900: Azure Data Fundamentals certification."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the refund policy?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We offer a 100% satisfaction guarantee with a full refund available within the first 14 days of the program start date."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do I need prior coding experience?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Candidates should have a basic proficiency in Python. We provide a pre-bootcamp 'Python for Data' module for those who need a refresher."
-            }
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body class="bg-white text-slate-800 font-sans overflow-x-hidden">
-    <!-- TopAppBar -->
+
+<body>
+
     <Header />
-    <main class="mt-20">
-      <!-- Section 1: Hero -->
-      <section
-        class="relative px-4 md:px-margin-desktop overflow-hidden py-12 md:py-16 bg-white"
-      >
-        <div
-          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-        >
-          <!-- Left content column -->
-          <div class="z-10 lg:col-span-7 flex flex-col gap-6">
-            <!-- Premium Pill Badge -->
-            <div
-              class="inline-flex items-center gap-2.5 px-4 py-1.5 bg-sky-50 border border-sky-100 text-sky-700 rounded-full w-fit text-xs font-semibold shadow-sm backdrop-blur-sm"
+
+
+    <!-- ==================================================
+         BLOG PAGE
+    ================================================== -->
+
+    <main class="w-full min-h-screen px-3 sm:px-5 pt-7 sm:pt-14 pb-16 sm:pb-24 box-border bg-gradient-to-b from-slate-50 to-slate-100">
+
+        <div class="w-full max-w-[1180px] mx-auto box-border">
+
+            <article
+                class="w-full overflow-hidden box-border bg-white border border-gray-200 rounded-[14px] sm:rounded-3xl shadow-[0_10px_30px_rgba(15,23,42,0.06),0_30px_70px_rgba(15,23,42,0.05)]"
+                itemscope
+                itemtype="https://schema.org/Article"
             >
-              <span class="relative flex h-2 w-2">
-                <span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
-                ></span>
-                <span
-                  class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"
-                ></span>
-              </span>
-              <span
-                class="tracking-wider uppercase font-bold text-[10px] sm:text-xs"
-                >Career Acceleration Program</span
-              >
-            </div>
 
-            <h1
-              class="text-4xl font-bold text-slate-900 tracking-tight"
-              set:html={hero.headline}
-            />
-            <p class="text-lg max-w-xl leading-relaxed">
-              {hero.description}
-            </p>
+                <!-- ==================================================
+                     BLOG HEADER
+                ================================================== -->
 
-            <ul
-              class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm font-medium"
-            >
-              <li class="flex items-center gap-3">
-                <span
-                  class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
-                  >check_circle</span
-                >
-                <span>6-Month Immersive Track</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span
-                  class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
-                  >check_circle</span
-                >
-                <span>Live Virtual Workshops</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span
-                  class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
-                  >check_circle</span
-                >
-                <span>Production-Grade Projects</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span
-                  class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
-                  >check_circle</span
-                >
-                <span>Microsoft Exam Voucher</span>
-              </li>
-              <li class="flex items-center gap-3 sm:col-span-2">
-                <span
-                  class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
-                  >check_circle</span
-                >
-                <span>Corporate Referral & Placement Prep</span>
-              </li>
-            </ul>
+                <header class="w-full max-w-[850px] mx-auto px-[18px] sm:px-[30px] pt-8 sm:pt-14 pb-6 sm:pb-9 box-border text-center">
 
-            <div class="flex flex-col sm:flex-row gap-4 mt-4">
-              <a
-                href="#pricing"
-                class="group flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 text-white text-sm font-semibold hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] shadow-lg shadow-sky-600/15 hover:shadow-sky-600/25 active:scale-[0.98] transition-all duration-200 text-center"
-              >
-                <span>Enroll in Program</span>
-                <span
-                  class="material-symbols-outlined text-lg ml-2 font-bold transition-transform duration-200 group-hover:translate-x-1"
-                  >arrow_forward</span
-                >
-              </a>
-              <a
-                href="#curriculum"
-                class="group flex items-center justify-center px-8 py-4 rounded-xl text-sky-700 bg-sky-50/50 border border-sky-200/80 hover:bg-sky-50 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 font-semibold text-center"
-              >
-                <span>View Curriculum</span>
-              </a>
-            </div>
-          </div>
+                    {blog.category && (
 
-          <!-- Right Video Mockup Column (col-5) -->
-          <div
-            class="relative w-full max-w-2xl mx-auto lg:mx-0 lg:col-span-5 mt-12 lg:mt-0"
-          >
-            <!-- Glowing background ambient light -->
-            <div
-              class="absolute -inset-4 bg-gradient-to-tr from-sky-400/20 to-blue-500/30 blur-3xl opacity-85 rounded-full pointer-events-none"
-            >
-            </div>
+                        <a
+                            href={`/blog?category=${encodeURIComponent(blog.category)}`}
+                            class="inline-flex items-center justify-center mb-3.5 sm:mb-5 px-3 sm:px-4 py-1.5 border border-blue-100 rounded-full bg-blue-50 text-blue-600 text-[11px] sm:text-xs font-bold tracking-wider uppercase no-underline transition hover:bg-blue-100 hover:-translate-y-px"
+                            itemprop="articleSection"
+                        >
+                            {blog.category}
+                        </a>
 
-            <!-- Device frame wrapper -->
-            <div
-              class="relative p-1.5 bg-gradient-to-b from-slate-100 via-slate-200/60 to-slate-300 rounded-[24px] shadow-2xl border border-slate-200/30 overflow-hidden group"
-            >
-              <video
-                autoplay
-                loop
-                muted
-                playsinline
-                class="relative rounded-[18px] w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-[1.005]"
-              >
-                <source
-                  src="/assets/videos/data%20science%20hero%20section%20video.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+                    )}
 
-            <!-- Floating Stats Card (Glassmorphic) -->
-            <div
-              class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl border border-slate-200/60 max-w-[250px] z-20 hover:scale-105 transition-transform duration-300"
-            >
-              <div class="flex items-center gap-3 mb-2">
+
+                    <h1
+                        class="m-0 text-gray-900 font-extrabold leading-[1.2] sm:leading-[1.15] text-[26px] sm:text-[38px] lg:text-[50px] tracking-[-0.4px] sm:tracking-[-1px] lg:tracking-[-1.4px] break-words [overflow-wrap:anywhere]"
+                        itemprop="headline"
+                    >
+                        {blog.title}
+                    </h1>
+
+
+                    <!-- ==================================================
+                         BLOG META
+                    ================================================== -->
+
+                    <div class="flex items-center justify-center flex-wrap gap-x-2 gap-y-1.5 sm:gap-y-2.5 mt-4 sm:mt-6 text-gray-500 text-[12.5px] sm:text-[15px]">
+
+                        <span class="inline-flex items-center gap-2">
+
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-[11px] font-bold shrink-0"
+                                aria-hidden="true"
+                            >
+                                {authorInitial}
+                            </span>
+
+                            <span>
+                                By <strong class="text-gray-700 font-semibold">{authorName}</strong>
+                            </span>
+
+                        </span>
+
+
+                        <span class="text-gray-300" aria-hidden="true">•</span>
+
+
+                        <time datetime={publishDate} itemprop="datePublished">
+                            {displayDate}
+                        </time>
+
+
+                        <span class="text-gray-300" aria-hidden="true">•</span>
+
+
+                        <span class="whitespace-nowrap">
+                            {readingTime} min read
+                        </span>
+
+                    </div>
+
+                </header>
+
+
+                <!-- ==================================================
+                     FEATURED IMAGE
+
+                     aspect-video (16:9) reserves the space before the
+                     image loads, so there's no layout shift, and it
+                     never distorts at any breakpoint.
+                ================================================== -->
+
+                {blog.image && (
+
+                    <div class="w-full max-w-[910px] mx-auto px-[18px] sm:px-[30px] box-border">
+
+                        <img
+                            class="block w-full h-auto aspect-video object-cover rounded-[10px] sm:rounded-2xl bg-slate-100 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+                            src={imageUrl}
+                            alt={blog.title}
+                            title={blog.title}
+                            width="1200"
+                            height="675"
+                            loading="eager"
+                            fetchpriority="high"
+                            itemprop="image"
+                        />
+
+                    </div>
+
+                )}
+
+
+                <!-- ==================================================
+                     SHORT DESCRIPTION
+                ================================================== -->
+
+                {blog.short_description && (
+
+                    <div
+                        class="w-full max-w-[850px] mx-auto mt-[22px] sm:mt-9 px-[18px] sm:px-[30px] box-border text-gray-600 text-[15.5px] sm:text-[19px] leading-[1.7] sm:leading-[1.75] text-center break-words [overflow-wrap:anywhere]"
+                        itemprop="description"
+                    >
+                        {blog.short_description}
+                    </div>
+
+                )}
+
+
+                <!-- ==================================================
+                     BLOG CONTENT
+
+                     Styled entirely via @tailwindcss/typography since
+                     this HTML comes from the CMS and can't carry
+                     utility classes directly. Requires the plugin to
+                     be registered in tailwind.config.
+                ================================================== -->
+
                 <div
-                  class="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600"
-                >
-                  <span class="material-symbols-outlined text-xl"
-                    >trending_up</span
-                  >
-                </div>
-                <span class="text-3xl font-black text-slate-900 tracking-tight"
-                  >140%</span
-                >
-              </div>
-              <p class="text-[11px] font-semibold text-slate-500 leading-snug">
-                Average salary lift reported by Class of 2023 graduates.
-              </p>
-            </div>
-          </div>
+                    class="prose prose-sm sm:prose-lg max-w-[850px] mx-auto mt-7 sm:mt-11 px-[18px] sm:px-[30px] pb-9 sm:pb-[70px] box-border break-words [overflow-wrap:anywhere]
+                        prose-headings:text-gray-900 prose-headings:font-bold
+                        prose-a:text-blue-600 prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+                        prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50 prose-blockquote:rounded-r-xl prose-blockquote:py-4 prose-blockquote:px-6
+                        prose-strong:text-gray-900
+                        prose-li:marker:text-blue-600
+                        prose-img:rounded-2xl prose-img:shadow-lg
+                        prose-figcaption:text-center
+                        prose-table:block prose-table:overflow-x-auto prose-table:rounded-lg prose-table:border prose-table:border-gray-200
+                        prose-thead:bg-slate-50
+                        prose-code:text-red-600 prose-code:bg-slate-100 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                        prose-pre:bg-gray-900 prose-pre:rounded-xl prose-pre:text-[13.5px]
+                        prose-hr:border-gray-200"
+                    itemprop="articleBody"
+                    set:html={blog.content}
+                ></div>
+
+
+            </article>
+
         </div>
-      </section>
 
-      <!-- Program Quick Info Bar -->
-      <section class="py-6 bg-slate-50 border-b border-slate-200/60">
-        <div
-          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left"
-        >
-          <!-- Column 1: Duration -->
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <div
-              class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 flex-shrink-0 border border-sky-100/50"
-            >
-              <span class="material-symbols-outlined text-2xl"
-                >calendar_today</span
-              >
-            </div>
-            <div>
-              <p
-                class="text-[16px] text-slate-400 font-bold uppercase tracking-widest mb-0.5"
-              >
-                Program Duration
-              </p>
-              <h4 class="text-base font-bold text-slate-800">
-                6-Month Live Program
-              </h4>
-            </div>
-          </div>
-
-          <!-- Column 2: Format -->
-          <div
-            class="flex items-center gap-4 justify-center md:justify-start border-t md:border-t-0 md:border-x border-slate-200/40 py-4 md:py-0 md:px-8"
-          >
-            <div
-              class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 flex-shrink-0 border border-sky-100/50"
-            >
-              <span class="material-symbols-outlined text-2xl">menu_book</span>
-            </div>
-            <div>
-              <p
-                class="text-[16px] text-slate-400 font-bold uppercase tracking-widest mb-0.5"
-              >
-                Learning Format
-              </p>
-              <h4 class="text-base font-bold text-slate-800">
-                Online Interactive Bootcamp
-              </h4>
-            </div>
-          </div>
-
-          <!-- Column 3: Applied Practice -->
-          <div
-            class="flex items-center gap-4 justify-center md:justify-start md:pl-8"
-          >
-            <div
-              class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 flex-shrink-0 border border-sky-100/50"
-            >
-              <span class="material-symbols-outlined text-2xl">work</span>
-            </div>
-            <div>
-              <p
-                class="text-[16px] text-slate-400 font-bold uppercase tracking-widest mb-0.5"
-              >
-                Applied Practice
-              </p>
-              <h4 class="text-base font-bold text-slate-800">
-                Real-World Case Studies
-              </h4>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: Program Overview & Key Features -->
-      <section class="py-20 bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <!-- Left Column: Overview -->
-            <div class="lg:col-span-5 flex flex-col justify-between gap-6">
-              <div class="space-y-4">
-                <span
-                  class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-                  >Overview</span
-                >
-                <h2
-                  class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
-                >
-                  Why Learn Data Science and AI?
-                </h2>
-                <p class="text-slate-600 text-base leading-relaxed">
-                  AI is changing every industry from healthcare to finance.
-                  Organizations require experts who can evaluate data, develop
-                  models, automate decisions, and utilize AI-driven solutions.
-                  <br /><br />
-                  If you are beginning your career, changing industry, or advancing
-                  your technical skills, this program prepares you with the practical
-                  knowledge employers actively look for.
-                </p>
-              </div>
-
-              <!-- Pricing / Overview Card -->
-              <div
-                class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4 mt-4"
-              >
-                <h4 class="font-bold text-sm text-slate-850">
-                  Data Science & AI Program Overview
-                </h4>
-                <p class="text-xs text-slate-500 leading-relaxed">
-                  SkyStates is dedicated to providing the best training in Data
-                  Science & AI, and we offer a comprehensive 6-month course
-                  developed to transform you into a skilled data scientist or AI
-                  expert.
-                </p>
-                <div class="flex items-baseline gap-2 pt-2">
-                  <span class="text-3xl font-black text-sky-700">$3499</span>
-                  <span class="text-xs text-slate-400 font-semibold"
-                    >/ 6-Month Program / Online Live</span
-                  >
-                </div>
-                <a
-                  href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
-                  class="block w-full py-3 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:from-sky-500 hover:to-blue-600 active:scale-[0.98] transition-all duration-200 shadow-md shadow-sky-600/10"
-                  >Enroll Today</a
-                >
-              </div>
-            </div>
-
-            <!-- Right Column: Key Features -->
-            <div class="lg:col-span-7 space-y-6">
-              <div>
-                <span
-                  class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-                  >Core Benefits</span
-                >
-                <h2
-                  class="text-3xl font-bold text-slate-900 tracking-tight mt-1"
-                >
-                  Key Features
-                </h2>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Feature 1 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg">badge</span>
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Job Assistance</strong
-                    >
-                    Job assistance through our in-house recruitment agency.
-                  </div>
-                </div>
-                <!-- Feature 2 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >verified</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Sky States Credentials</strong
-                    >
-                    Industry-advanced Data Scientist and AI certificate from Sky States.
-                  </div>
-                </div>
-                <!-- Feature 3 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >science</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Applied Projects</strong
-                    >
-                    Applied projects from multiple domains and industry-relevant projects.
-                  </div>
-                </div>
-                <!-- Feature 4 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >trending_up</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Career Pivot</strong
-                    >
-                    Program made to begin your journey as a Data Scientist.
-                  </div>
-                </div>
-                <!-- Feature 5 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg">cloud</span>
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Microsoft Advantage</strong
-                    >
-                    Expert-level training from Microsoft, industry-recognized certificate
-                    from Microsoft.
-                  </div>
-                </div>
-                <!-- Feature 6 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >terminal</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Combined Labs</strong
-                    >
-                    Combined labs for practical learning experience.
-                  </div>
-                </div>
-                <!-- Feature 7 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >live_tv</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Live Classes</strong
-                    >
-                    Live classes by faculty of industry experts.
-                  </div>
-                </div>
-                <!-- Feature 8 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >menu_book</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >LMS Access</strong
-                    >
-                    Lifetime access to learning resources via our Learning Management
-                    System (LMS).
-                  </div>
-                </div>
-                <!-- Feature 9 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg">groups</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Personalized Batches</strong
-                    >
-                    Small batches to make sure every student receives attention and
-                    instructions.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: Microsoft DP-900 Prep -->
-      <section class="py-20 bg-white border-b border-slate-100">
-        <div
-          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-        >
-          <div class="space-y-6">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Core Validator</span
-            >
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
-            >
-              Data Science and AI Certification Benefits
-            </h2>
-            <p class="text-slate-600 text-base leading-relaxed">
-              At SkyStates, get certified in data science & AI with the
-              Microsoft Azure program and get both Data Science AI and Microsoft
-              Azure certificates to improve your career chances. Gain access to
-              expert classes and an in-house career assistance program.
-            </p>
-
-            <div class="space-y-4">
-              <div
-                class="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <span
-                  class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0"
-                  >workspace_premium</span
-                >
-                <div>
-                  <h4 class="font-bold text-slate-800 text-sm mb-1">
-                    Official Exam Voucher
-                  </h4>
-                  <p class="text-xs text-slate-500 leading-relaxed">
-                    One attempt fee covered in your program tuition.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <span
-                  class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0"
-                  >school</span
-                >
-                <div>
-                  <h4 class="font-bold text-slate-800 text-sm mb-1">
-                    Dedicated Bootcamp Module
-                  </h4>
-                  <p class="text-xs text-slate-500 leading-relaxed">
-                    Focus sessions on Azure relational &amp; non-relational data
-                    services.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="bg-sky-50/50 rounded-3xl p-5 flex items-center justify-center border border-sky-100/50 relative"
-          >
-            <img
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="453"
-              src="/assets/certificate/microsoft-dp-900-data-science.png"
-              class="w-full h-full object-cover relative z-10"
-              alt="Microsoft Azure Data Fundamentals Certificate"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 3: Why Choose -->
-      <section
-        class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-20 border-b border-slate-100"
-      >
-        <div class="text-center mb-16">
-          <span class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-            >A Different Approach</span
-          >
-          <h2
-            class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2 mb-4"
-          >
-            Why Choose Sky States?
-          </h2>
-          <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-305 group"
-          >
-            <div
-              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
-            >
-              <span class="material-symbols-outlined text-3xl">group</span>
-            </div>
-            <h3 class="text-xl font-bold text-slate-800">
-              Industry-First Mentorship
-            </h3>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Learn directly from Principal Data Scientists at top tier tech
-              companies through 1-on-1 sessions designed to bridge the gap
-              between theory and high-stakes production environments.
-            </p>
-          </div>
-          <div
-            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-305 group"
-          >
-            <div
-              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
-            >
-              <span class="material-symbols-outlined text-3xl">bolt</span>
-            </div>
-            <h3 class="text-xl font-bold text-slate-800">
-              Project-Based Learning
-            </h3>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Move beyond Kaggle datasets. Build production-grade AI systems,
-              deploy MLOps pipelines, and solve real-world challenges sourced
-              from our corporate partners.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: Right Program for Every Learner -->
-      <section class="py-20 bg-slate-50/50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="text-center mb-16">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Tailored Paths</span
-            >
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
-            >
-              Right Program for Every Learner
-            </h2>
-            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card 1 -->
-            <div
-              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">school</span>
-              </div>
-              <h3 class="font-bold text-lg text-slate-800">
-                Students and Freshers
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Develop practical skills that employers value and launch your
-                career in Data Science.
-              </p>
-            </div>
-            <!-- Card 2 -->
-            <div
-              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">work</span>
-              </div>
-              <h3 class="font-bold text-lg text-slate-800">Working Experts</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Transition into high-growth AI and analytical roles with
-                structured learning.
-              </p>
-            </div>
-            <!-- Card 3 -->
-            <div
-              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">terminal</span>
-              </div>
-              <h3 class="font-bold text-lg text-slate-800">
-                Software Engineers
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Scale your expertise with Machine Learning, Deep Learning, and
-                AI Engineering.
-              </p>
-            </div>
-            <!-- Card 4 -->
-            <div
-              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">analytics</span
-                >
-              </div>
-              <h3 class="font-bold text-lg text-slate-800">Business Analyst</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Learn advanced analytics, visualization, and predictive
-                modeling.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 4: Outcomes -->
-      <section
-        class="bg-gradient-to-r from-sky-700 to-blue-800 py-16 text-white overflow-hidden relative"
-        id="outcomes"
-      >
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
-          <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center"
-          >
-            <div class="flex flex-col gap-2">
-              <span
-                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
-                >140%</span
-              >
-              <span
-                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
-                >Avg Salary Lift</span
-              >
-            </div>
-            <div class="flex flex-col gap-2">
-              <span
-                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
-                >95%</span
-              >
-              <span
-                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
-                >Placement Rate</span
-              >
-            </div>
-            <div class="flex flex-col gap-2">
-              <span
-                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
-                >250+</span
-              >
-              <span
-                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
-                >Hiring Partners</span
-              >
-            </div>
-            <div class="flex flex-col gap-2">
-              <span
-                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
-                >1,200+</span
-              >
-              <span
-                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
-                >Global Alumni</span
-              >
-            </div>
-          </div>
-          <p class="text-[10px] sm:text-xs text-center text-sky-200/60 mt-8">
-            Note: Salary lift and placement statistics are based on verified
-            career transition data compiled by our partner staffing network.
-          </p>
-        </div>
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-          <div
-            class="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl"
-          >
-          </div>
-          <div
-            class="absolute bottom-0 left-0 w-64 h-64 bg-white/20 rounded-full blur-3xl"
-          >
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 5: Skills -->
-      <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="text-center mb-16">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Capabilities</span
-            >
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
-            >
-              High-Demand Skill Matrix
-            </h2>
-            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
-            >
-              <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >psychology</span
-              >
-              <span class="text-sm font-bold text-slate-800"
-                >Machine Learning</span
-              >
-            </div>
-            <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
-            >
-              <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >translate</span
-              >
-              <span class="text-sm font-bold text-slate-800">NLP</span>
-            </div>
-            <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
-            >
-              <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >visibility</span
-              >
-              <span class="text-sm font-bold text-slate-800"
-                >Computer Vision</span
-              >
-            </div>
-            <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
-            >
-              <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >database</span
-              >
-              <span class="text-sm font-bold text-slate-800">Big Data</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 6: Curriculum -->
-      <section
-        class="py-20 max-w-4xl mx-auto px-4 md:px-gutter"
-        id="curriculum"
-      >
-        <div class="text-center mb-12">
-          <span class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-            >Syllabus Details</span
-          >
-          <h2
-            class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
-          >
-            Program Curriculum
-          </h2>
-          <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-        </div>
-        <div class="space-y-4">
-          <!-- Item 1 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-            open
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">01</span> Python
-                Programming
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn the fundamentals of Python, a versatile and powerful
-                programming language. This module covers essential concepts like
-                syntax, data types, control structures, and functions, laying
-                the foundation for data science and software development.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Python</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Syntax</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Functions</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Programming Foundations</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 2 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">02</span> Libraries
-                of Python Programming with EDA
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Dive into essential Python libraries like NumPy, Pandas, and
-                Matplotlib. Learn to perform Exploratory Data Analysis (EDA) to
-                uncover insights, visualize trends, and prepare datasets for
-                advanced analytics and modeling.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >NumPy</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Pandas</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Matplotlib</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >EDA</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Visualization</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 3 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">03</span> Mathematics
-                for Data Science
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master statistical concepts like probability, hypothesis
-                testing, and regression analysis. Learn to interpret data
-                trends, make data-driven decisions, and build a strong
-                foundation for machine learning models.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Probability</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Hypothesis Testing</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Regression Analysis</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Statistics</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 4 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">04</span> Machine
-                Learning- Supervised
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn the fundamentals of supervised learning, where models are
-                trained on labeled data to predict outcomes. Explore key
-                algorithms like linear regression, decision trees, and support
-                vector machines for real-world problem-solving.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Supervised Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Linear Regression</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Decision Trees</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >SVM</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 5 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">05</span> Machine
-                Learning- Unsupervised
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Dive into unsupervised learning, where models analyze unlabeled
-                data to uncover hidden patterns. Explore clustering,
-                association, and dimensionality reduction techniques like
-                k-means and PCA for data exploration and insights.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Unsupervised Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Clustering</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >PCA</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >K-Means</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 6 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">06</span> Deep Learning
-                and AI
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore the foundations of deep learning and artificial
-                intelligence, focusing on neural networks, model training, and
-                optimization techniques. Learn how AI models power innovations
-                in image recognition, NLP, and more.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Deep Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Neural Networks</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >AI</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Model Optimization</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 7 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">07</span> MySQL
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Gain proficiency in MySQL, a powerful relational database
-                management system. Learn how to create, manage, and query
-                databases using SQL to store and retrieve data efficiently.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >MySQL</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Relational Database</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >SQL Queries</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Storage</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 8 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">08</span> Tableau
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master Tableau for data visualization, enabling you to create
-                interactive and insightful dashboards. Learn how to connect
-                data, apply filters, and generate compelling visual reports for
-                informed decision-making.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Tableau</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Visualization</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Interactive Dashboards</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Reporting</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 9 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">09</span> Power
-                BI and Google Data Studio
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore Power BI and Google Data Studio for powerful data
-                visualization and reporting. Learn to transform raw data into
-                interactive dashboards and reports, empowering data-driven
-                insights and decision-making.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Power BI</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Google Data Studio</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Dashboards</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Insights</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 10 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">10</span> Data Engineering
-                Tools
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master essential data engineering tools to manage, process, and
-                transform large datasets. Learn to work with technologies like
-                Apache Hadoop, Spark, and Kafka for efficient data pipeline
-                creation and optimization.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Apache Hadoop</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Spark</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Kafka</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Pipelines</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 11 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">11</span> NLP with
-                MLOPS
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore Natural Language Processing (NLP) techniques to analyze
-                and process textual data. Learn to integrate NLP models into
-                production environments using MLOps practices for scalable and
-                efficient machine learning workflows.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >NLP</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >MLOps</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Model Integration</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >CI/CD</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 12 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">12</span> AI Strategy
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn how to design and implement effective AI strategies for
-                business growth. This module covers key AI technologies, their
-                applications, and how to align AI initiatives with
-                organizational goals for maximum impact.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >AI Strategy</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Business Growth</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Tech Alignment</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Strategy</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 13 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">13</span> Domain
-                Wise Capstone Projects
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                The Capstone Project module enables learners to apply their
-                knowledge to real-world problems by working on domain-specific
-                datasets. Participants will gain hands-on experience in data
-                preprocessing, exploratory data analysis, predictive modeling,
-                and result interpretation. This module fosters problem-solving
-                skills and prepares learners for industry challenges while
-                allowing them to showcase their expertise through a
-                comprehensive project.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Capstone Projects</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Preprocessing</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Predictive Modeling</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Real-World Data</span
-                >
-              </div>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <!-- Section 8: Tools -->
-      <section
-        class="py-20 overflow-hidden bg-slate-50/50 border-y border-slate-100"
-      >
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop mb-12">
-          <div class="text-center max-w-3xl mx-auto">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs mb-4 block"
-              >Ecosystem</span
-            >
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6"
-            >
-              Technologies You Will Learn
-            </h2>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Python &bull; SQL &bull; NumPy &bull; Pandas &bull; Power BI
-              &bull; TensorFlow &bull; Git &bull; Kafka &bull; Tableau &bull;
-              Scikit-learn &bull; PyTorch &bull; Docker &bull; LangChain &bull;
-              MLflow &bull; Azure AI &bull; Hadoop &bull; Jupyter Notebook
-              &bull; Apache Spark
-            </p>
-          </div>
-        </div>
-        <ToolLogoMarquee tools={programToolLogos["data-science-ai"]} />
-      </section>
-
-      <style>
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-      </style>
-
-      <!-- Section 9: Certification -->
-      <section class="py-20 bg-white">
-        <div
-          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-        >
-          <div class="order-2 lg:order-1 relative">
-            <div
-              class="absolute -inset-2 bg-gradient-to-tr from-sky-400/10 to-blue-500/10 blur-2xl opacity-75 rounded-full pointer-events-none"
-            >
-            </div>
-            <img
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="453"
-              src="/assets/certificate/microsoft-dp-900-data-science.png"
-              class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
-              alt="Certificate"
-            />
-          </div>
-
-          <div class="order-1 lg:order-2 space-y-6">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Credentials</span
-            >
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
-            >
-              A Credential That Commands Respect
-            </h2>
-            <p class="text-slate-600 text-base leading-relaxed">
-              Graduates receive the Sky States Architect Certification—a mark of
-              excellence recognized by the world’s leading technology
-              recruitment agencies and enterprise AI labs.
-            </p>
-            <ul class="space-y-4">
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Verified Digital Badge on LinkedIn</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Institutional Seal of Excellence</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Permanent Record in Alumni Registry</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: SkyStates Career Guidance -->
-      <section class="py-20 bg-slate-50/50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="text-center mb-12">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Career Success</span
-            >
-            <h2 class="text-3xl font-bold text-slate-900 mt-2">
-              SkyStates Career Guidance
-            </h2>
-            <p class="text-slate-600 text-sm max-w-xl mx-auto mt-2">
-              Learning technical skills is part of becoming job-ready. We
-              provide full-concierge career assistance.
-            </p>
-            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div
-              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">badge</span>
-              </div>
-              <h4 class="font-bold text-base text-slate-800 mt-2">
-                Resume &amp; Profile
-              </h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Resume maximization and LinkedIn profile improvement to stand
-                out to modern technical recruiters.
-              </p>
-            </div>
-            <div
-              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl"
-                  >folder_shared</span
-                >
-              </div>
-              <h4 class="font-bold text-base text-slate-800 mt-2">
-                Portfolio Assistance
-              </h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                GitHub portfolio assistance to present your capstones and code
-                structure professionally.
-              </p>
-            </div>
-            <div
-              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">forum</span>
-              </div>
-              <h4 class="font-bold text-base text-slate-800 mt-2">
-                Interview Prep
-              </h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                Mock technical interviews, HR interview preparation, and
-                systematic salary negotiation training.
-              </p>
-            </div>
-            <div
-              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
-              >
-                <span class="material-symbols-outlined text-2xl">handshake</span
-                >
-              </div>
-              <h4 class="font-bold text-base text-slate-800 mt-2">
-                Mentorship &amp; Networks
-              </h4>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                1-on-1 career mentorship, network sessions, and full placement
-                support with partner firms.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: Explore Your Career Options -->
-      <section class="py-20 bg-slate-50 border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="text-center mb-12">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Career Horizons</span
-            >
-            <h2
-              class="text-3xl font-bold text-slate-900 tracking-tight mt-2 mb-4"
-            >
-              Explore Your Career Options
-            </h2>
-            <p class="text-slate-650 max-w-2xl mx-auto mb-8">
-              After completing the program, you can pursue diverse high-paying
-              roles across the global technology ecosystem.
-            </p>
-            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-          </div>
-
-          <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Scientist</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Analyst</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Machine Learning Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >AI Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Business Intelligence Analyst</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >AI Consultant</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >NLP Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Analytics Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Research Associate</span
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- Section: Learning Methodology We Use -->
-      <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
-          <div class="text-center mb-16">
-            <span
-              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Framework</span
-            >
-            <h2 class="text-3xl font-bold text-slate-900 mt-2">
-              Learning Methodology We Use
-            </h2>
-            <p class="text-slate-500 text-sm max-w-xl mx-auto mt-2">
-              Our structured approach ensures you absorb complex topics with
-              permanent retention.
-            </p>
-            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl">live_tv</span>
-              </div>
-              <h3 class="font-bold text-lg text-slate-805">Live Sessions</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Learn directly from experienced industry experts.
-              </p>
-            </div>
-            <!-- Card 2 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl">science</span>
-              </div>
-              <h3 class="font-bold text-lg text-slate-805">Practical Labs</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Practice concepts immediately through guided exercises.
-              </p>
-            </div>
-            <!-- Card 3 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl"
-                  >assignment</span
-                >
-              </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Weekly Assignments
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Reinforce concepts via organized assessments.
-              </p>
-            </div>
-            <!-- Card 4 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl"
-                  >support_agent</span
-                >
-              </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Mentor Assistance
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Receive guidance throughout your learning journey.
-              </p>
-            </div>
-            <!-- Card 5 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl"
-                  >folder_open</span
-                >
-              </div>
-              <h3 class="font-bold text-lg text-slate-850">Applied Projects</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Solve real business problems using industry datasets.
-              </p>
-            </div>
-            <!-- Card 6 -->
-            <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
-            >
-              <div
-                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-              >
-                <span class="material-symbols-outlined text-2xl"
-                  >cloud_sync</span
-                >
-              </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Lifetime LMS Access
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Revisit course materials anytime and anywhere.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 15: FAQs -->
-      <section class="py-20 bg-slate-50/50 border-t border-slate-100" id="faq">
-        <div class="max-w-3xl mx-auto px-4">
-          <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">
-            Frequently Asked Questions
-          </h2>
-          <div class="space-y-4">
-            <!-- FAQ 1 -->
-            <div
-              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
-            >
-              <h5 class="text-base font-bold text-slate-805 mb-2">
-                What are the prerequisites?
-              </h5>
-              <p class="text-slate-550 text-sm leading-relaxed">
-                Candidates should have a background in STEM or equivalent
-                professional experience, along with basic proficiency in Python.
-              </p>
-            </div>
-            <!-- FAQ 2 -->
-            <div
-              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
-            >
-              <h5 class="text-base font-bold text-slate-805 mb-2">
-                Is the Microsoft exam fee included?
-              </h5>
-              <p class="text-slate-550 text-sm leading-relaxed">
-                Yes, the Sky States program fee includes one attempt voucher for
-                the Microsoft DP-900: Azure Data Fundamentals certification.
-              </p>
-            </div>
-            <!-- FAQ 3 -->
-            <div
-              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
-            >
-              <h5 class="text-base font-bold text-slate-805 mb-2">
-                What is the refund policy?
-              </h5>
-              <p class="text-slate-550 text-sm leading-relaxed">
-                We offer a 100% satisfaction guarantee with a full refund
-                available within the first 14 days of the program start date.
-              </p>
-            </div>
-            <!-- FAQ 4 -->
-            <div
-              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
-            >
-              <h5 class="text-base font-bold text-slate-805 mb-2">
-                Do I need prior coding experience?
-              </h5>
-              <p class="text-slate-550 text-sm leading-relaxed">
-                While we focus on architecture, basic Python is required. We
-                offer a pre-bootcamp 'Python for Data' module for those who need
-                to level up before the core start date.
-              </p>
-            </div>
-            <!-- FAQ 5 -->
-            <div
-              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
-            >
-              <h5 class="text-base font-bold text-slate-805 mb-2">
-                Is there a weekend schedule available?
-              </h5>
-              <p class="text-slate-550 text-sm leading-relaxed">
-                Yes, our primary track features live instructor-led weekend
-                workshops (Saturday &amp; Sunday) to accommodate full-time
-                working professionals.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 16: Final CTA / Pricing -->
-      <section class="py-24 relative overflow-hidden bg-white">
-        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
-          <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
-            <h2
-              class="text-4xl font-bold text-slate-900 leading-tight"
-              id="pricing"
-            >
-              Develop The Skills That Power the Future of AI
-            </h2>
-            <p class="text-slate-650 text-base sm:text-lg leading-relaxed">
-              If you are beginning your first technology career or upgrading
-              into AI and machine learning, the Sky States Data Science & AI
-              Program offers practical training, real-world projects, expert
-              mentorship, and career assistance to help you become job-ready.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center pt-4">
-              <a
-                href="/Data-Science-&-AI.pdf"
-                download="Data Science & AI Brouchure"
-                class="px-6 py-3 border-2 border-slate-200 text-slate-600 rounded-xl font-semibold hover:text-sky-500 hover:border-sky-500 duration-200"
-                >Download the Brouchure</a
-              >
-            </div>
-          </div>
-
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch"
-          >
-            <!-- Pricing Card 1 (Scholar) -->
-            <div
-              class="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 flex flex-col hover:shadow-md transition-all duration-300"
-            >
-              <h3 class="text-2xl font-bold text-slate-900 mb-1">
-                Group Classes
-              </h3>
-              <p
-                class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6"
-              >
-                Full Immersive Journey
-              </p>
-              <div class="mb-6 flex items-baseline gap-1">
-                <span class="text-4xl sm:text-5xl font-black text-sky-700"
-                  >$3499</span
-                >
-                <span class="text-slate-400 text-sm font-semibold">/ total</span
-                >
-              </div>
-
-              <ul class="space-y-4 mb-8 flex-grow text-slate-600 text-sm">
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > 12-Week Immersive Syllabus
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Microsoft DP-900 Voucher
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Lifetime Community Access
-                </li>
-              </ul>
-              <a
-                href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
-                class="w-full py-4 border-2 border-sky-650 text-sky-750 hover:bg-sky-600 hover:text-white hover:border-sky-600 rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-sm shadow-sky-600/5"
-                >Enroll in batch classes</a
-              >
-            </div>
-            <!-- Pricing Card 2 (Elite) -->
-            <div
-              class="bg-gradient-to-br from-sky-50 to-blue-100/50 text-slate-800 rounded-3xl p-8 sm:p-10 shadow-xl relative flex flex-col border border-sky-200/60 scale-105"
-            >
-              <div
-                class="absolute top-[-8px] right-[185px] bg-sky-600 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest font-bold"
-              >
-                Most Popular
-              </div>
-              <h3 class="text-2xl font-bold mb-1 text-slate-900">
-                Personalized Services
-              </h3>
-              <p
-                class="text-sky-700 font-bold uppercase tracking-widest text-sm mb-6"
-              >
-                Top Industry Mentor Track
-              </p>
-              <div class="mb-6 flex items-baseline gap-1">
-                <span class="text-4xl sm:text-5xl font-black text-sky-700"
-                  >$6,499</span
-                >
-                <span class="text-slate-500 text-sm font-semibold">/ total</span
-                >
-              </div>
-              <ul class="space-y-4 mb-8 flex-grow text-slate-650 text-sm">
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Everything in batch classes
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Weekly Private Mentorship
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Guaranteed Internship Interview
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Salary Negotiation Support
-                </li>
-              </ul>
-              <a
-                href="/checkout?course=Data+Science+%26+AI&type=1on1&mode=full"
-                class="w-full py-4 bg-gradient-to-r from-sky-600 to-blue-700 text-white hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] active:scale-[0.98] rounded-xl font-bold text-sm transition-all duration-205 text-center block shadow-md shadow-sky-600/10"
-                >Apply for personalised classes</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
-    <!-- Footer -->
+
+
     <Footer />
-    <script>
-      const observerOptions = {
-        threshold: 0.1,
-      };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-          }
-        });
-      }, observerOptions);
+</body>
 
-      document.querySelectorAll(".ambient-shadow").forEach((card) => {
-        card.classList.add(
-          "transition-[opacity,transform]",
-          "duration-700",
-          "opacity-0",
-          "translate-y-10",
-        );
-        observer.observe(card);
-      });
-    </script>
-  </body>
 </html>
