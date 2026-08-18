@@ -50,11 +50,20 @@ function initializeDatabase() {
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE NOT NULL,
+        email TEXT UNIQUE,
         password_hash TEXT NOT NULL,
         role TEXT DEFAULT 'editor',
+        reset_token TEXT,
+        reset_token_expiry DATETIME,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    // Safely attempt to add new columns to an existing table
+    db.run("ALTER TABLE users ADD COLUMN email TEXT", (err) => {});
+    db.run("ALTER TABLE users ADD COLUMN reset_token TEXT", (err) => {});
+    db.run("ALTER TABLE users ADD COLUMN reset_token_expiry DATETIME", (err) => {});
+
 
     // 2. Pages Table (Dynamic Routes and Content Blocks)
     db.run(`
@@ -86,9 +95,35 @@ function initializeDatabase() {
         alt_text TEXT,
         title TEXT,
         caption TEXT,
+        description TEXT,
+        dimensions TEXT,
+        uploaded_by INTEGER,
+        access_level TEXT DEFAULT 'public',
+        allowed_roles TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )
     `);
+
+    // Safely attempt to add new columns to an existing media table
+    db.run("ALTER TABLE media ADD COLUMN description TEXT", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN dimensions TEXT", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN uploaded_by INTEGER", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN access_level TEXT DEFAULT 'public'", (err) => {});
+    db.run("ALTER TABLE media ADD COLUMN allowed_roles TEXT", (err) => {});
+
+    // 3.5 File Versions Table (Version History)
+    db.run(`
+      CREATE TABLE IF NOT EXISTS file_versions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        media_id INTEGER,
+        filename TEXT NOT NULL,
+        path TEXT NOT NULL,
+        size INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (media_id) REFERENCES media (id) ON DELETE CASCADE
+      )
+    `);
+
     // 4. Blogs Table
 db.run(`
   CREATE TABLE IF NOT EXISTS blogs (
@@ -99,6 +134,8 @@ db.run(`
     slug TEXT UNIQUE NOT NULL,
 
     category TEXT NOT NULL,
+    
+    subcategory TEXT,
 
     short_description TEXT,
 
@@ -119,6 +156,12 @@ db.run(`
     status TEXT DEFAULT 'draft',
 
     views INTEGER DEFAULT 0,
+    
+    seo_score INTEGER DEFAULT 0,
+    
+    seo_metadata TEXT,
+    
+    published_at DATETIME,
 
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 
@@ -145,7 +188,83 @@ db.run(
   }
 );
 
-    // 4. Jobs / Placements Table
+    // Safely attempt to add new columns to an existing blogs table
+    db.run("ALTER TABLE blogs ADD COLUMN seo_score INTEGER DEFAULT 0", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN subcategory TEXT", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN published_at DATETIME", (err) => {});
+    db.run("ALTER TABLE blogs ADD COLUMN seo_metadata TEXT", (err) => {});
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS blog_comments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        blog_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        content TEXT NOT NULL,
+        status TEXT DEFAULT 'open',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS notifications (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        message TEXT NOT NULL,
+        link TEXT,
+        is_read INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS blog_versions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        blog_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        seo_metadata TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS blog_attachments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        blog_id INTEGER NOT NULL,
+        media_id INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,
+        FOREIGN KEY (media_id) REFERENCES media(id) ON DELETE CASCADE
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS redirect_rules (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        from_url TEXT UNIQUE NOT NULL,
+        to_url TEXT NOT NULL,
+        status_code INTEGER DEFAULT 301,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS analytics_cache (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL, -- e.g., '2023-10-25'
+        data TEXT NOT NULL, -- JSON string of analytics metrics
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // 5. Jobs / Placements Table
     db.run(`
       CREATE TABLE IF NOT EXISTS jobs (
         id TEXT PRIMARY KEY,

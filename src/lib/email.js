@@ -24,8 +24,38 @@ function getTransporter() {
 
 function getFromAddress() {
   return import.meta.env.SMTP_FROM || process.env.SMTP_FROM || 'Sky States <support@skystates.us>';
-
 }
+
+export async function sendPasswordResetEmail(to, token) {
+  const transporter = getTransporter();
+  if (!transporter) return false;
+
+  const resetLink = `${SITE_URL}/admin/reset-password?token=${token}`;
+
+  const html = `
+    <h2>Password Reset Request</h2>
+    <p>You requested a password reset for your Sky States Admin Portal account.</p>
+    <p>Please click the link below to reset your password:</p>
+    <p><a href="${resetLink}">${resetLink}</a></p>
+    <p>This link is valid for 1 hour.</p>
+    <p>If you didn't request this, you can safely ignore this email.</p>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: getFromAddress(),
+      to,
+      subject: 'Sky States - Password Reset',
+      html,
+    });
+    return true;
+  } catch (error) {
+    console.error('Failed to send reset email:', error);
+    return false;
+  }
+}
+
+
 
 async function wasEmailSent(referenceId, emailType) {
   const row = await query.get(

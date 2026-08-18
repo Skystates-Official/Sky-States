@@ -1,0 +1,534 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { query } from '../../../db/sqlite.js';
+
+// We fetch initial media SSR so the page loads instantly.
+// The client will handle search and uploads dynamically.
+const media = await query.all('SELECT * FROM media ORDER BY created_at DESC');
+---
+
+<AdminLayout title="Media Vault">
+  <div class="space-y-6 relative h-full flex flex-col">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
+      <div>
+        <h1 class="font-headline-md text-primary">Media Vault</h1>
+        <p class="text-on-surface-variant font-body-md mt-1">Manage all your files, images, and documents.</p>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <div class="relative w-full sm:w-64">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i data-feather="search" class="w-4 h-4 text-on-surface-variant"></i>
+          </div>
+          <input type="text" id="search-input" 
+            class="block w-full pl-9 pr-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm transition-shadow" 
+            placeholder="Search files...">
+        </div>
+        
+        <button id="btn-upload" class="bg-primary hover:bg-primary-fixed text-on-primary py-2 px-4 rounded-lg font-label-md transition-colors flex items-center gap-2 whitespace-nowrap shadow-sm">
+          <i data-feather="upload-cloud" class="w-4 h-4"></i>
+          <span>Upload</span>
+        </button>
+        <input type="file" id="file-input" class="hidden" multiple>
+      </div>
+    </div>
+
+    <!-- Drag & Drop Zone Overlay -->
+    <div id="drop-zone" class="absolute inset-0 bg-primary/10 backdrop-blur-sm border-2 border-dashed border-primary rounded-xl z-10 flex flex-col items-center justify-center hidden pointer-events-none transition-all">
+      <div class="bg-surface p-6 rounded-full shadow-lg text-primary mb-4">
+        <i data-feather="upload-cloud" class="w-10 h-10"></i>
+      </div>
+      <h2 class="font-headline-sm text-primary">Drop files to upload</h2>
+    </div>
+
+    <!-- Media Grid -->
+    <div id="media-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pb-20 flex-1 overflow-y-auto min-h-[500px]">
+      <!-- SSR Items -->
+      {media.map((file) => (
+        <div class="media-card group relative bg-surface border border-outline-variant rounded-xl overflow-hidden cursor-pointer hover:border-primary hover:shadow-md transition-all aspect-square flex flex-col" data-id={file.id} data-file={JSON.stringify(file)}>
+          <div class="flex-1 bg-surface-container-lowest flex items-center justify-center overflow-hidden relative">
+            {file.mime_type.startsWith('image/') ? (
+              <img src={file.path} alt={file.alt_text || file.filename} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+            ) : (
+              <i data-feather="file-text" class="w-12 h-12 text-on-surface-variant group-hover:text-primary transition-colors"></i>
+            )}
+            
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+               <i data-feather="eye" class="w-6 h-6 text-white"></i>
+            </div>
+          </div>
+          <div class="p-3 border-t border-outline-variant bg-surface">
+            <p class="text-xs font-label-sm text-on-surface truncate" title={file.filename}>{file.title || file.filename}</p>
+            <p class="text-[10px] text-on-surface-variant uppercase mt-0.5">{(file.size / 1024).toFixed(1)} KB • {file.mime_type.split('/')[1]}</p>
+          </div>
+        </div>
+      ))}
+      
+      {media.length === 0 && (
+         <div class="col-span-full flex flex-col items-center justify-center py-20 text-on-surface-variant">
+            <i data-feather="image" class="w-12 h-12 mb-4 opacity-50"></i>
+            <p class="font-body-lg">Vault is empty.</p>
+            <p class="text-sm mt-1">Upload your first asset to get started.</p>
+         </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity opacity-0"></div>
+  
+  <!-- Media Details Sidebar -->
+  <div id="media-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col border-l border-outline-variant">
+     
+     <div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+       <h3 class="font-title-md text-on-surface truncate" id="sidebar-title">Asset Details</h3>
+       <button id="btn-close-sidebar" class="text-on-surface-variant hover:text-error transition-colors p-1 rounded-full hover:bg-error-container">
+         <i data-feather="x" class="w-5 h-5"></i>
+       </button>
+     </div>
+     
+     <div class="flex-1 overflow-y-auto">
+        <!-- Preview Box -->
+        <div class="bg-surface-container-lowest border-b border-outline-variant p-6 flex flex-col items-center justify-center" id="sidebar-preview-container">
+           <img id="sidebar-preview-img" src="" alt="Preview" class="max-w-full max-h-64 rounded shadow-sm hidden object-contain">
+           <div id="sidebar-preview-icon" class="hidden flex-col items-center justify-center text-on-surface-variant py-8">
+              <i data-feather="file" class="w-16 h-16 mb-4"></i>
+              <span class="font-label-md uppercase tracking-wider" id="sidebar-preview-ext">FILE</span>
+           </div>
+           
+           <div class="mt-4 flex gap-2">
+             <a id="btn-download" href="#" download class="px-3 py-1.5 bg-secondary-container text-on-secondary-container rounded font-label-sm hover:bg-secondary transition-colors flex items-center gap-1">
+                <i data-feather="download" class="w-3 h-3"></i> Download
+             </a>
+             <button id="btn-copy-url" class="px-3 py-1.5 bg-surface-container-high text-on-surface rounded font-label-sm hover:bg-outline-variant transition-colors flex items-center gap-1">
+                <i data-feather="link" class="w-3 h-3"></i> Copy Link
+             </button>
+           </div>
+        </div>
+        
+        <div class="p-6 space-y-6">
+           <form id="media-meta-form" class="space-y-4">
+              <input type="hidden" id="meta-id">
+              
+              <div>
+                <label class="block font-label-sm text-on-surface mb-1">Title</label>
+                <input type="text" id="meta-title" class="w-full px-3 py-2 border border-outline rounded focus:border-primary focus:ring-1 focus:ring-primary text-sm bg-surface">
+              </div>
+              
+              <div id="alt-text-group">
+                <label class="block font-label-sm text-on-surface mb-1">Alt Text (SEO)</label>
+                <input type="text" id="meta-alt" class="w-full px-3 py-2 border border-outline rounded focus:border-primary focus:ring-1 focus:ring-primary text-sm bg-surface">
+              </div>
+
+              <div>
+                <label class="block font-label-sm text-on-surface mb-1">Description</label>
+                <textarea id="meta-desc" rows="2" class="w-full px-3 py-2 border border-outline rounded focus:border-primary focus:ring-1 focus:ring-primary text-sm bg-surface"></textarea>
+              </div>
+
+              <div class="pt-2 flex justify-between items-center">
+                 <button type="button" id="btn-delete" class="text-error font-label-sm hover:underline flex items-center gap-1">
+                    <i data-feather="trash-2" class="w-3 h-3"></i> Delete Asset
+                 </button>
+                 <button type="submit" id="btn-save-meta" class="px-4 py-2 bg-primary text-on-primary rounded font-label-sm hover:bg-primary-fixed transition-colors flex items-center gap-2">
+                    <i data-feather="save" class="w-4 h-4"></i> Save
+                 </button>
+              </div>
+           </form>
+           
+           <hr class="border-outline-variant">
+           
+           <div>
+              <div class="flex justify-between items-center mb-3">
+                 <h4 class="font-title-sm text-on-surface">File Versions</h4>
+                 <button id="btn-replace" class="text-primary font-label-sm flex items-center gap-1 hover:underline">
+                   <i data-feather="refresh-cw" class="w-3 h-3"></i> Replace File
+                 </button>
+                 <input type="file" id="replace-input" class="hidden">
+              </div>
+              <p class="text-xs text-on-surface-variant mb-4">Replacing a file updates the link everywhere and saves the old version.</p>
+              
+              <div id="versions-list" class="space-y-2">
+                 <!-- Populated by JS -->
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+
+  <script>
+    declare const feather: any;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+       const grid = document.getElementById('media-grid') as HTMLElement;
+       const uploadBtn = document.getElementById('btn-upload') as HTMLButtonElement;
+       const fileInput = document.getElementById('file-input') as HTMLInputElement;
+       const dropZone = document.getElementById('drop-zone') as HTMLElement;
+       const searchInput = document.getElementById('search-input') as HTMLInputElement;
+       
+       const sidebar = document.getElementById('media-sidebar') as HTMLElement;
+       const overlay = document.getElementById('sidebar-overlay') as HTMLElement;
+       
+       let allMedia: any[] = [];
+       
+       // Setup Feather Icons
+       if (typeof feather !== 'undefined') feather.replace();
+
+       // Load Initial SSR Data into JS Array
+       document.querySelectorAll('.media-card').forEach(card => {
+          try {
+            const data = JSON.parse((card as HTMLElement).dataset.file || '{}');
+            allMedia.push(data);
+          } catch(e){}
+       });
+
+       // Drag & Drop Handlers
+       ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+          document.body.addEventListener(eventName, preventDefaults, false);
+       });
+
+       function preventDefaults(e: Event) {
+          e.preventDefault();
+          e.stopPropagation();
+       }
+
+       document.body.addEventListener('dragenter', () => dropZone.classList.remove('hidden'), false);
+       dropZone.addEventListener('dragleave', () => dropZone.classList.add('hidden'), false);
+       
+       dropZone.addEventListener('drop', (e: DragEvent) => {
+          dropZone.classList.add('hidden');
+          const dt = e.dataTransfer;
+          const files = dt?.files;
+          if (files && files.length > 0) handleUpload(files);
+       }, false);
+
+       // Upload Button
+       uploadBtn.addEventListener('click', () => fileInput.click());
+       fileInput.addEventListener('change', (e) => {
+          if (fileInput.files) handleUpload(fileInput.files);
+       });
+
+       async function handleUpload(files: FileList) {
+          for(let i = 0; i < files.length; i++) {
+             const formData = new FormData();
+             formData.append('file', files[i]);
+             
+             // Create Optimistic UI Card
+             const tempId = 'temp-' + Date.now() + i;
+             addOptimisticCard(tempId, files[i]);
+             
+             try {
+                const res = await fetch('/api/media/upload', {
+                   method: 'POST',
+                   body: formData
+                });
+                if(res.ok) {
+                   const newFile = await res.json();
+                   allMedia.unshift(newFile);
+                   renderGrid();
+                } else {
+                   document.getElementById(tempId)?.remove();
+                   alert('Failed to upload ' + files[i].name);
+                }
+             } catch(err) {
+                document.getElementById(tempId)?.remove();
+                alert('Error uploading ' + files[i].name);
+             }
+          }
+       }
+
+       function addOptimisticCard(id: string, file: File) {
+          const div = document.createElement('div');
+          div.id = id;
+          div.className = 'bg-surface border border-primary rounded-xl overflow-hidden aspect-square flex flex-col animate-pulse opacity-70';
+          div.innerHTML = `
+            <div class="flex-1 bg-surface-container-lowest flex items-center justify-center">
+              <i data-feather="upload-cloud" class="w-8 h-8 text-primary animate-bounce"></i>
+            </div>
+            <div class="p-3 border-t border-outline-variant bg-surface">
+              <p class="text-xs font-label-sm truncate">${file.name}</p>
+              <p class="text-[10px] uppercase mt-0.5">Uploading...</p>
+            </div>
+          `;
+          grid.prepend(div);
+          if (typeof feather !== 'undefined') feather.replace();
+       }
+
+       // Render Grid
+       function renderGrid(filterQuery = '') {
+          grid.innerHTML = '';
+          const filtered = allMedia.filter(m => 
+            m.title?.toLowerCase().includes(filterQuery) || 
+            m.filename?.toLowerCase().includes(filterQuery) ||
+            m.alt_text?.toLowerCase().includes(filterQuery)
+          );
+
+          if (filtered.length === 0) {
+             grid.innerHTML = `
+               <div class="col-span-full flex flex-col items-center justify-center py-20 text-on-surface-variant">
+                  <i data-feather="search" class="w-12 h-12 mb-4 opacity-50"></i>
+                  <p class="font-body-lg">No files found.</p>
+               </div>
+             `;
+             if (typeof feather !== 'undefined') feather.replace();
+             return;
+          }
+
+          filtered.forEach(file => {
+             const div = document.createElement('div');
+             div.className = 'media-card group relative bg-surface border border-outline-variant rounded-xl overflow-hidden cursor-pointer hover:border-primary hover:shadow-md transition-all aspect-square flex flex-col';
+             div.dataset.id = file.id;
+             
+             const isImage = file.mime_type.startsWith('image/');
+             
+             div.innerHTML = `
+                <div class="flex-1 bg-surface-container-lowest flex items-center justify-center overflow-hidden relative">
+                  ${isImage 
+                    ? `<img src="${file.path}" alt="${file.alt_text || ''}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />`
+                    : `<i data-feather="file-text" class="w-12 h-12 text-on-surface-variant group-hover:text-primary transition-colors"></i>`
+                  }
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                     <i data-feather="eye" class="w-6 h-6 text-white"></i>
+                  </div>
+                </div>
+                <div class="p-3 border-t border-outline-variant bg-surface">
+                  <p class="text-xs font-label-sm text-on-surface truncate" title="${file.filename}">${file.title || file.filename}</p>
+                  <p class="text-[10px] text-on-surface-variant uppercase mt-0.5">${(file.size / 1024).toFixed(1)} KB • ${file.mime_type.split('/')[1]}</p>
+                </div>
+             `;
+             
+             div.addEventListener('click', () => openSidebar(file));
+             grid.appendChild(div);
+          });
+          
+          if (typeof feather !== 'undefined') feather.replace();
+       }
+
+       // Setup initial click listeners
+       document.querySelectorAll('.media-card').forEach(card => {
+          card.addEventListener('click', () => {
+             const data = JSON.parse((card as HTMLElement).dataset.file || '{}');
+             openSidebar(data);
+          });
+       });
+
+       // Search
+       searchInput.addEventListener('input', (e) => {
+          renderGrid((e.target as HTMLInputElement).value.toLowerCase());
+       });
+
+       // Sidebar Logic
+       const btnClose = document.getElementById('btn-close-sidebar')!;
+       const imgPreview = document.getElementById('sidebar-preview-img') as HTMLImageElement;
+       const iconPreview = document.getElementById('sidebar-preview-icon') as HTMLElement;
+       const iconExt = document.getElementById('sidebar-preview-ext')!;
+       
+       const titleInput = document.getElementById('meta-title') as HTMLInputElement;
+       const altInput = document.getElementById('meta-alt') as HTMLInputElement;
+       const descInput = document.getElementById('meta-desc') as HTMLTextAreaElement;
+       const idInput = document.getElementById('meta-id') as HTMLInputElement;
+       
+       btnClose.addEventListener('click', closeSidebar);
+       overlay.addEventListener('click', closeSidebar);
+
+       async function openSidebar(file: any) {
+          overlay.classList.remove('hidden');
+          setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+          
+          sidebar.classList.remove('translate-x-full');
+
+          // Populate Form
+          idInput.value = file.id;
+          titleInput.value = file.title || '';
+          altInput.value = file.alt_text || '';
+          descInput.value = file.description || '';
+          
+          document.getElementById('sidebar-title')!.textContent = file.title || file.filename;
+          
+          // Download Link
+          (document.getElementById('btn-download') as HTMLAnchorElement).href = file.path;
+          
+          // Preview
+          if (file.mime_type.startsWith('image/')) {
+             imgPreview.src = file.path;
+             imgPreview.classList.remove('hidden');
+             iconPreview.classList.add('hidden');
+             document.getElementById('alt-text-group')!.classList.remove('hidden');
+          } else {
+             imgPreview.classList.add('hidden');
+             iconPreview.classList.remove('hidden');
+             iconExt.textContent = file.mime_type.split('/')[1]?.toUpperCase() || 'FILE';
+             document.getElementById('alt-text-group')!.classList.add('hidden');
+          }
+
+          // Fetch Versions
+          loadVersions(file.id);
+       }
+
+       function closeSidebar() {
+          sidebar.classList.add('translate-x-full');
+          overlay.classList.add('opacity-0');
+          setTimeout(() => overlay.classList.add('hidden'), 300);
+       }
+
+       // Update Metadata
+       document.getElementById('media-meta-form')!.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const id = idInput.value;
+          const btn = document.getElementById('btn-save-meta') as HTMLButtonElement;
+          const oldText = btn.innerHTML;
+          btn.innerHTML = `<i data-feather="loader" class="animate-spin w-4 h-4"></i> Saving`;
+          if (typeof feather !== 'undefined') feather.replace();
+          btn.disabled = true;
+
+          try {
+             const res = await fetch(`/api/media/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                   title: titleInput.value,
+                   alt_text: altInput.value,
+                   description: descInput.value
+                })
+             });
+             
+             if (res.ok) {
+                // Update local array
+                const idx = allMedia.findIndex(m => m.id == id);
+                if(idx > -1) {
+                   allMedia[idx].title = titleInput.value;
+                   allMedia[idx].alt_text = altInput.value;
+                   allMedia[idx].description = descInput.value;
+                   renderGrid(searchInput.value.toLowerCase());
+                }
+             }
+          } catch(e) {
+             alert('Failed to save metadata');
+          } finally {
+             btn.disabled = false;
+             btn.innerHTML = oldText;
+             if (typeof feather !== 'undefined') feather.replace();
+          }
+       });
+
+       // Copy URL
+       document.getElementById('btn-copy-url')!.addEventListener('click', () => {
+          const url = new URL((document.getElementById('btn-download') as HTMLAnchorElement).href, window.location.origin).href;
+          navigator.clipboard.writeText(url);
+          const btn = document.getElementById('btn-copy-url')!;
+          btn.innerHTML = `<i data-feather="check" class="w-3 h-3 text-primary"></i> Copied!`;
+          if (typeof feather !== 'undefined') feather.replace();
+          setTimeout(() => {
+             btn.innerHTML = `<i data-feather="link" class="w-3 h-3"></i> Copy Link`;
+             if (typeof feather !== 'undefined') feather.replace();
+          }, 2000);
+       });
+
+       // Delete
+       document.getElementById('btn-delete')!.addEventListener('click', async () => {
+          if (!confirm('Are you sure you want to permanently delete this asset? This cannot be undone and will break links on published pages.')) return;
+          
+          const id = idInput.value;
+          const btn = document.getElementById('btn-delete') as HTMLButtonElement;
+          btn.innerHTML = `<i data-feather="loader" class="animate-spin w-3 h-3"></i>`;
+          if (typeof feather !== 'undefined') feather.replace();
+          
+          try {
+             const res = await fetch(`/api/media/${id}`, { method: 'DELETE' });
+             if (res.ok) {
+                allMedia = allMedia.filter(m => m.id != id);
+                renderGrid(searchInput.value.toLowerCase());
+                closeSidebar();
+             }
+          } catch (e) {
+             alert('Failed to delete asset');
+          }
+       });
+
+       // Replace File
+       const replaceInput = document.getElementById('replace-input') as HTMLInputElement;
+       document.getElementById('btn-replace')!.addEventListener('click', () => replaceInput.click());
+       
+       replaceInput.addEventListener('change', async (e) => {
+          if (!replaceInput.files || replaceInput.files.length === 0) return;
+          const file = replaceInput.files[0];
+          const id = idInput.value;
+          
+          const btn = document.getElementById('btn-replace') as HTMLButtonElement;
+          const oldText = btn.innerHTML;
+          btn.innerHTML = `<i data-feather="loader" class="animate-spin w-3 h-3"></i> Uploading...`;
+          if (typeof feather !== 'undefined') feather.replace();
+          btn.disabled = true;
+
+          const formData = new FormData();
+          formData.append('file', file);
+
+          try {
+             const res = await fetch(`/api/media/${id}`, {
+                method: 'POST',
+                body: formData
+             });
+             
+             if (res.ok) {
+                const data = await res.json();
+                
+                // Update local array
+                const idx = allMedia.findIndex(m => m.id == id);
+                if(idx > -1) {
+                   allMedia[idx].path = data.path;
+                   allMedia[idx].filename = file.name;
+                   allMedia[idx].mime_type = file.type || 'application/octet-stream';
+                   allMedia[idx].size = file.size;
+                   renderGrid(searchInput.value.toLowerCase());
+                   
+                   // Refresh sidebar
+                   if (allMedia[idx].mime_type.startsWith('image/')) {
+                      imgPreview.src = data.path;
+                   }
+                   loadVersions(id);
+                }
+             } else {
+                alert('Failed to replace file');
+             }
+          } catch (e) {
+             alert('Error replacing file');
+          } finally {
+             btn.disabled = false;
+             btn.innerHTML = oldText;
+             replaceInput.value = ''; // Reset
+             if (typeof feather !== 'undefined') feather.replace();
+          }
+       });
+
+       async function loadVersions(id: string) {
+          const list = document.getElementById('versions-list')!;
+          list.innerHTML = `<div class="animate-pulse h-4 bg-outline-variant rounded w-1/2"></div>`;
+          
+          try {
+             const res = await fetch(`/api/media/${id}`);
+             const data = await res.json();
+             
+             if (!data.versions || data.versions.length === 0) {
+                list.innerHTML = `<p class="text-sm text-on-surface-variant italic">No previous versions.</p>`;
+                return;
+             }
+             
+             list.innerHTML = data.versions.map((v: any) => `
+                <div class="flex justify-between items-center py-2 border-b border-outline-variant last:border-0">
+                   <div class="overflow-hidden mr-2">
+                     <p class="text-sm font-label-sm truncate" title="${v.filename}">${v.filename}</p>
+                     <p class="text-xs text-on-surface-variant">${new Date(v.created_at).toLocaleDateString()} • ${(v.size/1024).toFixed(1)} KB</p>
+                   </div>
+                   <a href="${v.path}" target="_blank" class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-container rounded transition-colors shrink-0" title="View old version">
+                      <i data-feather="external-link" class="w-3.5 h-3.5"></i>
+                   </a>
+                </div>
+             `).join('');
+             if (typeof feather !== 'undefined') feather.replace();
+          } catch(e) {
+             list.innerHTML = `<p class="text-sm text-error">Failed to load versions.</p>`;
+          }
+       }
+    });
+  </script>
+</AdminLayout>

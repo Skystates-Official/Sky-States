@@ -1,0 +1,82 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+---
+<AdminLayout title="Creating Blog...">
+  <div class="flex items-center justify-center min-h-[50vh]">
+    <div class="text-center">
+      <i data-feather="loader" class="w-8 h-8 animate-spin text-primary mx-auto mb-4"></i>
+      <p class="text-on-surface-variant font-label-md">Initializing new blog post...</p>
+    </div>
+  </div>
+
+  <script>
+    declare const feather: any;
+
+    async function createDraft() {
+      try {
+        const slug = 'draft-' + Date.now();
+        const res = await fetch('/api/blogs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: 'Untitled Draft',
+            slug: slug,
+            category: 'Uncategorized',
+            author: 'Admin', // In reality, we could fetch /api/auth/me for this, but backend forces WRITER constraints if we do. 
+            status: 'draft'
+          })
+        });
+        
+        const data = await res.json();
+        if (res.ok && data.id) {
+           window.location.href = `/admin/blogs/edit/${data.id}`;
+        } else {
+           alert('Error creating draft: ' + (data.error || 'Unknown error'));
+           window.location.href = '/admin/blogs';
+        }
+      } catch (err) {
+        alert('Network error while creating draft.');
+        window.location.href = '/admin/blogs';
+      }
+    }
+
+    // Since we need the current user's username for the author field, let's fetch it first
+    async function init() {
+       try {
+         const meRes = await fetch('/api/auth/me');
+         const dataUser = await meRes.json();
+         const username = dataUser.user ? dataUser.user.username : 'Admin';
+         
+         const slug = 'draft-' + Date.now();
+         const res = await fetch('/api/blogs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title: 'Untitled Draft',
+              slug: slug,
+              category: 'Uncategorized',
+              author: username,
+              status: 'draft',
+              image: '/placeholder-image.jpg',
+              tags: 'draft'
+            })
+         });
+         const data = await res.json();
+         if (res.ok && data.id) {
+            window.location.href = `/admin/blogs/edit/${data.id}`;
+         } else {
+            alert('Error creating draft: ' + (data.error || 'Unknown error'));
+            window.location.href = '/admin/blogs';
+         }
+       } catch (err) {
+         alert('Failed to initialize draft.');
+         window.location.href = '/admin/blogs';
+       }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+       if (typeof feather !== 'undefined') feather.replace();
+       init();
+    });
+  </script>
+</AdminLayout>

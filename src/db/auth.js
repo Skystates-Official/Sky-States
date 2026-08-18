@@ -7,11 +7,15 @@ const COOKIE_NAME = 'admin_session';
 export const ROLES = {
   ADMIN: 'admin',
   EDITOR: 'editor',
+  WRITER: 'writer',
+  SEO: 'seo',
 };
 
 export const ROLE_LABELS = {
   admin: 'Administrator',
   editor: 'Editor',
+  writer: 'Content Writer',
+  seo: 'SEO Specialist',
   super_admin: 'Administrator',
 };
 
@@ -75,9 +79,18 @@ export function getSessionUser(request) {
     const parts = cookie.trim().split('=');
     if (parts[0] === COOKIE_NAME) {
       const token = decodeURIComponent(parts.slice(1).join('='));
-      return verifySessionToken(token);
+      const session = verifySessionToken(token);
+      if (session) return session;
     }
   }
+
+  // Also support Authorization: Bearer <token> for API clients
+  const authHeader = request.headers.get('authorization') || '';
+  if (authHeader.startsWith('Bearer ')) {
+    const token = authHeader.substring(7);
+    return verifySessionToken(token);
+  }
+
   return null;
 }
 
@@ -101,7 +114,7 @@ export function requireFullAdmin(request) {
 
 export function requireAdminAccess(request) {
   const user = requireAuth(request);
-  if (!hasRole(user, ROLES.ADMIN, ROLES.EDITOR)) return null;
+  if (!hasRole(user, ROLES.ADMIN, ROLES.EDITOR, ROLES.WRITER, ROLES.SEO)) return null;
   return user;
 }
 
