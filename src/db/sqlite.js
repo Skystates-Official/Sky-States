@@ -145,7 +145,9 @@ db.run(`
 
     author TEXT,
 
-    tags TEXT,
+    keywords TEXT,
+
+    canonical TEXT,
 
     seo_title TEXT,
 
@@ -166,6 +168,25 @@ db.run(`
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
+// Blog SEO migration
+db.run(
+  `ALTER TABLE blogs ADD COLUMN keywords TEXT`,
+  (err) => {
+    if (err && !err.message.includes("duplicate column")) {
+      console.log("Keywords migration:", err.message);
+    }
+  }
+);
+
+
+db.run(
+  `ALTER TABLE blogs ADD COLUMN canonical TEXT`,
+  (err) => {
+    if (err && !err.message.includes("duplicate column")) {
+      console.log("Canonical migration:", err.message);
+    }
+  }
+);
 
     // Safely attempt to add new columns to an existing blogs table
     db.run("ALTER TABLE blogs ADD COLUMN seo_score INTEGER DEFAULT 0", (err) => {});

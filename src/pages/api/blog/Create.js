@@ -1,94 +1,96 @@
-// import { query as sqlQuery } from "../../../db/sqlite.js";
+import { query as sqlQuery } from '../../../db/sqlite.js';
+import { saveBlogUpload } from '../../../lib/blog-uploads.js';
 
-// export const prerender = false;
+export const prerender = false;
 
+export async function POST({ request }) {
+  try {
+    const formData = await request.formData();
 
-// export async function POST({ request }) {
+    const title = String(formData.get('title') || '').trim();
+    if (!title) {
+      return new Response(JSON.stringify({ success: false, error: 'Title is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
-//     try {
+    const slugFromForm = String(formData.get('slug') || '').trim();
+    const slug =
+      slugFromForm ||
+      title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
 
-//         const formData = await request.formData();
+    const category = String(formData.get('category') || 'General');
+    const short_description = String(formData.get('short_description') || '');
+    const content = String(formData.get('content') || '');
+    const author = String(formData.get('author') || 'Admin');
+    const keywords = String(formData.get('keywords') || '');
+    const canonical = String(formData.get('canonical') || '');
+    const seo_title = String(formData.get('seo_title') || '');
+    const seo_description = String(formData.get('seo_description') || '');
+    const status = String(formData.get('status') || 'draft');
+    const image = formData.get('image');
+    const imagePath = await saveBlogUpload(image);
 
+    await sqlQuery.run(
+      `
+      INSERT INTO blogs
+      (
+        title,
+        slug,
+        category,
+        author,
+        keywords,
+        canonical,
+        short_description,
+        content,
+        image,
+        seo_title,
+        seo_description,
+        status
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `,
+      [
+        title,
+        slug,
+        category,
+        author,
+        keywords,
+        canonical,
+        short_description,
+        content,
+        imagePath,
+        seo_title,
+        seo_description,
+        status,
+      ]
+    );
 
-//         const title = formData.get("title");
-//         const category = formData.get("category");
-//         const short_description = formData.get("short_description");
-//         const content = formData.get("content");
-//         const author = formData.get("author");
-//         const tags = formData.get("tags");
-//         const seo_title = formData.get("seo_title");
-//         const seo_description = formData.get("seo_description");
-//         const status = formData.get("status");
-
-
-//         const slug = title
-//             .toLowerCase()
-//             .replace(/[^a-z0-9]+/g, "-")
-//             .replace(/(^-|-$)/g, "");
-
-
-
-//         await sqlQuery.run(
-//             `
-//             INSERT INTO blogs
-//             (
-//                 title,
-//                 slug,
-//                 category,
-//                 short_description,
-//                 content,
-//                 author,
-//                 tags,
-//                 seo_title,
-//                 seo_description,
-//                 status
-//             )
-//             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-//             `,
-//             [
-//                 title,
-//                 slug,
-//                 category,
-//                 short_description,
-//                 content,
-//                 author,
-//                 tags,
-//                 seo_title,
-//                 seo_description,
-//                 status
-//             ]
-//         );
-
-
-//         return new Response(
-//             JSON.stringify({
-//                 success:true,
-//                 message:"Blog created successfully"
-//             }),
-//             {
-//                 status:200,
-//                 headers:{
-//                     "Content-Type":"application/json"
-//                 }
-//             }
-//         );
-
-
-//     } catch(error){
-
-//         console.error(error);
-
-
-//         return new Response(
-//             JSON.stringify({
-//                 success:false,
-//                 error:error.message
-//             }),
-//             {
-//                 status:500
-//             }
-//         );
-
-//     }
-
-// }
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: 'Blog created successfully',
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  } catch (error) {
+    console.error('Blog create failed:', error);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: error.message,
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+}

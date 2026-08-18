@@ -8,6 +8,13 @@ export const prerender = false;
 const { slug } = Astro.params;
 const cleanSlug = slug || '';
 
+// Reserved app routes must not be handled by the CMS catch-all.
+const reservedRoots = new Set(['blog', 'api', 'admin', 'live-jobs', 'checkout', 'reviews', 'programs', 'uploads', '_astro']);
+const rootSegment = cleanSlug.split('/')[0];
+if (reservedRoots.has(rootSegment)) {
+  return Astro.redirect('/404');
+}
+
 // Fetch page data from SQLite
 let page = null;
 try {
@@ -56,11 +63,11 @@ const canonicalURL = page.canonical_url || Astro.url.href;
   
   
 </head>
-<body class="bg-background text-on-background font-body-md overflow-x-hidden pt-16">
+<body class="bg-slate-50/50 text-slate-800 font-sans min-h-screen overflow-x-hidden">
   <!-- Dynamic Mega Menu Header -->
   <Header />
 
-  <main class="min-h-[60vh] space-y-16 py-12">
+  <!-- <main class="min-h-[60vh] space-y-16 py-12">
     {blocks.map((block) => {
       switch (block.type) {
         case 'hero':
@@ -149,7 +156,7 @@ const canonicalURL = page.canonical_url || Astro.url.href;
           return null;
       }
     })}
-  </main>
+  </main> -->
 
   <Footer />
 </body>
