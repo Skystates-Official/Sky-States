@@ -14,10 +14,10 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
   </div>
 
   <div
-    class="max-w-5xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 sm:gap-x-8 sm:gap-y-10 relative z-10"
+    class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1.2fr] gap-x-10 gap-y-10 relative z-10"
   >
     <!-- Column 1: Brand -->
-    <div class="space-y-4 lg:max-w-[240px]">
+    <div class="space-y-4 ">
       <div class="flex items-center">
         <Logo class="h-10 w-auto" />
       </div>
@@ -59,7 +59,7 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
           aria-label="YouTube"
           class="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-sky-600 hover:border-sky-600 hover:text-white hover:-translate-y-0.5 shadow-sm transition-all duration-200 text-slate-500"
         >
-          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"
             ><path
               d="M23.498 6.163c-.272-1.016-1.071-1.815-2.087-2.087-1.84-.495-9.21-.495-9.21-.495s-7.371 0-9.21.495c-1.017.272-1.815 1.071-2.087 2.087-.495 1.84-.495 5.767-.495 5.767s0 3.927.495 5.767c.272 1.016 1.07 1.815 2.087 2.087 1.84.495 9.21.495 9.21.495s7.37 0 9.21-.495c1.016-.272 1.815-1.071 2.087-2.087.495-1.84.495-5.767.495-5.767s0-3.927-.495-5.767zm-13.998 9.337v-6.999l6.082 3.5z"
             ></path></svg
@@ -139,6 +139,57 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
         Resources
       </h4>
       <ul class="space-y-3 text-sm">
+    
+        <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/faq"
+          >
+            FAQs
+          </a>
+        </li>
+         <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/blog"
+          >
+            Blogs
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/reviews"
+          >
+            Reviews
+          </a>
+        </li>
+         <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/stories"
+          >
+            Testimonials
+          </a>
+        </li>
+
+        
+        <li>
+          <a
+            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
+            href="/microsoft-partnership"
+          >
+            Microsoft Partnership
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Column 3: About -->
+    <div class="space-y-3">
+      <h4 class="text-xs font-bold uppercase tracking-widest text-slate-800">
+        About
+      </h4>
+      <ul class="space-y-3 text-sm">
         <li>
           <a
             class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
@@ -155,18 +206,11 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
             About Sky States
           </a>
         </li>
+      
         <li>
           <a
             class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
-            href="/microsoft-partnership"
-          >
-            Microsoft Partnership
-          </a>
-        </li>
-        <li>
-          <a
-            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
-            href="/privacy-policy"
+            href="/public/PrivacyPolicy.pdf"
           >
             Privacy Policy
           </a>
@@ -182,19 +226,12 @@ import ZohoSalesIQ from "./ZohoSalesIQ.astro";
         <li>
           <a
             class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
-            href="/faq"
+            href="/public/Terms&Conditions.pdf"
           >
-            FAQs
+            Terms and Conditions
           </a>
         </li>
-        <li>
-          <a
-            class="text-slate-500 hover:text-sky-600 transition-all duration-200 hover:translate-x-1 inline-block"
-            href="/blog"
-          >
-            Blogs
-          </a>
-        </li>
+       
       </ul>
     </div>
 
