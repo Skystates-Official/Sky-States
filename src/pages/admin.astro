@@ -112,8 +112,6 @@ const statsPages = dynamicPages.length;
 const statsCoupons = couponsList.filter((c) => c.active).length;
 const statsMedia = mediaItems.length;
 
-
-// ================= BLOGS =================
 const blogs = await sqlQuery.all(`
     SELECT *
     FROM blogs
