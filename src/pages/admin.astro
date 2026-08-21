@@ -30,7 +30,7 @@ function getRoleBadgeClass(role) {
 
 // Authenticate session
 let authenticated = false;
-let userSession: any = null;
+let userSession = null;
 let loginError = '';
 
 if (Astro.cookies.has('admin_session')) {
@@ -50,8 +50,8 @@ if (Astro.request.method === 'POST') {
         const action = formData.get('action');
         
         if (action === 'login') {
-            const username = formData.get('username')?.toString();
-            const password = formData.get('password')?.toString();
+            const username = formData.get('username');
+            const password = formData.get('password');
             
             const user = await authenticateUser(username, password);
             if (user) {
@@ -78,11 +78,11 @@ if (Astro.request.method === 'POST') {
 const isFullAdmin = !!(userSession && isFullAdminRole(userSession.role));
 const signedInRoleLabel = userSession ? getRoleLabel(userSession.role) : '';
 
-let mediaItems: any[] = [];
-let dynamicPages: any[] = [];
-let storiesData: any[] = [];
-let adminUsers: any[] = [];
-let couponsList: any[] = [];
+let mediaItems = [];
+let dynamicPages = [];
+let storiesData = [];
+let adminUsers = [];
+let couponsList = [];
 
 if (authenticated) {
     try {
