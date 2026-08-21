@@ -1,45 +1,62 @@
-import sqlite3 from 'sqlite3';
+import mysql from 'mysql2/promise';
 import path from 'path';
 import fs from 'fs';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 
-// Database path in the root workspace
-const dbPath = path.resolve('data.db');
+dotenv.config();
 
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Error connecting to database:', err.message);
-  } else {
-    console.log('Connected to SQLite database at:', dbPath);
+// Create connection pool for MySQL
+const pool = mysql.createPool(process.env.DATABASE_URL);
+
+pool.getConnection()
+  .then(conn => {
+    console.log('Connected to MySQL database at Hostinger!');
+    conn.release();
     initializeDatabase();
-  }
-});
+  })
+  .catch(err => {
+    console.error('Error connecting to MySQL database:', err.message);
+  });
 
-// Wrap sqlite3 methods in Promises
+// Shim for the internal 'db' object used in initializeDatabase()
+const db = {
+  serialize(cb) {
+    cb(); // MySQL doesn't need serialize for these simple queries
+  },
+  run(sql, params = [], cb) {
+    if (typeof params === 'function') { cb = params; params = []; }
+    pool.query(sql, params)
+      .then(() => { if (cb) cb(null); })
+      .catch(err => { if (cb) cb(err); });
+  },
+  get(sql, params = [], cb) {
+    if (typeof params === 'function') { cb = params; params = []; }
+    pool.query(sql, params)
+      .then(([rows]) => { if (cb) cb(null, rows[0]); })
+      .catch(err => { if (cb) cb(err); });
+  },
+  all(sql, params = [], cb) {
+    if (typeof params === 'function') { cb = params; params = []; }
+    pool.query(sql, params)
+      .then(([rows]) => { if (cb) cb(null, rows); })
+      .catch(err => { if (cb) cb(err); });
+  }
+};
+
+// Exported promises for the rest of the application
 export const query = {
-  get(sql, params = []) {
-    return new Promise((resolve, reject) => {
-      db.get(sql, params, (err, row) => {
-        if (err) reject(err);
-        else resolve(row);
-      });
-    });
+  async get(sql, params = []) {
+    const [rows] = await pool.query(sql, params);
+    return rows[0];
   },
-  all(sql, params = []) {
-    return new Promise((resolve, reject) => {
-      db.all(sql, params, (err, rows) => {
-        if (err) reject(err);
-        else resolve(rows);
-      });
-    });
+  async all(sql, params = []) {
+    const [rows] = await pool.query(sql, params);
+    return rows;
   },
-  run(sql, params = []) {
-    return new Promise((resolve, reject) => {
-      db.run(sql, params, function (err) {
-        if (err) reject(err);
-        else resolve({ id: this.lastID, changes: this.changes });
-      });
-    });
+  async run(sql, params = []) {
+    const [result] = await pool.query(sql, params);
+    return { id: result.insertId, changes: result.affectedRows };
   }
 };
 
@@ -48,7 +65,7 @@ function initializeDatabase() {
     // 1. Users Table (Auth and RBAC)
     db.run(`
       CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         username TEXT UNIQUE NOT NULL,
         email TEXT UNIQUE,
         password_hash TEXT NOT NULL,
@@ -68,7 +85,7 @@ function initializeDatabase() {
     // 2. Pages Table (Dynamic Routes and Content Blocks)
     db.run(`
       CREATE TABLE IF NOT EXISTS pages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         title TEXT NOT NULL,
         slug TEXT UNIQUE NOT NULL,
         parent_id INTEGER,
@@ -87,7 +104,7 @@ function initializeDatabase() {
     // 3. Media Table (Media Library Assets)
     db.run(`
       CREATE TABLE IF NOT EXISTS media (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         filename TEXT NOT NULL,
         path TEXT UNIQUE NOT NULL,
         mime_type TEXT NOT NULL,
@@ -114,7 +131,7 @@ function initializeDatabase() {
     // 3.5 File Versions Table (Version History)
     db.run(`
       CREATE TABLE IF NOT EXISTS file_versions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         media_id INTEGER,
         filename TEXT NOT NULL,
         path TEXT NOT NULL,
@@ -127,7 +144,7 @@ function initializeDatabase() {
     // 4. Blogs Table
 db.run(`
   CREATE TABLE IF NOT EXISTS blogs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
 
     title TEXT NOT NULL,
 
@@ -196,7 +213,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS blog_comments (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         blog_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         content TEXT NOT NULL,
@@ -210,7 +227,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS notifications (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         user_id INTEGER NOT NULL,
         message TEXT NOT NULL,
         link TEXT,
@@ -222,7 +239,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS blog_versions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         blog_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         title TEXT NOT NULL,
@@ -236,7 +253,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS blog_attachments (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         blog_id INTEGER NOT NULL,
         media_id INTEGER NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -247,7 +264,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS redirect_rules (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         from_url TEXT UNIQUE NOT NULL,
         to_url TEXT NOT NULL,
         status_code INTEGER DEFAULT 301,
@@ -257,7 +274,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS analytics_cache (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         date TEXT NOT NULL, -- e.g., '2023-10-25'
         data TEXT NOT NULL, -- JSON string of analytics metrics
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -289,7 +306,7 @@ db.run(
     // 6. Form Submissions Table
     db.run(`
       CREATE TABLE IF NOT EXISTS forms (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         form_name TEXT NOT NULL,
         data TEXT NOT NULL, -- JSON stringified submission data
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -299,7 +316,7 @@ db.run(
     // 7. Audit Logs Table
     db.run(`
       CREATE TABLE IF NOT EXISTS audit_logs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         user_id INTEGER,
         action TEXT NOT NULL,
         details TEXT,
@@ -312,7 +329,7 @@ db.run(
     // 7. Coupons Table
     db.run(`
       CREATE TABLE IF NOT EXISTS coupons (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         code TEXT UNIQUE NOT NULL,
         discount_amount REAL NOT NULL,
         description TEXT,
@@ -328,7 +345,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS orders (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         order_ref TEXT UNIQUE NOT NULL,
         customer_email TEXT NOT NULL,
         customer_name TEXT NOT NULL,
@@ -346,7 +363,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS order_payments (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         order_ref TEXT NOT NULL,
         stripe_session_id TEXT,
         amount REAL NOT NULL,
@@ -365,7 +382,7 @@ db.run(
 
     db.run(`
       CREATE TABLE IF NOT EXISTS email_log (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         reference_id TEXT NOT NULL,
         email_type TEXT NOT NULL,
         recipient TEXT NOT NULL,
@@ -391,7 +408,7 @@ db.all(
     // 8. Custom Student Reviews Table
     db.run(`
       CREATE TABLE IF NOT EXISTS reviews (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         name TEXT NOT NULL,
         role TEXT NOT NULL,
         text TEXT NOT NULL,
@@ -403,7 +420,7 @@ db.all(
     // 9. LinkedIn Screenshot Reviews Table
     db.run(`
       CREATE TABLE IF NOT EXISTS linkedin_reviews (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         name TEXT NOT NULL,
         role TEXT DEFAULT '',
         text TEXT DEFAULT '',
