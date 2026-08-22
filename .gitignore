@@ -26,3 +26,8 @@ Thumbs.db
 data.db
 *.zip
 sky_states.zip
+check.js
+create_missing_tables.js
+import_sql.js
+migrate.js
+find_used_tables.js
