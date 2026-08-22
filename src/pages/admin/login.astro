@@ -5,109 +5,109 @@ import '../../styles/global.css';
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | SkyStates Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/feather-icons"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | SkyStates Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body class="bg-surface-container-lowest text-on-surface font-body-md min-h-screen flex items-center justify-center p-4" style="background-image: radial-gradient(var(--primary-container) 1px, transparent 1px); background-size: 32px 32px; background-color: var(--surface-container-lowest);">
-  
-  <div class="w-full max-w-md bg-surface p-8 rounded-xl shadow-lg border border-outline-variant relative overflow-hidden">
-    <!-- Decorative top bar -->
-    <div class="absolute top-0 left-0 right-0 h-2 bg-primary"></div>
-    
-    <div class="text-center mb-8 mt-2">
-      <h1 class="font-headline-xl text-primary mb-2">SkyStates</h1>
-      <p class="text-on-surface-variant font-body-md">Sign in to the Admin Portal</p>
-    </div>
 
-    <form id="login-form" class="space-y-6">
-      <div id="error-message" class="hidden bg-error-container text-on-error-container px-4 py-3 rounded-lg font-label-md text-center text-sm">
-        Invalid credentials
-      </div>
+<div class="w-full max-w-md bg-surface p-8 rounded-xl shadow-lg border border-outline-variant relative overflow-hidden">
+<!-- Decorative top bar -->
+<div class="absolute top-0 left-0 right-0 h-2 bg-primary"></div>
 
-      <div class="space-y-2">
-        <label for="username" class="block font-label-sm text-on-surface">Username or Email</label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i data-feather="user" class="w-5 h-5 text-on-surface-variant"></i>
-          </div>
-          <input type="text" id="username" name="username" required 
-            class="block w-full pl-10 pr-3 py-2.5 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-on-surface placeholder-on-surface-variant transition-shadow" 
-            placeholder="admin">
-        </div>
-      </div>
+<div class="text-center mb-8 mt-2">
+<h1 class="font-headline-xl text-primary mb-2">SkyStates</h1>
+<p class="text-on-surface-variant font-body-md">Sign in to the Admin Portal</p>
+</div>
 
-      <div class="space-y-2">
-        <div class="flex items-center justify-between">
-          <label for="password" class="block font-label-sm text-on-surface">Password</label>
-          <a href="/admin/forgot-password" class="font-label-sm text-primary hover:text-primary-fixed transition-colors">Forgot password?</a>
-        </div>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <i data-feather="lock" class="w-5 h-5 text-on-surface-variant"></i>
-          </div>
-          <input type="password" id="password" name="password" required 
-            class="block w-full pl-10 pr-3 py-2.5 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-on-surface placeholder-on-surface-variant transition-shadow" 
-            placeholder="••••••••">
-        </div>
-      </div>
+<form id="login-form" class="space-y-6">
+<div id="error-message" class="hidden bg-error-container text-on-error-container px-4 py-3 rounded-lg font-label-md text-center text-sm">
+Invalid credentials
+</div>
 
-      <button type="submit" id="submit-btn" class="w-full bg-primary hover:bg-primary-fixed text-on-primary hover:text-on-primary-fixed-variant font-label-md py-3 rounded-lg transition-colors flex justify-center items-center gap-2 shadow-sm">
-        <span>Sign In</span>
-        <i data-feather="arrow-right" class="w-4 h-4"></i>
-      </button>
-    </form>
-  </div>
+<div class="space-y-2">
+<label for="username" class="block font-label-sm text-on-surface">Username or Email</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<i data-feather="user" class="w-5 h-5 text-on-surface-variant"></i>
+</div>
+<input type="text" id="username" name="username" required
+class="block w-full pl-10 pr-3 py-2.5 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-on-surface placeholder-on-surface-variant transition-shadow"
+placeholder="admin">
+</div>
+</div>
 
-  <script>
-    declare const feather: any;
-    if (typeof feather !== 'undefined') feather.replace();
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label for="password" class="block font-label-sm text-on-surface">Password</label>
+<a href="/admin/forgot-password" class="font-label-sm text-primary hover:text-primary-fixed transition-colors">Forgot password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<i data-feather="lock" class="w-5 h-5 text-on-surface-variant"></i>
+</div>
+<input type="password" id="password" name="password" required
+class="block w-full pl-10 pr-3 py-2.5 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-on-surface placeholder-on-surface-variant transition-shadow"
+placeholder="••••••••">
+</div>
+</div>
 
-    document.getElementById('login-form')!.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const username = (document.getElementById('username') as HTMLInputElement).value;
-      const password = (document.getElementById('password') as HTMLInputElement).value;
-      const errorDiv = document.getElementById('error-message')!;
-      const btn = document.getElementById('submit-btn') as HTMLButtonElement;
-      const btnText = btn.querySelector('span')!;
+<button type="submit" id="submit-btn" class="w-full bg-primary hover:bg-primary-fixed text-on-primary hover:text-on-primary-fixed-variant font-label-md py-3 rounded-lg transition-colors flex justify-center items-center gap-2 shadow-sm">
+<span>Sign In</span>
+<i data-feather="arrow-right" class="w-4 h-4"></i>
+</button>
+</form>
+</div>
 
-      errorDiv.classList.add('hidden');
-      (btn as any).disabled = true;
-      btnText.textContent = 'Signing in...';
+<script>
+declare const feather: any;
+if (typeof feather !== 'undefined') feather.replace();
 
-      try {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
+document.getElementById('login-form')!.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-        const data = await res.json();
+  const username = (document.getElementById('username') as HTMLInputElement).value;
+  const password = (document.getElementById('password') as HTMLInputElement).value;
+  const errorDiv = document.getElementById('error-message')!;
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = btn.querySelector('span')!;
 
-        if (res.ok) {
-           window.location.href = '/admin/dashboard';
-        } else {
-           errorDiv.textContent = data.error || 'Login failed';
-           errorDiv.classList.remove('hidden');
-        }
-      } catch (err) {
-         errorDiv.textContent = 'Network error. Please try again.';
-         errorDiv.classList.remove('hidden');
-      } finally {
-         (btn as any).disabled = false;
-         btnText.textContent = 'Sign In';
-      }
+  errorDiv.classList.add('hidden');
+  (btn as any).disabled = true;
+  btnText.textContent = 'Signing in...';
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
     });
 
-    // If already logged in, redirect away from login page
-    fetch('/api/auth/me').then(res => {
-       if(res.ok) window.location.href = '/admin/dashboard';
-    }).catch(()=>{});
+    const data = await res.json();
+
+    if (res.ok) {
+      window.location.href = '/admin';
+    } else {
+      errorDiv.textContent = data.error || 'Login failed';
+      errorDiv.classList.remove('hidden');
+    }
+  } catch (err) {
+    errorDiv.textContent = 'Network error. Please try again.';
+    errorDiv.classList.remove('hidden');
+  } finally {
+    (btn as any).disabled = false;
+    btnText.textContent = 'Sign In';
+  }
+});
+
+// If already logged in, redirect away from login page
+fetch('/api/auth/me').then(res => {
+  if(res.ok) window.location.href = '/admin';
+}).catch(()=>{});
   </script>
-</body>
-</html>
+  </body>
+  </html>
