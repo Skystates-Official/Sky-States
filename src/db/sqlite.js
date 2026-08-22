@@ -391,17 +391,17 @@ db.run(
       )
     `);
     // Verify all tables
-db.all(
-  "SELECT name FROM sqlite_master WHERE type='table'",
-  [],
-  (err, rows) => {
-    if (err) {
-      console.error("Error fetching tables:", err);
-    } else {
-      console.log("Tables in database:", rows);
-    }
-  }
-);
+    db.all(
+      "SHOW TABLES",
+      [],
+      (err, rows) => {
+        if (err) {
+          console.error("Error fetching tables:", err);
+        } else {
+          console.log("Tables in database:", rows);
+        }
+      }
+    );
 
 
 
