@@ -29,9 +29,9 @@ function getRoleBadgeClass(role) {
 }
 
 // Authenticate session
-let authenticated = false;
-let userSession = null;
-let loginError = '';
+let authenticated: boolean = false;
+let userSession: any = null;
+let loginError: string = '';
 
 if (Astro.cookies.has('admin_session')) {
     const sessionCookie = Astro.cookies.get('admin_session');
@@ -78,11 +78,11 @@ if (Astro.request.method === 'POST') {
 const isFullAdmin = !!(userSession && isFullAdminRole(userSession.role));
 const signedInRoleLabel = userSession ? getRoleLabel(userSession.role) : '';
 
-let mediaItems = [];
-let dynamicPages = [];
-let storiesData = [];
-let adminUsers = [];
-let couponsList = [];
+let mediaItems: any[] = [];
+let dynamicPages: any[] = [];
+let storiesData: any[] = [];
+let adminUsers: any[] = [];
+let couponsList: any[] = [];
 
 if (authenticated) {
     try {
