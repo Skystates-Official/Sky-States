@@ -31,3 +31,4 @@ create_missing_tables.js
 import_sql.js
 migrate.js
 find_used_tables.js
+DbDetails.md
