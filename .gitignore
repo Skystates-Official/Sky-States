@@ -33,4 +33,10 @@ migrate.js
 find_used_tables.js
 DbDetails.md
 migrate-sqlite-to-mysql.cjs
+MIGRATE_TEST.cjscheck.js
+create_missing_tables.js
+import_sql.js
+migrate.js
+DbDetails.md
+migrate-sqlite-to-mysql.cjs
 MIGRATE_TEST.cjs
