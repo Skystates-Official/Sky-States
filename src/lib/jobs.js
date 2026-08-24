@@ -1,23 +1,72 @@
-import fs from 'fs';
-import path from 'path';
+import { query } from '../db/sqlite.js';
 
-const jsonPath = path.resolve('src/data/jobs.json');
-
-export function readJobs() {
+export async function readJobs() {
   try {
-    if (!fs.existsSync(jsonPath)) {
-      fs.mkdirSync(path.dirname(jsonPath), { recursive: true });
-      fs.writeFileSync(jsonPath, '[]', 'utf8');
-      return [];
-    }
-    const data = fs.readFileSync(jsonPath, 'utf8');
-    return JSON.parse(data);
-  } catch {
+    const jobs = await query.all('SELECT * FROM jobs ORDER BY created_at DESC');
+    return jobs.map(job => ({
+      ...job,
+      tags: job.tags ? JSON.parse(job.tags) : []
+    }));
+  } catch (error) {
+    console.error('Error reading jobs from DB:', error.message);
     return [];
   }
 }
 
-export function writeJobs(jobs) {
-  fs.mkdirSync(path.dirname(jsonPath), { recursive: true });
-  fs.writeFileSync(jsonPath, JSON.stringify(jobs, null, 2), 'utf8');
+export async function createJob(jobData) {
+  const sql = `
+    INSERT INTO jobs (
+      id, title, company, location, salary, description, tags, slug, 
+      category, featured_image, seo_focus_keyphrase, seo_title, seo_meta_description
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  const params = [
+    jobData.id,
+    jobData.title || '',
+    jobData.company || '',
+    jobData.location || '',
+    jobData.salary || '',
+    jobData.description || '',
+    JSON.stringify(jobData.tags || []),
+    jobData.slug || '',
+    jobData.category || '',
+    jobData.featured_image || '',
+    jobData.seo_focus_keyphrase || '',
+    jobData.seo_title || '',
+    jobData.seo_meta_description || ''
+  ];
+  
+  await query.run(sql, params);
+  return jobData;
+}
+
+export async function updateJob(id, jobData) {
+  const sql = `
+    UPDATE jobs SET
+      title = ?, company = ?, location = ?, salary = ?, description = ?, tags = ?, slug = ?, 
+      category = ?, featured_image = ?, seo_focus_keyphrase = ?, seo_title = ?, seo_meta_description = ?
+    WHERE id = ?
+  `;
+  const params = [
+    jobData.title || '',
+    jobData.company || '',
+    jobData.location || '',
+    jobData.salary || '',
+    jobData.description || '',
+    JSON.stringify(jobData.tags || []),
+    jobData.slug || '',
+    jobData.category || '',
+    jobData.featured_image || '',
+    jobData.seo_focus_keyphrase || '',
+    jobData.seo_title || '',
+    jobData.seo_meta_description || '',
+    id
+  ];
+  
+  await query.run(sql, params);
+  return jobData;
+}
+
+export async function deleteJob(id) {
+  await query.run('DELETE FROM jobs WHERE id = ?', [id]);
 }

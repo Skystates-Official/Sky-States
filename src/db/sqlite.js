@@ -295,6 +295,14 @@ db.run(
       )
     `);
 
+    db.run("ALTER TABLE jobs ADD COLUMN description TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN slug TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN category TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN featured_image TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN seo_focus_keyphrase TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN seo_title TEXT", (err) => {});
+    db.run("ALTER TABLE jobs ADD COLUMN seo_meta_description TEXT", (err) => {});
+
     // 5. Global Settings Table
     db.run(`
       CREATE TABLE IF NOT EXISTS settings (

@@ -105,7 +105,7 @@ if (authenticated) {
     }
 }
 
-const jobsData = readJobs();
+const jobsData = await readJobs();
 const statsJobs = jobsData.length;
 const statsStories = storiesData.length;
 const statsPages = dynamicPages.length;
