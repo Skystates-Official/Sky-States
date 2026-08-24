@@ -19,6 +19,7 @@
     "@astrojs/tailwind": "^5.1.2",
     "astro": "^4.16.19",
     "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
     "googleapis": "^174.0.0",
