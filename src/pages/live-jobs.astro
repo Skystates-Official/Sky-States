@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import { readJobs } from '../lib/jobs.js';
 export const prerender = false;
 
-const jobsData = await readJobs();
+const jobsData = readJobs();
 ---
 
 <!DOCTYPE html>

@@ -18,11 +18,11 @@ import path from 'path';
 
 export const prerender = false;
 
-function getRoleLabel(role: any) {
+function getRoleLabel(role) {
     return ROLE_LABELS[normalizeRole(role)] || 'Editor';
 }
 
-function getRoleBadgeClass(role: any) {
+function getRoleBadgeClass(role) {
     const normalized = normalizeRole(role);
     if (normalized === 'admin') return 'bg-sky-50 text-sky-700 border border-sky-100';
     return 'bg-slate-50 text-slate-700 border border-slate-100';
@@ -70,7 +70,7 @@ if (Astro.request.method === 'POST') {
             Astro.cookies.delete('admin_session', { path: '/' });
             return Astro.redirect('/admin');
         }
-    } catch (e: any) {
+    } catch (e) {
         loginError = 'An error occurred during authentication.';
     }
 }
@@ -100,12 +100,12 @@ if (authenticated) {
                 "SELECT id, username, role, created_at FROM users ORDER BY created_at ASC"
             );
         }
-    } catch (dbErr: any) {
+    } catch (dbErr) {
         console.error("Error loading CMS items:", dbErr.Message);
     }
 }
 
-const jobsData = await readJobs();
+const jobsData = readJobs();
 const statsJobs = jobsData.length;
 const statsStories = storiesData.length;
 const statsPages = dynamicPages.length;
