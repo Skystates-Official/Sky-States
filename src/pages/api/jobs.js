@@ -1,5 +1,5 @@
 import { getSessionUser } from '../../db/auth.js';
-import { readJobs, writeJobs } from '../../lib/jobs.js';
+import { readJobs, createJob, updateJob, deleteJob } from '../../lib/jobs.js';
 
 export const prerender = false;
 
@@ -8,7 +8,8 @@ function checkAuth(request) {
 }
 
 export async function GET() {
-  return new Response(JSON.stringify(readJobs()), {
+  const jobs = await readJobs();
+  return new Response(JSON.stringify(jobs), {
     status: 200,
     headers: { 'Content-Type': 'application/json' }
   });
@@ -20,7 +21,6 @@ export async function POST({ request }) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
     const body = await request.json();
-    const jobs = readJobs();
     
     const titleSlug = body.title ? body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
     const slug = body.slug || (titleSlug ? `${titleSlug}-${Date.now().toString().slice(-4)}` : 'job-' + Date.now());
@@ -41,8 +41,7 @@ export async function POST({ request }) {
       seo_meta_description: body.seo_meta_description || ''
     };
     
-    jobs.push(newJob);
-    writeJobs(jobs);
+    await createJob(newJob);
     
     return new Response(JSON.stringify(newJob), { 
       status: 201,
@@ -62,7 +61,7 @@ export async function PUT({ request }) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
     const body = await request.json();
-    const jobs = readJobs();
+    const jobs = await readJobs();
     const index = jobs.findIndex(j => j.id === body.id);
     
     if (index === -1) {
@@ -75,7 +74,7 @@ export async function PUT({ request }) {
     const titleSlug = body.title ? body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
     const slug = body.slug || jobs[index].slug || (titleSlug ? `${titleSlug}-${Date.now().toString().slice(-4)}` : 'job-' + Date.now());
 
-    jobs[index] = {
+    const updatedJob = {
       ...jobs[index],
       title: body.title || jobs[index].title,
       company: body.company || jobs[index].company,
@@ -91,9 +90,9 @@ export async function PUT({ request }) {
       seo_meta_description: body.seo_meta_description !== undefined ? body.seo_meta_description : jobs[index].seo_meta_description || ''
     };
     
-    writeJobs(jobs);
+    await updateJob(updatedJob.id, updatedJob);
     
-    return new Response(JSON.stringify(jobs[index]), { 
+    return new Response(JSON.stringify(updatedJob), { 
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -111,18 +110,9 @@ export async function DELETE({ request }) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
     }
     const { id } = await request.json();
-    let jobs = readJobs();
-    const originalLength = jobs.length;
-    jobs = jobs.filter(j => j.id !== id);
     
-    if (jobs.length === originalLength) {
-      return new Response(JSON.stringify({ error: 'Job not found' }), { 
-        status: 404,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
+    await deleteJob(id);
     
-    writeJobs(jobs);
     return new Response(JSON.stringify({ success: true }), { 
       status: 200,
       headers: { 'Content-Type': 'application/json' }
@@ -134,3 +124,4 @@ export async function DELETE({ request }) {
     });
   }
 }
+
