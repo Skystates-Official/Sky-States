@@ -789,10 +789,10 @@ const pricingConfig = {
                     );
                     btnElite.classList.add("border-slate-200/80", "opacity-70");
 
-                    // Strip "Short Term Program" if present
-                    if (courseText.endsWith(" Short Term Program")) {
+                    // Strip "Personalised Program" if present
+                    if (courseText.endsWith(" Personalised Program")) {
                         displayCourse.textContent = courseText.replace(
-                            " Short Term Program",
+                            " Personalised Program",
                             "",
                         );
                     }
@@ -816,14 +816,14 @@ const pricingConfig = {
                         "opacity-70",
                     );
 
-                    // Append "Short Term Program" if not present and it's one of the main courses
+                    // Append "Personalised Program" if not present and it's one of the main courses
                     if (
                         courseText &&
-                        !courseText.endsWith(" Short Term Program") &&
+                        !courseText.endsWith(" Personalised Program") &&
                         courseText !== "Intro Session"
                     ) {
                         displayCourse.textContent =
-                            courseText + " Short Term Program";
+                            courseText + " Personalised Program";
                     }
                 }
 

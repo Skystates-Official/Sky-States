@@ -1,7 +1,7 @@
-import fs from 'fs';
 import path from 'path';
 import { query } from '../../../db/sqlite.js';
-import { requireAuth, hasRole, ROLES } from '../../../db/auth.js';
+import { requireAuth } from '../../../db/auth.js';
+import { getPresignedUrlR2, R2_PUBLIC_URL } from '../../../lib/r2.js';
 
 export const prerender = false;
 
@@ -31,42 +31,43 @@ export async function GET({ request }) {
       if (media.allowed_roles) {
         try {
           const allowed = JSON.parse(media.allowed_roles);
-          // If the user's role is not in the allowed roles array (and they aren't an admin), deny access.
           if (!allowed.includes(user.role) && user.role !== 'admin') {
              return new Response('Forbidden. You do not have the required role to access this file.', { status: 403 });
           }
         } catch(e) {
-          // If JSON fails to parse, assume safe default (deny)
           return new Response('Forbidden', { status: 403 });
         }
       }
     }
 
     // Resolve the actual file path
-    // If it's restricted, it's stored in data/uploads. Otherwise, public/uploads.
-    let absolutePath;
-    if (media.path.startsWith('/private/uploads/')) {
-       const filename = path.basename(media.path);
-       absolutePath = path.resolve('data/uploads', filename);
-    } else {
-       const filename = path.basename(media.path);
-       absolutePath = path.resolve('public/uploads', filename);
+    // If it's a public URL already, redirect to it
+    if (media.path.startsWith('http')) {
+      return Response.redirect(media.path, 302);
     }
-
-    if (!fs.existsSync(absolutePath)) {
-      return new Response('File not found on disk', { status: 404 });
-    }
-
-    const fileStream = fs.createReadStream(absolutePath);
     
-    return new Response(fileStream, {
-      status: 200,
-      headers: {
-        'Content-Type': media.mime_type || 'application/octet-stream',
-        'Content-Disposition': `attachment; filename="${media.filename}"`,
-        'Content-Length': media.size.toString()
+    // If it's a private key or legacy local path that got migrated
+    let r2Key = media.path;
+    if (r2Key.startsWith('/private/uploads/')) {
+        r2Key = `private/${path.basename(r2Key)}`;
+    } else if (r2Key.startsWith('/uploads/')) {
+        r2Key = `public/${path.basename(r2Key)}`;
+    }
+
+    // If it's restricted, we generate a presigned URL to let them download it securely
+    if (media.access_level === 'restricted') {
+      try {
+        const presignedUrl = await getPresignedUrlR2(r2Key, 3600); // 1 hour expiration
+        return Response.redirect(presignedUrl, 302);
+      } catch (err) {
+        console.error('Presigned URL error:', err);
+        return new Response('Failed to generate secure download link', { status: 500 });
       }
-    });
+    } else {
+      // Public file, redirect to R2 public URL
+      // If it somehow doesn't have http yet (legacy), construct it
+      return Response.redirect(`${R2_PUBLIC_URL}/${r2Key}`, 302);
+    }
   } catch (error) {
     console.error('Media Download error:', error);
     return new Response('Internal Server Error', { status: 500 });

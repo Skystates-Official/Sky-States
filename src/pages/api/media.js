@@ -4,10 +4,9 @@ import { query } from '../../db/sqlite.js';
 import { requireAuth } from '../../db/auth.js';
 import { logActivity } from '../../db/audit.js';
 
-export const prerender = false;
+import { uploadToR2, deleteFromR2 } from '../../lib/r2.js';
 
-const UPLOADS_DIR = path.resolve('public/uploads');
-const PRIVATE_UPLOADS_DIR = path.resolve('data/uploads');
+export const prerender = false;
 
 function getClientIp(request) {
   return request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
@@ -108,17 +107,17 @@ export async function POST({ request }) {
     const safeName = Date.now() + '_' + path.basename(file.name).replace(/[^a-zA-Z0-9._-]/g, '_');
     
     const isPrivate = accessLevel === 'restricted';
-    const activeDir = isPrivate ? PRIVATE_UPLOADS_DIR : UPLOADS_DIR;
-
-    if (!fs.existsSync(activeDir)) {
-      fs.mkdirSync(activeDir, { recursive: true });
-    }
-
-    const targetPath = path.join(activeDir, safeName);
-    const relativePath = isPrivate ? `/private/uploads/${safeName}` : `/uploads/${safeName}`;
-
+    const keyPrefix = isPrivate ? 'private/' : 'public/';
+    const key = `${keyPrefix}${safeName}`;
     const buffer = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(targetPath, buffer);
+
+    let relativePath;
+    if (isPrivate) {
+      await uploadToR2(key, buffer, file.type);
+      relativePath = key; // For private files, store the R2 key
+    } else {
+      relativePath = await uploadToR2(key, buffer, file.type);
+    }
 
     // Try to get dimensions for images if not provided by client
     if (!dimensions && file.type.startsWith('image/')) {
@@ -197,19 +196,20 @@ export async function PUT({ request }) {
       // 2. Upload new file
       newFilename = Date.now() + '_v2_' + path.basename(fileToReplace.name).replace(/[^a-zA-Z0-9._-]/g, '_');
       const isPrivate = existing.access_level === 'restricted';
-      const activeDir = isPrivate ? PRIVATE_UPLOADS_DIR : UPLOADS_DIR;
+      const keyPrefix = isPrivate ? 'private/' : 'public/';
+      const key = `${keyPrefix}${newFilename}`;
+      
+      const buffer = Buffer.from(await fileToReplace.arrayBuffer());
 
-      if (!fs.existsSync(activeDir)) {
-        fs.mkdirSync(activeDir, { recursive: true });
+      if (isPrivate) {
+        await uploadToR2(key, buffer, fileToReplace.type);
+        newPath = key;
+      } else {
+        newPath = await uploadToR2(key, buffer, fileToReplace.type);
       }
 
-      const targetPath = path.join(activeDir, newFilename);
-      newPath = isPrivate ? `/private/uploads/${newFilename}` : `/uploads/${newFilename}`;
       newSize = fileToReplace.size;
       newMimeType = fileToReplace.type;
-
-      const buffer = Buffer.from(await fileToReplace.arrayBuffer());
-      fs.writeFileSync(targetPath, buffer);
     }
 
     const title = body.title !== undefined && body.title !== null ? body.title : existing.title;
@@ -253,9 +253,20 @@ export async function DELETE({ request }) {
     const item = await query.get("SELECT * FROM media WHERE id = ?", [id]);
     if (!item) return json({ error: 'Media item not found' }, 404);
 
-    const absolutePath = path.join('public', item.path);
-    if (fs.existsSync(absolutePath)) {
-      fs.unlinkSync(absolutePath);
+    try {
+      if (item.path.startsWith('http')) {
+        // extract the R2 key from the public URL
+        const urlObj = new URL(item.path);
+        const key = urlObj.pathname.replace(/^\//, ''); // removes leading slash
+        await deleteFromR2(key);
+      } else {
+        // private key or old local path
+        if (item.path.startsWith('private/') || item.path.startsWith('public/')) {
+          await deleteFromR2(item.path);
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to delete file from R2:', e.message);
     }
 
     const userRecord = await query.get('SELECT id FROM users WHERE username = ?', [user.username]);

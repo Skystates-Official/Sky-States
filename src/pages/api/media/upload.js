@@ -3,6 +3,8 @@ import path from 'path';
 import { query } from '../../../db/sqlite.js';
 import { requireAuth } from '../../../db/auth.js';
 
+import { uploadToR2 } from '../../../lib/r2.js';
+
 export const prerender = false;
 
 export async function POST({ request }) {
@@ -19,21 +21,13 @@ export async function POST({ request }) {
       return new Response(JSON.stringify({ error: 'No file uploaded' }), { status: 400 });
     }
 
-    const uploadDir = path.resolve('public/uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-
     const timestamp = Date.now();
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const fileName = `${timestamp}-${originalName}`;
-    const filePath = path.join(uploadDir, fileName);
+    const key = `public/${fileName}`;
 
-    // Save to disk
     const buffer = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(filePath, buffer);
-
-    const publicPath = `/uploads/${fileName}`;
+    const publicPath = await uploadToR2(key, buffer, file.type || 'application/octet-stream');
 
     // Default metadata
     const mimeType = file.type || 'application/octet-stream';
