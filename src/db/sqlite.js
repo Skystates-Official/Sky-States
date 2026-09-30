@@ -188,7 +188,7 @@ function initializeDatabase() {
 
     short_description TEXT,
 
-    content TEXT NOT NULL,
+    content LONGTEXT NOT NULL,
 
     image TEXT,
 
@@ -271,7 +271,7 @@ function initializeDatabase() {
         blog_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         title TEXT NOT NULL,
-        content TEXT NOT NULL,
+        content LONGTEXT NOT NULL,
         seo_metadata TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,

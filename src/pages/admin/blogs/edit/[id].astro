@@ -217,12 +217,59 @@ const { id } = Astro.params;
         document.getElementById('tab-meta')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-meta'));
         document.getElementById('tab-comments')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-comments'));
 
+        function selectLocalImage() {
+           const input = document.createElement('input');
+           input.setAttribute('type', 'file');
+           input.setAttribute('accept', 'image/*');
+           input.click();
+
+           input.onchange = async () => {
+              const file = input.files[0];
+              if (!file) return;
+
+              const formData = new FormData();
+              formData.append('file', file);
+              formData.append('access_level', 'public');
+              
+              document.body.style.cursor = 'wait';
+
+              try {
+                 const res = await fetch('/api/media', {
+                    method: 'POST',
+                     body: formData
+                 });
+
+                 if (res.ok) {
+                    const data = await res.json();
+                    if (data.media && data.media.id) {
+                       const imgUrl = `/api/media/download?id=${data.media.id}`;
+                       const range = quill.getSelection(true);
+                       quill.insertEmbed(range.index, 'image', imgUrl);
+                    }
+                 } else {
+                    alert('Image upload failed.');
+                 }
+              } catch(e) {
+                 alert('Network error during image upload.');
+              } finally {
+                 document.body.style.cursor = 'default';
+              }
+           };
+        }
+
         // Init Quill
         function tryInitQuill(retries = 0) {
            try {
               if (typeof Quill !== 'undefined') {
                  quill = new Quill('#quill-editor', {
-                    modules: { toolbar: '#quill-toolbar' },
+                    modules: { 
+                       toolbar: {
+                          container: '#quill-toolbar',
+                          handlers: {
+                             image: selectLocalImage
+                          }
+                       }
+                    },
                     theme: 'snow',
                     placeholder: 'Write your masterpiece...'
                  });
