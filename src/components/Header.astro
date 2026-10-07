@@ -1,8 +1,8 @@
 ---
 // src/components/Header.astro
-import SiteCacheGuard from './SiteCacheGuard.astro';
-import GoogleAnalytics from './GoogleAnalytics.astro';
-import { PRICING, formatUsd } from '../lib/pricing.js';
+import SiteCacheGuard from "./SiteCacheGuard.astro";
+import GoogleAnalytics from "./GoogleAnalytics.astro";
+import { PRICING, formatUsd } from "../lib/pricing.js";
 
 const fullTuitionPrice = formatUsd(PRICING.full.normal);
 const registrationPrice = formatUsd(PRICING.registration.normal);
@@ -12,621 +12,716 @@ const registrationPrice = formatUsd(PRICING.registration.normal);
 <GoogleAnalytics />
 
 <nav
-class="fixed inset-x-0 top-0 z-[1000000] border-b border-slate-200/80 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.02)] backdrop-blur-xl font-sans transition-colors"
-aria-label="Main"
-id="main-header"
+  class="fixed inset-x-0 top-0 z-[1000000] border-b border-slate-200/80 bg-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.02)] backdrop-blur-xl font-sans transition-colors"
+  aria-label="Main"
+  id="main-header"
 >
-<!--
+  <!--
 Responsive layout (zoom-aware):
 Chrome Ctrl+/- shrinks CSS viewport width (e.g. 1440px @ 125% ≈ 1152px).
 Desktop chrome shows from lg (1024px) with a compact fit so 110–150% zoom
 on common laptops still shows all header options instead of collapsing early.
 Below lg: logo + hamburger (full nav/CTAs in the mobile panel).
 -->
-<div
-class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-2 sm:gap-3 sm:px-3 lg:gap-3 lg:px-4 xl:gap-5 xl:px-6 2xl:gap-6 2xl:px-10"
->
-<!-- Brand / Logo: stays compact so zoomed desktop still fits -->
-<a
-class="flex flex-shrink-0 items-center"
-aria-label="Sky States home"
-href="/"
->
-<div
-class="flex h-11 w-[140px] items-center overflow-hidden sm:h-12 sm:w-[160px] lg:h-12 lg:w-[160px] xl:h-14 xl:w-[190px] 2xl:w-[220px]"
->
-<img
-src="/assets/logo_main_skystates.svg"
-alt="Sky States Logo"
-class="h-11 w-auto max-h-11 object-contain object-left sm:h-12 sm:max-h-12 xl:h-14 xl:max-h-14"
-/>
-</div>
-</a>
+  <div
+    class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-2 sm:gap-3 sm:px-3 lg:gap-3 lg:px-4 xl:gap-5 xl:px-6 2xl:gap-6 2xl:px-10"
+  >
+    <!-- Brand / Logo: stays compact so zoomed desktop still fits -->
+    <a
+      class="flex flex-shrink-0 items-center"
+      aria-label="Sky States home"
+      href="/"
+    >
+      <div
+        class="flex h-11 w-[140px] items-center overflow-hidden sm:h-12 sm:w-[160px] lg:h-12 lg:w-[160px] xl:h-14 xl:w-[190px] 2xl:w-[220px]"
+      >
+        <img
+          src="/assets/logo_main_skystates.svg"
+          alt="Sky States Logo"
+          class="h-11 w-auto max-h-11 object-contain object-left sm:h-12 sm:max-h-12 xl:h-14 xl:max-h-14"
+        />
+      </div>
+    </a>
 
-<!-- Desktop Navigation Links (lg+ — survives typical Ctrl+ zoom) -->
-<div
-class="hidden min-w-0 flex-1 items-center justify-center gap-1.5 lg:flex xl:gap-3 2xl:gap-5"
-aria-label="Primary navigation"
->
-<a href="/" class="nav-link">Home</a>
-<a href="/live-jobs" class="nav-link">Live Jobs</a>
+    <!-- Desktop Navigation Links (lg+ — survives typical Ctrl+ zoom) -->
+    <div
+      class="hidden min-w-0 flex-1 items-center justify-center gap-1.5 lg:flex xl:gap-3 2xl:gap-5"
+      aria-label="Primary navigation"
+    >
+      <a href="/" class="nav-link">Home</a>
+      <a href="/live-jobs" class="nav-link">Live Jobs</a>
 
-<!-- Programs Dropdown -->
-<div class="group relative">
-<button class="nav-link dropdown-trigger">
-Programs
-<span class="material-symbols-outlined dropdown-caret"
->expand_more</span>
-</button>
-<div class="dropdown-menu left-[-1.5rem]">
-<div class="dropdown-header">
-<span>Explore Programs</span>
-</div>
-<div class="dropdown-content">
-<a
-href="/programs/data-science-ai"
-class="dropdown-item group/item"
->
-<span class="item-title">Data Science &amp; AI</span>
-<span class="item-desc">Machine learning, NLP &amp; GenAI</span>
-</a>
-<a href="/programs/cyber-security" class="dropdown-item group/item">
-<span class="item-title"
->Cyber Security &amp; Ethical Hacking</span
->
-<span class="item-desc">Threat hunting &amp; network defense</span
->
-</a>
-<a href="/programs/devops" class="dropdown-item group/item">
-<span class="item-title">DevOps &amp; Cloud</span>
-<span class="item-desc"
->Infrastructure engineering &amp; CI/CD</span
->
-</a>
-<a
-href="/programs/offline-classes"
-class="dropdown-item group/item"
->
-<span class="item-title">Offline Classes</span>
-<span class="item-desc">Classroom training &amp; physical labs</span>
-</a>
-</div>
-</div>
-</div>
+      <!-- Programs Dropdown -->
+      <div class="group relative">
+        <button class="nav-link dropdown-trigger">
+          Programs
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu left-[-1.5rem]">
+          <div class="dropdown-header">
+            <span>Explore Programs</span>
+          </div>
+          <div class="dropdown-content">
+            <a
+              href="/programs/data-science-ai"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">Data Science &amp; AI</span>
+              <span class="item-desc">Machine learning, NLP &amp; GenAI</span>
+            </a>
+            <a href="/programs/cyber-security" class="dropdown-item group/item">
+              <span class="item-title"
+                >Cyber Security &amp; Ethical Hacking</span
+              >
+              <span class="item-desc">Threat hunting &amp; network defense</span
+              >
+            </a>
+            <a href="/programs/devops" class="dropdown-item group/item">
+              <span class="item-title">DevOps &amp; Cloud</span>
+              <span class="item-desc"
+                >Infrastructure engineering &amp; CI/CD</span
+              >
+            </a>
+            <div class="relative group/nested">
+              <div
+                class="dropdown-item group/item cursor-pointer flex flex-col justify-center"
+              >
+                <span class="item-title flex items-center justify-between">
+                  Specialized Program
+                  <span
+                    class="material-symbols-outlined text-lg opacity-70 group-hover/item:opacity-100 transition-opacity translate-x-1"
+                    >chevron_right</span
+                  >
+                </span>
+                <span class="item-desc">Advanced programs in emerging tech</span
+                >
+              </div>
 
-<!-- Company -->
-<div class="group relative">
-<button class="nav-link dropdown-trigger">
-Company
-<span class="material-symbols-outlined dropdown-caret"
->expand_more</span
->
-</button>
-<div class="dropdown-menu left-[-1.5rem]">
-<div class="dropdown-content">
-<a href="/about" class="dropdown-item group/item">
-<span class="item-title">About Us</span>
-</a>
-<a href="/contact-us" class="dropdown-item group/item">
-<span class="item-title">Contact</span>
-</a>
-<a href="/stories" class="dropdown-item group/item">
-<span class="item-title">Testimonials</span>
-</a>
-<a href="/reviews" class="dropdown-item group/item">
-<span class="item-title">Reviews</span>
-</a>
-</div>
-</div>
-</div>
-</div>
+              <div
+                class="invisible opacity-0 group-hover/nested:visible group-hover/nested:opacity-100 absolute top-0 left-full ml-1 w-72 rounded-xl border border-slate-200/80 bg-[#e1f0f4] shadow-[0_20px_40px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out z-[1000000]"
+              >
+                <!-- <div class="dropdown-header rounded-t-xl">
+                  <span>Specialized Programs</span>
+                </div> -->
+                <div class="dropdown-content">
+                  <a
+                    href="/programs/agentic-ai"
+                    class="dropdown-item group/item"
+                  >
+                    <span class="item-title">Agentic AI & Automation</span>
+                    <span class="item-desc">Master autonomous AI systems</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <a
+              href="/programs/offline-classes"
+              class="dropdown-item group/item"
+            >
+              <span class="item-title">Offline Classes</span>
+              <span class="item-desc"
+                >Classroom training &amp; physical labs</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
 
-<!-- Right CTAs: lg+ — compact labels until xl so zoomed layouts still fit -->
-<div class="hidden min-w-0 flex-shrink-0 items-center justify-end gap-1 lg:flex xl:gap-1.5 2xl:gap-2">
-<!-- Register Now Dropdown -->
-<div class="group relative">
-<button class="btn-cta btn-solid dropdown-trigger">
-<span class="xl:hidden">Register</span>
-<span class="hidden xl:inline">Register Now</span>
-<span class="material-symbols-outlined dropdown-caret"
->expand_more</span
->
-</button>
-<div class="dropdown-menu right-0">
-<div class="dropdown-header">
-<span>Scholar Tier - $99 Seat Deposit</span>
-</div>
-<div class="dropdown-content">
-<a
-href="/checkout?course=Data+Science+%26+AI&type=normal"
-class="dropdown-item group/item"
->
-<span class="item-title">Data Science &amp; AI</span>
-<span class="item-desc">Enroll as Scholar - $99</span>
-</a>
-<a
-href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
-class="dropdown-item group/item"
->
-<span class="item-title"
->Cyber Security &amp; Ethical Hacking</span
->
-<span class="item-desc">Enroll as Scholar - $99</span>
-</a>
-<a
-href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
-class="dropdown-item group/item"
->
-<span class="item-title">DevOps &amp; Cloud Computing</span>
-<span class="item-desc">Enroll as Scholar - $99</span>
-</a>
-</div>
-</div>
-</div>
+      <!-- Company -->
+      <div class="group relative">
+        <button class="nav-link dropdown-trigger">
+          Company
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu left-[-1.5rem]">
+          <div class="dropdown-content">
+            <a href="/about" class="dropdown-item group/item">
+              <span class="item-title">About Us</span>
+            </a>
+            <a href="/contact-us" class="dropdown-item group/item">
+              <span class="item-title">Contact</span>
+            </a>
+            <a href="/stories" class="dropdown-item group/item">
+              <span class="item-title">Testimonials</span>
+            </a>
+            <a href="/reviews" class="dropdown-item group/item">
+              <span class="item-title">Reviews</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Enroll Now Dropdown -->
-<div class="group relative">
-<button class="btn-cta btn-outline dropdown-trigger">
-<span class="xl:hidden">Enroll</span>
-<span class="hidden xl:inline">Enroll Now</span>
-<span class="material-symbols-outlined dropdown-caret"
->expand_more</span
->
-</button>
-<div class="dropdown-menu right-0">
-<div class="dropdown-header">
-<span>Full Tuition Enrollment</span>
-</div>
-<div class="dropdown-content">
-<a
-href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
-class="dropdown-item group/item"
->
-<span class="item-title">Data Science &amp; AI</span>
-<span class="item-desc">Full Tuition Enrollment</span>
-</a>
-<a
-href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
-class="dropdown-item group/item"
->
-<span class="item-title"
->Cyber Security &amp; Ethical Hacking</span
->
-<span class="item-desc">Full Tuition Enrollment</span>
-</a>
-<a
-href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
-class="dropdown-item group/item"
->
-<span class="item-title">DevOps &amp; Cloud Computing</span>
-<span class="item-desc">Full Tuition Enrollment</span>
-</a>
-</div>
-</div>
-</div>
+    <!-- Right CTAs: lg+ — compact labels until xl so zoomed layouts still fit -->
+    <div
+      class="hidden min-w-0 flex-shrink-0 items-center justify-end gap-1 lg:flex xl:gap-1.5 2xl:gap-2"
+    >
+      <!-- Register Now Dropdown -->
+      <div class="group relative">
+        <button class="btn-cta btn-solid dropdown-trigger">
+          <span class="xl:hidden">Register</span>
+          <span class="hidden xl:inline">Register Now</span>
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu right-0 !w-[520px] xl:!w-[620px]">
+          <div class="flex">
+            <div class="w-1/2 border-r border-slate-200/60">
+              <div class="dropdown-header !rounded-tr-none">
+                <span>Scholar Tier - $99 Seat Deposit</span>
+              </div>
+              <div class="dropdown-content">
+                <a
+                  href="/checkout?course=Data+Science+%26+AI&type=normal"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">Data Science &amp; AI</span>
+                  <span class="item-desc">Enroll as Scholar - $99</span>
+                </a>
+                <a
+                  href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title"
+                    >Cyber Security &amp; Ethical Hacking</span
+                  >
+                  <span class="item-desc">Enroll as Scholar - $99</span>
+                </a>
+                <a
+                  href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">DevOps &amp; Cloud Computing</span>
+                  <span class="item-desc">Enroll as Scholar - $99</span>
+                </a>
+              </div>
+            </div>
+            <div class="w-1/2 bg-white/40">
+              <div class="dropdown-header !rounded-tl-none">
+                <span>Specialized Program</span>
+              </div>
+              <div class="dropdown-content">
+                <a
+                  href="/checkout?course=Agentic+AI+%26+Automation&type=normal"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">Agentic AI &amp; Automation</span>
+                  <span class="item-desc">Registration - $499</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<!-- LMS Login -->
-<a
-href="https://learnwithus.sbs/login"
-class="nav-link btn-cta btn-outline inline-flex"
-target="_blank"
->
-<span class="hidden xl:inline">LMS Login</span>
-<span class="xl:hidden">LMS</span>
-<span class="material-symbols-outlined text-[16px] xl:text-[18px]"
->login</span
->
-</a>
-</div>
+      <!-- Enroll Now Dropdown -->
+      <div class="group relative">
+        <button class="btn-cta btn-outline dropdown-trigger">
+          <span class="xl:hidden">Enroll</span>
+          <span class="hidden xl:inline">Enroll Now</span>
+          <span class="material-symbols-outlined dropdown-caret"
+            >expand_more</span
+          >
+        </button>
+        <div class="dropdown-menu right-0 !w-[520px] xl:!w-[620px]">
+          <div class="flex">
+            <div class="w-1/2 border-r border-slate-200/60">
+              <div class="dropdown-header !rounded-tr-none">
+                <span>Full Tuition Enrollment</span>
+              </div>
+              <div class="dropdown-content">
+                <a
+                  href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">Data Science &amp; AI</span>
+                  <span class="item-desc">Full Tuition Enrollment</span>
+                </a>
+                <a
+                  href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title"
+                    >Cyber Security &amp; Ethical Hacking</span
+                  >
+                  <span class="item-desc">Full Tuition Enrollment</span>
+                </a>
+                <a
+                  href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">DevOps &amp; Cloud Computing</span>
+                  <span class="item-desc">Full Tuition Enrollment</span>
+                </a>
+              </div>
+            </div>
+            <div class="w-1/2 bg-white/40">
+              <div class="dropdown-header !rounded-tl-none">
+                <span>Specialized Program</span>
+              </div>
+              <div class="dropdown-content">
+                <a
+                  href="/checkout?course=Agentic+AI+%26+Automation&type=normal&mode=full"
+                  class="dropdown-item group/item"
+                >
+                  <span class="item-title">Agentic AI &amp; Automation</span>
+                  <span class="item-desc">Regular Price - $6999</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<!-- Hamburger only below lg (~1024px CSS width / high zoom) -->
-<button
-class="flex-shrink-0 p-2 text-slate-900 lg:hidden"
-type="button"
-aria-label="Open navigation menu"
-aria-controls="mobile-nav-panel"
-aria-expanded="false"
-id="mobile-menu-toggle"
->
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="23"
-height="23"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.8"
-stroke-linecap="round"
-stroke-linejoin="round"
-aria-hidden="true"
-id="hamburger-icon"
->
-<path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"
-></path>
-</svg>
-</button>
-</div>
+      <!-- LMS Login -->
+      <a
+        href="https://learnwithus.sbs/login"
+        class="nav-link btn-cta btn-outline inline-flex"
+        target="_blank"
+      >
+        <span class="hidden xl:inline">LMS Login</span>
+        <span class="xl:hidden">LMS</span>
+        <span class="material-symbols-outlined text-[16px] xl:text-[18px]"
+          >login</span
+        >
+      </a>
+    </div>
+
+    <!-- Hamburger only below lg (~1024px CSS width / high zoom) -->
+    <button
+      class="flex-shrink-0 p-2 text-slate-900 lg:hidden"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobile-nav-panel"
+      aria-expanded="false"
+      id="mobile-menu-toggle"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="23"
+        height="23"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        id="hamburger-icon"
+      >
+        <path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"
+        ></path>
+      </svg>
+    </button>
+  </div>
 </nav>
 
 <!-- Mobile Navigation Panel (below lg) -->
 <div
-class="fixed inset-0 z-[999999] flex invisible flex-col items-center overflow-y-auto bg-white pb-10 pt-20 opacity-0 transition-opacity duration-300 ease-out lg:hidden"
-id="mobile-nav-panel"
-aria-hidden="true"
+  class="fixed inset-0 z-[999999] flex invisible flex-col items-center overflow-y-auto bg-white pb-10 pt-20 opacity-0 transition-opacity duration-300 ease-out lg:hidden"
+  id="mobile-nav-panel"
+  aria-hidden="true"
 >
-<div
-class="mx-auto flex w-full max-w-[340px] flex-col items-center gap-3 px-6"
->
-<a tabindex="-1" href="/" class="mobile-nav-link">Home</a>
-<a tabindex="-1" href="/live-jobs" class="mobile-nav-link">Live Jobs</a>
+  <div
+    class="mx-auto flex w-full max-w-[340px] flex-col items-center gap-3 px-6"
+  >
+    <a tabindex="-1" href="/" class="mobile-nav-link">Home</a>
+    <a tabindex="-1" href="/live-jobs" class="mobile-nav-link">Live Jobs</a>
 
-<span class="mobile-section-label">Programs</span>
-<a
-tabindex="-1"
-href="/programs/data-science-ai"
-class="mobile-program-link">Data Science &amp; AI</a
->
-<a tabindex="-1" href="/programs/cyber-security" class="mobile-program-link"
->Cyber Security</a
->
-<a tabindex="-1" href="/programs/devops" class="mobile-program-link"
->DevOps &amp; Cloud</a
->
-<a tabindex="-1" href="/programs/offline-classes" class="mobile-program-link"
->Offline Classes</a
->
+    <span class="mobile-section-label">Programs</span>
+    <a
+      tabindex="-1"
+      href="/programs/data-science-ai"
+      class="mobile-program-link">Data Science &amp; AI</a
+    >
+    <a tabindex="-1" href="/programs/cyber-security" class="mobile-program-link"
+      >Cyber Security</a
+    >
+    <a tabindex="-1" href="/programs/devops" class="mobile-program-link"
+      >DevOps &amp; Cloud</a
+    >
+    <a tabindex="-1" href="/programs/agentic-ai" class="mobile-program-link"
+      >Agentic AI &amp; Automation</a
+    >
+    <a
+      tabindex="-1"
+      href="/programs/offline-classes"
+      class="mobile-program-link">Offline Classes</a
+    >
 
-<span class="mobile-section-label">Company</span>
-<a tabindex="-1" href="/about" class="mobile-program-link">About</a>
-<a tabindex="-1" href="/contact-us" class="mobile-program-link">Contact</a>
-<a tabindex="-1" href="/stories" class="mobile-program-link">Testimonials</a
->
+    <span class="mobile-section-label">Company</span>
+    <a tabindex="-1" href="/about" class="mobile-program-link">About</a>
+    <a tabindex="-1" href="/contact-us" class="mobile-program-link">Contact</a>
+    <a tabindex="-1" href="/stories" class="mobile-program-link">Testimonials</a
+    >
 
-<div class="my-2 w-full border-t border-slate-200/50"></div>
+    <div class="my-2 w-full border-t border-slate-200/50"></div>
 
-<!-- Register Now -->
-<div class="mt-2 flex w-full flex-col gap-2">
-<span
-class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
->Register Now</span
->
-<div class="flex w-full flex-col gap-2">
-<a
-tabindex="-1"
-href="/checkout?course=Data+Science+%26+AI&type=normal"
-class="mobile-cta-btn"
->
-<span class="text-[0.85rem]">Data Science &amp; AI</span>
-<span class="text-xs font-medium opacity-90">$99</span>
-</a>
-<a
-tabindex="-1"
-href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
-class="mobile-cta-btn"
->
-<span class="text-[0.85rem]">Cyber Security</span>
-<span class="text-xs font-medium opacity-90">$99</span>
-</a>
-<a
-tabindex="-1"
-href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
-class="mobile-cta-btn"
->
-<span class="text-[0.85rem]">DevOps &amp; Cloud</span>
-<span class="text-xs font-medium opacity-90">$99</span>
-</a>
-</div>
-</div>
+    <!-- Register Now -->
+    <div class="mt-2 flex w-full flex-col gap-2">
+      <span
+        class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
+        >Register Now</span
+      >
+      <div class="flex w-full flex-col gap-2">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">Data Science &amp; AI</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">Cyber Security</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">DevOps &amp; Cloud</span>
+          <span class="text-xs font-medium opacity-90">$99</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Agentic+AI+%26+Automation&type=normal"
+          class="mobile-cta-btn"
+        >
+          <span class="text-[0.85rem]">Agentic AI &amp; Automation</span>
+          <span class="text-xs font-medium opacity-90">$499</span>
+        </a>
+      </div>
+    </div>
 
-<!-- Enroll Now -->
-<div class="mt-2 flex w-full flex-col gap-2">
-<span
-class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
->Enroll Now</span
->
-<div class="flex w-full flex-col gap-2">
-<a
-tabindex="-1"
-href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
-class="mobile-cta-btn-outline"
->
-<span class="text-[0.85rem]">Data Science &amp; AI</span>
-<span class="text-xs text-slate-500">$3499</span>
-</a>
-<a
-tabindex="-1"
-href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
-class="mobile-cta-btn-outline"
->
-<span class="text-[0.85rem]">Cyber Security</span>
-<span class="text-xs text-slate-500">$3499</span>
-</a>
-<a
-tabindex="-1"
-href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
-class="mobile-cta-btn-outline"
->
-<span class="text-[0.85rem]">DevOps &amp; Cloud</span>
-<span class="text-xs text-slate-500">$3499</span>
-</a>
-</div>
-</div>
+    <!-- Enroll Now -->
+    <div class="mt-2 flex w-full flex-col gap-2">
+      <span
+        class="text-center text-xs font-bold uppercase tracking-wide text-[#005d90]"
+        >Enroll Now</span
+      >
+      <div class="flex w-full flex-col gap-2">
+        <a
+          tabindex="-1"
+          href="/checkout?course=Data+Science+%26+AI&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">Data Science &amp; AI</span>
+          <span class="text-xs text-slate-500">$3499</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Cyber+Security+%26+Ethical+Hacking&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">Cyber Security</span>
+          <span class="text-xs text-slate-500">$3499</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=DevOps+%26+Cloud+Computing&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">DevOps &amp; Cloud</span>
+          <span class="text-xs text-slate-500">$3499</span>
+        </a>
+        <a
+          tabindex="-1"
+          href="/checkout?course=Agentic+AI+%26+Automation&type=normal&mode=full"
+          class="mobile-cta-btn-outline"
+        >
+          <span class="text-[0.85rem]">Agentic AI &amp; Automation</span>
+          <span class="text-xs text-slate-500">$6999</span>
+        </a>
+      </div>
+    </div>
 
-<a
-tabindex="-1"
-href="https://learnwithus.sbs/login"
-target="_blank"
-class="mobile-program-link btn-cta btn-outline mt-2 flex items-center justify-center gap-1.5 font-semibold text-[#1b4a9a]"
->
-LMS Login
-<span class="material-symbols-outlined text-base">login</span>
-</a>
-</div>
+    <a
+      tabindex="-1"
+      href="https://learnwithus.sbs/login"
+      target="_blank"
+      class="mobile-program-link btn-cta btn-outline mt-2 flex items-center justify-center gap-1.5 font-semibold text-[#1b4a9a]"
+    >
+      LMS Login
+      <span class="material-symbols-outlined text-base">login</span>
+    </a>
+  </div>
 </div>
 
 <!-- Page Transition Overlay -->
 <div
-id="page-transition-overlay"
-class="pointer-events-none fixed inset-0 z-[100000000] flex items-center justify-center bg-[#0c1013] opacity-0 transition-opacity duration-400 ease-out"
-style="display: none;"
+  id="page-transition-overlay"
+  class="pointer-events-none fixed inset-0 z-[100000000] flex items-center justify-center bg-[#0c1013] opacity-0 transition-opacity duration-400 ease-out"
+  style="display: none;"
 >
-<div class="relative flex h-full w-full items-center justify-center">
-<video
-id="trans-video-ds"
-src="/admin/Page_transition_Data_Science_AI_202606270237.mp4"
-preload="none"
-muted
-playsinline
-class="absolute inset-0 hidden h-full w-full object-cover"></video>
-<video
-id="trans-video-cs"
-src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4"
-preload="none"
-muted
-playsinline
-class="absolute inset-0 hidden h-full w-full object-cover"></video>
-<video
-id="trans-video-do"
-src="/admin/devops_loop_transi._202606270238.mp4"
-preload="none"
-muted
-playsinline
-class="absolute inset-0 hidden h-full w-full object-cover"></video>
-</div>
+  <div class="relative flex h-full w-full items-center justify-center">
+    <video
+      id="trans-video-ds"
+      src="/admin/Page_transition_Data_Science_AI_202606270237.mp4"
+      preload="none"
+      muted
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
+    <video
+      id="trans-video-cs"
+      src="/admin/Cyber_Security_page_transition_1080p_202606270238.mp4"
+      preload="none"
+      muted
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
+    <video
+      id="trans-video-do"
+      src="/admin/devops_loop_transi._202606270238.mp4"
+      preload="none"
+      muted
+      playsinline
+      class="absolute inset-0 hidden h-full w-full object-cover"></video>
+  </div>
 </div>
 
 <style>
-/* Small set of utility classes that combine several Tailwind-style tokens
+  /* Small set of utility classes that combine several Tailwind-style tokens
 for elements repeated many times, plus the JS-driven state transitions
 that Tailwind's static class scanner can't safelist automatically. */
 
-.nav-link {
-  @apply inline-flex h-8 cursor-pointer items-center gap-0.5 whitespace-nowrap border-none bg-none p-0 text-[0.78rem] font-medium text-slate-600 transition-colors hover:text-[#005d90] xl:h-9 xl:gap-1 xl:text-[0.88rem] 2xl:h-10 2xl:text-[0.95rem];
-}
+  .nav-link {
+    @apply inline-flex h-8 cursor-pointer items-center gap-0.5 whitespace-nowrap border-none bg-none p-0 text-[0.78rem] font-medium text-slate-600 transition-colors hover:text-[#005d90] xl:h-9 xl:gap-1 xl:text-[0.88rem] 2xl:h-10 2xl:text-[0.95rem];
+  }
 
-.dropdown-caret {
-  @apply ml-0.5 inline-block text-[1rem] transition-transform duration-200 ease-out xl:text-lg;
-}
-.group:hover .dropdown-caret {
-  @apply rotate-180;
-}
+  .dropdown-caret {
+    @apply ml-0.5 inline-block text-[1rem] transition-transform duration-200 ease-out xl:text-lg;
+  }
+  .group:hover .dropdown-caret {
+    @apply rotate-180;
+  }
 
-.dropdown-menu {
-  @apply invisible absolute top-full z-[999999] w-72 translate-y-2 overflow-hidden rounded-xl border border-slate-200/80 bg-[#e1f0f4] opacity-0 shadow-[0_20px_40px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out xl:w-80;
-}
-.group:hover .dropdown-menu {
-  @apply visible translate-y-0.5 opacity-100;
-}
+  .dropdown-menu {
+    @apply invisible absolute top-full z-[999999] w-72 translate-y-2 rounded-xl border border-slate-200/80 bg-[#e1f0f4] opacity-0 shadow-[0_20px_40px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out xl:w-80;
+  }
+  .group:hover .dropdown-menu {
+    @apply visible translate-y-0.5 opacity-100;
+  }
 
-.dropdown-header {
-  @apply border-b border-slate-200/60 bg-slate-900/[0.02] px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-[#005d90];
-}
-.dropdown-content {
-  @apply flex flex-col gap-1 p-2;
-}
-.dropdown-item {
-  @apply flex flex-col rounded-lg px-4 py-3 no-underline transition-colors hover:bg-[#005d90]/[0.04];
-}
-.item-title {
-  @apply text-sm font-semibold text-slate-800 transition-colors group-hover/item:text-[#005d90];
-}
-.item-desc {
-  @apply mt-0.5 text-xs text-slate-500;
-}
+  .dropdown-header {
+    @apply border-b border-slate-200/60 bg-slate-900/[0.02] px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-[#005d90] rounded-t-xl;
+  }
+  .dropdown-content {
+    @apply flex flex-col gap-1 p-2;
+  }
+  .dropdown-item {
+    @apply flex flex-col rounded-lg px-4 py-3 no-underline transition-colors hover:bg-[#005d90]/[0.04];
+  }
+  .item-title {
+    @apply text-sm font-semibold text-slate-800 transition-colors group-hover/item:text-[#005d90];
+  }
+  .item-desc {
+    @apply mt-0.5 text-xs text-slate-500;
+  }
 
-.btn-cta {
-  @apply inline-flex h-8 cursor-pointer items-center justify-center gap-0.5 whitespace-nowrap rounded-lg px-2 text-[0.72rem] font-semibold transition-all duration-200 xl:h-9 xl:gap-1 xl:px-3 xl:text-[0.8rem] 2xl:h-10 2xl:gap-1.5 2xl:px-5 2xl:text-[0.9rem];
-}
-.btn-solid {
-  @apply border-none bg-gradient-to-br from-[#005d90] to-[#0077b6] text-white shadow-[0_2px_8px_rgba(0,93,144,0.15)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,93,144,0.25)];
-}
-.btn-outline {
-  @apply border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] text-[#005d90] hover:-translate-y-px hover:border-[#005d90] hover:bg-[#005d90]/[0.08];
-}
+  .btn-cta {
+    @apply inline-flex h-8 cursor-pointer items-center justify-center gap-0.5 whitespace-nowrap rounded-lg px-2 text-[0.72rem] font-semibold transition-all duration-200 xl:h-9 xl:gap-1 xl:px-3 xl:text-[0.8rem] 2xl:h-10 2xl:gap-1.5 2xl:px-5 2xl:text-[0.9rem];
+  }
+  .btn-solid {
+    @apply border-none bg-gradient-to-br from-[#005d90] to-[#0077b6] text-white shadow-[0_2px_8px_rgba(0,93,144,0.15)] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,93,144,0.25)];
+  }
+  .btn-outline {
+    @apply border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] text-[#005d90] hover:-translate-y-px hover:border-[#005d90] hover:bg-[#005d90]/[0.08];
+  }
 
-.mobile-nav-link {
-  @apply w-full text-center text-lg font-semibold text-slate-800 no-underline transition-colors hover:text-[#005d90];
-}
-.mobile-section-label {
-  @apply w-full pt-1 text-center text-[0.72rem] font-extrabold uppercase tracking-widest text-slate-500;
-}
-.mobile-program-link {
-  @apply w-full py-1 text-center text-sm font-medium text-slate-600 no-underline transition-colors hover:text-[#005d90];
-}
-.mobile-cta-btn {
-  @apply flex items-center justify-between rounded-lg bg-gradient-to-br from-[#005d90] to-[#0077b6] px-4 py-3 font-semibold text-white no-underline shadow-[0_2px_6px_rgba(0,93,144,0.15)] transition-transform hover:-translate-y-px;
-}
-.mobile-cta-btn-outline {
-  @apply flex items-center justify-between rounded-lg border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] px-4 py-3 font-semibold text-[#005d90] no-underline transition-colors hover:bg-[#005d90]/[0.08];
-}
+  .mobile-nav-link {
+    @apply w-full text-center text-lg font-semibold text-slate-800 no-underline transition-colors hover:text-[#005d90];
+  }
+  .mobile-section-label {
+    @apply w-full pt-1 text-center text-[0.72rem] font-extrabold uppercase tracking-widest text-slate-500;
+  }
+  .mobile-program-link {
+    @apply w-full py-1 text-center text-sm font-medium text-slate-600 no-underline transition-colors hover:text-[#005d90];
+  }
+  .mobile-cta-btn {
+    @apply flex items-center justify-between rounded-lg bg-gradient-to-br from-[#005d90] to-[#0077b6] px-4 py-3 font-semibold text-white no-underline shadow-[0_2px_6px_rgba(0,93,144,0.15)] transition-transform hover:-translate-y-px;
+  }
+  .mobile-cta-btn-outline {
+    @apply flex items-center justify-between rounded-lg border-[1.5px] border-[#005d90]/25 bg-[#005d90]/[0.03] px-4 py-3 font-semibold text-[#005d90] no-underline transition-colors hover:bg-[#005d90]/[0.08];
+  }
 
-/* JS-driven open/close states for the mobile panel & solid-header state */
-#mobile-nav-panel.is-open {
-  opacity: 1;
-  visibility: visible;
-}
-#main-header.is-mobile-menu-open {
-  background-color: #ffffff !important;
-}
+  /* JS-driven open/close states for the mobile panel & solid-header state */
+  #mobile-nav-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  #main-header.is-mobile-menu-open {
+    background-color: #ffffff !important;
+  }
 </style>
 
 <script is:inline>
-(() => {
-  const nav = document.getElementById("main-header");
-  const menuButton = document.getElementById("mobile-menu-toggle");
-  const panel = document.getElementById("mobile-nav-panel");
+  (() => {
+    const nav = document.getElementById("main-header");
+    const menuButton = document.getElementById("mobile-menu-toggle");
+    const panel = document.getElementById("mobile-nav-panel");
 
-  if (menuButton && panel) {
-    const menuIcon =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
-    const closeIcon =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
-    const links = Array.from(panel.querySelectorAll("a"));
+    if (menuButton && panel) {
+      const menuIcon =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>';
+      const closeIcon =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>';
+      const links = Array.from(panel.querySelectorAll("a"));
 
-    const setOpen = (open) => {
-      nav?.classList.toggle("is-mobile-menu-open", open);
-      panel.classList.toggle("is-open", open);
-      panel.classList.toggle("invisible", !open);
-      document.body.classList.toggle("overflow-hidden", open);
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute(
-      "aria-label",
-      open ? "Close navigation menu" : "Open navigation menu",
-      );
-      menuButton.innerHTML = open ? closeIcon : menuIcon;
-      panel.setAttribute("aria-hidden", String(!open));
+      const setOpen = (open) => {
+        nav?.classList.toggle("is-mobile-menu-open", open);
+        panel.classList.toggle("is-open", open);
+        panel.classList.toggle("invisible", !open);
+        document.body.classList.toggle("overflow-hidden", open);
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu",
+        );
+        menuButton.innerHTML = open ? closeIcon : menuIcon;
+        panel.setAttribute("aria-hidden", String(!open));
+        for (const link of links) {
+          if (open) link.removeAttribute("tabindex");
+          else link.setAttribute("tabindex", "-1");
+        }
+      };
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav?.classList.contains("is-mobile-menu-open");
+        setOpen(!isOpen);
+      });
+
       for (const link of links) {
-        if (open) link.removeAttribute("tabindex");
-        else link.setAttribute("tabindex", "-1");
+        link.addEventListener("click", () => setOpen(false));
       }
+
+      window.addEventListener(
+        "resize",
+        () => {
+          // Match Tailwind lg (1024px) — desktop header breakpoint
+          if (window.innerWidth >= 1024) {
+            const isOpen = nav?.classList.contains("is-mobile-menu-open");
+            if (isOpen) setOpen(false);
+          }
+        },
+        { passive: true },
+      );
+    }
+
+    // Force light mode theme
+    function initTheme() {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+      localStorage.setItem("theme", "light");
+    }
+    initTheme();
+
+    // Page Transition Manager
+    const transitionOverlay = document.getElementById(
+      "page-transition-overlay",
+    );
+    const transitionVideos = {
+      "data-science": document.getElementById("trans-video-ds"),
+      "cyber-security": document.getElementById("trans-video-cs"),
+      devops: document.getElementById("trans-video-do"),
     };
 
-    menuButton.addEventListener("click", () => {
-      const isOpen = nav?.classList.contains("is-mobile-menu-open");
-      setOpen(!isOpen);
-    });
+    try {
+      const pendingTransition = sessionStorage.getItem(
+        "page-transition-target",
+      );
+      if (pendingTransition && transitionOverlay) {
+        transitionOverlay.style.display = "flex";
+        transitionOverlay.style.opacity = "1";
+        transitionOverlay.style.pointerEvents = "all";
+        sessionStorage.removeItem("page-transition-target");
 
-    for (const link of links) {
-      link.addEventListener("click", () => setOpen(false));
-    }
-
-    window.addEventListener(
-    "resize",
-    () => {
-      // Match Tailwind lg (1024px) — desktop header breakpoint
-      if (window.innerWidth >= 1024) {
-        const isOpen = nav?.classList.contains("is-mobile-menu-open");
-        if (isOpen) setOpen(false);
-      }
-    },
-    { passive: true },
-    );
-  }
-
-  // Force light mode theme
-  function initTheme() {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.classList.add("light");
-    localStorage.setItem("theme", "light");
-  }
-  initTheme();
-
-  // Page Transition Manager
-  const transitionOverlay = document.getElementById(
-  "page-transition-overlay",
-  );
-  const transitionVideos = {
-    "data-science": document.getElementById("trans-video-ds"),
-    "cyber-security": document.getElementById("trans-video-cs"),
-    devops: document.getElementById("trans-video-do"),
-  };
-
-  try {
-    const pendingTransition = sessionStorage.getItem(
-    "page-transition-target",
-    );
-    if (pendingTransition && transitionOverlay) {
-      transitionOverlay.style.display = "flex";
-      transitionOverlay.style.opacity = "1";
-      transitionOverlay.style.pointerEvents = "all";
-      sessionStorage.removeItem("page-transition-target");
-
-      setTimeout(() => {
-        transitionOverlay.style.transition =
-        "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
-        transitionOverlay.style.opacity = "0";
         setTimeout(() => {
-          transitionOverlay.style.display = "none";
-          transitionOverlay.style.pointerEvents = "none";
-        }, 600);
-      }, 400);
-    }
-  } catch (e) {
-    console.warn("Failed to handle entrance transition:", e);
-  }
-
-  const programUrls = {
-    "/programs/data-science-ai": "data-science",
-    "/programs/cyber-security": "cyber-security",
-    "/programs/devops": "devops",
-  };
-
-  document.addEventListener(
-  "mouseenter",
-  (e) => {
-    if (!e.target || typeof e.target.closest !== 'function') return;
-    const link = e.target.closest("a");
-    if (!link) return;
-    const href = link.getAttribute("href");
-    if (href) {
-      const matchedKey =
-      programUrls[href] ||
-      Object.keys(programUrls).find(
-      (key) => href.endsWith(key) && !href.includes("checkout"),
-      );
-      if (matchedKey) {
-        const programKey = programUrls[matchedKey];
-        const video = transitionVideos[programKey];
-        if (video && video.preload !== "auto") {
-          video.preload = "auto";
-          video.load();
-        }
+          transitionOverlay.style.transition =
+            "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+          transitionOverlay.style.opacity = "0";
+          setTimeout(() => {
+            transitionOverlay.style.display = "none";
+            transitionOverlay.style.pointerEvents = "none";
+          }, 600);
+        }, 400);
       }
+    } catch (e) {
+      console.warn("Failed to handle entrance transition:", e);
     }
-  },
-  true,
-  );dse
 
-  document.addEventListener("click", (e) => {
-    if (!e.target || typeof e.target.closest !== 'function') return;
-    const link = e.target.closest("a");
-    if (!link) return;
-    const href = link.getAttribute("href");
-    if (href) {
-      const matchedKey =
-      programUrls[href] ||
-      Object.keys(programUrls).find(
-      (key) => href.endsWith(key) && !href.includes("checkout"),
-      );
-      if (matchedKey) {
-        const programKey = programUrls[matchedKey];
-        const video = transitionVideos[programKey];
+    const programUrls = {
+      "/programs/data-science-ai": "data-science",
+      "/programs/cyber-security": "cyber-security",
+      "/programs/devops": "devops",
+    };
 
-        if (video && transitionOverlay) {
-          e.preventDefault();
-          try {
-            try {
-              sessionStorage.setItem("page-transition-target", programKey);
-            } catch (storageErr) {
-              console.warn("sessionStorage is not available:", storageErr);
+    document.addEventListener(
+      "mouseenter",
+      (e) => {
+        if (!e.target || typeof e.target.closest !== "function") return;
+        const link = e.target.closest("a");
+        if (!link) return;
+        const href = link.getAttribute("href");
+        if (href) {
+          const matchedKey =
+            programUrls[href] ||
+            Object.keys(programUrls).find(
+              (key) => href.endsWith(key) && !href.includes("checkout"),
+            );
+          if (matchedKey) {
+            const programKey = programUrls[matchedKey];
+            const video = transitionVideos[programKey];
+            if (video && video.preload !== "auto") {
+              video.preload = "auto";
+              video.load();
             }
+          }
+        }
+      },
+      true,
+    );
+    dse;
 
-            Object.values(transitionVideos).forEach((v) => {
-              if (v) {
-                try {
-                  v.style.display = "none";
-                  v.pause();
-                } catch (e) {}
+    document.addEventListener("click", (e) => {
+      if (!e.target || typeof e.target.closest !== "function") return;
+      const link = e.target.closest("a");
+      if (!link) return;
+      const href = link.getAttribute("href");
+      if (href) {
+        const matchedKey =
+          programUrls[href] ||
+          Object.keys(programUrls).find(
+            (key) => href.endsWith(key) && !href.includes("checkout"),
+          );
+        if (matchedKey) {
+          const programKey = programUrls[matchedKey];
+          const video = transitionVideos[programKey];
+
+          if (video && transitionOverlay) {
+            e.preventDefault();
+            try {
+              try {
+                sessionStorage.setItem("page-transition-target", programKey);
+              } catch (storageErr) {
+                console.warn("sessionStorage is not available:", storageErr);
+              }
+
+              Object.values(transitionVideos).forEach((v) => {
+                if (v) {
+                  try {
+                    v.style.display = "none";
+                    v.pause();
+                  } catch (e) {}
                 }
               });
 
@@ -635,34 +730,34 @@ that Tailwind's static class scanner can't safelist automatically. */
                 video.currentTime = 0;
               } catch (e) {}
 
-                transitionOverlay.style.transition = "opacity 0.3s ease";
-                transitionOverlay.style.display = "flex";
-                transitionOverlay.style.opacity = "1";
-                transitionOverlay.style.pointerEvents = "all";
+              transitionOverlay.style.transition = "opacity 0.3s ease";
+              transitionOverlay.style.display = "flex";
+              transitionOverlay.style.opacity = "1";
+              transitionOverlay.style.pointerEvents = "all";
 
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                  playPromise.catch((err) => {
-                    console.warn("Video play was prevented:", err);
-                    setTimeout(() => {
-                      window.location.href = href;
-                    }, 400);
-                  });
-                }
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch((err) => {
+                  console.warn("Video play was prevented:", err);
+                  setTimeout(() => {
+                    window.location.href = href;
+                  }, 400);
+                });
+              }
 
-                setTimeout(() => {
-                  window.location.href = href;
-                }, 1600);
-              } catch (err) {
-                console.error(
+              setTimeout(() => {
+                window.location.href = href;
+              }, 1600);
+            } catch (err) {
+              console.error(
                 "Transition failed, falling back to direct navigation:",
                 err,
-                );
-                window.location.href = href;
-              }
+              );
+              window.location.href = href;
             }
           }
         }
-      });
-    })();
-    </script>
+      }
+    });
+  })();
+</script>

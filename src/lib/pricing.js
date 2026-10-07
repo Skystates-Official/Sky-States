@@ -96,12 +96,22 @@ export async function calculateCheckoutTotal({
   mode = "registration",
   tier = "normal",
   couponCode = "",
+  courseName = "",
 }) {
   const checkoutMode =
     mode === "full" ? "full" : mode === "offline" ? "offline" : "registration";
   const selectedTier =
     checkoutMode === "offline" ? "normal" : tier === "1on1" ? "1on1" : "normal";
-  const basePrice = PRICING[checkoutMode][selectedTier];
+  let basePrice = PRICING[checkoutMode][selectedTier];
+  
+  const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+  if (isAgentic) {
+    if (checkoutMode === "registration" && selectedTier === "normal") {
+      basePrice = 499;
+    } else if (checkoutMode === "registration" && selectedTier === "1on1") {
+      basePrice = 6999;
+    }
+  }
 
   const effectiveCouponCode =
     checkoutMode === "full" || checkoutMode === "offline" ? couponCode : "";

@@ -25,6 +25,7 @@ export async function POST({ request }) {
       mode: body.mode,
       tier: body.tier,
       couponCode: body.couponCode,
+      courseName,
     });
 
     if (pricing.total === 0) {

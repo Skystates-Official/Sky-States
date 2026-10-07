@@ -718,15 +718,24 @@ const pricingConfig = {
                     window.selectedTier === "1on1" ? "1on1" : "normal";
                 let basePrice = P[modeKey][tierKey];
 
+                const courseName = document.getElementById("display-course-name")?.textContent || "";
+                const isAgentic = courseName.toLowerCase().includes("agentic");
+                if (isAgentic) {
+                    if (modeKey === "registration" && tierKey === "normal") {
+                        basePrice = 499;
+                    } else if (modeKey === "registration" && tierKey === "1on1") {
+                        basePrice = 6999;
+                    }
+                }
+
                 if (window.selectedTier === "normal") {
-                    if (label) label.textContent = "batch classes Program";
+                    if (label) label.textContent = isAgentic ? "Registration" : "batch classes Program";
                     if (desc)
-                        desc.textContent = "Weekend live labs & placement prep";
+                        desc.textContent = isAgentic ? "Enrollment" : "Weekend live labs & placement prep";
                 } else {
-                    if (label) label.textContent = "personalised classes";
+                    if (label) label.textContent = isAgentic ? "Regular Price" : "personalised classes";
                     if (desc)
-                        desc.textContent =
-                            "Personal Industry mentor & 1-on-1 guidance";
+                        desc.textContent = isAgentic ? "6-Month Program" : "Personal Industry mentor & 1-on-1 guidance";
                 }
 
                 if (priceEl)
@@ -938,10 +947,13 @@ const pricingConfig = {
                     window.checkoutMode = "registration";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
+                    
+                    const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+                    
                     if (sPrice)
-                        sPrice.textContent = "$" + P.registration.normal;
+                        sPrice.textContent = "$" + (isAgentic ? 499 : P.registration.normal);
                     if (ePrice)
-                        ePrice.textContent = "$" + P.registration["1on1"];
+                        ePrice.textContent = "$" + (isAgentic ? 6999 : P.registration["1on1"]);
 
                     // Show elite tier selection
                     const btnElite = document.getElementById("btn-tier-elite");
@@ -950,6 +962,20 @@ const pricingConfig = {
                     if (grid) grid.classList.add("sm:grid-cols-2");
                     const label = document.getElementById("tier-selector-label");
                     if (label) label.style.display = "";
+                }
+                
+                const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+                if (isAgentic) {
+                    const btnScholar = document.getElementById("btn-tier-scholar");
+                    if (btnScholar) {
+                        btnScholar.querySelector("span:nth-child(1)").textContent = "REGISTRATION";
+                        btnScholar.querySelector("span:nth-child(3)").textContent = "ENROLLMENT";
+                    }
+                    const btnElite = document.getElementById("btn-tier-elite");
+                    if (btnElite) {
+                        btnElite.querySelector("span:nth-child(1)").textContent = "REGULAR PRICE";
+                        btnElite.querySelector("span:nth-child(3)").textContent = "6-MONTH PROGRAM";
+                    }
                 }
 
                 if (courseName) {
