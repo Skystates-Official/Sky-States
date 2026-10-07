@@ -239,6 +239,71 @@ function initializeDatabase() {
     db.run("ALTER TABLE blogs ADD COLUMN published_at DATETIME", (err) => {});
     db.run("ALTER TABLE blogs ADD COLUMN seo_metadata TEXT", (err) => {});
 
+    // 4.1 How-Tos Table
+    db.run(`
+      CREATE TABLE IF NOT EXISTS how_tos (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        title TEXT NOT NULL,
+        slug TEXT UNIQUE NOT NULL,
+        category TEXT NOT NULL,
+        subcategory TEXT,
+        short_description TEXT,
+        content LONGTEXT NOT NULL,
+        image TEXT,
+        author TEXT,
+        keywords TEXT,
+        canonical TEXT,
+        seo_title TEXT,
+        seo_description TEXT,
+        status TEXT DEFAULT 'draft',
+        views INTEGER DEFAULT 0,
+        seo_score INTEGER DEFAULT 0,
+        seo_metadata TEXT,
+        published_at DATETIME,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS how_to_versions (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        how_to_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        title TEXT NOT NULL,
+        content LONGTEXT NOT NULL,
+        seo_metadata TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (how_to_id) REFERENCES how_tos(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS how_to_comments (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        how_to_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        content TEXT NOT NULL,
+        status TEXT DEFAULT 'open',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (how_to_id) REFERENCES how_tos(id) ON DELETE CASCADE,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS how_to_attachments (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        how_to_id INTEGER NOT NULL,
+        media_id INTEGER NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (how_to_id) REFERENCES how_tos(id) ON DELETE CASCADE,
+        FOREIGN KEY (media_id) REFERENCES media(id) ON DELETE CASCADE
+      )
+    `);
+
     db.run(`
       CREATE TABLE IF NOT EXISTS blog_comments (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,

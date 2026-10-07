@@ -120,6 +120,14 @@ const blogs = await sqlQuery.all(`
 console.log("BLOG DATA:", blogs);
 const statsBlogs = blogs.length;
 
+const howTos = await sqlQuery.all(`
+    SELECT *
+    FROM how_tos
+    ORDER BY created_at DESC
+`);
+console.log("HOW TO DATA:", howTos);
+const statsHowTos = howTos.length;
+
 ---
 
 <!DOCTYPE html>
@@ -248,6 +256,10 @@ const statsBlogs = blogs.length;
 <button onclick="switchTab('blogs')" id="tab-btn-blogs" class="admin-nav-btn">
     <span class="material-symbols-outlined text-[18px]">article</span>
     <span>Blogs</span>
+</button>
+<button onclick="switchTab('how_tos')" id="tab-btn-how_tos" class="admin-nav-btn">
+    <span class="material-symbols-outlined text-[18px]">book</span>
+    <span>How Tos</span>
 </button>
                     <button onclick="switchTab('coupons')" id="tab-btn-coupons" class="admin-nav-btn">
                         <span class="material-symbols-outlined text-[18px]">sell</span>
@@ -844,7 +856,372 @@ const statsBlogs = blogs.length;
 </div>
 
             <!-- TAB: COUPONS -->
-            <div id="panel-coupons" class="tab-panel hidden space-y-6">
+            <!-- ================= HOW TO MANAGEMENT ================= -->
+
+<div id="panel-how_tos" class="tab-panel hidden">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+
+        <div>
+
+            <h2 class="text-3xl font-bold text-slate-900">
+                How To Management
+            </h2>
+
+            <p class="text-slate-500 mt-1">
+                Create, edit and manage all how to posts.
+            </p>
+
+        </div>
+
+        <button
+            onclick="openAddHowToModal()"
+            class="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-xl font-semibold shadow">
+
+            <span class="material-symbols-outlined">
+                add
+            </span>
+
+            Add New How To
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Statistics -->
+
+    <div class="grid grid-cols-4 gap-5 mb-8">
+
+        <div class="bg-white rounded-xl border p-6">
+
+            <p class="text-sm text-slate-500">
+                Total How Tos
+            </p>
+
+            <h2 class="text-4xl font-bold mt-2">
+                {howTos.length}
+            </h2>
+
+        </div>
+
+        <div class="bg-white rounded-xl border p-6">
+
+            <p class="text-sm text-slate-500">
+                Published
+            </p>
+
+            <h2 class="text-4xl font-bold text-green-600 mt-2">
+                {howTos.filter(howTo=>howTo.status==="published").length}
+            </h2>
+
+        </div>
+
+        <div class="bg-white rounded-xl border p-6">
+
+            <p class="text-sm text-slate-500">
+                Draft
+            </p>
+
+            <h2 class="text-4xl font-bold text-yellow-600 mt-2">
+                {howTos.filter(howTo=>howTo.status==="draft").length}
+            </h2>
+
+        </div>
+
+        <div class="bg-white rounded-xl border p-6">
+
+            <p class="text-sm text-slate-500">
+                Total Views
+            </p>
+
+            <h2 class="text-4xl font-bold text-sky-600 mt-2">
+                {blogs.reduce((a,b)=>a+b.views,0)}
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Search -->
+
+    <div class="bg-white rounded-xl border overflow-hidden">
+
+        <div class="p-5 border-b flex justify-between items-center">
+
+            <input
+
+                id="blog-search"
+
+                type="text"
+
+                placeholder="Search howTo..."
+
+                class="border rounded-xl px-5 py-3 w-96"
+
+                oninput="filterHowTos()"
+
+            />
+
+        </div>
+
+
+
+        <!-- Table -->
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full">
+
+                <thead>
+
+                    <tr class="bg-slate-100 text-left text-xs uppercase">
+
+                        <th class="px-6 py-4">Image</th>
+
+                        <th class="px-6 py-4">Title</th>
+
+                        <th class="px-6 py-4">Category</th>
+
+                        <th class="px-6 py-4">Author</th>
+
+                        <th class="px-6 py-4">Status</th>
+
+                        <th class="px-6 py-4">Views</th>
+
+                        <th class="px-6 py-4">Created</th>
+
+                        <th class="px-6 py-4 text-center">Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+                {
+
+                    howTos.length===0 ?
+
+                    (
+
+                        <tr>
+
+                            <td colspan="8" class="py-16 text-center text-slate-500">
+
+                                No How Tos Found
+
+                            </td>
+
+                        </tr>
+
+                    )
+
+                    :
+
+                    howTos.map(howTo=>(
+
+                        <tr class="border-t hover:bg-slate-50">
+
+                            <!-- Image -->
+
+                            <td class="px-6 py-5">
+
+                                {
+
+                                    howTo.image ?
+
+                                    (
+
+                                        <img
+
+                                            src={howTo.image}
+
+                                            class="w-20 h-16 rounded-lg object-cover"
+
+                                        />
+
+                                    )
+
+                                    :
+
+                                    (
+
+                                        <div class="w-20 h-16 rounded-lg bg-slate-100 flex items-center justify-center">
+
+                                            <span class="material-symbols-outlined">
+
+                                                image
+
+                                            </span>
+
+                                        </div>
+
+                                    )
+
+                                }
+
+                            </td>
+
+
+
+                            <!-- Title -->
+
+                            <td class="px-6 py-5">
+
+                                <div class="font-semibold">
+
+                                    {howTo.title}
+
+                                </div>
+
+                                <div class="text-xs text-slate-500">
+
+                                    {howTo.slug}
+
+                                </div>
+
+                            </td>
+
+
+
+                            <!-- Category -->
+
+                            <td class="px-6 py-5">
+
+                                <span class="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-xs">
+
+                                    {howTo.category}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- Author -->
+
+                            <td class="px-6 py-5">
+
+                                {howTo.author || "Admin"}
+
+                            </td>
+
+
+
+                            <!-- Status -->
+
+                            <td class="px-6 py-5">
+
+                                {
+
+                                    howTo.status==="published"
+
+                                    ?
+
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
+
+                                        Published
+
+                                    </span>
+
+                                    :
+
+                                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">
+
+                                        Draft
+
+                                    </span>
+
+                                }
+
+                            </td>
+
+
+
+                            <!-- Views -->
+
+                            <td class="px-6 py-5">
+
+                                {howTo.views}
+
+                            </td>
+
+
+
+                            <!-- Created -->
+
+                            <td class="px-6 py-5">
+
+                                {howTo.created_at}
+
+                            </td>
+
+
+
+                            <!-- Actions -->
+
+                            <td class="px-6 py-5">
+
+                                <div class="flex justify-center gap-2">
+
+                                    <button
+
+                                        onclick={`editHowTo(${howTo.id})`}
+
+                                        class="w-10 h-10 rounded-lg bg-blue-50 hover:bg-blue-100">
+
+                                        <span class="material-symbols-outlined">
+
+                                            edit
+
+                                        </span>
+
+                                    </button>
+
+                                    <button
+
+                                        onclick={`deleteHowTo(${howTo.id})`}
+
+                                        class="w-10 h-10 rounded-lg bg-red-50 hover:bg-red-100">
+
+                                        <span class="material-symbols-outlined">
+
+                                            delete
+
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    ))
+
+                }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- TAB: COUPONS -->
+            
+<div id="panel-coupons" class="tab-panel hidden space-y-6">
                 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div>
                         <h2 class="font-headline-md text-xl text-on-surface">Coupon Management</h2>
@@ -2299,7 +2676,371 @@ const statsBlogs = blogs.length;
     </div>
 </div>
 
-        <!-- PAGE CREATION MODAL -->
+        <!-- ================= HOW TO MODAL ================= -->
+
+<div
+    id="how_to-modal"
+    class="fixed inset-0 z-50 hidden bg-black/60 overflow-y-auto">
+
+    <div class="flex items-center justify-center min-h-screen p-8">
+
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl">
+
+
+            <!-- Header -->
+
+            <div class="flex justify-between items-center border-b px-8 py-6">
+
+                <h2
+                    id="how_to-modal-title"
+                    class="text-2xl font-bold">
+
+                    Add New How To
+
+                </h2>
+
+
+                <button
+                    type="button"
+                    onclick="closeHowToModal()">
+
+                    <span class="material-symbols-outlined text-3xl">
+                        close
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <form
+                id="how_to-form"
+                onsubmit="saveHowTo(event)"
+                class="p-8 space-y-8">
+
+
+                <input
+                    type="hidden"
+                    id="form-how_to-id">
+
+
+
+                <!-- Featured Image -->
+
+                <div>
+
+                    <label class="font-semibold mb-2 block">
+                        Featured Image
+                    </label>
+
+
+                    <input
+                        type="hidden" id="form-how_to-existing-image">
+                    <input
+                        id="form-how_to-image"
+                        type="file"
+                        accept="image/*"
+                        class="w-full border rounded-xl p-3">
+
+
+                    <img
+                        id="how_to-image-preview"
+                        class="hidden mt-4 w-52 rounded-xl border">
+
+                </div>
+
+
+
+
+                <!-- Title -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        How To Title
+                    </label>
+
+
+                    <input
+                        id="form-how_to-title"
+                        type="text"
+                        required
+                        oninput="generateHowToSlug()"
+                        class="w-full border rounded-xl p-3">
+
+                </div>
+
+
+
+
+
+                <!-- Slug -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Slug
+                    </label>
+
+
+                    <input
+                        id="form-how_to-slug"
+                        class="w-full border rounded-xl p-3">
+
+                </div>
+
+
+
+
+
+                <!-- Category -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Category
+                    </label>
+
+
+                    <input
+                        id="form-how_to-category"
+                        class="w-full border rounded-xl p-3">
+
+                </div>
+
+
+
+
+
+                <!-- Author -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Author
+                    </label>
+
+
+                    <input
+                        id="form-how_to-author"
+                        value="Admin"
+                        class="w-full border rounded-xl p-3">
+
+                </div>
+
+
+
+
+
+                <!-- Meta Keywords -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Meta Keywords
+                    </label>
+
+
+                    <textarea
+                        id="form-how_to-keywords"
+                        rows="3"
+                        placeholder="keyword 1, keyword 2, keyword 3"
+                        class="w-full border rounded-xl p-3"></textarea>
+
+
+                </div>
+
+
+
+
+
+                <!-- Short Description -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Short Description
+                    </label>
+
+
+                    <textarea
+                        id="form-how_to-short"
+                        rows="4"
+                        class="w-full border rounded-xl p-3"></textarea>
+
+
+                </div>
+
+
+
+
+
+                <!-- How To Content -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        How To Content
+                    </label>
+
+                    <div class="blog-editor border rounded-xl overflow-hidden">
+                        <div class="blog-editor-toolbar flex flex-wrap gap-1 border-b bg-slate-50 p-2">
+                            <button type="button" class="blog-editor-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                            <button type="button" class="blog-editor-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                            <button type="button" class="blog-editor-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+                            <span class="mx-1 w-px self-stretch bg-slate-200"></span>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="h2" title="Heading 2">H2</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="h3" title="Heading 3">H3</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="formatBlock" data-value="p" title="Paragraph">P</button>
+                            <span class="mx-1 w-px self-stretch bg-slate-200"></span>
+                            <button type="button" class="blog-editor-btn" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="createLink" title="Insert link">Link</button>
+                            <button type="button" class="blog-editor-btn" data-cmd="removeFormat" title="Clear formatting">Clear</button>
+                        </div>
+                        <div
+                            id="form-how_to-content-editor"
+                            class="blog-editor-surface min-h-[280px] p-4 outline-none"
+                            contenteditable="true"
+                            role="textbox"
+                            aria-multiline="true"
+                            data-placeholder="Write your blog content here..."
+                        ></div>
+                        <textarea id="form-how_to-content" class="hidden" aria-hidden="true"></textarea>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Use the toolbar for headings, lists, and links. No external editor required.</p>
+
+                </div>
+
+
+
+
+
+                <!-- SEO Section -->
+
+                <div class="grid grid-cols-2 gap-6">
+
+
+
+                    <!-- SEO Title -->
+
+                    <div>
+
+                        <label class="font-semibold block mb-2">
+                            SEO Title
+                        </label>
+
+
+                        <input
+                            id="form-how_to-seo-title"
+                            class="w-full border rounded-xl p-3">
+
+
+                    </div>
+
+
+
+
+                    <!-- Status -->
+
+                    <div>
+
+                        <label class="font-semibold block mb-2">
+                            Status
+                        </label>
+
+
+                        <select
+                            id="form-how_to-status"
+                            class="w-full border rounded-xl p-3">
+
+
+                            <option value="published">
+                                Published
+                            </option>
+
+
+                            <option value="draft">
+                                Draft
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <!-- SEO Description -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        SEO Description
+                    </label>
+
+
+                    <textarea
+                        id="form-how_to-seo-description"
+                        rows="4"
+                        class="w-full border rounded-xl p-3"></textarea>
+
+
+                </div>
+
+
+
+
+
+                <!-- Canonical URL -->
+
+                <div>
+
+                    <label class="font-semibold block mb-2">
+                        Canonical URL
+                    </label>
+
+
+                    <input
+                        id="form-how_to-canonical"
+                        type="url"
+                        placeholder="https://example.com/blog/page-url"
+                        class="w-full border rounded-xl p-3">
+
+
+                </div>
+
+
+
+
+
+                <!-- Submit Button -->
+                <div class="flex justify-end gap-4 pt-6 border-t border-slate-200">
+                    <button
+                        type="button"
+                        onclick="closeHowToModal()"
+                        class="px-6 py-3 rounded-xl border">
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="px-8 py-3 rounded-xl bg-sky-600 text-white font-semibold">
+                        Save How To
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+        
+<!-- PAGE CREATION MODAL -->
         <div id="page-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
             <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
@@ -3609,7 +4350,7 @@ window.openAddBlogModal = function () {
     document.getElementById("form-blog-id").value = "";
 
     document.getElementById("blog-modal-title").innerText = "Add New Blog";
-    setBlogEditorContent("");
+    window.setEditorContent("form-blog-content-editor", "");
     const preview = document.getElementById("blog-image-preview");
     if (preview) {
         preview.src = "";
@@ -3651,7 +4392,7 @@ window.editBlog = async function(id) {
         document.getElementById("form-blog-keywords").value = blog.keywords || "";
         document.getElementById("form-blog-canonical").value = blog.canonical || "";
         document.getElementById("form-blog-short").value = blog.short_description || "";
-        setBlogEditorContent(blog.content || "");
+        window.setEditorContent("form-blog-content-editor", blog.content || "");
         document.getElementById("form-blog-seo-title").value = blog.seo_title || "";
         document.getElementById("form-blog-seo-description").value = blog.seo_description || "";
         document.getElementById("form-blog-status").value = blog.status || "published";
@@ -3750,8 +4491,8 @@ window.saveBlog = async function (e) {
         const keywords = document.getElementById("form-blog-keywords").value || "";
         const canonical = document.getElementById("form-blog-canonical")?.value || "";
         const short_description = document.getElementById("form-blog-short").value || "";
-        const content = typeof getBlogEditorContent === "function"
-            ? getBlogEditorContent()
+        const content = typeof window.getEditorContent === "function"
+            ? window.getEditorContent("form-blog-content-editor")
             : (document.getElementById("form-blog-content")?.value || "");
         const seo_title = document.getElementById("form-blog-seo-title").value || "";
         const seo_description = document.getElementById("form-blog-seo-description").value || "";
@@ -4144,61 +4885,252 @@ window.saveBlog = async function (e) {
             }
 
 
-function syncBlogEditorToTextarea() {
-    const editor = document.getElementById("form-blog-content-editor");
-    const textarea = document.getElementById("form-blog-content");
+function syncEditorToTextarea(editorId, textareaId) {
+    const editor = document.getElementById(editorId);
+    const textarea = document.getElementById(textareaId);
     if (!editor || !textarea) return;
     const html = editor.innerHTML.trim();
     textarea.value = html === "<br>" ? "" : html;
 }
 
-window.getBlogEditorContent = function () {
-    syncBlogEditorToTextarea();
-    return document.getElementById("form-blog-content")?.value || "";
+window.getEditorContent = function (editorId) {
+    const textareaId = editorId.replace("-editor", "");
+    syncEditorToTextarea(editorId, textareaId);
+    return document.getElementById(textareaId)?.value || "";
 };
 
-window.setBlogEditorContent = function (html) {
-    const editor = document.getElementById("form-blog-content-editor");
-    const textarea = document.getElementById("form-blog-content");
+window.setEditorContent = function (editorId, html) {
+    const editor = document.getElementById(editorId);
+    const textareaId = editorId.replace("-editor", "");
+    const textarea = document.getElementById(textareaId);
     const value = html || "";
     if (editor) editor.innerHTML = value;
     if (textarea) textarea.value = value;
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const editor = document.getElementById("form-blog-content-editor");
-    if (!editor) return;
+    const initEditor = (editorId) => {
+        const editor = document.getElementById(editorId);
+        const textareaId = editorId.replace("-editor", "");
+        if (!editor) return;
 
-    document.querySelectorAll(".blog-editor-btn").forEach((btn) => {
-        btn.addEventListener("mousedown", (e) => e.preventDefault());
-        btn.addEventListener("click", () => {
-            const cmd = btn.dataset.cmd;
-            if (!cmd) return;
-            editor.focus();
+        // Find the closest editor container to scope the toolbar buttons
+        const container = editor.closest('div');
+        if (container) {
+            container.querySelectorAll(".blog-editor-btn").forEach((btn) => {
+                btn.addEventListener("mousedown", (e) => e.preventDefault());
+                btn.addEventListener("click", () => {
+                    const cmd = btn.dataset.cmd;
+                    if (!cmd) return;
+                    editor.focus();
 
-            if (cmd === "createLink") {
-                const url = prompt("Enter link URL", "https://");
-                if (url) document.execCommand("createLink", false, url);
-                syncBlogEditorToTextarea();
-                return;
-            }
+                    if (cmd === "createLink") {
+                        const url = prompt("Enter link URL", "https://");
+                        if (url) document.execCommand("createLink", false, url);
+                        syncEditorToTextarea(editorId, textareaId);
+                        return;
+                    }
 
-            if (cmd === "formatBlock") {
-                document.execCommand("formatBlock", false, btn.dataset.value || "p");
-                syncBlogEditorToTextarea();
-                return;
-            }
+                    if (cmd === "formatBlock") {
+                        document.execCommand("formatBlock", false, btn.dataset.value || "p");
+                        syncEditorToTextarea(editorId, textareaId);
+                        return;
+                    }
 
-            document.execCommand(cmd, false, null);
-            syncBlogEditorToTextarea();
-        });
-    });
+                    document.execCommand(cmd, false, null);
+                    syncEditorToTextarea(editorId, textareaId);
+                });
+            });
+        }
 
-    editor.addEventListener("input", syncBlogEditorToTextarea);
-    editor.addEventListener("blur", syncBlogEditorToTextarea);
+        editor.addEventListener("input", () => syncEditorToTextarea(editorId, textareaId));
+        editor.addEventListener("blur", () => syncEditorToTextarea(editorId, textareaId));
+    };
+
+    initEditor("form-blog-content-editor");
+    initEditor("form-how_to-content-editor");
 });
 
-        </script>
+        
+window.openAddHowToModal = function() {
+    const form = document.getElementById('how_to-form');
+    if(form) form.reset();
+    
+    const idField = document.getElementById('form-how_to-id');
+    if(idField) idField.value = '';
+    
+    const hiddenImg = document.getElementById('form-how_to-existing-image');
+    if(hiddenImg) hiddenImg.value = '';
+    
+    const titleField = document.getElementById('how_to-modal-title');
+    if(titleField) titleField.innerText = 'Add New How To';
+    
+    if(window.setEditorContent) window.setEditorContent("form-how_to-content-editor", "");
+    
+    const modal = document.getElementById('how_to-modal');
+    if(modal) modal.classList.remove('hidden');
+}
+
+window.closeHowToModal = function() {
+    document.getElementById('how_to-modal').classList.add('hidden');
+}
+
+window.editHowTo = async function(id) {
+    try {
+        const response = await fetch('/api/how-tos?id=' + id);
+        const data = await response.json();
+        const howTo = data.how_tos ? data.how_tos.find(h => h.id === id) : data.id === id ? data : null;
+        if(howTo) {
+            const idField = document.getElementById('form-how_to-id');
+            if(idField) idField.value = howTo.id;
+            
+            const titleField = document.getElementById('form-how_to-title');
+            if(titleField) titleField.value = howTo.title;
+            
+            const slugField = document.getElementById('form-how_to-slug');
+            if(slugField) slugField.value = howTo.slug;
+            
+            const catField = document.getElementById('form-how_to-category');
+            if(catField) catField.value = howTo.category;
+            
+            const authField = document.getElementById('form-how_to-author');
+            if(authField) authField.value = howTo.author;
+            
+            const statusField = document.getElementById('form-how_to-status');
+            if(statusField) statusField.value = howTo.status;
+            
+            const shortField = document.getElementById('form-how_to-short');
+            if(shortField) shortField.value = howTo.short_description || '';
+            
+            const hiddenImg = document.getElementById('form-how_to-existing-image');
+            if(hiddenImg) hiddenImg.value = howTo.image || '';
+            
+            const tagField = document.getElementById('form-how_to-keywords');
+            if(tagField) tagField.value = howTo.keywords || howTo.tags || '';
+            
+            const seoTitleField = document.getElementById('form-how_to-seo-title');
+            if(seoTitleField) seoTitleField.value = howTo.seo_title || '';
+            
+            const seoDescField = document.getElementById('form-how_to-seo-description');
+            if(seoDescField) seoDescField.value = howTo.seo_description || '';
+            
+            if(window.setEditorContent) window.setEditorContent("form-how_to-content-editor", howTo.content || "");
+            
+            const modalTitle = document.getElementById('how_to-modal-title');
+            if(modalTitle) modalTitle.innerText = 'Edit How To';
+            
+            const modal = document.getElementById('how_to-modal');
+            if(modal) modal.classList.remove('hidden');
+        }
+    } catch(e) { console.error(e); }
+}
+
+window.deleteHowTo = async function(id) {
+    if(confirm('Delete this how to?')) {
+        await fetch('/api/how-tos', {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id})
+        });
+        window.location.reload();
+    }
+}
+
+window.saveHowTo = async function(e) {
+    e.preventDefault();
+    const idField = document.getElementById('form-how_to-id');
+    const id = idField ? idField.value : '';
+    
+    const titleField = document.getElementById('form-how_to-title');
+    const slugField = document.getElementById('form-how_to-slug');
+    const catField = document.getElementById('form-how_to-category');
+    const authField = document.getElementById('form-how_to-author');
+    const statusField = document.getElementById('form-how_to-status');
+    const shortField = document.getElementById('form-how_to-short');
+    const imgField = document.getElementById('form-how_to-image');
+    const tagField = document.getElementById('form-how_to-keywords');
+    const seoTitleField = document.getElementById('form-how_to-seo-title');
+    const seoDescField = document.getElementById('form-how_to-seo-description');
+    const existingImgField = document.getElementById('form-how_to-existing-image');
+    
+    let imagePath = existingImgField ? existingImgField.value : '';
+    
+    if (imgField && imgField.type === 'file' && imgField.files.length > 0) {
+        const file = imgField.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('alt_text', file.name);
+        formData.append('title', file.name);
+        try {
+            const uploadBtn = document.querySelector('#how_to-form button[type="submit"]');
+            if(uploadBtn) uploadBtn.innerText = 'Uploading Image...';
+            const uploadRes = await fetch('/api/media', { method: 'POST', body: formData });
+            if (uploadRes.ok) {
+                const resJson = await uploadRes.json();
+                imagePath = resJson.media.path;
+            } else {
+                alert('Image upload failed.');
+                if(uploadBtn) uploadBtn.innerText = 'Save How To';
+                return;
+            }
+            if(uploadBtn) uploadBtn.innerText = 'Save How To';
+        } catch (err) {
+            console.error(err);
+            alert('Image upload request failed.');
+            return;
+        }
+    }
+    
+    const data = {
+        title: titleField ? titleField.value : '',
+        slug: slugField ? slugField.value : '',
+        category: catField ? catField.value : '',
+        author: authField ? authField.value : '',
+        status: statusField ? statusField.value : 'published',
+        short_description: shortField ? shortField.value : '',
+        content: window.getEditorContent ? window.getEditorContent("form-how_to-content-editor") : '',
+        image: imagePath,
+        tags: tagField ? tagField.value : '',
+        seo_title: seoTitleField ? seoTitleField.value : '',
+        seo_description: seoDescField ? seoDescField.value : ''
+    };
+    
+    try {
+        const response = await fetch('/api/how-tos', {
+            method: id ? 'PUT' : 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(id ? Object.assign(data, {id}) : data)
+        });
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            const errData = await response.json();
+            alert('Save failed: ' + (errData.error || 'Unknown error'));
+        }
+    } catch(err) {
+        alert('Request failed');
+    }
+}
+
+
+window.generateHowToSlug = function() {
+    const titleField = document.getElementById('form-how_to-title') || document.getElementById('how_to-title');
+    const slugField = document.getElementById('form-how_to-slug') || document.getElementById('how_to-slug');
+    if (titleField && slugField) {
+        slugField.value = titleField.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    }
+}
+
+window.filterHowTos = function() {
+    const query = document.getElementById('search-how_tos').value.toLowerCase();
+    const rows = document.querySelectorAll('.how_to-row');
+    rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? '' : 'none';
+    });
+}
+
+</script>
 
         <style>
             .blog-editor-btn {

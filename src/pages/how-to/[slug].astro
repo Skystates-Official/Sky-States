@@ -1,0 +1,161 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { query } from "../../db/sqlite.js";
+
+const { slug } = Astro.params;
+
+// Fetch how_to by slug
+const how_to = await query.get(`
+SELECT *
+FROM how_tos
+WHERE slug = ? AND status = 'published'
+`, [slug]);
+
+// Handle 404
+if (!how_to) {
+  return Astro.redirect('/404');
+}
+
+// Parse SEO metadata safely
+let seoMeta: any = {};
+if (how_to.seo_metadata) {
+  try { seoMeta = JSON.parse(how_to.seo_metadata); } catch(e){}
+}
+
+const pageTitle = how_to.seo_title || `${how_to.title} | Sky States How To`;
+const pageDesc = how_to.seo_description || how_to.short_description || "Read this article on Sky States.";
+
+// Format date
+const publishDate = how_to.published_at
+? new Date(how_to.published_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+: 'Recently Published';
+
+// Split tags
+const tagsList = how_to.tags ? how_to.tags.split(',').map((t: string) => t.trim()).filter((t: string) => t.length > 0) : [];
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+<main class="pt-24 pb-20 bg-surface">
+<article class="max-w-3xl mx-auto px-6">
+
+<!-- Back Link & Breadcrumbs -->
+<nav class="mb-8 flex items-center gap-2 text-sm font-label-md text-on-surface-variant">
+<a href="/how-to" class="hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] font-bold" style="font-variation-settings: 'wght' 700;">
+arrow_back
+</span>
+All Articles
+</a>
+<span>/</span>
+<span class="truncate">{how_to.category || 'Uncategorized'}</span>
+</nav>
+
+<!-- Header Information -->
+<header class="mb-10 text-center">
+{how_to.category && (
+  <span class="inline-block bg-primary-container text-on-primary-container text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+  {how_to.category}
+  </span>
+)}
+<h1 class="text-4xl md:text-5xl font-headline-lg font-bold text-on-surface mb-6 leading-tight">
+{how_to.title}
+</h1>
+
+<div class="flex items-center justify-center gap-4 text-on-surface-variant font-label-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface font-bold text-xs uppercase">
+{how_to.author ? how_to.author.charAt(0) : 'A'}
+</div>
+<span class="font-bold">{how_to.author || 'Sky States Team'}</span>
+</div>
+<span>&bull;</span>
+<span>{publishDate}</span>
+</div>
+</header>
+
+<!-- Featured Image -->
+{how_to.image && (
+  <div class="mb-12 rounded-2xl overflow-hidden shadow-md border border-outline-variant relative flex justify-center bg-white/50">
+  <img src={how_to.image} alt={how_to.title} class="w-full max-h-[500px] object-contain" />
+  </div>
+)}
+
+<!-- How To Content (Rendered HTML) -->
+<div class="prose prose-lg max-w-none text-on-surface marker:text-primary prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-headings:text-on-surface prose-strong:text-on-surface" set:html={how_to.content}>
+</div>
+
+<!-- Footer Tags -->
+{tagsList.length > 0 && (
+  <footer class="mt-12 pt-8 border-t border-outline-variant flex flex-wrap gap-2">
+  {tagsList.map((tag: string) => (
+    <span class="px-3 py-1 bg-surface-container rounded-full text-xs font-label-sm text-on-surface-variant border border-outline-variant">
+    #{tag}
+    </span>
+  ))}
+  </footer>
+)}
+
+</article>
+</main>
+</Layout>
+
+<style is:global>
+/* Extra styling for Quill output to match Tailwind Typography without the plugin */
+.prose {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-on-surface);
+}
+.prose h2 {
+  font-size: clamp(24px, 5vw, 32px);
+  line-height: clamp(32px, 6vw, 40px);
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.prose h3 {
+  font-size: clamp(20px, 4vw, 24px);
+  line-height: 32px;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.prose p {
+  margin-bottom: 1.25rem;
+}
+.prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose li {
+  margin-bottom: 0.5rem;
+}
+.prose img {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.prose pre {
+  background-color: var(--color-surface-container-highest);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-outline-variant);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+</style>
