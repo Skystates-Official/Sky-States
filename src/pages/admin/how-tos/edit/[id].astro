@@ -346,8 +346,8 @@ const { id } = Astro.params;
      async function loadHowTo() {
         try {
            const res = await fetch('/api/how-tos');
-           const how-tos = await res.json();
-           currentHowTo = how-tos.how-tos ? how-tos.how-tos.find((b: any) => b.id.toString() === window.howToId) : how-tos.find((b: any) => b.id.toString() === window.howToId);
+           const howTos = await res.json();
+           currentHowTo = howTos['how-tos'] ? howTos['how-tos'].find((b: any) => b.id.toString() === window.howToId) : howTos.find((b: any) => b.id.toString() === window.howToId);
            
            if (!currentHowTo) {
               alert('How To not found');
@@ -604,7 +604,7 @@ const { id } = Astro.params;
            const res = await fetch('/api/how-tos/comments', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ how-to_id: window.howToId, content })
+              body: JSON.stringify({ 'how_to_id': window.howToId, content })
            });
            
            if (res.ok) {

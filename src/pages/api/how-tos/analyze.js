@@ -1,5 +1,5 @@
 import { requireAuth } from '../../../db/auth.js';
-import { analyzeHowTo } from '../../../lib/seoAnalyzer.js';
+import { analyzeBlog } from '../../../lib/seoAnalyzer.js';
 
 export const prerender = false;
 
@@ -51,7 +51,7 @@ export async function POST({ request }) {
       seo_description
     };
 
-    const analysisResult = analyzeHowTo(how_toData);
+    const analysisResult = analyzeBlog(how_toData);
 
     return json(analysisResult);
   } catch (error) {
