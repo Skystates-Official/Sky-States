@@ -106,9 +106,9 @@ export async function calculateCheckoutTotal({
   
   const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
   if (isAgentic) {
-    if (checkoutMode === "registration" && selectedTier === "normal") {
+    if (selectedTier === "normal") {
       basePrice = 499;
-    } else if (checkoutMode === "registration" && selectedTier === "1on1") {
+    } else if (selectedTier === "1on1") {
       basePrice = 6999;
     }
   }

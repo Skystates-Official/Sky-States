@@ -721,11 +721,7 @@ const pricingConfig = {
                 const courseName = document.getElementById("display-course-name")?.textContent || "";
                 const isAgentic = courseName.toLowerCase().includes("agentic");
                 if (isAgentic) {
-                    if (modeKey === "registration" && tierKey === "normal") {
-                        basePrice = 499;
-                    } else if (modeKey === "registration" && tierKey === "1on1") {
-                        basePrice = 6999;
-                    }
+                    basePrice = tierKey === "1on1" ? 6999 : 499;
                 }
 
                 if (window.selectedTier === "normal") {
@@ -981,6 +977,11 @@ const pricingConfig = {
                 
                 const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
                 if (isAgentic) {
+                    const sPrice = document.getElementById("btn-scholar-price");
+                    const ePrice = document.getElementById("btn-elite-price");
+                    if (sPrice) sPrice.textContent = "$499";
+                    if (ePrice) ePrice.textContent = "$6,999";
+
                     const btnScholar = document.getElementById("btn-tier-scholar");
                     if (btnScholar) {
                         btnScholar.querySelector("span:nth-child(1)").textContent = "REGISTRATION";
