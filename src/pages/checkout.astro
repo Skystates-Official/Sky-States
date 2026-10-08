@@ -137,7 +137,7 @@ const pricingConfig = {
                                     >
                                     <span
                                         class="text-lg font-black mt-1 text-slate-850"
-                                        id="btn-scholar-price">$99</span
+                                        id="btn-scholar-price">$3,499</span
                                     >
                                     <span
                                         class="text-[10px] text-slate-400 font-semibold mt-1"
@@ -166,7 +166,7 @@ const pricingConfig = {
                                     >
                                     <span
                                         class="text-lg font-black mt-1 text-slate-850"
-                                        id="btn-elite-price">$499</span
+                                        id="btn-elite-price">$6,499</span
                                     >
                                     <span
                                         class="text-[10px] text-slate-400 font-semibold mt-1"
@@ -263,7 +263,7 @@ const pricingConfig = {
                                 class="text-lg font-black text-slate-900"
                                 id="display-total-value"
                             >
-                                $99.00
+                                $3,499.00
                             </p>
                         </div>
                     </section>
@@ -903,7 +903,22 @@ const pricingConfig = {
             // Initialize from URL search parameters
             function initializeCheckout() {
                 const params = new URLSearchParams(window.location.search);
-                const courseName = params.get("course");
+                const courseParam = params.get("course") || params.get("program");
+                let courseName = courseParam;
+
+                if (courseParam) {
+                    const lower = courseParam.toLowerCase();
+                    if (lower === "data-science-ai" || lower.includes("data-science")) {
+                        courseName = "Data Science & AI";
+                    } else if (lower === "cyber-security" || lower.includes("cyber")) {
+                        courseName = "Cyber Security & Ethical Hacking";
+                    } else if (lower === "devops" || lower.includes("devops")) {
+                        courseName = "DevOps & Cloud Computing";
+                    } else if (lower === "agentic-ai" || lower.includes("agentic")) {
+                        courseName = "Agentic AI & Automation";
+                    }
+                }
+
                 const type = params.get("type");
                 const mode = params.get("mode");
 
@@ -925,25 +940,7 @@ const pricingConfig = {
                     if (grid) grid.classList.remove("sm:grid-cols-2");
                     const label = document.getElementById("tier-selector-label");
                     if (label) label.style.display = "none";
-                } else if (mode === "full") {
-                    window.checkoutMode = "full";
-                    const sPrice = document.getElementById("btn-scholar-price");
-                    const ePrice = document.getElementById("btn-elite-price");
-                    if (sPrice)
-                        sPrice.textContent =
-                            "$" + P.full.normal.toLocaleString();
-                    if (ePrice)
-                        ePrice.textContent =
-                            "$" + P.full["1on1"].toLocaleString();
-
-                    // Show elite tier selection
-                    const btnElite = document.getElementById("btn-tier-elite");
-                    if (btnElite) btnElite.style.display = "";
-                    const grid = document.getElementById("tier-buttons-grid");
-                    if (grid) grid.classList.add("sm:grid-cols-2");
-                    const label = document.getElementById("tier-selector-label");
-                    if (label) label.style.display = "";
-                } else {
+                } else if (mode === "registration") {
                     window.checkoutMode = "registration";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
@@ -954,6 +951,24 @@ const pricingConfig = {
                         sPrice.textContent = "$" + (isAgentic ? 499 : P.registration.normal);
                     if (ePrice)
                         ePrice.textContent = "$" + (isAgentic ? 6999 : P.registration["1on1"]);
+
+                    // Show elite tier selection
+                    const btnElite = document.getElementById("btn-tier-elite");
+                    if (btnElite) btnElite.style.display = "";
+                    const grid = document.getElementById("tier-buttons-grid");
+                    if (grid) grid.classList.add("sm:grid-cols-2");
+                    const label = document.getElementById("tier-selector-label");
+                    if (label) label.style.display = "";
+                } else {
+                    window.checkoutMode = "full";
+                    const sPrice = document.getElementById("btn-scholar-price");
+                    const ePrice = document.getElementById("btn-elite-price");
+                    if (sPrice)
+                        sPrice.textContent =
+                            "$" + P.full.normal.toLocaleString();
+                    if (ePrice)
+                        ePrice.textContent =
+                            "$" + P.full["1on1"].toLocaleString();
 
                     // Show elite tier selection
                     const btnElite = document.getElementById("btn-tier-elite");
