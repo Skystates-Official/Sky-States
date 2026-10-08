@@ -15,19 +15,19 @@ const program = {
     title: "Program Curriculum",
     description: "A practical, project-focused program covering the technologies used to build modern AI applications and intelligent workflows.",
     modules: [
-      { id: "01", title: "Generative AI & LLM Foundations", description: "Understand generative AI, large language models, their capabilities, and their role in modern AI applications." },
-      { id: "02", title: "Prompt Engineering & AI Reasoning", description: "Learn prompt engineering techniques and AI reasoning concepts for developing effective AI-powered solutions." },
-      { id: "03", title: "AI Agents, ReAct & Autonomous Workflows", description: "Learn how AI agents operate, reason through tasks, use tools, and execute autonomous multi-step workflows." },
-      { id: "04", title: "RAG, Vector Databases & AI Memory", description: "Build retrieval-augmented generation applications and understand vector databases and AI memory." },
-      { id: "05", title: "LangChain & LangGraph", description: "Develop AI workflows and applications using LangChain and LangGraph." },
-      { id: "06", title: "CrewAI & AutoGen Multi-Agent Systems", description: "Learn how to design and implement multi-agent systems using CrewAI and AutoGen." },
-      { id: "07", title: "API & Tool Calling", description: "Connect AI models with APIs and external tools to create more capable and automated AI applications." },
-      { id: "08", title: "AI Code Generation & Intelligent Automation", description: "Use AI-powered code generation and intelligent automation techniques to improve development workflows and business processes." },
-      { id: "09", title: "Python for AI Application Development", description: "Strengthen Python development skills required for building modern AI-powered applications." },
-      { id: "10", title: "FastAPI & AI Application Development", description: "Build application interfaces and AI-powered services using Python and FastAPI." },
-      { id: "11", title: "Docker & Cloud Deployment", description: "Learn how to package and deploy AI applications using Docker across AWS, Azure, and GCP environments." },
-      { id: "12", title: "AI Safety, Guardrails & Model Evaluation", description: "Understand AI safety practices, guardrails, and methods for evaluating AI models and applications." },
-      { id: "13", title: "Capstone Project", description: "Apply the complete learning journey to an end-to-end AI project that can be showcased through your portfolio and GitHub." }
+      { id: "01", title: "Generative AI & LLM Foundations", description: "Understand generative AI, large language models, their capabilities, and their role in modern AI applications.", tags: ["Generative AI", "LLMs", "AI Foundations", "Transformers"] },
+      { id: "02", title: "Prompt Engineering & AI Reasoning", description: "Learn prompt engineering techniques and AI reasoning concepts for developing effective AI-powered solutions.", tags: ["Prompt Engineering", "AI Reasoning", "Chain-of-Thought", "Prompt Design"] },
+      { id: "03", title: "AI Agents, ReAct & Autonomous Workflows", description: "Learn how AI agents operate, reason through tasks, use tools, and execute autonomous multi-step workflows.", tags: ["AI Agents", "ReAct Framework", "Autonomous Workflows", "Tool Usage"] },
+      { id: "04", title: "RAG, Vector Databases & AI Memory", description: "Build retrieval-augmented generation applications and understand vector databases and AI memory.", tags: ["RAG", "Vector Databases", "Embeddings", "AI Memory"] },
+      { id: "05", title: "LangChain & LangGraph", description: "Develop AI workflows and applications using LangChain and LangGraph.", tags: ["LangChain", "LangGraph", "Workflow Graphs", "Agent State"] },
+      { id: "06", title: "CrewAI & AutoGen Multi-Agent Systems", description: "Learn how to design and implement multi-agent systems using CrewAI and AutoGen.", tags: ["CrewAI", "AutoGen", "Multi-Agent Systems", "Agent Collaboration"] },
+      { id: "07", title: "API & Tool Calling", description: "Connect AI models with APIs and external tools to create more capable and automated AI applications.", tags: ["API Integration", "Function Calling", "Tool Calling", "Automation"] },
+      { id: "08", title: "AI Code Generation & Intelligent Automation", description: "Use AI-powered code generation and intelligent automation techniques to improve development workflows and business processes.", tags: ["Code Generation", "Intelligent Automation", "Developer Tools", "Workflow Optimization"] },
+      { id: "09", title: "Python for AI Application Development", description: "Strengthen Python development skills required for building modern AI-powered applications.", tags: ["Python", "AsyncIO", "OOP", "AI Libraries"] },
+      { id: "10", title: "FastAPI & AI Application Development", description: "Build application interfaces and AI-powered services using Python and FastAPI.", tags: ["FastAPI", "REST APIs", "Backend Services", "Python"] },
+      { id: "11", title: "Docker & Cloud Deployment", description: "Learn how to package and deploy AI applications using Docker across AWS, Azure, and GCP environments.", tags: ["Docker", "AWS", "Azure", "GCP", "Cloud Deployment"] },
+      { id: "12", title: "AI Safety, Guardrails & Model Evaluation", description: "Understand AI safety practices, guardrails, and methods for evaluating AI models and applications.", tags: ["AI Safety", "Guardrails", "Model Evaluation", "Alignment"] },
+      { id: "13", title: "Capstone Project", description: "Apply the complete learning journey to an end-to-end AI project that can be showcased through your portfolio and GitHub.", tags: ["Capstone Project", "End-to-End AI", "Portfolio", "GitHub"] }
     ]
   },
   career: {
@@ -49,7 +49,7 @@ export const prerender = false;
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Agentic AI & Generative AI Professional Program | Sky States LLC</title>
-    <meta name="description" content="Master Agentic AI, Generative AI, RAG, LLMs, AI Agents, LangChain & LangGraph through live training, hands-on projects, AI memory, vector databases, and real-world applications." />
+    <meta name="description" content="Master modern AI application development by learning how to build intelligent systems with RAG, AI memory, agentic AI, generative AI, and LLM technologies through practical, hands-on training." />
     <meta name="keywords" content="Agentic AI, Generative AI, LLM Engineering, RAG, Multi-Agent Systems, LangChain, LangGraph, Python, FastAPI, Cloud Deployment, AI Automation" />
     <link
       rel="canonical"
@@ -61,7 +61,7 @@ export const prerender = false;
     />
     <meta
       property="og:description"
-      content="Join Sky States' online Agentic AI & Generative AI Professional Program. Learn Python, Machine Learning, Generative AI, Power BI, Tableau, build real-world projects, and get career support."
+      content="Learn how to build context-aware and knowledge-driven AI applications using RAG, AI memory, agentic AI, generative AI, and modern LLM technologies."
     />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,23 +80,27 @@ export const prerender = false;
         "@context": "https://schema.org",
         "@type": "Course",
         "name": "Agentic AI & Generative AI Professional Program",
-        "description": "Learn Python, Machine Learning, Generative AI, Power BI, Tableau, and real-world data science skills with expert-led online training.",
+        "description": "Master modern AI application development by learning how to build intelligent systems with RAG, AI memory, agentic AI, generative AI, and LLM technologies.",
         "provider": {
           "@type": "Organization",
           "name": "Sky States",
           "url": "https://skystates.us"
         },
-        "url": "https://skystates.us/programs/data-science-ai",
-        "educationalLevel": "Beginner to Advanced",
+        "url": "https://skystates.us/programs/agentic-ai",
+        "educationalLevel": "Intermediate to Advanced",
         "courseMode": "Online",
         "inLanguage": "en",
         "teaches": [
-          "Python",
-          "Machine Learning",
           "Generative AI",
-          "Power BI",
-          "Tableau",
-          "SQL"
+          "LLM Engineering",
+          "RAG",
+          "AI Agents",
+          "LangChain",
+          "LangGraph",
+          "CrewAI",
+          "AutoGen",
+          "FastAPI",
+          "Docker"
         ]
       }
     </script>
@@ -128,26 +132,26 @@ export const prerender = false;
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Is the Microsoft exam fee included?",
+            "name": "How long is the Agentic AI & Generative AI Professional Program?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, the Sky States program fee includes one attempt voucher for the Microsoft DP-900: Azure Data Fundamentals certification."
+              "text": "The program is designed as a 4–6 month professional program, with live instructor-led training and structured practical learning."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the refund policy?",
+            "name": "Who is this program designed for?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We offer a 100% satisfaction guarantee with a full refund available within the first 14 days of the program start date."
+              "text": "The program is designed for software engineers, data scientists, ML engineers, DevOps engineers, cloud professionals, and experienced IT professionals looking to transition into or advance toward AI-focused roles."
             }
           },
           {
             "@type": "Question",
-            "name": "Do I need prior coding experience?",
+            "name": "How many projects are included?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Candidates should have a basic proficiency in Python. We provide a pre-bootcamp 'Python for Data' module for those who need a refresher."
+              "text": "The program includes 10+ hands-on industry-oriented projects along with an end-to-end capstone project."
             }
           }
         ]
@@ -201,35 +205,35 @@ export const prerender = false;
                   class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
                   >check_circle</span
                 >
-                <span>6 Month Professional Program</span>
+                <span>4–6 Month Professional Program</span>
               </li>
               <li class="flex items-center gap-3">
                 <span
                   class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
                   >check_circle</span
                 >
-                <span>Live Virtual Workshops</span>
+                <span>Live Instructor-Led Training</span>
               </li>
               <li class="flex items-center gap-3">
                 <span
                   class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
                   >check_circle</span
                 >
-                <span>Production-Grade Projects</span>
+                <span>10+ Industry-Oriented Projects</span>
               </li>
               <li class="flex items-center gap-3">
                 <span
                   class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
                   >check_circle</span
                 >
-                <span>Microsoft Exam Voucher</span>
+                <span>End-to-End Capstone Project</span>
               </li>
               <li class="flex items-center gap-3 sm:col-span-2">
                 <span
                   class="material-symbols-outlined text-sky-600 text-lg flex-shrink-0"
                   >check_circle</span
                 >
-                <span>Corporate Referral & Placement Prep</span>
+                <span>Career & Interview Preparation</span>
               </li>
             </ul>
 
@@ -299,7 +303,7 @@ export const prerender = false;
                 >
               </div>
               <p class="text-[11px] font-semibold text-slate-500 leading-snug">
-                Average salary lift reported by Class of 2023 graduates.
+                Average salary lift reported by program graduates.
               </p>
             </div>
           </div>
@@ -327,7 +331,7 @@ export const prerender = false;
                 Program Duration
               </p>
               <h4 class="text-base font-bold text-slate-800">
-                6-Month Live Program
+                4–6 Months
               </h4>
             </div>
           </div>
@@ -348,7 +352,7 @@ export const prerender = false;
                 Learning Format
               </p>
               <h4 class="text-base font-bold text-slate-800">
-                Online Interactive Bootcamp
+                Live Instructor-Led Training
               </h4>
             </div>
           </div>
@@ -369,7 +373,7 @@ export const prerender = false;
                 Applied Practice
               </p>
               <h4 class="text-base font-bold text-slate-800">
-                Real-World Case Studies
+                10+ Projects & Capstone
               </h4>
             </div>
           </div>
@@ -390,16 +394,14 @@ export const prerender = false;
                 <h2
                   class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
                 >
-                  Why Learn Agentic AI and AI?
+                  Why Learn Agentic AI, Generative AI & LLM Engineering?
                 </h2>
                 <p class="text-slate-600 text-base leading-relaxed">
-                  AI is changing every industry from healthcare to finance.
-                  Organizations require experts who can evaluate data, develop
-                  models, automate decisions, and utilize AI-driven solutions.
+                  Artificial intelligence is moving beyond traditional machine learning toward systems that can understand instructions, reason through tasks, use tools, retrieve information, generate content, and work through multi-step workflows.
                   <br /><br />
-                  If you are beginning your career, changing industry, or advancing
-                  your technical skills, this program prepares you with the practical
-                  knowledge employers actively look for.
+                  The Sky States Agentic AI & Generative AI Professional Program is designed for technology professionals who want to develop practical skills in modern AI application development, LLM engineering, AI agents, automation, and intelligent systems.
+                  <br /><br />
+                  Learn how to build AI-powered applications using modern frameworks and technologies while developing the practical experience needed to showcase your skills through projects and a professional portfolio.
                 </p>
               </div>
 
@@ -411,15 +413,34 @@ export const prerender = false;
                   Agentic AI & Generative AI Program Overview
                 </h4>
                 <p class="text-xs text-slate-500 leading-relaxed">
-                  SkyStates is dedicated to providing the best training in Data
-                  Science & AI, and we offer a comprehensive 6-month course
-                  developed to transform you into a skilled data scientist or AI
-                  expert.
+                  A practical, project-focused program covering the technologies used to build modern AI applications and intelligent workflows.
                 </p>
+                <ul class="space-y-2 text-xs text-slate-600 font-medium pt-1">
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Program Format:</strong> Live Instructor-Led Training</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Program Duration:</strong> 4–6 Months</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Projects:</strong> 10+ Industry-Oriented Projects</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Capstone:</strong> End-to-End AI Project</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Learning:</strong> Practical, Project-Based Training</span>
+                  </li>
+                </ul>
                 <div class="flex items-baseline gap-2 pt-2">
-                  <span class="text-3xl font-black text-sky-700">$6999</span>
+                  <span class="text-3xl font-black text-sky-700">$6,999</span>
                   <span class="text-xs text-slate-400 font-semibold"
-                    >/ 6-Month Program / Online Live</span
+                    >/ Regular Price / Live Training</span
                   >
                 </div>
                 <a
@@ -452,34 +473,16 @@ export const prerender = false;
                   <div
                     class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
                   >
-                    <span class="material-symbols-outlined text-lg">badge</span>
+                    <span class="material-symbols-outlined text-lg">live_tv</span>
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Job Assistance</strong
+                      >Live Instructor-Led Training</strong
                     >
-                    Job assistance through our in-house recruitment agency.
+                    Learn through structured live sessions focused on modern agentic AI, generative AI, and LLM engineering concepts.
                   </div>
                 </div>
                 <!-- Feature 2 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg"
-                      >verified</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Sky States Credentials</strong
-                    >
-                    Industry-advanced Data Scientist and AI certificate from Sky States.
-                  </div>
-                </div>
-                <!-- Feature 3 -->
                 <div
                   class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
                 >
@@ -492,12 +495,12 @@ export const prerender = false;
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Applied Projects</strong
+                      >10+ Hands-On Projects</strong
                     >
-                    Applied projects from multiple domains and industry-relevant projects.
+                    Work on industry-oriented projects that help transform theoretical concepts into practical AI development experience.
                   </div>
                 </div>
-                <!-- Feature 4 -->
+                <!-- Feature 3 -->
                 <div
                   class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
                 >
@@ -505,34 +508,17 @@ export const prerender = false;
                     class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
                   >
                     <span class="material-symbols-outlined text-lg"
-                      >trending_up</span
+                      >assignment</span
                     >
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Career Pivot</strong
+                      >End-to-End Capstone</strong
                     >
-                    Program made to begin your journey as a Data Scientist.
+                    Build a comprehensive capstone project that brings together the technologies and concepts covered throughout the program.
                   </div>
                 </div>
-                <!-- Feature 5 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg">cloud</span>
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Microsoft Advantage</strong
-                    >
-                    Expert-level training from Microsoft, industry-recognized certificate
-                    from Microsoft.
-                  </div>
-                </div>
-                <!-- Feature 6 -->
+                <!-- Feature 4 -->
                 <div
                   class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
                 >
@@ -545,9 +531,43 @@ export const prerender = false;
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Combined Labs</strong
+                      >AI Application Development</strong
                     >
-                    Combined labs for practical learning experience.
+                    Develop practical AI applications using Python, FastAPI, LLMs, APIs, RAG, AI agents, and modern AI frameworks.
+                  </div>
+                </div>
+                <!-- Feature 5 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg">groups</span>
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Multi-Agent AI Systems</strong
+                    >
+                    Learn how frameworks such as CrewAI and AutoGen can be used to develop multi-agent workflows and collaborative AI systems.
+                  </div>
+                </div>
+                <!-- Feature 6 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >cloud</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Cloud & Deployment</strong
+                    >
+                    Learn how to package and deploy AI applications using Docker and cloud platforms, including AWS, Azure, and GCP.
                   </div>
                 </div>
                 <!-- Feature 7 -->
@@ -558,14 +578,14 @@ export const prerender = false;
                     class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
                   >
                     <span class="material-symbols-outlined text-lg"
-                      >live_tv</span
+                      >folder_shared</span
                     >
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Live Classes</strong
+                      >Portfolio & GitHub Development</strong
                     >
-                    Live classes by faculty of industry experts.
+                    Build projects that can be organized into a professional portfolio and GitHub profile to demonstrate practical AI development capabilities.
                   </div>
                 </div>
                 <!-- Feature 8 -->
@@ -576,33 +596,14 @@ export const prerender = false;
                     class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
                   >
                     <span class="material-symbols-outlined text-lg"
-                      >menu_book</span
+                      >badge</span
                     >
                   </div>
                   <div class="text-xs text-slate-500 leading-relaxed">
                     <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >LMS Access</strong
+                      >Mentor & Career Support</strong
                     >
-                    Lifetime access to learning resources via our Learning Management
-                    System (LMS).
-                  </div>
-                </div>
-                <!-- Feature 9 -->
-                <div
-                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  <div
-                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
-                  >
-                    <span class="material-symbols-outlined text-lg">groups</span
-                    >
-                  </div>
-                  <div class="text-xs text-slate-500 leading-relaxed">
-                    <strong class="text-sm font-bold text-slate-800 block mb-1"
-                      >Personalized Batches</strong
-                    >
-                    Small batches to make sure every student receives attention and
-                    instructions.
+                    Receive mentor guidance, mock interviews, technical and HR preparation, and structured recruitment assistance.
                   </div>
                 </div>
               </div>
@@ -611,7 +612,7 @@ export const prerender = false;
         </div>
       </section>
 
-      <!-- Section: Microsoft DP-900 Prep -->
+      <!-- Section: Certification Benefits -->
       <section class="py-20 bg-white border-b border-slate-100">
         <div
           class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
@@ -619,18 +620,15 @@ export const prerender = false;
           <div class="space-y-6">
             <span
               class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Core Validator</span
+              >Certification Benefits</span
             >
             <h2
               class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
             >
-              Agentic AI and AI Certification Benefits
+              Earn Credentials That Showcase Your AI Skills
             </h2>
             <p class="text-slate-600 text-base leading-relaxed">
-              At SkyStates, get certified in Agentic AI & Generative AI with the
-              Microsoft Azure program and get both Agentic AI AI and Microsoft
-              Azure certificates to improve your career chances. Gain access to
-              expert classes and an in-house career assistance program.
+              Complete the program and demonstrate your learning through professional credentials. Your certification and project portfolio can help demonstrate your knowledge of modern AI technologies to employers and recruiters.
             </p>
 
             <div class="space-y-4">
@@ -643,10 +641,10 @@ export const prerender = false;
                 >
                 <div>
                   <h4 class="font-bold text-slate-800 text-sm mb-1">
-                    Official Exam Voucher
+                    Certificate of Completion
                   </h4>
                   <p class="text-xs text-slate-500 leading-relaxed">
-                    One attempt fee covered in your program tuition.
+                    Receive a Sky States certificate recognizing completion of the Agentic AI &amp; Generative AI Professional Program.
                   </p>
                 </div>
               </div>
@@ -659,11 +657,10 @@ export const prerender = false;
                 >
                 <div>
                   <h4 class="font-bold text-slate-800 text-sm mb-1">
-                    Dedicated Bootcamp Module
+                    Microsoft AI-300
                   </h4>
                   <p class="text-xs text-slate-500 leading-relaxed">
-                    Focus sessions on Azure relational &amp; non-relational data
-                    services.
+                    Prepare for and earn the Microsoft AI-300 credential as part of the program's certification pathway.
                   </p>
                 </div>
               </div>
@@ -680,13 +677,13 @@ export const prerender = false;
               height="453"
               src="/assets/images/sky%20certificate.png"
               class="w-full h-full object-cover relative z-10"
-              alt="Microsoft Azure Data Fundamentals Certificate"
+              alt="Sky States Certificate of Completion"
             />
           </div>
         </div>
       </section>
 
-      <!-- Section 3: Why Choose -->
+      <!-- Section 3: Why Choose Sky States? -->
       <section
         class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-20 border-b border-slate-100"
       >
@@ -701,26 +698,24 @@ export const prerender = false;
           </h2>
           <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full"></div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
-            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-305 group"
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
           >
             <div
               class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
             >
-              <span class="material-symbols-outlined text-3xl">group</span>
+              <span class="material-symbols-outlined text-3xl">school</span>
             </div>
             <h3 class="text-xl font-bold text-slate-800">
-              Industry-First Mentorship
+              Industry-Oriented Learning
             </h3>
             <p class="text-slate-600 text-sm leading-relaxed">
-              Learn directly from Principal Data Scientists at top tier tech
-              companies through 1-on-1 sessions designed to bridge the gap
-              between theory and high-stakes production environments.
+              Learn technologies and concepts focused on practical AI application development rather than theory alone.
             </p>
           </div>
           <div
-            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-305 group"
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
           >
             <div
               class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
@@ -728,12 +723,70 @@ export const prerender = false;
               <span class="material-symbols-outlined text-3xl">bolt</span>
             </div>
             <h3 class="text-xl font-bold text-slate-800">
-              Project-Based Learning
+              Project-Based Training
             </h3>
             <p class="text-slate-600 text-sm leading-relaxed">
-              Move beyond Kaggle datasets. Build production-grade AI systems,
-              deploy MLOps pipelines, and solve real-world challenges sourced
-              from our corporate partners.
+              Build 10+ hands-on projects and an end-to-end capstone to develop practical implementation experience.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">terminal</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Modern AI Technology Stack
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Work with generative AI, LLMs, RAG, AI agents, LangChain, LangGraph, CrewAI, AutoGen, APIs, FastAPI, Docker, and cloud platforms.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">badge</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Career-Focused Preparation
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Develop your portfolio, prepare for technical and HR interviews, participate in mock interviews, and receive career guidance.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">support_agent</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Mentor Support
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Get guidance throughout the learning journey as you build projects and prepare for AI-focused career opportunities.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Practical AI Engineering
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Learn how to move from AI concepts to working applications, autonomous workflows, intelligent automation, and deployable AI solutions.
             </p>
           </div>
         </div>
@@ -754,7 +807,7 @@ export const prerender = false;
             </h2>
             <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Card 1 -->
             <div
               class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
@@ -762,14 +815,13 @@ export const prerender = false;
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
               >
-                <span class="material-symbols-outlined text-2xl">school</span>
+                <span class="material-symbols-outlined text-2xl">code</span>
               </div>
               <h3 class="font-bold text-lg text-slate-800">
-                Students and Freshers
+                Software Engineers
               </h3>
               <p class="text-slate-500 text-sm leading-relaxed">
-                Develop practical skills that employers value and launch your
-                career in Agentic AI.
+                Build modern AI applications and transition your existing software development experience into generative AI, agentic AI, and LLM engineering.
               </p>
             </div>
             <!-- Card 2 -->
@@ -779,12 +831,11 @@ export const prerender = false;
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
               >
-                <span class="material-symbols-outlined text-2xl">work</span>
+                <span class="material-symbols-outlined text-2xl">analytics</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-800">Working Experts</h3>
+              <h3 class="font-bold text-lg text-slate-800">Data Scientists</h3>
               <p class="text-slate-500 text-sm leading-relaxed">
-                Transition into high-growth AI and analytical roles with
-                structured learning.
+                Expand your existing machine learning and data science knowledge into LLMs, RAG, AI agents, multi-agent systems, and generative AI applications.
               </p>
             </div>
             <!-- Card 3 -->
@@ -794,14 +845,13 @@ export const prerender = false;
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
               >
-                <span class="material-symbols-outlined text-2xl">terminal</span>
+                <span class="material-symbols-outlined text-2xl">psychology</span>
               </div>
               <h3 class="font-bold text-lg text-slate-800">
-                Software Engineers
+                ML Engineers
               </h3>
               <p class="text-slate-500 text-sm leading-relaxed">
-                Scale your expertise with Machine Learning, Deep Learning, and
-                AI Engineering.
+                Strengthen your AI engineering capabilities with LLM application development, AI agents, tool calling, intelligent automation, and model evaluation.
               </p>
             </div>
             <!-- Card 4 -->
@@ -811,13 +861,39 @@ export const prerender = false;
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
               >
-                <span class="material-symbols-outlined text-2xl">analytics</span
-                >
+                <span class="material-symbols-outlined text-2xl">cloud_sync</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-800">Business Analyst</h3>
+              <h3 class="font-bold text-lg text-slate-800">DevOps &amp; Cloud Professionals</h3>
               <p class="text-slate-500 text-sm leading-relaxed">
-                Learn advanced analytics, visualization, and predictive
-                modeling.
+                Learn how AI applications are developed, containerized, deployed, and operated across modern cloud environments.
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">cloud</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Cloud Professionals</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Develop practical knowledge of AI application deployment using Docker and AWS, Azure, and GCP.
+              </p>
+            </div>
+            <!-- Card 6 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">work</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Experienced IT Professionals</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Build modern AI skills and prepare for career opportunities across the rapidly evolving generative AI and agentic AI ecosystem.
               </p>
             </div>
           </div>
@@ -891,7 +967,7 @@ export const prerender = false;
         </div>
       </section>
 
-      <!-- Section 5: Skills -->
+      <!-- Section 5: High-Demand Skill Matrix -->
       <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
           <div class="text-center mb-16">
@@ -906,46 +982,132 @@ export const prerender = false;
             </h2>
             <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
                 >psychology</span
               >
-              <span class="text-sm font-bold text-slate-800"
-                >Machine Learning</span
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Generative AI &amp; LLMs</h3
               >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Understand modern generative AI systems and large language models and learn how they can be integrated into real-world applications.
+              </p>
             </div>
             <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >translate</span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >chat</span
               >
-              <span class="text-sm font-bold text-slate-800">NLP</span>
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Prompt Engineering &amp; AI Reasoning</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Develop effective prompts and understand AI reasoning approaches for building more capable AI applications.
+              </p>
             </div>
             <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
-                >visibility</span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >smart_toy</span
               >
-              <span class="text-sm font-bold text-slate-800"
-                >Computer Vision</span
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Agents &amp; Autonomous Workflows</h3
               >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Learn how AI agents can reason, use tools, execute tasks, and participate in multi-step autonomous workflows.
+              </p>
             </div>
             <div
-              class="text-center p-8 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group cursor-default"
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <span
-                class="material-symbols-outlined text-4xl text-sky-600 mb-4 block group-hover:scale-110 transition-transform duration-300"
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
                 >database</span
               >
-              <span class="text-sm font-bold text-slate-800">Big Data</span>
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Retrieval Augmented Generation (RAG)</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Build intelligent, knowledge-aware applications on top of an LLM's capabilities. Covers document ingestion, chunking, embeddings, vector databases, semantic search, retrieval, reranking, context optimization, and response generation.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >memory</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Memory &amp; Context Engineering</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Learn how AI applications store and use context information. Covers short-term and long-term memories, conversation history, contextual retrieval, memory banks, and context engineering techniques.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >groups</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Multi-Agent Systems</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Work with CrewAI and AutoGen to understand collaborative and multi-agent AI workflows.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >precision_manufacturing</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Automation</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Use AI code generation, APIs, tool calling, and intelligent automation to create AI-powered workflows.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >terminal</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Application Development</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Build AI applications using Python and FastAPI and connect them with LLMs and external tools.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >security</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Safety &amp; Evaluation</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Understand AI safety, guardrails, and model evaluation approaches for responsible AI application development.
+              </p>
             </div>
           </div>
         </div>
@@ -968,638 +1130,40 @@ export const prerender = false;
           <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
         </div>
         <div class="space-y-4">
-          <!-- Item 1 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-            open
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
+          {
+            program.curriculum.modules.map((item, idx) => (
+              <details
+                class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
+                open={idx === 0}
               >
-                <span class="text-sky-600 font-extrabold text-xl">01</span> Python
-                Programming
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn the fundamentals of Python, a versatile and powerful
-                programming language. This module covers essential concepts like
-                syntax, data types, control structures, and functions, laying
-                the foundation for data science and software development.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Python</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Syntax</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Functions</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Programming Foundations</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 2 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">02</span> Libraries
-                of Python Programming with EDA
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Dive into essential Python libraries like NumPy, Pandas, and
-                Matplotlib. Learn to perform Exploratory Data Analysis (EDA) to
-                uncover insights, visualize trends, and prepare datasets for
-                advanced analytics and modeling.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >NumPy</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Pandas</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Matplotlib</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >EDA</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Visualization</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 3 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">03</span> Mathematics
-                for Agentic AI
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master statistical concepts like probability, hypothesis
-                testing, and regression analysis. Learn to interpret data
-                trends, make data-driven decisions, and build a strong
-                foundation for machine learning models.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Probability</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Hypothesis Testing</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Regression Analysis</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Statistics</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 4 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">04</span> Machine
-                Learning- Supervised
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn the fundamentals of supervised learning, where models are
-                trained on labeled data to predict outcomes. Explore key
-                algorithms like linear regression, decision trees, and support
-                vector machines for real-world problem-solving.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Supervised Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Linear Regression</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Decision Trees</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >SVM</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 5 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">05</span> Machine
-                Learning- Unsupervised
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Dive into unsupervised learning, where models analyze unlabeled
-                data to uncover hidden patterns. Explore clustering,
-                association, and dimensionality reduction techniques like
-                k-means and PCA for data exploration and insights.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Unsupervised Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Clustering</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >PCA</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >K-Means</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 6 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">06</span> Deep Learning
-                and AI
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore the foundations of deep learning and artificial
-                intelligence, focusing on neural networks, model training, and
-                optimization techniques. Learn how AI models power innovations
-                in image recognition, NLP, and more.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Deep Learning</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Neural Networks</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >AI</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Model Optimization</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 7 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">07</span> MySQL
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Gain proficiency in MySQL, a powerful relational database
-                management system. Learn how to create, manage, and query
-                databases using SQL to store and retrieve data efficiently.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >MySQL</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Relational Database</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >SQL Queries</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Storage</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 8 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">08</span> Tableau
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master Tableau for data visualization, enabling you to create
-                interactive and insightful dashboards. Learn how to connect
-                data, apply filters, and generate compelling visual reports for
-                informed decision-making.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Tableau</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Visualization</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Interactive Dashboards</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Reporting</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 9 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">09</span> Power
-                BI and Google Data Studio
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore Power BI and Google Data Studio for powerful data
-                visualization and reporting. Learn to transform raw data into
-                interactive dashboards and reports, empowering data-driven
-                insights and decision-making.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Power BI</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Google Data Studio</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Dashboards</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Insights</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 10 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">10</span> Data Engineering
-                Tools
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Master essential data engineering tools to manage, process, and
-                transform large datasets. Learn to work with technologies like
-                Apache Hadoop, Spark, and Kafka for efficient data pipeline
-                creation and optimization.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Apache Hadoop</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Spark</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Kafka</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Pipelines</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 11 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">11</span> NLP with
-                MLOPS
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Explore Natural Language Processing (NLP) techniques to analyze
-                and process textual data. Learn to integrate NLP models into
-                production environments using MLOps practices for scalable and
-                efficient machine learning workflows.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >NLP</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >MLOps</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Model Integration</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >CI/CD</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 12 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">12</span> AI Strategy
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                Learn how to design and implement effective AI strategies for
-                business growth. This module covers key AI technologies, their
-                applications, and how to align AI initiatives with
-                organizational goals for maximum impact.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >AI Strategy</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Business Growth</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Tech Alignment</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Strategy</span
-                >
-              </div>
-            </div>
-          </details>
-
-          <!-- Item 13 -->
-          <details
-            class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
-          >
-            <summary
-              class="flex justify-between items-center cursor-pointer list-none"
-            >
-              <span
-                class="text-lg font-bold text-slate-800 flex items-center gap-4"
-              >
-                <span class="text-sky-600 font-extrabold text-xl">13</span> Domain
-                Wise Capstone Projects
-              </span>
-              <span
-                class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform"
-                >expand_more</span
-              >
-            </summary>
-            <div
-              class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm"
-            >
-              <p class="leading-relaxed">
-                The Capstone Project module enables learners to apply their
-                knowledge to real-world problems by working on domain-specific
-                datasets. Participants will gain hands-on experience in data
-                preprocessing, exploratory data analysis, predictive modeling,
-                and result interpretation. This module fosters problem-solving
-                skills and prepares learners for industry challenges while
-                allowing them to showcase their expertise through a
-                comprehensive project.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Capstone Projects</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Data Preprocessing</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Predictive Modeling</span
-                >
-                <span
-                  class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50"
-                  >Real-World Data</span
-                >
-              </div>
-            </div>
-          </details>
+                <summary class="flex justify-between items-center cursor-pointer list-none">
+                  <span class="text-lg font-bold text-slate-800 flex items-center gap-4">
+                    <span class="text-sky-600 font-extrabold text-xl">{item.id}</span>
+                    {item.title}
+                  </span>
+                  <span class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform">
+                    expand_more
+                  </span>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm">
+                  <p class="leading-relaxed">{item.description}</p>
+                  {item.tags && item.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      {item.tags.map((tag) => (
+                        <span class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </details>
+            ))
+          }
         </div>
       </section>
 
-      <!-- Section 8: Tools -->
+      <!-- Section 8: Technologies You Will Learn -->
       <section
         class="py-20 overflow-hidden bg-slate-50/50 border-y border-slate-100"
       >
@@ -1607,19 +1171,15 @@ export const prerender = false;
           <div class="text-center max-w-3xl mx-auto">
             <span
               class="text-sky-700 font-bold uppercase tracking-widest text-xs mb-4 block"
-              >Ecosystem</span
+              >Tech Stack</span
             >
             <h2
               class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6"
             >
               Technologies You Will Learn
             </h2>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Python &bull; SQL &bull; NumPy &bull; Pandas &bull; Power BI
-              &bull; TensorFlow &bull; Git &bull; Kafka &bull; Tableau &bull;
-              Scikit-learn &bull; PyTorch &bull; Docker &bull; LangChain &bull;
-              MLflow &bull; Azure AI &bull; Hadoop &bull; Jupyter Notebook
-              &bull; Apache Spark
+            <p class="text-slate-600 text-sm leading-relaxed font-medium">
+              Python &bull; FastAPI &bull; Generative AI &bull; LLMs &bull; LangChain &bull; LangGraph &bull; CrewAI &bull; AutoGen &bull; RAG &bull; Vector Databases &bull; AI Agents &bull; APIs &amp; Tool Calling &bull; Docker &bull; AWS
             </p>
           </div>
         </div>
@@ -1640,7 +1200,7 @@ export const prerender = false;
         }
       </style>
 
-      <!-- Section 9: Certification -->
+      <!-- Section 9: Credentials -->
       <section class="py-20 bg-white">
         <div
           class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
@@ -1657,7 +1217,7 @@ export const prerender = false;
               height="453"
               src="/assets/images/sky%20certificate.png"
               class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
-              alt="Certificate"
+              alt="Sky States Certificate"
             />
           </div>
 
@@ -1669,61 +1229,48 @@ export const prerender = false;
             <h2
               class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
             >
-              A Credential That Commands Respect
+              A Credential That Demonstrates Your AI Skills
             </h2>
             <p class="text-slate-600 text-base leading-relaxed">
-              Graduates receive the Sky States Architect Certification—a mark of
-              excellence recognized by the world’s leading technology
-              recruitment agencies and enterprise AI labs.
+              Complete the Agentic AI &amp; Generative AI Professional Program and build a credential profile supported by practical project experience.
             </p>
-            <ul class="space-y-4">
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Verified Digital Badge on LinkedIn</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Institutional Seal of Excellence</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-sky-600"
-                  >check_circle</span
-                >
-                <span class="text-sm font-semibold text-slate-700"
-                  >Permanent Record in Alumni Registry</span
-                >
-              </li>
-            </ul>
+            <div class="space-y-4 pt-2">
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0">workspace_premium</span>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">Sky States Certificate of Completion</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">Receive a certificate recognizing successful completion of the professional program.</p>
+                </div>
+              </div>
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0">folder_shared</span>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">Professional Portfolio</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">Build an industry-oriented portfolio and GitHub profile containing your AI projects and capstone work.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section: SkyStates Career Guidance -->
+      <!-- Section 10: Career Guidance -->
       <section class="py-20 bg-slate-50/50 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
           <div class="text-center mb-12">
             <span
               class="text-sky-700 font-bold uppercase tracking-widest text-xs"
-              >Career Success</span
+              >Career Support</span
             >
             <h2 class="text-3xl font-bold text-slate-900 mt-2">
-              SkyStates Career Guidance
+              Career Guidance &amp; Placement Support
             </h2>
             <p class="text-slate-600 text-sm max-w-xl mx-auto mt-2">
-              Learning technical skills is part of becoming job-ready. We
-              provide full-concierge career assistance.
+              Developing technical skills is just the beginning. We provide complete career assistance to ensure you are interview-ready.
             </p>
             <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
@@ -1733,11 +1280,10 @@ export const prerender = false;
                 <span class="material-symbols-outlined text-2xl">badge</span>
               </div>
               <h4 class="font-bold text-base text-slate-800 mt-2">
-                Resume &amp; Profile
+                Resume &amp; LinkedIn Optimization
               </h4>
               <p class="text-xs text-slate-500 leading-relaxed">
-                Resume maximization and LinkedIn profile improvement to stand
-                out to modern technical recruiters.
+                Prepare your professional resume and LinkedIn profile to highlight your AI skills, projects, technologies, and career direction.
               </p>
             </div>
             <div
@@ -1751,11 +1297,10 @@ export const prerender = false;
                 >
               </div>
               <h4 class="font-bold text-base text-slate-800 mt-2">
-                Portfolio Assistance
+                Industry-Ready Portfolio
               </h4>
               <p class="text-xs text-slate-500 leading-relaxed">
-                GitHub portfolio assistance to present your capstones and code
-                structure professionally.
+                Develop a portfolio and GitHub profile showcasing your hands-on projects and end-to-end capstone.
               </p>
             </div>
             <div
@@ -1767,11 +1312,10 @@ export const prerender = false;
                 <span class="material-symbols-outlined text-2xl">forum</span>
               </div>
               <h4 class="font-bold text-base text-slate-800 mt-2">
-                Interview Prep
+                Interview Preparation
               </h4>
               <p class="text-xs text-slate-500 leading-relaxed">
-                Mock technical interviews, HR interview preparation, and
-                systematic salary negotiation training.
+                Prepare for technical and HR interviews through structured interview preparation and mock interview sessions.
               </p>
             </div>
             <div
@@ -1780,22 +1324,95 @@ export const prerender = false;
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
               >
-                <span class="material-symbols-outlined text-2xl">handshake</span
-                >
+                <span class="material-symbols-outlined text-2xl">assessment</span>
               </div>
               <h4 class="font-bold text-base text-slate-800 mt-2">
-                Mentorship &amp; Networks
+                Career Assessment
               </h4>
               <p class="text-xs text-slate-500 leading-relaxed">
-                1-on-1 career mentorship, network sessions, and full placement
-                support with partner firms.
+                Receive career-focused guidance to understand your strengths, project readiness, and potential AI career direction.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">handshake</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Recruitment &amp; Application Assistance
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Get assistance with recruitment opportunities and the application process through the program's recruitment support.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Mock Interviews &amp; Feedback
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Practice interview scenarios and receive feedback to improve technical communication and interview readiness.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">psychology</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Technical &amp; HR Preparation
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Prepare for both technical discussions and HR interview rounds relevant to technology and AI roles.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">support</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Interview Round Support
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Receive guidance as you progress through interview opportunities and recruitment processes.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">update</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Continuous Career Guidance
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Continue receiving career-focused guidance as you prepare to pursue AI and technology opportunities.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section: Explore Your Career Options -->
+      <!-- Section 11: Career Horizons -->
       <section class="py-20 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
           <div class="text-center mb-12">
@@ -1806,23 +1423,31 @@ export const prerender = false;
             <h2
               class="text-3xl font-bold text-slate-900 tracking-tight mt-2 mb-4"
             >
-              Explore Your Career Options
+              Build skills aligned with potential career paths such as
             </h2>
-            <p class="text-slate-650 max-w-2xl mx-auto mb-8">
-              After completing the program, you can pursue diverse high-paying
-              roles across the global technology ecosystem.
-            </p>
             <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
           </div>
 
           <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
             <span
               class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Scientist</span
+              >AI Engineer</span
             >
             <span
               class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Analyst</span
+              >Generative AI Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >Agentic AI Developer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >LLM Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >AI Automation Engineer</span
             >
             <span
               class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
@@ -1830,37 +1455,13 @@ export const prerender = false;
             >
             <span
               class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >AI Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Business Intelligence Analyst</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Data Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >AI Consultant</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >NLP Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Analytics Engineer</span
-            >
-            <span
-              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
-              >Research Associate</span
+              >AI Solutions Architect</span
             >
           </div>
         </div>
       </section>
 
-      <!-- Section: Learning Methodology We Use -->
+      <!-- Section 12: Learning Methodology -->
       <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
           <div class="text-center mb-16">
@@ -1869,119 +1470,121 @@ export const prerender = false;
               >Framework</span
             >
             <h2 class="text-3xl font-bold text-slate-900 mt-2">
-              Learning Methodology We Use
+              Learning Methodology
             </h2>
-            <p class="text-slate-500 text-sm max-w-xl mx-auto mt-2">
-              Our structured approach ensures you absorb complex topics with
-              permanent retention.
-            </p>
             <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
                 <span class="material-symbols-outlined text-2xl">live_tv</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-805">Live Sessions</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Learn directly from experienced industry experts.
+              <h3 class="font-bold text-base text-slate-850">Live Instructor-Led Sessions</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Learn directly through structured live training sessions covering modern AI technologies and development practices.
               </p>
             </div>
-            <!-- Card 2 -->
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
                 <span class="material-symbols-outlined text-2xl">science</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-805">Practical Labs</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Practice concepts immediately through guided exercises.
+              <h3 class="font-bold text-base text-slate-850">Practical Labs</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Apply concepts through hands-on implementation and AI application development.
               </p>
             </div>
-            <!-- Card 3 -->
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
-                <span class="material-symbols-outlined text-2xl"
-                  >assignment</span
-                >
+                <span class="material-symbols-outlined text-2xl">assignment</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Weekly Assignments
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Reinforce concepts via organized assessments.
+              <h3 class="font-bold text-base text-slate-850">Industry-Oriented Projects</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Build 10+ projects designed to provide practical experience with generative AI, LLMs, AI agents, RAG, automation, and deployment.
               </p>
             </div>
-            <!-- Card 4 -->
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
-                <span class="material-symbols-outlined text-2xl"
-                  >support_agent</span
-                >
+                <span class="material-symbols-outlined text-2xl">military_tech</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Mentor Assistance
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Receive guidance throughout your learning journey.
+              <h3 class="font-bold text-base text-slate-850">End-to-End Capstone</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Bring your learning together through a comprehensive capstone project.
               </p>
             </div>
-            <!-- Card 5 -->
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
-                <span class="material-symbols-outlined text-2xl"
-                  >folder_open</span
-                >
+                <span class="material-symbols-outlined text-2xl">support_agent</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-850">Applied Projects</h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Solve real business problems using industry datasets.
+              <h3 class="font-bold text-base text-slate-850">Mentor Assistance</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Receive guidance while working through projects and developing your AI skills.
               </p>
             </div>
-            <!-- Card 6 -->
             <div
-              class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
             >
               <div
                 class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
               >
-                <span class="material-symbols-outlined text-2xl"
-                  >cloud_sync</span
-                >
+                <span class="material-symbols-outlined text-2xl">folder_shared</span>
               </div>
-              <h3 class="font-bold text-lg text-slate-850">
-                Lifetime LMS Access
-              </h3>
-              <p class="text-slate-500 text-sm leading-relaxed">
-                Revisit course materials anytime and anywhere.
+              <h3 class="font-bold text-base text-slate-850">Portfolio &amp; GitHub</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Turn your project work into a professional portfolio that can be showcased to recruiters and employers.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Mock Interviews</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Practice technical and HR interview scenarios and improve your interview readiness.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">all_inclusive</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Extended / Lifetime Learning Resources</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Continue accessing the learning resources provided as part of the program.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 15: FAQs -->
+      <!-- Section 15: Frequently Asked Questions -->
       <section class="py-20 bg-slate-50/50 border-t border-slate-100" id="faq">
         <div class="max-w-3xl mx-auto px-4">
           <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">
@@ -1993,11 +1596,10 @@ export const prerender = false;
               class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
             >
               <h5 class="text-base font-bold text-slate-805 mb-2">
-                What are the prerequisites?
+                How long is the Agentic AI &amp; Generative AI Professional Program?
               </h5>
               <p class="text-slate-550 text-sm leading-relaxed">
-                Candidates should have a background in STEM or equivalent
-                professional experience, along with basic proficiency in Python.
+                The program is designed as a 4–6 month professional program, with live instructor-led training and structured practical learning.
               </p>
             </div>
             <!-- FAQ 2 -->
@@ -2005,11 +1607,10 @@ export const prerender = false;
               class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
             >
               <h5 class="text-base font-bold text-slate-805 mb-2">
-                Is the Microsoft exam fee included?
+                Who is this program designed for?
               </h5>
               <p class="text-slate-550 text-sm leading-relaxed">
-                Yes, the Sky States program fee includes one attempt voucher for
-                the Microsoft DP-900: Azure Data Fundamentals certification.
+                The program is designed for software engineers, data scientists, ML engineers, DevOps engineers, cloud professionals, and experienced IT professionals looking to transition into or advance toward AI-focused roles.
               </p>
             </div>
             <!-- FAQ 3 -->
@@ -2017,11 +1618,10 @@ export const prerender = false;
               class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
             >
               <h5 class="text-base font-bold text-slate-805 mb-2">
-                What is the refund policy?
+                How many projects are included?
               </h5>
               <p class="text-slate-550 text-sm leading-relaxed">
-                We offer a 100% satisfaction guarantee with a full refund
-                available within the first 14 days of the program start date.
+                The program includes 10+ hands-on industry-oriented projects along with an end-to-end capstone project.
               </p>
             </div>
             <!-- FAQ 4 -->
@@ -2029,12 +1629,10 @@ export const prerender = false;
               class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
             >
               <h5 class="text-base font-bold text-slate-805 mb-2">
-                Do I need prior coding experience?
+                Will I build a portfolio during the program?
               </h5>
               <p class="text-slate-550 text-sm leading-relaxed">
-                While we focus on architecture, basic Python is required. We
-                offer a pre-bootcamp 'Python for Data' module for those who need
-                to level up before the core start date.
+                Yes. The program includes portfolio and GitHub development so that your project work and capstone can be organized into an industry-ready portfolio.
               </p>
             </div>
             <!-- FAQ 5 -->
@@ -2042,34 +1640,71 @@ export const prerender = false;
               class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
             >
               <h5 class="text-base font-bold text-slate-805 mb-2">
-                Is there a weekend schedule available?
+                Does the program include career support?
               </h5>
               <p class="text-slate-550 text-sm leading-relaxed">
-                Yes, our primary track features live instructor-led weekend
-                workshops (Saturday &amp; Sunday) to accommodate full-time
-                working professionals.
+                Yes. Career support includes career assessment, resume and LinkedIn optimization, portfolio assistance, interview preparation, mock interviews, recruitment/application assistance, and continuous career guidance.
+              </p>
+            </div>
+            <!-- FAQ 6 -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
+            >
+              <h5 class="text-base font-bold text-slate-805 mb-2">
+                Which technologies will I learn?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                You will work with technologies and concepts including generative AI, LLMs, AI agents, RAG, vector databases, LangChain, LangGraph, CrewAI, AutoGen, Python, FastAPI, Docker, AWS, Azure, GCP, APIs, and tool calling.
+              </p>
+            </div>
+            <!-- FAQ 7 -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
+            >
+              <h5 class="text-base font-bold text-slate-805 mb-2">
+                Does the program include certification?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. The program includes a Sky States Certificate of Completion and the Microsoft AI-300 certification pathway.
+              </p>
+            </div>
+            <!-- FAQ 8 -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm"
+            >
+              <h5 class="text-base font-bold text-slate-805 mb-2">
+                Is a job guaranteed after completing the program?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                No. The program provides career preparation, recruitment assistance, interview opportunities, and career guidance. Recruitment and interview opportunities depend on your qualifications, skills, readiness, and available positions and do not constitute a guaranteed job offer.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 16: Final CTA / Pricing -->
+      <!-- Section 16: Final CTA & Pricing -->
       <section class="py-24 relative overflow-hidden bg-white">
         <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
           <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
+            <div class="inline-block px-4 py-1.5 bg-sky-50 text-sky-700 font-bold text-xs rounded-full uppercase tracking-wider mb-2">
+              Learn &rarr; Build &rarr; Showcase &rarr; Prepare &rarr; Get Interview Opportunities &rarr; Compete
+            </div>
             <h2
               class="text-4xl font-bold text-slate-900 leading-tight"
               id="pricing"
             >
-              Develop The Skills That Power the Future of AI
+              Develop the Skills That Power the Future of AI
             </h2>
             <p class="text-slate-650 text-base sm:text-lg leading-relaxed">
-              If you are beginning your first technology career or upgrading
-              into AI and machine learning, the Sky States Agentic AI & Generative AI
-              Program offers practical training, real-world projects, expert
-              mentorship, and career assistance to help you become job-ready.
+              The future of AI is moving toward intelligent systems that can reason, retrieve information, use tools, automate workflows, and work across complex tasks.
+              <br /><br />
+              Build practical skills in agentic AI, generative AI, and LLM engineering through live training, real-world projects, mentor support, portfolio development, and career preparation.
             </p>
+            <div class="pt-2">
+              <h4 class="text-lg font-bold text-slate-900">Start Building Your AI Career Today</h4>
+              <p class="text-xs text-slate-500 mt-1">Develop the technical skills, practical projects, professional portfolio, and interview readiness needed to pursue the next generation of AI career opportunities.</p>
+            </div>
             <div class="flex flex-wrap gap-4 justify-center pt-4">
               <a
                 href="/SkyStates%20Agentic%20AI.pdf.pdf"
@@ -2083,7 +1718,7 @@ export const prerender = false;
           <div
             class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch"
           >
-            <!-- Pricing Card 1 (Scholar) -->
+            <!-- Pricing Card 1 (Registration) -->
             <div
               class="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 flex flex-col hover:shadow-md transition-all duration-300"
             >
@@ -2091,93 +1726,107 @@ export const prerender = false;
                 Registration
               </h3>
               <p
-                class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6"
+                class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4"
               >
-                Enrollment
+                Enrollment Fee
               </p>
-              <div class="mb-6 flex items-baseline gap-1">
+              <div class="mb-4 flex items-baseline gap-1">
                 <span class="text-4xl sm:text-5xl font-black text-sky-700"
                   >$499</span
                 >
-                <span class="text-slate-400 text-sm font-semibold">/ total</span
-                >
               </div>
+              <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                Your registration secures your enrollment and onboarding into the program.
+              </p>
 
-              <ul class="space-y-4 mb-8 flex-grow text-slate-600 text-sm">
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > 24-Week Immersive Syllabus
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Microsoft DP-900 Voucher
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Lifetime Community Access
-                </li>
-              </ul>
               <a
                 href="/checkout?course=Agentic+AI+%26+Automation&type=normal"
-                class="w-full py-4 border-2 border-sky-650 text-sky-750 hover:bg-sky-600 hover:text-white hover:border-sky-600 rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-sm shadow-sky-600/5"
-                >Enroll in Registration</a
+                class="w-full py-4 border-2 border-sky-650 text-sky-750 hover:bg-sky-600 hover:text-white hover:border-sky-600 rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-sm shadow-sky-600/5 mt-auto"
+                >Register Now ($499)</a
               >
             </div>
-            <!-- Pricing Card 2 (Elite) -->
+
+            <!-- Pricing Card 2 (Regular Price) -->
             <div
               class="bg-gradient-to-br from-sky-50 to-blue-100/50 text-slate-800 rounded-3xl p-8 sm:p-10 shadow-xl relative flex flex-col border border-sky-200/60 scale-105"
             >
               <div
-                class="absolute top-[-8px] right-[185px] bg-sky-600 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest font-bold"
+                class="absolute top-[-8px] right-8 bg-sky-600 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest font-bold"
               >
-                Most Popular
+                Professional Program
               </div>
               <h3 class="text-2xl font-bold mb-1 text-slate-900">
                 Regular Price
               </h3>
               <p
-                class="text-sky-700 font-bold uppercase tracking-widest text-sm mb-6"
+                class="text-sky-700 font-bold uppercase tracking-widest text-xs mb-4"
               >
-                6-Month Program
+                4–6 Month Program
               </p>
-              <div class="mb-6 flex items-baseline gap-1">
+              <div class="mb-4 flex items-baseline gap-1">
                 <span class="text-4xl sm:text-5xl font-black text-sky-700"
-                  >$6999</span
+                  >$6,999</span
                 >
-                <span class="text-slate-500 text-sm font-semibold">/ total</span
-                >
+                <span class="text-slate-500 text-xs font-semibold">/ total tuition</span>
               </div>
-              <ul class="space-y-4 mb-8 flex-grow text-slate-650 text-sm">
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Everything in batch classes
+
+              <h5 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Program Includes:</h5>
+              <ul class="space-y-2 mb-8 flex-grow text-slate-650 text-xs">
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Live instructor-led training
                 </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Weekly Private Mentorship
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> 12 structured modules
                 </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Guaranteed Internship Interview
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> 10+ hands-on projects
                 </li>
-                <li class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-sky-600 text-lg"
-                    >check</span
-                  > Salary Negotiation Support
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> End-to-end capstone project
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Portfolio &amp; GitHub development
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Live project-based learning
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Mentor support
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Mock interviews
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Technical &amp; HR interview preparation
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Recruitment/application assistance
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Extended / lifetime learning resources
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Certificate of Completion
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Microsoft AI-300 certification pathway
                 </li>
               </ul>
+
               <a
                 href="/checkout?course=Agentic+AI+%26+Automation&type=1on1"
-                class="w-full py-4 bg-gradient-to-r from-sky-600 to-blue-700 text-white hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] active:scale-[0.98] rounded-xl font-bold text-sm transition-all duration-205 text-center block shadow-md shadow-sky-600/10"
-                >Enroll in Regular Price</a
+                class="w-full py-4 bg-gradient-to-r from-sky-600 to-blue-700 text-white hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] active:scale-[0.98] rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-md shadow-sky-600/10"
+                >Enroll in Program ($6,999)</a
               >
             </div>
+          </div>
+
+          <!-- Important Disclaimer -->
+          <div class="max-w-4xl mx-auto mt-12 p-5 bg-slate-50 border border-slate-200/60 rounded-2xl text-center">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Important Disclaimer</h5>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Career and recruitment support is designed to help participants become interview-ready and connect with potential opportunities. Interview or recruitment opportunities are based on individual qualifications, skills, readiness, and available positions. Participation in the program does not guarantee a job offer or employment.
+            </p>
           </div>
         </div>
       </section>
