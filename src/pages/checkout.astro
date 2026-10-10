@@ -721,9 +721,9 @@ const pricingConfig = {
                 const courseName = document.getElementById("display-course-name")?.textContent || "";
                 const isAgentic = courseName.toLowerCase().includes("agentic");
                 if (isAgentic) {
-                    if (modeKey === "registration" && tierKey === "normal") {
+                    if ((modeKey === "registration" || modeKey === "full") && tierKey === "normal") {
                         basePrice = 499;
-                    } else if (modeKey === "registration" && tierKey === "1on1") {
+                    } else if ((modeKey === "registration" || modeKey === "full") && tierKey === "1on1") {
                         basePrice = 6999;
                     }
                 }
@@ -929,12 +929,13 @@ const pricingConfig = {
                     window.checkoutMode = "full";
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
+                    const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
                     if (sPrice)
                         sPrice.textContent =
-                            "$" + P.full.normal.toLocaleString();
+                            "$" + (isAgentic ? 499 : P.full.normal).toLocaleString();
                     if (ePrice)
                         ePrice.textContent =
-                            "$" + P.full["1on1"].toLocaleString();
+                            "$" + (isAgentic ? 6999 : P.full["1on1"]).toLocaleString();
 
                     // Show elite tier selection
                     const btnElite = document.getElementById("btn-tier-elite");
