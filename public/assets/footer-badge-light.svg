@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="72" viewBox="0 0 300 72" role="img" aria-label="ScamAdviser rating: Very Likely Safe for skystates.us">
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00A57A" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#00A57A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.5" y="0.5" width="299" height="71" rx="12" fill="#F7F7F7" stroke="#E2E5E9"/>
+  <rect x="0.5" y="0.5" width="130" height="71" rx="12" fill="url(#glow)"/>
+  <circle cx="40" cy="36" r="21" fill="#00A57A"/>
+  <path d="M30 36.5 L37.5 44 L51 29" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M0,-8 Q0,0 8,0 Q0,0 0,8 Q0,0 -8,0 Q0,0 0,-8Z" transform="translate(64 14) scale(0.9)" fill="#00A57A"/>
+  <path d="M0,-8 Q0,0 8,0 Q0,0 0,8 Q0,0 -8,0 Q0,0 0,-8Z" transform="translate(70 28) scale(0.55)" fill="#00A57A"/>
+  <path d="M0,-8 Q0,0 8,0 Q0,0 0,8 Q0,0 -8,0 Q0,0 0,-8Z" transform="translate(14 58) scale(0.6)" fill="#00A57A"/>
+  <text x="84" y="31" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#4A4A4A">Very Likely Safe</text>
+  <text x="84" y="48" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#777777">skystates.us</text>
+  <text x="84" y="62" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="10" fill="#8A8F98">Rated by ScamAdviser · Oct 2026</text>
+</svg>
