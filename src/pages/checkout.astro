@@ -924,9 +924,27 @@ const pricingConfig = {
             // Initialize from URL search parameters
             function initializeCheckout() {
                 const params = new URLSearchParams(window.location.search);
-                const courseName = params.get("course");
+                const programMap = {
+                    "data-science-ai": "Data Science & AI",
+                    "cyber-security": "Cyber Security & Ethical Hacking",
+                    "devops": "DevOps & Cloud Computing",
+                    "agentic-ai": "Agentic AI & Automation",
+                };
+
+                let courseName = params.get("course");
+                const programParam = params.get("program");
+                if (!courseName && programParam) {
+                    courseName = programMap[programParam] || programParam;
+                }
+
                 const type = params.get("type");
-                const mode = params.get("mode");
+                let mode = params.get("mode");
+                if (!mode && programParam) {
+                    mode = "full";
+                }
+                if (mode === "full" && !courseName) {
+                    courseName = "Career Acceleration Program";
+                }
 
                 if (mode === "offline") {
                     window.checkoutMode = "offline";
