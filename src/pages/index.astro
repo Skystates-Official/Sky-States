@@ -602,8 +602,9 @@ export const prerender = false;
                   "devops": "DevOps & Cloud Computing",
                   "agentic-ai": "Agentic AI & Automation",
                 };
-                const courseName = courseNameMap[prog.id] || prog.title;
-                const enrollHref = `/checkout?course=${encodeURIComponent(courseName)}&type=normal&mode=full`;
+                const isAgenticProg = prog.id === "agentic-ai";
+                const tierType = isAgenticProg ? "1on1" : "normal";
+                const enrollHref = `/checkout?course=${encodeURIComponent(courseName)}&type=${tierType}&mode=full`;
 
                 const themeIdx = index % 3;
                 return (
