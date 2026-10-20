@@ -801,6 +801,12 @@ const pricingConfig = {
                 if (!btnScholar || !btnElite || !displayCourse) return;
 
                 let courseText = displayCourse.textContent || "";
+                const isAgentic = courseText.toLowerCase().includes("agentic");
+
+                // If user selects Regular Price on Agentic AI, ensure full mode is enabled so coupon can be applied
+                if (isAgentic && tier === "1on1" && window.checkoutMode !== "offline") {
+                    window.checkoutMode = "full";
+                }
 
                 if (tier === "normal") {
                     btnScholar.classList.add(
@@ -846,9 +852,10 @@ const pricingConfig = {
                         "opacity-70",
                     );
 
-                    // Append "Personalised Program" if not present and it's one of the main courses
+                    // Append "Personalised Program" only for non-agentic tracks
                     if (
                         courseText &&
+                        !isAgentic &&
                         !courseText.endsWith(" Personalised Program") &&
                         courseText !== "Intro Session"
                     ) {
@@ -881,8 +888,13 @@ const pricingConfig = {
                     return;
                 }
 
-                const basePrice =
+                const courseName = document.getElementById("display-course-name")?.textContent || "";
+                const isAgentic = courseName.toLowerCase().includes("agentic");
+                let basePrice =
                     P.full[window.selectedTier === "1on1" ? "1on1" : "normal"];
+                if (isAgentic) {
+                    basePrice = window.selectedTier === "1on1" ? 6999 : 499;
+                }
 
                 try {
                     feedback.textContent = "Validating coupon...";
@@ -924,9 +936,28 @@ const pricingConfig = {
             // Initialize from URL search parameters
             function initializeCheckout() {
                 const params = new URLSearchParams(window.location.search);
-                const courseName = params.get("course");
+                const programMap = {
+                    "data-science-ai": "Data Science & AI",
+                    "cyber-security": "Cyber Security & Ethical Hacking",
+                    "devops": "DevOps & Cloud Computing",
+                    "agentic-ai": "Agentic AI & Automation",
+                };
+
+                let courseName = params.get("course");
+                const programParam = params.get("program");
+                if (!courseName && programParam) {
+                    courseName = programMap[programParam] || programParam;
+                }
+
                 const type = params.get("type");
-                const mode = params.get("mode");
+                let mode = params.get("mode");
+                const isAgenticCourse = courseName && courseName.toLowerCase().includes("agentic");
+                if (!mode && (programParam || (isAgenticCourse && (type === "1on1" || !type)))) {
+                    mode = "full";
+                }
+                if (mode === "full" && !courseName) {
+                    courseName = "Career Acceleration Program";
+                }
 
                 if (mode === "offline") {
                     window.checkoutMode = "offline";
