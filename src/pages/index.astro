@@ -17,6 +17,13 @@ const {
   certificate,
 } = homepageData;
 export const prerender = false;
+
+const courseNameMap: Record<string, string> = {
+  "data-science-ai": "Data Science & AI",
+  "cyber-security": "Cyber Security & Ethical Hacking",
+  "devops": "DevOps & Cloud Computing",
+  "agentic-ai": "Agentic AI & Automation",
+};
 ---
 
 <!doctype html>
@@ -596,12 +603,7 @@ export const prerender = false;
                 ];
                 const icons = ["analytics", "security", "cloud_queue"];
 
-                const courseNameMap = {
-                  "data-science-ai": "Data Science & AI",
-                  "cyber-security": "Cyber Security & Ethical Hacking",
-                  "devops": "DevOps & Cloud Computing",
-                  "agentic-ai": "Agentic AI & Automation",
-                };
+                const courseName = courseNameMap[prog.id] || prog.title;
                 const isAgenticProg = prog.id === "agentic-ai";
                 const tierType = isAgenticProg ? "1on1" : "normal";
                 const enrollHref = `/checkout?course=${encodeURIComponent(courseName)}&type=${tierType}&mode=full`;
@@ -618,7 +620,7 @@ export const prerender = false;
                         {icons[themeIdx] || "school"}
                       </span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 sm:mb-4 font-bold">
+                    <h3 class="text-2xl font-bold mb-3 sm:mb-4">
                       {prog.title}
                     </h3>
                     <div class="text-2xl sm:text-3xl font-extrabold mb-4">
