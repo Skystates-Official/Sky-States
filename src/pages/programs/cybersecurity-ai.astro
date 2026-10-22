@@ -1,0 +1,1715 @@
+---
+import "../../styles/global.css";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ToolLogoMarquee from "../../components/ToolLogoMarquee.astro";
+import { programToolLogos } from "../../data/program-tools.js";
+
+const program = {
+  hero: {
+    headline: "Sky States CyberSecurity with AI Professional Program <br/><span style=\"color:#12A5D8\" class=\"text-4xl block mt-2\">Master AI-Driven Cybersecurity, Threat Detection & LLM Security</span>",
+    description: "Master AI-driven threat detection, SOC automation, security AI agents, RAG for security intelligence, LLM and AI application security, adversarial AI, Python, cloud security, and AI governance through live instructor-led training, hands-on industry-oriented projects, mentorship, and career readiness preparation. Gain practical experience creating AI-powered security solutions while building an industry-ready portfolio and preparing for emerging career opportunities in cybersecurity and AI security."
+  },
+  curriculum: {
+    title: "Program Curriculum",
+    description: "A comprehensive, hands-on curriculum covering modern cybersecurity defense, AI agent automation, threat detection, and LLM security.",
+    modules: [
+      { id: "01", title: "Cybersecurity & AI Foundations", description: "Understand core cybersecurity principles, the threat landscape, and how AI and machine learning are reshaping both attack and defense.", tags: ["Cybersecurity Fundamentals", "Threat Landscape", "MITRE ATT&CK", "AI for Security"] },
+      { id: "02", title: "Python & Data Skills for Security Automation", description: "Strengthen the Python skills needed to parse logs, call APIs, and build security automation and AI-powered tools.", tags: ["Python", "Log Parsing", "APIs", "AsyncIO"] },
+      { id: "03", title: "Machine Learning for Threat Detection", description: "Apply machine learning to security data to detect anomalies, malware indicators, and suspicious behavior.", tags: ["Anomaly Detection", "Classification", "Feature Engineering", "UEBA"] },
+      { id: "04", title: "Generative AI & LLM Foundations for Security", description: "Understand generative AI, large language models, and their capabilities and limitations in security contexts.", tags: ["Generative AI", "LLMs", "Transformers", "Security Use Cases"] },
+      { id: "05", title: "Prompt Engineering for Security Analysts", description: "Learn prompt design and reasoning techniques for log analysis, threat summarization, and investigation support.", tags: ["Prompt Engineering", "Chain-of-Thought", "Structured Output", "Analyst Workflows"] },
+      { id: "06", title: "RAG, Vector Databases & Threat Intelligence Assistants", description: "Build retrieval-augmented applications that search and reason over threat intelligence, advisories, and internal security documentation.", tags: ["RAG", "Vector Databases", "Embeddings", "Threat Intel"] },
+      { id: "07", title: "Security AI Agents & Tool Calling", description: "Design AI agents that use security tools and APIs to enrich indicators, query data sources, and run multi-step investigations.", tags: ["AI Agents", "ReAct", "Tool Calling", "Investigation Workflows"] },
+      { id: "08", title: "LangChain, LangGraph & Multi-Agent SOC Workflows", description: "Build orchestrated and multi-agent workflows for alert triage, incident investigation, and response, with human-in-the-loop controls.", tags: ["LangChain", "LangGraph", "Multi-Agent Systems", "Human-in-the-Loop"] },
+      { id: "09", title: "AI-Driven SOC Operations & Incident Response", description: "Integrate AI into SIEM, SOAR, and incident response processes to reduce analyst workload and improve response consistency.", tags: ["SIEM", "SOAR", "Alert Triage", "Incident Response"] },
+      { id: "10", title: "AI-Assisted Offensive Security & Red Teaming", description: "Use AI to support authorized penetration testing, vulnerability analysis, and phishing awareness exercises in controlled lab environments.", tags: ["Pentesting", "Vulnerability Analysis", "Red Teaming", "Phishing Simulation"] },
+      { id: "11", title: "Securing LLM & AI Applications", description: "Identify and mitigate risks such as prompt injection, data leakage, insecure plugins and tools, model abuse, and supply chain threats.", tags: ["OWASP LLM Top 10", "Prompt Injection", "Guardrails", "MITRE ATLAS"] },
+      { id: "12", title: "Cloud Deployment, AI Governance & Model Evaluation", description: "Deploy AI security applications with Docker across AWS, Azure, and GCP, and apply governance, risk, and evaluation practices to keep them trustworthy.", tags: ["Docker", "AWS", "Azure", "GCP", "NIST AI RMF", "Model Evaluation"] },
+      { id: "13", title: "Capstone Project", description: "Apply the complete learning journey to an end-to-end AI security project that can be showcased through your portfolio and GitHub.", tags: ["Capstone Project", "End-to-End AI Security", "Portfolio", "GitHub"] }
+    ]
+  },
+  career: {
+    stats: [
+      { label: "Duration", value: "4-6 Months" },
+      { label: "Projects", value: "10+" },
+      { label: "Format", value: "Live" }
+    ]
+  }
+};
+const { hero } = program;
+export const prerender = false;
+---
+
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cybersecurity with AI Professional Program | Sky States LLC</title>
+    <meta name="description" content="Master AI-driven cybersecurity, threat detection, security AI agents, RAG for threat intelligence, and LLM security through live instructor-led training and real-world projects." />
+    <meta name="keywords" content="Cybersecurity with AI, AI Threat Detection, LLM Security, Security AI Agents, SOC Automation, Adversarial AI, OWASP LLM Top 10, MITRE ATLAS, NIST AI RMF, Python Security" />
+    <link
+      rel="canonical"
+      href="https://skystates.us/programs/cybersecurity-ai"
+    />
+    <meta
+      property="og:title"
+      content="Cybersecurity with AI Professional Program | Sky States"
+    />
+    <meta
+      property="og:description"
+      content="Master AI-driven cybersecurity, threat detection, security AI agents, and LLM application security with hands-on projects and career readiness preparation."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Cybersecurity with AI Professional Program",
+        "description": "Master AI-driven threat detection, SOC automation, security AI agents, RAG for threat intelligence, and LLM security.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Sky States",
+          "url": "https://skystates.us"
+        },
+        "url": "https://skystates.us/programs/cybersecurity-ai",
+        "educationalLevel": "Intermediate to Advanced",
+        "courseMode": "Online",
+        "inLanguage": "en",
+        "teaches": [
+          "AI Threat Detection",
+          "Security AI Agents",
+          "SOC Automation",
+          "LLM Security & OWASP Top 10",
+          "Adversarial AI & MITRE ATLAS",
+          "RAG for Threat Intelligence",
+          "Python Security Automation",
+          "Docker & Cloud Deployment"
+        ]
+      }
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .sky-gradient-up {
+        background: linear-gradient(to top, #ffffff, #d3e2ed);
+      }
+      .ambient-shadow {
+        box-shadow: 0 10px 30px -5px rgba(15, 29, 37, 0.04);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-slate-900 font-sans antialiased">
+    <!-- Header -->
+    <Header />
+
+    <main>
+      <!-- Hero Section -->
+      <section
+        class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-slate-50 border-b border-slate-100"
+      >
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-8 space-y-6">
+              <div
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100/60 border border-sky-200/50 text-sky-800 text-xs font-semibold tracking-wide uppercase"
+              >
+                <span class="w-2 h-2 rounded-full bg-sky-600 animate-pulse"
+                ></span>
+                Live Instructor-Led &bull; Specialized Program
+              </div>
+
+              <h1
+                class="text-4xl sm:text-5xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]"
+                set:html={hero.headline}
+              />
+
+              <p
+                class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl font-normal"
+              >
+                {hero.description}
+              </p>
+
+              <div
+                class="flex flex-wrap items-center gap-4 pt-4 text-xs font-semibold text-slate-600"
+              >
+                <div
+                  class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-sky-600 text-base"
+                    >schedule</span
+                  >
+                  <span>4–6 Months Duration</span>
+                </div>
+                <div
+                  class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-sky-600 text-base"
+                    >terminal</span
+                  >
+                  <span>10+ Real-World Projects</span>
+                </div>
+                <div
+                  class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-sky-600 text-base"
+                    >verified</span
+                  >
+                  <span>Capstone Security Project</span>
+                </div>
+                <div
+                  class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-sky-600 text-base"
+                    >live_tv</span
+                  >
+                  <span>Live Interactive Classes</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Stats Box -->
+            <div class="lg:col-span-4 space-y-4">
+              <div
+                class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xl space-y-6 relative overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 right-0 w-32 h-32 bg-sky-100/40 rounded-full blur-2xl pointer-events-none"
+                >
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 tracking-tight">
+                  Program Highlights
+                </h3>
+
+                <div class="space-y-4">
+                  <div
+                    class="flex items-center justify-between pb-3 border-b border-slate-100 text-sm"
+                  >
+                    <span class="text-slate-500 font-medium">Format</span>
+                    <span class="font-bold text-slate-800"
+                      >Live Instructor-Led</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center justify-between pb-3 border-b border-slate-100 text-sm"
+                  >
+                    <span class="text-slate-500 font-medium">Timeline</span>
+                    <span class="font-bold text-slate-800">4–6 Months</span>
+                  </div>
+                  <div
+                    class="flex items-center justify-between pb-3 border-b border-slate-100 text-sm"
+                  >
+                    <span class="text-slate-500 font-medium">Curriculum</span>
+                    <span class="font-bold text-slate-800">13 Modules</span>
+                  </div>
+                  <div
+                    class="flex items-center justify-between pb-3 border-b border-slate-100 text-sm"
+                  >
+                    <span class="text-slate-500 font-medium">Projects</span>
+                    <span class="font-bold text-slate-800">10+ Hands-On + Capstone</span>
+                  </div>
+                  <div
+                    class="flex items-center justify-between pb-3 border-b border-slate-100 text-sm"
+                  >
+                    <span class="text-slate-500 font-medium">Career Prep</span>
+                    <span class="font-bold text-slate-800">Mock Interviews &amp; Placement Support</span>
+                  </div>
+                </div>
+
+                <div class="pt-2">
+                  <a
+                    href="#curriculum"
+                    class="block w-full py-3.5 bg-sky-700 text-white rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:bg-sky-650 active:scale-[0.98] transition-all duration-200 shadow-md shadow-sky-600/10"
+                  >
+                    Explore Syllabus
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Overview & Key Features -->
+      <section class="py-20 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <!-- Left Column: Why Learn Cybersecurity with AI -->
+            <div class="lg:col-span-5 space-y-6">
+              <div>
+                <span
+                  class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+                  >Overview</span
+                >
+                <h2
+                  class="text-3xl font-bold text-slate-900 tracking-tight mt-1"
+                >
+                  Why Learn Cybersecurity with AI?
+                </h2>
+              </div>
+              <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                <p>
+                  Cyber threats are growing faster than security teams can keep up. Attackers use AI to increase phishing, scouting and accelerate exploitation. Meanwhile organizations use LLMs and AI agents, which create ways for attackers to strike.
+                </p>
+                <p>
+                  Security professionals who can use AI to defend and also protect AI systems are becoming very valuable. The Sky States Cybersecurity with AI Professional Program is made for IT and security professionals who want to learn hands-on skills in threat detection, security automation, agentic security workflows and the safety of AI-powered applications.
+                </p>
+                <p>
+                  Learn to build AI-powered security tools to investigate and respond to threats faster and test and protect LLM applications from attacks while gaining project experience and a portfolio that shows your skills.
+                </p>
+              </div>
+
+              <!-- Pricing / Overview Card -->
+              <div
+                class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-4 mt-4"
+              >
+                <h4 class="font-bold text-sm text-slate-850">
+                  Cybersecurity with AI Program Overview
+                </h4>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  This is a project-focused program that teaches the tools and methods used to protect modern organizations with AI and to keep AI systems safe.
+                </p>
+                <ul class="space-y-2 text-xs text-slate-600 font-medium pt-1">
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Program Format:</strong> Live Instructor-Led Training</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Program Duration:</strong> 4–6 Months</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Projects:</strong> 10+ Industry-Oriented Projects</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Capstone:</strong> End-to-End AI Security Project</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sky-600 text-sm">check_circle</span>
+                    <span><strong>Learning:</strong> Practical, Project-Based Training</span>
+                  </li>
+                </ul>
+                <div class="flex items-baseline gap-2 pt-2">
+                  <span class="text-3xl font-black text-sky-700">$4,499</span>
+                  <span class="text-xs text-slate-400 line-through">$6,999</span>
+                  <span class="text-xs text-slate-400 font-semibold"
+                    >/ Regular Price / Live Training</span
+                  >
+                </div>
+                <a
+                  href="/checkout?course=Cybersecurity+with+AI&type=1on1&mode=full"
+                  class="block w-full py-3 bg-gradient-to-r from-sky-600 to-blue-700 text-white rounded-xl font-bold text-center text-xs uppercase tracking-wider hover:from-sky-500 hover:to-blue-600 active:scale-[0.98] transition-all duration-200 shadow-md shadow-sky-600/10"
+                  >Enroll Today</a
+                >
+              </div>
+            </div>
+
+            <!-- Right Column: Key Features -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <span
+                  class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+                  >Core Benefits</span
+                >
+                <h2
+                  class="text-3xl font-bold text-slate-900 tracking-tight mt-1"
+                >
+                  Key Features
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Feature 1 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg">live_tv</span>
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Live Instructor-Led Training</strong
+                    >
+                    Learn through structured live sessions focused on modern cybersecurity, AI-driven defense, and LLM security concepts.
+                  </div>
+                </div>
+                <!-- Feature 2 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >terminal</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >10+ Hands-On Projects</strong
+                    >
+                    Work on industry-oriented projects that turn theoretical concepts into practical security experience.
+                  </div>
+                </div>
+                <!-- Feature 3 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >assignment</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >End-to-End Capstone</strong
+                    >
+                    Build a comprehensive AI security project that brings together the technologies and concepts covered throughout the program.
+                  </div>
+                </div>
+                <!-- Feature 4 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >security</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >AI Security Tool Development</strong
+                    >
+                    Develop practical security tools using Python, LLMs, APIs, RAG, AI agents, and modern AI frameworks.
+                  </div>
+                </div>
+                <!-- Feature 5 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg">smart_toy</span>
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Agentic SOC Automation</strong
+                    >
+                    Learn how AI agents can triage alerts, enrich indicators, investigate incidents, and support response workflows.
+                  </div>
+                </div>
+                <!-- Feature 6 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >cloud</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Cloud & Deployment</strong
+                    >
+                    Learn to package and deploy AI security applications using Docker and cloud platforms, including AWS, Azure, and GCP.
+                  </div>
+                </div>
+                <!-- Feature 7 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >folder_shared</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Portfolio & GitHub Development</strong
+                    >
+                    Build projects that can be organized into a professional portfolio and GitHub profile to demonstrate practical AI security capabilities.
+                  </div>
+                </div>
+                <!-- Feature 8 -->
+                <div
+                  class="flex gap-3.5 items-start p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+                >
+                  <div
+                    class="w-8 h-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >badge</span
+                    >
+                  </div>
+                  <div class="text-xs text-slate-500 leading-relaxed">
+                    <strong class="text-sm font-bold text-slate-800 block mb-1"
+                      >Mentor & Career Support</strong
+                    >
+                    Receive mentor guidance, mock interviews, technical and HR preparation, and structured recruitment assistance.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Certification Benefits -->
+      <section class="py-20 bg-white border-b border-slate-100">
+        <div
+          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+        >
+          <div class="space-y-6">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Certification Benefits</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
+            >
+              Earn Credentials That Showcase Your AI Security Skills
+            </h2>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Complete the program and demonstrate your learning through professional credentials. Your certification and project portfolio can help demonstrate your knowledge of modern AI-driven cybersecurity technologies to employers and recruiters.
+            </p>
+
+            <div class="space-y-4">
+              <div
+                class="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <span
+                  class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0"
+                  >workspace_premium</span
+                >
+                <div>
+                  <h4 class="font-bold text-slate-800 text-sm mb-1">
+                    Certificate of Completion
+                  </h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    Receive a Sky States certificate recognizing successful completion of the Cybersecurity with AI Professional Program.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <span
+                  class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0"
+                  >verified_user</span
+                >
+                <div>
+                  <h4 class="font-bold text-slate-800 text-sm mb-1">
+                    Industry Framework Alignment
+                  </h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    Master practices aligned with leading global security standards: MITRE ATT&CK, MITRE ATLAS, OWASP LLM Top 10, and NIST AI RMF.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-sky-50/50 rounded-3xl p-5 flex items-center justify-center border border-sky-100/50 relative"
+          >
+            <img
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="453"
+              src="/assets/images/sky%20certificate.png"
+              class="w-full h-full object-cover relative z-10"
+              alt="Sky States Certificate of Completion"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Why Choose Sky States? -->
+      <section
+        class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-20 border-b border-slate-100"
+      >
+        <div class="text-center mb-16">
+          <span class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+            >A Different Approach</span
+          >
+          <h2
+            class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2 mb-4"
+          >
+            Why Choose Sky States?
+          </h2>
+          <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">school</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Industry-Oriented Learning
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Learn practical defensive and offensive AI security tools and methodologies used by modern enterprise security teams.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">bolt</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Project-Based Training
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Build 10+ hands-on projects and an end-to-end AI security capstone to develop practical implementation experience.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">terminal</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Modern AI &amp; Security Stack
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Work with Python, machine learning, generative AI, LLMs, LangChain, LangGraph, RAG, vector databases, SIEM/SOAR, and cloud deployments.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">badge</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Career-Focused Preparation
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Develop your security portfolio, prepare for technical and HR interviews, participate in mock interviews, and receive career guidance.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">support_agent</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Mentor Support
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Get direct guidance throughout the learning journey as you build tools and prepare for AI security career opportunities.
+            </p>
+          </div>
+          <div
+            class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-300 group"
+          >
+            <div
+              class="w-14 h-14 bg-white text-sky-600 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 shrink-0"
+            >
+              <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">
+              Practical AI Security Engineering
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Learn how to build AI-powered security tooling, autonomous incident workflows, and robust defenses against prompt injection and model exploitation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Right Program for Every Learner -->
+      <section class="py-20 bg-slate-50/50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-16">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Tailored Paths</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
+            >
+              Right Program for Every Learner
+            </h2>
+            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">shield</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">
+                SOC Analysts &amp; Security Engineers
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Supercharge alert triage, incident response, and threat hunting with autonomous AI agents and intelligent SIEM/SOAR workflows.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">code</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Software &amp; ML Engineers</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Learn to develop secure LLM applications, defend against prompt injection and data leaks, and build AI security tooling in Python.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">bug_report</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">
+                Penetration Testers &amp; Red Teamers
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Master adversarial AI testing, AI red teaming techniques, and automated vulnerability reconnaissance using MITRE ATLAS.
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">cloud_sync</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Cloud &amp; DevOps Professionals</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Learn how AI security applications are containerized, deployed, and safeguarded with Docker across AWS, Azure, and GCP.
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">policy</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Risk, Compliance &amp; IT Leaders</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Understand AI governance, responsible AI implementation, and risk management based on the NIST AI Risk Management Framework.
+              </p>
+            </div>
+            <!-- Card 6 -->
+            <div
+              class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200/80 hover:border-sky-300 hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">work</span>
+              </div>
+              <h3 class="font-bold text-lg text-slate-800">Experienced IT Professionals</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Transition your existing IT and networking expertise into high-paying cybersecurity and AI security specialist roles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Outcomes -->
+      <section
+        class="bg-gradient-to-r from-sky-700 to-blue-800 py-16 text-white overflow-hidden relative"
+        id="outcomes"
+      >
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center"
+          >
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
+                >140%</span
+              >
+              <span
+                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
+                >Avg Salary Lift</span
+              >
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
+                >95%</span
+              >
+              <span
+                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
+                >Placement Rate</span
+              >
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
+                >250+</span
+              >
+              <span
+                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
+                >Hiring Partners</span
+              >
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-4xl sm:text-5xl font-black tracking-tight text-white"
+                >1,200+</span
+              >
+              <span
+                class="text-xs uppercase tracking-widest font-semibold text-sky-100"
+                >Global Alumni</span
+              >
+            </div>
+          </div>
+          <p class="text-[10px] sm:text-xs text-center text-sky-200/60 mt-8">
+            Note: Salary lift and placement statistics are based on verified career transition data compiled by our partner staffing network.
+          </p>
+        </div>
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+          <div
+            class="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl"
+          >
+          </div>
+          <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-white/20 rounded-full blur-3xl"
+          >
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: High-Demand Skill Matrix -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-16">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Capabilities</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
+            >
+              High-Demand Skill Matrix
+            </h2>
+            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >psychology</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI &amp; Machine Learning for Security</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Understand how machine learning and generative AI are applied to detection, classification, and analysis in security operations.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >radar</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI-Powered Threat Detection</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Apply anomaly detection and ML-based techniques to logs, network traffic, and endpoint telemetry to identify suspicious activity.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >speed</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >SOC Automation &amp; Incident Response</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Use AI to accelerate alert triage, investigation, enrichment, reporting, and response playbooks.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >smart_toy</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Security AI Agents &amp; Autonomous Workflows</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Learn how AI agents can reason, use security tools, and carry out multi-step investigation workflows with human oversight.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >database</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >RAG for Threat Intelligence</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Build knowledge-aware security assistants. Covers document ingestion, chunking, embeddings, vector databases, semantic search, retrieval, and response generation over threat reports, advisories, and internal runbooks.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >lock</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >LLM &amp; Prompt Injection Security</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Understand and defend against prompt injection, data leakage, insecure output handling, and other risks to LLM applications, aligned with the OWASP Top 10 for LLM Applications.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >warning</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >Adversarial AI &amp; AI Red Teaming</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Learn how AI models and applications are attacked and how to test them systematically, using frameworks such as MITRE ATLAS.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >security</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI-Assisted Offensive Security</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Use AI to support authorized reconnaissance, vulnerability analysis, and phishing awareness simulations in controlled lab environments.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-sky-200 hover:-translate-y-0.5 transition-all duration-300 group"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-sky-600 mb-3 block group-hover:scale-110 transition-transform duration-300"
+                >policy</span
+              >
+              <h3 class="text-base font-bold text-slate-800 mb-2"
+                >AI Governance, Risk &amp; Compliance</h3
+              >
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Understand AI risk management and responsible AI practices, including the NIST AI Risk Management Framework and emerging regulatory expectations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Curriculum -->
+      <section
+        class="py-20 max-w-4xl mx-auto px-4 md:px-gutter"
+        id="curriculum"
+      >
+        <div class="text-center mb-12">
+          <span class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+            >Syllabus Details</span
+          >
+          <h2
+            class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2"
+          >
+            Program Curriculum
+          </h2>
+          <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+        </div>
+        <div class="space-y-4">
+          {
+            program.curriculum.modules.map((item, idx) => (
+              <details
+                class="group bg-white rounded-2xl border border-slate-250/80 shadow-sm p-6 transition-all duration-300"
+                open={idx === 0}
+              >
+                <summary class="flex justify-between items-center cursor-pointer list-none">
+                  <span class="text-lg font-bold text-slate-800 flex items-center gap-4">
+                    <span class="text-sky-600 font-extrabold text-xl">{item.id}</span>
+                    {item.title}
+                  </span>
+                  <span class="material-symbols-outlined text-slate-400 group-open:text-sky-600 group-open:rotate-180 transition-transform">
+                    expand_more
+                  </span>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-slate-100 text-slate-600 space-y-3 text-sm">
+                  <p class="leading-relaxed">{item.description}</p>
+                  {item.tags && item.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      {item.tags.map((tag) => (
+                        <span class="px-2.5 py-1 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-100/50">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Section: Technologies You Will Learn -->
+      <section
+        class="py-20 overflow-hidden bg-slate-50/50 border-y border-slate-100"
+      >
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop mb-12">
+          <div class="text-center max-w-3xl mx-auto">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs mb-4 block"
+              >Tech Stack</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6"
+            >
+              Technologies You Will Learn
+            </h2>
+            <p class="text-slate-600 text-sm leading-relaxed font-medium">
+              Python &bull; Machine Learning &bull; Generative AI &bull; LLMs &bull; LangChain &bull; LangGraph &bull; RAG &bull; Vector Databases &bull; AI Agents &bull; APIs &amp; Tool Calling &bull; SIEM &amp; SOAR Concepts &bull; MITRE ATT&amp;CK &bull; MITRE ATLAS &bull; OWASP LLM Top 10 &bull; NIST AI RMF &bull; Docker &bull; AWS &bull; Azure &bull; GCP
+            </p>
+          </div>
+        </div>
+        <ToolLogoMarquee tools={programToolLogos["cybersecurity-ai"]} />
+      </section>
+
+      <style>
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+        }
+      </style>
+
+      <!-- Section: Credentials -->
+      <section class="py-20 bg-white">
+        <div
+          class="max-w-7xl mx-auto px-4 md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+        >
+          <div class="order-2 lg:order-1 relative">
+            <div
+              class="absolute -inset-2 bg-gradient-to-tr from-sky-400/10 to-blue-500/10 blur-2xl opacity-75 rounded-full pointer-events-none"
+            >
+            </div>
+            <img
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="453"
+              src="/assets/images/sky%20certificate.png"
+              class="w-full shadow-2xl rounded-2xl border border-slate-200/50 relative z-10"
+              alt="Sky States Certificate"
+            />
+          </div>
+
+          <div class="order-1 lg:order-2 space-y-6">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Credentials</span
+            >
+            <h2
+              class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight"
+            >
+              A Credential That Demonstrates Your AI Security Skills
+            </h2>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Complete the Cybersecurity with AI Professional Program and build a credential profile supported by practical project experience and verifiable hands-on labs.
+            </p>
+            <div class="space-y-4 pt-2">
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0">workspace_premium</span>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">Sky States Certificate of Completion</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">Receive a certificate recognizing successful completion of the Cybersecurity with AI Professional Program.</p>
+                </div>
+              </div>
+              <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex gap-4">
+                <span class="material-symbols-outlined text-sky-600 text-2xl flex-shrink-0">folder_shared</span>
+                <div>
+                  <h4 class="font-bold text-slate-800 text-base mb-1">Professional Portfolio &amp; GitHub</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">Build an industry-oriented portfolio containing your AI security tools, detection pipelines, and capstone project.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Career Guidance -->
+      <section class="py-20 bg-slate-50/50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-12">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Career Support</span
+            >
+            <h2 class="text-3xl font-bold text-slate-900 mt-2">
+              Career Guidance &amp; Placement Support
+            </h2>
+            <p class="text-slate-600 text-sm max-w-xl mx-auto mt-2">
+              Developing technical skills is just the beginning. We provide complete career assistance to ensure you are interview-ready.
+            </p>
+            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">badge</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Resume &amp; LinkedIn Optimization
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Prepare your professional resume and LinkedIn profile to highlight your AI security skills, tools, detection projects, and certifications.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >folder_shared</span
+                >
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Industry-Ready Portfolio
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Develop a GitHub profile and portfolio showcasing working detection models, security agents, and end-to-end AI security implementations.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">forum</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Interview Preparation
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Prepare for technical security scenarios, live tool assessments, and behavioral HR rounds with experienced practitioners.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">assessment</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Career Assessment
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Receive personalized guidance on aligning your existing background with high-demand roles in cybersecurity and AI security engineering.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">handshake</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Recruitment &amp; Application Assistance
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Receive targeted recruitment assistance and referral access through our partner staffing network and industry connections.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Mock Interviews &amp; Feedback
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Participate in simulated technical interviews with actionable feedback to sharpen your problem-solving and communication.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">psychology</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Technical &amp; HR Preparation
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Comprehensive coaching for both core security engineering topics and executive behavioral discussions.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">support</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Interview Round Support
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                One-on-one mentorship before every interview round to review company tech stacks and tailor your approach.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm flex flex-col gap-2 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300"
+              >
+                <span class="material-symbols-outlined text-2xl">update</span>
+              </div>
+              <h4 class="font-bold text-base text-slate-800 mt-2">
+                Continuous Career Guidance
+              </h4>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Ongoing guidance as you evaluate offers, negotiate terms, and navigate your trajectory in the AI cybersecurity market.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Career Horizons -->
+      <section class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-12">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Career Horizons</span
+            >
+            <h2
+              class="text-3xl font-bold text-slate-900 tracking-tight mt-2 mb-4"
+            >
+              Build skills aligned with potential career paths such as:
+            </h2>
+            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >AI Security Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >SOC Analyst (AI-Augmented)</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >Threat Detection Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >Security Automation Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >AI Red Team Specialist</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >Cloud Security Engineer</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >Cybersecurity Analyst</span
+            >
+            <span
+              class="px-5 py-3 bg-white text-slate-800 font-bold rounded-2xl shadow-sm border border-slate-200/60 hover:border-sky-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+              >AI Governance &amp; Risk Analyst</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Learning Methodology -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop">
+          <div class="text-center mb-16">
+            <span
+              class="text-sky-700 font-bold uppercase tracking-widest text-xs"
+              >Framework</span
+            >
+            <h2 class="text-3xl font-bold text-slate-900 mt-2">
+              Learning Methodology
+            </h2>
+            <div class="w-20 h-1 bg-sky-600 mx-auto rounded-full mt-4"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">live_tv</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Live Instructor-Led Sessions</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Interactive real-time classes covering modern AI security, threat modeling, and defense.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">science</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Hands-On Security Labs</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Controlled sandbox environments to test attacks, simulate incidents, and build defensive tooling.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">assignment</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">10+ Industry Projects</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Build practical security applications including automated alert triage, RAG intelligence, and prompt firewalls.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">military_tech</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">End-to-End Capstone</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Consolidate your entire learning journey into an enterprise-ready AI security project.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">support_agent</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Dedicated Mentors</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Receive 1-on-1 code reviews, architectural advice, and guidance from seasoned security practitioners.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">folder_shared</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Portfolio &amp; GitHub</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Translate every lab and capstone into production-grade GitHub repositories to showcase your abilities.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Mock Interviews</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Rigorous interview rehearsals replicating top tech company rounds for AI security roles.
+              </p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3 hover:border-sky-300 hover:shadow-md transition-all duration-300 group"
+            >
+              <div
+                class="w-12 h-12 bg-sky-50 text-sky-700 rounded-xl flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors duration-300 shrink-0"
+              >
+                <span class="material-symbols-outlined text-2xl">all_inclusive</span>
+              </div>
+              <h3 class="font-bold text-base text-slate-850">Extended Resources</h3>
+              <p class="text-slate-500 text-xs leading-relaxed">
+                Ongoing access to recorded lectures, threat intelligence feeds, code repos, and community updates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Frequently Asked Questions -->
+      <section class="py-20 bg-slate-50/50 border-t border-slate-100" id="faq">
+        <div class="max-w-3xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                How long is the Cybersecurity with AI Professional Program?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                The program is designed as a 4–6 month professional program, with live instructor-led training and structured practical learning.
+              </p>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Who is this program designed for?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                It is designed for IT professionals, SOC analysts, security engineers, network and system administrators, cloud and DevOps professionals, and software engineers looking to transition into or advance toward AI-focused cybersecurity roles.
+              </p>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Do I need prior cybersecurity or programming experience?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Basic IT knowledge and familiarity with programming concepts are helpful. The program includes foundational modules in cybersecurity, Python, and AI so learners can build up to advanced topics.
+              </p>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                How many projects are included?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                The program includes 10+ hands-on industry-oriented projects along with an end-to-end capstone project.
+              </p>
+            </div>
+            <!-- FAQ 5 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Will I build a portfolio during the program?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. The program includes portfolio and GitHub development so your project work and capstone can be organized into an industry-ready portfolio.
+              </p>
+            </div>
+            <!-- FAQ 6 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Does the program cover both using AI for defense and securing AI systems?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. You will learn to use AI for threat detection, SOC automation, and investigation, and also to identify and mitigate risks in LLM and AI applications.
+              </p>
+            </div>
+            <!-- FAQ 7 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Is the offensive security content ethical and legal?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. All offensive techniques are taught in controlled lab environments for authorized testing and defensive understanding only.
+              </p>
+            </div>
+            <!-- FAQ 8 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Does the program include career support?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. Career support includes career assessment, resume and LinkedIn optimization, portfolio assistance, interview preparation, mock interviews, recruitment/application assistance, and continuous career guidance.
+              </p>
+            </div>
+            <!-- FAQ 9 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Which technologies will I learn?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                You will work with Python, machine learning, generative AI, LLMs, AI agents, RAG, vector databases, LangChain, LangGraph, Docker, AWS, Azure, GCP, SIEM/SOAR concepts, and security frameworks such as MITRE ATT&CK, MITRE ATLAS, OWASP LLM Top 10, and NIST AI RMF.
+              </p>
+            </div>
+            <!-- FAQ 10 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Does the program include certification?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                Yes. The program includes a Sky States Certificate of Completion recognizing your mastery of cybersecurity and AI security principles.
+              </p>
+            </div>
+            <!-- FAQ 11 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+              <h5 class="text-base font-bold text-slate-850 mb-2">
+                Is a job guaranteed after completing the program?
+              </h5>
+              <p class="text-slate-550 text-sm leading-relaxed">
+                No. The program provides career preparation, recruitment assistance, interview opportunities, and career guidance. Opportunities depend on your qualifications, skills, readiness, and available positions and do not constitute a guaranteed job offer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Final CTA & Pricing -->
+      <section class="py-24 relative overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop relative z-10">
+          <div class="text-center mb-16 max-w-3xl mx-auto space-y-6">
+            <div class="inline-block px-4 py-1.5 bg-sky-50 text-sky-700 font-bold text-xs rounded-full uppercase tracking-wider mb-2">
+              Learn &rarr; Build &rarr; Showcase &rarr; Prepare &rarr; Get Interview Opportunities &rarr; Compete
+            </div>
+            <h2
+              class="text-4xl font-bold text-slate-900 leading-tight"
+              id="pricing"
+            >
+              Develop the Skills That Power the Future of Cyber Defense
+            </h2>
+            <p class="text-slate-650 text-base sm:text-lg leading-relaxed">
+              The future of cybersecurity belongs to professionals who can defend with AI and secure AI.
+              <br /><br />
+              Build practical skills in AI-powered threat detection, security automation, and LLM security through live training, real-world projects, mentor support, portfolio development, and career preparation.
+            </p>
+            <div class="pt-2">
+              <h4 class="text-lg font-bold text-slate-900">Start Building Your AI Security Career Today</h4>
+              <p class="text-xs text-slate-500 mt-1">Develop the technical skills, practical projects, professional portfolio, and interview readiness needed to pursue the next generation of cybersecurity career opportunities.</p>
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch"
+          >
+            <!-- Pricing Card 1 (Registration) -->
+            <div
+              class="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-slate-200/80 flex flex-col hover:shadow-md transition-all duration-300"
+            >
+              <h3 class="text-2xl font-bold text-slate-900 mb-1">
+                Registration
+              </h3>
+              <p
+                class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4"
+              >
+                Enrollment Fee
+              </p>
+              <div class="mb-4 flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-sky-700"
+                  >$99</span
+                >
+              </div>
+              <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                Your registration secures your seat, onboarding, and orientation into the Cybersecurity with AI Professional Program.
+              </p>
+
+              <a
+                href="/checkout?course=Cybersecurity+with+AI&type=normal"
+                class="w-full py-4 border-2 border-sky-650 text-sky-750 hover:bg-sky-600 hover:text-white hover:border-sky-600 rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-sm shadow-sky-600/5 mt-auto"
+                >Register Now ($99)</a
+              >
+            </div>
+
+            <!-- Pricing Card 2 (Regular Price / Full Program) -->
+            <div
+              class="bg-gradient-to-br from-sky-50 to-blue-100/50 text-slate-800 rounded-3xl p-8 sm:p-10 shadow-xl relative flex flex-col border border-sky-200/60 scale-105"
+            >
+              <div
+                class="absolute top-[-8px] right-8 bg-sky-600 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-widest font-bold"
+              >
+                Specialized Program
+              </div>
+              <h3 class="text-2xl font-bold mb-1 text-slate-900">
+                Regular Price
+              </h3>
+              <p
+                class="text-sky-700 font-bold uppercase tracking-widest text-xs mb-4"
+              >
+                4–6 Month Program
+              </p>
+              <div class="mb-4 flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-sky-700"
+                  >$4,499</span
+                >
+                <span class="text-slate-400 text-sm line-through font-semibold">$6,999</span>
+                <span class="text-slate-500 text-xs font-semibold">/ total tuition</span>
+              </div>
+
+              <h5 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Program Includes:</h5>
+              <ul class="space-y-2 mb-8 flex-grow text-slate-650 text-xs">
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Live instructor-led training
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> 13 structured security &amp; AI modules
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> 10+ hands-on industry projects
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> End-to-end AI security capstone project
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Portfolio &amp; GitHub development
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Live project-based security labs
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Mentor support &amp; code reviews
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Mock technical &amp; HR interviews
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Technical &amp; HR interview preparation
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Recruitment &amp; application assistance
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Extended / lifetime learning resources
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-600 text-sm">check</span> Certificate of Completion
+                </li>
+              </ul>
+
+              <a
+                href="/checkout?course=Cybersecurity+with+AI&type=1on1&mode=full"
+                class="w-full py-4 bg-gradient-to-r from-sky-600 to-blue-700 text-white hover:from-sky-500 hover:to-blue-600 hover:scale-[1.02] active:scale-[0.98] rounded-xl font-bold text-sm transition-all duration-200 text-center block shadow-md shadow-sky-600/10"
+                >Enroll in Program ($4,499)</a
+              >
+            </div>
+          </div>
+
+          <!-- Important Disclaimer -->
+          <div class="max-w-4xl mx-auto mt-12 p-5 bg-slate-50 border border-slate-200/60 rounded-2xl text-center">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Important Disclaimer</h5>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Career and recruitment support is designed to help participants become interview-ready and connect with potential opportunities. Interview or recruitment opportunities are based on individual qualifications, skills, readiness, and available positions. Participation in the program does not guarantee a job offer or employment.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

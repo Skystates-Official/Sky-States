@@ -52,11 +52,10 @@ function validateLegacySkyCoupon(code, basePrice) {
     };
   }
 
-  if (basePrice - discountAmount < 99) {
+  if (basePrice - discountAmount < 0) {
     return {
       valid: false,
-      error:
-        "Discount amount exceeds the maximum allowed for this program (minimum total must be $99).",
+      error: "Discount amount cannot exceed the total price.",
     };
   }
 
@@ -76,13 +75,6 @@ export async function validateCouponCode(
   basePrice,
   checkoutMode = "full",
 ) {
-  if (checkoutMode !== "full" && checkoutMode !== "offline") {
-    return {
-      valid: false,
-      error: "Promotional codes apply to full program enrollment only.",
-    };
-  }
-
   const stored = await validateStoredCoupon(code, basePrice);
   if (stored.valid) return stored;
 
@@ -105,16 +97,22 @@ export async function calculateCheckoutTotal({
   let basePrice = PRICING[checkoutMode][selectedTier];
   
   const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+  const isCyberAi = courseName && courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
   if (isAgentic) {
     if ((checkoutMode === "registration" || checkoutMode === "full") && selectedTier === "normal") {
       basePrice = 499;
     } else if ((checkoutMode === "registration" || checkoutMode === "full") && selectedTier === "1on1") {
       basePrice = 6999;
     }
+  } else if (isCyberAi) {
+    if ((checkoutMode === "registration" || checkoutMode === "full") && selectedTier === "normal") {
+      basePrice = 99;
+    } else if ((checkoutMode === "registration" || checkoutMode === "full") && selectedTier === "1on1") {
+      basePrice = 4499;
+    }
   }
 
-  const effectiveCouponCode =
-    checkoutMode === "full" || checkoutMode === "offline" ? couponCode : "";
+  const effectiveCouponCode = (couponCode || "").trim();
   const coupon = effectiveCouponCode
     ? await validateCouponCode(effectiveCouponCode, basePrice, checkoutMode)
     : null;

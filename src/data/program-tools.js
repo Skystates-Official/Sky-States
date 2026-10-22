@@ -27,6 +27,17 @@ export const programToolLogos = {
   devops: toolsFromDir('/assets/tools/devops', devopsFiles),
   'data-science-ai': toolsFromDir('/assets/tools/data-science', dataScienceFiles),
   'cyber-security': toolsFromDir('/assets/tools/cyber', cyberFiles),
+  'cybersecurity-ai': [
+    { name: 'python', src: '/assets/tools/data-science/python.svg' },
+    { name: 'openai', src: '/assets/tools/data-science/openai.svg' },
+    { name: 'kalilinux', src: '/assets/tools/cyber/kalilinux.svg' },
+    { name: 'docker', src: '/assets/tools/cyber/docker.svg' },
+    { name: 'linux', src: '/assets/tools/cyber/linux.svg' },
+    { name: 'amazonaws', src: '/assets/tools/cyber/amazonaws.svg' },
+    { name: 'microsoftazure', src: '/assets/tools/cyber/microsoftazure.svg' },
+    { name: 'cloudflare', src: '/assets/tools/cyber/cloudflare.svg' },
+    { name: 'github', src: '/assets/tools/cyber/github.svg' },
+  ],
 };
 
 export const programCertificates = {

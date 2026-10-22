@@ -11,14 +11,7 @@ export async function POST({ request }) {
       return new Response(JSON.stringify({ valid: false, error: 'Invalid base price.' }), { status: 400 });
     }
 
-    if (mode !== 'full') {
-      return new Response(JSON.stringify({
-        valid: false,
-        error: 'Promotional codes apply to full program enrollment only.',
-      }), { status: 400 });
-    }
-
-    const result = await validateCouponCode(code, price, 'full');
+    const result = await validateCouponCode(code, price, mode || 'full');
 
     if (!result.valid) {
       return new Response(JSON.stringify({ valid: false, error: result.error }), { status: 400 });

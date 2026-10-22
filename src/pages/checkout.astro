@@ -209,23 +209,20 @@ const pricingConfig = {
                             </p>
                         </div> -->
 
-                        <!-- Promo Code Section (full program only) -->
+                        <!-- Promo Code Section (available for both enrollment and registration) -->
                         <div
                             id="coupon-section"
-                            class="pt-4 border-t border-slate-100 flex-col gap-2 hidden"
+                            class="pt-4 border-t border-slate-100 flex flex-col gap-2"
                         >
                             <label
                                 class="text-[10px] font-bold uppercase tracking-wider text-slate-400"
                                 >Promotional Code</label
                             >
-                            <p class="text-[11px] text-slate-500">
-                                Available for full program enrollment only.
-                            </p>
                             <div class="flex flex-col sm:flex-row gap-2">
                                 <input
                                     type="text"
                                     id="coupon-code-input"
-                                    placeholder="e.g. WELCOME150"
+                                    placeholder="e.g. SKY100"
                                     class="h-12 px-3.5 border border-slate-200/80 rounded-xl outline-none focus:border-sky-650 focus:ring-2 focus:ring-sky-600/10 text-sm flex-grow transition-all"
                                 />
                                 <button
@@ -243,16 +240,8 @@ const pricingConfig = {
                         </div>
                         <p
                             id="coupon-registration-note"
-                            class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 leading-relaxed"
+                            class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 leading-relaxed hidden"
                         >
-                            Promotional codes are not available for intro
-                            sessions. Enroll in the
-                            <a
-                                href="/checkout?mode=full"
-                                class="text-sky-700 font-semibold hover:underline"
-                                >full program</a
-                            >
-                            to use a coupon.
                         </p>
 
                         <div
@@ -703,26 +692,16 @@ const pricingConfig = {
             };
 
             window.updateCouponVisibility = function () {
-                const isFull = window.checkoutMode === "full" || window.checkoutMode === "offline";
                 const couponSection = document.getElementById("coupon-section");
                 const couponNote = document.getElementById(
                     "coupon-registration-note",
                 );
 
                 if (couponSection) {
-                    couponSection.classList.toggle("hidden", !isFull);
-                    couponSection.classList.toggle("flex", isFull);
+                    couponSection.classList.remove("hidden");
+                    couponSection.classList.add("flex");
                 }
-                if (couponNote) couponNote.classList.toggle("hidden", isFull);
-
-                if (!isFull) {
-                    window.activeCoupon = null;
-                    const input = document.getElementById("coupon-code-input");
-                    const feedback = document.getElementById("coupon-feedback");
-                    if (input) input.value = "";
-                    if (feedback)
-                        feedback.className = "text-xs font-semibold hidden";
-                }
+                if (couponNote) couponNote.classList.add("hidden");
             };
 
             window.updatePricingDisplay = function () {
@@ -735,37 +714,43 @@ const pricingConfig = {
                 const priceEl = document.getElementById("display-price-value");
                 const totalEl = document.getElementById("display-total-value");
                 const feedbackEl = document.getElementById("coupon-feedback");
-                const isFullPayment = window.checkoutMode === "full" || window.checkoutMode === "offline";
-                const modeKey = window.checkoutMode;
+                const modeKey = window.checkoutMode || "registration";
                 const tierKey =
                     window.selectedTier === "1on1" ? "1on1" : "normal";
-                let basePrice = P[modeKey][tierKey];
+                let basePrice = P[modeKey] ? P[modeKey][tierKey] : P.full[tierKey];
 
                 const courseName = document.getElementById("display-course-name")?.textContent || "";
                 const isAgentic = courseName.toLowerCase().includes("agentic");
+                const isCyberAi = courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
                 if (isAgentic) {
                     if ((modeKey === "registration" || modeKey === "full") && tierKey === "normal") {
                         basePrice = 499;
                     } else if ((modeKey === "registration" || modeKey === "full") && tierKey === "1on1") {
                         basePrice = 6999;
                     }
+                } else if (isCyberAi) {
+                    if ((modeKey === "registration" || modeKey === "full") && tierKey === "normal") {
+                        basePrice = 99;
+                    } else if ((modeKey === "registration" || modeKey === "full") && tierKey === "1on1") {
+                        basePrice = 4499;
+                    }
                 }
 
                 if (window.selectedTier === "normal") {
-                    if (label) label.textContent = isAgentic ? "Registration" : "batch classes Program";
+                    if (label) label.textContent = (isAgentic || isCyberAi) ? "Registration" : "batch classes Program";
                     if (desc)
-                        desc.textContent = isAgentic ? "Enrollment" : "Weekend live labs & placement prep";
+                        desc.textContent = (isAgentic || isCyberAi) ? "Enrollment" : "Weekend live labs & placement prep";
                 } else {
-                    if (label) label.textContent = isAgentic ? "Regular Price" : "personalised classes";
+                    if (label) label.textContent = (isAgentic || isCyberAi) ? "Regular Price" : "personalised classes";
                     if (desc)
-                        desc.textContent = isAgentic ? "6-Month Program" : "Personal Industry mentor & 1-on-1 guidance";
+                        desc.textContent = (isAgentic || isCyberAi) ? (isAgentic ? "6-Month Program" : "4–6 Month Program") : "Personal Industry mentor & 1-on-1 guidance";
                 }
 
                 if (priceEl)
                     priceEl.textContent = "$" + basePrice.toLocaleString();
 
                 let discount = 0;
-                if (window.activeCoupon && isFullPayment) {
+                if (window.activeCoupon) {
                     discount = window.activeCoupon.discount ?? 0;
                 }
 
@@ -780,7 +765,7 @@ const pricingConfig = {
                 }
 
                 if (feedbackEl) {
-                    if (window.activeCoupon && isFullPayment) {
+                    if (window.activeCoupon) {
                         feedbackEl.textContent = `Coupon ${window.activeCoupon.code} applied: -$${discount.toLocaleString()}`;
                         feedbackEl.className =
                             "text-xs font-semibold text-green-600 block";
@@ -804,9 +789,10 @@ const pricingConfig = {
 
                 let courseText = displayCourse.textContent || "";
                 const isAgentic = courseText.toLowerCase().includes("agentic");
+                const isCyberAi = courseText.toLowerCase().includes("cyber") && courseText.toLowerCase().includes("ai");
 
-                // If user selects Regular Price on Agentic AI, ensure full mode is enabled so coupon can be applied
-                if (isAgentic && tier === "1on1" && window.checkoutMode !== "offline") {
+                // If user selects Regular Price on Agentic AI or Cyber AI, ensure full mode is enabled
+                if ((isAgentic || isCyberAi) && tier === "1on1" && window.checkoutMode !== "offline") {
                     window.checkoutMode = "full";
                 }
 
@@ -854,10 +840,11 @@ const pricingConfig = {
                         "opacity-70",
                     );
 
-                    // Append "Personalised Program" only for non-agentic tracks
+                    // Append "Personalised Program" only for non-specialized tracks
                     if (
                         courseText &&
                         !isAgentic &&
+                        !isCyberAi &&
                         !courseText.endsWith(" Personalised Program") &&
                         courseText !== "Intro Session"
                     ) {
@@ -874,14 +861,6 @@ const pricingConfig = {
                 const feedback = document.getElementById("coupon-feedback");
                 if (!input || !feedback) return;
 
-                if (window.checkoutMode !== "full") {
-                    feedback.textContent =
-                        "Promotional codes apply to full program enrollment only.";
-                    feedback.className =
-                        "text-xs font-semibold text-red-500 block";
-                    return;
-                }
-
                 const code = input.value.trim();
                 if (!code) {
                     feedback.textContent = "Please enter a coupon code.";
@@ -892,10 +871,14 @@ const pricingConfig = {
 
                 const courseName = document.getElementById("display-course-name")?.textContent || "";
                 const isAgentic = courseName.toLowerCase().includes("agentic");
-                let basePrice =
-                    P.full[window.selectedTier === "1on1" ? "1on1" : "normal"];
+                const isCyberAi = courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
+                const modeKey = window.checkoutMode || "registration";
+                const tierKey = window.selectedTier === "1on1" ? "1on1" : "normal";
+                let basePrice = P[modeKey] ? P[modeKey][tierKey] : P.full[tierKey];
                 if (isAgentic) {
                     basePrice = window.selectedTier === "1on1" ? 6999 : 499;
+                } else if (isCyberAi) {
+                    basePrice = window.selectedTier === "1on1" ? 4499 : 99;
                 }
 
                 try {
@@ -906,7 +889,7 @@ const pricingConfig = {
                     const response = await fetch("/api/validate-coupon", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ code, basePrice, mode: "full" }),
+                        body: JSON.stringify({ code, basePrice, mode: modeKey }),
                     });
 
                     const data = await response.json();
@@ -943,6 +926,8 @@ const pricingConfig = {
                     "cyber-security": "Cyber Security & Ethical Hacking",
                     "devops": "DevOps & Cloud Computing",
                     "agentic-ai": "Agentic AI & Automation",
+                    "cybersecurity-ai": "Cybersecurity with AI",
+                    "cyber-security-ai": "Cybersecurity with AI",
                 };
 
                 let courseName = params.get("course");
@@ -954,7 +939,8 @@ const pricingConfig = {
                 const type = params.get("type");
                 let mode = params.get("mode");
                 const isAgenticCourse = courseName && courseName.toLowerCase().includes("agentic");
-                if (!mode && (programParam || (isAgenticCourse && (type === "1on1" || !type)))) {
+                const isCyberAiCourse = courseName && courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
+                if (!mode && (programParam || ((isAgenticCourse || isCyberAiCourse) && (type === "1on1" || !type)))) {
                     mode = "full";
                 }
                 if (mode === "full" && !courseName) {
@@ -984,12 +970,13 @@ const pricingConfig = {
                     const sPrice = document.getElementById("btn-scholar-price");
                     const ePrice = document.getElementById("btn-elite-price");
                     const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+                    const isCyberAi = courseName && courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
                     if (sPrice)
                         sPrice.textContent =
-                            "$" + (isAgentic ? 499 : P.full.normal).toLocaleString();
+                            "$" + (isAgentic ? 499 : isCyberAi ? 99 : P.full.normal).toLocaleString();
                     if (ePrice)
                         ePrice.textContent =
-                            "$" + (isAgentic ? 6999 : P.full["1on1"]).toLocaleString();
+                            "$" + (isAgentic ? 6999 : isCyberAi ? 4499 : P.full["1on1"]).toLocaleString();
 
                     // Show elite tier selection
                     const btnElite = document.getElementById("btn-tier-elite");
@@ -1004,11 +991,12 @@ const pricingConfig = {
                     const ePrice = document.getElementById("btn-elite-price");
                     
                     const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
+                    const isCyberAi = courseName && courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
                     
                     if (sPrice)
-                        sPrice.textContent = "$" + (isAgentic ? 499 : P.registration.normal);
+                        sPrice.textContent = "$" + (isAgentic ? 499 : isCyberAi ? 99 : P.registration.normal);
                     if (ePrice)
-                        ePrice.textContent = "$" + (isAgentic ? 6999 : P.registration["1on1"]);
+                        ePrice.textContent = "$" + (isAgentic ? 6999 : isCyberAi ? 4499 : P.registration["1on1"]);
 
                     // Show elite tier selection
                     const btnElite = document.getElementById("btn-tier-elite");
@@ -1020,7 +1008,8 @@ const pricingConfig = {
                 }
                 
                 const isAgentic = courseName && courseName.toLowerCase().includes("agentic");
-                if (isAgentic) {
+                const isCyberAi = courseName && courseName.toLowerCase().includes("cyber") && courseName.toLowerCase().includes("ai");
+                if (isAgentic || isCyberAi) {
                     const btnScholar = document.getElementById("btn-tier-scholar");
                     if (btnScholar) {
                         btnScholar.querySelector("span:nth-child(1)").textContent = "REGISTRATION";
@@ -1029,7 +1018,7 @@ const pricingConfig = {
                     const btnElite = document.getElementById("btn-tier-elite");
                     if (btnElite) {
                         btnElite.querySelector("span:nth-child(1)").textContent = "REGULAR PRICE";
-                        btnElite.querySelector("span:nth-child(3)").textContent = "6-MONTH PROGRAM";
+                        btnElite.querySelector("span:nth-child(3)").textContent = isAgentic ? "6-MONTH PROGRAM" : "4–6 MONTH PROGRAM";
                     }
                 }
 
