@@ -571,18 +571,18 @@ const courseNameMap: Record<string, string> = {
               <button
                 type="button"
                 id="btn-track-short"
-                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm"
+                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900"
               >
                 <span class="material-symbols-outlined text-base">schedule</span>
-                <span>Short-Term (Batch Classes)</span>
+                <span>Short-Term (Personalised Classes)</span>
               </button>
               <button
                 type="button"
                 id="btn-track-long"
-                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900"
+                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm"
               >
                 <span class="material-symbols-outlined text-base">rocket_launch</span>
-                <span>Long-Term (Personalised Classes)</span>
+                <span>Long-Term (Batch Classes)</span>
               </button>
             </div>
             <p id="track-description-hint" class="text-xs text-slate-500 mt-2.5 font-medium">
@@ -1081,10 +1081,7 @@ const courseNameMap: Record<string, string> = {
           {
             learning_paths.paths &&
               learning_paths.paths.map((p, idx) => (
-                <div
-                  data-path-action="long"
-                  class="learning-path-card bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between cursor-pointer group"
-                >
+                <div class="bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between">
                   <div>
                     <div
                       class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 ${idx === 0 ? "bg-sky-50 text-sky-700" : "bg-primary-fixed text-on-primary-fixed"}`}
@@ -1104,8 +1101,8 @@ const courseNameMap: Record<string, string> = {
                   <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
                     <a
                       href="#programs"
-                      data-path-action="long"
-                      class="learning-path-btn text-primary text-label-md font-bold flex items-center gap-1 group-hover:gap-2 transition-all cursor-pointer"
+                      data-path-action={idx === 0 ? "short" : "long"}
+                      class="learning-path-btn text-primary text-label-md font-bold flex items-center gap-1 hover:gap-2 transition-all cursor-pointer"
                     >
                       {idx === 0
                         ? "Explore Short-Term Paths"
@@ -1114,8 +1111,8 @@ const courseNameMap: Record<string, string> = {
                         arrow_forward
                       </span>
                     </a>
-                    <span class="text-xs font-bold text-sky-700 font-mono bg-sky-50 px-2.5 py-1 rounded-full">
-                      $6,499
+                    <span class="text-xs font-bold text-slate-400">
+                      {idx === 0 ? "$6,499" : "$3,499"}
                     </span>
                   </div>
                 </div>
@@ -1531,11 +1528,11 @@ TRANSPARENT PRICING
     <!-- Program Path Switcher & Dynamic Pricing Script -->
     <script is:inline>
       (function () {
-        let activePath = "short";
+        let activePath = "long";
 
         function applyProgramPath(path, smoothScroll) {
-          activePath = path === "long" ? "long" : "short";
-          const isLong = activePath === "long";
+          activePath = path === "short" ? "short" : "long";
+          const isShort = activePath === "short";
 
           // Update switcher buttons
           const btnShort = document.getElementById("btn-track-short");
@@ -1543,19 +1540,19 @@ TRANSPARENT PRICING
           const hint = document.getElementById("track-description-hint");
 
           if (btnShort && btnLong) {
-            if (isLong) {
-              btnLong.className =
-                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
+            if (isShort) {
               btnShort.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
+              btnLong.className =
                 "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900";
               if (hint) {
                 hint.innerHTML =
-                  'Comprehensive career acceleration with 1-on-1 industry mentor • <strong class="text-slate-800">$6,499</strong>';
+                  'Specialized upskilling with 1-on-1 industry mentor • <strong class="text-slate-800">$6,499</strong>';
               }
             } else {
-              btnShort.className =
-                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
               btnLong.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
+              btnShort.className =
                 "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900";
               if (hint) {
                 hint.innerHTML =
@@ -1564,23 +1561,23 @@ TRANSPARENT PRICING
             }
           }
 
-          // Update card prices
+          // Update card prices: Short is $6,499, Long is $3,499
           const priceEls = document.querySelectorAll(".program-card-price");
           priceEls.forEach(function (el) {
-            el.textContent = isLong ? "$6,499" : "$3,499";
+            el.textContent = isShort ? "$6,499" : "$3,499";
           });
 
-          // Update tier labels
+          // Update tier labels: Short is Personalised, Long is Batch
           const tierEls = document.querySelectorAll(".program-card-tier");
           tierEls.forEach(function (el) {
-            el.textContent = isLong ? "Personalised Classes" : "Batch Classes";
+            el.textContent = isShort ? "Personalised Classes" : "Batch Classes";
           });
 
-          // Update Enroll links to pass correct type param
+          // Update Enroll links: Short is 1on1 ($6,499), Long is normal ($3,499)
           const enrollBtns = document.querySelectorAll(".program-enroll-btn");
           enrollBtns.forEach(function (btn) {
             const course = btn.getAttribute("data-course") || "";
-            const tierType = isLong ? "1on1" : "normal";
+            const tierType = isShort ? "1on1" : "normal";
             btn.href =
               "/checkout?course=" +
               encodeURIComponent(course) +
@@ -1612,11 +1609,13 @@ TRANSPARENT PRICING
             });
           }
 
-          const pathElements = document.querySelectorAll(".learning-path-btn, .learning-path-card");
-          pathElements.forEach(function (elem) {
-            elem.addEventListener("click", function (e) {
+          const pathLinks = document.querySelectorAll(".learning-path-btn");
+          pathLinks.forEach(function (link) {
+            link.addEventListener("click", function (e) {
               e.preventDefault();
-              applyProgramPath("long", true);
+              const targetPath =
+                link.getAttribute("data-path-action") || "long";
+              applyProgramPath(targetPath, true);
             });
           });
 
@@ -1626,11 +1625,13 @@ TRANSPARENT PRICING
             urlParams.get("track") ||
             urlParams.get("tier");
           if (
-            pathParam === "long" ||
+            pathParam === "short" ||
             pathParam === "1on1" ||
-            pathParam === "career" ||
-            window.location.hash === "#long-term"
+            pathParam === "personalised" ||
+            window.location.hash === "#short-term"
           ) {
+            applyProgramPath("short", false);
+          } else {
             applyProgramPath("long", false);
           }
         }
