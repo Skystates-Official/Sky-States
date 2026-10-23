@@ -1033,8 +1033,10 @@ const pricingConfig = {
                     window.selectTier("normal");
                 } else if (
                     type === "1on1" ||
+                    type === "career" ||
                     (courseName &&
-                        courseName.toLowerCase().includes("short term"))
+                        (courseName.toLowerCase().includes("long term") ||
+                         courseName.toLowerCase().includes("personalised")))
                 ) {
                     window.selectTier("1on1");
                 } else {

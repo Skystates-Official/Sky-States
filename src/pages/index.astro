@@ -551,16 +551,44 @@ const courseNameMap: Record<string, string> = {
 </section>
 
     <!-- Discover SkyStates Technology Programs Section -->
-    <section id="programs" class="w-full bg-white">
+    <section id="programs" class="w-full bg-white scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 md:px-margin-desktop py-section-gap">
-        <div class="text-center mb-12 md:mb-16">
+        <div class="text-center mb-10 md:mb-12">
           <h2 class="text-headline-lg text-on-surface font-bold mb-4">
             {programs_section.title}
           </h2>
           <p class="text-on-surface-variant max-w-2xl mx-auto text-body-md">
             {programs_section.subtitle}
           </p>
-          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-4"></div>
+          <div class="w-24 h-1 bg-primary mx-auto rounded-full mt-4 mb-6"></div>
+
+          <!-- Interactive Learning Path / Program Tier Switcher -->
+          <div class="inline-flex flex-col items-center">
+            <div
+              id="programs-track-switcher"
+              class="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200/90 shadow-xs"
+            >
+              <button
+                type="button"
+                id="btn-track-short"
+                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm"
+              >
+                <span class="material-symbols-outlined text-base">schedule</span>
+                <span>Short-Term (Batch Classes)</span>
+              </button>
+              <button
+                type="button"
+                id="btn-track-long"
+                class="px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900"
+              >
+                <span class="material-symbols-outlined text-base">rocket_launch</span>
+                <span>Long-Term (Personalised Classes)</span>
+              </button>
+            </div>
+            <p id="track-description-hint" class="text-xs text-slate-500 mt-2.5 font-medium">
+              Live weekend cohort classes with peer collaboration • <strong class="text-slate-800">$3,499</strong>
+            </p>
+          </div>
         </div>
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16"
@@ -625,8 +653,13 @@ const courseNameMap: Record<string, string> = {
                     <h3 class="text-2xl font-bold mb-3 sm:mb-4">
                       {prog.title}
                     </h3>
-                    <div class="text-2xl sm:text-3xl font-extrabold mb-4">
-                      {prog.price}
+                    <div class="flex items-baseline gap-2 mb-4">
+                      <div class="program-card-price text-2xl sm:text-3xl font-extrabold transition-all duration-300">
+                        {prog.price}
+                      </div>
+                      <div class={`program-card-tier text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${themeIdx === 1 ? "text-sky-200" : "text-slate-500"}`}>
+                        Batch Classes
+                      </div>
                     </div>
                     <p
                       class={`text-body-md flex-grow mb-6 ${textSecondaryColors[themeIdx]}`}
@@ -655,7 +688,8 @@ const courseNameMap: Record<string, string> = {
                     <div class="pt-6 border-t border-current/10 flex flex-col gap-4">
                       <a
                         href={enrollHref}
-                        class={`w-full text-center py-3 font-bold rounded-xl transition-colors duration-200 ${buttonColors[themeIdx]}`}
+                        data-course={courseName}
+                        class={`program-enroll-btn w-full text-center py-3 font-bold rounded-xl transition-colors duration-200 ${buttonColors[themeIdx]}`}
                       >
                         Enroll Today
                       </a>
@@ -1047,7 +1081,10 @@ const courseNameMap: Record<string, string> = {
           {
             learning_paths.paths &&
               learning_paths.paths.map((p, idx) => (
-                <div class="bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between">
+                <div
+                  data-path-action="long"
+                  class="learning-path-card bg-white p-8 rounded-3xl ambient-shadow border border-outline-variant/10 hover:border-primary/20 transition-all flex flex-col justify-between cursor-pointer group"
+                >
                   <div>
                     <div
                       class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-6 ${idx === 0 ? "bg-sky-50 text-sky-700" : "bg-primary-fixed text-on-primary-fixed"}`}
@@ -1064,10 +1101,11 @@ const courseNameMap: Record<string, string> = {
                       {p.description}
                     </p>
                   </div>
-                  <div class="mt-8 pt-6 border-t border-slate-100">
+                  <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
                     <a
                       href="#programs"
-                      class="text-primary text-label-md font-bold flex items-center gap-1 hover:gap-2 transition-all"
+                      data-path-action="long"
+                      class="learning-path-btn text-primary text-label-md font-bold flex items-center gap-1 group-hover:gap-2 transition-all cursor-pointer"
                     >
                       {idx === 0
                         ? "Explore Short-Term Paths"
@@ -1076,6 +1114,9 @@ const courseNameMap: Record<string, string> = {
                         arrow_forward
                       </span>
                     </a>
+                    <span class="text-xs font-bold text-sky-700 font-mono bg-sky-50 px-2.5 py-1 rounded-full">
+                      $6,499
+                    </span>
                   </div>
                 </div>
               ))
@@ -1486,6 +1527,121 @@ TRANSPARENT PRICING
         </script>
       </section>
     </section>
+
+    <!-- Program Path Switcher & Dynamic Pricing Script -->
+    <script is:inline>
+      (function () {
+        let activePath = "short";
+
+        function applyProgramPath(path, smoothScroll) {
+          activePath = path === "long" ? "long" : "short";
+          const isLong = activePath === "long";
+
+          // Update switcher buttons
+          const btnShort = document.getElementById("btn-track-short");
+          const btnLong = document.getElementById("btn-track-long");
+          const hint = document.getElementById("track-description-hint");
+
+          if (btnShort && btnLong) {
+            if (isLong) {
+              btnLong.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
+              btnShort.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900";
+              if (hint) {
+                hint.innerHTML =
+                  'Comprehensive career acceleration with 1-on-1 industry mentor • <strong class="text-slate-800">$6,499</strong>';
+              }
+            } else {
+              btnShort.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer bg-white text-sky-700 shadow-sm";
+              btnLong.className =
+                "px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-600 hover:text-slate-900";
+              if (hint) {
+                hint.innerHTML =
+                  'Live weekend cohort classes with peer collaboration • <strong class="text-slate-800">$3,499</strong>';
+              }
+            }
+          }
+
+          // Update card prices
+          const priceEls = document.querySelectorAll(".program-card-price");
+          priceEls.forEach(function (el) {
+            el.textContent = isLong ? "$6,499" : "$3,499";
+          });
+
+          // Update tier labels
+          const tierEls = document.querySelectorAll(".program-card-tier");
+          tierEls.forEach(function (el) {
+            el.textContent = isLong ? "Personalised Classes" : "Batch Classes";
+          });
+
+          // Update Enroll links to pass correct type param
+          const enrollBtns = document.querySelectorAll(".program-enroll-btn");
+          enrollBtns.forEach(function (btn) {
+            const course = btn.getAttribute("data-course") || "";
+            const tierType = isLong ? "1on1" : "normal";
+            btn.href =
+              "/checkout?course=" +
+              encodeURIComponent(course) +
+              "&type=" +
+              tierType +
+              "&mode=full";
+          });
+
+          if (smoothScroll) {
+            const progSection = document.getElementById("programs");
+            if (progSection) {
+              progSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }
+
+        function initTrackHandlers() {
+          const btnShort = document.getElementById("btn-track-short");
+          const btnLong = document.getElementById("btn-track-long");
+
+          if (btnShort) {
+            btnShort.addEventListener("click", function () {
+              applyProgramPath("short", false);
+            });
+          }
+          if (btnLong) {
+            btnLong.addEventListener("click", function () {
+              applyProgramPath("long", false);
+            });
+          }
+
+          const pathElements = document.querySelectorAll(".learning-path-btn, .learning-path-card");
+          pathElements.forEach(function (elem) {
+            elem.addEventListener("click", function (e) {
+              e.preventDefault();
+              applyProgramPath("long", true);
+            });
+          });
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const pathParam =
+            urlParams.get("path") ||
+            urlParams.get("track") ||
+            urlParams.get("tier");
+          if (
+            pathParam === "long" ||
+            pathParam === "1on1" ||
+            pathParam === "career" ||
+            window.location.hash === "#long-term"
+          ) {
+            applyProgramPath("long", false);
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initTrackHandlers);
+        } else {
+          initTrackHandlers();
+        }
+      })();
+    </script>
     <ConsultationModal />
   </body>
 </html>
