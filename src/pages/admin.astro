@@ -112,7 +112,7 @@ const statsPages = dynamicPages.length;
 const statsCoupons = couponsList.filter((c) => c.active).length;
 const statsMedia = mediaItems.length;
 
-const blogs = await sqlQuery.all(`
+const blogs: any[] = await sqlQuery.all(`
     SELECT *
     FROM blogs
     ORDER BY created_at DESC
@@ -120,7 +120,7 @@ const blogs = await sqlQuery.all(`
 console.log("BLOG DATA:", blogs);
 const statsBlogs = blogs.length;
 
-const howTos = await sqlQuery.all(`
+const howTos: any[] = await sqlQuery.all(`
     SELECT *
     FROM how_tos
     ORDER BY created_at DESC
@@ -2103,7 +2103,7 @@ const statsHowTos = howTos.length;
 
     <!-- Modal Form (Create / Edit) -->
     {authenticated && (
-        <div id="job-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div id="job-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden">
             <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 id="modal-title" class="font-headline-md text-xl text-primary">Post New Job Listing</h2>
@@ -2218,7 +2218,7 @@ const statsHowTos = howTos.length;
         </div>
 
         <!-- STORIES & PODCASTS MODAL -->
-        <div id="story-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div id="story-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden">
             <div class="bg-white rounded-2xl w-full max-w-xl p-8 shadow-2xl relative border border-outline-variant/10 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 id="story-modal-title" class="font-headline-md text-xl text-primary">Add New Success Story / Podcast</h2>
@@ -2302,7 +2302,7 @@ const statsHowTos = howTos.length;
                     </div>
 
                     <!-- YouTube Link Field (Visible when type = podcast) -->
-                    <div id="story-podcast-fields" class="flex flex-col gap-1.5 hidden">
+                    <div id="story-podcast-fields" class="[&:not(.hidden)]:flex flex-col gap-1.5 hidden">
                         <label for="form-story-youtube-url" class="text-xs font-bold uppercase text-secondary">YouTube Video URL</label>
                         <input type="text" id="form-story-youtube-url" class="h-10 px-3 border border-outline-variant/30 rounded-lg outline-none focus:border-primary transition-all text-sm" placeholder="e.g. https://www.youtube.com/watch?v=XXXXXX" />
                     </div>
@@ -3041,7 +3041,7 @@ const statsHowTos = howTos.length;
 
         
 <!-- PAGE CREATION MODAL -->
-        <div id="page-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div id="page-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden">
             <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 class="font-headline-md text-xl text-primary">Create Dynamic Page</h2>
@@ -3066,7 +3066,7 @@ const statsHowTos = howTos.length;
         </div>
 
         <!-- PAGE BLOCK BUILDER EDITOR OVERLAY -->
-        <div id="page-editor-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div id="page-editor-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden">
             <div class="bg-slate-50 rounded-2xl w-full max-w-6xl h-[90vh] p-8 shadow-2xl relative border border-outline-variant/15 flex flex-col justify-between" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center pb-4 border-b border-outline-variant/10 shrink-0">
                     <div>
@@ -3141,7 +3141,7 @@ const statsHowTos = howTos.length;
             </div>
         </div>
 
-        <div id="coupon-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden">
+        <div id="coupon-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden">
             <div class="bg-white rounded-2xl w-full max-w-lg p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 id="coupon-modal-title" class="font-headline-md text-xl text-primary">Create Coupon</h2>
@@ -3185,7 +3185,7 @@ const statsHowTos = howTos.length;
             </div>
         </div>
 
-        <div id="user-modal" class={isFullAdmin ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden" : "hidden"}>
+        <div id="user-modal" class={isFullAdmin ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] [&:not(.hidden)]:flex items-center justify-center hidden" : "hidden"}>
             <div class="bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl relative border border-outline-variant/10" onclick="event.stopPropagation()">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/10">
                     <h2 id="user-modal-title" class="font-headline-md text-xl text-primary">Add Admin User</h2>

@@ -73,17 +73,34 @@ const db = {
 
 // Exported promises for the rest of the application
 export const query = {
+  /**
+   * @template T
+   * @param {string} sql
+   * @param {any[]} [params]
+   * @returns {Promise<T | undefined>}
+   */
   async get(sql, params = []) {
     const [rows] = await pool.query(sql, params);
-    return rows[0];
+    return /** @type {any} */ (rows)[0];
   },
+  /**
+   * @template T
+   * @param {string} sql
+   * @param {any[]} [params]
+   * @returns {Promise<T[]>}
+   */
   async all(sql, params = []) {
     const [rows] = await pool.query(sql, params);
-    return rows;
+    return /** @type {any} */ (rows);
   },
+  /**
+   * @param {string} sql
+   * @param {any[]} [params]
+   * @returns {Promise<{ id: any, changes: any }>}
+   */
   async run(sql, params = []) {
     const [result] = await pool.query(sql, params);
-    return { id: result.insertId, changes: result.affectedRows };
+    return { id: /** @type {any} */ (result).insertId, changes: /** @type {any} */ (result).affectedRows };
   },
 };
 
