@@ -134,8 +134,17 @@ const { id } = Astro.params;
           <!-- Meta Tab Content -->
           <div id="panel-meta" class="space-y-4 hidden">
              <div>
-               <label class="block font-label-sm text-on-surface mb-1">Featured Image URL</label>
-               <input type="text" id="input-image" class="w-full px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm">
+               <label class="block font-label-sm text-on-surface mb-1">Featured Image</label>
+               <div class="flex gap-2">
+                 <input type="text" id="input-image" class="flex-1 px-3 py-2 border border-outline bg-surface rounded-lg focus:ring-2 focus:ring-primary text-sm" placeholder="Image URL or upload a file">
+                 <button type="button" id="btn-upload-featured-image" class="px-3 py-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm rounded-lg border border-outline transition-colors flex items-center gap-1 shrink-0">
+                   <i data-feather="upload" class="w-4 h-4"></i> Upload
+                 </button>
+                 <input type="file" id="file-featured-image" accept="image/*" class="hidden">
+               </div>
+               <div id="featured-image-preview-wrap" class="mt-2 hidden">
+                 <img id="featured-image-preview" src="" alt="Featured Preview" class="w-full max-h-48 object-cover rounded-lg border border-outline">
+               </div>
              </div>
              <div>
                <label class="block font-label-sm text-on-surface mb-1">Author</label>
@@ -217,6 +226,68 @@ const { id } = Astro.params;
         document.getElementById('tab-meta')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-meta'));
         document.getElementById('tab-comments')!.addEventListener('click', (e) => switchTab(e.currentTarget, 'panel-comments'));
 
+        // Featured Image Upload Handling
+        const btnUploadFeatured = document.getElementById('btn-upload-featured-image');
+        const fileFeaturedInput = document.getElementById('file-featured-image') as HTMLInputElement;
+        const inputImage = document.getElementById('input-image') as HTMLInputElement;
+        const previewWrap = document.getElementById('featured-image-preview-wrap');
+        const previewImg = document.getElementById('featured-image-preview') as HTMLImageElement;
+
+        btnUploadFeatured?.addEventListener('click', () => {
+           fileFeaturedInput?.click();
+        });
+
+        fileFeaturedInput?.addEventListener('change', async () => {
+           const file = fileFeaturedInput.files?.[0];
+           if (!file) return;
+
+           const formData = new FormData();
+           formData.append('file', file);
+           formData.append('alt_text', file.name);
+           formData.append('title', file.name);
+           formData.append('access_level', 'public');
+
+           if (btnUploadFeatured) btnUploadFeatured.innerHTML = '<i data-feather="loader" class="w-4 h-4 animate-spin"></i> Uploading...';
+           document.body.style.cursor = 'wait';
+
+           try {
+              const res = await fetch('/api/media', {
+                 method: 'POST',
+                 body: formData
+              });
+
+              if (res.ok) {
+                 const data = await res.json();
+                 const imgPath = (data.media && data.media.path) ? data.media.path : (data.path || `/api/media/download?id=${data.id || (data.media && data.media.id)}`);
+                 if (inputImage) inputImage.value = imgPath;
+                 if (previewImg && previewWrap) {
+                    previewImg.src = imgPath;
+                    previewWrap.classList.remove('hidden');
+                 }
+              } else {
+                 const errData = await res.json().catch(() => ({}));
+                 alert('Featured image upload failed: ' + (errData.error || 'Server error'));
+              }
+           } catch(err) {
+              console.error(err);
+              alert('Network error during featured image upload.');
+           } finally {
+              document.body.style.cursor = 'default';
+              if (btnUploadFeatured) btnUploadFeatured.innerHTML = '<i data-feather="upload" class="w-4 h-4"></i> Upload';
+              if (typeof feather !== 'undefined') feather.replace();
+           }
+        });
+
+        inputImage?.addEventListener('input', () => {
+           const val = inputImage.value.trim();
+           if (val && previewImg && previewWrap) {
+              previewImg.src = val;
+              previewWrap.classList.remove('hidden');
+           } else if (previewWrap) {
+              previewWrap.classList.add('hidden');
+           }
+        });
+
         function selectLocalImage() {
            const input = document.createElement('input');
            input.setAttribute('type', 'file');
@@ -224,11 +295,13 @@ const { id } = Astro.params;
            input.click();
 
            input.onchange = async () => {
-              const file = input.files[0];
+              const file = input.files?.[0];
               if (!file) return;
 
               const formData = new FormData();
               formData.append('file', file);
+              formData.append('alt_text', file.name);
+              formData.append('title', file.name);
               formData.append('access_level', 'public');
               
               document.body.style.cursor = 'wait';
@@ -241,13 +314,14 @@ const { id } = Astro.params;
 
                  if (res.ok) {
                     const data = await res.json();
-                    if (data.media && data.media.id) {
-                       const imgUrl = `/api/media/download?id=${data.media.id}`;
+                    const imgUrl = (data.media && data.media.path) ? data.media.path : (data.path || (data.media && data.media.id ? `/api/media/download?id=${data.media.id}` : null));
+                    if (imgUrl) {
                        const range = quill.getSelection(true);
                        quill.insertEmbed(range.index, 'image', imgUrl);
                     }
                  } else {
-                    alert('Image upload failed.');
+                    const errData = await res.json().catch(() => ({}));
+                    alert('Image upload failed: ' + (errData.error || 'Server error'));
                  }
               } catch(e) {
                  alert('Network error during image upload.');
@@ -371,6 +445,14 @@ const { id } = Astro.params;
            (document.getElementById('input-slug') as HTMLInputElement).value = currentHowTo.slug || '';
            (document.getElementById('input-category') as HTMLInputElement).value = currentHowTo.category || '';
            (document.getElementById('input-image') as HTMLInputElement).value = currentHowTo.image || '';
+           if (currentHowTo.image) {
+              const prevImg = document.getElementById('featured-image-preview') as HTMLImageElement;
+              const prevWrap = document.getElementById('featured-image-preview-wrap');
+              if (prevImg && prevWrap) {
+                 prevImg.src = currentHowTo.image;
+                 prevWrap.classList.remove('hidden');
+              }
+           }
            (document.getElementById('input-author') as HTMLInputElement).value = currentHowTo.author || '';
            (document.getElementById('input-tags') as HTMLInputElement).value = currentHowTo.tags || '';
 

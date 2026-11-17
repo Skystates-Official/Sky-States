@@ -5067,9 +5067,10 @@ window.saveHowTo = async function(e) {
             const uploadRes = await fetch('/api/media', { method: 'POST', body: formData });
             if (uploadRes.ok) {
                 const resJson = await uploadRes.json();
-                imagePath = resJson.media.path;
+                imagePath = resJson.media ? resJson.media.path : (resJson.path || '');
             } else {
-                alert('Image upload failed.');
+                const errData = await uploadRes.json().catch(() => ({}));
+                alert('Image upload failed: ' + (errData.error || 'Unknown error'));
                 if(uploadBtn) uploadBtn.innerText = 'Save How To';
                 return;
             }
