@@ -52,13 +52,6 @@ function validateLegacySkyCoupon(code, basePrice) {
     };
   }
 
-  if (basePrice - discountAmount < 0) {
-    return {
-      valid: false,
-      error: "Discount amount cannot exceed the total price.",
-    };
-  }
-
   const appliedDiscount = Math.min(discountAmount, basePrice);
   const total = Math.max(0, basePrice - appliedDiscount);
 
@@ -81,7 +74,9 @@ export async function validateCouponCode(
   const legacy = validateLegacySkyCoupon(code, basePrice);
   if (legacy.valid) return legacy;
 
-  return stored.error ? stored : legacy;
+  if (stored.error && stored.error !== "Invalid coupon code.") return stored;
+  if (legacy.error && legacy.error !== "Invalid coupon code.") return legacy;
+  return { valid: false, error: "Invalid coupon code." };
 }
 
 export async function calculateCheckoutTotal({

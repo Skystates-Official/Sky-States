@@ -1,13 +1,13 @@
 import nodemailer from 'nodemailer';
 import { query } from '../db/sqlite.js';
 
-const SITE_URL = import.meta.env.SITE_URL || process.env.SITE_URL || 'https://skystates.us';
+const SITE_URL = import.meta.env?.SITE_URL || process.env.SITE_URL || 'https://skystates.us';
 
 function getTransporter() {
-  const host = import.meta.env.SMTP_HOST || process.env.SMTP_HOST;
-  const port = Number(import.meta.env.SMTP_PORT || process.env.SMTP_PORT || 587);
-  const user = import.meta.env.SMTP_USER || process.env.SMTP_USER;
-  const pass = import.meta.env.SMTP_PASS || process.env.SMTP_PASS;
+  const host = import.meta.env?.SMTP_HOST || process.env.SMTP_HOST;
+  const port = Number(import.meta.env?.SMTP_PORT || process.env.SMTP_PORT || 587);
+  const user = import.meta.env?.SMTP_USER || process.env.SMTP_USER;
+  const pass = import.meta.env?.SMTP_PASS || process.env.SMTP_PASS;
 
 
   if (!host || !user || !pass) {
@@ -23,7 +23,7 @@ function getTransporter() {
 }
 
 function getFromAddress() {
-  return import.meta.env.SMTP_FROM || process.env.SMTP_FROM || 'Sky States <support@skystates.us>';
+  return import.meta.env?.SMTP_FROM || process.env.SMTP_FROM || 'Sky States <support@skystates.us>';
 }
 
 export async function sendPasswordResetEmail(to, token) {
@@ -112,7 +112,7 @@ export async function sendPaymentConfirmationEmail({
   await transporter.sendMail({
     from: getFromAddress(),
     to,
-    replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+    replyTo: import.meta.env?.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
 
     subject,
     html,
@@ -134,7 +134,7 @@ export async function sendFreeEnrollmentEmail({ to, customerName, courseName, or
   await transporter.sendMail({
     from: getFromAddress(),
     to,
-    replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+    replyTo: import.meta.env?.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
 
     subject: `Sky States — Enrollment confirmed (${orderRef})`,
     html: `
@@ -159,7 +159,7 @@ export async function sendConsultationFormEmail({ name, email, phone, program, q
     return { sent: false, skipped: true, reason: 'smtp_not_configured' };
   }
 
-  const adminEmail = import.meta.env.SMTP_USER || process.env.SMTP_USER || 'support@skystates.us';
+  const adminEmail = import.meta.env?.SMTP_USER || process.env.SMTP_USER || 'support@skystates.us';
   const subject = `New Career Consultation Request: ${name} (${program})`;
 
   const html = `
@@ -256,7 +256,7 @@ export async function sendConsultationAutoReplyEmail({ name, email, program }) {
   await transporter.sendMail({
     from: getFromAddress(),
     to: email,
-    replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+    replyTo: import.meta.env?.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
     subject,
     html,
   });
@@ -271,7 +271,7 @@ export async function sendReviewAdminEmail({ name, email, subject: reviewSubject
     return { sent: false, skipped: true, reason: 'smtp_not_configured' };
   }
 
-  const adminEmail = import.meta.env.SMTP_USER || process.env.SMTP_USER || 'support@skystates.us';
+  const adminEmail = import.meta.env?.SMTP_USER || process.env.SMTP_USER || 'support@skystates.us';
   const subject = `New Learner Review Submitted: ${name}`;
 
   const html = `
@@ -363,7 +363,7 @@ export async function sendReviewUserAutoReplyEmail({ name, email }) {
   await transporter.sendMail({
     from: getFromAddress(),
     to: email,
-    replyTo: import.meta.env.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
+    replyTo: import.meta.env?.SMTP_REPLY_TO || process.env.SMTP_REPLY_TO || 'support@skystates.us',
     subject,
     html,
   });

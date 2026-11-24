@@ -364,8 +364,7 @@ const pricingConfig = {
                         </h2>
                         <p class="text-sm text-slate-500 mb-6">
                             Enter your details below — you'll pay securely on
-                            Stripe with cards, wallets, bank transfer, or
-                            buy-now-pay-later options.
+                            Whop with cards, Apple Pay, Google Pay, and other convenient options.
                         </p>
 
                         <form class="flex flex-col gap-6" id="payment-form">
@@ -411,15 +410,12 @@ const pricingConfig = {
                                         <p
                                             class="font-semibold text-slate-800 mb-1"
                                         >
-                                            Secure checkout powered by Stripe
+                                            Secure checkout powered by Whop
                                         </p>
                                         <p>
-                                            On the next page you can pay with
-                                            cards, Apple Pay, Google Pay, Link,
-                                            ACH bank transfer, and
-                                            buy-now-pay-later options such as
-                                            Affirm, Klarna, or Afterpay — when
-                                            enabled in your region.
+                                            On the next page you can pay securely with
+                                            credit & debit cards, Apple Pay, Google Pay,
+                                            and other convenient payment options supported by Whop.
                                         </p>
                                     </div>
                                 </div>
@@ -679,13 +675,12 @@ const pricingConfig = {
             window.selectedTier = "normal";
 
             window.getOrderTotal = function () {
-                const isFullPayment = window.checkoutMode === "full" || window.checkoutMode === "offline";
-                const modeKey = window.checkoutMode;
+                const modeKey = window.checkoutMode || "registration";
                 const tierKey =
                     window.selectedTier === "1on1" ? "1on1" : "normal";
-                let basePrice = P[modeKey][tierKey];
+                let basePrice = P[modeKey] ? P[modeKey][tierKey] : (P.full ? P.full[tierKey] : 99);
                 let discount = 0;
-                if (window.activeCoupon && isFullPayment) {
+                if (window.activeCoupon) {
                     discount = window.activeCoupon.discount ?? 0;
                 }
                 return Math.max(0, basePrice - discount);
@@ -1058,8 +1053,8 @@ const pricingConfig = {
                 if (isError) {
                     const lowercaseMsg = message.toLowerCase();
                     if (
-                        lowercaseMsg.includes("stripe_secret_key") ||
-                        lowercaseMsg.includes("stripe key") ||
+                        lowercaseMsg.includes("whop") ||
+                        lowercaseMsg.includes("gateway") ||
                         lowercaseMsg.includes("not configured") ||
                         lowercaseMsg.includes("database") ||
                         lowercaseMsg.includes("sqlite") ||
@@ -1120,7 +1115,7 @@ const pricingConfig = {
                 const originalBtnContent = submitBtn.innerHTML;
 
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = "<span>Redirecting to Stripe...</span>";
+                submitBtn.innerHTML = "<span>Redirecting to Whop...</span>";
 
                 try {
                     const payload = getCheckoutPayload();
@@ -1168,7 +1163,7 @@ const pricingConfig = {
 
                     if (!data.url) {
                         throw new Error(
-                            "Stripe checkout URL was not returned.",
+                            "Whop checkout URL was not returned.",
                         );
                     }
 

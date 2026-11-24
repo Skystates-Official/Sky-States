@@ -1,16 +1,10 @@
-import { getStripe } from './stripe.js';
+// STRIPE COMMENTED OUT: Switched to Whop payment method
+// import { getStripe } from './stripe.js';
+// import { formatPaymentMethod } from './stripe-checkout.js';
 import { generateOrderRef, createOrder, recordOrderPayment, getOrderByRef } from './orders.js';
 import { sendPaymentConfirmationEmail, sendFreeEnrollmentEmail } from './email.js';
-import { formatPaymentMethod } from './stripe-checkout.js';
 import { query } from '../db/sqlite.js';
-
-function extractPaymentMethod(session) {
-  const paymentIntent = session.payment_intent;
-  if (!paymentIntent || typeof paymentIntent === 'string') return 'card';
-  const method = paymentIntent.payment_method;
-  if (!method || typeof method === 'string') return 'card';
-  return method.type || 'card';
-}
+export { finalizeWhopPayment } from './whop.js';
 
 export async function finalizeCheckoutSession(session) {
   const metadata = session.metadata || {};
@@ -20,9 +14,10 @@ export async function finalizeCheckoutSession(session) {
   const courseName = metadata.courseName || 'Sky States Program';
   let orderRef = metadata.orderRef;
 
+  const sessionId = session.id || orderRef;
   const existingPayment = await query.get(
     'SELECT * FROM order_payments WHERE stripe_session_id = ?',
-    [session.id]
+    [sessionId]
   );
   if (existingPayment) {
     const order = await getOrderByRef(existingPayment.order_ref);
@@ -57,23 +52,23 @@ export async function finalizeCheckoutSession(session) {
   }
 
   const updatedOrder = await recordOrderPayment(orderRef, {
-    stripeSessionId: session.id,
+    stripeSessionId: sessionId,
     amount: amountPaid,
     paymentType: 'full',
-    paymentMethod: formatPaymentMethod(extractPaymentMethod(session)),
+    paymentMethod: 'Whop',
   });
 
   await query.run(
-    `INSERT OR IGNORE INTO forms (form_name, data) VALUES (?, ?)`,
+    `INSERT IGNORE INTO forms (form_name, data) VALUES (?, ?)`,
     [
-      'stripe_checkout',
+      'whop_checkout',
       JSON.stringify({
-        sessionId: session.id,
+        sessionId,
         orderRef,
         amount: amountPaid,
         email,
         metadata,
-        status: session.payment_status,
+        status: 'paid',
         createdAt: new Date().toISOString(),
       }),
     ]
@@ -113,26 +108,57 @@ export async function finalizeFreeCheckout({ email, name, courseName, mode, tier
 }
 
 export async function retrievePaidSession(sessionId) {
-  const stripe = getStripe();
-  const session = await stripe.checkout.sessions.retrieve(sessionId, {
-    expand: ['payment_intent.payment_method'],
-  });
+  /* =========================================================================
+   * STRIPE SESSION RETRIEVAL (COMMENTED OUT)
+   * =========================================================================
+   * const stripe = getStripe();
+   * const session = await stripe.checkout.sessions.retrieve(sessionId, {
+   *   expand: ['payment_intent.payment_method'],
+   * });
+   * ...
+   * ========================================================================= */
 
-  if (session.payment_status === 'paid') {
-    return { ok: true, session };
-  }
+  // Check local database for payment or order associated with this reference
+  const payment = await query.get(
+    'SELECT * FROM order_payments WHERE stripe_session_id = ? OR order_ref = ?',
+    [sessionId, sessionId]
+  );
 
-  if (session.status === 'complete' && session.payment_status === 'unpaid') {
+  if (payment) {
+    const order = await getOrderByRef(payment.order_ref);
     return {
-      ok: false,
-      session,
-      processing: true,
-      error:
-        'Your payment is being processed. Bank transfers and some methods can take 1–3 business days. We will email you at ' +
-        (session.customer_email || session.metadata?.customerEmail || 'your address') +
-        ' once confirmed.',
+      ok: true,
+      session: {
+        id: sessionId,
+        payment_status: 'paid',
+        amount_total: Math.round(Number(payment.amount) * 100),
+        customer_email: order ? order.customer_email : '',
+        metadata: {
+          orderRef: payment.order_ref,
+          customerName: order ? order.customer_name : '',
+          courseName: order ? order.course_name : '',
+        },
+      },
     };
   }
 
-  return { ok: false, session, error: 'Payment not completed.' };
+  const order = await getOrderByRef(sessionId);
+  if (order) {
+    return {
+      ok: true,
+      session: {
+        id: sessionId,
+        payment_status: order.status === 'paid' ? 'paid' : 'unpaid',
+        amount_total: Math.round(Number(order.total_due) * 100),
+        customer_email: order.customer_email,
+        metadata: {
+          orderRef: order.order_ref,
+          customerName: order.customer_name,
+          courseName: order.course_name,
+        },
+      },
+    };
+  }
+
+  return { ok: false, session: null, error: 'Payment record not found.' };
 }

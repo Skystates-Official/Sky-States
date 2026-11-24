@@ -2,12 +2,21 @@
 import "../../styles/global.css";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { retrievePaidSession, finalizeCheckoutSession } from "../../lib/checkout.js";
+import { finalizeWhopPayment, retrievePaidSession } from "../../lib/checkout.js";
+import { getOrderByRef } from "../../lib/orders.js";
 
 export const prerender = false;
 
+// Seamless local dev transition: if Whop returns to 127.0.0.1, redirect immediately to localhost:4321
+if (Astro.url.hostname === "127.0.0.1") {
+  return Astro.redirect(`http://localhost:${Astro.url.port || "4321"}${Astro.url.pathname}${Astro.url.search}`);
+}
+
 const sessionId = Astro.url.searchParams.get("session_id");
+const orderRefParam = Astro.url.searchParams.get("order_ref");
+const paymentId = Astro.url.searchParams.get("payment") || Astro.url.searchParams.get("payment_id");
 const isFreeCheckout = Astro.url.searchParams.get("free") === "1";
+
 let payment: {
   status: string;
   amount_total: number;
@@ -28,15 +37,46 @@ if (isFreeCheckout) {
     metadata: { courseName: "Sky States Program" },
     customer_email: "",
   };
+} else if (orderRefParam) {
+  try {
+    const order = await getOrderByRef(orderRefParam);
+    if (order) {
+      orderRef = order.order_ref;
+      if (order.status !== "paid") {
+        const result = await finalizeWhopPayment({
+          orderRef: order.order_ref,
+          paymentId: paymentId || `whop_${order.order_ref}`,
+          amount: order.total_due,
+          email: order.customer_email,
+          name: order.customer_name,
+          courseName: order.course_name,
+          paymentMethod: "Whop",
+        });
+        emailSent = result.emailResult?.sent === true;
+      }
+      payment = {
+        status: "paid",
+        amount_total: Math.round(Number(order.total_due) * 100),
+        id: paymentId || order.order_ref,
+        metadata: {
+          courseName: order.course_name,
+          customerName: order.customer_name,
+          customerEmail: order.customer_email,
+        },
+        customer_email: order.customer_email,
+      };
+    } else {
+      error = "Order reference not found.";
+    }
+  } catch (err) {
+    console.error("Success page error:", err);
+    error = "Unable to verify your order. Please contact support@skystates.us.";
+  }
 } else if (sessionId) {
   try {
     const { ok, session, error: sessionError } = await retrievePaidSession(sessionId);
 
     if (ok && session) {
-      const result = await finalizeCheckoutSession(session);
-      orderRef = result.orderRef || session.metadata?.orderRef || "";
-      emailSent = result.emailResult?.sent === true;
-
       payment = {
         status: session.payment_status,
         amount_total: session.amount_total,
@@ -44,18 +84,9 @@ if (isFreeCheckout) {
         metadata: session.metadata || {},
         customer_email: session.customer_email || session.metadata?.customerEmail || "",
       };
-    } else if (session && session.status === "complete" && session.payment_status === "unpaid") {
-      isProcessing = true;
-      payment = {
-        status: "processing",
-        amount_total: session.amount_total || 0,
-        id: session.id,
-        metadata: session.metadata || {},
-        customer_email: session.customer_email || session.metadata?.customerEmail || "",
-      };
-      orderRef = session.metadata?.orderRef || "";
+      orderRef = session.metadata?.orderRef || session.id || "";
     } else {
-      error = sessionError || "Your payment has not completed yet. Please contact support if funds were charged.";
+      error = sessionError || "Your payment record could not be found. Please contact support if funds were charged.";
     }
   } catch (err) {
     console.error("Success page error:", err);
@@ -91,7 +122,7 @@ if (isFreeCheckout) {
               <p class="text-slate-600 mb-6">
                 {
                   isProcessing
-                    ? <>Your payment is being confirmed. For bank transfers and some methods this can take 1–3 business days. We will email{" "}
+                    ? <>Your payment is being confirmed. We will email{" "}
                         {payment.metadata?.customerEmail || payment.customer_email || "you"} once it clears.</>
                     : payment.amount_total === 0
                     ? "Your enrollment is confirmed. Our team will follow up with next steps shortly."
